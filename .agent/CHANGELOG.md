@@ -7,6 +7,34 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ---
 
+## [3.1.1] - 2026-01-31
+
+### 🚀 Installation System & UI-UX-Pro-Max Refresh
+
+**Complete installation system for easy deployment + Clean UI-UX-Pro-Max reinstall.**
+
+---
+
+### Added
+
+- **install-global.ps1** - Global installer (2-step pattern like uipro-cli)
+- **update-global.ps1** - Update global installation
+- **setup-profile.ps1** - Auto-generated PowerShell profile with agi/agu/agug commands
+- **install-antigravity.md v2.0** - Updated workflow with 2-step pattern
+
+### Changed
+
+- **README.md** - Updated QUICK START with 2-step installation
+- **UI-UX-Pro-Max** - Fresh reinstall from GitHub
+- **install-antigravity.md** - Streamlined with global/alternative options
+
+### Removed
+
+- **.agent/.shared/** - Duplicate folder removed
+- **Old ui-ux-pro-max files** - Replaced with fresh install
+
+---
+
 ## [3.1.0] - 2026-01-31
 
 ### 🎉 Project Optimization & Documentation Enhancement

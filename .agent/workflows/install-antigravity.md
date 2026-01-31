@@ -18,156 +18,103 @@ Hướng dẫn cài đặt và cập nhật Antigravity-Core cho các dự án.
 
 ---
 
-## 🔧 CÀI ĐẶT CHO PROJECT MỚI
+## 🌐 STEP 1: CÀI ĐẶT GLOBAL (một lần duy nhất)
 
-### Option 1: Sử dụng Script (Recommended)
+### Recommended: 2-Step Pattern
 
 ```powershell
-# Download script và chạy
-$url = "https://raw.githubusercontent.com/tuyenht/Antigravity-Core/main/.agent/scripts/install-antigravity.ps1"
-Invoke-WebRequest -Uri $url -OutFile "install-antigravity.ps1"
-.\install-antigravity.ps1
-Remove-Item "install-antigravity.ps1"
+# Download và chạy global installer
+irm "https://raw.githubusercontent.com/tuyenht/Antigravity-Core/main/.agent/scripts/install-global.ps1" -OutFile install.ps1
+.\install.ps1
+Remove-Item install.ps1
+
+# Thêm vào PowerShell Profile (theo hướng dẫn hiện ra)
+Add-Content -Path $PROFILE -Value ". 'C:\Tools\Antigravity-Core\setup-profile.ps1'"
+
+# Restart PowerShell
+```
+
+**Kết quả:** Bạn có 3 lệnh mới:
+- `agi` - Install Antigravity-Core vào project hiện tại
+- `agu` - Update project hiện tại
+- `agug` - Update bản global
+
+---
+
+## 🚀 STEP 2: CÀI ĐẶT CHO PROJECT (mỗi project)
+
+```powershell
+# Di chuyển đến project
+cd C:\Projects\MyNewProject
+
+# Cài đặt (từ bản global, nhanh!)
+agi
+```
+
+---
+
+## 🔄 CẬP NHẬT
+
+### Update bản global (khi có version mới)
+```powershell
+agug
+```
+
+### Update project hiện tại (từ bản global)
+```powershell
+cd C:\Projects\MyProject
+agu
+```
+
+---
+
+## 📦 ALTERNATIVE: CÀI TRỰC TIẾP (không cần global)
+
+### Option 1: One-liner Script
+
+```powershell
+cd C:\Projects\MyNewProject
+irm "https://raw.githubusercontent.com/tuyenht/Antigravity-Core/main/.agent/scripts/install-antigravity.ps1" -OutFile install.ps1
+.\install.ps1
+Remove-Item install.ps1
 ```
 
 ### Option 2: Clone và Copy
 
 ```powershell
-# Clone repo tạm thời
-git clone https://github.com/tuyenht/Antigravity-Core.git temp-antigravity
-
-# Copy .agent folder vào project
-Copy-Item -Path "temp-antigravity\.agent" -Destination ".\.agent" -Recurse
-
-# Copy docs (optional)
-Copy-Item -Path "temp-antigravity\docs" -Destination ".\docs" -Recurse
-
-# Cleanup
-Remove-Item -Path "temp-antigravity" -Recurse -Force
+git clone --depth 1 https://github.com/tuyenht/Antigravity-Core.git temp-ag
+Copy-Item -Path "temp-ag\.agent" -Destination ".\.agent" -Recurse
+Copy-Item -Path "temp-ag\docs" -Destination ".\docs" -Recurse
+Remove-Item -Path "temp-ag" -Recurse -Force
 ```
 
 ### Option 3: Download ZIP
 
 ```powershell
-# Download ZIP từ GitHub
 $zipUrl = "https://github.com/tuyenht/Antigravity-Core/archive/refs/heads/main.zip"
 Invoke-WebRequest -Uri $zipUrl -OutFile "antigravity.zip"
-
-# Extract
 Expand-Archive -Path "antigravity.zip" -DestinationPath "temp"
-
-# Copy .agent
 Copy-Item -Path "temp\Antigravity-Core-main\.agent" -Destination ".\.agent" -Recurse
-
-# Cleanup
 Remove-Item "antigravity.zip", "temp" -Recurse -Force
 ```
 
 ---
 
-## 🔄 CẬP NHẬT PROJECT HIỆN CÓ
+## 🐧 LINUX/MAC
 
-### Option 1: Sử dụng Script
-
-```powershell
-# Chạy từ thư mục project
-.\.agent\scripts\update-antigravity.ps1
-```
-
-### Option 2: Manual Update
-
-```powershell
-# Backup memory (project-specific data)
-Copy-Item -Path ".\.agent\memory" -Destination ".\temp-memory" -Recurse
-
-# Backup project.json
-Copy-Item -Path ".\.agent\project.json" -Destination ".\temp-project.json"
-
-# Remove old .agent
-Remove-Item -Path ".\.agent" -Recurse -Force
-
-# Download và install mới (như ở trên)
-# ...
-
-# Restore backups
-Copy-Item -Path ".\temp-memory" -Destination ".\.agent\memory" -Recurse -Force
-Copy-Item -Path ".\temp-project.json" -Destination ".\.agent\project.json" -Force
-
-# Cleanup
-Remove-Item ".\temp-memory", ".\temp-project.json" -Recurse -Force
-```
-
----
-
-## 📦 GLOBAL INSTALLATION
-
-Để có thể chạy scripts từ bất kỳ đâu:
-
-### Option 1: Add to PATH
-
-```powershell
-# Clone Antigravity-Core to a central location
-git clone https://github.com/tuyenht/Antigravity-Core.git C:\Tools\Antigravity-Core
-
-# Add scripts to PATH (PowerShell profile)
-$profileContent = @"
-
-# Antigravity-Core
-`$env:PATH += ";C:\Tools\Antigravity-Core\.agent\scripts"
-Set-Alias antigravity-install "C:\Tools\Antigravity-Core\.agent\scripts\install-antigravity.ps1"
-Set-Alias antigravity-update "C:\Tools\Antigravity-Core\.agent\scripts\update-antigravity.ps1"
-"@
-
-Add-Content -Path $PROFILE -Value $profileContent
-```
-
-### Option 2: PowerShell Functions
-
-Add to your `$PROFILE`:
-
-```powershell
-# Antigravity-Core Functions
-function Install-Antigravity {
-    param([string]$Path = ".")
-    
-    $url = "https://raw.githubusercontent.com/tuyenht/Antigravity-Core/main/.agent/scripts/install-antigravity.ps1"
-    $script = Invoke-WebRequest -Uri $url -UseBasicParsing
-    $scriptBlock = [ScriptBlock]::Create($script.Content)
-    & $scriptBlock -ProjectPath $Path
-}
-
-function Update-Antigravity {
-    if (Test-Path ".\.agent\scripts\update-antigravity.ps1") {
-        & ".\.agent\scripts\update-antigravity.ps1"
-    } else {
-        Write-Host "No .agent folder found. Run Install-Antigravity first." -ForegroundColor Red
-    }
-}
-
-# Aliases
-Set-Alias agi Install-Antigravity
-Set-Alias agu Update-Antigravity
-```
-
-**Usage sau khi setup:**
-
-```powershell
-# Install to new project
-cd C:\Projects\MyNewApp
-agi
-# hoặc: Install-Antigravity
-
-# Update existing project
-cd C:\Projects\MyExistingApp
-agu
-# hoặc: Update-Antigravity
+```bash
+cd ~/projects/my-new-project
+git clone --depth 1 https://github.com/tuyenht/Antigravity-Core.git temp-ag
+cp -r temp-ag/.agent ./.agent
+cp -r temp-ag/docs ./docs
+rm -rf temp-ag
 ```
 
 ---
 
 ## ✅ VERIFICATION
 
-Sau khi cài đặt, verify:
+Sau khi cài đặt:
 
 ```powershell
 # Check version
@@ -195,7 +142,7 @@ YourProject/
 │   ├── INTEGRATION-GUIDE.md   # How to use
 │   ├── agents/                # 27+ agent definitions
 │   ├── skills/                # 57+ skills
-│   ├── workflows/             # 36+ workflows
+│   ├── workflows/             # 37+ workflows
 │   ├── rules/                 # Coding standards
 │   ├── scripts/               # Automation scripts
 │   ├── memory/                # Persistent data
@@ -217,5 +164,6 @@ YourProject/
 
 ---
 
-**Version:** 1.0  
-**Created:** 2026-01-31
+**Version:** 2.0  
+**Updated:** 2026-01-31
+
