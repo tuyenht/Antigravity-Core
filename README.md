@@ -45,29 +45,73 @@
 
 ## ⚡ QUICK START
 
-### Cho dự án MỚI:
+### 🚀 Cài đặt tự động (Recommended)
 
-```bash
-# 1. Copy Antigravity-Core vào project mới
-mkdir MyNewProject
-cp -r Antigravity-Core/.agent MyNewProject/.agent
-cp -r Antigravity-Core/docs MyNewProject/docs
+**Windows (PowerShell):**
+```powershell
+# Di chuyển đến project của bạn
+cd C:\Projects\MyNewProject
 
-# 2. Mở docs/New-Project-Interview-Prompt.txt
-# 3. Copy prompt → Paste vào Gemini/Claude
-# 4. Trả lời 21 câu hỏi
-# 5. Nhận PROJECT BRIEF + Tech Stack + Getting Started
+# Download và chạy installer
+irm "https://raw.githubusercontent.com/tuyenht/Antigravity-Core/main/.agent/scripts/install-antigravity.ps1" -OutFile install.ps1
+.\install.ps1
+Remove-Item install.ps1
 ```
 
-### Cho dự án ĐÃ CÓ:
+**Linux/Mac (Bash):**
+```bash
+# Di chuyển đến project của bạn
+cd ~/projects/my-new-project
+
+# Clone và copy
+git clone --depth 1 https://github.com/tuyenht/Antigravity-Core.git temp-ag
+cp -r temp-ag/.agent ./.agent
+cp -r temp-ag/docs ./docs
+rm -rf temp-ag
+```
+
+### 📦 Cập nhật project hiện có
+
+```powershell
+# Từ project đã có .agent
+cd C:\Projects\MyExistingProject
+
+# Chạy updater (giữ nguyên memory + project.json)
+.\.agent\scripts\update-antigravity.ps1
+```
+
+### 🔧 Cài đặt Global (PowerShell Profile)
+
+Thêm vào `$PROFILE` để dùng từ mọi nơi:
+
+```powershell
+# Mở profile
+notepad $PROFILE
+
+# Thêm functions sau:
+function Install-Antigravity {
+    $url = "https://raw.githubusercontent.com/tuyenht/Antigravity-Core/main/.agent/scripts/install-antigravity.ps1"
+    irm $url -OutFile "$env:TEMP\install-ag.ps1"
+    & "$env:TEMP\install-ag.ps1"
+    Remove-Item "$env:TEMP\install-ag.ps1"
+}
+Set-Alias agi Install-Antigravity
+
+# Sau đó dùng:
+cd C:\Projects\AnyProject
+agi   # Cài Antigravity-Core
+```
+
+### 📋 Workflow sau khi cài
 
 ```bash
-# 1. Copy .agent vào project hiện tại
-cp -r Antigravity-Core/.agent YourExistingProject/.agent
+# 1. Cho dự án MỚI
+# Mở docs/New-Project-Interview-Prompt.txt
+# Copy prompt → Paste vào AI → Trả lời 21 câu hỏi
 
-# 2. Mở docs/Analyze-Existing-Project-Prompt.txt
-# 3. Copy prompt → Thay [PROJECT_PATH] → Paste vào AI
-# 4. Nhận phân tích + PROJECT BRIEF + Recommendations
+# 2. Cho dự án ĐÃ CÓ  
+# Mở docs/Analyze-Existing-Project-Prompt.txt
+# Copy prompt → Thay [PROJECT_PATH] → Paste vào AI
 ```
 
 ---
