@@ -45,73 +45,70 @@
 
 ## ⚡ QUICK START
 
-### 🚀 Cài đặt tự động (Recommended)
+### 🌐 STEP 1: Cài đặt Global (một lần duy nhất)
 
-**Windows (PowerShell):**
 ```powershell
-# Di chuyển đến project của bạn
-cd C:\Projects\MyNewProject
-
-# Download và chạy installer
-irm "https://raw.githubusercontent.com/tuyenht/Antigravity-Core/main/.agent/scripts/install-antigravity.ps1" -OutFile install.ps1
+# Download và chạy global installer
+irm "https://raw.githubusercontent.com/tuyenht/Antigravity-Core/main/.agent/scripts/install-global.ps1" -OutFile install.ps1
 .\install.ps1
 Remove-Item install.ps1
+
+# Thêm vào PowerShell Profile (theo hướng dẫn hiện ra)
+Add-Content -Path $PROFILE -Value ". 'C:\Tools\Antigravity-Core\setup-profile.ps1'"
+
+# Restart PowerShell
 ```
 
-**Linux/Mac (Bash):**
-```bash
-# Di chuyển đến project của bạn
-cd ~/projects/my-new-project
+**Kết quả:** Bạn có 3 lệnh mới:
+- `agi` - Install Antigravity-Core vào project hiện tại
+- `agu` - Update project hiện tại
+- `agug` - Update bản global
 
+---
+
+### � STEP 2: Cài đặt cho Project (mỗi project)
+
+```powershell
+# Di chuyển đến project
+cd C:\Projects\MyNewProject
+
+# Cài đặt (từ bản global, nhanh!)
+agi
+```
+
+---
+
+### � Cập nhật
+
+```powershell
+# Update bản global (khi có version mới)
+agug
+
+# Update project hiện tại (từ bản global)
+cd C:\Projects\MyProject
+agu
+```
+
+---
+
+### 🐧 Linux/Mac (Alternative)
+
+```bash
 # Clone và copy
+cd ~/projects/my-new-project
 git clone --depth 1 https://github.com/tuyenht/Antigravity-Core.git temp-ag
 cp -r temp-ag/.agent ./.agent
 cp -r temp-ag/docs ./docs
 rm -rf temp-ag
 ```
 
-### 📦 Cập nhật project hiện có
-
-```powershell
-# Từ project đã có .agent
-cd C:\Projects\MyExistingProject
-
-# Chạy updater (giữ nguyên memory + project.json)
-.\.agent\scripts\update-antigravity.ps1
-```
-
-### 🔧 Cài đặt Global (PowerShell Profile)
-
-Thêm vào `$PROFILE` để dùng từ mọi nơi:
-
-```powershell
-# Mở profile
-notepad $PROFILE
-
-# Thêm functions sau:
-function Install-Antigravity {
-    $url = "https://raw.githubusercontent.com/tuyenht/Antigravity-Core/main/.agent/scripts/install-antigravity.ps1"
-    irm $url -OutFile "$env:TEMP\install-ag.ps1"
-    & "$env:TEMP\install-ag.ps1"
-    Remove-Item "$env:TEMP\install-ag.ps1"
-}
-Set-Alias agi Install-Antigravity
-
-# Sau đó dùng:
-cd C:\Projects\AnyProject
-agi   # Cài Antigravity-Core
-```
+---
 
 ### 📋 Workflow sau khi cài
 
 ```bash
-# 1. Cho dự án MỚI
-# Mở docs/New-Project-Interview-Prompt.txt
-# Copy prompt → Paste vào AI → Trả lời 21 câu hỏi
-
-# 2. Cho dự án ĐÃ CÓ  
-# Mở docs/Analyze-Existing-Project-Prompt.txt
-# Copy prompt → Thay [PROJECT_PATH] → Paste vào AI
+# Cho dự án MỚI: Mở docs/New-Project-Interview-Prompt.txt
+# Cho dự án ĐÃ CÓ: Mở docs/Analyze-Existing-Project-Prompt.txt
 ```
 
 ---
