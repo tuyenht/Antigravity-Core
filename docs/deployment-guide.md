@@ -20,7 +20,7 @@
 - ✅ Node.js 20+ / PHP 8.3+ / Python 3.11+ (stack dependent)
 - ✅ Git installed
 - ✅ 2-3 hours uninterrupted time
-- ✅ Test1 project with working `.agent` folder
+- ✅ Antigravity-Core project with working `.agent` folder
 
 **Emergency Help:**
 - Health check fails? → [Troubleshooting](#troubleshooting)
@@ -131,7 +131,7 @@ cd my-project
 git init
 
 # Copy .agent system
-cp -r "c:\Projects\Test1\.agent" ".\.agent"
+cp -r "c:\Projects\Antigravity-Core\.agent" ".\.agent"
 
 # Verify .agent health
 .\.agent\scripts\health-check.ps1
@@ -409,7 +409,7 @@ Quality Report (from AOC):
 cd your-existing-project
 
 # Copy .agent system
-cp -r "c:\Projects\Test1\.agent" ".\.agent"
+cp -r "c:\Projects\Antigravity-Core\.agent" ".\.agent"
 
 # Run health check
 .\.agent\scripts\health-check.ps1

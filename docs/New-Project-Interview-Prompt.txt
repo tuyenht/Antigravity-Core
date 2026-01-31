@@ -140,7 +140,7 @@ Provide copy-paste setup commands for chosen stack:
 ```bash
 mkdir [project-name]
 cd [project-name]
-cp -r "c:\Projects\Test1\.agent" ".\.agent"
+cp -r "c:\Projects\Antigravity-Core\.agent" ".\.agent"
 composer create-project laravel/laravel .
 composer require inertiajs/inertia-laravel
 npm install react react-dom @vitejs/plugin-react
@@ -151,7 +151,7 @@ npm install react react-dom @vitejs/plugin-react
 ```bash
 mkdir [project-name]
 cd [project-name]
-cp -r "c:\Projects\Test1\.agent" ".\.agent"
+cp -r "c:\Projects\Antigravity-Core\.agent" ".\.agent"
 npx create-next-app@latest . --typescript --tailwind --app
 .\.agent\scripts\health-check.ps1
 ```

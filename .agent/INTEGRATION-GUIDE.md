@@ -2,7 +2,7 @@
 
 **Purpose:** How to use `.agent` folder for automated code generation  
 **Target:** All future projects  
-**Updated:** 2026-01-17
+**Updated:** 2026-01-31
 
 ---
 
@@ -29,9 +29,8 @@ The `.agent` folder is a **universal code standards and automation system** that
 │   ├── shared/          # Cross-framework rules
 │   └── standards/       # Framework-specific standards
 ├── scripts/             # Automation scripts
-├── skills/              # Reusable knowledge modules (52 skills)
+├── skills/              # Reusable knowledge modules (57+ skills)
 ├── workflows/           # Automated workflow definitions
-├── .shared/             # Shared resources (UI/UX data, etc.)
 └── maintenance/         # System maintenance tasks
 ```
 
@@ -42,7 +41,7 @@ The `.agent` folder is a **universal code standards and automation system** that
 ### Step 1: Copy .agent to New Project
 ```bash
 # Copy entire .agent folder to new project root
-cp -r /path/to/Test1/.agent /path/to/NewProject/.agent
+cp -r /path/to/Antigravity-Core/.agent /path/to/NewProject/.agent
 
 # Or use git if .agent is a separate repo
 git clone https://github.com/yourorg/agent-standards NewProject/.agent
@@ -451,7 +450,7 @@ Track these to measure .agent value:
 - **Full Automation Guide:** `.agent/workflows/code-review-automation.md`
 - **Quality Standards:** `.agent/rules/universal-code-standards.md`
 - **Maintenance:** `.agent/maintenance/`
-- **Skills Reference:** `.agent/skills/` (52 skills!)
+- **Skills Reference:** `.agent/skills/` (57+ skills!)
 
 ---
 

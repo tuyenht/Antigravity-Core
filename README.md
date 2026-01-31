@@ -111,7 +111,7 @@ Antigravity-Core/
 │   │
 │   ├── 📏 rules/                 ← Coding standards
 │   ├── ⚙️ scripts/               ← Automation scripts
-│   └── 🕵️ agents/                ← 19+ Agent definitions
+│   └── 🕵️ agents/                ← 27+ Agent definitions
 │
 ├── 📖 docs/                      ← Documentation Layer
 │   ├── PROJECT-BRIEF-SYSTEM.md   (Master guide)
