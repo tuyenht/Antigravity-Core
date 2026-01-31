@@ -137,10 +137,10 @@ Create complete 9-section PROJECT BRIEF:
 Provide copy-paste setup commands for chosen stack:
 
 **Laravel + Inertia + React:**
-```bash
+```powershell
 mkdir [project-name]
 cd [project-name]
-cp -r "c:\Projects\Antigravity-Core\.agent" ".\.agent"
+agi                                    # Install Antigravity-Core (requires global setup)
 composer create-project laravel/laravel .
 composer require inertiajs/inertia-laravel
 npm install react react-dom @vitejs/plugin-react
@@ -148,19 +148,24 @@ npm install react react-dom @vitejs/plugin-react
 ```
 
 **Next.js:**
-```bash
+```powershell
 mkdir [project-name]
 cd [project-name]
-cp -r "c:\Projects\Antigravity-Core\.agent" ".\.agent"
+agi                                    # Install Antigravity-Core (requires global setup)
 npx create-next-app@latest . --typescript --tailwind --app
 .\.agent\scripts\health-check.ps1
+```
+
+**Note:** If `agi` command not available, run global setup first:
+```powershell
+irm "https://raw.githubusercontent.com/tuyenht/Antigravity-Core/main/.agent/scripts/install-global.ps1" | iex
 ```
 
 ---
 
  OUTPUT FILES:
 
-Save to: `C:\Users\tuyen\.gemini\antigravity\brain\[conversation-id]\docs\`
+Save to: `[PROJECT_ROOT]/docs/`
 
 1. **PROJECT-BRIEF.md** - Complete 9-section brief
 2. **TECH-STACK-ANALYSIS.md** - Detailed comparison

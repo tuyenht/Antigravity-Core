@@ -38,13 +38,28 @@ The `.agent` folder is a **universal code standards and automation system** that
 
 ## 🌟 QUICK START: NEW PROJECT
 
-### Step 1: Copy .agent to New Project
-```bash
-# Copy entire .agent folder to new project root
-cp -r /path/to/Antigravity-Core/.agent /path/to/NewProject/.agent
+### Step 1: Install Antigravity-Core to Project
 
-# Or use git if .agent is a separate repo
-git clone https://github.com/yourorg/agent-standards NewProject/.agent
+**Option A: Using `agi` command (if global setup done)**
+```powershell
+cd NewProject
+agi
+```
+
+**Option B: One-liner (no global setup needed)**
+```powershell
+cd NewProject
+irm "https://raw.githubusercontent.com/tuyenht/Antigravity-Core/main/.agent/scripts/install-antigravity.ps1" -OutFile install.ps1
+.\install.ps1
+Remove-Item install.ps1
+```
+
+**Option C: Clone method (Linux/Mac)**
+```bash
+cd NewProject
+git clone --depth 1 https://github.com/tuyenht/Antigravity-Core.git temp-ag
+cp -r temp-ag/.agent ./.agent
+rm -rf temp-ag
 ```
 
 ### Step 2: Initialize for Tech Stack

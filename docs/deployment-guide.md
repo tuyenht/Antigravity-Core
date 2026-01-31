@@ -122,7 +122,7 @@ Example tech stack recommendation:
 
 **Instructions:**
 
-```bash
+```powershell
 # Create project directory
 mkdir my-project
 cd my-project
@@ -130,11 +130,16 @@ cd my-project
 # Initialize git
 git init
 
-# Copy .agent system
-cp -r "c:\Projects\Antigravity-Core\.agent" ".\.agent"
+# Install Antigravity-Core
+agi                                    # Requires global setup (see Note below)
 
 # Verify .agent health
 .\.agent\scripts\health-check.ps1
+```
+
+**Note:** If `agi` not available, run first:
+```powershell
+irm "https://raw.githubusercontent.com/tuyenht/Antigravity-Core/main/.agent/scripts/install-global.ps1" | iex
 ```
 
 **Expected Output:**
@@ -405,17 +410,22 @@ Quality Report (from AOC):
 
 **Instructions:**
 
-```bash
+```powershell
 cd your-existing-project
 
-# Copy .agent system
-cp -r "c:\Projects\Antigravity-Core\.agent" ".\.agent"
+# Install Antigravity-Core
+agi                                    # Requires global setup (see Note below)
 
 # Run health check
 .\.agent\scripts\health-check.ps1
 
 # Run compliance check
 .\.agent\scripts\validate-compliance.ps1
+```
+
+**Note:** If `agi` not available, run first:
+```powershell
+irm "https://raw.githubusercontent.com/tuyenht/Antigravity-Core/main/.agent/scripts/install-global.ps1" | iex
 ```
 
 **Expected Output:**
