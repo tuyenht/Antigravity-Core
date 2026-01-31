@@ -1,0 +1,267 @@
+# Performance Budget Configuration
+# Google-style enforcement of performance constraints
+# Block PRs that violate budgets, suggest fixes
+
+version: 1.0
+created: 2026-01-19
+enforcement_level: strict  # strict|warning|info
+
+# ============================================================
+# FRONTEND BUDGETS
+# ============================================================
+frontend:
+  # Bundle Size Limits
+  bundle_size:
+    # Main bundle
+    main:
+      limit: 200KB
+      severity: error  # Block PR
+      message: "Main bundle exceeds 200KB limit"
+      skill_reference: "react-performance"
+      suggestions:
+        - "Enable code splitting with React.lazy()"
+        - "Use direct imports instead of barrel imports"
+        - "Analyze bundle with webpack-bundle-analyzer"
+    
+    # Vendor bundle
+    vendor:
+      limit: 300KB
+      severity: warning
+      message: "Vendor bundle is large, review dependencies"
+      suggestions:
+        - "Check for duplicate dependencies"
+        - "Use lighter alternatives (date-fns vs moment)"
+        - "Enable tree-shaking"
+    
+    # Per-route bundles
+    per_route:
+      limit: 50KB
+      severity: warning
+      message: "Route chunk is large"
+      suggestions:
+        - "Split into smaller components"
+        - "Lazy load heavy components"
+
+  # Core Web Vitals (Google)
+  core_web_vitals:
+    LCP:  # Largest Contentful Paint
+      limit: 2500ms
+      severity: error
+      message: "LCP exceeds 2.5s (Core Web Vitals threshold)"
+      suggestions:
+        - "Optimize largest image/text block"
+        - "Implement preloading for critical resources"
+        - "Use next/image for automatic optimization"
+    
+    FID:  # First Input Delay
+      limit: 100ms
+      severity: error
+      message: "FID exceeds 100ms"
+      suggestions:
+        - "Break up long JavaScript tasks"
+        - "Use web workers for heavy computation"
+        - "Defer non-critical JavaScript"
+    
+    CLS:  # Cumulative Layout Shift
+      limit: 0.1
+      severity: warning
+      message: "Layout shift detected"
+      suggestions:
+        - "Reserve space for dynamic content"
+        - "Use aspect-ratio CSS"
+        - "Avoid inserting content above existing"
+
+  # Lighthouse Score
+  lighthouse:
+    performance:
+      limit: 90
+      severity: error
+      message: "Lighthouse performance score below 90"
+    
+    accessibility:
+      limit: 90
+      severity: warning
+      message: "Accessibility score below 90"
+    
+    best_practices:
+      limit: 90
+      severity: warning
+      message: "Best practices score below 90"
+
+  # React-specific
+  react:
+    component_render_time:
+      limit: 16ms  # 60fps
+      severity: warning
+      message: "Component render exceeds 16ms (60fps threshold)"
+      suggestions:
+        - "Use React.memo for expensive components"
+        - "Optimize useEffect dependencies"
+        - "Split into smaller components"
+    
+    re_render_count:
+      limit: 3  # per interaction
+      severity: warning
+      message: "Excessive re-renders detected"
+      suggestions:
+        - "Check useCallback/useMemo usage"
+        - "Move state closer to usage"
+        - "Use React DevTools Profiler"
+
+# ============================================================
+# BACKEND BUDGETS (Laravel)
+# ============================================================
+backend:
+  # API Response Time
+  api_response:
+    p50:
+      limit: 100ms
+      severity: info
+      message: "API p50 above 100ms"
+    
+    p95:
+      limit: 200ms
+      severity: error
+      message: "API p95 exceeds 200ms limit"
+      skill_reference: "laravel-performance"
+      suggestions:
+        - "Check for N+1 queries (use Debugbar)"
+        - "Add database indexes"
+        - "Implement query result caching"
+    
+    p99:
+      limit: 500ms
+      severity: error
+      message: "API p99 exceeds 500ms (tail latency issue)"
+      suggestions:
+        - "Profile slow requests with Telescope"
+        - "Check for blocking operations"
+        - "Consider background jobs"
+
+  # Database Performance
+  database:
+    query_count_per_request:
+      limit: 10
+      severity: error
+      message: "Too many queries per request (likely N+1)"
+      skill_reference: "laravel-performance"
+      suggestions:
+        - "Use eager loading with()->with()"
+        - "Use withCount() for counts"
+        - "Consider query result caching"
+    
+    slow_query_threshold:
+      limit: 100ms
+      severity: warning
+      message: "Slow query detected"
+      suggestions:
+        - "Add database index"
+        - "Optimize query structure"
+        - "Use EXPLAIN to analyze"
+    
+    total_query_time:
+      limit: 50ms
+      severity: warning
+      message: "Total database time exceeds 50ms"
+
+  # Memory Usage
+  memory:
+    peak_per_request:
+      limit: 64MB
+      severity: warning
+      message: "High memory usage per request"
+      suggestions:
+        - "Use chunk() or lazy() for large datasets"
+        - "Avoid loading entire collections"
+        - "Stream large responses"
+
+# ============================================================
+# INERTIA BRIDGE BUDGETS
+# ============================================================
+inertia:
+  # Props Size
+  props_size:
+    initial:
+      limit: 100KB
+      severity: warning
+      message: "Initial props exceed 100KB"
+      skill_reference: "inertia-performance"
+      suggestions:
+        - "Use only required columns in queries"
+        - "Implement pagination"
+        - "Use API Resources for shaping"
+    
+    partial_reload:
+      limit: 50KB
+      severity: info
+      message: "Partial reload props are large"
+
+  # Navigation
+  navigation:
+    time:
+      limit: 300ms
+      severity: warning
+      message: "Page navigation exceeds 300ms"
+      suggestions:
+        - "Implement prefetching on hover"
+        - "Use partial reloads"
+        - "Lazy load optional data"
+
+# ============================================================
+# CI/CD INTEGRATION
+# ============================================================
+enforcement:
+  # Pull Request Blocking
+  pr_blocking:
+    enabled: true
+    block_on: [error]
+    warn_on: [warning]
+    
+  # Comment on PR
+  pr_comments:
+    enabled: true
+    format: markdown
+    include_suggestions: true
+    include_skill_links: true
+  
+  # Trend Tracking
+  trend_tracking:
+    enabled: true
+    baseline_branch: main
+    alert_on_regression: true
+    regression_threshold: 10%  # Alert if metric worsens by 10%
+
+# ============================================================
+# MEASUREMENT TOOLS
+# ============================================================
+tools:
+  frontend:
+    - lighthouse-ci
+    - webpack-bundle-analyzer
+    - react-devtools
+  
+  backend:
+    - laravel-debugbar
+    - laravel-telescope
+    - clockwork
+  
+  monitoring:
+    - grafana
+    - datadog
+
+# ============================================================
+# EXCEPTIONS
+# ============================================================
+exceptions:
+  # Paths to exclude from checks
+  exclude_paths:
+    - "tests/**"
+    - "vendor/**"
+    - "node_modules/**"
+    - "public/build/**"
+  
+  # Allow temporary exceptions (must document reason)
+  temporary_exceptions:
+    - path: "app/Legacy/**"
+      reason: "Legacy code pending refactor"
+      expires: "2026-06-01"

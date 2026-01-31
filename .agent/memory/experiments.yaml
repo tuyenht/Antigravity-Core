@@ -1,0 +1,66 @@
+# A/B Testing Experiments - Scientific Improvement Validation
+
+# Active Experiments (currently running)
+active_experiments: []
+  # Example:
+  # - id: "exp_001"
+  #   name: "Confidence Threshold Optimization"
+  #   hypothesis: "Lowering medium threshold from 60% to 55% improves UX"
+  #   status: "running"
+  #   start_date: "2026-01-16"
+  #   target_sample_size: 100
+  #   
+  #   variant_a:  # Control
+  #     config:
+  #       confidence_threshold_medium: 60
+  #     sample_size: 50
+  #     metrics:
+  #       classification_accuracy: 92.0
+  #       user_satisfaction: 8.4
+  #       avg_tokens: 15200
+  #       
+  #   variant_b:  # Test
+  #     config:
+  #       confidence_threshold_medium: 55
+  #     sample_size: 50
+  #     metrics:
+  #       classification_accuracy: 94.0
+  #       user_satisfaction: 8.7
+  #       avg_tokens: 14900
+  #   
+  #   analysis:
+  #     statistical_significance: true
+  #     p_value: 0.02
+  #     winner: "variant_b"
+  #     improvement:
+  #       accuracy: "+2.0%"
+  #       satisfaction: "+3.6%"
+  #       tokens: "-2.0%"
+  #   
+  #   decision: "ADOPT"
+  #   deployed_date: null
+
+# Completed Experiments
+completed_experiments: []
+
+# Experiment Queue (planned but not started)
+experiment_queue: []
+  # - name: "Checklist Intensity Detection"
+  #   priority: "high"
+  #   estimated_duration: "100 requests"
+
+# Statistics
+statistics:
+  total_experiments_run: 0
+  successful_improvements: 0
+  inconclusive_results: 0
+  rejected_changes: 0
+  avg_improvement_percentage: 0.0
+  last_updated: "2026-01-16"
+
+# Experiment Guidelines
+guidelines:
+  min_sample_size_per_variant: 30
+  significance_threshold: 0.05  # p-value < 0.05
+  min_improvement_to_adopt: 3    # Must improve by at least 3%
+  max_concurrent_experiments: 2

@@ -1,0 +1,307 @@
+---
+# Metrics Tracking
+
+# Last Updated: 2026-01-17
+# Purpose: Track system usage, effectiveness, and improvements over time
+
+# =============================================================================
+# AGENT ACTIVATION FREQUENCY
+# =============================================================================
+
+agent_activations:
+  # Track how often each agent is activated
+  total_sessions: 0
+  
+  by_agent:
+    backend-specialist:
+      activations: 0
+      last_used: null
+      avg_session_duration_min: 0
+      success_rate: 0  # 0-100%
+    
+    frontend-specialist:
+      activations: 0
+      last_used: null
+      avg_session_duration_min: 0
+      success_rate: 0
+    
+    security-auditor:
+      activations: 0
+      last_used: null
+      avg_session_duration_min: 0
+      success_rate: 0
+    
+    performance-expert:
+      activations: 0
+      last_used: null
+      avg_session_duration_min: 0
+      success_rate: 0
+    
+    devops-engineer:
+      activations: 0
+      last_used: null
+      avg_session_duration_min: 0
+      success_rate: 0
+  
+  # Add more agents as they're created/used
+  
+  trends:
+    most_activated: null
+    least_activated: null
+    trending_up: []
+    trending_down: []
+
+# =============================================================================
+# SKILL USAGE STATISTICS
+# =============================================================================
+
+skill_usage:
+  total_skill_invocations: 0
+  
+  by_skill:
+    database-design:
+      uses: 0
+      last_used: null
+      effectiveness_rating: 0  # 0-10
+      time_saved_hours: 0
+    
+    performance-profiling:
+      uses: 0
+      last_used: null
+      effectiveness_rating: 0
+      time_saved_hours: 0
+    
+    security-audit:
+      uses: 0
+      last_used: null
+      effectiveness_rating: 0
+      time_saved_hours: 0
+    
+    testing-patterns:
+      uses: 0
+      last_used: null
+      effectiveness_rating: 0
+      time_saved_hours: 0
+    
+    kubernetes-patterns:
+      uses: 0
+      last_used: null
+      effectiveness_rating: 0
+      time_saved_hours: 0
+  
+  # Top skills (weekly update)
+  top_10_most_used:
+    - skill: null
+      uses: 0
+  
+  bottom_10_least_used:
+    - skill: null
+      uses: 0
+  
+  # Skill gaps identified
+  requested_but_missing:
+    - skill_name: null
+      request_count: 0
+      priority: null  # low, medium, high
+
+# =============================================================================
+# WORKFLOW SUCCESS RATES
+# =============================================================================
+
+workflows:
+  total_workflow_executions: 0
+  
+  by_workflow:
+    "/security-audit":
+      executions: 0
+      successes: 0
+      failures: 0
+      success_rate: 0  # percentage
+      avg_duration_min: 0
+      user_satisfaction: 0  # 0-10
+    
+    "/optimize":
+      executions: 0
+      successes: 0
+      failures: 0
+      success_rate: 0
+      avg_duration_min: 0
+      user_satisfaction: 0
+    
+    "/scaffold":
+      executions: 0
+      successes: 0
+      failures: 0
+      success_rate: 0
+      avg_duration_min: 0
+      user_satisfaction: 0
+    
+    "/plan":
+      executions: 0
+      successes: 0
+      failures: 0
+      success_rate: 0
+      avg_duration_min: 0
+      user_satisfaction: 0
+  
+  most_successful: null
+  needs_improvement: []
+
+# =============================================================================
+# TIME TO COMPLETION METRICS
+# =============================================================================
+
+time_metrics:
+  # Average time to complete common tasks
+  
+  by_task_type:
+    security_audit:
+      avg_time_min: 0
+      fastest_time_min: 0
+      slowest_time_min: 0
+      sample_size: 0
+    
+    performance_optimization:
+      avg_time_min: 0
+      fastest_time_min: 0
+      slowest_time_min: 0
+      sample_size: 0
+    
+    new_feature_scaffold:
+      avg_time_min: 0
+      fastest_time_min: 0
+      slowest_time_min: 0
+      sample_size: 0
+    
+    bug_fix:
+      avg_time_min: 0
+      fastest_time_min: 0
+      slowest_time_min: 0
+      sample_size: 0
+    
+    code_review:
+      avg_time_min: 0
+      fastest_time_min: 0
+      slowest_time_min: 0
+      sample_size: 0
+  
+  trends:
+    improving: []  # Tasks getting faster
+    slowing: []    # Tasks getting slower
+    stable: []     # Consistent performance
+
+# =============================================================================
+# SYSTEM HEALTH SCORES (MONTHLY)
+# =============================================================================
+
+health_scores:
+  # Track over time to see trends
+  
+  "2026-01":
+    overall: 97
+    security: 95
+    performance: 92
+    documentation: 97
+    skills: 95
+    agents: 90
+  
+  "2026-02":
+    overall: null
+    security: null
+    performance: null
+    documentation: null
+    skills: null
+    agents: null
+  
+  # Add new months as they complete
+  
+  trends:
+    direction: null  # improving, declining, stable
+    biggest_gain: null
+    biggest_loss: null
+
+# =============================================================================
+# USER PRODUCTIVITY METRICS
+# =============================================================================
+
+productivity:
+  time_saved_weekly:
+    security_audits: 6  # hours
+    code_scaffolding: 3
+    documentation: 4
+    total: 13
+  
+  quality_improvements:
+    test_coverage_increase: 25  # percentage points
+    security_score_increase: 37
+    performance_score_increase: 7
+    documentation_score_increase: 3.5
+  
+  adoption_metrics:
+    security_patterns_adoption: 100  # percentage
+    performance_patterns_adoption: 85
+    testing_patterns_adoption: 90
+    accessibility_patterns_adoption: 60
+
+# =============================================================================
+# ERROR TRACKING
+# =============================================================================
+
+errors:
+  by_type:
+    workflow_failures:
+      count: 0
+      most_common: null
+    
+    skill_execution_errors:
+      count: 0
+      most_common: null
+    
+    documentation_gaps:
+      count: 0
+      most_reported: null
+  
+  resolution_time_avg_hours: 0
+
+# =============================================================================
+# UPDATE LOG
+# =============================================================================
+
+update_log:
+  - date: "2026-01-17"
+    event: "Metrics tracking system initialized"
+    baseline_scores:
+      overall: 97
+      security: 95
+      performance: 92
+      documentation: 97
+  
+  # Add new entries as metrics are updated
+
+# =============================================================================
+# COLLECTION INSTRUCTIONS
+# =============================================================================
+
+# How to update this file:
+# 
+# WEEKLY:
+# - Update agent activation counts after each session
+# - Update skill usage after each skill invocation
+# - Track workflow executions and outcomes
+# 
+# MONTHLY:
+# - Calculate health scores
+# - Update time metrics
+# - Review trends
+# - Update productivity metrics
+# 
+# QUARTERLY:
+# - Comprehensive trend analysis
+# - Clean up old data (move to archive)
+# - Recalibrate baselines
+#
+# NOTES:
+# - Be honest with metrics
+# - Use for improvement, not judgment
+# - Track trends more than absolute numbers
+# - Update regularly for accuracy

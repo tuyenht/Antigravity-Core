@@ -1,0 +1,245 @@
+---
+# Tech Radar - Technology Adoption Strategy
+# Last Updated: 2026-01-16
+# Inspired by ThoughtWorks Tech Radar
+
+adopt:
+  # Technologies we're confident in and actively using
+  - name: "Laravel 12"
+    category: "Backend Frameworks"
+    reason: "Mature, excellent ecosystem, team expertise"
+    confidence: 95
+    adoption_date: "2024-01"
+  
+  - name: "React 19"
+    category: "Frontend Frameworks"
+    reason: "Compiler optimization, large ecosystem"
+    confidence: 90
+    adoption_date: "2026-01"
+  
+  - name: "TypeScript"
+    category: "Languages"
+    reason: "Type safety, better IDE support, industry standard"
+    confidence: 95
+    adoption_date: "2023-01"
+  
+  - name: "PostgreSQL"
+    category: "Databases"
+    reason: "Reliability, features, performance"
+    confidence: 92
+    adoption_date: "2022-01"
+  
+  - name: "Docker"
+    category: "Infrastructure"
+    reason: "Containerization standard"
+    confidence: 90
+    adoption_date: "2023-01"
+  
+  - name: "GitHub Actions"
+    category: "CI/CD"
+    reason: "Native GitHub integration, powerful"
+    confidence: 88
+    adoption_date: "2024-01"
+  
+  - name: "Inertia.js"
+    category: "Full-Stack"
+    reason: "Best of SPA + server-side routing"
+    confidence: 92
+    adoption_date: "2025-01"
+  
+  - name: "Laravel Octane"
+    category: "Performance"
+    reason: "2x performance improvement"
+    confidence: 85
+    adoption_date: "2026-01"
+  
+  - name: "Hermes Engine"
+    category: "Mobile"
+    reason: "React Native startup performance"
+    confidence: 85
+    adoption_date: "2026-01"
+  
+  - name: "Next.js 16"
+    category: "Frontend Frameworks"
+    reason: "LTS release (Oct 2025): Cache Components, Turbopack default, React Compiler stable, proxy.ts, DevTools MCP"
+    confidence: 85
+    adoption_date: "2025-10"
+
+trial:
+  # Technologies to experiment with in production
+  - name: "React 19 Compiler"
+    category: "Frontend"
+    reason: "Automatic memoization, performance gains"
+    trial_started: "2026-01"
+    expected_decision: "2026-03"
+    risks: "New, may have edge cases"
+  
+  - name: "Terraform"
+    category: "Infrastructure as Code"
+    reason: "Multi-cloud support, declarative"
+    trial_started: "2025-12"
+    expected_decision: "2026-02"
+    risks: "Learning curve, state management"
+  
+  - name: "Vector Databases (Pinecone/Weaviate)"
+    category: "Databases"
+    reason: "AI/ML feature requirements"
+    trial_started: "2026-01"
+    expected_decision: "2026-04"
+    risks: "Pricing, new technology"
+  
+  - name: "OpenTelemetry"
+    category: "Observability"
+    reason: "Vendor-neutral tracing standard"
+    trial_started: "2025-11"
+    expected_decision: "2026-02"
+    risks: "Complexity, overhead"
+  
+  - name: "Bun Runtime"
+    category: "JavaScript Runtime"
+    reason: "Faster than Node.js"
+    trial_started: "2026-01"
+    expected_decision: "2026-06"
+    risks: "Ecosystem maturity"
+
+assess:
+  # Worth exploring with low-risk projects
+  - name: "Astro"
+    category: "Frontend Frameworks"
+    reason: "Excellent performance, island architecture"
+    assessment_reason: "Evaluate for content-heavy sites"
+    next_steps: "Build demo project"
+  
+  - name: "Cloudflare Workers"
+    category: "Edge Computing"
+    reason: "Global distribution, low latency"
+    assessment_reason: "Explore for API layer"
+    next_steps: "Proof of concept"
+  
+  - name: "Rust"
+    category: "Languages"
+    reason: "Performance, safety"
+    assessment_reason: "For performance-critical services"
+    next_steps: "Team training"
+  
+  - name: "Temporal"
+    category: "Workflow Orchestration"
+    reason: "Reliable workflow management"
+    assessment_reason: "Complex business workflows"
+    next_steps: "Architecture review"
+  
+  - name: "Turso (SQLite edge)"
+    category: "Databases"
+    reason: "Edge database, global replication"
+    assessment_reason: "Read-heavy global apps"
+    next_steps: "Performance testing"
+
+hold:
+  # Proceed with caution, may not be right fit
+  - name: "Angular"
+    category: "Frontend Frameworks"
+    reason: "Heavy framework, team not experienced"
+    alternative: "React, Vue"
+    reassess_date: "2027-01"
+  
+  - name: "Ruby on Rails"
+    category: "Backend Frameworks"
+    reason: "Team lacks expertise, Laravel preferred"
+    alternative: "Laravel"
+    reassess_date: "Never (unless team changes)"
+  
+  - name: "MongoDB (for transactional data)"
+    category: "Databases"
+    reason: "Prefer PostgreSQL for structured data"
+    alternative: "PostgreSQL with JSONB"
+    reassess_date: "2026-06"
+  
+  - name: "AngularJS (1.x)"
+    category: "Legacy Frameworks"
+    reason: "Outdated, security risks"
+    alternative: "Migrate to React/Vue"
+    reassess_date: "Never"
+
+retire:
+  # Active migration away from these
+  - name: "jQuery"
+    category: "Frontend Libraries"
+    reason: "Modern frameworks are better"
+    migration_plan: "Replace with vanilla JS or React"
+    migration_deadline: "2026-06"
+  
+  - name: "Webpack (for new projects)"
+    category: "Build Tools"
+    reason: "Vite is faster and simpler"
+    migration_plan: "Use Vite for all new projects"
+    migration_deadline: "Immediate"
+  
+  - name: "Class Components (React)"
+    category: "Patterns"
+    reason: "Hooks are superior"
+    migration_plan: "Refactor to functional components"
+    migration_deadline: "2026-12"
+  
+  - name: "REST (for real-time features)"
+    category: "API Patterns"
+    reason: "GraphQL or WebSockets better for real-time"
+    migration_plan: "Evaluate GraphQL/WebSockets"
+    migration_deadline: "2026-09"
+
+technology_watch_list:
+  # Emerging technologies to monitor
+  monitoring:
+    - name: "Deno 2.0"
+      reason: "Node.js alternative gaining traction"
+      check_frequency: "Quarterly"
+    
+    - name: "HTMX"
+      reason: "Hypermedia approach interesting"
+      check_frequency: "Quarterly"
+    
+    - name: "Qwik"
+      reason: "Resumability vs hydration"
+      check_frequency: "Bi-annual"
+    
+    - name: "Zig"
+      reason: "C replacement candidate"
+      check_frequency: "Annual"
+    
+    - name: "WebAssembly Components"
+      reason: "Cross-language component model"
+      check_frequency: "Quarterly"
+
+decision_criteria:
+  adopt_criteria:
+    - "Team has 80%+ confidence"
+    - "Production-proven (2+ years)"
+    - "Strong community support"
+    - "Clear migration path"
+    - "Cost-effective"
+  
+  trial_criteria:
+    - "Solves specific problem"
+    - "Low-risk testable"
+    - "Has pilot project"
+    - "Team willing to learn"
+  
+  hold_criteria:
+    - "Unproven for our use case"
+    - "Better alternatives exist"
+    - "High switching cost"
+    - "Team lacks expertise"
+  
+  retire_criteria:
+    - "Security vulnerabilities"
+    - "No longer maintained"
+    - "Better alternatives adopted"
+    - "Technical debt accumulating"
+
+review_schedule:
+  next_review: "2026-04-16"  # Quarterly
+  review_process:
+    - "Assess trial projects"
+    - "Review hold decisions"
+    - "Confirm retire timelines"
+    - "Add new technologies to assess"
+    - "Team feedback session"

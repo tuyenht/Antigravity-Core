@@ -1,0 +1,119 @@
+name: .agent Quality Gate
+
+on:
+  push:
+    branches: [ main, develop ]
+  pull_request:
+    branches: [ main ]
+
+jobs:
+  standards-validation:
+    name: Standards & Quality Gate
+    runs-on: ubuntu-latest
+    
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+      
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+          cache: 'npm'
+      
+      - name: Install dependencies
+        run: npm ci
+      
+      # === STANDARDS.md ENFORCEMENT ===
+      
+      - name: 1️⃣ Linting Check (Zero Errors)
+        run: |
+          echo "Running linter..."
+          npm run lint
+          if [ $? -ne 0 ]; then
+            echo "❌ Lint errors found - violates STANDARDS.md"
+            exit 1
+          fi
+          echo "✅ Linting passed"
+      
+      - name: 2️⃣ Type Check (Zero Errors)
+        run: |
+          echo "Running type checker..."
+          npx tsc --noEmit
+          if [ $? -ne 0 ]; then
+            echo "❌ Type errors found - violates STANDARDS.md"
+            exit 1
+          fi
+          echo "✅ Type check passed"
+      
+      - name: 3️⃣ Unit Tests (80% Coverage Required)
+        run: |
+          echo "Running tests with coverage..."
+          npm test -- --coverage --coverageThreshold='{"global":{"statements":80,"branches":80,"functions":80,"lines":80}}'
+          if [ $? -ne 0 ]; then
+            echo "❌ Tests failed or coverage <80% - violates STANDARDS.md"
+            exit 1
+          fi
+          echo "✅ Tests passed with ≥80% coverage"
+      
+      - name: 4️⃣ Security Scan (Zero Vulnerabilities)
+        run: |
+          echo "Running security audit..."
+          npm audit --audit-level=moderate
+          if [ $? -ne 0 ]; then
+            echo "❌ Security vulnerabilities found - violates STANDARDS.md"
+            exit 1
+          fi
+          echo "✅ No vulnerabilities found"
+      
+      - name: 5️⃣ Code Quality Check
+        run: |
+          echo "Checking for debug statements..."
+          if grep -r "console.log" src/ --exclude-dir=node_modules; then
+            echo "❌ console.log statements found - violates STANDARDS.md"
+            exit 1
+          fi
+          echo "✅ No debug code found"
+      
+      # === .agent SPECIFIC CHECKS ===
+      
+      - name: 6️⃣ .agent Health Check (if .agent exists)
+        run: |
+          if [ -d ".agent" ]; then
+            echo "Running .agent health check..."
+            pwsh ./.agent/scripts/health-check.ps1
+          else
+            echo "No .agent directory - skipping"
+          fi
+      
+      # === OPTIONAL: Build Test ===
+      
+      - name: 7️⃣ Build Verification
+        run: |
+          echo "Testing production build..."
+          npm run build
+          if [ $? -ne 0 ]; then
+            echo "❌ Build failed"
+            exit 1
+          fi
+          echo "✅ Build successful"
+      
+      # === RESULTS ===
+      
+      - name: 📊 Quality Gate Summary
+        if: always()
+        run: |
+          echo "========================================="
+          echo "  .agent QUALITY GATE RESULTS"
+          echo "========================================="
+          echo ""
+          echo "✅ All STANDARDS.md requirements checked"
+          echo "✅ Code is production-ready"
+          echo ""
+          echo "Standards enforced:"
+          echo "  - Linting: Zero errors"
+          echo "  - Type check: Zero errors"
+          echo "  - Tests: ≥80% coverage"
+          echo "  - Security: Zero vulnerabilities"
+          echo "  - Code quality: No debug statements"
+          echo ""

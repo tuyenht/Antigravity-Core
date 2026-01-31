@@ -1,0 +1,203 @@
+# Observability Layer Configuration
+# Centralized logging, metrics, and tracing for agent system
+# Industry standard: Datadog, New Relic, OpenTelemetry
+
+version: 1.0
+created: 2026-01-20
+
+# ============================================================
+# LOGGING
+# ============================================================
+logging:
+  enabled: true
+  
+  # Log levels
+  levels:
+    debug: false  # Verbose, for development only
+    info: true    # Normal operations
+    warning: true # Potential issues
+    error: true   # Errors that need attention
+    critical: true # System failures
+  
+  # What to log
+  events:
+    agent_invocation:
+      enabled: true
+      fields: [agent_name, timestamp, task_type, duration_ms]
+      
+    skill_usage:
+      enabled: true
+      fields: [skill_name, agent, timestamp]
+      
+    workflow_execution:
+      enabled: true
+      fields: [workflow_name, status, duration_ms, steps_completed]
+      
+    validation_result:
+      enabled: true
+      fields: [script_name, status, errors_count, warnings_count]
+      
+    auto_healing:
+      enabled: true
+      fields: [issue_type, fix_applied, success, iteration]
+  
+  # Storage
+  output:
+    file: ".agent/memory/logs/agent.log"
+    format: json
+    rotation:
+      max_size_mb: 10
+      keep_files: 5
+    
+# ============================================================
+# METRICS
+# ============================================================
+metrics:
+  enabled: true
+  
+  # Collected metrics
+  collect:
+    # Agent metrics
+    - name: agent_invocations_total
+      type: counter
+      labels: [agent_name, status]
+      
+    - name: agent_duration_seconds
+      type: histogram
+      labels: [agent_name]
+      buckets: [0.5, 1, 2, 5, 10, 30, 60]
+      
+    - name: agent_success_rate
+      type: gauge
+      labels: [agent_name]
+      
+    # Skill metrics
+    - name: skill_usage_total
+      type: counter
+      labels: [skill_name, agent_name]
+      
+    # Quality metrics
+    - name: lint_errors_total
+      type: gauge
+      labels: [file_type]
+      
+    - name: type_errors_total
+      type: gauge
+      labels: [file_type]
+      
+    - name: test_coverage_percent
+      type: gauge
+      labels: [project]
+      
+    # Performance metrics
+    - name: build_duration_seconds
+      type: histogram
+      buckets: [10, 30, 60, 120, 300]
+      
+    - name: bundle_size_kb
+      type: gauge
+      labels: [bundle_name]
+  
+  # Storage
+  output:
+    file: ".agent/memory/metrics.json"
+    push_interval: 60  # seconds
+
+# ============================================================
+# TRACING (Optional)
+# ============================================================
+tracing:
+  enabled: false  # Enable for distributed tracing
+  
+  # Trace agent orchestrations
+  trace_spans:
+    - orchestrator_request
+    - agent_execution
+    - skill_application
+    - validation_check
+    - auto_healing
+  
+  # Sampling
+  sampling_rate: 0.1  # 10% of requests
+
+# ============================================================
+# DASHBOARDS
+# ============================================================
+dashboards:
+  # Health dashboard
+  health:
+    refresh_interval: 60
+    panels:
+      - type: gauge
+        title: "DX Score"
+        metric: dx_score
+        
+      - type: counter
+        title: "Agent Invocations (24h)"
+        metric: agent_invocations_total
+        
+      - type: chart
+        title: "Agent Success Rate"
+        metric: agent_success_rate
+        period: 7d
+        
+      - type: list
+        title: "Recent Errors"
+        source: logs
+        filter: "level = error"
+        limit: 10
+  
+  # Performance dashboard
+  performance:
+    panels:
+      - type: gauge
+        title: "Build Time"
+        metric: build_duration_seconds
+        
+      - type: gauge
+        title: "Bundle Size"
+        metric: bundle_size_kb
+        
+      - type: chart
+        title: "Test Coverage Trend"
+        metric: test_coverage_percent
+        period: 30d
+
+# ============================================================
+# ALERTS
+# ============================================================
+alerts:
+  - name: high_error_rate
+    condition: "agent_success_rate < 80%"
+    severity: warning
+    message: "Agent success rate dropped below 80%"
+    
+  - name: build_slow
+    condition: "build_duration_seconds > 300"
+    severity: warning
+    message: "Build time exceeds 5 minutes"
+    
+  - name: coverage_drop
+    condition: "test_coverage_percent < 70"
+    severity: error
+    message: "Test coverage dropped below 70%"
+    
+  - name: critical_error
+    condition: "log.level = critical"
+    severity: critical
+    message: "Critical system error detected"
+
+# ============================================================
+# INTEGRATION
+# ============================================================
+integration:
+  # Scripts that feed metrics
+  collectors:
+    - script: ".agent/scripts/health-check.ps1"
+      metrics: [agent_success_rate]
+      
+    - script: ".agent/scripts/dx-analytics.ps1"
+      metrics: [dx_score, agent_invocations_total]
+      
+    - script: ".agent/scripts/performance-check.ps1"
+      metrics: [bundle_size_kb, build_duration_seconds]

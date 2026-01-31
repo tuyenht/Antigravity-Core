@@ -1,0 +1,137 @@
+---
+# User Profile & Preferences
+# Last Updated: 2026-01-16
+
+user:
+  name: "Development Team"
+  role: "Full-Stack Developer"
+  experience_level: "Senior"  # junior, mid, senior, lead, architect
+  timezone: "Asia/Ho_Chi_Minh (UTC+7)"
+
+tech_stack:
+  primary:
+    backend:
+      - Laravel 12
+      - Django
+      - FastAPI
+    frontend:
+      - React 19
+      - Vue 3
+      - Inertia.js
+    mobile:
+      - React Native
+      - Flutter
+    database:
+      - PostgreSQL
+      - MySQL
+      - Redis
+    infrastructure:
+      - Docker
+      - Kubernetes
+      - AWS
+
+  secondary:
+    - Svelte
+    - NestJS
+    - GraphQL
+    - MongoDB
+
+  learning:
+    - Terraform
+    - Vector Databases
+    - Contract Testing
+
+coding_style:
+  language_preferences:
+    javascript: "TypeScript strongly preferred"
+    python: "Type hints required"
+    php: "Modern Laravel patterns"
+  
+  formatting:
+    quotes: "single"  # single, double
+    semicolons: true
+    trailing_commas: "es5"
+    indent_size: 2
+    max_line_length: 100
+  
+  naming_conventions:
+    variables: "camelCase"
+    constants: "UPPER_SNAKE_CASE"
+    files: "kebab-case"
+    components: "PascalCase"
+  
+  patterns:
+    prefer_functional: true
+    prefer_composition: true
+    prefer_explicit: true
+    avoid_magic: true
+
+communication_style:
+  language: "Vietnamese + English (mixed)"
+  detail_level: "comprehensive"  # brief, moderate, comprehensive
+  code_examples: "always"  # minimal, when_needed, always
+  explanations: "detailed"  # brief, moderate, detailed
+  tone: "professional_friendly"
+
+project_preferences:
+  architecture: "modular_monolith"  # monolith, microservices, modular_monolith
+  testing: "comprehensive"  # minimal, standard, comprehensive
+  documentation: "detailed"  # minimal, standard, detailed
+  security: "paranoid"  # standard, strict, paranoid
+  performance: "optimized"  # standard, optimized, extreme
+
+priorities:
+  code_quality: 10  # 1-10
+  performance: 9
+  security: 10
+  maintainability: 9
+  documentation: 8
+  testing: 8
+  speed_of_delivery: 6
+
+workflows:
+  preferred:
+    - "/plan"  # For planning tasks
+    - "/scaffold"  # For new features
+    - "/security-audit"  # Security checks
+    - "/optimize"  # Performance optimization
+  
+  avoided:
+    - Manual repetitive tasks
+    - Ad-hoc changes without planning
+
+recent_focus:
+  - "Security hardening (achieved 95/100)"
+  - "Performance optimization (achieved 92/100)"
+  - "Complete documentation (achieved 97/100)"
+  - "Accessibility standards (WCAG 2.1 AA)"
+  
+current_projects:
+  - name: "Antigravity Optimization"
+    stack: ["All frameworks", "Security", "Performance"]
+    status: "Active - Near completion (97/100)"
+    priority: "High"
+
+learning_goals:
+  short_term:
+    - "Master React 19 compiler"
+    - "Advanced Kubernetes patterns"
+    - "OpenTelemetry integration"
+  
+  long_term:
+    - "System design at scale"
+    - "ML/AI integration"
+    - "Cloud architecture certification"
+
+pain_points:
+  - "Repetitive boilerplate code"
+  - "Manual security audits"
+  - "Documentation drift"
+  - "Performance profiling complexity"
+
+success_metrics:
+  - "Code review approval rate > 95%"
+  - "Zero security vulnerabilities"
+  - "Test coverage > 80%"
+  - "Documentation completeness: 100%"
+  - "Performance scores: A grade minimum"

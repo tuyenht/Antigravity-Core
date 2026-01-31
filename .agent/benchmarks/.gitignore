@@ -1,0 +1,6 @@
+# Benchmark temp files
+.agent/benchmarks/.tmp/
+.agent/benchmarks/reports/*.csv
+
+# Keep reports but ignore temporary data
+!.agent/benchmarks/reports/*.md

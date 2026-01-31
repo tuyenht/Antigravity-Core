@@ -1,0 +1,133 @@
+# Regression Benchmark Configuration
+# Track performance baselines and detect regressions
+# Industry standard: Google, Netflix
+
+version: 1.0
+created: 2026-01-20
+
+# ============================================================
+# BASELINE DEFINITIONS
+# ============================================================
+baselines:
+  # Frontend Baselines
+  frontend:
+    bundle_size:
+      main_kb: null  # Set after first run
+      vendor_kb: null
+      total_kb: null
+      
+    lighthouse:
+      performance: null
+      accessibility: null
+      best_practices: null
+      seo: null
+      
+    core_web_vitals:
+      lcp_ms: null
+      fid_ms: null
+      cls: null
+      
+  # Backend Baselines
+  backend:
+    api_response:
+      p50_ms: null
+      p95_ms: null
+      p99_ms: null
+      
+    database:
+      avg_query_count: null
+      avg_query_time_ms: null
+      
+    memory:
+      peak_mb: null
+      
+  # Agent System Baselines
+  agent_system:
+    health_check_time_ms: null
+    validation_time_ms: null
+    agents_count: 27
+    skills_count: 57
+    workflows_count: 31
+    scripts_count: 8
+
+# ============================================================
+# REGRESSION DETECTION
+# ============================================================
+regression:
+  # Thresholds for alerts
+  thresholds:
+    bundle_size:
+      warning_percent: 5    # Warn if +5%
+      error_percent: 10     # Error if +10%
+      
+    response_time:
+      warning_percent: 10   # Warn if +10%
+      error_percent: 20     # Error if +20%
+      
+    lighthouse:
+      warning_delta: 5      # Warn if -5 points
+      error_delta: 10       # Error if -10 points
+      
+    query_count:
+      warning_delta: 2      # Warn if +2 queries
+      error_delta: 5        # Error if +5 queries
+
+  # When to check
+  triggers:
+    - on_pr_creation
+    - on_main_merge
+    - weekly_scheduled
+
+# ============================================================
+# BENCHMARK COMMANDS
+# ============================================================
+commands:
+  frontend:
+    build: "npm run build"
+    analyze: "npm run analyze"
+    lighthouse: "npx lhci autorun"
+    
+  backend:
+    test: "php artisan test --profile"
+    benchmark: "php artisan benchmark:api"
+    
+  system:
+    health: ".agent/scripts/health-check.ps1"
+    validate: ".agent/scripts/validate-compliance.ps1"
+
+# ============================================================
+# STORAGE
+# ============================================================
+storage:
+  baseline_file: ".agent/benchmarks/baseline.json"
+  history_file: ".agent/benchmarks/history.json"
+  report_dir: ".agent/benchmarks/reports/"
+  
+  retention:
+    keep_history_days: 90
+    keep_reports_count: 20
+
+# ============================================================
+# REPORTING
+# ============================================================
+reporting:
+  format: markdown
+  
+  template: |
+    # 📊 Regression Benchmark Report
+    
+    **Date:** {date}
+    **Branch:** {branch}
+    **Compared To:** {baseline_date}
+    
+    ## Summary
+    
+    | Metric | Baseline | Current | Delta | Status |
+    |--------|----------|---------|-------|--------|
+    {metrics_table}
+    
+    ## Verdict
+    {verdict}
+    
+    ## Details
+    {details}

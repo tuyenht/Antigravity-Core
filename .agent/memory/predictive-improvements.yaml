@@ -1,0 +1,64 @@
+# Predictive Improvements - Proactive Issue Detection
+
+# Pattern Degradation Alerts
+pattern_alerts:
+  - pattern_id: "pattern_001"
+    pattern_name: "React Component + TypeScript"
+    baseline_success_rate: 95.0
+    current_success_rate: 95.0
+    threshold_drop: 10.0
+    status: "healthy"
+    last_checked: "2026-01-16"
+
+# Performance Degradation Alerts  
+performance_alerts:
+  - metric: "avg_tokens_per_request"
+    baseline: 13500
+    current: 13500
+    threshold_increase_percent: 15
+    status: "healthy"
+    last_checked: "2026-01-16"
+
+# Coverage Gap Alerts
+coverage_gaps:
+  - technology: "GraphQL"
+    mentions: 2
+    tasks_without_skill: 0
+    threshold: 3
+    recommended_action: "Create graphql-expert skill"
+    priority: "medium"
+
+# Proactive Suggestions
+suggestions:
+  []
+  # Auto-populated when thresholds met
+  # Example:
+  # - type: "pattern_degradation"
+  #   title: "React pattern success dropped to 82%"
+  #   severity: "warning"
+  #   suggested_action: "Investigate recent changes, update pattern"
+  #   created: "2026-01-16"
+
+# Auto-Trigger Rules
+trigger_rules:
+  pattern_degradation:
+    condition: "success_rate drops >10% from baseline"
+    action: "Alert + RCA investigation"
+  
+  token_spike:
+    condition: "avg_tokens increases >15%"
+    action: "Find inefficiency + propose optimization"
+  
+  coverage_gap:
+    condition: "3+ tasks with no matching skill"
+    action: "Propose new skill creation"
+  
+  error_rate_spike:
+    condition: "Error rate >5% in single day"
+    action: "Immediate RCA + alert user"
+
+# Statistics
+active_alerts: 0
+suggestions_made: 0
+suggestions_accepted: 0
+last_scan: "2026-01-16"

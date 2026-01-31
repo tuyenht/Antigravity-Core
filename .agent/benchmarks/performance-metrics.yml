@@ -1,0 +1,389 @@
+---
+# .agent System Performance Benchmarks
+# Version: 2.0.0
+# Last Updated: 2026-01-17
+# Purpose: Track system performance over time and detect regressions
+
+# =============================================================================
+# WORKFLOW EXECUTION TIME (seconds)
+# =============================================================================
+
+workflows:
+  # Code Review & Analysis
+  code-review-automation:
+    baseline: 45.0
+    current: null
+    last_measured: null
+    regression_threshold: 20  # % increase triggers alert
+    
+  security-audit:
+    baseline: 30.0
+    current: null
+    last_measured: null
+    regression_threshold: 20
+    
+  security-scan:
+    baseline: 25.0
+    current: null
+    last_measured: null
+    regression_threshold: 20
+  
+  # Planning & Design
+  plan:
+    baseline: 15.0
+    current: null
+    last_measured: null
+    regression_threshold: 25
+    
+  brainstorm:
+    baseline: 10.0
+    current: null
+    last_measured: null
+    regression_threshold: 25
+  
+  # Code Generation
+  scaffold:
+    baseline: 20.0
+    current: null
+    last_measured: null
+    regression_threshold: 20
+    
+  create:
+    baseline: 18.0
+    current: null
+    last_measured: null
+    regression_threshold: 20
+  
+  # Testing
+  test:
+    baseline: 35.0
+    current: null
+    last_measured: null
+    regression_threshold: 20
+  
+  # Deployment
+  deploy:
+    baseline: 40.0
+    current: null
+    last_measured: null
+    regression_threshold: 15
+    
+  mobile-deploy:
+    baseline: 50.0
+    current: null
+    last_measured: null
+    regression_threshold: 15
+  
+  # Optimization
+  optimize:
+    baseline: 30.0
+    current: null
+    last_measured: null
+    regression_threshold: 20
+    
+  refactor:
+    baseline: 25.0
+    current: null
+    last_measured: null
+    regression_threshold: 20
+  
+  # Debugging
+  debug:
+    baseline: 20.0
+    current: null
+    last_measured: null
+    regression_threshold: 25
+    
+  quickfix:
+    baseline: 8.0
+    current: null
+    last_measured: null
+    regression_threshold: 30
+  
+  # UI/UX
+  ui-ux-pro-max:
+    baseline: 12.0
+    current: null
+    last_measured: null
+    regression_threshold: 25
+  
+  # Maintenance
+  maintain:
+    baseline: 15.0
+    current: null
+    last_measured: null
+    regression_threshold: 25
+    
+  status:
+    baseline: 5.0
+    current: null
+    last_measured: null
+    regression_threshold: 30
+
+# =============================================================================
+# AGENT RESPONSE TIME (seconds)
+# =============================================================================
+
+agents:
+  backend-specialist:
+    time_to_first_response: 2.0
+    time_to_complete_task: 45.0
+    current_first_response: null
+    current_complete: null
+    last_measured: null
+    
+  frontend-specialist:
+    time_to_first_response: 2.0
+    time_to_complete_task: 40.0
+    current_first_response: null
+    current_complete: null
+    last_measured: null
+    
+  security-auditor:
+    time_to_first_response: 3.0
+    time_to_complete_task: 50.0
+    current_first_response: null
+    current_complete: null
+    last_measured: null
+    
+  performance-expert:
+    time_to_first_response: 2.5
+    time_to_complete_task: 45.0
+    current_first_response: null
+    current_complete: null
+    last_measured: null
+    
+  devops-engineer:
+    time_to_first_response: 2.0
+    time_to_complete_task: 55.0
+    current_first_response: null
+    current_complete: null
+    last_measured: null
+    
+  mobile-developer:
+    time_to_first_response: 2.0
+    time_to_complete_task: 50.0
+    current_first_response: null
+    current_complete: null
+    last_measured: null
+
+# =============================================================================
+# RESOURCE USAGE
+# =============================================================================
+
+resources:
+  # Memory footprint (MB)
+  memory:
+    baseline_idle: 50
+    baseline_active: 200
+    current_idle: null
+    current_active: null
+    max_allowed: 500
+    regression_threshold: 30  # % increase
+    
+  # Disk I/O (operations per workflow)
+  disk_io:
+    baseline_reads: 100
+    baseline_writes: 50
+    current_reads: null
+    current_writes: null
+    regression_threshold: 40
+  
+  # Network calls (per workflow)
+  network:
+    baseline_api_calls: 10
+    baseline_data_transfer_mb: 5
+    current_api_calls: null
+    current_data_transfer_mb: null
+    regression_threshold: 50
+
+# =============================================================================
+# SKILL LOADING TIME (milliseconds)
+# =============================================================================
+
+skills:
+  # High-usage skills
+  typescript-expert:
+    baseline_load_time: 100
+    current: null
+    last_measured: null
+    
+  react-patterns:
+    baseline_load_time: 120
+    current: null
+    last_measured: null
+    
+  nextjs-best-practices:
+    baseline_load_time: 150
+    current: null
+    last_measured: null
+    
+  prisma-expert:
+    baseline_load_time: 110
+    current: null
+    last_measured: null
+    
+  ai-sdk-expert:
+    baseline_load_time: 130
+    current: null
+    last_measured: null
+  
+  # Average skill load time
+  average_load_time:
+    baseline: 100
+    current: null
+    target: 80  # Optimization goal
+
+# =============================================================================
+# SYSTEM STARTUP TIME (seconds)
+# =============================================================================
+
+startup:
+  cold_start:
+    baseline: 3.0
+    current: null
+    last_measured: null
+    target: 2.0
+    
+  warm_start:
+    baseline: 0.5
+    current: null
+    last_measured: null
+    target: 0.3
+
+# =============================================================================
+# PERFORMANCE TRENDS
+# =============================================================================
+
+trends:
+  # Automatically populated by benchmark script
+  
+  improving:
+    # Workflows getting faster
+    - workflow: null
+      improvement_percentage: 0
+      measured_at: null
+  
+  degrading:
+    # Workflows getting slower (requires investigation)
+    - workflow: null
+      degradation_percentage: 0
+      measured_at: null
+      investigation_required: false
+  
+  stable:
+    # Consistent performance (good!)
+    - workflow: null
+      variance_percentage: 0
+
+# =============================================================================
+# PERFORMANCE ALERTS
+# =============================================================================
+
+alerts:
+  active:
+    # Current performance issues
+    - alert_id: null
+      severity: null  # critical, high, medium, low
+      component: null  # workflow, agent, skill
+      metric: null
+      threshold_exceeded: false
+      created_at: null
+      resolved_at: null
+  
+  history:
+    # Archive of past alerts
+    count_total: 0
+    count_resolved: 0
+    count_auto_resolved: 0
+
+# =============================================================================
+# MEASUREMENT SETTINGS
+# =============================================================================
+
+settings:
+  # How often to measure
+  measurement_frequency: weekly
+  
+  # Retention policy
+  keep_history_days: 90
+  
+  # Alert thresholds (can override per-component)
+  default_regression_threshold: 20  # %
+  
+  # Auto-measurement
+  auto_measure_on_commit: false
+  auto_measure_on_release: true
+  
+  # Reporting
+  generate_report: true
+  report_schedule: monthly
+
+# =============================================================================
+# MEASUREMENT HISTORY
+# =============================================================================
+
+history:
+  # Last 10 measurements (ring buffer)
+  
+  measurements:
+    - date: "2026-01-17"
+      version: "2.0.0"
+      workflows_measured: 0
+      agents_measured: 0
+      notes: "Baseline established"
+    
+    # Future measurements will be appended here
+    # Format:
+    # - date: "2026-01-24"
+    #   version: "2.0.0"
+    #   workflows_measured: 23
+    #   agents_measured: 19
+    #   average_improvement: 0
+    #   regressions_detected: 0
+    #   notes: "Weekly measurement"
+
+# =============================================================================
+# PERFORMANCE GOALS
+# =============================================================================
+
+goals:
+  # Target improvements for next version
+  
+  v2_1_0:
+    - metric: workflow_execution_time
+      target: -10  # % improvement
+      component: code-review-automation
+      
+    - metric: skill_load_time
+      target: -20  # % improvement
+      component: average
+      
+    - metric: memory_usage
+      target: -15  # % reduction
+      component: active
+  
+  v2_2_0:
+    - metric: cold_start_time
+      target: -33  # From 3.0s to 2.0s
+      component: system
+      
+    - metric: agent_response_time
+      target: -20  # % improvement
+      component: all_agents
+
+# =============================================================================
+# NOTES
+# =============================================================================
+
+# How to use this file:
+# 
+# 1. BASELINE: Current values are baselines (v2.0.0)
+# 2. MEASURE: Run benchmark script weekly
+# 3. COMPARE: Script compares current vs baseline
+# 4. ALERT: Regressions trigger alerts if threshold exceeded
+# 5. INVESTIGATE: Review degrading trends
+# 6. OPTIMIZE: Work on improvements
+# 7. UPDATE: New baselines set each major version
+#
+# See: .agent/benchmarks/benchmark-runner.sh for automation

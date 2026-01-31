@@ -1,0 +1,41 @@
+# Confidence Calibration - Self-Assessment Accuracy Tracker
+
+# Classification Confidence Tracking
+classification_confidence: []
+  # Example:
+  # - declared_confidence: 95
+  #   actual_correct: 94
+  #   sample_size: 50
+  #   calibration_error: 1  # ±1% - excellent
+  #   date_range: "2026-01-01 to 2026-01-15"
+
+# Skill Effectiveness Tracking  
+skill_effectiveness: []
+  # Example:
+  # - skill: "react-expert"
+  #   self_assessed_coverage: 90
+  #   user_satisfaction_avg: 9.1
+  #   times_invoked: 47
+  #   calibration_status: "well_calibrated"
+  #   adjustment_needed: 0
+
+# Overall Calibration Stats
+statistics:
+  total_classifications: 0
+  avg_calibration_error: 0.0
+  well_calibrated_count: 0  # error < 5%
+  overconfident_count: 0     # declared > actual
+  underconfident_count: 0    # declared < actual
+  last_updated: "2026-01-16"
+
+# Calibration Targets
+targets:
+  max_acceptable_error: 5    # ±5%
+  min_sample_size: 10
+  ideal_calibration_range: [-5, 5]  # ±5%
+  
+# Adjustment Rules
+adjustments:
+  overconfident_threshold: -10  # If error < -10%, reduce confidence
+  underconfident_threshold: 10   # If error > 10%, increase confidence
+  adjustment_step: 5             # Adjust by ±5% per iteration

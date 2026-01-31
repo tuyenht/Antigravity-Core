@@ -1,1 +1,32 @@
-.agent
+# Antigravity-Core .gitignore
+
+# OS generated files
+.DS_Store
+Thumbs.db
+
+# IDE
+.idea/
+.vscode/
+*.swp
+*.swo
+
+# Logs
+*.log
+logs/
+
+# Temporary files
+*.tmp
+*.temp
+
+# Build artifacts
+dist/
+build/
+node_modules/
+
+# Environment files (if any)
+.env
+.env.local
+.env.*.local
+
+# Benchmark reports (generated)
+.agent/benchmarks/reports/*.md

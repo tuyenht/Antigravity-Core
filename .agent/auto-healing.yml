@@ -1,0 +1,299 @@
+# Auto-Healing System Configuration
+# Meta-style automatic fix for common issues
+# Reduces trivial fix cycles by 50%
+
+version: 1.0
+created: 2026-01-19
+mode: automatic  # automatic|suggest|disabled
+
+# ============================================================
+# GLOBAL SETTINGS
+# ============================================================
+settings:
+  max_iterations: 3  # Max auto-fix attempts before escalating
+  require_confirmation: false  # Auto-apply or ask first
+  log_all_actions: true
+  escalate_on_failure: true
+
+# ============================================================
+# LINT AUTO-FIXES
+# ============================================================
+lint_fixes:
+  enabled: true
+  
+  # PHP (Laravel)
+  php:
+    enabled: true
+    tool: pint
+    command: "./vendor/bin/pint"
+    auto_fix:
+      - formatting  # Code style
+      - unused_imports  # Remove unused imports
+      - trailing_commas  # Add trailing commas
+      - blank_lines  # Normalize blank lines
+    
+    # Patterns that are SAFE to auto-fix
+    safe_patterns:
+      - "Missing trailing comma"
+      - "Incorrect indentation"
+      - "Unused import"
+      - "Extra blank line"
+      - "Missing blank line"
+    
+    # Patterns that require human review
+    unsafe_patterns:
+      - "Remove unused variable"  # Might be intentional
+      - "Change visibility"  # Breaking change
+      - "Remove method"  # Definitely not safe
+
+  # TypeScript/JavaScript
+  typescript:
+    enabled: true
+    tool: eslint
+    command: "npm run lint -- --fix"
+    auto_fix:
+      - formatting
+      - import_sorting
+      - unused_imports
+      - prefer_const
+      - semicolons
+    
+    safe_patterns:
+      - "Prefer const"
+      - "Missing semicolon"
+      - "Import order"
+      - "Trailing comma"
+      - "Quote style"
+    
+    unsafe_patterns:
+      - "Remove unused variable"
+      - "Any type detected"
+      - "Possible null reference"
+
+# ============================================================
+# TYPE ERROR AUTO-FIXES
+# ============================================================
+type_fixes:
+  enabled: true
+  
+  # TypeScript
+  typescript:
+    enabled: true
+    
+    auto_fix:
+      # Add missing return types (if deterministic)
+      - pattern: "Function lacks return type"
+        action: infer_return_type
+        confidence_required: 90%
+      
+      # Fix simple type mismatches
+      - pattern: "Type 'string' is not assignable to type 'number'"
+        action: suggest_conversion
+        auto_apply: false  # Needs review
+      
+      # Add missing null checks
+      - pattern: "Object is possibly 'undefined'"
+        action: add_optional_chaining
+        confidence_required: 80%
+    
+    # Auto-add types to untyped functions
+    infer_types:
+      enabled: true
+      targets:
+        - public_methods
+        - exported_functions
+      exclude:
+        - test_files
+        - config_files
+
+  # PHP
+  php:
+    enabled: true
+    tool: phpstan
+    
+    auto_fix:
+      # Add missing type hints (if deterministic)
+      - pattern: "Missing return type"
+        action: infer_from_docblock
+        confidence_required: 95%
+      
+      # Add null checks
+      - pattern: "Cannot call method on null"
+        action: add_null_check
+        confidence_required: 80%
+
+# ============================================================
+# IMPORT AUTO-FIXES
+# ============================================================
+import_fixes:
+  enabled: true
+  
+  auto_actions:
+    # Update import paths after file moves
+    - trigger: file_moved
+      action: update_all_imports
+      auto_apply: true
+    
+    # Remove unused imports
+    - trigger: unused_import_detected
+      action: remove_import
+      auto_apply: true
+    
+    # Add missing imports
+    - trigger: undefined_reference
+      action: add_import
+      auto_apply: true
+      sources:
+        - same_project
+        - node_modules
+        - vendor
+
+# ============================================================
+# TEST AUTO-FIXES
+# ============================================================
+test_fixes:
+  enabled: true
+  
+  # Snapshot updates
+  snapshots:
+    enabled: true
+    auto_update: true
+    conditions:
+      - tests_passing  # Only if other tests pass
+      - not_breaking_change  # Only visual changes
+    
+    require_review:
+      - component_props_changed
+      - api_response_changed
+  
+  # Test fixtures
+  fixtures:
+    enabled: true
+    auto_regenerate: true
+    conditions:
+      - schema_changed
+      - factory_changed
+
+# ============================================================
+# DEPENDENCY AUTO-FIXES
+# ============================================================
+dependency_fixes:
+  enabled: true
+  
+  # Lockfile regeneration
+  lockfiles:
+    auto_regenerate: true
+    triggers:
+      - package_json_changed
+      - composer_json_changed
+    
+    command_npm: "npm install"
+    command_composer: "composer install"
+  
+  # Conflict resolution
+  conflicts:
+    auto_resolve: false  # Too risky, suggest only
+    suggest_resolution: true
+
+# ============================================================
+# SYNTAX ERROR AUTO-FIXES
+# ============================================================
+syntax_fixes:
+  enabled: true
+  
+  auto_fix:
+    # Missing brackets
+    - pattern: "Expected '}'"
+      action: add_closing_bracket
+      confidence_required: 95%
+    
+    # Missing parentheses
+    - pattern: "Expected ')'"
+      action: add_closing_paren
+      confidence_required: 95%
+    
+    # Missing semicolons
+    - pattern: "Missing semicolon"
+      action: add_semicolon
+      confidence_required: 99%
+
+# ============================================================
+# WORKFLOW
+# ============================================================
+workflow:
+  # When auto-healing triggers
+  triggers:
+    - on_save: false  # Not on every save
+    - on_commit: true  # Before commit
+    - on_pr: true  # When creating PR
+    - on_ci_failure: true  # When CI fails
+  
+  # Execution order
+  order:
+    1: lint_fixes
+    2: syntax_fixes
+    3: import_fixes
+    4: type_fixes
+    5: test_fixes
+    6: dependency_fixes
+  
+  # After healing
+  post_healing:
+    - run_linter
+    - run_type_check
+    - run_tests
+    - report_changes
+
+# ============================================================
+# REPORTING
+# ============================================================
+reporting:
+  # Report format
+  format: markdown
+  
+  # What to include
+  include:
+    - files_modified
+    - issues_fixed
+    - issues_remaining
+    - commands_run
+  
+  # Example output
+  template: |
+    # 🔧 Auto-Healing Report
+    
+    **Files Modified:** {file_count}
+    **Issues Fixed:** {fix_count}
+    **Issues Remaining:** {remaining_count}
+    
+    ## Fixed Issues
+    {fixed_list}
+    
+    ## Remaining Issues (Need Human Review)
+    {remaining_list}
+    
+    ## Commands Run
+    {commands}
+
+# ============================================================
+# SAFETY RULES
+# ============================================================
+safety:
+  # Never auto-fix these
+  never_auto_fix:
+    - breaking_changes
+    - api_contract_changes
+    - database_schema_changes
+    - security_critical_code
+    - production_config
+  
+  # Always require review
+  require_review:
+    - removal_of_code
+    - visibility_changes
+    - dependency_major_updates
+  
+  # Rollback on failure
+  rollback:
+    enabled: true
+    command: "git checkout ."

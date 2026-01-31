@@ -1,0 +1,261 @@
+# DX Analytics Configuration
+# Track developer experience metrics like Vercel/Netflix
+# Data-driven improvement for the agent system
+
+version: 1.0
+created: 2026-01-19
+
+# ============================================================
+# METRICS TO TRACK
+# ============================================================
+metrics:
+  # Velocity Metrics - How fast is development?
+  velocity:
+    tasks_completed:
+      description: "Number of tasks completed per day"
+      unit: count
+      target: 5
+      
+    avg_task_duration:
+      description: "Average time to complete a task"
+      unit: minutes
+      target: 30
+      
+    code_lines_generated:
+      description: "Lines of code auto-generated"
+      unit: count
+      track_savings: true
+      
+    commits_per_day:
+      description: "Commit frequency"
+      unit: count
+      target: 8
+
+  # Automation ROI - How much time does automation save?
+  automation:
+    code_generator_usage:
+      description: "Times code-generator-agent used"
+      unit: count
+      time_saved_per_use: 30  # minutes
+      
+    auto_healing_fixes:
+      description: "Issues auto-fixed without human intervention"
+      unit: count
+      time_saved_per_fix: 5  # minutes
+      
+    triage_routing_accuracy:
+      description: "Correct agent routing percentage"
+      unit: percent
+      target: 90
+      
+    ai_review_issues_caught:
+      description: "Issues caught by AI before human review"
+      unit: count
+      time_saved_per_issue: 10  # minutes
+
+  # Quality Metrics - How good is the output?
+  quality:
+    standards_compliance:
+      description: "STANDARDS.md compliance rate"
+      unit: percent
+      target: 100
+      
+    test_coverage:
+      description: "Average test coverage"
+      unit: percent
+      target: 80
+      
+    lint_errors:
+      description: "Lint errors per 1000 lines"
+      unit: ratio
+      target: 0
+      
+    type_errors:
+      description: "Type errors per 1000 lines"
+      unit: ratio
+      target: 0
+      
+    performance_budget_violations:
+      description: "Performance budget violations"
+      unit: count
+      target: 0
+
+  # Agent Metrics - How well are agents performing?
+  agents:
+    most_used:
+      description: "Top 5 most used agents"
+      track: true
+      
+    least_used:
+      description: "Agents rarely used (may need improvement)"
+      track: true
+      
+    avg_agent_response_time:
+      description: "How long agents take to respond"
+      unit: seconds
+      target: 5
+      
+    agent_success_rate:
+      description: "Tasks successfully completed per agent"
+      unit: percent
+      target: 95
+
+  # Developer Satisfaction (optional manual tracking)
+  satisfaction:
+    dx_score:
+      description: "Composite DX score (0-100)"
+      components:
+        - velocity: 25%
+        - automation: 25%
+        - quality: 25%
+        - agent_effectiveness: 25%
+
+# ============================================================
+# TRACKING SETTINGS
+# ============================================================
+tracking:
+  # Storage
+  storage:
+    file: ".agent/memory/dx-analytics.json"
+    backup: ".agent/memory/dx-analytics-backup.json"
+    retention_days: 90
+    
+  # Update frequency
+  frequency:
+    real_time: [tasks_completed, auto_healing_fixes]
+    hourly: [code_lines_generated, commits_per_day]
+    daily: [dx_score, test_coverage, standards_compliance]
+    weekly: [triage_routing_accuracy, agent_success_rate]
+
+  # Baseline comparison
+  baseline:
+    compare_to: "last_week"
+    alert_on_regression: true
+    regression_threshold: 10%
+
+# ============================================================
+# DASHBOARD OUTPUT
+# ============================================================
+dashboard:
+  # Summary format
+  format: markdown
+  
+  # Components to show
+  components:
+    - score_card  # DX Score
+    - velocity_chart  # Tasks over time
+    - automation_roi  # Time saved
+    - quality_trend  # Quality metrics
+    - agent_usage  # Agent breakdown
+    - bottlenecks  # Problem areas
+    - recommendations  # AI suggestions
+
+  # Template
+  template: |
+    # 📊 DX Analytics Dashboard
+    
+    **Period:** {start_date} to {end_date}
+    **DX Score:** {dx_score}/100 ({dx_trend})
+    
+    ## ⚡ Velocity
+    | Metric | Value | Target | Status |
+    |--------|-------|--------|--------|
+    | Tasks/Day | {tasks_per_day} | 5 | {status} |
+    | Avg Duration | {avg_duration}m | 30m | {status} |
+    | Lines Generated | {lines_generated} | - | - |
+    
+    ## 🤖 Automation ROI
+    | Agent | Uses | Time Saved |
+    |-------|------|------------|
+    | code-generator | {cg_uses} | {cg_saved}h |
+    | auto-healing | {ah_uses} | {ah_saved}h |
+    | ai-code-reviewer | {ai_uses} | {ai_saved}h |
+    
+    **Total Time Saved This Week:** {total_saved} hours
+    
+    ## 📈 Quality Trend
+    | Metric | Current | Last Week | Trend |
+    |--------|---------|-----------|-------|
+    | Test Coverage | {coverage}% | {coverage_prev}% | {trend} |
+    | Standards Compliance | {compliance}% | {compliance_prev}% | {trend} |
+    | Perf Budget Violations | {violations} | {violations_prev} | {trend} |
+    
+    ## 🔍 Bottlenecks Detected
+    {bottlenecks_list}
+    
+    ## 💡 Recommendations
+    {recommendations_list}
+
+# ============================================================
+# ALERTS & NOTIFICATIONS
+# ============================================================
+alerts:
+  # When to alert
+  triggers:
+    - metric: dx_score
+      condition: "< 70"
+      severity: warning
+      message: "DX Score dropped below 70"
+      
+    - metric: triage_routing_accuracy
+      condition: "< 80"
+      severity: warning
+      message: "Triage agent accuracy needs improvement"
+      
+    - metric: test_coverage
+      condition: "< 60"
+      severity: error
+      message: "Test coverage critically low"
+      
+    - metric: performance_budget_violations
+      condition: "> 0"
+      severity: warning
+      message: "Performance budget violated"
+
+  # How to notify
+  notification:
+    - type: dashboard
+    - type: log
+
+# ============================================================
+# RECOMMENDATIONS ENGINE
+# ============================================================
+recommendations:
+  rules:
+    - condition: "velocity.tasks_per_day < 3"
+      recommendation: "Consider using code-generator-agent more for boilerplate"
+      
+    - condition: "automation.triage_routing_accuracy < 85"
+      recommendation: "Review triage-agent patterns for common misroutes"
+      
+    - condition: "quality.test_coverage < 70"
+      recommendation: "Enable enhanced test generation for new code"
+      
+    - condition: "agents.least_used contains 'performance-optimizer'"
+      recommendation: "Schedule regular performance reviews"
+
+# ============================================================
+# INTEGRATION
+# ============================================================
+integration:
+  # Git hooks for tracking
+  git_hooks:
+    post_commit:
+      track: [commits_per_day]
+      
+    post_push:
+      track: [code_lines_generated]
+  
+  # Agent integration
+  agents:
+    all:
+      on_task_complete:
+        track: [tasks_completed, avg_task_duration]
+        
+    code-generator-agent:
+      on_generate:
+        track: [code_generator_usage, code_lines_generated]
+        
+    ai-code-reviewer:
+      on_review:
+        track: [ai_review_issues_caught]

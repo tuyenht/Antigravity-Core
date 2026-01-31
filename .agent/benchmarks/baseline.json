@@ -1,0 +1,46 @@
+{
+    "version": "1.0",
+    "created": "2026-01-20",
+    "last_updated": "2026-01-20",
+    "description": "Performance baselines for regression detection",
+    "frontend": {
+        "bundle_size": {
+            "main_kb": 180,
+            "vendor_kb": 250,
+            "total_kb": 430
+        },
+        "lighthouse": {
+            "performance": 90,
+            "accessibility": 95,
+            "best_practices": 95,
+            "seo": 90
+        },
+        "core_web_vitals": {
+            "lcp_ms": 2000,
+            "fid_ms": 50,
+            "cls": 0.05
+        }
+    },
+    "backend": {
+        "api_response": {
+            "p50_ms": 50,
+            "p95_ms": 150,
+            "p99_ms": 300
+        },
+        "database": {
+            "avg_query_count": 5,
+            "avg_query_time_ms": 20
+        },
+        "memory": {
+            "peak_mb": 32
+        }
+    },
+    "agent_system": {
+        "health_check_time_ms": 2000,
+        "validation_time_ms": 5000,
+        "agents_count": 27,
+        "skills_count": 57,
+        "workflows_count": 31,
+        "scripts_count": 8
+    }
+}

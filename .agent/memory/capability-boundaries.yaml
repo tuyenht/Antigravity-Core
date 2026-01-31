@@ -1,0 +1,215 @@
+---
+# Capability Boundaries & Domain Confidence
+# Last Updated: 2026-01-16
+# Scale: 0-100 (0=No knowledge, 50=Working knowledge, 80=Expert, 95+=Master)
+
+domains:
+  backend_development:
+    laravel: 95
+    django: 90
+    fastapi: 90
+    nestjs: 75
+    express: 85
+    overall: 90
+
+  frontend_development:
+    react: 90
+    vue: 88
+    svelte: 80
+    next_js: 85
+    inertia: 92
+    overall: 88
+
+  mobile_development:
+    react_native: 85
+    flutter: 82
+    native_ios: 40
+    native_android: 40
+    overall: 75
+
+  database:
+    postgresql: 92
+    mysql: 88
+    mongodb: 75
+    redis: 85
+    elasticsearch: 70
+    vector_databases: 65
+    overall: 80
+
+  devops:
+    docker: 90
+    kubernetes: 78
+    ci_cd: 88
+    terraform: 70
+    aws: 75
+    cloudflare: 85
+    overall: 80
+
+  security:
+    owasp_top_10: 95
+    authentication: 92
+    authorization: 90
+    encryption: 85
+    penetration_testing: 65
+    compliance: 80
+    overall: 85
+
+  testing:
+    unit_testing: 90
+    integration_testing: 85
+    e2e_testing: 80
+    performance_testing: 75
+    security_testing: 85
+    overall: 83
+
+  architecture:
+    microservices: 82
+    event_driven: 75
+    serverless: 65
+    monolithic: 90
+    modular_monolith: 92
+    overall: 81
+
+  performance:
+    optimization: 88
+    profiling: 80
+    caching: 90
+    cdn: 85
+    database_tuning: 82
+    overall: 85
+
+  soft_skills:
+    documentation: 92
+    code_review: 90
+    mentoring: 85
+    project_planning: 88
+    communication: 90
+    overall: 89
+
+expertise_areas:
+  # Areas where we excel (85+)
+  exceptional:
+    - "Laravel full-stack development"
+    - "React + Inertia.js SPAs"
+    - "Security hardening & OWASP"
+    - "PostgreSQL optimization"
+    - "API design & documentation"
+    - "Technical documentation"
+    - "Code quality & standards"
+  
+  # Strong competence (70-84)
+  strong:
+    - "Vue 3 & Svelte development"
+    - "FastAPI & Django backends"
+    - "Mobile app development (React Native/Flutter)"
+    - "Kubernetes orchestration"
+    - "Redis caching strategies"
+    - "CI/CD pipeline design"
+    - "Performance optimization"
+  
+  # Working knowledge (50-69)  
+  developing:
+    - "Terraform infrastructure as code"
+    - "Vector databases & AI integration"
+    - "Advanced Kubernetes patterns"
+    - "Penetration testing methodologies"
+    - "Serverless architectures"
+    - "Machine learning integration"
+
+  # Learning phase (< 50)
+  learning:
+    - "WebAssembly"
+    - "Rust programming"
+    - "Blockchain development"
+    - "Native mobile (Swift/Kotlin)"
+    - "Edge computing"
+
+confidence_by_task:
+  crud_applications: 95
+  rest_api_development: 95
+  spa_development: 92
+  mobile_apps: 85
+  real_time_applications: 80
+  data_pipelines: 75
+  ml_ai_integration: 60
+  blockchain: 30
+
+learning_priorities:
+  immediate:  # Next 1-3 months
+    - name: "React 19 Compiler"
+      current: 70
+      target: 90
+      reason: "Latest React features for performance"
+    
+    - name: "Advanced Kubernetes"
+      current: 78
+      target: 88
+      reason: "Production deployment requirements"
+    
+    - name: "OpenTelemetry"
+      current: 60
+      target: 85
+      reason: "Essential for microservices monitoring"
+
+  short_term:  # 3-6 months
+    - name: "Terraform"
+      current: 70
+      target: 85
+      reason: "Infrastructure as code standardization"
+    
+    - name: "Vector Databases"
+      current: 65
+      target: 80
+      reason: "AI/ML feature development"
+
+  long_term:  # 6-12 months
+    - name: "System Design at Scale"
+      current: 75
+      target: 90
+      reason: "Architecture leadership role"
+    
+    - name: "Machine Learning"
+      current: 50
+      target: 75
+      reason: "Future product features"
+
+boundaries:
+  comfortable:
+    - "Full-stack web applications"
+    - "API design & implementation"
+    - "Database design & optimization"
+    - "Security implementation"
+    - "Performance tuning"
+    - "Technical documentation"
+  
+  stretch:
+    - "Large-scale distributed systems"
+    - "Real-time data processing"
+    - "Advanced Kubernetes networking"
+    - "Custom ML model deployment"
+  
+  avoid:
+    - "Low-level systems programming"
+    - "Hardware optimization"
+    - "Native mobile platform specifics"
+    - "Blockchain smart contracts"
+    - "Game engine development"
+
+delegation_suggestions:
+  # Tasks better handled by specialists
+  specialist_needed:
+    - "Native iOS development (Swift)"
+    - "Native Android development (Kotlin)"
+    - "Advanced machine learning model training"
+    - "Blockchain smart contract development"
+    - "Game engine programming"
+    - "Embedded systems"
+
+skill_update_frequency:
+  # How often to reassess (in months)
+  backend: 3
+  frontend: 2  # Faster moving
+  mobile: 4
+  devops: 3
+  security: 1  # Critical, review monthly
+  testing: 6
