@@ -1,0 +1,160 @@
+name: Antigravity-Core Validation
+
+on:
+  push:
+    branches: [main]
+    paths: ['.agent/**']
+  pull_request:
+    branches: [main]
+    paths: ['.agent/**']
+
+jobs:
+  validate-structure:
+    name: Validate System Structure
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Check critical files exist
+        run: |
+          echo "🔍 Checking critical files..."
+          files=(
+            ".agent/GEMINI.md"
+            ".agent/ARCHITECTURE.md"
+            ".agent/CHANGELOG.md"
+            ".agent/INTEGRATION-GUIDE.md"
+            ".agent/VERSION"
+            ".agent/project.json"
+            ".agent/roles/AGENT_ROLES.md"
+            ".agent/workflows/TEAM_WORKFLOW.md"
+            ".agent/rules/STANDARDS.md"
+            ".agent/standards/OUTPUT_FILES.md"
+          )
+          missing=0
+          for f in "${files[@]}"; do
+            if [ -f "$f" ]; then
+              echo "  ✅ $f"
+            else
+              echo "  ❌ MISSING: $f"
+              missing=$((missing + 1))
+            fi
+          done
+          if [ $missing -gt 0 ]; then
+            echo "::error::$missing critical file(s) missing!"
+            exit 1
+          fi
+          echo "✅ All critical files present."
+
+      - name: Validate JSON files
+        run: |
+          echo "🔍 Validating JSON files..."
+          for f in $(find .agent -name "*.json" -type f); do
+            if python3 -m json.tool "$f" > /dev/null 2>&1; then
+              echo "  ✅ $f"
+            else
+              echo "  ❌ Invalid JSON: $f"
+              exit 1
+            fi
+          done
+          echo "✅ All JSON files valid."
+
+      - name: Validate YAML files
+        run: |
+          pip install pyyaml -q
+          echo "🔍 Validating YAML files..."
+          python3 -c "
+          import yaml, sys, os
+          errors = 0
+          for root, dirs, files in os.walk('.agent/memory'):
+              for f in files:
+                  if f.endswith(('.yaml', '.yml')):
+                      path = os.path.join(root, f)
+                      try:
+                          with open(path) as fh:
+                              yaml.safe_load(fh)
+                          print(f'  ✅ {path}')
+                      except Exception as e:
+                          print(f'  ❌ {path}: {e}')
+                          errors += 1
+          if errors:
+              sys.exit(1)
+          print('✅ All YAML files valid.')
+          "
+
+      - name: Check version consistency
+        run: |
+          echo "🔍 Checking version consistency..."
+          VERSION_FILE=$(cat .agent/VERSION | tr -d '[:space:]')
+          PROJECT_JSON_VER=$(python3 -c "import json; print(json.load(open('.agent/project.json'))['version'])")
+
+          echo "  VERSION file:   $VERSION_FILE"
+          echo "  project.json:   $PROJECT_JSON_VER"
+
+          if [ "$VERSION_FILE" != "$PROJECT_JSON_VER" ]; then
+            echo "::error::Version mismatch! VERSION=$VERSION_FILE, project.json=$PROJECT_JSON_VER"
+            exit 1
+          fi
+          echo "✅ Versions are consistent."
+
+      - name: Validate agent files have frontmatter
+        run: |
+          echo "🔍 Checking agent frontmatter..."
+          errors=0
+          for f in .agent/agents/*.md; do
+            if head -1 "$f" | grep -q '^---$'; then
+              name=$(grep '^name:' "$f" | head -1)
+              if [ -z "$name" ]; then
+                echo "  ❌ Missing 'name' in frontmatter: $f"
+                errors=$((errors + 1))
+              else
+                echo "  ✅ $f"
+              fi
+            else
+              echo "  ❌ No frontmatter: $f"
+              errors=$((errors + 1))
+            fi
+          done
+          if [ $errors -gt 0 ]; then
+            echo "::error::$errors agent(s) have frontmatter issues!"
+            exit 1
+          fi
+          echo "✅ All agents have valid frontmatter."
+
+      - name: Validate skills have SKILL.md
+        run: |
+          echo "🔍 Checking skill structure..."
+          errors=0
+          for d in .agent/skills/*/; do
+            if [ -f "${d}SKILL.md" ]; then
+              echo "  ✅ $d"
+            else
+              echo "  ⚠️  Missing SKILL.md: $d"
+              errors=$((errors + 1))
+            fi
+          done
+          if [ $errors -gt 5 ]; then
+            echo "::error::Too many skills missing SKILL.md ($errors)"
+            exit 1
+          fi
+          echo "✅ Skill structure validated ($errors warnings)."
+
+  count-components:
+    name: Component Census
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: System census
+        run: |
+          echo "📊 Antigravity-Core Component Census"
+          echo "======================================"
+          echo ""
+          echo "Agents:    $(ls .agent/agents/*.md 2>/dev/null | wc -l)"
+          echo "Workflows: $(ls .agent/workflows/*.md 2>/dev/null | wc -l)"
+          echo "Skills:    $(ls -d .agent/skills/*/ 2>/dev/null | wc -l)"
+          echo "Rules:     $(find .agent/rules -name '*.md' -type f 2>/dev/null | wc -l)"
+          echo "Scripts:   $(ls .agent/scripts/*.ps1 2>/dev/null | wc -l)"
+          echo "Memory:    $(ls .agent/memory/*.yaml 2>/dev/null | wc -l)"
+          echo ""
+          echo "Total size: $(du -sh .agent | cut -f1)"
+          echo "Version:    $(cat .agent/VERSION)"

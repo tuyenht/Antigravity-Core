@@ -388,6 +388,39 @@ jobs:
 
 ---
 
+## Golden Rule Compliance
+
+**You MUST follow:** `.agent/rules/STANDARDS.md`
+
+Before delivering ANY review report, run self-check:
+1. All CRITICAL issues have specific code fix suggestions
+2. No false positives in security category
+3. Severity levels are accurate (not inflated)
+4. References to skills/patterns are correct
+
+If ANY issue is unclear → verify before reporting
+
+---
+
+## Reasoning-Before-Action (MANDATORY)
+
+Before ANY review action, you MUST:
+
+1. **Generate REASONING BLOCK** (see `.agent/templates/agent-template-v3.md`)
+2. **Include all required fields:**
+   - analysis (files changed, scope, risk areas)
+   - potential_impact (false positives, blocking merge incorrectly)
+   - edge_cases (minimum 3)
+   - validation_criteria (minimum 3)
+   - decision (PROCEED/ESCALATE/ALTERNATIVE)
+   - reason (why this severity?)
+3. **Validate** with `.agent/systems/rba-validator.md`
+4. **ONLY report** if decision = PROCEED
+
+**Violation:** If you skip RBA, your review output is INVALID
+
+---
+
 **Created:** 2026-01-19  
 **Version:** 1.0  
 **Industry Standard:** Google Critique, Meta Internal Tools  

@@ -123,7 +123,7 @@ Antigravity-Core/
 │   ├── 👥 roles/                 ← 7 vai trò AI chuẩn hóa
 │   │   └── AGENT_ROLES.md        (BA, SA, PM, BE, FE, QA, DO)
 │   │
-│   ├── 🔄 workflows/             ← 35+ quy trình làm việc
+│   ├── 🔄 workflows/             ← 37 quy trình làm việc
 │   │   ├── TEAM_WORKFLOW.md      (Pipeline Input→Output)
 │   │   ├── scaffold.md
 │   │   ├── debug.md
@@ -206,7 +206,7 @@ STEP 1-2          STEP 3           STEP 4          STEP 5-N
                                                    🚀 PRODUCTION
 ```
 
-### Danh sách Workflows (35+)
+### Danh sách Workflows (37)
 
 | Category | Workflows |
 |----------|-----------|
@@ -265,13 +265,13 @@ Hệ thống nhớ giúp AI **giữ ngữ cảnh** xuyên suốt các phiên là
 
 ## 📊 ĐIỂM SỐ HỆ THỐNG
 
-| Component | Score | Status |
-|-----------|-------|--------|
-| Analyze-Existing-Project-Prompt | 99/100 | ⭐⭐⭐⭐⭐ |
-| New-Project-Interview-Prompt | 97/100 | ⭐⭐⭐⭐⭐ |
-| PROJECT-BRIEF-SYSTEM | 96/100 | ⭐⭐⭐⭐⭐ |
-| deployment-guide | 95/100 | ⭐⭐⭐⭐⭐ |
-| **Overall System** | **96/100** | **World-Class** |
+| Metric | Score | Status |
+|--------|-------|--------|
+| Autonomy | 85/100 | ⭐⭐⭐⭐ |
+| Health | 80/100 | ⭐⭐⭐⭐ |
+| Consistency | 75/100 | ⭐⭐⭐⭐ |
+| Efficiency | 80/100 | ⭐⭐⭐⭐ |
+| **Overall System** | **80/100** | **Strong** |
 
 ### Quality Gates (Platinum Standard)
 
@@ -330,6 +330,7 @@ Time:   30 phút - 2 giờ
 | [`docs/New-Project-Interview-Prompt.txt`](docs/New-Project-Interview-Prompt.txt) | Prompt tạo dự án mới |
 | [`docs/deployment-guide.md`](docs/deployment-guide.md) | Hướng dẫn triển khai step-by-step |
 | [`.agent/INTEGRATION-GUIDE.md`](.agent/INTEGRATION-GUIDE.md) | Complete team onboarding |
+| [`.agent/ARCHITECTURE.md`](.agent/ARCHITECTURE.md) | System architecture & directory map |
 | [`.agent/GEMINI.md`](.agent/GEMINI.md) | AI system instructions |
 | [`.agent/CHANGELOG.md`](.agent/CHANGELOG.md) | Version history chi tiết |
 
@@ -359,18 +360,18 @@ Time:   30 phút - 2 giờ
 
 ## 🗺️ ROADMAP
 
-### v3.1 (Current - January 2026)
+### v3.1.1 (January 2026)
 - ✅ 7 standardized AI Roles
 - ✅ TEAM_WORKFLOW pipeline
 - ✅ PROJECT_SCAFFOLD templates
 - ✅ OUTPUT_FILES standards
 - ✅ Memory System integration
 
-### v3.2 (February 2026)
-- [ ] Performance benchmarking system
-- [ ] GraphQL conventions
-- [ ] gRPC conventions
-- [ ] WebSocket standards
+### v3.2.0 (Current - February 2026)
+- ✅ Performance benchmarking system
+- ✅ GraphQL conventions
+- ✅ gRPC conventions
+- ✅ WebSocket standards
 
 ### v4.0 (Q2 2026)
 - [ ] Agent orchestration framework
@@ -382,6 +383,15 @@ Time:   30 phút - 2 giờ
 ---
 
 ## 📋 CHANGELOG
+
+### v3.1.1 (2026-02-09)
+- 🔧 Synced version consistency across all files
+- ✨ Created ARCHITECTURE.md system map
+- ✨ Added benchmark-runner.ps1 (Windows compatible)
+- ✨ Added GitHub Actions CI/CD pipeline
+- 🔧 Clarified overlapping agent roles
+- 🔧 Fixed CHANGELOG roadmap and reference links
+- 📊 Calibrated system metrics to 0-100 scale
 
 ### v3.1 (2026-01-31)
 - ✨ Added Memory System documentation

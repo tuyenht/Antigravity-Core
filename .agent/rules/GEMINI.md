@@ -89,7 +89,7 @@ When user's prompt is NOT in English:
 ### 📁 File Dependency Awareness
 
 **Before modifying ANY file:**
-1. Check `CODEBASE.md` → File Dependencies
+1. Check `ARCHITECTURE.md` → File Dependencies
 2. Identify dependent files
 3. Update ALL affected files together
 
@@ -114,6 +114,119 @@ When user's prompt is NOT in English:
 1. What is the GOAL of this agent/skill?
 2. What PRINCIPLES must I apply?
 3. How does this DIFFER from generic output?
+
+---
+
+## 🎯 EXPERT RULES AUTO-ACTIVATION SYSTEM
+
+> **NEW!** Automatic rule loading based on context detection.  
+> **Reference Index:** `@[rules/RULES-INDEX.md]`
+
+### Auto-Detection Protocol
+
+```
+┌────────────────────────────────────────────────────────────────┐
+│               EXPERT RULES AUTO-ACTIVATION                     │
+├────────────────────────────────────────────────────────────────┤
+│                                                                │
+│  STEP 1: ANALYZE CONTEXT                                       │
+│  ├── Active document file extension (.vue, .swift, .py, etc.) │
+│  ├── Project config files (package.json, composer.json, etc.) │
+│  └── Keywords in user request                                  │
+│                                                                │
+│  STEP 2: MATCH RULES                                           │
+│  ├── File extension → Load matching rules                      │
+│  ├── Project type → Load framework rules                       │
+│  └── Request keywords → Load domain rules                      │
+│                                                                │
+│  STEP 3: APPLY RULES                                           │
+│  ├── Read matched rules from .agent/rules/                     │
+│  ├── Limit to 3-5 most relevant                                │
+│  └── Apply patterns and best practices                         │
+│                                                                │
+└────────────────────────────────────────────────────────────────┘
+```
+
+### Rule Categories (68 Rules)
+
+| Category | Count | Path | Key Triggers |
+|----------|-------|------|--------------|
+| **Database** | 10 | `rules/database/` | postgresql, mysql, redis, mongodb, query, schema |
+| **Mobile** | 10 | `rules/mobile/` | react-native, flutter, ios, android, mobile |
+| **Backend** | 6 | `rules/backend-frameworks/` | laravel, express, fastapi, graphql, rest |
+| **TypeScript** | 6 | `rules/typescript/` | .ts, .tsx, typescript, types |
+| **Frontend** | 7 | `rules/frontend-frameworks/` | vue, angular, svelte, solid, astro, remix |
+| **Next.js** | 4 | `rules/nextjs/` | next.js, app router, server actions |
+| **Python** | 5 | `rules/python/` | .py, fastapi, flask, ai, ml |
+| **Web Dev** | 8 | `rules/web-development/` | html, css, javascript, accessibility |
+| **Agentic AI** | 12 | `rules/agentic-ai/` | debug, test, review, security, refactor |
+
+### File Extension → Rule Mapping
+
+```yaml
+# AUTOMATIC RULE LOADING BY FILE EXTENSION
+".vue":      frontend-frameworks/vue3.md, typescript/vue3.md
+".svelte":   frontend-frameworks/svelte.md
+".astro":    frontend-frameworks/astro.md
+".swift":    mobile/ios-swift.md
+".kt":       mobile/android-kotlin.md
+".dart":     mobile/flutter.md
+".php":      backend-frameworks/laravel.md
+".py":       python/fastapi.md OR python/flask.md
+".sql":      database/postgresql.md, database/query-optimization.md
+".graphql":  backend-frameworks/graphql.md
+".component.ts": frontend-frameworks/angular.md
+```
+
+### Project Config → Rule Mapping
+
+```yaml
+# AUTOMATIC RULE LOADING BY PROJECT FILES
+"package.json + next":         nextjs/app-router.md
+"package.json + react-native": mobile/react-native.md
+"package.json + vue":          frontend-frameworks/vue3.md
+"package.json + svelte":       frontend-frameworks/svelte.md
+"package.json + tailwind":     frontend-frameworks/tailwind.md
+"composer.json + laravel":     backend-frameworks/laravel.md
+"pubspec.yaml":                mobile/flutter.md
+"requirements.txt | pyproject.toml": python/fastapi.md
+```
+
+### Keyword → Rule Mapping
+
+```yaml
+# AUTOMATIC RULE LOADING BY REQUEST KEYWORDS
+"debug, fix, error":     agentic-ai/debugging.md
+"test, unit test":       agentic-ai/testing.md
+"security, audit":       agentic-ai/security.md
+"refactor, cleanup":     agentic-ai/refactoring.md
+"optimize, slow":        agentic-ai/performance.md
+"api design":            agentic-ai/api-design.md
+"database, schema":      agentic-ai/database-design.md
+"deploy, ci/cd":         agentic-ai/devops.md
+"review, PR":            agentic-ai/code-review.md
+```
+
+### Loading Limits
+
+| Context | Max Rules | Selection Priority |
+|---------|-----------|-------------------|
+| Single file edit | 2-3 | File ext + 1 keyword |
+| Feature build | 3-5 | Framework + Domain + AI |
+| Multi-file task | 5-7 | Full stack coverage |
+| Architecture | 5+ | Design + Backend + DB |
+
+### Manual Override
+
+Users can force-load specific rules:
+
+```
+"Use the Flutter rule"          → mobile/flutter.md
+"Apply PostgreSQL patterns"     → database/postgresql.md
+"I want mobile security"        → mobile/security.md
+```
+
+> 🔴 **MANDATORY:** Check `RULES-INDEX.md` for full catalog when unsure which rule to apply.
 
 ---
 
@@ -299,5 +412,21 @@ fi
 | Mobile audit | `~/.gemini/antigravity/skills/mobile-design/scripts/mobile_audit.py` |
 | Lighthouse | `~/.gemini/antigravity/skills/performance-profiling/scripts/lighthouse_audit.py` |
 | Playwright | `~/.gemini/antigravity/skills/webapp-testing/scripts/playwright_runner.py` |
+
+### Expert Rules (68 Total)
+
+> 📚 **Full Catalog:** `@[rules/RULES-INDEX.md]`
+
+| Category | Count | Key Rules |
+|----------|-------|-----------|
+| **Database** | 10 | PostgreSQL, MySQL, Redis, MongoDB, Query Optimization |
+| **Mobile** | 10 | React Native, Flutter, iOS Swift, Android Kotlin |
+| **Backend** | 6 | Laravel, Express, FastAPI, GraphQL, REST API |
+| **Frontend** | 7 | Vue 3, Angular, Svelte, Solid.js, Astro, Remix, Tailwind |
+| **TypeScript** | 6 | Core, React Native, Expo, Vue 3, Angular, NestJS |
+| **Next.js** | 4 | App Router, Server Actions, Authentication, Performance |
+| **Python** | 5 | FastAPI, Flask, AI/ML, Data Science, Automation |
+| **Web Dev** | 8 | HTML/A11y, CSS, JavaScript, Core Web Vitals, Security |
+| **Agentic AI** | 12 | Debugging, Testing, Code Review, Security, Refactoring |
 
 ---

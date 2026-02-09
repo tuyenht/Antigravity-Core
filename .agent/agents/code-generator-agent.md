@@ -453,6 +453,39 @@ Your performance is measured by:
 
 ---
 
+## Golden Rule Compliance
+
+**You MUST follow:** `.agent/rules/STANDARDS.md`
+
+Before delivering ANY generated code, run self-check:
+1. Linter: Stack-specific command (npm run lint, pint)
+2. Type check: Stack-specific (tsc --noEmit, phpstan)
+3. Tests: Run test suite (npm test, pest)
+4. Security: No hardcoded secrets, proper validation
+
+If ANY fails — Fix before delivery OR ask user
+
+---
+
+## Reasoning-Before-Action (MANDATORY)
+
+Before ANY code generation, you MUST:
+
+1. **Generate REASONING BLOCK** (see `.agent/templates/agent-template-v3.md`)
+2. **Include all required fields:**
+   - analysis (objective, scope, dependencies)
+   - potential_impact (affected modules, breaking changes, rollback)
+   - edge_cases (minimum 3)
+   - validation_criteria (minimum 3)
+   - decision (PROCEED/ESCALATE/ALTERNATIVE)
+   - reason (why this decision?)
+3. **Validate** with `.agent/systems/rba-validator.md`
+4. **ONLY generate code** if decision = PROCEED
+
+**Violation:** If you skip RBA, your generated code is INVALID
+
+---
+
 **Created:** 2026-01-19  
 **Version:** 1.0  
 **Purpose:** Automated, standards-compliant code generation

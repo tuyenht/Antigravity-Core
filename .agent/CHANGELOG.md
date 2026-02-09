@@ -7,6 +7,31 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ---
 
+## [3.2.0] - 2026-02-09
+
+### 🚀 Communication Standards & Benchmarking
+
+**Complete real-time and microservice communication conventions for AI agents.**
+
+---
+
+### Added
+
+- **gRPC conventions** (`rules/backend-frameworks/grpc.md`) - Protocol Buffers, streaming, interceptors, health checking, testing
+- **WebSocket standards** (`rules/backend-frameworks/websocket.md`) - Socket.IO, message protocols, rooms, reconnection, Redis scaling
+
+### Changed
+
+- **RULES-INDEX.md** - Backend Rules 6→8, total rules 68→70, added `.proto` detection and keyword triggers
+- **README.md** - v3.2 roadmap items marked complete
+
+### Verified
+
+- Benchmark: 0 regressions
+- Health-check: 93%+ maintained
+
+---
+
 ## [3.1.1] - 2026-01-31
 
 ### 🚀 Installation System & UI-UX-Pro-Max Refresh
@@ -276,34 +301,28 @@ We follow [Semantic Versioning](https://semver.org/):
 
 ## Upcoming (Planned)
 
-### v2.1.0 (Estimated: February 2026)
-- [ ] Performance benchmarking system
-- [ ] Skill dependency graph
+### v3.2.0 (Estimated: February 2026)
+- [ ] Performance benchmarking system (finalize)
 - [ ] GraphQL conventions
 - [ ] gRPC conventions
 - [ ] WebSocket standards
+- [ ] Skill dependency graph
 
-### v2.2.0 (Estimated: March 2026)
-- [ ] SwiftUI conventions (native iOS)
-- [ ] Jetpack Compose conventions (native Android)
-- [ ] Kotlin Multiplatform
-- [ ] Advanced PostgreSQL patterns
-- [ ] MongoDB comprehensive guide
-
-### v3.0.0 (Estimated: Q2 2026)
+### v4.0.0 (Estimated: Q2 2026)
 - [ ] Agent orchestration framework
 - [ ] Plugin architecture
 - [ ] Skill marketplace
 - [ ] Analytics dashboard
 - [ ] ML/AI deployment standards
+- [ ] SwiftUI conventions (native iOS)
+- [ ] Jetpack Compose conventions (native Android)
 
 ---
 
 ## Support
 
 - **Documentation:** See `.agent/INTEGRATION-GUIDE.md`
-- **Issues:** Report via project issue tracker
-- **Discussions:** [Link to discussions if available]
+- **Issues:** Report via [GitHub Issues](https://github.com/tuyenht/Antigravity-Core/issues)
 
 ---
 
@@ -324,5 +343,8 @@ We follow [Semantic Versioning](https://semver.org/):
 
 ---
 
-[2.0.0]: https://github.com/yourorg/agent-system/releases/tag/v2.0.0
-[1.0.0]: https://github.com/yourorg/agent-system/releases/tag/v1.0.0
+[3.1.1]: https://github.com/tuyenht/Antigravity-Core/releases/tag/v3.1.1
+[3.1.0]: https://github.com/tuyenht/Antigravity-Core/releases/tag/v3.1.0
+[3.0.0]: https://github.com/tuyenht/Antigravity-Core/releases/tag/v3.0.0
+[2.0.0]: https://github.com/tuyenht/Antigravity-Core/releases/tag/v2.0.0
+[1.0.0]: https://github.com/tuyenht/Antigravity-Core/releases/tag/v1.0.0

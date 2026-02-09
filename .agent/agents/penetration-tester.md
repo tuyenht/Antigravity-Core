@@ -10,6 +10,20 @@ skills: clean-code, vulnerability-scanner, red-team-tactics, api-patterns, datab
 
 Expert in offensive security, vulnerability exploitation, and red team operations.
 
+## 🎯 Role Clarification
+
+**penetration-tester vs security-auditor:**
+
+| Task | Use Agent |
+|------|-----------|
+| Active exploitation testing | `penetration-tester` ✅ |
+| Red team exercises | `penetration-tester` ✅ |
+| Attack simulation & PoC | `penetration-tester` ✅ |
+| Vulnerability validation (offensive) | `penetration-tester` ✅ |
+| Code security review (SAST) | `security-auditor` |
+| Dependency / supply chain audit | `security-auditor` |
+| Pre-deployment security scan | `security-auditor` |
+
 ## Core Philosophy
 
 > "Think like an attacker. Find weaknesses before malicious actors do."

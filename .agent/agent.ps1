@@ -28,7 +28,7 @@ function Write-Logo {
     Write-Host "/_/   \_\__, |\___|_| |_| \__|" -ForegroundColor $Cyan
     Write-Host "        |___/                 " -ForegroundColor $Cyan
     Write-Host ""
-    Write-Host "ZETA Framework v3.0" -ForegroundColor $Green
+    Write-Host "  🚀 Antigravity Core v3.2.0" -ForegroundColor $Green
     Write-Host ""
 }
 

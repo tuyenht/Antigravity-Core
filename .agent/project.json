@@ -1,12 +1,12 @@
 {
-  "name": ".agent",
-  "version": "3.0.0",
-  "description": "Zero-Error AI Development System - ZETA Framework",
-  "created": "2026-01-17",
-  "last_updated": "2026-01-17",
+  "name": "antigravity-core",
+  "version": "3.2.0",
+  "description": "AI-Native Development Operating System",
+  "created": "2026-01-16",
+  "last_updated": "2026-02-09",
   "foundation": {
     "standards": {
-      "version": "3.0.0",
+      "version": "3.2.0",
       "file": "rules/STANDARDS.md",
       "description": "Golden Rule - Technical Constitution"
     },
@@ -83,21 +83,25 @@
     }
   },
   "metrics": {
-    "autonomy_score": 100,
-    "health_score": 100,
-    "consistency_score": 10,
-    "efficiency_score": 10,
-    "failure_resilience_score": 10,
-    "integration_score": 10,
-    "conciseness_score": 9,
-    "last_audit": "2026-01-19",
-    "audit_type": "World-Class Expert Panel + Tier 1 Industry Enhancements"
+    "_scale": "0-100 (all scores use unified 0-100 scale)",
+    "autonomy_score": 85,
+    "health_score": 80,
+    "consistency_score": 75,
+    "efficiency_score": 80,
+    "failure_resilience_score": 70,
+    "integration_score": 78,
+    "conciseness_score": 82,
+    "testing_score": 35,
+    "ci_cd_score": 15,
+    "cross_platform_score": 55,
+    "last_audit": "2026-02-09",
+    "audit_type": "Comprehensive Project Review (Expert Panel)"
   },
   "achievements": {
     "transformation": {
       "before_autonomy": 18,
-      "after_autonomy": 100,
-      "improvement_percent": 456
+      "after_autonomy": 85,
+      "improvement_percent": 372
     },
     "prompts_completed": [
       "Deep System Audit",

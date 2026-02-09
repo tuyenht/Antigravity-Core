@@ -27,6 +27,22 @@ version: 3.0.0
 
 ---
 
+## 🎯 Role Clarification
+
+**documentation-agent vs documentation-writer:**
+
+| Task | Use Agent |
+|------|-----------|
+| Auto-update docs after code changes | `documentation-agent` ✅ |
+| Auto-generate API documentation | `documentation-agent` ✅ |
+| Auto-update changelog from commits | `documentation-agent` ✅ |
+| Auto-sync i18n translation keys | `documentation-agent` ✅ |
+| User requests README writing | `documentation-writer` |
+| User requests tutorial creation | `documentation-writer` |
+| User requests llms.txt setup | `documentation-writer` |
+
+---
+
 ## Golden Rule Compliance
 
 **You MUST follow:** `.agent/rules/STANDARDS.md`
