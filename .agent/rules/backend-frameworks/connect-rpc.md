@@ -250,14 +250,12 @@ export function routes(router: ConnectRouter) {
 ### Service Implementation
 ```typescript
 // server/routes/user-service.ts
-import type { ConnectRouter } from '@connectrpc/connect';
+import type { ServiceImpl } from '@connectrpc/connect';
 import { ConnectError, Code } from '@connectrpc/connect';
 import { UserService } from '../../gen/user/v1/user_connect';
 import { prisma } from '../../db';
 
-export const userServiceImpl: Parameters<
-  typeof UserService['prototype']['constructor']
->[0] = {
+export const userServiceImpl: ServiceImpl<typeof UserService> = {
   async getUser(request) {
     const user = await prisma.user.findUnique({
       where: { id: request.id },
@@ -393,7 +391,6 @@ error.metadata.set('field', 'email');
 throw error;
 
 // Error details (rich error model)
-import { createConnectError } from '@connectrpc/connect';
 import { BadRequest } from '../../gen/google/rpc/error_details_pb';
 
 const badRequest = new BadRequest({
@@ -402,11 +399,16 @@ const badRequest = new BadRequest({
   ],
 });
 
-throw createConnectError(
+const detailError = new ConnectError(
   'Validation failed',
-  Code.InvalidArgument,
-  [badRequest]
+  Code.InvalidArgument
 );
+detailError.details.push({
+  type: BadRequest.typeName,
+  value: badRequest.toBinary(),
+  debug: badRequest,
+});
+throw detailError;
 ```
 
 ### Client Error Handling
@@ -527,16 +529,17 @@ function UserProfile({ userId }: { userId: string }) {
 ### Connect-Query Integration (Alternative)
 ```typescript
 // Using @connectrpc/connect-query for automatic query key management
-import { createQueryService } from '@connectrpc/connect-query';
-import { UserService } from '../../gen/user/v1/user_connect';
-
-const { useQuery: useUserQuery } = createQueryService({
-  service: UserService,
-});
+import { useQuery } from '@connectrpc/connect-query';
+import { getUser, listUsers } from '../../gen/user/v1/user-UserService_connectquery';
 
 // Auto-generated hooks with proper cache keys
+function UserProfile({ id }: { id: string }) {
+  const { data } = useQuery(getUser, { id });
+  return <UserCard user={data?.user} />;
+}
+
 function UserList() {
-  const { data } = useUserQuery(UserService.method.listUsers, {
+  const { data } = useQuery(listUsers, {
     pageSize: 20,
     pageToken: '',
   });

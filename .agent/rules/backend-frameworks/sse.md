@@ -222,13 +222,13 @@ router.get('/events', async (req: Request, res: Response) => {
   });
 });
 
-// Helper: Send typed event
-function sendEvent<E extends keyof SSEEventMap>(
+// Helper: Send event (accepts any event name for flexibility)
+function sendEvent(
   res: Response,
   event: {
     id?: string;
-    event: E;
-    data: SSEEventMap[E];
+    event: string;
+    data: unknown;
     retry?: number;
   }
 ) {
@@ -452,13 +452,18 @@ export async function fetchSSE(
     onEvent: (event: string, data: unknown) => void;
     onError?: (error: Error) => void;
     signal?: AbortSignal;
+    method?: string;
+    body?: string;
   }
 ) {
   const response = await fetch(url, {
+    method: options.method || 'GET',
     headers: {
       'Authorization': `Bearer ${options.token}`,
       'Accept': 'text/event-stream',
+      ...(options.body && { 'Content-Type': 'application/json' }),
     },
+    body: options.body,
     signal: options.signal,
   });
 

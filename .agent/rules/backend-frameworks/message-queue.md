@@ -522,13 +522,11 @@ export async function consumeQueue(
       console.error(`Error processing message from ${queue}:`, error);
 
       if (retryCount >= maxRetries) {
-        // Send to DLQ (reject without requeue)
+        // Exhausted retries — dead-letter via DLX
         ch.reject(msg, false);
       } else {
-        // Retry with delay using DLX + TTL trick
-        ch.reject(msg, false);
-        // Or: nack with requeue for simple retry
-        // ch.nack(msg, false, true);
+        // Requeue for simple retry (RabbitMQ redelivers immediately)
+        ch.nack(msg, false, true);
       }
     }
   });
@@ -633,8 +631,8 @@ class Saga<T extends Record<string, unknown>> {
       } catch (error) {
         console.error(`Saga step "${step.name}" failed:`, error);
 
-        // Compensate in reverse order
-        for (const completed of completedSteps.reverse()) {
+        // Compensate in reverse order (copy to avoid mutating)
+        for (const completed of [...completedSteps].reverse()) {
           try {
             await completed.compensate(context);
           } catch (compError) {
@@ -779,7 +777,7 @@ export function setupBullBoard(app: express.Application) {
 ### Metrics
 ```typescript
 // monitoring/metrics.ts
-import { queues, queueEvents } from '../queues/registry';
+import { queues } from '../queues/registry';
 
 // Collect queue metrics
 async function getQueueMetrics() {
