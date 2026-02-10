@@ -1,6 +1,6 @@
 # Expert Rules Index & Auto-Activation System
 
-> **Version:** 1.0.0 | **Updated:** 2026-02-01  
+> **Version:** 1.1.0 | **Updated:** 2026-02-10  
 > **Purpose:** Automatic rule loading based on context detection  
 > **Priority:** P0 - Load at session start
 
@@ -58,17 +58,18 @@ User Request → Context Detection → Rule Matching → Auto-Load
 | Mobile Deployment | `mobile/deployment.md` | app store, play store, aso, fastlane | - |
 | Cross-Platform | `mobile/cross-platform.md` | cross platform, monorepo, shared code | - |
 
-### Backend Rules (8)
+### Backend Rules (9)
 | Rule | File | Trigger Keywords | File Extensions |
 |------|------|-----------------|-----------------|
 | Laravel | `backend-frameworks/laravel.md` | laravel, eloquent, artisan | `.php`, `composer.json` |
-| ASP.NET Core | `backend-frameworks/aspnet.md` | aspnet, .net, c#, dotnet | `.cs`, `.csproj` |
+| ASP.NET Core | `backend-frameworks/aspnet-core.md` | aspnet, .net, c#, dotnet | `.cs`, `.csproj` |
 | Express | `backend-frameworks/express.md` | express, node, middleware | `.js`, `.ts` |
 | GraphQL | `backend-frameworks/graphql.md` | graphql, apollo, schema, resolver | `.graphql` |
 | gRPC | `backend-frameworks/grpc.md` | grpc, protobuf, protocol buffers, rpc | `.proto` |
 | REST API | `backend-frameworks/rest-api.md` | rest, api, endpoint, crud | - |
 | WebSocket | `backend-frameworks/websocket.md` | websocket, socket.io, real-time, ws | - |
-| Python Backend | `backend-frameworks/python.md` | fastapi, flask, django | `.py` |
+| FastAPI | `backend-frameworks/fastapi.md` | fastapi, starlette, pydantic | `.py` |
+| Flask | `backend-frameworks/flask.md` | flask, jinja2, wsgi | `.py` |
 
 ### TypeScript Rules (6)
 | Rule | File | Trigger Keywords | File Extensions |
@@ -339,6 +340,12 @@ backend-frameworks/laravel.md:
 backend-frameworks/graphql.md:
   - backend-frameworks/rest-api.md (concepts)
 
+backend-frameworks/grpc.md:
+  - backend-frameworks/rest-api.md (API design concepts)
+
+backend-frameworks/websocket.md:
+  - backend-frameworks/rest-api.md (HTTP upgrade context)
+
 any mobile/*:
   - mobile/ui-ux.md
   - mobile/performance.md (for production)
@@ -430,16 +437,16 @@ User can explicitly request:
 |----------|-------|-------------------|
 | Database | 10 | ~6,000 |
 | Mobile | 10 | ~6,000 |
-| Backend | 8 | ~5,800 |
+| Backend | 9 | ~7,500 |
 | TypeScript | 6 | ~4,000 |
 | Frontend Frameworks | 7 | ~5,000 |
 | Next.js | 4 | ~3,000 |
 | Python | 5 | ~3,500 |
 | Web Development | 8 | ~5,000 |
 | Agentic AI | 12 | ~7,000 |
-| **TOTAL** | **70** | **~45,300** |
+| **TOTAL** | **71** | **~47,000** |
 
 ---
 
-**Last Updated:** 2026-02-09  
+**Last Updated:** 2026-02-10  
 **Maintainer:** Antigravity Core System
