@@ -457,7 +457,7 @@ export async function fetchSSE(
   }
 ) {
   const response = await fetch(url, {
-    method: options.method || 'GET',
+    method: options.method || (options.body ? 'POST' : 'GET'),
     headers: {
       'Authorization': `Bearer ${options.token}`,
       'Accept': 'text/event-stream',

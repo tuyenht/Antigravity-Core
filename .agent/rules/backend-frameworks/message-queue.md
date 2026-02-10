@@ -612,6 +612,17 @@ interface SagaStep<T> {
   compensate: (context: T) => Promise<void>;
 }
 
+class SagaError extends Error {
+  constructor(
+    public readonly stepName: string,
+    public readonly cause: Error,
+    public readonly completedSteps: SagaStep<any>[]
+  ) {
+    super(`Saga failed at step "${stepName}": ${cause.message}`);
+    this.name = 'SagaError';
+  }
+}
+
 class Saga<T extends Record<string, unknown>> {
   private steps: SagaStep<T>[] = [];
 

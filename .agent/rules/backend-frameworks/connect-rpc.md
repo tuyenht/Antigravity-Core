@@ -105,6 +105,8 @@ syntax = "proto3";
 
 package user.v1;
 
+import "google/protobuf/timestamp.proto";
+
 service UserService {
   rpc GetUser(GetUserRequest) returns (GetUserResponse);
   rpc ListUsers(ListUsersRequest) returns (ListUsersResponse);
@@ -611,7 +613,7 @@ export const loggingInterceptor: Interceptor = (next) => async (request) => {
 ### Server Interceptor (Auth)
 ```typescript
 // server/interceptors/auth.ts
-import type { HandlerContext, Interceptor } from '@connectrpc/connect';
+import type { Interceptor } from '@connectrpc/connect';
 import { ConnectError, Code } from '@connectrpc/connect';
 
 const PUBLIC_METHODS = new Set([
