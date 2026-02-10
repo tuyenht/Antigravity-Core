@@ -113,19 +113,13 @@ rule_discovery:
 # Delegate to agent-registry.md for scoring, then resolve conflicts
 agent_selection:
   trigger: "After rule discovery"
-  system: "agent-registry.md (selectAgents algorithm)"
+  system: "agent-registry.md → selectAgents algorithm"
   inputs:
     - request: "User request text"
     - context: "From step 1"
     - rules: "From step 2"
-  
-  process:
-    1_score: "Match keywords, files, context against all 27 agents"
-    2_rank: "Sort by composite score (keyword * 3 + file * 4 + context * 2 + rule_overlap * 2)"
-    3_filter: "Remove agents outside complexity range"
-    4_conflicts: "Resolve conflicts (see conflict resolution)"
-    5_limit: "Select primary + max 3 supporting agents"
 
+  # See agent-registry.md for full scoring formula and pseudocode
   outputs:
     primary_agent: "Single lead agent"
     supporting_agents: "0-3 supporting agents"

@@ -433,7 +433,7 @@ caching:
       - rule: "backend-frameworks/laravel.md"
         score: 9
         source: "config:composer.json"
-      - rule: "typescript/core.md"
+      - rule: "typescript/strict-mode.md"
         score: 8
         source: "extension:.tsx"
     agent_recommendation:
@@ -514,7 +514,7 @@ final_ranking:
   2. typescript/strict-mode.md             → 8
   3. typescript/react-native.md            → 8
   4. database/query-optimization.md       → 6
-  5. agentic-ai/performance.md            → 5
+  5. agentic-ai/performance-optimization-agent.md → 5
 
 # Scope: feature_build (max 7 rules)
 # Dependency resolution: query-optimization → design.md (optional, score 6 ≥ 6)

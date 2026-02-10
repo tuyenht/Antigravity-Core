@@ -86,6 +86,7 @@ $KeywordPatterns = @{
     "migration|alter.table"          = @{ Rules = @("database/migrations.md"); Score = 5 }
 }
 
+# Agent keyword matching (mirrors agent-registry.md triggers.keywords — intentional duplication for script independence)
 $AgentKeywords = @{
     "backend-specialist"    = @("api", "endpoint", "controller", "middleware", "auth", "server", "backend")
     "frontend-specialist"   = @("ui", "component", "page", "layout", "style", "responsive", "css", "react", "vue", "frontend")
