@@ -1,6 +1,6 @@
 # Antigravity-Core Architecture
 
-> **Version:** 3.1.1 | **Last Updated:** 2026-02-09
+> **Version:** 4.0.0 | **Last Updated:** 2026-02-10
 
 ---
 
@@ -48,7 +48,7 @@ Antigravity-Core is an **AI-Native Development Operating System** — a structur
 ├── roles/                 ← 7-role SDLC framework
 ├── standards/             ← Output quality standards
 ├── templates/             ← Agent & project templates
-├── systems/               ← Core protocols (RBA, coordination)
+├── systems/               ← Core protocols (RBA, coordination, orchestration engine, auto-discovery)
 ├── benchmarks/            ← Performance baselines
 ├── maintenance/           ← Scheduled tasks
 ├── examples/              ← RBA & CI/CD examples
@@ -152,7 +152,10 @@ Persistent YAML files that maintain context across sessions.
 |----------|------|---------|
 | **RBA** | `systems/rba-validator.md` | Reasoning-Before-Action (mandatory for all agents) |
 | **AOC** | `agents/manager-agent.md` | Auto-Optimization Cycle |
-| **Agent Coordination** | `systems/agent-coordination.md` | Multi-agent orchestration |
+| **Agent Coordination** | `systems/agent-coordination.md` | Multi-agent coordination |
+| **Orchestration Engine** | `systems/orchestration-engine.md` | Automated agent selection & pipeline execution |
+| **Auto-Rule Discovery** | `systems/auto-rule-discovery.md` | Intelligent rule loading by project context |
+| **Agent Registry** | `systems/agent-registry.md` | Machine-readable 27-agent capability registry |
 | **STANDARDS** | `rules/STANDARDS.md` | Golden Rule — technical constitution |
 
 ---
@@ -170,21 +173,29 @@ GEMINI.md (Entry Point)
     ├── Check Capability Boundaries
     │
     ▼
-Agent Selection (via AGENT-SELECTION.md)
+Auto-Rule Discovery Engine (systems/auto-rule-discovery.md)
     │
-    ├── Load Agent Definition
-    ├── Load Agent Skills
-    ├── Auto-detect Expert Rules
+    ├── Layer 1: File Extension Scan
+    ├── Layer 2: Project Config Scan
+    ├── Layer 3: Request Keyword Analysis
+    ├── Merge, Rank & Resolve Dependencies
+    │
+    ▼
+Orchestration Engine (systems/orchestration-engine.md)
+    │
+    ├── Context Analysis (domain, complexity, scope)
+    ├── Agent Selection (via agent-registry.md)
+    ├── Conflict Resolution
     │
     ▼
 RBA Protocol (Reasoning-Before-Action)
     │
-    ├── PROCEED → Execute with workflows
+    ├── PROCEED → Execute with pipeline
     ├── ESCALATE → Ask user
     └── ALTERNATIVE → Suggest different approach
     │
     ▼
-Workflow Execution
+Pipeline Execution (Sequential / Parallel / Conditional)
     │
     ├── Generate artifacts
     ├── Run quality gates

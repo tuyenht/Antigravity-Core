@@ -1,8 +1,9 @@
 # Expert Rules Index & Auto-Activation System
 
-> **Version:** 1.1.0 | **Updated:** 2026-02-10  
+> **Version:** 2.0.0 | **Updated:** 2026-02-10  
 > **Purpose:** Automatic rule loading based on context detection  
-> **Priority:** P0 - Load at session start
+> **Priority:** P0 - Load at session start  
+> **Engine:** `systems/auto-rule-discovery.md` (v4.0 automated discovery)
 
 ---
 
