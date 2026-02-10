@@ -28,5 +28,6 @@ node_modules/
 .env.local
 .env.*.local
 
-# Benchmark baselines (machine-specific)
+# Benchmark reports (auto-generated, machine-specific)
+.agent/benchmarks/reports/
 .agent/benchmarks/baseline.json
