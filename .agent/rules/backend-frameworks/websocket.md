@@ -384,7 +384,8 @@ io.use(async (socket, next) => {
   }
 });
 
-// Rate limiting middleware
+// Rate limiting middleware (runs once on connection)
+// For per-event rate limiting, use socket.onAny() inside connection handler
 const rateLimits = new Map<string, { count: number; resetAt: number }>();
 
 io.use((socket, next) => {
@@ -909,9 +910,7 @@ function validateEvent<E extends keyof typeof eventSchemas>(
 
 // Socket.IO middleware for validation
 io.use((socket, next) => {
-  const originalEmit = socket.emit.bind(socket);
-
-  // Intercept incoming events
+  // Intercept incoming events for validation
   socket.onAny((event, data, ack) => {
     const schema = eventSchemas[event as keyof typeof eventSchemas];
     if (schema) {

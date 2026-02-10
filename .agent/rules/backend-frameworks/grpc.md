@@ -240,7 +240,7 @@ startServer().catch(console.error);
 ### Service Implementation
 ```typescript
 // server/services/user-service.ts
-import { ServiceImplementation } from 'nice-grpc';
+import { ServiceImplementation, ServerError } from 'nice-grpc';
 import {
   UserServiceDefinition,
   GetUserRequest,
@@ -382,8 +382,7 @@ export const userServiceImpl: ServiceImplementation<
 ### gRPC Status Codes
 ```typescript
 // server/interceptors/error-handler.ts
-import { ServerError, Status } from 'nice-grpc';
-import { ServerMiddleware } from 'nice-grpc';
+import { ServerError, Status, ServerMiddleware } from 'nice-grpc';
 
 // gRPC Status Code Reference
 // ─────────────────────────────────────────────────
@@ -405,19 +404,11 @@ import { ServerMiddleware } from 'nice-grpc';
 // DATA_LOSS (15)      - Unrecoverable data loss
 // UNAUTHENTICATED (16)- Missing/invalid credentials
 
-// HTTP → gRPC mapping
-const httpToGrpc: Record<number, Status> = {
-  400: Status.INVALID_ARGUMENT,
-  401: Status.UNAUTHENTICATED,
-  403: Status.PERMISSION_DENIED,
-  404: Status.NOT_FOUND,
-  409: Status.ALREADY_EXISTS,
-  429: Status.RESOURCE_EXHAUSTED,
-  500: Status.INTERNAL,
-  501: Status.UNIMPLEMENTED,
-  503: Status.UNAVAILABLE,
-  504: Status.DEADLINE_EXCEEDED,
-};
+// HTTP → gRPC status mapping (useful for gateway/proxy layers)
+// 400 → INVALID_ARGUMENT    | 401 → UNAUTHENTICATED
+// 403 → PERMISSION_DENIED   | 404 → NOT_FOUND
+// 409 → ALREADY_EXISTS      | 429 → RESOURCE_EXHAUSTED
+// 500 → INTERNAL            | 503 → UNAVAILABLE
 
 export const errorHandlerInterceptor: ServerMiddleware = async function* (
   call,
@@ -535,7 +526,7 @@ export const authInterceptor: ServerMiddleware = async function* (
     const payload = await verifyToken(bearerToken);
     
     // Pass user info via metadata
-    const enrichedMetadata = Metadata(context.metadata);
+    const enrichedMetadata = new Metadata(context.metadata);
     enrichedMetadata.set('x-user-id', payload.userId);
     enrichedMetadata.set('x-user-role', payload.role);
 
@@ -877,8 +868,9 @@ const healthImpl: ServiceImplementation<typeof HealthDefinition> = {
 
   async *watch(request) {
     while (true) {
-      const { status } = await this.check(request);
-      yield { status };
+      // Call check directly (avoid `this` in object literals)
+      const result = await healthImpl.check(request);
+      yield { status: result.status };
       await new Promise((r) => setTimeout(r, 5000));
     }
   },
