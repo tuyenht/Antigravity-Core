@@ -99,19 +99,19 @@ file_extension_rules:
     score: 10
 
   ".ts", ".tsx":
-    rules: [typescript/core.md]
+    rules: [typescript/strict-mode.md]
     score: 8  # Common, co-loaded with framework rules
 
   ".css":
-    rules: [web-development/modern-css.md]
+    rules: [web-development/core/modern-css-responsive.md]
     score: 8
 
   ".html":
-    rules: [web-development/semantic-html.md]
+    rules: [web-development/core/semantic-html-accessibility.md]
     score: 8
 
   ".js", ".jsx":
-    rules: [web-development/javascript.md]
+    rules: [web-development/core/javascript-es2024.md]
     score: 7
 ```
 
@@ -129,10 +129,10 @@ project_config_rules:
         rules: [nextjs/app-router.md, nextjs/server-actions.md]
         score: 8
       "react":
-        rules: [typescript/react.md]
+        rules: [typescript/react-native.md]  # Closest TypeScript-React rule
         score: 8
       "vue":
-        rules: [frontend-frameworks/vue3.md, typescript/vue3.md]
+        rules: [frontend-frameworks/vue3.md]
         score: 8
       "svelte":
         rules: [frontend-frameworks/svelte.md]
@@ -208,7 +208,7 @@ Match user request text against intent keywords.
 keyword_rules:
   # Build & Architecture
   "create api | api design | endpoint":
-    rules: [backend-frameworks/rest-api.md, agentic-ai/api-design.md]
+    rules: [backend-frameworks/rest-api.md, agentic-ai/api-design-agent.md]
     score: 5
 
   "grpc | protobuf | rpc service":
@@ -237,35 +237,35 @@ keyword_rules:
 
   # Quality & Process
   "debug | fix | error | bug":
-    rules: [agentic-ai/debugging.md]
+    rules: [agentic-ai/debugging-agent.md]
     score: 5
 
   "test | unit test | integration test":
-    rules: [agentic-ai/testing.md]
+    rules: [agentic-ai/test-writing-agent.md]
     score: 5
 
   "security | audit | vulnerability | owasp":
-    rules: [agentic-ai/security.md]
+    rules: [agentic-ai/security-audit-agent.md]
     score: 5
 
   "refactor | cleanup | code smell":
-    rules: [agentic-ai/refactoring.md]
+    rules: [agentic-ai/refactoring-agent.md]
     score: 5
 
   "optimize | slow | performance | latency":
-    rules: [agentic-ai/performance.md]
+    rules: [agentic-ai/performance-optimization-agent.md]
     score: 5
 
   "deploy | ci/cd | pipeline | docker":
-    rules: [agentic-ai/devops.md]
+    rules: [agentic-ai/devops-cicd-agent.md]
     score: 5
 
   "review | PR | code review":
-    rules: [agentic-ai/code-review.md]
+    rules: [agentic-ai/code-review-agent.md]
     score: 5
 
   "migrate | upgrade | version":
-    rules: [agentic-ai/migration.md]
+    rules: [agentic-ai/code-migration-agent.md]
     score: 5
 
   # Database
@@ -352,7 +352,7 @@ dependencies:
     optional: [backend-frameworks/websocket.md]
 
   nextjs/app-router.md:
-    requires: [typescript/core.md]
+    requires: [typescript/strict-mode.md]
     optional: [nextjs/server-actions.md, nextjs/authentication.md]
 
   frontend-frameworks/vue3.md:
@@ -491,7 +491,7 @@ user_request: "Optimize the user list query and add pagination"
 # Layer 1: File Extension Scan
 extension_matches:
   ".php": [backend-frameworks/laravel.md]          # score: 10
-  ".tsx": [typescript/core.md]                       # score: 8
+  ".tsx": [typescript/strict-mode.md]                       # score: 8
 
 # Layer 2: Config Scan
 config_matches:
@@ -499,20 +499,20 @@ config_matches:
     laravel/framework: [backend-frameworks/laravel.md]  # score: 9
     inertiajs: [backend-frameworks/laravel.md]          # score: 8
   package.json:
-    react: [typescript/react.md]                         # score: 8
-    typescript: [typescript/core.md]                      # score: 8
+    react: [typescript/react-native.md]                     # score: 8
+    typescript: [typescript/strict-mode.md]                   # score: 8
 
 # Layer 3: Keyword Analysis
 keyword_matches:
-  "optimize": [agentic-ai/performance.md]                # score: 5
+  "optimize": [agentic-ai/performance-optimization-agent.md] # score: 5
   "query": [database/query-optimization.md]              # score: 6
   "pagination": [database/query-optimization.md]         # score: 6
 
 # Merged & Ranked (deduplicated, max score wins)
 final_ranking:
   1. backend-frameworks/laravel.md        → 10
-  2. typescript/core.md                   → 8
-  3. typescript/react.md                  → 8
+  2. typescript/strict-mode.md             → 8
+  3. typescript/react-native.md            → 8
   4. database/query-optimization.md       → 6
   5. agentic-ai/performance.md            → 5
 
@@ -522,11 +522,11 @@ final_ranking:
 # Final Loaded Rules (6)
 loaded:
   - backend-frameworks/laravel.md
-  - typescript/core.md
-  - typescript/react.md
+  - typescript/strict-mode.md
+  - typescript/react-native.md
   - database/query-optimization.md
   - database/design.md           # (dependency of query-optimization)
-  - agentic-ai/performance.md
+  - agentic-ai/performance-optimization-agent.md
 ```
 
 ---

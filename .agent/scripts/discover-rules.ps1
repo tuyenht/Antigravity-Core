@@ -40,18 +40,18 @@ $ExtensionRules = @{
     ".py"      = @{ Rules = @("python/fastapi.md"); Score = 10 }
     ".sql"     = @{ Rules = @("database/postgresql.md", "database/query-optimization.md"); Score = 10 }
     ".graphql" = @{ Rules = @("backend-frameworks/graphql.md"); Score = 10 }
-    ".ts"      = @{ Rules = @("typescript/core.md"); Score = 8 }
-    ".tsx"     = @{ Rules = @("typescript/core.md"); Score = 8 }
-    ".css"     = @{ Rules = @("web-development/modern-css.md"); Score = 8 }
-    ".html"    = @{ Rules = @("web-development/semantic-html.md"); Score = 8 }
-    ".js"      = @{ Rules = @("web-development/javascript.md"); Score = 7 }
-    ".jsx"     = @{ Rules = @("web-development/javascript.md"); Score = 7 }
+    ".ts"      = @{ Rules = @("typescript/strict-mode.md"); Score = 8 }
+    ".tsx"     = @{ Rules = @("typescript/strict-mode.md"); Score = 8 }
+    ".css"     = @{ Rules = @("web-development/core/modern-css-responsive.md"); Score = 8 }
+    ".html"    = @{ Rules = @("web-development/core/semantic-html-accessibility.md"); Score = 8 }
+    ".js"      = @{ Rules = @("web-development/core/javascript-es2024.md"); Score = 7 }
+    ".jsx"     = @{ Rules = @("web-development/core/javascript-es2024.md"); Score = 7 }
     ".cs"      = @{ Rules = @("backend-frameworks/aspnet-core.md"); Score = 10 }
 }
 
 $ConfigPatterns = @{
     "next"                = @{ Rules = @("nextjs/app-router.md", "nextjs/server-actions.md"); Score = 8 }
-    "react"               = @{ Rules = @("typescript/react.md"); Score = 8 }
+    "react"               = @{ Rules = @("typescript/react-native.md"); Score = 8 }
     "vue"                 = @{ Rules = @("frontend-frameworks/vue3.md"); Score = 8 }
     "svelte"              = @{ Rules = @("frontend-frameworks/svelte.md"); Score = 8 }
     "@angular/core"       = @{ Rules = @("frontend-frameworks/angular.md"); Score = 8 }
@@ -72,13 +72,13 @@ $KeywordPatterns = @{
     "sse|server-sent|eventsource"    = @{ Rules = @("backend-frameworks/sse.md"); Score = 6 }
     "bullmq|rabbitmq|message.queue"  = @{ Rules = @("backend-frameworks/message-queue.md"); Score = 6 }
     "graphql|apollo|schema.resolver" = @{ Rules = @("backend-frameworks/graphql.md"); Score = 6 }
-    "debug|fix|error|bug"            = @{ Rules = @("agentic-ai/debugging.md"); Score = 5 }
-    "test|unit.test|coverage"        = @{ Rules = @("agentic-ai/testing.md"); Score = 5 }
-    "security|audit|vulnerability"   = @{ Rules = @("agentic-ai/security.md"); Score = 5 }
-    "refactor|cleanup|code.smell"    = @{ Rules = @("agentic-ai/refactoring.md"); Score = 5 }
-    "optimize|slow|performance"      = @{ Rules = @("agentic-ai/performance.md"); Score = 5 }
-    "deploy|ci.?cd|pipeline|docker"  = @{ Rules = @("agentic-ai/devops.md"); Score = 5 }
-    "review|PR|code.review"          = @{ Rules = @("agentic-ai/code-review.md"); Score = 5 }
+    "debug|fix|error|bug"            = @{ Rules = @("agentic-ai/debugging-agent.md"); Score = 5 }
+    "test|unit.test|coverage"        = @{ Rules = @("agentic-ai/test-writing-agent.md"); Score = 5 }
+    "security|audit|vulnerability"   = @{ Rules = @("agentic-ai/security-audit-agent.md"); Score = 5 }
+    "refactor|cleanup|code.smell"    = @{ Rules = @("agentic-ai/refactoring-agent.md"); Score = 5 }
+    "optimize|slow|performance"      = @{ Rules = @("agentic-ai/performance-optimization-agent.md"); Score = 5 }
+    "deploy|ci.?cd|pipeline|docker"  = @{ Rules = @("agentic-ai/devops-cicd-agent.md"); Score = 5 }
+    "review|PR|code.review"          = @{ Rules = @("agentic-ai/code-review-agent.md"); Score = 5 }
     "schema|ERD|data.model"          = @{ Rules = @("database/design.md"); Score = 5 }
     "slow.query|explain|index"       = @{ Rules = @("database/query-optimization.md"); Score = 6 }
     "redis|cache|caching"            = @{ Rules = @("database/redis.md"); Score = 5 }
