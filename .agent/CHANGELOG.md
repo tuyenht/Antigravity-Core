@@ -7,6 +7,42 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ---
 
+## [4.0.0] - 2026-02-10
+
+### 🚀 Agent Orchestration Framework & Auto-Rule Discovery
+
+**Transforms Antigravity from manual agent/rule routing to intelligent automated orchestration.**
+
+---
+
+### Added
+
+- **Auto-Rule Discovery Engine** (`systems/auto-rule-discovery.md`) — 3-layer detection (file ext, project config, request keywords), dependency resolution, session caching, priority scoring
+- **Agent Registry** (`systems/agent-registry.md`) — Machine-readable capability registry for all 27 agents with triggers, skills, conflict rules, complexity ranges
+- **Orchestration Engine** (`systems/orchestration-engine.md`) — Automated agent selection, pipeline execution (sequential/parallel/conditional), 7 pipeline templates, conflict resolution
+- **Discovery Script** (`scripts/discover-rules.ps1`) — CLI project scanner, JSON + text output, PS 5.1 compatible
+
+### Changed
+
+- **ARCHITECTURE.md** — v4.0.0, new data flow with orchestration pipeline, systems count 2→6
+- **orchestrator.md** — References to new v4.0 systems
+- **RULES-INDEX.md** — v2.0.0, references auto-discovery engine
+- **project.json** — v4.0.0, added orchestration foundation entry
+- **agent.ps1, agent.sh** — Banner versions → 4.0.0
+- **GEMINI.md** — v4.0.0
+
+### Fixed
+
+- 51 phantom rule file references corrected across all new system files
+
+### Verified
+
+- Benchmark: 0 regressions
+- Version consistency: all files = 4.0.0
+- discover-rules.ps1 tested with JSON output
+
+---
+
 ## [3.3.0] - 2026-02-10
 
 ### 🚀 Advanced Communication & Async Patterns

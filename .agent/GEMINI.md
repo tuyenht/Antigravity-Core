@@ -1,6 +1,6 @@
 # Antigravity AI System Instructions
 
-**Version:** 3.3.0  
+**Version:** 4.0.0  
 **Last Updated:** 2026-02-10  
 **Purpose:** Core behavior and capability awareness for AI assistants
 
