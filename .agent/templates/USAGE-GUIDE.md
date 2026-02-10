@@ -2,7 +2,7 @@
 
 **Template:** `.agent/templates/agent-template-v3.md`  
 **Example:** `.agent/templates/backend-laravel-specialist-v3-example.md`  
-**Version:** 3.0.0  
+**Version:** 4.0.0  
 **Architecture:** ZETA (Zero-Error Task Automation)
 
 ---

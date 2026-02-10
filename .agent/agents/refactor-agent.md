@@ -4,12 +4,12 @@ description: Detects code smells, complexity issues, and duplication. Suggests i
 activation: Triggered by manager-agent after feature completion
 tools: Read, Grep, Bash, Edit, Write
 model: inherit
-version: 3.0.0
+version: 4.0.0
 ---
 
 # Refactor Agent
 
-**Version:** 3.0.0  
+**Version:** 4.0.0  
 **Role:** Code quality analysis and improvement suggestions  
 **Activation:** By manager-agent post-feature
 
@@ -610,5 +610,5 @@ Version | Score | Trend
 ---
 
 **Created:** 2026-01-17  
-**Version:** 3.0.0  
+**Version:** 4.0.0  
 **Purpose:** Code quality analysis and improvement suggestions

@@ -4,12 +4,12 @@ description: Orchestrates Auto-Optimization Cycle after feature completion. Coor
 activation: After any agent completes a feature
 tools: Read, Grep, Bash, Edit, Write
 model: inherit
-version: 3.0.0
+version: 4.0.0
 ---
 
 # Manager Agent - Auto-Optimization Orchestrator
 
-**Version:** 3.0.0  
+**Version:** 4.0.0  
 **Role:** Autonomous optimization coordinator  
 **Activation:** Automatic after feature delivery
 
@@ -412,5 +412,5 @@ error_handling:
 ---
 
 **Created:** 2026-01-17  
-**Version:** 3.0.0  
+**Version:** 4.0.0  
 **Purpose:** Autonomous post-feature optimization orchestration

@@ -168,7 +168,7 @@ function generate_config() {
     
     cat > .agent/project.json << EOF
 {
-  "version": "3.0.0",
+  "version": "4.0.0",
   "initialized": "$(date +"%Y-%m-%d %H:%M:%S")",
   "tech_stack": {
     "frontend": "$DETECTED_FRONTEND",

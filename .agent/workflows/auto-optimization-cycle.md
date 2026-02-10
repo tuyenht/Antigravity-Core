@@ -6,7 +6,7 @@ automation: Auto-triggered by manager-agent
 
 # Auto-Optimization Cycle (AOC) Workflow
 
-**Version:** 3.0.0  
+**Version:** 4.0.0  
 **Purpose:** Automated post-feature quality optimization  
 **Trigger:** After any agent completes a feature
 
@@ -536,5 +536,5 @@ User sees:
 ---
 
 **Created:** 2026-01-17  
-**Version:** 3.0.0  
+**Version:** 4.0.0  
 **Purpose:** Fully automated post-feature optimization

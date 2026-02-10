@@ -2,7 +2,7 @@
 # =============================================================================
 # AGENT TEMPLATE v3.0 - ZERO-ERROR ARCHITECTURE
 # =============================================================================
-# Version: 3.0.0
+# Version: 4.0.0
 # Architecture: ZETA (Zero-Error Task Automation)
 # Purpose: Modular, self-validating, deterministic agent template
 # Last Updated: 2026-01-17
@@ -17,7 +17,7 @@
 identity:
   # Core identification
   name: "[agent-name]"  # e.g., "backend-laravel-specialist"
-  version: "3.0.0"
+  version: "4.0.0"
   role: "[Clear, specific role description]"  # e.g., "Laravel Backend API Development Expert"
   
   # Expertise level
@@ -718,7 +718,7 @@ learning:
 
 metadata:
   created: "2026-01-17"
-  template_version: "3.0.0"
+  template_version: "4.0.0"
   architecture: "ZETA (Zero-Error Task Automation)"
   
   usage_instructions: |

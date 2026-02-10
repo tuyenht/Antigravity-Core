@@ -4,7 +4,12 @@
     Update UI-UX-Pro-Max skill from upstream GitHub repository
 
 .DESCRIPTION
-    This script:
+    This script uses uipro-cli to download and merge upstream files.
+    
+    ⚠️ LIMITATION: CLI-based approach (uipro init) overwrites ALL files. 
+    It does NOT preserve local customizations (e.g. SKILL.md edits).
+    For selective updates that preserve customizations, download files
+    directly from GitHub raw URLs instead.
     1. Downloads latest version using uipro-cli
     2. Merges files into .agent/skills/ui-ux-pro-max/
     3. Removes temporary .shared/ folder
@@ -87,7 +92,8 @@ if (Test-Path $sharedPath) {
     # Remove .shared
     Remove-Item -Path (Join-Path $ProjectRoot ".shared") -Recurse -Force
     Write-Host "   ✓ Removed .shared folder" -ForegroundColor Green
-} else {
+}
+else {
     Write-Host "   No .shared folder found (CLI may have updated directly)" -ForegroundColor Gray
 }
 
@@ -127,12 +133,14 @@ if ($gitStatus) {
         git push
         Write-Host ""
         Write-Host "   ✓ Committed and pushed!" -ForegroundColor Green
-    } else {
+    }
+    else {
         Write-Host ""
         Write-Host "   Run the following to commit:" -ForegroundColor Cyan
         Write-Host '   git add . && git commit -m "⬆️ Update UI-UX-Pro-Max"' -ForegroundColor White
     }
-} else {
+}
+else {
     Write-Host "   No changes detected (already up to date)" -ForegroundColor Gray
 }
 

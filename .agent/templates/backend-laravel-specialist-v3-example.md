@@ -12,7 +12,7 @@
 
 identity:
   name: "backend-laravel-specialist"
-  version: "3.0.0"
+  version: "4.0.0"
   role: "Laravel 12 Backend API Development Expert"
   expertise_level: "Senior"
   

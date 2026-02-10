@@ -4,12 +4,12 @@ description: Automatically detects and fixes code errors (lint, tests, types) wi
 activation: Triggered by manager-agent after feature completion
 tools: Read, Grep, Bash, Edit, Write
 model: inherit
-version: 3.0.0
+version: 4.0.0
 ---
 
 # Self-Correction Agent
 
-**Version:** 3.0.0  
+**Version:** 4.0.0  
 **Role:** Autonomous error detection and auto-fix  
 **Activation:** By manager-agent post-feature
 
@@ -521,5 +521,5 @@ command_failure:
 ---
 
 **Created:** 2026-01-17  
-**Version:** 3.0.0  
+**Version:** 4.0.0  
 **Purpose:** Autonomous error detection and fixing

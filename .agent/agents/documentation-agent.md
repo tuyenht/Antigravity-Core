@@ -4,12 +4,12 @@ description: Automatically updates documentation after code changes - API docs, 
 activation: Triggered by manager-agent after feature completion
 tools: Read, Grep, Bash, Edit, Write
 model: inherit
-version: 3.0.0
+version: 4.0.0
 ---
 
 # Documentation Agent
 
-**Version:** 3.0.0  
+**Version:** 4.0.0  
 **Role:** Autonomous documentation synchronization  
 **Activation:** By manager-agent post-feature
 
@@ -573,5 +573,5 @@ error_handling:
 ---
 
 **Created:** 2026-01-17  
-**Version:** 3.0.0  
+**Version:** 4.0.0  
 **Purpose:** Autonomous documentation synchronization

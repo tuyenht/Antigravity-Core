@@ -1,6 +1,6 @@
 # .agent GOLDEN RULE - Technical Constitution
 
-**Version:** 3.0.0  
+**Version:** 4.0.0  
 **Status:** MANDATORY - NO EXCEPTIONS  
 **Scope:** All agents, all projects, all tech stacks
 
@@ -530,7 +530,7 @@ Generate Quality Report (see section 5.3)
 
 **Created:** 2026-01-17  
 **Last Updated:** 2026-01-17  
-**Version:** 3.0.0  
+**Version:** 4.0.0  
 **Effective:** IMMEDIATELY
 
 **Violation Reporting:**

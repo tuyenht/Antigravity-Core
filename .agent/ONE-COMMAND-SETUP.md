@@ -1,6 +1,6 @@
 # .agent One-Command Setup Guide
 
-**Version:** 3.0.0  
+**Version:** 4.0.0  
 **Status:** FULLY AUTOMATED ✨
 
 ---
@@ -134,7 +134,7 @@ your-project/
 ### project.json Example:
 ```json
 {
-  "version": "3.0.0",
+  "version": "4.0.0",
   "initialized": "2026-01-17 10:50:00",
   "tech_stack": {
     "frontend": "Next.js TypeScript",
