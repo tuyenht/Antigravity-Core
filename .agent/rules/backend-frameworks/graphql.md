@@ -965,6 +965,13 @@ describe('User Queries', () => {
 
 ---
 
+## See Also
+
+- [websocket.md](websocket.md) — Real-time transport for GraphQL Subscriptions
+- [connect-rpc.md](connect-rpc.md) — Type-safe RPC alternative with Protocol Buffers
+
+---
+
 **References:**
 - [GraphQL Specification](https://spec.graphql.org/)
 - [GraphQL Yoga](https://the-guild.dev/graphql/yoga-server)

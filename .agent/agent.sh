@@ -1,7 +1,7 @@
 #!/usr/bin/env bash
 #
 # .agent Auto-Initialization Script (Linux/Mac)
-# Version: 3.2.0
+# Version: 3.3.0
 # Usage: ./agent init
 #
 
@@ -26,7 +26,7 @@ function show_banner() {
     echo ""
     echo -e "${CYAN}╔═══════════════════════════════════════════╗${NC}"
     echo -e "${CYAN}║   .agent Auto-Initialization System      ║${NC}"
-    echo -e "${CYAN}║   Version 3.2.0 - Zero-Error Architecture ║${NC}"
+    echo -e "${CYAN}║   Version 3.3.0 - Zero-Error Architecture ║${NC}"
     echo -e "${CYAN}╚═══════════════════════════════════════════╝${NC}"
     echo ""
 }

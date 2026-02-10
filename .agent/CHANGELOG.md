@@ -7,6 +7,33 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ---
 
+## [3.3.0] - 2026-02-10
+
+### 🚀 Advanced Communication & Async Patterns
+
+**Complete communication stack with browser-native RPC, server push, and async messaging.**
+
+---
+
+### Added
+
+- **Connect-RPC conventions** (`rules/backend-frameworks/connect-rpc.md`) — Connect Protocol, Buf v2, React/TanStack Query integration, streaming, interceptors, migration from gRPC-Web
+- **SSE conventions** (`rules/backend-frameworks/sse.md`) — Server-Sent Events, EventSource API, Last-Event-ID replay, Redis scaling, AI/LLM token streaming, React hooks
+- **Message Queue conventions** (`rules/backend-frameworks/message-queue.md`) — BullMQ, RabbitMQ, event bus abstraction, saga pattern, idempotency, Bull Board monitoring
+
+### Changed
+
+- **RULES-INDEX.md** — Backend Rules 9→12, total rules 71→74, added keyword triggers, dependency entries
+- **Cross-links** — Added "See Also" sections to `grpc.md`, `websocket.md`, `graphql.md`, and all 3 new rule files
+- **RULES-INDEX structural fixes** — Fixed `aspnet.md`→`aspnet-core.md`, split `python.md`→`fastapi.md`+`flask.md`
+
+### Verified
+
+- Benchmark: 0 regressions
+- Version consistency: all files = 3.3.0
+
+---
+
 ## [3.2.0] - 2026-02-09
 
 ### 🚀 Communication Standards & Benchmarking

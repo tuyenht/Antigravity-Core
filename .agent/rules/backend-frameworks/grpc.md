@@ -1192,6 +1192,13 @@ service UserService {
 
 ---
 
+## See Also
+
+- [connect-rpc.md](connect-rpc.md) — Browser-native gRPC successor (no proxy needed)
+- [message-queue.md](message-queue.md) — Async messaging for fire-and-forget patterns
+
+---
+
 **Version:** 1.0.0  
 **Standards:** gRPC v1.60+, Protocol Buffers v3, HTTP/2  
 **Created:** 2026-02-09

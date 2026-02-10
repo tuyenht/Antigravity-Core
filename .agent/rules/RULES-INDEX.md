@@ -58,7 +58,7 @@ User Request → Context Detection → Rule Matching → Auto-Load
 | Mobile Deployment | `mobile/deployment.md` | app store, play store, aso, fastlane | - |
 | Cross-Platform | `mobile/cross-platform.md` | cross platform, monorepo, shared code | - |
 
-### Backend Rules (9)
+### Backend Rules (12)
 | Rule | File | Trigger Keywords | File Extensions |
 |------|------|-----------------|-----------------|
 | Laravel | `backend-frameworks/laravel.md` | laravel, eloquent, artisan | `.php`, `composer.json` |
@@ -66,8 +66,11 @@ User Request → Context Detection → Rule Matching → Auto-Load
 | Express | `backend-frameworks/express.md` | express, node, middleware | `.js`, `.ts` |
 | GraphQL | `backend-frameworks/graphql.md` | graphql, apollo, schema, resolver | `.graphql` |
 | gRPC | `backend-frameworks/grpc.md` | grpc, protobuf, protocol buffers, rpc | `.proto` |
+| Connect-RPC | `backend-frameworks/connect-rpc.md` | connect, connectrpc, connect-rpc, buf | `.proto` |
 | REST API | `backend-frameworks/rest-api.md` | rest, api, endpoint, crud | - |
 | WebSocket | `backend-frameworks/websocket.md` | websocket, socket.io, real-time, ws | - |
+| SSE | `backend-frameworks/sse.md` | sse, server-sent events, eventsource, event stream | - |
+| Message Queue | `backend-frameworks/message-queue.md` | bullmq, rabbitmq, message queue, amqp, job queue | - |
 | FastAPI | `backend-frameworks/fastapi.md` | fastapi, starlette, pydantic | `.py` |
 | Flask | `backend-frameworks/flask.md` | flask, jinja2, wsgi | `.py` |
 
@@ -240,8 +243,17 @@ User Request → Context Detection → Rule Matching → Auto-Load
 "grpc | protobuf | rpc service":
   - backend-frameworks/grpc.md
 
+"connect | connectrpc | buf generate":
+  - backend-frameworks/connect-rpc.md
+
 "websocket | socket.io | real-time | chat":
   - backend-frameworks/websocket.md
+
+"sse | server-sent events | eventsource | event stream":
+  - backend-frameworks/sse.md
+
+"bullmq | rabbitmq | message queue | job queue | worker":
+  - backend-frameworks/message-queue.md
 
 "database design":
   - database/design.md
@@ -343,8 +355,18 @@ backend-frameworks/graphql.md:
 backend-frameworks/grpc.md:
   - backend-frameworks/rest-api.md (API design concepts)
 
+backend-frameworks/connect-rpc.md:
+  - backend-frameworks/grpc.md (native gRPC context)
+  - backend-frameworks/rest-api.md (API design concepts)
+
 backend-frameworks/websocket.md:
   - backend-frameworks/rest-api.md (HTTP upgrade context)
+
+backend-frameworks/sse.md:
+  - backend-frameworks/websocket.md (comparison/alternatives)
+
+backend-frameworks/message-queue.md:
+  - backend-frameworks/rest-api.md (API design concepts)
 
 any mobile/*:
   - mobile/ui-ux.md
@@ -437,14 +459,14 @@ User can explicitly request:
 |----------|-------|-------------------|
 | Database | 10 | ~6,000 |
 | Mobile | 10 | ~6,000 |
-| Backend | 9 | ~7,500 |
+| Backend | 12 | ~10,000 |
 | TypeScript | 6 | ~4,000 |
 | Frontend Frameworks | 7 | ~5,000 |
 | Next.js | 4 | ~3,000 |
 | Python | 5 | ~3,500 |
 | Web Development | 8 | ~5,000 |
 | Agentic AI | 12 | ~7,000 |
-| **TOTAL** | **71** | **~47,000** |
+| **TOTAL** | **74** | **~49,500** |
 
 ---
 

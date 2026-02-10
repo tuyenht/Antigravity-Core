@@ -1130,6 +1130,13 @@ const CloseCodes = {
 
 ---
 
+## See Also
+
+- [sse.md](sse.md) — One-way server push (simpler alternative for feeds/notifications)
+- [message-queue.md](message-queue.md) — Async event-driven patterns (BullMQ, RabbitMQ)
+
+---
+
 **Version:** 1.0.0  
 **Standards:** RFC 6455, WebSocket Protocol, Socket.IO v4  
 **Created:** 2026-02-09
