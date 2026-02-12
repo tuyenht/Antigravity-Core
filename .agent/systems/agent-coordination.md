@@ -8,7 +8,7 @@
 
 ## 🎯 PROBLEM STATEMENT
 
-With **23 agents** in the system, overlaps occur:
+With **27 agents** in the system, overlaps occur:
 
 **Example:** "Optimize API performance"
 - `performance-optimizer` (analyzes performance)
@@ -462,12 +462,15 @@ Track coordination efficiency:
 ## 🔗 RELATED DOCUMENTATION
 
 - `orchestrator.md` - Orchestrator agent definition
-- `project.json` - List of all 23 agents
+- `agent-registry.md` - Machine-readable registry of all 27 agents
+- `orchestration-engine.md` - Automated agent selection and pipeline execution
+- `auto-rule-discovery.md` - Intelligent rule loading engine
+- `rba-validator.md` - Reasoning-Before-Action protocol
 - `STANDARDS.md` - Quality standards all must follow
-- `rba-validator.md` - Reasoning protocol
 
 ---
 
 **Created:** 2026-01-17  
-**Version:** 1.0  
-**Purpose:** Define how 23 agents coordinate without conflicts
+**Updated:** 2026-02-12  
+**Version:** 1.1  
+**Purpose:** Define how 27 agents coordinate without conflicts

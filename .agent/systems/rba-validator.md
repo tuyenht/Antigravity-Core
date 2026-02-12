@@ -256,7 +256,7 @@ reason: "Breaking change requires user approval"
 
 ### ❌ Bad Example (Will Fail)
 
-``yaml
+```yaml
 analysis:
   objective: "Add authentication"
   scope: "Some files"
@@ -269,7 +269,7 @@ edge_cases:
 
 decision: "PROCEED"
 reason: "Looks good"
-``
+```
 
 **Failures:**
 - Objective too vague
