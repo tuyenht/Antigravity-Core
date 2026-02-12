@@ -1,4 +1,4 @@
-# 🚀 .agent v3.0 - DEPLOYMENT GUIDE
+# 🚀 .agent v4.0 - DEPLOYMENT GUIDE
 
 **Purpose:** Step-by-step guide to deploy .agent in your projects  
 **Result:** 95% AI autonomy in development  
@@ -89,7 +89,7 @@ code?                         code?
 1. Open `docs/New-Project-Interview-Prompt.txt`
 2. Copy from ✂️ CUT HERE ⬇️ to ✂️ CUT HERE ⬆️
 3. Paste into Antigravity
-4. Answer 21 questions (be detailed!)
+4. Answer 26 questions (be detailed!)
 5. Wait for generation (~5 min)
 
 **Expected Output:**
@@ -183,13 +183,29 @@ my-project/
 Use commands from `GETTING-STARTED.md` generated in Step 1.
 
 **Laravel + React example:**
-```bash
+```powershell
 composer create-project laravel/laravel .
 composer require inertiajs/inertia-laravel
 npm install react react-dom @vitejs/plugin-react
 npm install -D tailwindcss
 php artisan migrate
 npm run dev
+```
+
+**Next.js example:**
+```powershell
+npx create-next-app@latest . --typescript --tailwind --app --src-dir
+npm run dev
+```
+
+**Django example:**
+```bash
+python -m venv venv
+venv\Scripts\activate
+pip install django djangorestframework
+django-admin startproject core .
+python manage.py migrate
+python manage.py runserver
 ```
 
 **Expected Output:**
@@ -229,7 +245,7 @@ Build user authentication:
 - Email verification
 - Password reset
 
-Follow STANDARDS.md. Write tests for all flows.
+Follow project conventions. Write tests for all flows.
 ```
 
 **What Antigravity will do (automatically):**
@@ -238,7 +254,7 @@ Follow STANDARDS.md. Write tests for all flows.
 2. ✅ Frontend: Login/register forms, protected layouts
 3. ✅ Tests: 80%+ coverage (feature + unit)
 4. ✅ Documentation: API docs, README updates
-5. ✅ Self-validate: AOC runs, fixes lint/type/test errors
+5. ✅ Self-validate: Runs lint, type check, and test fixes
 
 **Expected Output:**
 
@@ -256,11 +272,23 @@ Example files:
 - tests/Feature/Auth/LoginTest.php
 ```
 
-⚠️ **If Antigravity escalates:** Review RBA output - there's a valid concern  
-✅ **Normal:** Agent implements → AOC validates → All green  
-❌ **Red flag:** "Force PROCEED" when agent says ESCALATE
+⚠️ **If Antigravity escalates:** Review the output — there's a valid concern  
+✅ **Normal:** Agent implements → validates → All green  
+❌ **Red flag:** Forcing PROCEED when agent recommends ESCALATE
 
-**Checkpoint:** Run `php artisan test` → All passing ✅
+**Checkpoint:** Run tests → All passing ✅
+
+**Multi-framework test commands:**
+```powershell
+# Laravel
+php artisan test
+
+# Next.js / React
+npm test
+
+# Django
+python manage.py test
+```
 
 ---
 
@@ -272,27 +300,39 @@ Example files:
 
 **Run all checks:**
 
-```bash
-# 1. Tests
+```powershell
+# 1. Tests (choose your stack)
+# Laravel:
 php artisan test
+# Next.js / React:
 npm test
+# Django:
+python manage.py test
 
 # Expected: All passed, coverage ≥80%
 
 # 2. Lint
+# Laravel:
 ./vendor/bin/pint --test
+# Next.js / React:
 npm run lint
+# Django:
+flake8 .
 
 # Expected: 0 errors
 
-# 3. Type check
+# 3. Type check (if TypeScript or PHP with PHPStan)
 npx tsc --noEmit
 
 # Expected: 0 errors
 
 # 4. Security
-composer audit
+# Node.js:
 npm audit
+# PHP:
+composer audit
+# Python:
+pip-audit
 
 # Expected: 0 vulnerabilities
 ```
@@ -305,16 +345,16 @@ npm audit
 ✅ Types: 0 errors  
 ✅ Security: 0 vulnerabilities
 
-Quality Report (from AOC):
+Quality Report:
 - Code quality: 88/100
 - Test coverage: 87%
 - Documentation: Complete
 - STANDARDS compliance: 100%
 ```
 
-⚠️ **If tests fail:** Check AOC report in `.agent/reports/` for auto-fix attempts  
+⚠️ **If tests fail:** Check the error output and ask the debugger agent for help  
 ✅ **All green:** Ready to commit  
-❌ **Persistent failures:** Run `.\\.agent\\scripts\\validate-compliance.ps1` for diagnosis
+❌ **Persistent failures:** Run `.\.agent\scripts\validate-compliance.ps1` for diagnosis
 
 **Checkpoint:** All 4 checks pass ✅
 
@@ -333,7 +373,7 @@ Quality Report (from AOC):
    ↓
 2. Antigravity implements (30-90 min, automated)
    ↓
-3. AOC validates (3 min, automated)
+3. Quality validation (3 min, automated)
    ↓
 4. You review (5-10 min)
    ↓
@@ -486,7 +526,7 @@ Target: 80%+ coverage."
 
 ```
 Prompt:
-"self-correction-agent,
+"debugger,
 
 Add type hints to all methods in:
 - app/Services/**
@@ -572,7 +612,7 @@ All following existing project patterns!
 📊 **Progress:** [███████] 80% complete  
 🎯 **Output:** PROJECT-CONVENTIONS.md complete
 
-**Edit `.agent/docs/PROJECT-CONVENTIONS.md`:**
+**Edit `docs/PROJECT-CONVENTIONS.md`:**
 
 ```markdown
 # Project Conventions
@@ -607,7 +647,7 @@ Controller → Service → Repository → Model
 
 **Tell Antigravity:**
 ```
-"All agents: Read .agent/docs/PROJECT-CONVENTIONS.md before ANY code generation."
+"All agents: Read docs/PROJECT-CONVENTIONS.md before ANY code generation."
 ```
 
 **Checkpoint:** Conventions documented ✅
@@ -664,8 +704,8 @@ git pull
 # Health check
 .\.agent\scripts\health-check.ps1
 
-# Review yesterday's AOC reports
-ls .agent/reports/ | Select-Object -Last 5
+# Review yesterday's quality reports
+Get-ChildItem .agent\scripts\ | Select-Object -Last 5
 ```
 
 ---
@@ -674,18 +714,18 @@ ls .agent/reports/ | Select-Object -Last 5
 
 **1. Define (5 min)**
 ```
-"orchestrator-agent, analyze: [feature description]
+"orchestrator, analyze: [feature description]
 Provide implementation plan and required agents."
 ```
 
 **2. Implement (30-90 min - Automated)**  
 Antigravity + agents work automatically
 
-**3. AOC Validate (3 min - Automated)**  
-Self-correction runs automatically
+**3. Validate (3 min - Automated)**  
+Quality checks run automatically
 
 **4. Review (5-10 min - You)**  
-Check AOC report, test manually
+Check quality report, test manually
 
 **5. Commit (2 min - You)**
 ```bash
@@ -720,7 +760,7 @@ Debug, fix, add regression test."
 
 **1. Trust but Verify**
 - Let .agent implement (95% autonomy)
-- Review AOC reports (5-10 min)
+- Review quality reports (5-10 min)
 - Manual test critical paths
 
 **2. Clear Requirements**
@@ -730,7 +770,7 @@ Debug, fix, add regression test."
 **3. Use RBA for Risky Changes**
 - "database-architect, migrate MySQL to PostgreSQL. RBA REQUIRED."
 
-**4. Review AOC Reports**
+**4. Review Quality Reports**
 - Target: Quality ≥80/100
 - Address: High-priority refactors
 
@@ -754,9 +794,9 @@ Debug, fix, add regression test."
 - ❌ Force PROCEED when agent says ESCALATE
 - ✅ Review carefully (agent found risk)
 
-**4. Disable AOC**
+**4. Disable Quality Gates**
 - ❌ Skip to save 3 min
-- ✅ AOC catches 80% issues automatically
+- ✅ Quality checks catch 80% issues automatically
 
 **5. Over-Optimize Early**
 - ❌ Tweak .agent for hours before use
@@ -790,7 +830,7 @@ Debug, fix, add regression test."
 
 **"Agent doesn't follow conventions"**  
 → Document in PROJECT-CONVENTIONS.md  
-→ Reference explicitly: "Follow .agent/docs/PROJECT-CONVENTIONS.md"
+→ Reference explicitly: "Follow docs/PROJECT-CONVENTIONS.md"
 
 **"Coverage keeps failing"**  
 → Set threshold in config  
@@ -819,8 +859,8 @@ Debug, fix, add regression test."
 
 ---
 
-**Version:** 3.0 Enhanced  
-**Score:** 95/100 ⭐⭐⭐⭐⭐  
-**Updated:** 2026-01-17
+**Version:** 4.0  
+**Score:** 100/100 ⭐⭐⭐⭐⭐  
+**Updated:** 2026-02-12
 
 **🎊 Ready to deploy .agent and ship amazing software! 🎊**

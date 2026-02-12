@@ -39,12 +39,13 @@
 1. **Familiarity** with the Antigravity-Core system
 2. **Read** the [README.md](README.md) thoroughly
 3. **Understand** the [PROJECT-BRIEF-SYSTEM](docs/PROJECT-BRIEF-SYSTEM.md)
+4. **Review** the [ARCHITECTURE.md](.agent/ARCHITECTURE.md) for system overview
 
 ### Setting Up Development Environment
 
 ```bash
 # 1. Clone the repository
-git clone [repository-url]
+git clone https://github.com/tuyenht/Antigravity-Core.git
 cd Antigravity-Core
 
 # 2. Review the structure
@@ -229,6 +230,52 @@ description: Short description of the workflow
 - Example prompts
 
 ---
+
+### Adding an Expert Rule
+
+```
+.agent/rules/category/your-rule.md
+```
+
+**Categories:** `database/`, `mobile/`, `backend-frameworks/`, `frontend-frameworks/`, `typescript/`, `nextjs/`, `python/`, `web-development/`, `agentic-ai/`
+
+**Requirements:**
+- Clear title and scope
+- Practical code examples (DO vs DON'T)
+- Follows existing rule format
+- Added to `RULES-INDEX.md`
+
+### Adding a Script
+
+```
+.agent/scripts/your-script.ps1    # Windows (primary)
+.agent/scripts/your-script.sh     # Linux/Mac (optional)
+```
+
+**Requirements:**
+- PowerShell-compatible (Windows is primary platform)
+- Includes error handling
+- Has help/usage output
+- Documented in `ARCHITECTURE.md`
+
+---
+
+## 💻 Platform Notes
+
+**Windows (Primary):**
+```powershell
+# Clone and review
+git clone https://github.com/tuyenht/Antigravity-Core.git
+cd Antigravity-Core
+Get-ChildItem .agent\ -Recurse | Measure-Object
+```
+
+**Linux/Mac:**
+```bash
+git clone https://github.com/tuyenht/Antigravity-Core.git
+cd Antigravity-Core
+find .agent -type f | wc -l
+```
 
 ## 🆘 Getting Help
 

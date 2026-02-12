@@ -3,7 +3,7 @@
 > **AI-Native Development Operating System**  
 > Hệ Điều Hành Phát Triển Phần Mềm Thuần AI
 
-[![Version](https://img.shields.io/badge/version-3.1.1-blue.svg)](./CHANGELOG.md)
+[![Version](https://img.shields.io/badge/version-3.1.1-blue.svg)](.agent/CHANGELOG.md)
 [![License](https://img.shields.io/badge/license-Proprietary-red.svg)]()
 [![AI Autonomy](https://img.shields.io/badge/AI%20Autonomy-95%25-green.svg)]()
 [![Quality](https://img.shields.io/badge/Quality-Platinum%20Standard-gold.svg)]()
@@ -66,7 +66,7 @@ Add-Content -Path $PROFILE -Value ". 'C:\Tools\Antigravity-Core\setup-profile.ps
 
 ---
 
-### � STEP 2: Cài đặt cho Project (mỗi project)
+### 📦 STEP 2: Cài đặt cho Project (mỗi project)
 
 ```powershell
 # Di chuyển đến project
@@ -78,7 +78,7 @@ agi
 
 ---
 
-### � Cập nhật
+### 🔄 Cập nhật
 
 ```powershell
 # Update bản global (khi có version mới)
@@ -123,8 +123,7 @@ Antigravity-Core/
 │   ├── 👥 roles/                 ← 7 vai trò AI chuẩn hóa
 │   │   └── AGENT_ROLES.md        (BA, SA, PM, BE, FE, QA, DO)
 │   │
-│   ├── 🔄 workflows/             ← 37 quy trình làm việc
-│   │   ├── TEAM_WORKFLOW.md      (Pipeline Input→Output)
+│   ├── 🔄 workflows/             ← 31 quy trình làm việc
 │   │   ├── scaffold.md
 │   │   ├── debug.md
 │   │   ├── deploy.md
@@ -137,7 +136,7 @@ Antigravity-Core/
 │   │   ├── PROJECT_SCAFFOLD.md   (Laravel/NextJS/FastAPI)
 │   │   └── agent-template-v3.md
 │   │
-│   ├── 🎯 skills/                ← 57+ kỹ năng chuyên biệt
+│   ├── 🎯 skills/                ← 59 kỹ năng chuyên biệt
 │   │   ├── ai-sdk-expert/
 │   │   ├── prisma-expert/
 │   │   ├── react-patterns/
@@ -179,6 +178,8 @@ Antigravity-Core/
 
 **Chi tiết:** Xem [`.agent/roles/AGENT_ROLES.md`](.agent/roles/AGENT_ROLES.md)
 
+> **Note:** Ngoài 7 role chuẩn hóa, hệ thống còn có **27 agent definitions** chuyên biệt trong `.agent/agents/`.
+
 ---
 
 ## 🔄 WORKFLOW PIPELINE
@@ -206,18 +207,20 @@ STEP 1-2          STEP 3           STEP 4          STEP 5-N
                                                    🚀 PRODUCTION
 ```
 
-### Danh sách Workflows (37)
+### Danh sách Workflows (31)
 
 | Category | Workflows |
 |----------|-----------|
-| **Planning** | `/brainstorm`, `/plan`, `/requirements-first` |
-| **Development** | `/create`, `/scaffold`, `/schema-first` |
-| **Quality** | `/check`, `/test`, `/verify`, `/security-audit` |
-| **Optimization** | `/optimize`, `/refactor`, `/enhance` |
-| **Deployment** | `/deploy`, `/preview`, `/mobile-deploy` |
-| **Maintenance** | `/maintain`, `/debug`, `/quickfix` |
+| **Planning** | `/brainstorm`, `/plan`, `/requirements-first`, `/orchestrate` |
+| **Development** | `/create`, `/scaffold`, `/schema-first`, `/enhance` |
+| **Quality** | `/check`, `/test`, `/code-review-automation`, `/auto-healing` |
+| **Security** | `/security-audit`, `/secret-scanning` |
+| **Optimization** | `/optimize`, `/refactor`, `/auto-optimization-cycle`, `/performance-budget-enforcement` |
+| **Deployment** | `/deploy`, `/mobile-deploy`, `/mobile-init`, `/mobile-test` |
+| **Maintenance** | `/maintain`, `/debug`, `/quickfix`, `/migrate` |
+| **Design** | `/ui-ux-pro-max`, `/update-ui-ux-pro-max`, `/admin-component`, `/admin-dashboard` |
 
-**Chi tiết:** Xem [`.agent/workflows/TEAM_WORKFLOW.md`](.agent/workflows/TEAM_WORKFLOW.md)
+**Chi tiết:** Xem [`docs/TEAM_WORKFLOW.md`](docs/TEAM_WORKFLOW.md)
 
 ---
 
@@ -329,9 +332,8 @@ Time:   30 phút - 2 giờ
 | [`docs/Analyze-Existing-Project-Prompt.txt`](docs/Analyze-Existing-Project-Prompt.txt) | Prompt phân tích dự án có sẵn |
 | [`docs/New-Project-Interview-Prompt.txt`](docs/New-Project-Interview-Prompt.txt) | Prompt tạo dự án mới |
 | [`docs/deployment-guide.md`](docs/deployment-guide.md) | Hướng dẫn triển khai step-by-step |
-| [`.agent/INTEGRATION-GUIDE.md`](.agent/INTEGRATION-GUIDE.md) | Complete team onboarding |
 | [`.agent/ARCHITECTURE.md`](.agent/ARCHITECTURE.md) | System architecture & directory map |
-| [`.agent/GEMINI.md`](.agent/GEMINI.md) | AI system instructions |
+| [`.agent/rules/GEMINI.md`](.agent/rules/GEMINI.md) | AI system instructions |
 | [`.agent/CHANGELOG.md`](.agent/CHANGELOG.md) | Version history chi tiết |
 
 ---
