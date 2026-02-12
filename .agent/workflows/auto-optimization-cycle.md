@@ -56,7 +56,7 @@ Ready for optimization cycle.
 
 **Time:** ~30 seconds
 
-**Manager calls:** `self-correction-agent`
+**Manager calls:** `debugger`
 
 **Tasks:**
 1. Run all validation checks:
@@ -261,11 +261,11 @@ Ready for optimization cycle.
 - Feature is production-ready
 - Optional: Review refactor suggestions before next feature
 
-**Report saved:** `.agent/reports/optimization-2026-01-17-120000.md`
+**Report saved:** Inline delivery to user
 
 ---
 
-*Generated automatically by .agent Auto-Optimization Cycle v3.0*
+*Generated automatically by .agent Auto-Optimization Cycle v4.0*
 ```
 
 ---
@@ -285,7 +285,7 @@ Quality Score: 85/100
 All tests: ✅ PASS  
 Documentation: ✅ Complete  
 
-View report: .agent/reports/optimization-2026-01-17-120000.md
+All checks passed - ready for next task.
 ```
 
 **No user action needed** - proceed to next task
@@ -306,7 +306,7 @@ Issues:
 
 **Action Required:** Manual review recommended
 
-Details: .agent/reports/optimization-2026-01-17-120000.md
+Details: See consolidated report above
 ```
 
 **User action needed** - review before proceeding
@@ -327,7 +327,7 @@ Errors:
 
 **Action Required:** IMMEDIATE manual intervention
 
-Details: .agent/reports/optimization-2026-01-17-120000.md
+Details: See consolidated report above
 ```
 
 **BLOCK next feature** - must fix first
@@ -391,7 +391,7 @@ Store in `.agent/memory/metrics/aoc-history.json`:
 ## Configuration
 
 ```yaml
-# .agent/config/aoc.yaml
+# Conceptual AOC configuration (inline)
 
 auto_optimization_cycle:
   enabled: true
@@ -419,9 +419,7 @@ auto_optimization_cycle:
     quality_score_target: 80
     
   reporting:
-    location: ".agent/reports/"
-    format: "optimization-[timestamp].md"
-    retention_days: 30
+    format: inline  # Delivered directly to user
 ```
 
 ---
@@ -445,10 +443,10 @@ manager-agent: [activates AOC workflow]
 
 **3. Self-Correction (30s)**
 ```
-self-correction-agent: Run lint → 3 errors
-self-correction-agent: Auto-fix → 3 errors fixed
-self-correction-agent: Run tests → All pass
-self-correction-agent: Status: ✅ SUCCESS (1 iteration)
+debugger: Run lint → 3 errors
+debugger: Auto-fix → 3 errors fixed
+debugger: Run tests → All pass
+debugger: Status: ✅ SUCCESS (1 iteration)
 ```
 
 **4. Documentation (60s)**

@@ -728,7 +728,10 @@ npm run test:changed
 
 This workflow leverages:
 - `.agent/rules/standards/code-quality-standards.md`
-- `.agent/rules/standards/security-standards/*.md`
+- `.agent/rules/standards/api-security-conventions.md`
+- `.agent/rules/standards/ci-cd-security-conventions.md`
+- `.agent/rules/standards/security-testing-templates.md`
+- `.agent/rules/standards/supply-chain-security.md`
 - `.agent/rules/standards/testing-standards.md`
 - `.agent/rules/standards/api-documentation-standards.md`
 - `.agent/workflows/` (other automation workflows)

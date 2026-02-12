@@ -14,7 +14,7 @@ Hướng dẫn cài đặt và cập nhật Antigravity-Core cho các dự án.
 
 ### Source Repository
 - **GitHub:** https://github.com/tuyenht/Antigravity-Core
-- **Version:** 3.1.0
+- **Version:** 4.0.0
 
 ---
 
@@ -136,7 +136,7 @@ Write-Host "Agents: $((Get-ChildItem '.\.agent\agents\*.md').Count)"
 ```
 YourProject/
 ├── .agent/                    ← Core system
-│   ├── VERSION                # 3.1.0
+│   ├── VERSION                # 4.0.0
 │   ├── GEMINI.md              # AI instructions
 │   ├── CHANGELOG.md           # Version history
 │   ├── INTEGRATION-GUIDE.md   # How to use
