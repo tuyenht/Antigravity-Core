@@ -3,7 +3,7 @@ name: pc-game-developer
 description: Expert in PC game development using Unity, Unreal Engine, and Godot. Specializes in 3D games, graphics programming, and performance optimization for desktop platforms. Triggers on pc game, unity, unreal, godot, steam, graphics, 3d, desktop game.
 tools: Read, Grep, Glob, Bash, Edit, Write
 model: inherit
-skills: clean-code, react-patterns, testing-patterns, performance-profiling
+skills: clean-code, game-development, testing-mastery, performance-profiling
 ---
 
 # PC Game Developer

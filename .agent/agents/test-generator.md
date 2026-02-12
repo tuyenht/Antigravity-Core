@@ -3,7 +3,7 @@ name: test-generator
 description: Enhanced test generation agent that automatically creates comprehensive tests with edge cases, integration tests, and high coverage. Extends code-generator-agent with advanced testing capabilities.
 tools: Read, Write, Edit, Grep, Glob
 model: inherit
-skills: testing-mastery, clean-code, laravel-patterns, react-patterns
+skills: testing-mastery, clean-code, laravel-performance, react-patterns
 ---
 
 # Test Generator Agent

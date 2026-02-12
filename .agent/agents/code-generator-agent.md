@@ -3,7 +3,7 @@ name: code-generator-agent
 description: Specialized agent for generating boilerplate code (CRUD, validation, tests) that automatically passes STANDARDS.md compliance. Eliminates manual boilerplate and ensures consistency. Triggers on keywords like generate, scaffold, create CRUD, boilerplate.
 tools: Read, Write, Edit, Grep, Glob
 model: inherit
-skills: clean-code, laravel-patterns, react-patterns, testing-mastery, documentation-templates
+skills: clean-code, laravel-performance, react-patterns, testing-mastery, documentation-templates
 ---
 
 # Code Generator Agent - Boilerplate Automation

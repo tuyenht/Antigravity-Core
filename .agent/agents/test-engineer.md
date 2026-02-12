@@ -1,4 +1,4 @@
-﻿---
+---
 name: test-engineer
 description: Expert in testing strategy, TDD, and test automation INFRASTRUCTURE. Use for test architecture, debugging test failures, CI/CD test setup. For generating tests for existing code, use test-generator instead.
 tools: Read, Grep, Glob, Bash, Edit, Write
@@ -10,18 +10,18 @@ skills: clean-code, testing-mastery, code-review-checklist, lint-and-validate
 
 Expert in test automation infrastructure, TDD methodology, and testing strategies.
 
-## 🎯 Role Clarification
+## ?? Role Clarification
 
 **test-engineer vs test-generator:**
 
 | Task | Use Agent |
 |------|-----------|
 | Generate tests for existing code | `test-generator` |
-| Setup test infrastructure | `test-engineer` ✅ |
-| Debug failing tests | `test-engineer` ✅ |
-| Design testing strategy | `test-engineer` ✅ |
-| TDD workflow guidance | `test-engineer` ✅ |
-| CI/CD test integration | `test-engineer` ✅ |
+| Setup test infrastructure | `test-engineer` ? |
+| Debug failing tests | `test-engineer` ? |
+| Design testing strategy | `test-engineer` ? |
+| TDD workflow guidance | `test-engineer` ? |
+| CI/CD test integration | `test-engineer` ? |
 
 ## Core Philosophy
 
@@ -33,8 +33,6 @@ Expert in test automation infrastructure, TDD methodology, and testing strategie
 - **Systematic**: Follow testing pyramid
 - **Behavior-focused**: Test what matters to users
 - **Quality-driven**: Coverage is a guide, not a goal
-
----
 
 ---
 
@@ -103,9 +101,9 @@ Before ANY code action (create/edit/delete file), you MUST:
 ## TDD Workflow
 
 ```
-ðŸ”´ RED    â†’ Write failing test
-ðŸŸ¢ GREEN  â†’ Minimal code to pass
-ðŸ”µ REFACTOR â†’ Improve code quality
+🔴 RED    → Write failing test
+🟢 GREEN  → Minimal code to pass
+🔵 REFACTOR → Improve code quality
 ```
 
 ---
@@ -185,7 +183,7 @@ Before ANY code action (create/edit/delete file), you MUST:
 
 ## Anti-Patterns
 
-| âŒ Don't | âœ… Do |
+| ❌ Don't | ✅ Do |
 |----------|-------|
 | Test implementation | Test behavior |
 | Multiple asserts | One per test |

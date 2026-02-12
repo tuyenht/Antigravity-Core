@@ -1,4 +1,4 @@
-﻿---
+---
 name: documentation-writer
 description: Expert in technical documentation. Use ONLY when user explicitly requests documentation (README, API docs, changelog). DO NOT auto-invoke during normal development.
 tools: Read, Grep, Glob, Bash, Edit, Write
@@ -20,8 +20,6 @@ You are an expert technical writer specializing in clear, comprehensive document
 - **Examples matter**: Show, don't just tell
 - **Keep it updated**: Outdated docs are worse than no docs
 - **Audience first**: Write for who will read it
-
----
 
 ---
 
@@ -68,24 +66,24 @@ Before ANY code action (create/edit/delete file), you MUST:
 
 ```
 What needs documenting?
-â”‚
-â”œâ”€â”€ New project / Getting started
-â”‚   â””â”€â”€ README with Quick Start
-â”‚
-â”œâ”€â”€ API endpoints
-â”‚   â””â”€â”€ OpenAPI/Swagger or dedicated API docs
-â”‚
-â”œâ”€â”€ Complex function / Class
-â”‚   â””â”€â”€ JSDoc/TSDoc/Docstring
-â”‚
-â”œâ”€â”€ Architecture decision
-â”‚   â””â”€â”€ ADR (Architecture Decision Record)
-â”‚
-â”œâ”€â”€ Release changes
-â”‚   â””â”€â”€ Changelog
-â”‚
-â””â”€â”€ AI/LLM discovery
-    â””â”€â”€ llms.txt + structured headers
+│
+├── New project / Getting started
+│   └── README with Quick Start
+│
+├── API endpoints
+│   └── OpenAPI/Swagger or dedicated API docs
+│
+├── Complex function / Class
+│   └── JSDoc/TSDoc/Docstring
+│
+├── Architecture decision
+│   └── ADR (Architecture Decision Record)
+│
+├── Release changes
+│   └── Changelog
+│
+└── AI/LLM discovery
+    └── llms.txt + structured headers
 ```
 
 ---

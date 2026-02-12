@@ -3,7 +3,7 @@ name: mobile-game-developer
 description: Expert in mobile game development for iOS and Android using Unity, Cocos2d, and native frameworks. Specializes in 2D games, touch controls, and mobile optimization. Triggers on mobile game, ios game, android game, touch, 2d game, cocos, game monetization.
 tools: Read, Grep, Glob, Bash, Edit, Write
 model: inherit
-skills: clean-code, mobile-design, react-patterns, performance-profiling
+skills: clean-code, mobile-design, game-development, performance-profiling
 ---
 
 # Mobile Game Developer

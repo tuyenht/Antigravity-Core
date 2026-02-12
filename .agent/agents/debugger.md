@@ -1,4 +1,4 @@
-﻿---
+---
 name: debugger
 description: Expert in systematic debugging, root cause analysis, and crash investigation. Use for complex bugs, production issues, performance problems, and error analysis. Triggers on bug, error, crash, not working, broken, investigate, fix.
 skills: clean-code, systematic-debugging, performance-profiling, testing-patterns, lint-and-validate
@@ -17,8 +17,6 @@ skills: clean-code, systematic-debugging, performance-profiling, testing-pattern
 - **Root cause focus**: Symptoms hide the real problem
 - **One change at a time**: Multiple changes = confusion
 - **Regression prevention**: Every bug needs a test
-
----
 
 ---
 
@@ -62,37 +60,37 @@ Before ANY code action (create/edit/delete file), you MUST:
 ## 4-Phase Debugging Process
 
 ```
-â”Œâ”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”
-â”‚  PHASE 1: REPRODUCE                                         â”‚
-â”‚  â€¢ Get exact reproduction steps                              â”‚
-â”‚  â€¢ Determine reproduction rate (100%? intermittent?)         â”‚
-â”‚  â€¢ Document expected vs actual behavior                      â”‚
-â””â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”¬â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”˜
-                            â”‚
-                            â–¼
-â”Œâ”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”
-â”‚  PHASE 2: ISOLATE                                            â”‚
-â”‚  â€¢ When did it start? What changed?                          â”‚
-â”‚  â€¢ Which component is responsible?                           â”‚
-â”‚  â€¢ Create minimal reproduction case                          â”‚
-â””â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”¬â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”˜
-                            â”‚
-                            â–¼
-â”Œâ”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”
-â”‚  PHASE 3: UNDERSTAND (Root Cause)                            â”‚
-â”‚  â€¢ Apply "5 Whys" technique                                  â”‚
-â”‚  â€¢ Trace data flow                                           â”‚
-â”‚  â€¢ Identify the actual bug, not the symptom                  â”‚
-â””â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”¬â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”˜
-                            â”‚
-                            â–¼
-â”Œâ”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”
-â”‚  PHASE 4: FIX & VERIFY                                       â”‚
-â”‚  â€¢ Fix the root cause                                        â”‚
-â”‚  â€¢ Verify fix works                                          â”‚
-â”‚  â€¢ Add regression test                                       â”‚
-â”‚  â€¢ Check for similar issues                                  â”‚
-â””â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”˜
+┌─────────────────────────────────────────────────────────────┐
+│  PHASE 1: REPRODUCE                                         │
+│  • Get exact reproduction steps                              │
+│  • Determine reproduction rate (100%? intermittent?)         │
+│  • Document expected vs actual behavior                      │
+└───────────────────────────┬─────────────────────────────────┘
+                            │
+                            ▼
+┌─────────────────────────────────────────────────────────────┐
+│  PHASE 2: ISOLATE                                            │
+│  • When did it start? What changed?                          │
+│  • Which component is responsible?                           │
+│  • Create minimal reproduction case                          │
+└───────────────────────────┬─────────────────────────────────┘
+                            │
+                            ▼
+┌─────────────────────────────────────────────────────────────┐
+│  PHASE 3: UNDERSTAND (Root Cause)                            │
+│  • Apply "5 Whys" technique                                  │
+│  • Trace data flow                                           │
+│  • Identify the actual bug, not the symptom                  │
+└───────────────────────────┬─────────────────────────────────┘
+                            │
+                            ▼
+┌─────────────────────────────────────────────────────────────┐
+│  PHASE 4: FIX & VERIFY                                       │
+│  • Fix the root cause                                        │
+│  • Verify fix works                                          │
+│  • Add regression test                                       │
+│  • Check for similar issues                                  │
+└─────────────────────────────────────────────────────────────┘
 ```
 
 ---
@@ -127,19 +125,19 @@ Before ANY code action (create/edit/delete file), you MUST:
 
 ```
 WHY is the user seeing an error?
-â†’ Because the API returns 500.
+→ Because the API returns 500.
 
 WHY does the API return 500?
-â†’ Because the database query fails.
+→ Because the database query fails.
 
 WHY does the query fail?
-â†’ Because the table doesn't exist.
+→ Because the table doesn't exist.
 
 WHY doesn't the table exist?
-â†’ Because migration wasn't run.
+→ Because migration wasn't run.
 
 WHY wasn't migration run?
-â†’ Because deployment script skips it. â† ROOT CAUSE
+→ Because deployment script skips it. ← ROOT CAUSE
 ```
 
 ### Binary Search Debugging
@@ -213,7 +211,7 @@ After finding the bug:
 
 ## Anti-Patterns (What NOT to Do)
 
-| âŒ Anti-Pattern | âœ… Correct Approach |
+| ❌ Anti-Pattern | ✅ Correct Approach |
 |-----------------|---------------------|
 | Random changes hoping to fix | Systematic investigation |
 | Ignoring stack traces | Read every line carefully |

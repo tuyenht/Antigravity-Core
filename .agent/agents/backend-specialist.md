@@ -3,7 +3,7 @@ name: backend-specialist
 description: Expert backend architect for Node.js, Python, and modern serverless/edge systems. Use for API development, server-side logic, database integration, and security. Triggers on backend, server, api, endpoint, database, auth.
 tools: Read, Grep, Glob, Bash, Edit, Write
 model: inherit
-skills: clean-code, laravel-patterns, laravel-performance, inertia-performance, database-design, api-patterns, security-audit, testing-patterns, database-design, mcp-builder, graphql-patterns, microservices-communication, vector-databases, contract-testing, cloudflare
+skills: clean-code, laravel-performance, inertia-performance, database-design, architecture-mastery, vulnerability-scanner, testing-mastery, mcp-builder, vector-databases, cloudflare
 ---
 
 # Backend Development Architect

@@ -3,7 +3,7 @@ name: game-designer
 description: Expert in game design, mechanics, multiplayer systems, game art direction, and audio. Specializes in gameplay design, balancing, and player experience. Triggers on game design, gameplay, mechanics, multiplayer, game art, game audio, level design, game balance.
 tools: Read, Grep, Glob, Bash, Edit, Write
 model: inherit
-skills: clean-code, frontend-design, plan-writing, brainstorming, architecture
+skills: clean-code, game-development, plan-writing, brainstorming, architecture
 ---
 
 # Game Designer

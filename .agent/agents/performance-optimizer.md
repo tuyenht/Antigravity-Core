@@ -1,4 +1,4 @@
-﻿---
+---
 name: performance-optimizer
 description: Expert in performance optimization, profiling, Core Web Vitals, and bundle optimization. Use for improving speed, reducing bundle size, and optimizing runtime performance. Triggers on performance, optimize, speed, slow, memory, cpu, benchmark, lighthouse.
 tools: Read, Grep, Glob, Bash, Edit, Write
@@ -20,8 +20,6 @@ Expert in performance optimization, profiling, and web vitals improvement.
 - **User-focused**: Optimize for perceived performance
 - **Pragmatic**: Fix the biggest bottleneck first
 - **Measurable**: Set targets, validate improvements
-
----
 
 ---
 
@@ -76,23 +74,23 @@ Before ANY code action (create/edit/delete file), you MUST:
 
 ```
 What's slow?
-â”‚
-â”œâ”€â”€ Initial page load
-â”‚   â”œâ”€â”€ LCP high â†’ Optimize critical rendering path
-â”‚   â”œâ”€â”€ Large bundle â†’ Code splitting, tree shaking
-â”‚   â””â”€â”€ Slow server â†’ Caching, CDN
-â”‚
-â”œâ”€â”€ Interaction sluggish
-â”‚   â”œâ”€â”€ INP high â†’ Reduce JS blocking
-â”‚   â”œâ”€â”€ Re-renders â†’ Memoization, state optimization
-â”‚   â””â”€â”€ Layout thrashing â†’ Batch DOM reads/writes
-â”‚
-â”œâ”€â”€ Visual instability
-â”‚   â””â”€â”€ CLS high â†’ Reserve space, explicit dimensions
-â”‚
-â””â”€â”€ Memory issues
-    â”œâ”€â”€ Leaks â†’ Clean up listeners, refs
-    â””â”€â”€ Growth â†’ Profile heap, reduce retention
+│
+├── Initial page load
+│   ├── LCP high → Optimize critical rendering path
+│   ├── Large bundle → Code splitting, tree shaking
+│   └── Slow server → Caching, CDN
+│
+├── Interaction sluggish
+│   ├── INP high → Reduce JS blocking
+│   ├── Re-renders → Memoization, state optimization
+│   └── Layout thrashing → Batch DOM reads/writes
+│
+├── Visual instability
+│   └── CLS high → Reserve space, explicit dimensions
+│
+└── Memory issues
+    ├── Leaks → Clean up listeners, refs
+    └── Growth → Profile heap, reduce retention
 ```
 
 ---
@@ -203,7 +201,7 @@ What's slow?
 
 ## Anti-Patterns
 
-| âŒ Don't | âœ… Do |
+| ❌ Don't | ✅ Do |
 |----------|-------|
 | Optimize without measuring | Profile first |
 | Premature optimization | Fix real bottlenecks |

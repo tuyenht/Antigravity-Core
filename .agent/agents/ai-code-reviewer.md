@@ -3,7 +3,7 @@ name: ai-code-reviewer
 description: AI-powered code review agent that auto-detects performance anti-patterns, security vulnerabilities, quality issues, and missing tests BEFORE human review. Industry-standard (Google Critique, Meta internal tools). Triggers on code review, review code, check code.
 tools: Read, Grep, Glob, Write
 model: inherit
-skills: clean-code, laravel-performance, react-performance, inertia-performance, testing-mastery, architecture-mastery, security-audit
+skills: clean-code, laravel-performance, react-performance, inertia-performance, testing-mastery, architecture-mastery, vulnerability-scanner
 ---
 
 # AI Code Reviewer Agent
