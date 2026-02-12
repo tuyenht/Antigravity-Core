@@ -21,7 +21,7 @@ Antigravity-Core is an **AI-Native Development Operating System** — a structur
 │       ▼              ▼             ▼               ▼             │
 │  ┌──────────┐  ┌──────────┐  ┌──────────┐  ┌──────────────────┐ │
 │  │ WORKFLOWS│  │  MEMORY  │  │ SCRIPTS  │  │   STANDARDS      │ │
-│  │  (37)    │  │  SYSTEM  │  │  (14)    │  │   & TEMPLATES    │ │
+│  │  (31)    │  │  SYSTEM  │  │  (15)    │  │   & TEMPLATES    │ │
 │  └──────────┘  └──────────┘  └──────────┘  └──────────────────┘ │
 └─────────────────────────────────────────────────────────────────┘
 ```
@@ -40,10 +40,10 @@ Antigravity-Core is an **AI-Native Development Operating System** — a structur
 ├── project.json           ← System metadata & metrics
 │
 ├── agents/      (27)      ← Agent role definitions
-├── workflows/   (37)      ← Automated process definitions
+├── workflows/   (31)      ← Automated process definitions
 ├── skills/      (57)      ← Specialized knowledge modules
 ├── rules/       (130+)    ← Expert coding standards
-├── scripts/     (14)      ← PowerShell automation
+├── scripts/     (15)      ← PowerShell automation
 ├── memory/                ← Persistent context & learning
 ├── roles/                 ← 7-role SDLC framework
 ├── standards/             ← Output quality standards
@@ -82,7 +82,7 @@ Specialized AI personas, each with defined scope, skills, and responsibilities.
 | `security-auditor` ↔ `penetration-tester` | Defensive review (auditor) vs offensive testing (tester) |
 | `documentation-agent` ↔ `documentation-writer` | Automated sync (agent) vs user-requested writing (writer) |
 
-### 2. Workflows (37 processes)
+### 2. Workflows (31 processes)
 
 Slash-command triggered automation pipelines.
 
@@ -90,12 +90,12 @@ Slash-command triggered automation pipelines.
 |-------|-----------|
 | **Planning** | `/brainstorm`, `/plan`, `/requirements-first`, `/orchestrate` |
 | **Development** | `/create`, `/scaffold`, `/schema-first`, `/enhance` |
-| **Quality** | `/check`, `/test`, `/verify`, `/code-review-automation` |
-| **Security** | `/security-audit`, `/security-scan`, `/secret-scanning` |
+| **Quality** | `/check`, `/test`, `/code-review-automation` |
+| **Security** | `/security-audit`, `/secret-scanning` |
 | **Performance** | `/optimize`, `/auto-optimization-cycle`, `/performance-budget-enforcement` |
-| **Deployment** | `/deploy`, `/preview`, `/mobile-deploy`, `/mobile-init` |
+| **Deployment** | `/deploy`, `/mobile-deploy`, `/mobile-init`, `/mobile-test` |
 | **Maintenance** | `/maintain`, `/debug`, `/quickfix`, `/auto-healing`, `/refactor`, `/migrate` |
-| **Analytics** | `/dx-analytics`, `/status` |
+| **Design** | `/ui-ux-pro-max`, `/update-ui-ux-pro-max`, `/admin-component`, `/admin-dashboard` |
 
 ### 3. Skills (57 modules)
 
@@ -224,7 +224,7 @@ Output (Code + Tests + Docs)
 1. **This file** — System map
 2. **`GEMINI.md`** — AI behavior configuration
 3. **`roles/AGENT_ROLES.md`** — 7-role SDLC framework
-4. **`workflows/TEAM_WORKFLOW.md`** — Pipeline mapping
+4. **`docs/TEAM_WORKFLOW.md`** — Pipeline mapping
 5. **`rules/STANDARDS.md`** — Quality standards (Golden Rule)
 6. **`INTEGRATION-GUIDE.md`** — Team onboarding
 

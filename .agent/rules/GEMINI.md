@@ -98,9 +98,9 @@ When user's prompt is NOT in English:
 > 🔴 **MANDATORY:** Read `ARCHITECTURE.md` at session start to understand Agents, Skills, and Scripts.
 
 **Path Awareness:**
-- Agents: `~/.agent/` (Global)
-- Skills: `~/.gemini/antigravity/skills/` (Global)
-- Runtime Scripts: `~/.gemini/antigravity/skills/<skill>/scripts/`
+- Agents: `.agent/agents/`
+- Skills: `.agent/skills/`
+- Runtime Scripts: `.agent/skills/<skill>/scripts/`
 
 
 ### 🧠 Read → Understand → Apply
@@ -308,14 +308,14 @@ fi
 
 | Task Stage | Command | Purpose |
 |------------|---------|---------|
-| **Manual Audit** | `python scripts/checklist.py .` | Priority-based project audit |
-| **Pre-Deploy** | `python scripts/checklist.py . --url <URL>` | Full Suite + Performance + E2E |
+| **Manual Audit** | `.agent/scripts/health-check.ps1` | Priority-based project audit |
+| **Pre-Deploy** | `.agent/scripts/validate-compliance.ps1` | Full compliance check |
 
 **Priority Execution Order:**
 1. **Security** → 2. **Lint** → 3. **Schema** → 4. **Tests** → 5. **UX** → 6. **Seo** → 7. **Lighthouse/E2E**
 
 **Rules:**
-- **Completion:** A task is NOT finished until `checklist.py` returns success.
+- **Completion:** A task is NOT finished until all checks return success.
 - **Reporting:** If it fails, fix the **Critical** blockers first (Security/Lint).
 
 
@@ -335,7 +335,7 @@ fi
 | `lighthouse_audit.py` | performance-profiling | Before deploy |
 | `playwright_runner.py` | webapp-testing | Before deploy |
 
-> 🔴 **Agents & Skills can invoke ANY script** via `python ~/.gemini/antigravity/<skill>/scripts/<script>.py`
+> 🔴 **Agents & Skills can invoke ANY script** via `python .agent/skills/<skill>/scripts/<script>.py`
 
 ### 🎭 Gemini Mode Mapping
 
@@ -361,8 +361,8 @@ fi
 
 | Task | Read |
 |------|------|
-| Web UI/UX | `~/.agent/frontend-specialist.md` |
-| Mobile UI/UX | `~/.agent/mobile-developer.md` |
+| Web UI/UX | `.agent/agents/frontend-specialist.md` |
+| Mobile UI/UX | `.agent/agents/mobile-developer.md` |
 
 **These agents contain:**
 - Purple Ban (no violet/purple colors)
@@ -406,12 +406,12 @@ fi
 
 | Script | Path |
 |--------|------|
-| Full verify | `scripts/verify_all.py` |
-| Security scan | `~/.gemini/antigravity/skills/vulnerability-scanner/scripts/security_scan.py` |
-| UX audit | `~/.gemini/antigravity/skills/frontend-design/scripts/ux_audit.py` |
-| Mobile audit | `~/.gemini/antigravity/skills/mobile-design/scripts/mobile_audit.py` |
-| Lighthouse | `~/.gemini/antigravity/skills/performance-profiling/scripts/lighthouse_audit.py` |
-| Playwright | `~/.gemini/antigravity/skills/webapp-testing/scripts/playwright_runner.py` |
+| Health check | `.agent/scripts/health-check.ps1` |
+| Security scan | `.agent/skills/vulnerability-scanner/scripts/security_scan.py` |
+| UX audit | `.agent/skills/frontend-design/scripts/ux_audit.py` |
+| Mobile audit | `.agent/skills/mobile-design/scripts/mobile_audit.py` |
+| Lighthouse | `.agent/skills/performance-profiling/scripts/lighthouse_audit.py` |
+| Playwright | `.agent/skills/webapp-testing/scripts/playwright_runner.py` |
 
 ### Expert Rules (68 Total)
 
