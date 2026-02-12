@@ -562,13 +562,13 @@ Estimated Impact:
 
 ## 🔗 INTEGRATION WITH OTHER SKILLS
 
-### Use With laravel-patterns
+### Use With Laravel Conventions
 
-- **laravel-patterns** → How to structure Laravel code (services, repositories)
+- **Laravel conventions** (`.agent/rules/standards/frameworks/laravel-conventions.md`) → How to structure Laravel code (services, repositories)
 - **laravel-performance** → How to optimize Laravel code (queries, caching)
 
 **Example workflow:**
-1. Use `laravel-patterns` to design architecture
+1. Use Laravel conventions to design architecture
 2. Build feature
 3. Use `laravel-performance` to optimize bottlenecks
 4. Measure improvements
