@@ -1,6 +1,6 @@
 # Expert Rules Index & Auto-Activation System
 
-> **Version:** 2.0.0 | **Updated:** 2026-02-10  
+> **Version:** 3.0.0 | **Updated:** 2026-02-12  
 > **Purpose:** Automatic rule loading based on context detection  
 > **Priority:** P0 - Load at session start  
 > **Engine:** `systems/auto-rule-discovery.md` (v4.0 automated discovery)
@@ -29,117 +29,179 @@ User Request → Context Detection → Rule Matching → Auto-Load
 
 ---
 
-## 📁 Rules Catalog
+## 📁 Rules Catalog (137 Rules)
+
+### Agentic AI Rules (12)
+| Rule | File | Trigger Keywords |
+|------|------|-----------------|
+| API Design Agent | `agentic-ai/api-design-agent.md` | api design, endpoint design |
+| Code Migration Agent | `agentic-ai/code-migration-agent.md` | migrate, upgrade, version |
+| Code Review Agent | `agentic-ai/code-review-agent.md` | review, code review, pr |
+| Database Design Agent | `agentic-ai/database-design-agent.md` | schema design, database architecture |
+| Debugging Agent | `agentic-ai/debugging-agent.md` | debug, bug, error, fix |
+| DevOps CI/CD Agent | `agentic-ai/devops-cicd-agent.md` | ci/cd, pipeline, deploy |
+| Performance Optimization | `agentic-ai/performance-optimization-agent.md` | optimize, performance, slow |
+| Prompt Engineering | `agentic-ai/prompt-engineering.md` | prompt, llm, ai |
+| Refactoring Agent | `agentic-ai/refactoring-agent.md` | refactor, cleanup, improve |
+| Security Audit Agent | `agentic-ai/security-audit-agent.md` | security audit, vulnerability |
+| Strong Reasoner Planner | `agentic-ai/strong-reasoner-planner.md` | reasoning, planning, analysis |
+| Test Writing Agent | `agentic-ai/test-writing-agent.md` | test, unit test, integration |
+
+### Backend Frameworks (12)
+| Rule | File | Trigger Keywords | File Extensions |
+|------|------|-----------------|-----------------| 
+| ASP.NET Core | `backend-frameworks/aspnet-core.md` | aspnet, .net, c#, dotnet | `.cs`, `.csproj` |
+| Connect-RPC | `backend-frameworks/connect-rpc.md` | connect, connectrpc, buf | `.proto` |
+| Express | `backend-frameworks/express.md` | express, node, middleware | `.js`, `.ts` |
+| FastAPI | `backend-frameworks/fastapi.md` | fastapi, starlette, pydantic | `.py` |
+| Flask | `backend-frameworks/flask.md` | flask, jinja2, wsgi | `.py` |
+| GraphQL | `backend-frameworks/graphql.md` | graphql, apollo, schema, resolver | `.graphql` |
+| gRPC | `backend-frameworks/grpc.md` | grpc, protobuf, protocol buffers | `.proto` |
+| Laravel | `backend-frameworks/laravel.md` | laravel, eloquent, artisan | `.php` |
+| Message Queue | `backend-frameworks/message-queue.md` | bullmq, rabbitmq, amqp, job queue | - |
+| REST API | `backend-frameworks/rest-api.md` | rest, api, endpoint, crud | - |
+| SSE | `backend-frameworks/sse.md` | sse, server-sent events, eventsource | - |
+| WebSocket | `backend-frameworks/websocket.md` | websocket, socket.io, real-time | - |
 
 ### Database Rules (10)
 | Rule | File | Trigger Keywords | File Extensions |
-|------|------|-----------------|-----------------|
-| PostgreSQL | `database/postgresql.md` | postgres, postgresql, pg, psql, pgAdmin | `.sql` |
-| MySQL | `database/mysql.md` | mysql, mariadb, innodb | `.sql` |
-| MongoDB | `database/mongodb.md` | mongodb, mongoose, nosql, document db | `.js`, `.ts` |
-| Redis | `database/redis.md` | redis, cache, caching, session | - |
+|------|------|-----------------|-----------------| 
 | Schema Design | `database/design.md` | schema, ERD, data model, normalization | - |
-| Query Optimization | `database/query-optimization.md` | slow query, explain, index, performance | `.sql` |
+| Graph DB | `database/graph.md` | neo4j, graph db, cypher | - |
 | Migrations | `database/migrations.md` | migration, schema change, alter table | - |
-| TimeSeries | `database/timeseries.md` | timeseries, influxdb, timescaledb, metrics | - |
-| Graph DB | `database/graph.md` | neo4j, graph db, cypher, relationships | - |
-| Vector DB | `database/vector.md` | vector, embeddings, similarity, RAG, pinecone | - |
-
-### Mobile Rules (10)
-| Rule | File | Trigger Keywords | File Extensions |
-|------|------|-----------------|-----------------|
-| React Native | `mobile/react-native.md` | react native, expo, react-native | `.tsx`, `.jsx`, `app.json` |
-| Flutter | `mobile/flutter.md` | flutter, dart, widget | `.dart`, `pubspec.yaml` |
-| iOS Swift | `mobile/ios-swift.md` | swift, swiftui, ios, xcode | `.swift`, `.xcodeproj` |
-| Android Kotlin | `mobile/android-kotlin.md` | kotlin, android, jetpack, compose | `.kt`, `.kts`, `build.gradle` |
-| Mobile UI/UX | `mobile/ui-ux.md` | mobile design, touch, gestures | - |
-| Mobile Performance | `mobile/performance.md` | mobile performance, fps, battery | - |
-| Mobile Security | `mobile/security.md` | keychain, secure storage, biometric | - |
-| Mobile Testing | `mobile/testing.md` | detox, maestro, e2e mobile | - |
-| Mobile Deployment | `mobile/deployment.md` | app store, play store, aso, fastlane | - |
-| Cross-Platform | `mobile/cross-platform.md` | cross platform, monorepo, shared code | - |
-
-### Backend Rules (12)
-| Rule | File | Trigger Keywords | File Extensions |
-|------|------|-----------------|-----------------|
-| Laravel | `backend-frameworks/laravel.md` | laravel, eloquent, artisan | `.php`, `composer.json` |
-| ASP.NET Core | `backend-frameworks/aspnet-core.md` | aspnet, .net, c#, dotnet | `.cs`, `.csproj` |
-| Express | `backend-frameworks/express.md` | express, node, middleware | `.js`, `.ts` |
-| GraphQL | `backend-frameworks/graphql.md` | graphql, apollo, schema, resolver | `.graphql` |
-| gRPC | `backend-frameworks/grpc.md` | grpc, protobuf, protocol buffers, rpc | `.proto` |
-| Connect-RPC | `backend-frameworks/connect-rpc.md` | connect, connectrpc, connect-rpc, buf | `.proto` |
-| REST API | `backend-frameworks/rest-api.md` | rest, api, endpoint, crud | - |
-| WebSocket | `backend-frameworks/websocket.md` | websocket, socket.io, real-time, ws | - |
-| SSE | `backend-frameworks/sse.md` | sse, server-sent events, eventsource, event stream | - |
-| Message Queue | `backend-frameworks/message-queue.md` | bullmq, rabbitmq, message queue, amqp, job queue | - |
-| FastAPI | `backend-frameworks/fastapi.md` | fastapi, starlette, pydantic | `.py` |
-| Flask | `backend-frameworks/flask.md` | flask, jinja2, wsgi | `.py` |
-
-### TypeScript Rules (6)
-| Rule | File | Trigger Keywords | File Extensions |
-|------|------|-----------------|-----------------|
-| TypeScript Core | `typescript/core.md` | typescript, ts, types, interface | `.ts`, `.tsx` |
-| React Native TS | `typescript/react-native.md` | react native typescript | `.tsx` |
-| Expo | `typescript/expo.md` | expo, expo router | `app.json` |
-| Vue 3 TS | `typescript/vue3.md` | vue typescript, vue 3 | `.vue` |
-| Angular | `typescript/angular.md` | angular, typescript | `.component.ts` |
-| NestJS | `typescript/nestjs.md` | nestjs, nest | `.module.ts`, `.service.ts` |
+| MongoDB | `database/mongodb.md` | mongodb, mongoose, nosql, document db | `.js`, `.ts` |
+| MySQL | `database/mysql.md` | mysql, mariadb, innodb | `.sql` |
+| PostgreSQL | `database/postgresql.md` | postgres, postgresql, pg, psql | `.sql` |
+| Query Optimization | `database/query-optimization.md` | slow query, explain, index | `.sql` |
+| Redis | `database/redis.md` | redis, cache, caching, session | - |
+| TimeSeries | `database/timeseries.md` | timeseries, influxdb, timescaledb | - |
+| Vector DB | `database/vector.md` | vector, embeddings, similarity, RAG | - |
 
 ### Frontend Frameworks (7)
 | Rule | File | Trigger Keywords | File Extensions |
-|------|------|-----------------|-----------------|
-| Vue.js 3 | `frontend-frameworks/vue3.md` | vue, vue3, composition api, pinia | `.vue` |
+|------|------|-----------------|-----------------| 
 | Angular | `frontend-frameworks/angular.md` | angular, signals, standalone | `.component.ts` |
-| Svelte | `frontend-frameworks/svelte.md` | svelte, sveltekit, runes | `.svelte` |
-| Solid.js | `frontend-frameworks/solidjs.md` | solid, solidjs, signals | `.tsx`, `.jsx` |
 | Astro | `frontend-frameworks/astro.md` | astro, islands, content collections | `.astro` |
 | Remix | `frontend-frameworks/remix.md` | remix, loader, action | `.tsx` |
+| Solid.js | `frontend-frameworks/solidjs.md` | solid, solidjs, signals | `.tsx`, `.jsx` |
+| Svelte | `frontend-frameworks/svelte.md` | svelte, sveltekit, runes | `.svelte` |
 | Tailwind CSS | `frontend-frameworks/tailwind.md` | tailwind, utility-first, @apply | `tailwind.config` |
+| Vue.js 3 | `frontend-frameworks/vue3.md` | vue, vue3, composition api, pinia | `.vue` |
 
-### Next.js Rules (4)
+### Mobile Rules (10)
 | Rule | File | Trigger Keywords | File Extensions |
-|------|------|-----------------|-----------------|
+|------|------|-----------------|-----------------| 
+| Android Kotlin | `mobile/android-kotlin.md` | kotlin, android, jetpack, compose | `.kt`, `.kts` |
+| Cross-Platform | `mobile/cross-platform.md` | cross platform, monorepo, shared code | - |
+| Mobile Deployment | `mobile/deployment.md` | app store, play store, aso, fastlane | - |
+| Flutter | `mobile/flutter.md` | flutter, dart, widget | `.dart` |
+| iOS Swift | `mobile/ios-swift.md` | swift, swiftui, ios, xcode | `.swift` |
+| Mobile Performance | `mobile/performance.md` | mobile performance, fps, battery | - |
+| React Native | `mobile/react-native.md` | react native, expo, react-native | `.tsx`, `.jsx` |
+| Mobile Security | `mobile/security.md` | keychain, secure storage, biometric | - |
+| Mobile Testing | `mobile/testing.md` | detox, maestro, e2e mobile | - |
+| Mobile UI/UX | `mobile/ui-ux.md` | mobile design, touch, gestures | - |
+
+### Next.js Rules (13)
+| Rule | File | Trigger Keywords | File Extensions |
+|------|------|-----------------|-----------------| 
+| API Routes | `nextjs/api-routes.md` | next.js api, route handler | `route.ts` |
 | App Router | `nextjs/app-router.md` | next.js, app router, server component | `page.tsx`, `layout.tsx` |
-| Server Actions | `nextjs/server-actions.md` | server action, use server | - |
 | Authentication | `nextjs/authentication.md` | next auth, authjs, session | - |
+| Database | `nextjs/database.md` | next.js database, prisma, drizzle | - |
+| Deployment | `nextjs/deployment.md` | next.js deploy, vercel, edge | - |
+| i18n | `nextjs/i18n.md` | next.js i18n, internationalization | - |
+| Middleware | `nextjs/middleware.md` | next.js middleware, edge | `middleware.ts` |
 | Performance | `nextjs/performance.md` | next.js performance, ISR, SSG | - |
+| Realtime | `nextjs/realtime.md` | next.js realtime, websocket, sse | - |
+| SEO | `nextjs/seo.md` | next.js seo, metadata, sitemap | - |
+| Server Actions | `nextjs/server-actions.md` | server action, use server | - |
+| State Management | `nextjs/state-management.md` | next.js state, zustand, jotai | - |
+| Testing | `nextjs/testing.md` | next.js testing, playwright | - |
 
-### Python Rules (5)
+### Python Rules (14)
 | Rule | File | Trigger Keywords | File Extensions |
-|------|------|-----------------|-----------------|
-| FastAPI | `python/fastapi.md` | fastapi, pydantic, uvicorn | `.py` |
-| Flask | `python/flask.md` | flask, jinja, blueprint | `.py` |
+|------|------|-----------------|-----------------| 
 | AI/ML | `python/ai-ml.md` | pytorch, tensorflow, machine learning | `.py`, `.ipynb` |
-| Data Science | `python/data-science.md` | pandas, numpy, jupyter, analysis | `.py`, `.ipynb` |
+| Async Programming | `python/async-programming.md` | asyncio, aiohttp, async python | `.py` |
 | Automation | `python/automation.md` | script, automation, cli | `.py` |
+| Backend Patterns | `python/backend-patterns.md` | python backend, django, architecture | `.py` |
+| CLI Development | `python/cli-development.md` | click, typer, argparse, cli | `.py` |
+| Data Engineering | `python/data-engineering.md` | etl, pipeline, airflow, spark | `.py` |
+| Data Science | `python/data-science.md` | pandas, numpy, jupyter, analysis | `.py`, `.ipynb` |
+| DevOps | `python/devops.md` | python devops, ansible, fabric | `.py` |
+| Package Development | `python/package-development.md` | pypi, setup.py, poetry | `pyproject.toml` |
+| REST API | `python/rest-api.md` | python api, drf, django rest | `.py` |
+| Scientific Computing | `python/scientific-computing.md` | scipy, matplotlib, simulation | `.py` |
+| Security | `python/security.md` | python security, bandit, safety | `.py` |
+| Testing | `python/testing.md` | pytest, hypothesis, mock | `.py` |
+| Web Scraping | `python/web-scraping.md` | scrapy, beautifulsoup, selenium | `.py` |
 
-### Web Development (8)
+### TypeScript Rules (13)
 | Rule | File | Trigger Keywords | File Extensions |
-|------|------|-----------------|-----------------|
-| HTML/A11y | `web-development/html-a11y.md` | html, accessibility, a11y, wcag | `.html` |
-| Modern CSS | `web-development/css.md` | css, styling, grid, flexbox | `.css` |
-| JavaScript | `web-development/javascript.md` | javascript, es2024, js | `.js` |
-| Web Components | `web-development/web-components.md` | web components, shadow dom, custom elements | - |
-| WebAssembly | `web-development/webassembly.md` | wasm, webassembly, rust wasm | `.wasm` |
-| Core Web Vitals | `web-development/core-web-vitals.md` | cwv, lcp, fid, cls, performance | - |
-| Web Security | `web-development/security.md` | owasp, xss, csrf, security | - |
-| Animation | `web-development/animation.md` | animation, motion, gsap | - |
+|------|------|-----------------|-----------------| 
+| Angular | `typescript/angular.md` | angular, typescript | `.component.ts` |
+| Design Patterns | `typescript/design-patterns.md` | typescript patterns, SOLID | `.ts` |
+| Expo | `typescript/expo.md` | expo, expo router | `app.json` |
+| Generics | `typescript/generics.md` | generics, type parameter | `.ts`, `.tsx` |
+| GraphQL | `typescript/graphql.md` | graphql typescript, codegen | `.ts` |
+| Monorepo | `typescript/monorepo.md` | monorepo, turborepo, nx | `turbo.json` |
+| NestJS | `typescript/nestjs.md` | nestjs, nest | `.module.ts`, `.service.ts` |
+| Node.js Backend | `typescript/nodejs-backend.md` | node backend, express ts | `.ts` |
+| React Native | `typescript/react-native.md` | react native typescript | `.tsx` |
+| Strict Mode | `typescript/strict-mode.md` | strict, tsconfig | `tsconfig.json` |
+| Testing | `typescript/testing.md` | vitest, jest, typescript test | `.test.ts`, `.spec.ts` |
+| Tooling | `typescript/tooling.md` | esbuild, vite, swc, biome | - |
+| Vue 3 | `typescript/vue3.md` | vue typescript, vue 3 | `.vue` |
 
-### Agentic AI Rules (12)
+### Web Development (12)
 | Rule | File | Trigger Keywords | File Extensions |
-|------|------|-----------------|-----------------|
-| Strong Reasoning | `agentic-ai/reasoning.md` | reasoning, planning, analysis | - |
-| Debugging | `agentic-ai/debugging.md` | debug, bug, error, fix | - |
-| Code Review | `agentic-ai/code-review.md` | review, code review, pr | - |
-| Testing | `agentic-ai/testing.md` | test, unit test, integration | `.test.ts`, `.spec.ts` |
-| Security Audit | `agentic-ai/security.md` | security audit, vulnerability | - |
-| Refactoring | `agentic-ai/refactoring.md` | refactor, cleanup, improve | - |
-| API Design | `agentic-ai/api-design.md` | api design, endpoint design | - |
-| Database Design | `agentic-ai/database-design.md` | schema design, database architecture | - |
-| DevOps | `agentic-ai/devops.md` | ci/cd, pipeline, deploy | - |
-| Performance | `agentic-ai/performance.md` | optimize, performance, slow | - |
-| Migration | `agentic-ai/migration.md` | migrate, upgrade, version | - |
-| Prompt Engineering | `agentic-ai/prompt.md` | prompt, llm, ai | - |
+|------|------|-----------------|-----------------| 
+| JavaScript ES2024+ | `web-development/core/javascript-es2024.md` | javascript, es2024, js | `.js` |
+| Modern CSS | `web-development/core/modern-css-responsive.md` | css, styling, grid, flexbox | `.css` |
+| Semantic HTML/A11y | `web-development/core/semantic-html-accessibility.md` | html, accessibility, a11y, wcag | `.html` |
+| Web Components | `web-development/core/web-components.md` | web components, shadow dom | - |
+| WebAssembly | `web-development/core/webassembly.md` | wasm, webassembly, rust wasm | `.wasm` |
+| Modern Browser APIs | `web-development/browser/modern-browser-apis.md` | browser api, fetch, service worker | - |
+| Core Web Vitals | `web-development/performance/core-web-vitals.md` | cwv, lcp, fid, cls | - |
+| PWA Expert | `web-development/architecture/pwa-expert.md` | pwa, service worker, offline | - |
+| OWASP Web Security | `web-development/security/owasp-web-security.md` | owasp, xss, csrf, security | - |
+| Animation & Motion | `web-development/ui-ux/animation-motion.md` | animation, motion, gsap | - |
+| Forms & Validation | `web-development/ui-ux/forms-validation.md` | form, validation, input | - |
+| Typography | `web-development/ui-ux/typography.md` | typography, font, type system | - |
+
+### Standards — General (16)
+| Rule | File | Purpose |
+|------|------|---------|
+| Accessibility | `standards/accessibility-standards.md` | WCAG 2.2 compliance |
+| API Design | `standards/api-design-conventions.md` | REST/GraphQL conventions |
+| API Documentation | `standards/api-documentation-standards.md` | OpenAPI/Swagger standards |
+| API Security | `standards/api-security-conventions.md` | Auth, rate limiting, CORS |
+| CI/CD | `standards/ci-cd-conventions.md` | Pipeline conventions |
+| CI/CD Security | `standards/ci-cd-security-conventions.md` | Secrets, SAST/DAST |
+| Code Quality | `standards/code-quality-standards.md` | Lint, formatting, complexity |
+| DevOps | `standards/devops-standards.md` | Infrastructure standards |
+| Documentation | `standards/documentation-standards.md` | README, API docs, comments |
+| Incident Response | `standards/incident-response-playbook.md` | Runbooks, escalation |
+| Monitoring | `standards/monitoring-standards.md` | Logging, metrics, alerts |
+| OWASP Top 10 | `standards/owasp-top10-guide.md` | OWASP 2025 guide |
+| Security Testing | `standards/security-testing-templates.md` | Pentest, SAST templates |
+| Supply Chain | `standards/supply-chain-security.md` | Dependency security |
+| Technical Standards | `standards/technical-standards.md` | Universal tech standards |
+| Testing Standards | `standards/testing-standards.md` | Coverage targets, patterns |
+
+### Standards — Framework Conventions (9)
+| Rule | File | Framework |
+|------|------|-----------|
+| Django | `standards/frameworks/django-conventions.md` | Django |
+| FastAPI | `standards/frameworks/fastapi-conventions.md` | FastAPI |
+| Flutter | `standards/frameworks/flutter-conventions.md` | Flutter/Dart |
+| Inertia + React | `standards/frameworks/inertia-react-conventions.md` | Inertia.js + React |
+| Laravel | `standards/frameworks/laravel-conventions.md` | Laravel/PHP |
+| Next.js | `standards/frameworks/nextjs-conventions.md` | Next.js |
+| React Native | `standards/frameworks/react-native-conventions.md` | React Native |
+| Svelte | `standards/frameworks/svelte-conventions.md` | SvelteKit |
+| Vue 3 | `standards/frameworks/vue3-conventions.md` | Vue.js 3 |
 
 ---
 
@@ -227,7 +289,7 @@ User Request → Context Detection → Rule Matching → Auto-Load
   - mobile/flutter.md
 
 "Cargo.toml":
-  - web-development/webassembly.md
+  - web-development/core/webassembly.md
 
 "requirements.txt | pyproject.toml":
   - python/fastapi.md
@@ -239,7 +301,7 @@ User Request → Context Detection → Rule Matching → Auto-Load
 # Intent Keywords
 "create api":
   - backend-frameworks/rest-api.md
-  - agentic-ai/api-design.md
+  - agentic-ai/api-design-agent.md
 
 "grpc | protobuf | rpc service":
   - backend-frameworks/grpc.md
@@ -250,38 +312,38 @@ User Request → Context Detection → Rule Matching → Auto-Load
 "websocket | socket.io | real-time | chat":
   - backend-frameworks/websocket.md
 
-"sse | server-sent events | eventsource | event stream":
+"sse | server-sent events | eventsource":
   - backend-frameworks/sse.md
 
-"bullmq | rabbitmq | message queue | job queue | worker":
+"bullmq | rabbitmq | message queue | job queue":
   - backend-frameworks/message-queue.md
 
 "database design":
   - database/design.md
-  - agentic-ai/database-design.md
+  - agentic-ai/database-design-agent.md
 
 "optimize performance":
-  - agentic-ai/performance.md
-  - web-development/core-web-vitals.md
+  - agentic-ai/performance-optimization-agent.md
+  - web-development/performance/core-web-vitals.md
 
 "security":
-  - agentic-ai/security.md
-  - web-development/security.md
+  - agentic-ai/security-audit-agent.md
+  - web-development/security/owasp-web-security.md
   - mobile/security.md
 
 "deploy":
-  - agentic-ai/devops.md
+  - agentic-ai/devops-cicd-agent.md
   - mobile/deployment.md
 
 "test":
-  - agentic-ai/testing.md
+  - agentic-ai/test-writing-agent.md
   - mobile/testing.md
 
 "refactor":
-  - agentic-ai/refactoring.md
+  - agentic-ai/refactoring-agent.md
 
 "debug | fix | error":
-  - agentic-ai/debugging.md
+  - agentic-ai/debugging-agent.md
 ```
 
 ---
@@ -340,7 +402,7 @@ frontend-frameworks/vue3.md:
   - frontend-frameworks/tailwind.md (if tailwind detected)
 
 frontend-frameworks/angular.md:
-  - typescript/core.md
+  - typescript/angular.md
 
 mobile/react-native.md:
   - typescript/react-native.md
@@ -407,7 +469,7 @@ Auto-detection:
 Rules loaded:
 ✅ mobile/react-native.md
 ✅ mobile/android-kotlin.md (Android-specific)
-✅ agentic-ai/debugging.md
+✅ agentic-ai/debugging-agent.md
 ```
 
 ### Example 3: Database Query
@@ -456,20 +518,23 @@ User can explicitly request:
 
 ## 📊 Rule Statistics
 
-| Category | Count | Total Lines (est.) |
-|----------|-------|-------------------|
-| Database | 10 | ~6,000 |
-| Mobile | 10 | ~6,000 |
-| Backend | 12 | ~10,000 |
-| TypeScript | 6 | ~4,000 |
-| Frontend Frameworks | 7 | ~5,000 |
-| Next.js | 4 | ~3,000 |
-| Python | 5 | ~3,500 |
-| Web Development | 8 | ~5,000 |
+| Category | Count | Estimated Lines |
+|----------|-------|-----------------|
 | Agentic AI | 12 | ~7,000 |
-| **TOTAL** | **74** | **~49,500** |
+| Backend Frameworks | 12 | ~10,000 |
+| Database | 10 | ~6,000 |
+| Frontend Frameworks | 7 | ~5,000 |
+| Mobile | 10 | ~6,000 |
+| Next.js | 13 | ~8,000 |
+| Python | 14 | ~9,000 |
+| TypeScript | 13 | ~8,000 |
+| Web Development | 12 | ~5,000 |
+| Standards (General) | 16 | ~4,500 |
+| Standards (Framework) | 9 | ~5,000 |
+| Shared | 1 | ~200 |
+| **TOTAL** | **137** | **~73,700** |
 
 ---
 
-**Last Updated:** 2026-02-10  
+**Last Updated:** 2026-02-12  
 **Maintainer:** Antigravity Core System

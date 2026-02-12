@@ -504,8 +504,6 @@ const { data: users } = await useFetch('/api/users')
 
 ---
 
----
-
 ## ⚠ CRITICAL SECURITY WARNINGS
 
 ### NEVER Store Secrets in Frontend Code

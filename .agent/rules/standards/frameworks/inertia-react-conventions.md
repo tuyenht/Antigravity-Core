@@ -495,8 +495,6 @@ declare module '@inertiajs/core' {
 
 ---
 
----
-
 ## Performance Optimization
 
 ### React 19 Compiler (Automatic Memoization!)
