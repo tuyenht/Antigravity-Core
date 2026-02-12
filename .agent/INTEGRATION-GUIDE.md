@@ -29,7 +29,7 @@ The `.agent` folder is a **universal code standards and automation system** that
 │   ├── shared/          # Cross-framework rules
 │   └── standards/       # Framework-specific standards
 ├── scripts/             # Automation scripts
-├── skills/              # Reusable knowledge modules (57+ skills)
+├── skills/              # Reusable knowledge modules (59+ skills)
 ├── workflows/           # Automated workflow definitions
 └── maintenance/         # System maintenance tasks
 ```
@@ -465,7 +465,7 @@ Track these to measure .agent value:
 - **Full Automation Guide:** `.agent/workflows/code-review-automation.md`
 - **Quality Standards:** `.agent/rules/universal-code-standards.md`
 - **Maintenance:** `.agent/maintenance/`
-- **Skills Reference:** `.agent/skills/` (57+ skills!)
+- **Skills Reference:** `.agent/skills/` (59+ skills!)
 
 ---
 

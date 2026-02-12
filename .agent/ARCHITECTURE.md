@@ -14,14 +14,14 @@ Antigravity-Core is an **AI-Native Development Operating System** — a structur
 │                                                                  │
 │  ┌──────────┐  ┌──────────┐  ┌──────────┐  ┌──────────────────┐ │
 │  │  GEMINI  │  │  AGENTS  │  │  SKILLS  │  │     RULES        │ │
-│  │  .md     │──│  (27)    │──│  (57)    │──│     (130+)       │ │
+│  │  .md     │──│  (27)    │──│  (59)    │──│     (130+)       │ │
 │  │  (Entry) │  │          │  │          │  │                   │ │
 │  └──────────┘  └──────────┘  └──────────┘  └──────────────────┘ │
 │       │              │             │               │             │
 │       ▼              ▼             ▼               ▼             │
 │  ┌──────────┐  ┌──────────┐  ┌──────────┐  ┌──────────────────┐ │
 │  │ WORKFLOWS│  │  MEMORY  │  │ SCRIPTS  │  │   STANDARDS      │ │
-│  │  (31)    │  │  SYSTEM  │  │  (15)    │  │   & TEMPLATES    │ │
+│  │  (31)    │  │  SYSTEM  │  │  (14)    │  │   & TEMPLATES    │ │
 │  └──────────┘  └──────────┘  └──────────┘  └──────────────────┘ │
 └─────────────────────────────────────────────────────────────────┘
 ```
@@ -36,14 +36,14 @@ Antigravity-Core is an **AI-Native Development Operating System** — a structur
 ├── ARCHITECTURE.md        ← This file (system map)
 ├── CHANGELOG.md           ← Version history
 ├── INTEGRATION-GUIDE.md   ← Team onboarding
-├── VERSION                ← Semantic version (3.1.1)
+├── VERSION                ← Semantic version (4.0.0)
 ├── project.json           ← System metadata & metrics
 │
 ├── agents/      (27)      ← Agent role definitions
 ├── workflows/   (31)      ← Automated process definitions
-├── skills/      (57)      ← Specialized knowledge modules
+├── skills/      (59)      ← Specialized knowledge modules
 ├── rules/       (130+)    ← Expert coding standards
-├── scripts/     (15)      ← PowerShell automation
+├── scripts/     (14)      ← PowerShell automation
 ├── memory/                ← Persistent context & learning
 ├── roles/                 ← 7-role SDLC framework
 ├── standards/             ← Output quality standards
@@ -97,7 +97,7 @@ Slash-command triggered automation pipelines.
 | **Maintenance** | `/maintain`, `/debug`, `/quickfix`, `/auto-healing`, `/refactor`, `/migrate` |
 | **Design** | `/ui-ux-pro-max`, `/update-ui-ux-pro-max`, `/admin-component`, `/admin-dashboard` |
 
-### 3. Skills (57 modules)
+### 3. Skills (59 modules)
 
 Self-contained knowledge domains with SKILL.md instruction files.
 

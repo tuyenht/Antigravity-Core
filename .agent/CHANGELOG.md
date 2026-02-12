@@ -364,15 +364,7 @@ We follow [Semantic Versioning](https://semver.org/):
 
 ## Upcoming (Planned)
 
-### v3.2.0 (Estimated: February 2026)
-- [ ] Performance benchmarking system (finalize)
-- [ ] GraphQL conventions
-- [ ] gRPC conventions
-- [ ] WebSocket standards
-- [ ] Skill dependency graph
-
-### v4.0.0 (Estimated: Q2 2026)
-- [ ] Agent orchestration framework
+### v4.1.0 (Estimated: Q2 2026)
 - [ ] Plugin architecture
 - [ ] Skill marketplace
 - [ ] Analytics dashboard
@@ -406,6 +398,9 @@ We follow [Semantic Versioning](https://semver.org/):
 
 ---
 
+[4.0.0]: https://github.com/tuyenht/Antigravity-Core/releases/tag/v4.0.0
+[3.3.0]: https://github.com/tuyenht/Antigravity-Core/releases/tag/v3.3.0
+[3.2.0]: https://github.com/tuyenht/Antigravity-Core/releases/tag/v3.2.0
 [3.1.1]: https://github.com/tuyenht/Antigravity-Core/releases/tag/v3.1.1
 [3.1.0]: https://github.com/tuyenht/Antigravity-Core/releases/tag/v3.1.0
 [3.0.0]: https://github.com/tuyenht/Antigravity-Core/releases/tag/v3.0.0

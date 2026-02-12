@@ -3,7 +3,7 @@
 > **AI-Native Development Operating System**  
 > Hệ Điều Hành Phát Triển Phần Mềm Thuần AI
 
-[![Version](https://img.shields.io/badge/version-3.1.1-blue.svg)](.agent/CHANGELOG.md)
+[![Version](https://img.shields.io/badge/version-4.0.0-blue.svg)](.agent/CHANGELOG.md)
 [![License](https://img.shields.io/badge/license-Proprietary-red.svg)]()
 [![AI Autonomy](https://img.shields.io/badge/AI%20Autonomy-95%25-green.svg)]()
 [![Quality](https://img.shields.io/badge/Quality-Platinum%20Standard-gold.svg)]()
