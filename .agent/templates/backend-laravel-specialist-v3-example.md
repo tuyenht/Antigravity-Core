@@ -2,7 +2,7 @@
 # =============================================================================
 # BACKEND LARAVEL SPECIALIST v4.0 - EXAMPLE IMPLEMENTATION
 # =============================================================================
-# This is an EXAMPLE of Agent Template v3.0 in practice
+# This is an EXAMPLE of Agent Template v4.0 in practice
 # Use this as reference when creating/updating other agents
 # =============================================================================
 
