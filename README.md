@@ -4,9 +4,12 @@
 > Hệ Điều Hành Phát Triển Phần Mềm Thuần AI
 
 [![Version](https://img.shields.io/badge/version-4.0.0-blue.svg)](.agent/CHANGELOG.md)
-[![License](https://img.shields.io/badge/license-Proprietary-red.svg)]()
+[![Agents](https://img.shields.io/badge/agents-27-brightgreen.svg)](.agent/docs/agents/AGENT-CATALOG.md)
+[![Skills](https://img.shields.io/badge/skills-59-orange.svg)](.agent/docs/skills/SKILL-CATALOG.md)
+[![Rules](https://img.shields.io/badge/rules-137-purple.svg)](.agent/docs/rules/RULES-CATALOG.md)
 [![AI Autonomy](https://img.shields.io/badge/AI%20Autonomy-95%25-green.svg)]()
 [![Quality](https://img.shields.io/badge/Quality-Platinum%20Standard-gold.svg)]()
+[![License](https://img.shields.io/badge/license-Proprietary-red.svg)]()
 
 ---
 
@@ -15,31 +18,33 @@
 **Antigravity-Core** không phải là một framework hay library.  
 Đây là một **Hệ Điều Hành** (Operating System) cho việc phát triển phần mềm với AI.
 
-```
-┌─────────────────────────────────────────────────────────────┐
-│              ANTIGRAVITY-CORE (AI OS)                       │
-│  ┌───────────────────────────────────────────────────────┐  │
-│  │  7 AI Roles │ Workflows │ Standards │ Quality Gates   │  │
-│  └───────────────────────────────────────────────────────┘  │
-│                            ↓                                │
-│                    SINH RA (Generate)                       │
-│                            ↓                                │
-│  ┌─────────────┐  ┌─────────────┐  ┌─────────────────────┐  │
-│  │ E-commerce  │  │ SaaS App   │  │ Mobile App          │  │
-│  │   Project   │  │  Project   │  │   Project           │  │
-│  └─────────────┘  └─────────────┘  └─────────────────────┘  │
-└─────────────────────────────────────────────────────────────┘
+```mermaid
+graph TB
+    subgraph OS["ANTIGRAVITY-CORE (AI OS v4.0)"]
+        direction TB
+        A["27 Specialized Agents"]
+        B["59 Knowledge Skills"]
+        C["137 Expert Rules"]
+        D["31 Automated Workflows"]
+        E["6 Core Protocols"]
+    end
+
+    OS -->|"SINH RA<br/>(Generate)"| P1["🛒 E-commerce"]
+    OS -->|"SINH RA<br/>(Generate)"| P2["☁️ SaaS App"]
+    OS -->|"SINH RA<br/>(Generate)"| P3["📱 Mobile App"]
+    OS -->|"SINH RA<br/>(Generate)"| P4["🎮 Game"]
 ```
 
 ### Khác biệt với AI Coding truyền thống
 
 | Traditional AI Coding | Antigravity-Core |
 |----------------------|------------------|
-| 🔴 Passive code generator | 🟢 **Senior Technical Lead** |
+| 🔴 Passive code generator | 🟢 **27 chuyên gia AI** phối hợp |
 | 🔴 Context-lost every session | 🟢 **Persistent memory system** |
-| 🔴 Generic responses | 🟢 **User-preference aware** |
-| 🔴 No quality gates | 🟢 **Platinum Standard enforcement** |
-| 🔴 Trial and error | 🟢 **Proven pattern library** |
+| 🔴 Generic responses | 🟢 **137 expert rules** tự động load |
+| 🔴 No quality gates | 🟢 **Platinum Standard** enforcement |
+| 🔴 Trial and error | 🟢 **59 proven skill modules** |
+| 🔴 One-size-fits-all | 🟢 **Auto-detection** tech stack |
 
 ---
 
@@ -59,20 +64,20 @@ Add-Content -Path $PROFILE -Value ". 'C:\Tools\Antigravity-Core\setup-profile.ps
 # Restart PowerShell
 ```
 
-**Kết quả:** Bạn có 3 lệnh mới:
-- `agi` - Install Antigravity-Core vào project hiện tại
-- `agu` - Update project hiện tại
-- `agug` - Update bản global
+**Kết quả:** 3 lệnh mới sẵn sàng:
+
+| Lệnh | Chức năng |
+|-------|-----------|
+| `agi` | Install Antigravity-Core vào project hiện tại |
+| `agu` | Update project hiện tại |
+| `agug` | Update bản global |
 
 ---
 
 ### 📦 STEP 2: Cài đặt cho Project (mỗi project)
 
 ```powershell
-# Di chuyển đến project
 cd C:\Projects\MyNewProject
-
-# Cài đặt (từ bản global, nhanh!)
 agi
 ```
 
@@ -81,20 +86,16 @@ agi
 ### 🔄 Cập nhật
 
 ```powershell
-# Update bản global (khi có version mới)
-agug
-
-# Update project hiện tại (từ bản global)
+agug                        # Update bản global (khi có version mới)
 cd C:\Projects\MyProject
-agu
+agu                         # Update project hiện tại
 ```
 
 ---
 
-### 🐧 Linux/Mac (Alternative)
+### 🐧 Linux/Mac
 
 ```bash
-# Clone và copy
 cd ~/projects/my-new-project
 git clone --depth 1 https://github.com/tuyenht/Antigravity-Core.git temp-ag
 cp -r temp-ag/.agent ./.agent
@@ -102,125 +103,154 @@ cp -r temp-ag/docs ./docs
 rm -rf temp-ag
 ```
 
----
-
-### 📋 Workflow sau khi cài
-
-```bash
-# Cho dự án MỚI: Mở docs/New-Project-Interview-Prompt.txt
-# Cho dự án ĐÃ CÓ: Mở docs/Analyze-Existing-Project-Prompt.txt
-```
+Chi tiết: Xem [ONE-COMMAND-SETUP.md](.agent/ONE-COMMAND-SETUP.md)
 
 ---
 
-## 📁 CẤU TRÚC
+## 🏗️ KIẾN TRÚC HỆ THỐNG
 
 ```
 Antigravity-Core/
 │
-├── 🤖 .agent/                    ← AI OS Engine (Core)
+├── 🤖 .agent/                         ← AI OS Engine (Core)
 │   │
-│   ├── 👥 roles/                 ← 7 vai trò AI chuẩn hóa
-│   │   └── AGENT_ROLES.md        (BA, SA, PM, BE, FE, QA, DO)
+│   ├── 👥 agents/ (27)                ← 27 specialized AI agents
+│   │   ├── orchestrator.md            (Multi-agent coordinator)
+│   │   ├── backend-specialist.md      (API, DB, server)
+│   │   ├── frontend-specialist.md     (React, UI/UX)
+│   │   ├── security-auditor.md        (OWASP, pentest)
+│   │   └── ... 23 more agents
 │   │
-│   ├── 🔄 workflows/             ← 31 quy trình làm việc
-│   │   ├── scaffold.md
-│   │   ├── debug.md
-│   │   ├── deploy.md
-│   │   └── ...
+│   ├── 🎯 skills/ (59)                ← Knowledge modules
+│   │   ├── react-patterns/            prisma-expert/
+│   │   ├── laravel-performance/       docker-expert/
+│   │   ├── ui-ux-pro-max/             vulnerability-scanner/
+│   │   └── ... 53 more skills
 │   │
-│   ├── 📐 standards/             ← Chuẩn output & quality
-│   │   └── OUTPUT_FILES.md
+│   ├── 📏 rules/ (137)                ← Expert coding rules
+│   │   ├── backend-frameworks/ (12)   database/ (10)
+│   │   ├── frontend-frameworks/ (7)   mobile/ (10)
+│   │   ├── nextjs/ (13)               python/ (14)
+│   │   ├── typescript/ (13)           web-development/ (12)
+│   │   ├── agentic-ai/ (12)           standards/ (25)
+│   │   └── shared/ (1)
 │   │
-│   ├── 📋 templates/             ← Templates project
-│   │   ├── PROJECT_SCAFFOLD.md   (Laravel/NextJS/FastAPI)
-│   │   └── agent-template-v3.md
+│   ├── 🔄 workflows/ (31)             ← Slash command workflows
+│   ├── ⚙️ scripts/ (14)               ← PowerShell automation
+│   ├── 🧬 systems/ (5)                ← Core protocols (RBA, AOC...)
+│   ├── 🧠 memory/                     ← AI memory system
+│   ├── 📖 docs/                       ← System documentation
 │   │
-│   ├── 🎯 skills/                ← 59 kỹ năng chuyên biệt
-│   │   ├── ai-sdk-expert/
-│   │   ├── prisma-expert/
-│   │   ├── react-patterns/
-│   │   ├── laravel-performance/
-│   │   └── docker-expert/
-│   │
-│   ├── 🧠 memory/                ← Hệ thống nhớ AI
-│   │   ├── user-profile.yaml
-│   │   ├── capability-boundaries.yaml
-│   │   ├── learning-patterns.yaml
-│   │   └── tech-radar.yaml
-│   │
-│   ├── 📏 rules/                 ← Coding standards
-│   ├── ⚙️ scripts/               ← Automation scripts
-│   └── 🕵️ agents/                ← 27+ Agent definitions
+│   ├── GEMINI.md                      ← Master AI config
+│   ├── ARCHITECTURE.md                ← System architecture
+│   └── CHANGELOG.md                   ← Version history
 │
-├── 📖 docs/                      ← Documentation Layer
-│   ├── PROJECT-BRIEF-SYSTEM.md   (Master guide)
-│   ├── Analyze-Existing-Project-Prompt.txt
+├── 📖 docs/                            ← Project documentation
+│   ├── PROJECT-BRIEF-SYSTEM.md        (Master guide)
 │   ├── New-Project-Interview-Prompt.txt
+│   ├── Analyze-Existing-Project-Prompt.txt
 │   └── deployment-guide.md
 │
-└── README.md                     ← You are here
+└── README.md                           ← You are here
 ```
 
 ---
 
-## 🎭 7 VAI TRÒ AI
+## 👥 27 SPECIALIZED AGENTS
 
-| # | Role | Trigger | Trách nhiệm |
-|---|------|---------|-------------|
-| 1 | **Business Analyst** | `business-analyst` | Phân tích yêu cầu, viết PRD |
-| 2 | **Solution Architect** | `solution-architect` | Thiết kế kiến trúc hệ thống |
-| 3 | **Project Manager** | `project-manager` | Lập kế hoạch, quản lý sprint |
-| 4 | **Backend Developer** | `backend-developer` | API, Database, Business logic |
-| 5 | **Frontend Developer** | `frontend-developer` | UI/UX, Components, State |
-| 6 | **QA Engineer** | `qa-engineer` | Testing, Quality assurance |
-| 7 | **DevOps Engineer** | `devops-engineer` | CI/CD, Deployment |
+Mỗi agent là một **chuyên gia AI** trong lĩnh vực cụ thể, tự động được chọn dựa trên yêu cầu.
 
-**Chi tiết:** Xem [`.agent/roles/AGENT_ROLES.md`](.agent/roles/AGENT_ROLES.md)
+### By Role (7 Categories)
 
-> **Note:** Ngoài 7 role chuẩn hóa, hệ thống còn có **27 agent definitions** chuyên biệt trong `.agent/agents/`.
+| Category | Agents | Chức năng |
+|----------|--------|-----------|
+| **🎯 Entry Points** | `orchestrator`, `triage-agent`, `project-planner` | Điều phối, routing requests |
+| **💻 Development** | `backend-specialist`, `frontend-specialist`, `laravel-specialist`, `mobile-developer` | Viết code production |
+| **🔒 Security** | `security-auditor`, `penetration-tester` | Bảo mật & penetration testing |
+| **⚡ Quality** | `test-engineer`, `test-generator`, `ai-code-reviewer`, `self-correction-agent`, `refactor-agent` | CI/CD, testing, code quality |
+| **📊 Operations** | `devops-engineer`, `performance-optimizer`, `seo-specialist` | Deploy, monitoring, SEO |
+| **📝 Documentation** | `documentation-writer`, `documentation-agent` | Technical writing |
+| **🎮 Specialized** | `game-designer`, `mobile-game-developer`, `pc-game-developer`, `database-architect`, `debugger`, `explorer-agent`, `code-generator-agent`, `manager-agent` | Domain-specific experts |
+
+### Agent Selection (Tự động)
+
+```
+User request →
+├── Mơ hồ?        → triage-agent → route đến specialist
+├── Complex?       → orchestrator → multi-agent pipeline
+├── Backend/API?   → backend-specialist
+├── Frontend/UI?   → frontend-specialist
+├── Mobile?        → mobile-developer (⚠️ KHÔNG dùng frontend!)
+├── Laravel?       → laravel-specialist
+├── Security?      → security-auditor
+├── Deploy?        → devops-engineer
+└── Debug?         → debugger
+```
+
+**Chi tiết:** Xem [AGENT-CATALOG.md](.agent/docs/agents/AGENT-CATALOG.md)
 
 ---
 
-## 🔄 WORKFLOW PIPELINE
+## 🔄 WORKFLOWS (31 Slash Commands)
+
+| Category | Commands |
+|----------|----------|
+| **🏗️ Setup** | `/create`, `/install-antigravity`, `/scaffold`, `/schema-first`, `/requirements-first`, `/mobile-init` |
+| **💻 Dev** | `/enhance`, `/quickfix`, `/refactor`, `/brainstorm`, `/plan` |
+| **🎨 Design** | `/ui-ux-pro-max`, `/admin-component`, `/admin-dashboard` |
+| **✅ Quality** | `/test`, `/code-review-automation`, `/auto-healing`, `/auto-optimization-cycle`, `/performance-budget-enforcement` |
+| **🔒 Security** | `/security-audit`, `/secret-scanning` |
+| **🚀 Deploy** | `/deploy`, `/mobile-deploy`, `/optimize`, `/check`, `/maintain`, `/migrate` |
+| **🎯 Multi-agent** | `/orchestrate`, `/debug` |
+
+### Typical Flow
 
 ```
-STEP 1-2          STEP 3           STEP 4          STEP 5-N
-─────────         ──────           ──────          ────────
-
-┌─────────┐      ┌─────────┐      ┌─────────┐      ┌─────────┐
-│   BA    │ ───▶ │   SA    │ ───▶ │   PM    │ ───▶ │  DEV    │
-│ Analysis│      │ Design  │      │ Planning│      │  Build  │
-└─────────┘      └─────────┘      └─────────┘      └─────────┘
-     │                │                │                │
-     ▼                ▼                ▼                ▼
- PRD.md         architecture.md   backlog.md       src/ + tests/
-                schema.sql        sprint-N.md
-                                                        │
-                                                        ▼
-                                                   ┌─────────┐
-                                                   │ QA+DO   │
-                                                   │ Deploy  │
-                                                   └─────────┘
-                                                        │
-                                                        ▼
-                                                   🚀 PRODUCTION
+/requirements-first  →  /plan  →  /schema-first  →  /scaffold
+        ↓                                                ↓
+  PRD Document                                    CRUD Modules
+        ↓                                                ↓
+    /enhance  →  /test  →  /code-review-automation  →  /deploy
 ```
 
-### Danh sách Workflows (31)
+**Chi tiết:** Xem [WORKFLOW-CATALOG.md](.agent/docs/workflows/WORKFLOW-CATALOG.md)
 
-| Category | Workflows |
+---
+
+## 🧬 CORE PROTOCOLS
+
+6 protocols định nghĩa cách hệ thống hoạt động:
+
+| Protocol | Chức năng |
 |----------|-----------|
-| **Planning** | `/brainstorm`, `/plan`, `/requirements-first`, `/orchestrate` |
-| **Development** | `/create`, `/scaffold`, `/schema-first`, `/enhance` |
-| **Quality** | `/check`, `/test`, `/code-review-automation`, `/auto-healing` |
-| **Security** | `/security-audit`, `/secret-scanning` |
-| **Optimization** | `/optimize`, `/refactor`, `/auto-optimization-cycle`, `/performance-budget-enforcement` |
-| **Deployment** | `/deploy`, `/mobile-deploy`, `/mobile-init`, `/mobile-test` |
-| **Maintenance** | `/maintain`, `/debug`, `/quickfix`, `/migrate` |
-| **Design** | `/ui-ux-pro-max`, `/update-ui-ux-pro-max`, `/admin-component`, `/admin-dashboard` |
+| **RBA** (Reasoning-Before-Action) | Bắt buộc suy luận trước mọi action |
+| **Auto-Rule Discovery** | 3-layer detection: file extension → project config → keywords |
+| **Agent Registry** | Machine-readable capability matching |
+| **Orchestration Engine** | Automated pipeline execution |
+| **Agent Coordination** | Multi-agent file ownership & sync |
+| **AOC** (Auto-Optimization Cycle) | Tự động optimize sau mỗi feature |
 
-**Chi tiết:** Xem [`.agent/docs/TEAM_WORKFLOW.md`](.agent/docs/TEAM_WORKFLOW.md)
+```mermaid
+sequenceDiagram
+    actor User
+    participant Rules as Auto-Rule Discovery
+    participant Registry as Agent Registry
+    participant Engine as Orchestration Engine
+    participant RBA as RBA Validator
+    participant Agent as Specialist Agent
+    participant AOC as AOC Cycle
+
+    User->>Rules: Request
+    Rules->>Registry: Detect context → match capabilities
+    Registry->>Engine: Select pipeline
+    Engine->>RBA: Validate reasoning
+    RBA->>Agent: Execute
+    Agent->>AOC: Feature complete
+    AOC-->>Agent: Re-run if quality < 80%
+    Agent->>User: Output ✅
+```
+
+**Chi tiết:** Xem [SYSTEMS-CATALOG.md](.agent/docs/systems/SYSTEMS-CATALOG.md)
 
 ---
 
@@ -232,13 +262,13 @@ Hệ thống nhớ giúp AI **giữ ngữ cảnh** xuyên suốt các phiên là
 |------|----------|
 | `user-profile.yaml` | Tech stack & preferences của team |
 | `capability-boundaries.yaml` | Mức độ expertise của AI (0-100) |
-| `learning-patterns.yaml` | Các pattern đã proven hoạt động tốt |
-| `tech-radar.yaml` | Quyết định ADOPT/TRIAL/HOLD/RETIRE |
+| `learning-patterns.yaml` | Proven patterns & lessons learned |
+| `tech-radar.yaml` | Quyết định ADOPT / TRIAL / HOLD / RETIRE |
 | `feedback.yaml` | Continuous improvement tracking |
 
 **Lợi ích:**
 - ✅ Không cần giải thích lại context mỗi session
-- ✅ AI nhớ các quyết định đã thống nhất trước đó
+- ✅ AI nhớ các quyết định đã thống nhất
 - ✅ Tự động áp dụng coding conventions
 - ✅ Học từ thành công và thất bại
 
@@ -246,44 +276,60 @@ Hệ thống nhớ giúp AI **giữ ngữ cảnh** xuyên suốt các phiên là
 
 ## 🛠️ TECH STACK SUPPORT
 
-### Expert Level (90-100% confidence)
+### Expert Level (90-100%)
 
 | Category | Technologies |
 |----------|-------------|
-| **Backend** | Laravel 12, Django, FastAPI, NestJS |
-| **Frontend** | React 19, Vue 3, Next.js 16, Nuxt |
-| **Mobile** | React Native, Flutter |
-| **Database** | PostgreSQL, MySQL, Redis |
+| **Backend** | Laravel 12, Django, FastAPI, NestJS, Express |
+| **Frontend** | React 19, Vue 3, Next.js 16, Nuxt, Svelte, Astro |
+| **Mobile** | React Native, Flutter, iOS Swift, Android Kotlin |
+| **Database** | PostgreSQL, MySQL, Redis, MongoDB |
 
-### Strong Level (70-89% confidence)
+### Strong Level (70-89%)
 
 | Category | Technologies |
 |----------|-------------|
 | **Infrastructure** | Docker, Kubernetes, Terraform |
-| **Cloud** | AWS, GCP, Azure, Vercel |
-| **Monitoring** | OpenTelemetry, Grafana, Sentry |
+| **Cloud** | AWS, GCP, Azure, Vercel, Cloudflare |
+| **Monitoring** | OpenTelemetry, Grafana, Prometheus, Sentry |
 | **CI/CD** | GitHub Actions, GitLab CI |
+
+### 137 Expert Rules — Auto-Activation
+
+Rules tự động load dựa trên context:
+
+| Detection | Trigger → Rules |
+|-----------|----------------|
+| **File Extension** | `.vue` → Vue3 rules, `.php` → Laravel rules, `.py` → FastAPI rules |
+| **Project Config** | `package.json + next` → Next.js rules, `composer.json` → Laravel rules |
+| **Request Keywords** | "security" → Security audit rules, "deploy" → DevOps rules |
+
+**Chi tiết:** Xem [RULES-CATALOG.md](.agent/docs/rules/RULES-CATALOG.md)
 
 ---
 
-## 📊 ĐIỂM SỐ HỆ THỐNG
-
-| Metric | Score | Status |
-|--------|-------|--------|
-| Autonomy | 95/100 | ⭐⭐⭐⭐⭐ |
-| Health | 90/100 | ⭐⭐⭐⭐⭐ |
-| Consistency | 85/100 | ⭐⭐⭐⭐ |
-| Efficiency | 90/100 | ⭐⭐⭐⭐⭐ |
-| **Overall System** | **90/100** | **Platinum** |
-
-### Quality Gates (Platinum Standard)
+## 📊 QUALITY GATES (Platinum Standard)
 
 | Metric | Target | Enforcement |
 |--------|--------|-------------|
-| Code Quality Score | ≥ 95/100 | Automated review |
+| AI Autonomy | 95% | Agent-driven development |
+| Code Quality Score | ≥ 95/100 | `ai-code-reviewer` automated |
 | Test Coverage | ≥ 80% | CI/CD gate |
-| Security Audit | OWASP Top 10 | Pre-deploy scan |
-| Performance Budget | Defined | Lighthouse CI |
+| Security Audit | OWASP Top 10 | `security-auditor` pre-deploy |
+| Performance Budget | Defined per project | `performance-check.ps1` |
+
+### Automation Scripts (14)
+
+```powershell
+.\.agent\agent.ps1 health       # System health check
+.\.agent\agent.ps1 validate     # Full compliance check
+.\.agent\agent.ps1 secret-scan  # Secret detection
+.\.agent\agent.ps1 heal         # Auto-fix lint/type errors
+.\.agent\agent.ps1 perf         # Performance budget check
+.\.agent\agent.ps1 dx roi       # Developer experience metrics
+```
+
+**Chi tiết:** Xem [SCRIPT-CATALOG.md](.agent/docs/scripts/SCRIPT-CATALOG.md)
 
 ---
 
@@ -295,23 +341,26 @@ Hệ thống nhớ giúp AI **giữ ngữ cảnh** xuyên suốt các phiên là
 Input:  Ý tưởng + 21 câu trả lời
 Output: PROJECT-BRIEF.md + TECH-STACK.md + GETTING-STARTED.md
 Time:   30-45 phút
+Agent:  project-planner → orchestrator
 ```
 
-### 2️⃣ Tiếp nhận dự án cũ (Legacy)
+### 2️⃣ Tiếp nhận dự án Legacy
 
 ```
 Input:  Project path
 Output: PROJECT-BRIEF.md + CONVENTIONS.md + PERFORMANCE-RECOMMENDATIONS.md
 Time:   15-20 phút
+Agent:  explorer-agent → ai-code-reviewer
 ```
 
 ### 3️⃣ Phát triển feature mới
 
 ```
 Input:  User Story từ backlog
-Output: Code + Tests + Docs
+Output: Code + Tests + Docs (auto-generated)
 Time:   1-3 giờ/feature
 AI:     95% autonomous
+Pipeline: /plan → /enhance → /test → /code-review-automation
 ```
 
 ### 4️⃣ Deploy lên production
@@ -320,21 +369,8 @@ AI:     95% autonomous
 Input:  Approved code
 Output: CI/CD + Docker + Production URL
 Time:   30 phút - 2 giờ
+Pipeline: /security-audit → /deploy → verify → confirm
 ```
-
----
-
-## 📚 TÀI LIỆU
-
-| Document | Mô tả |
-|----------|-------|
-| [`docs/PROJECT-BRIEF-SYSTEM.md`](docs/PROJECT-BRIEF-SYSTEM.md) | Master guide - Bắt đầu từ đây |
-| [`docs/Analyze-Existing-Project-Prompt.txt`](docs/Analyze-Existing-Project-Prompt.txt) | Prompt phân tích dự án có sẵn |
-| [`docs/New-Project-Interview-Prompt.txt`](docs/New-Project-Interview-Prompt.txt) | Prompt tạo dự án mới |
-| [`docs/deployment-guide.md`](docs/deployment-guide.md) | Hướng dẫn triển khai step-by-step |
-| [`.agent/ARCHITECTURE.md`](.agent/ARCHITECTURE.md) | System architecture & directory map |
-| [`.agent/rules/GEMINI.md`](.agent/rules/GEMINI.md) | AI workspace behavior (Maestro config) |
-| [`.agent/CHANGELOG.md`](.agent/CHANGELOG.md) | Version history chi tiết |
 
 ---
 
@@ -342,67 +378,72 @@ Time:   30 phút - 2 giờ
 
 **Sau 1 tháng sử dụng:**
 
-```json
-{
-  "features_delivered": "40-60",
-  "ai_autonomy": "90-95%",
-  "quality_avg": "85-90/100",
-  "test_coverage": "80-90%",
-  "time_per_feature": "1-2 hours (vs 4-6 hours manual)"
-}
-```
+| Metric | Kết quả |
+|--------|---------|
+| Features delivered/month | 40-60 |
+| AI autonomy | 90-95% |
+| Quality average | 85-90/100 |
+| Test coverage | 80-90% |
+| Time per feature | 1-2 hours (vs 4-6 manual) |
 
 **ROI:**
 - ⚡ **3-4x** faster development
 - 🎯 **Consistent** 85+ quality score
-- 📝 **Complete** documentation
-- 🧪 **Automated** testing
+- 📝 **Complete** auto-generated documentation
+- 🧪 **Automated** testing & security scanning
+
+---
+
+## 📚 TÀI LIỆU
+
+### System Documentation
+
+| Document | Mô tả |
+|----------|-------|
+| [📖 **docs/INDEX.md**](.agent/docs/INDEX.md) | **Master index — Bắt đầu từ đây** |
+| [AGENT-CATALOG.md](.agent/docs/agents/AGENT-CATALOG.md) | 27 agents chi tiết |
+| [SKILL-CATALOG.md](.agent/docs/skills/SKILL-CATALOG.md) | 59 skills chi tiết |
+| [WORKFLOW-CATALOG.md](.agent/docs/workflows/WORKFLOW-CATALOG.md) | 31 workflows chi tiết |
+| [RULES-CATALOG.md](.agent/docs/rules/RULES-CATALOG.md) | 137 rules chi tiết |
+| [SYSTEMS-CATALOG.md](.agent/docs/systems/SYSTEMS-CATALOG.md) | 6 protocols chi tiết |
+
+### Architecture & Config
+
+| Document | Mô tả |
+|----------|-------|
+| [ARCHITECTURE.md](.agent/ARCHITECTURE.md) | System architecture & directory map |
+| [GEMINI.md](.agent/GEMINI.md) | AI workspace behavior (Master config) |
+| [CHANGELOG.md](.agent/CHANGELOG.md) | Version history chi tiết |
+
+### Project Guides
+
+| Document | Mô tả |
+|----------|-------|
+| [PROJECT-BRIEF-SYSTEM.md](docs/PROJECT-BRIEF-SYSTEM.md) | Master guide cho project briefs |
+| [New-Project-Interview-Prompt.txt](docs/New-Project-Interview-Prompt.txt) | Prompt tạo dự án mới |
+| [Analyze-Existing-Project-Prompt.txt](docs/Analyze-Existing-Project-Prompt.txt) | Prompt phân tích dự án hiện có |
+| [deployment-guide.md](docs/deployment-guide.md) | Hướng dẫn triển khai step-by-step |
 
 ---
 
 ## 🗺️ ROADMAP
 
-### v3.1.1 (January 2026)
-- ✅ 7 standardized AI Roles
-- ✅ TEAM_WORKFLOW pipeline
-- ✅ PROJECT_SCAFFOLD templates
-- ✅ OUTPUT_FILES standards
-- ✅ Memory System integration
+### v4.0.0 ✅ (February 2026 — Current)
 
-### v3.2.0 (February 2026)
-- ✅ Performance benchmarking system
-- ✅ GraphQL conventions
-- ✅ gRPC conventions
-- ✅ WebSocket standards
+- ✅ Auto-Rule Discovery Engine (3-layer detection)
+- ✅ Agent Registry (27 specialized agents)
+- ✅ Orchestration Engine (automated pipelines)
+- ✅ 137 expert rules across 11 categories
+- ✅ Full documentation suite (14 catalog & process docs)
+- ✅ Expert audit: 6 critical issues found & fixed
 
-### v3.3.0 (February 2026)
-- ✅ Connect-RPC conventions
-- ✅ SSE (Server-Sent Events) standards
-- ✅ Message Queue conventions
+### v4.1.0 (Planned — Q2 2026)
 
-### v4.0.0 (Current - February 2026)
-- ✅ Auto-Rule Discovery Engine
-- ✅ Agent Registry (27 agents)
-- ✅ Orchestration Engine
-- ✅ Discovery Script (PowerShell)
-
-### v4.1.0 (Planned - Q2 2026)
-- [ ] Plugin architecture
+- [ ] Plugin architecture for custom agents
 - [ ] Skill marketplace
-- [ ] Analytics dashboard
+- [ ] Analytics dashboard (DX metrics visualization)
 - [ ] ML/AI deployment standards
-
----
-
-## 📋 CHANGELOG
-
-### v4.0.0 (2026-02-10)
-- ✅ Auto-Rule Discovery Engine
-- ✅ Agent Registry (27 agents)
-- ✅ Orchestration Engine
-- ✅ Discovery Script
-
-For full version history, see [`.agent/CHANGELOG.md`](.agent/CHANGELOG.md).
+- [ ] Multi-language CLI (bash + pwsh feature parity)
 
 ---
 
@@ -410,14 +451,14 @@ For full version history, see [`.agent/CHANGELOG.md`](.agent/CHANGELOG.md).
 
 Built with ❤️ as an AI-Native Development Operating System.
 
-**System Architect:** AI Automation Team  
-**Maintained by:** Development Standards Committee
+**Author:** [Hoàng Thanh Tuyền](https://github.com/tuyenht)  
+**Repository:** [github.com/tuyenht/Antigravity-Core](https://github.com/tuyenht/Antigravity-Core)
 
 ---
 
 ## 📄 LICENSE
 
-Proprietary - All rights reserved.
+Proprietary — All rights reserved.
 
 ---
 
@@ -426,16 +467,17 @@ Proprietary - All rights reserved.
 </p>
 
 ```
-┌──────────────────────────────────────┐
-│                                      │
-│    Copy. Prompt. Build. Deploy.      │
-│         95% AI. 5% You.              │
-│                                      │
-└──────────────────────────────────────┘
+┌──────────────────────────────────────────────┐
+│                                              │
+│  27 Agents. 59 Skills. 137 Rules.            │
+│  Copy. Prompt. Build. Deploy.                │
+│  95% AI. 5% You.                             │
+│                                              │
+└──────────────────────────────────────────────┘
 ```
 
 <p align="center">
-  <sub>Antigravity-Core - Where Human Intent Meets AI Excellence</sub>
+  <sub>Antigravity-Core — Where Human Intent Meets AI Excellence</sub>
   <br>
   <sub>Built with 💎 Platinum Standard</sub>
 </p>
