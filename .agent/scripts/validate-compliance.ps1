@@ -8,6 +8,7 @@ param(
     [switch]$AutoFix
 )
 
+$ErrorActionPreference = "Continue"
 Write-Host "🔍 .agent STANDARDS Compliance Check" -ForegroundColor Cyan
 Write-Host "━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━" -ForegroundColor DarkGray
 Write-Host ""

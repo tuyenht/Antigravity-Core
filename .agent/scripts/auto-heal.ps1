@@ -2,6 +2,7 @@
 # Automatically fix common issues (lint, syntax, imports)
 # References: .agent/auto-healing.yml
 
+$ErrorActionPreference = "Continue"
 param(
     [switch]$DryRun,
     [switch]$Lint,
@@ -39,9 +40,6 @@ function Show-Help {
 }
 
 $MaxIterations = 3
-$CurrentIteration = 0
-$FixedCount = 0
-$FailedCount = 0
 
 # Log file
 $LogFile = ".agent/memory/auto-heal-log.json"
