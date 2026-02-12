@@ -15,12 +15,12 @@ description: Review code tự động
 **Quick Review:**
 ```bash
 # Run complete audit
-/review full
+/code-review-automation
 
 # Run specific category
-/review security
-/review performance  
-/review quality
+/security-audit
+/optimize
+/check
 ```
 
 **Manual Step-by-Step:**

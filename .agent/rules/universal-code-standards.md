@@ -113,7 +113,7 @@ go test ./...
 ### Run Full Audit
 ```bash
 # Use automated review workflow
-/review full
+/code-review-automation
 
 # Or manually run all checks from code-review-automation.md
 ```

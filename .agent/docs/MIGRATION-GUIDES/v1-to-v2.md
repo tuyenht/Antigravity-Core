@@ -41,11 +41,11 @@ All existing workflows, skills, and configurations continue to work.
 **After (v2.0):**
 ```bash
 # Auto-detects tech stack
-/review full
+/code-review-automation
 
 # Or specific categories
-/review security
-/review performance
+/security-audit
+/optimize
 ```
 
 **Action Required:** None (opt-in feature)
@@ -118,7 +118,7 @@ New features covered:
    ```
 
 3. **Optional: Adopt New Workflows**
-   - Try `/review full` on your codebase
+   - Try `/code-review-automation` on your codebase
    - Read `INTEGRATION-GUIDE.md`
    - Update Next.js projects to v16 (when ready)
 
@@ -216,7 +216,7 @@ If you encounter any issues:
 
 1. ✅ Update to v2.0
 2. ✅ Read INTEGRATION-GUIDE.md
-3. ✅ Try `/review full` on one project
+3. ✅ Try `/code-review-automation` on one project
 4. ✅ Gradually adopt new features
 5. ✅ Monitor CHANGELOG.md for future updates
 
