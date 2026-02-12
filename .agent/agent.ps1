@@ -281,7 +281,7 @@ switch ($Command.ToLower()) {
     }
     
     "dx" {
-        switch ($Target.ToLower()) {
+        switch (($Target ?? '').ToLower()) {
             "roi" { Run-Command "dx-analytics.ps1" "-ROI" }
             "quality" { Run-Command "dx-analytics.ps1" "-Quality" }
             "bottlenecks" { Run-Command "dx-analytics.ps1" "-Bottlenecks" }

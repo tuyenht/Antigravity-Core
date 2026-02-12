@@ -14,7 +14,7 @@ Antigravity-Core is an **AI-Native Development Operating System** — a structur
 │                                                                  │
 │  ┌──────────┐  ┌──────────┐  ┌──────────┐  ┌──────────────────┐ │
 │  │  GEMINI  │  │  AGENTS  │  │  SKILLS  │  │     RULES        │ │
-│  │  .md     │──│  (27)    │──│  (59)    │──│     (130+)       │ │
+│  │  .md     │──│  (27)    │──│  (59)    │──│     (137)        │ │
 │  │  (Entry) │  │          │  │          │  │                   │ │
 │  └──────────┘  └──────────┘  └──────────┘  └──────────────────┘ │
 │       │              │             │               │             │
@@ -126,7 +126,7 @@ Expert-level coding standards auto-loaded by context detection.
 | typescript/ | 13 | `.ts`, `.tsx` |
 | nextjs/ | 13 | `next.config.*` |
 | python/ | 14 | `.py`, requirements |
-| web-development/ | 14 | `.html`, `.css`, `.js` |
+| web-development/ | 12 | `.html`, `.css`, `.js` |
 | agentic-ai/ | 12 | Debug, test, review keywords |
 | standards/ | 25 | Always active |
 | shared/ | 1 | Common utilities |

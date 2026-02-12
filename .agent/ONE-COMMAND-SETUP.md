@@ -47,7 +47,7 @@ System automatically:
 
 **Backend:**
 - Laravel (from `composer.json`)
-- Express/Fastify/Hono (from `package.json`)
+- Express/Fastify (from `package.json`)
 - FastAPI/Django/Flask (from `requirements.txt`)
 - Go (from `go.mod`)
 - Rust (from `Cargo.toml`)
@@ -161,7 +161,7 @@ your-project/
 .\.agent\agent.ps1 init -Force
 
 # Linux/Mac
-./agent init --force
+./.agent/agent.sh init --force
 ```
 
 ### Check Status
@@ -170,7 +170,7 @@ your-project/
 .\.agent\agent.ps1 status
 
 # Linux/Mac
-./agent status
+./.agent/agent.sh status
 ```
 
 ---
@@ -283,7 +283,7 @@ ANTIGRAVITY:
 
 **Solution:** Use `--force` or `-Force`:
 ```bash
-./agent init --force
+./.agent/agent.sh init --force
 ```
 
 ### Issue: "agent.ps1 cannot be loaded"
@@ -306,7 +306,7 @@ After initialization:
 
 2. **Check Configuration**
    ```bash
-   ./agent status
+   ./.agent/agent.sh status
    ```
 
 3. **Start Building!**
