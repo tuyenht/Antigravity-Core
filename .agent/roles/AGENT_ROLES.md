@@ -26,7 +26,7 @@ Khi Antigravity-Core sinh ra một project mới, 7 vai trò AI sau sẽ đượ
 
 ### Thông tin cơ bản
 - **Trigger phrase:** `business-analyst` hoặc `BA`
-- **Skill folder:** `.agent/skills/business-analyst/`
+- **Skill folder:** `.agent/skills/brainstorming/`
 - **Khi nào gọi:** Bắt đầu dự án, thay đổi requirements
 
 ### Input → Output
