@@ -176,7 +176,7 @@ function generate_config() {
     "mobile": "$DETECTED_MOBILE",
     "database": "$DETECTED_DATABASE"
   },
-  "active_agents": "${ACTIVE_AGENTS// /\", \"}",
+  "active_agents": ["$(echo "$ACTIVE_AGENTS" | sed 's/ /", "/g')"],
   "workflows": {
     "enabled": ["plan", "scaffold", "test", "review", "deploy"]
   }

@@ -450,7 +450,7 @@ Track these to measure .agent value:
 → Add custom rules in `.agent/rules/standards/frameworks/yourstack-conventions.md`
 
 ### "Automated review is slow"
-→ Run specific categories only: `/review security`  
+→ Run specific categories only: `/security-audit`  
 → Or run in parallel in CI/CD
 
 ### "Getting false positives"
