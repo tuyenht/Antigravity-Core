@@ -1,7 +1,7 @@
 # 📖 Hướng Dẫn Sử Dụng Workflows
 
-**Tổng số:** 34 Workflows  
-**Cập nhật:** 2026-01-20
+**Tổng số:** 31 Workflows  
+**Cập nhật:** 2026-02-12
 
 ---
 
@@ -11,7 +11,7 @@
 ```
 /workflow-name
 ```
-**Ví dụ:** `/check`, `/verify`, `/scaffold`
+**Ví dụ:** `/check`, `/scaffold`, `/debug`
 
 ### Cách 2: Yêu cầu AI thực hiện
 ```
@@ -29,8 +29,6 @@
 | Slash Command | Mục Đích | Khi Nào Dùng |
 |---------------|----------|--------------|
 | `/check` | Daily self-audit, tự sửa lỗi nhỏ | Hàng ngày |
-| `/verify` | Evolution regression test | Sau upgrade lớn |
-| `/status` | Kiểm tra trạng thái project | Bất kỳ lúc nào |
 
 ---
 
@@ -39,7 +37,6 @@
 | Slash Command | Mục Đích | Khi Nào Dùng |
 |---------------|----------|--------------|
 | `/security-audit` | Kiểm tra bảo mật toàn diện | Trước release |
-| `/security-scan` | Quét nhanh vulnerabilities | Định kỳ |
 | `/secret-scanning` | Phát hiện secrets trong code | Trước commit |
 
 ---
@@ -50,8 +47,7 @@
 |---------------|----------|--------------|
 | `/optimize` | Tối ưu hóa code | Khi cần cải thiện perf |
 | `/performance-budget-enforcement` | Kiểm tra budgets | Trước merge |
-| `/react-performance-review` | Review React performance | Frontend work |
-| `/dx-analytics` | Xem metrics DX | Theo dõi tiến độ |
+| `/auto-optimization-cycle` | Chu trình tối ưu tự động | Sau mỗi tính năng |
 
 ---
 
@@ -92,7 +88,6 @@
 | Slash Command | Mục Đích | Khi Nào Dùng |
 |---------------|----------|--------------|
 | `/deploy` | Deploy ứng dụng | Production deploy |
-| `/preview` | Preview changes | Trước merge |
 | `/mobile-deploy` | Deploy mobile | Mobile release |
 | `/mobile-init` | Khởi tạo mobile project | New mobile project |
 
@@ -104,8 +99,8 @@
 |---------------|----------|--------------|
 | `/plan` | Lập kế hoạch | Bắt đầu project/feature |
 | `/brainstorm` | Brainstorm ideas | Ideation |
+| `/requirements-first` | Viết PRD trước khi code | Từ spec/PRD |
 | `/code-review-automation` | Auto code review | PR review |
-| `/deprecation-policy` | Deprecation process | Retire components |
 
 ---
 
@@ -114,7 +109,19 @@
 | Slash Command | Mục Đích | Khi Nào Dùng |
 |---------------|----------|--------------|
 | `/ui-ux-pro-max` | UI/UX best practices | Frontend design |
+| `/update-ui-ux-pro-max` | Cập nhật skill UI-UX | Skill update |
 | `/enhance` | Enhance existing features | UX improvement |
+| `/admin-component` | Tạo component admin (Velzon) | Admin panel |
+| `/admin-dashboard` | Tạo trang admin dashboard | Dashboard |
+
+---
+
+### 🔧 **SETUP & MIGRATION**
+
+| Slash Command | Mục Đích | Khi Nào Dùng |
+|---------------|----------|--------------|
+| `/install-antigravity` | Cài đặt/cập nhật Antigravity-Core | Setup |
+| `/migrate` | Nâng cấp framework tự động | Tech migrations |
 
 ---
 
@@ -123,8 +130,6 @@
 | Slash Command | Mục Đích | Khi Nào Dùng |
 |---------------|----------|--------------|
 | `/orchestrate` | Multi-agent coordination | Complex tasks |
-| `/auto-optimization-cycle` | AOC cycle | System optimization |
-| `/migrate` | Migration tasks | Tech migrations |
 
 ---
 
@@ -140,7 +145,7 @@
 | 6 | `/security-audit` | Kiểm tra bảo mật |
 | 7 | `/optimize` | Tối ưu performance |
 | 8 | `/deploy` | Deploy app |
-| 9 | `/verify` | Verify evolution |
+| 9 | `/orchestrate` | Multi-agent tasks |
 | 10 | `/quickfix` | Sửa lỗi nhanh |
 
 ---
@@ -150,7 +155,6 @@
 ### Gợi nhớ nhanh:
 ```
 /check    → Kiểm tra hàng ngày
-/verify   → Xác nhận sau upgrade
 /scaffold → Tạo code mới
 /refactor → Cải thiện code
 /debug    → Tìm lỗi

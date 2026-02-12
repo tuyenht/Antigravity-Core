@@ -286,7 +286,7 @@ code-generator-agent creates:
 - Controller
 - Validation
 - Tests (80%+ coverage)
-- All STANDARDS.md compliant
+- All .agent/rules/STANDARDS.md compliant
 ```
 
 ---

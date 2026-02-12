@@ -48,8 +48,8 @@
 
 ### "I need to build a Laravel feature"
 
-**Patterns & conventions:**
-→ `laravel-patterns`
+**Performance & conventions:**
+→ `laravel-performance`
 
 **Performance optimization:**
 → `laravel-performance` (N+1, indexes, caching)
@@ -111,7 +111,7 @@
 
 | Technology | Skill |
 |------------|-------|
-| **Laravel** | `laravel-patterns`, `laravel-performance` |
+| **Laravel** | `laravel-performance`, `inertia-performance` |
 | **Node.js** | `nodejs-best-practices` |
 | **NestJS** | `nestjs-expert` |
 | **Python** | `python-patterns` |
@@ -181,7 +181,7 @@
 
 1. **Plan** → `plan-writing`
 2. **Architecture** → `architecture-mastery`
-3. **Backend** → `laravel-patterns` or `nodejs-best-practices`
+3. **Backend** → `laravel-performance` or `nodejs-best-practices`
 4. **Frontend** → `react-patterns`
 5. **Tests** → `testing-mastery`
 
@@ -198,7 +198,7 @@
 ### Improve Code Quality
 
 1. **Clean code principles** → `clean-code`
-2. **Linting** → `lint-and-validate`
+2. **Linting** → `clean-code`
 3. **Code review** → `code-review-checklist`
 
 ---
@@ -216,7 +216,6 @@
 ### Stack Skills (Per Tech Stack)
 
 **Laravel:**
-- `laravel-patterns`
 - `laravel-performance`
 - `inertia-performance`
 

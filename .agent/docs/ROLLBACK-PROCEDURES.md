@@ -65,10 +65,10 @@ git push origin main
 
 ```powershell
 # If you have backups
-Copy-Item "C:\Backups\.agent\agents\*" "c:\Projects\Test1\.agent\agents\" -Force -Recurse
+Copy-Item "C:\Backups\.agent\agents\*" ".agent\agents\" -Force -Recurse
 
 # Verify
-Get-ChildItem "c:\Projects\Test1\.agent\agents\"
+Get-ChildItem ".agent\agents\"
 ```
 
 ### Verification:
@@ -321,7 +321,7 @@ After ANY rollback, verify:
    ```
 
 2. **Test Incrementally**
-   - Update 1-2 agents first, not all 23
+   - Update 1-2 agents first, not all 27
    - Test STANDARDS.md changes on small codebase
    - Enable AOC on single feature first
 
@@ -341,17 +341,13 @@ After ANY rollback, verify:
 
 **If rollback fails or unclear:**
 
-1. **Check walkthroughs:**
-   - `walkthrough.md` - Complete system overview
-   - `expert-panel-review.md` - Architecture insights
+2. **Review system documentation:**
+   - `.agent/docs/TEAM_WORKFLOW.md` - Complete workflow pipeline
+   - `.agent/docs/AGENT-SELECTION.md` - Agent routing guide
+   - `.agent/ARCHITECTURE.md` - System architecture
 
-2. **Review implementation reports:**
-   - `golden-rule-implementation-report.md`
-   - `rba-implementation-report.md`
-   - `aoc-implementation-report.md`
-
-3. **Consult deep audit:**
-   - `deep-audit-report.md` - Original system analysis
+3. **Consult changelogs:**
+   - `.agent/CHANGELOG.md` - Version history
 
 ---
 
