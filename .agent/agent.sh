@@ -141,8 +141,8 @@ function activate_agents() {
     
     # Backend
     if [[ "$DETECTED_BACKEND" == *"Laravel"* ]]; then
-        agents+=("backend-laravel-specialist")
-        info "  → backend-laravel-specialist (Laravel)"
+        agents+=("laravel-specialist")
+        info "  → laravel-specialist (Laravel)"
     elif [[ "$DETECTED_BACKEND" == *"Express"* ]] || [[ "$DETECTED_BACKEND" == *"Fastify"* ]]; then
         agents+=("backend-specialist")
         info "  → backend-specialist (Node.js)"
@@ -188,7 +188,7 @@ EOF
 
 # Generate README
 function generate_readme() {
-    cat > .agent/PROJECT-README.md << 'EOF'
+    cat > .agent/PROJECT-README.md << EOF
 # .agent Configuration for This Project
 
 **Initialized:** $(date)

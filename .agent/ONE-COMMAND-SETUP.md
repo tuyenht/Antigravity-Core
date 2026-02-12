@@ -83,7 +83,7 @@ cp -r ~/path/to/.agent .
 #   Backend: Laravel
 #   Frontend: React
 # ✅ Agents Activated:
-#   → backend-laravel-specialist
+#   → laravel-specialist
 #   → frontend-specialist
 #   → security-auditor
 #   → test-engineer
@@ -100,7 +100,7 @@ cd existing-nextjs-app
 cp -r ~/path/to/.agent .
 
 # 3. Initialize
-./agent init
+./.agent/agent.sh init
 
 # Output:
 # ✅ Tech Stack Detected:
@@ -143,7 +143,7 @@ your-project/
   },
   "active_agents": [
     "frontend-specialist",
-    "backend-laravel-specialist",
+    "laravel-specialist",
     "database-architect",
     "security-auditor",
     "test-engineer"
@@ -186,7 +186,7 @@ USER: "Build a user authentication system with email/password and OAuth"
 ANTIGRAVITY: 
   [Reads .agent/project.json]
   ✅ Detected: Laravel + React project
-  ✅ Activating: backend-laravel-specialist + frontend-specialist
+  ✅ Activating: laravel-specialist + frontend-specialist
   
   [Auto-generates plan:]
   1. Backend: Laravel Sanctum authentication
@@ -204,7 +204,7 @@ USER: "Add a blog post model with comments"
 ANTIGRAVITY:
   [Reads .agent/project.json]
   ✅ Laravel project detected
-  ✅ Activating: backend-laravel-specialist
+  ✅ Activating: laravel-specialist
   
   [Executes:]
   Phase 1: Requirements ✓
@@ -234,7 +234,7 @@ ANTIGRAVITY:
 ### After (Auto Init):
 ```bash
 # ✅ ONE COMMAND!
-./agent init
+./.agent/agent.sh init
 # Done! 🎉
 ```
 
@@ -324,7 +324,7 @@ Copy template → Fill fields → Configure → Test → Deploy
 
 **NEW WAY (Simple):**
 ```bash
-./agent init
+./.agent/agent.sh init
 # 5 seconds, fully automatic! ✨
 ```
 
@@ -334,7 +334,7 @@ Copy template → Fill fields → Configure → Test → Deploy
 
 **Just:**
 1. Copy `.agent` folder
-2. Run `./agent init`
+2. Run `./.agent/agent.sh init` (Linux/Mac) or `.\.agent\agent.ps1 init` (Windows)
 3. Start building!
 
 **No configuration, no setup, no hassle!** 🎯

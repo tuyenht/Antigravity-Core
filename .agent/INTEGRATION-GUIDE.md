@@ -2,7 +2,7 @@
 
 **Purpose:** How to use `.agent` folder for automated code generation  
 **Target:** All future projects  
-**Updated:** 2026-01-31
+**Updated:** 2026-02-13
 
 ---
 
@@ -81,7 +81,7 @@ cd NewProject
 # Add to package.json (Node.js)
 {
   "scripts": {
-    "prepare": "husky install",
+    "prepare": "husky",
     "pre-commit": "lint-staged"
   },
   "lint-staged": {
@@ -91,14 +91,14 @@ cd NewProject
 }
 
 npm install -D husky lint-staged
-npm run prepare
+npx husky init
 ```
 
 ### Step 4: Run Initial Code Review
 ```bash
 # Use the automated review workflow
 # (Assuming you have AI assistant access)
-/review full
+/code-review-automation
 
 # Or manually run checks
 npm run lint
@@ -118,12 +118,12 @@ npm test
 # Uses: .agent/workflows/code-review-automation.md
 
 # AI Assistant command:
-/review full
+/code-review-automation
 
-# Or step-by-step:
-/review security
-/review performance
-/review quality
+# Or use specific workflows:
+/security-audit
+/optimize
+/check
 ```
 
 **What it checks:**
@@ -143,20 +143,19 @@ npm test
 ````bash
 # Generate boilerplate code following .agent standards
 
-# Example: Generate CRUD API
-/generate api User
+# Example: Generate CRUD module
+/scaffold User
 # - Creates controller (with validation, error handling)
 # - Creates model/entity
 # - Creates tests
 # - Updates routes
 # - All following .agent/rules standards!
 
-# Example: Generate React component
-/generate component Button
+# Example: Create/enhance features
+/enhance "Add Button component"
 # - TypeScript types
 # - Proper props validation
 # - Accessibility built-in
-# - Storybook story included
 # - Unit tests included
 ````
 
@@ -165,9 +164,9 @@ npm test
 ### 3. Architecture Guidance
 ```bash
 # Get architecture advice based on .agent standards
-/architect database-schema
-/architect api-design
-/architect folder-structure
+/schema-first       # Database schema design
+/plan               # Architecture & design planning
+/brainstorm         # Explore ideas and compare solutions
 ```
 
 ---
@@ -245,9 +244,9 @@ mv .agent/memory/metrics/tracking.yaml \
    `.agent/rules/universal-code-standards.md`
 
 2. **Review Framework Standards:**
-   - React: `.agent/rules/standards/frameworks/react-conventions.md`
    - Laravel: `.agent/rules/standards/frameworks/laravel-conventions.md`
-   - Etc.
+   - Inertia+React: `.agent/rules/standards/frameworks/inertia-react-conventions.md`
+   - Next.js: `.agent/rules/standards/frameworks/nextjs-conventions.md`
 
 3. **Practice with Generated Code:**
    - Generate components/APIs using .agent
@@ -256,7 +255,7 @@ mv .agent/memory/metrics/tracking.yaml \
 
 4. **Run Code Reviews:**
    - Submit PR
-   - Run `/review full`
+   - Run `/code-review-automation`
    - See what AI catches
 
 ### Team Standards Meeting
@@ -365,9 +364,9 @@ jobs:
 # → Generates implementation plan following .agent standards
 
 # 2. Generate code
-/generate api auth/login
-/generate api auth/register
-/generate component LoginForm
+/scaffold auth/login
+/scaffold auth/register
+/enhance LoginForm
 
 # 3. Write custom logic
 # (Following .agent/rules standards)
@@ -388,7 +387,7 @@ gh pr create
 # → Quality gates check everything
 
 # 8. Before deploy
-/review full
+/code-review-automation
 # → Final comprehensive check
 
 # 9. Deploy!

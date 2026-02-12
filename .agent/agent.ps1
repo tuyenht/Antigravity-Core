@@ -10,7 +10,9 @@ param(
     [string]$Target,
     
     [switch]$Help,
-    [switch]$Verbose
+    [switch]$Verbose,
+    [switch]$DryRun,
+    [switch]$Force
 )
 
 # Colors
@@ -39,6 +41,10 @@ function Show-Help {
     Write-Host ""
     Write-Host "Commands:" -ForegroundColor $Cyan
     Write-Host ""
+    Write-Host "  SETUP"
+    Write-Host "    init                Initialize project (auto-detect stack)"
+    Write-Host "    init -Force         Reinitialize (overwrite existing config)"
+    Write-Host ""
     Write-Host "  INFORMATION"
     Write-Host "    help                Show this help"
     Write-Host "    status              Show system status"
@@ -54,7 +60,7 @@ function Show-Help {
     Write-Host ""
     Write-Host "  AUTOMATION"
     Write-Host "    heal                Run auto-healing"
-    Write-Host "    heal --dry-run      Preview auto-healing"
+    Write-Host "    heal -DryRun        Preview auto-healing (no changes)"
     Write-Host ""
     Write-Host "  METRICS"
     Write-Host "    dx                  Show DX analytics dashboard"
@@ -64,7 +70,8 @@ function Show-Help {
     Write-Host "Examples:" -ForegroundColor $Cyan
     Write-Host "    .\agent.ps1 status"
     Write-Host "    .\agent.ps1 health"
-    Write-Host "    .\agent.ps1 heal --dry-run"
+    Write-Host "    .\agent.ps1 init"
+    Write-Host "    .\agent.ps1 heal -DryRun"
     Write-Host "    .\agent.ps1 dx roi"
     Write-Host ""
 }
@@ -185,6 +192,75 @@ if ($Help -or $Command -eq "help" -or -not $Command) {
 }
 
 switch ($Command.ToLower()) {
+    "init" {
+        Write-Logo
+        Write-Host "Initializing project..." -ForegroundColor $Yellow
+        Write-Host ""
+        
+        # Check if already initialized
+        if ((Test-Path ".agent/project.json") -and -not $Force) {
+            Write-Host "Project already initialized. Use -Force to reinitialize." -ForegroundColor $Yellow
+            exit 0
+        }
+        
+        # Detect tech stack
+        $frontend = @()
+        $backend = @()
+        $database = @()
+        $activeAgents = @("security-auditor", "test-engineer")
+        
+        if (Test-Path "package.json") {
+            $pkg = Get-Content "package.json" -Raw
+            if ($pkg -match '"next"') { $frontend += "Next.js"; $activeAgents += "frontend-specialist" }
+            elseif ($pkg -match '"react"') { $frontend += "React"; $activeAgents += "frontend-specialist" }
+            elseif ($pkg -match '"vue"') { $frontend += "Vue"; $activeAgents += "frontend-specialist" }
+            elseif ($pkg -match '"svelte"') { $frontend += "Svelte"; $activeAgents += "frontend-specialist" }
+            if ($pkg -match '"typescript"') { $frontend += "TypeScript" }
+            if ($pkg -match '"express"' -or $pkg -match '"fastify"') { $backend += "Node.js"; $activeAgents += "backend-specialist" }
+        }
+        if (Test-Path "composer.json") {
+            $composer = Get-Content "composer.json" -Raw
+            if ($composer -match '"laravel/framework"') { $backend += "Laravel"; $activeAgents += "laravel-specialist" }
+        }
+        if (Test-Path "requirements.txt" -or Test-Path "pyproject.toml") { $backend += "Python"; $activeAgents += "backend-specialist" }
+        if (Test-Path "go.mod") { $backend += "Go"; $activeAgents += "backend-specialist" }
+        if (Test-Path "Cargo.toml") { $backend += "Rust"; $activeAgents += "backend-specialist" }
+        if (Test-Path "prisma/schema.prisma") { $database += "Prisma"; $activeAgents += "database-architect" }
+        if (Test-Path "drizzle.config.ts") { $database += "Drizzle"; $activeAgents += "database-architect" }
+        
+        $activeAgents = $activeAgents | Select-Object -Unique
+        
+        Write-Host "  Tech Stack Detected:" -ForegroundColor $Green
+        if ($frontend) { Write-Host "    Frontend: $($frontend -join ', ')" }
+        if ($backend) { Write-Host "    Backend:  $($backend -join ', ')" }
+        if ($database) { Write-Host "    Database: $($database -join ', ')" }
+        if (-not $frontend -and -not $backend -and -not $database) {
+            Write-Host "    (Could not auto-detect. Ensure package.json/composer.json exists.)" -ForegroundColor $Yellow
+        }
+        Write-Host ""
+        
+        Write-Host "  Agents Activated:" -ForegroundColor $Green
+        foreach ($a in $activeAgents) { Write-Host "    → $a" }
+        Write-Host ""
+        
+        # Generate project.json
+        $config = @{
+            version = "4.0.0"
+            initialized = Get-Date -Format "yyyy-MM-dd HH:mm:ss"
+            tech_stack = @{
+                frontend = ($frontend -join " ")
+                backend = ($backend -join " ")
+                database = ($database -join " ")
+            }
+            active_agents = $activeAgents
+        }
+        $config | ConvertTo-Json -Depth 3 | Set-Content ".agent/project.json" -Encoding UTF8
+        
+        Write-Host "✅ INITIALIZATION COMPLETE!" -ForegroundColor $Green
+        Write-Host "   Config saved to .agent/project.json" -ForegroundColor $Cyan
+        Write-Host ""
+    }
+    
     "status" { Show-Status }
     "agents" { Show-Agents }
     "skills" { Show-Skills }
@@ -196,7 +272,7 @@ switch ($Command.ToLower()) {
     "perf" { Run-Command "performance-check.ps1" "-All" }
     
     "heal" {
-        if ($Verbose) {
+        if ($DryRun) {
             Run-Command "auto-heal.ps1" "-All -DryRun"
         }
         else {

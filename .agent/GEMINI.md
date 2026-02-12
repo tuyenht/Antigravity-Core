@@ -1,7 +1,7 @@
 # Antigravity AI System Instructions
 
 **Version:** 4.0.0  
-**Last Updated:** 2026-02-10  
+**Last Updated:** 2026-02-13  
 **Purpose:** Core behavior and capability awareness for AI assistants
 
 ---
@@ -261,6 +261,18 @@ new_discoveries:
 
 ## 🚀 Workflow Integration
 
+### v4.0 Core Systems
+
+**Always reference these system components for intelligent routing:**
+
+```yaml
+# Core systems (.agent/systems/)
+orchestration_engine: systems/orchestration-engine.md    # Automated agent selection & pipeline execution
+auto_rule_discovery: systems/auto-rule-discovery.md      # 3-layer context detection (file ext, project config, keywords)
+agent_registry: systems/agent-registry.md                # Machine-readable capability registry for 27 agents
+rba_validator: systems/rba-validator.md                  # Reasoning-Before-Action protocol
+```
+
 ### Check Before Acting
 
 ```python
@@ -413,6 +425,6 @@ and continuous learning.
 
 ---
 
-**Last Updated:** 2026-02-12  
+**Last Updated:** 2026-02-13  
 **Review Schedule:** Monthly  
 **Owner:** Antigravity AI System

@@ -53,14 +53,24 @@ frontend:
         - "Implement preloading for critical resources"
         - "Use next/image for automatic optimization"
     
-    FID:  # First Input Delay
+    FID:  # First Input Delay (deprecated March 2024, kept for reference)
       limit: 100ms
-      severity: error
+      severity: warning
       message: "FID exceeds 100ms"
       suggestions:
         - "Break up long JavaScript tasks"
         - "Use web workers for heavy computation"
         - "Defer non-critical JavaScript"
+    
+    INP:  # Interaction to Next Paint (replaced FID as Core Web Vital)
+      limit: 200ms
+      severity: error
+      message: "INP exceeds 200ms (Core Web Vitals threshold)"
+      suggestions:
+        - "Break up long JavaScript tasks"
+        - "Use web workers for heavy computation"
+        - "Yield to the main thread with scheduler.yield()"
+        - "Optimize event handlers and reduce input delay"
     
     CLS:  # Cumulative Layout Shift
       limit: 0.1

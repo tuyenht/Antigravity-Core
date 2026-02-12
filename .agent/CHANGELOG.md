@@ -107,7 +107,6 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 - **install-global.ps1** - Global installer (2-step pattern like uipro-cli)
 - **update-global.ps1** - Update global installation
-- **setup-profile.ps1** - Auto-generated PowerShell profile with agi/agu/agug commands
 - **install-antigravity.md v2.0** - Updated workflow with 2-step pattern
 
 ### Changed
@@ -240,7 +239,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
   - System startup metrics
   - Regression detection thresholds
 
-- **`benchmarks/benchmark-runner.sh`** - Automated performance measurement
+- **`benchmarks/benchmark-runner.ps1`** - Automated performance measurement
   - Auto-measure all components
   - Compare vs baselines
   - Detect regressions (20% threshold)

@@ -14,10 +14,11 @@ cd /your-project
 
 ### 2️⃣ Chạy lệnh init
 ```bash
-# Windows (PowerShell hoặc CMD)
-.\.agent\agent init
+# Windows (PowerShell)
+.\.agent\agent.ps1 init
 
 # Linux/Mac
+chmod +x .agent/agent.sh
 ./.agent/agent.sh init
 ```
 
@@ -29,11 +30,8 @@ cd /your-project
 
 ### Windows:
 ```powershell
-# Full path (recommended)
+# Recommended
 .\.agent\agent.ps1 init
-
-# Short version (nếu ở root project)
-.\.agent\agent init
 ```
 
 ### Linux/Mac:
@@ -71,7 +69,7 @@ Antigravity sẽ:
 **Lệnh chính:**
 ```bash
 # Windows
-.\.agent\agent init
+.\.agent\agent.ps1 init
 
 # Linux/Mac
 ./.agent/agent.sh init
