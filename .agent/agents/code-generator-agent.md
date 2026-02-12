@@ -447,9 +447,9 @@ Your performance is measured by:
 
 **References:**
 - `clean-code` skill for principles
-- `laravel-patterns` for Laravel conventions
+- `laravel-performance` for Laravel optimization
 - `react-patterns` for React conventions
-- `testing-patterns` for test structure
+- `testing-mastery` for test structure
 
 ---
 

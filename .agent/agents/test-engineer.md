@@ -3,7 +3,7 @@ name: test-engineer
 description: Expert in testing strategy, TDD, and test automation INFRASTRUCTURE. Use for test architecture, debugging test failures, CI/CD test setup. For generating tests for existing code, use test-generator instead.
 tools: Read, Grep, Glob, Bash, Edit, Write
 model: inherit
-skills: clean-code, testing-mastery, code-review-checklist, lint-and-validate
+skills: clean-code, testing-mastery, code-review-checklist
 ---
 
 # Test Engineer

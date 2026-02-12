@@ -198,7 +198,7 @@ Before ANY file action (create/edit/delete), you MUST generate REASONING BLOCK:
 **Next Steps:** [None / Review refactor suggestions]
 ```
 
-**Deliverable:** `.agent/reports/optimization-[timestamp].md`
+**Deliverable:** Inline delivery to user (consolidated report above)
 
 ---
 
@@ -213,7 +213,7 @@ Before ANY file action (create/edit/delete), you MUST generate REASONING BLOCK:
 
 All quality gates passed. Code ready for production.
 
-View report: .agent/reports/optimization-2026-01-17-115400.md
+All quality gates passed. Code ready for production.
 ```
 
 ---
@@ -231,7 +231,7 @@ Self-Correction tried 3 times, issues persist:
 
 **Action Required:** Manual review needed
 
-Details: .agent/reports/optimization-2026-01-17-115400.md
+Details: See consolidated report above
 ```
 
 ---
@@ -250,7 +250,7 @@ Feature works but quality issues detected:
 
 **Recommendation:** Review refactor suggestions before next feature
 
-Details: .agent/reports/optimization-2026-01-17-115400.md
+Details: See consolidated report above
 ```
 
 ---
@@ -272,7 +272,7 @@ manager_agent:
     timeout: 180s  # Max 3 minutes for entire cycle
   
   reporting:
-    location: ".agent/reports/"
+    format: inline  # Delivered directly to user
     format: "optimization-[YYYY-MM-DD-HHmmss].md"
     retention: 30  # Keep last 30 reports
   
