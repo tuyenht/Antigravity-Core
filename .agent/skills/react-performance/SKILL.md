@@ -1,7 +1,7 @@
 ---
 name: react-performance
 description: Production-grade React performance optimization based on Vercel Best Practices (10+ years production experience)
-version: 1.0
+version: 1.1
 impact-driven: true
 priority-order: CRITICAL → HIGH → MEDIUM → LOW
 source: https://github.com/vercel-labs/agent-skills/tree/main/skills/react-best-practices
@@ -155,9 +155,11 @@ Estimated Impact:
 ### HIGH Priority
 
 **3. Server-Side Performance**
+- ✅ Authenticate Server Actions like API routes (CRITICAL security)
 - ✅ Use `React.cache()` for deduplication
 - ✅ Strategic Suspense boundaries
 - ✅ LRU caching for expensive operations
+- ✅ Avoid duplicate serialization in RSC props
 - ❌ Don't fetch same data multiple times per request
 
 ### MEDIUM Priority
@@ -171,7 +173,10 @@ Estimated Impact:
 - ✅ Lazy state initialization
 - ✅ Functional setState updates
 - ✅ Extract to memoized components
+- ✅ Derive state during render, not in effects
+- ✅ Use useRef for transient frequent values
 - ❌ Don't parse expensive data on every render
+- ❌ Don't model user actions as state + effect
 
 ---
 
