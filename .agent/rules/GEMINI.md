@@ -5,7 +5,7 @@
 
 ---
 
-## � CRITICAL: AGENT & SKILL PROTOCOL (START HERE)
+## 🔑 CRITICAL: AGENT & SKILL PROTOCOL (START HERE)
 
 > **MANDATORY:** You MUST read the appropriate agent file and its skills BEFORE performing any implementation. This is the highest priority rule.
 
@@ -32,7 +32,7 @@ Agent activated → Check frontmatter "skills:" field
 
 ---
 
-## �📥 REQUEST CLASSIFIER (STEP 2)
+## 📥 REQUEST CLASSIFIER (STEP 2)
 
 **Before ANY action, classify the request:**
 
@@ -147,19 +147,22 @@ When user's prompt is NOT in English:
 └────────────────────────────────────────────────────────────────┘
 ```
 
-### Rule Categories (68 Rules)
+### Rule Categories (137 Rules)
 
 | Category | Count | Path | Key Triggers |
 |----------|-------|------|--------------|
-| **Database** | 10 | `rules/database/` | postgresql, mysql, redis, mongodb, query, schema |
-| **Mobile** | 10 | `rules/mobile/` | react-native, flutter, ios, android, mobile |
-| **Backend** | 6 | `rules/backend-frameworks/` | laravel, express, fastapi, graphql, rest |
-| **TypeScript** | 6 | `rules/typescript/` | .ts, .tsx, typescript, types |
-| **Frontend** | 7 | `rules/frontend-frameworks/` | vue, angular, svelte, solid, astro, remix |
-| **Next.js** | 4 | `rules/nextjs/` | next.js, app router, server actions |
-| **Python** | 5 | `rules/python/` | .py, fastapi, flask, ai, ml |
-| **Web Dev** | 8 | `rules/web-development/` | html, css, javascript, accessibility |
 | **Agentic AI** | 12 | `rules/agentic-ai/` | debug, test, review, security, refactor |
+| **Backend** | 12 | `rules/backend-frameworks/` | laravel, express, fastapi, graphql, grpc, websocket, sse |
+| **Database** | 10 | `rules/database/` | postgresql, mysql, redis, mongodb, query, schema |
+| **Frontend** | 7 | `rules/frontend-frameworks/` | vue, angular, svelte, solid, astro, remix |
+| **Mobile** | 10 | `rules/mobile/` | react-native, flutter, ios, android, mobile |
+| **Next.js** | 13 | `rules/nextjs/` | next.js, app router, server actions, i18n, seo |
+| **Python** | 14 | `rules/python/` | .py, fastapi, flask, ai, ml, data, automation |
+| **TypeScript** | 13 | `rules/typescript/` | .ts, .tsx, typescript, generics, monorepo |
+| **Web Dev** | 12 | `rules/web-development/` | html, css, javascript, accessibility, pwa |
+| **Standards (General)** | 16 | `rules/standards/` | code quality, security, testing, ci/cd |
+| **Standards (Framework)** | 9 | `rules/standards/frameworks/` | laravel, nextjs, flutter, vue3 conventions |
+| **Shared** | 1 | `rules/shared/` | common utilities |
 
 ### File Extension → Rule Mapping
 
@@ -196,15 +199,15 @@ When user's prompt is NOT in English:
 
 ```yaml
 # AUTOMATIC RULE LOADING BY REQUEST KEYWORDS
-"debug, fix, error":     agentic-ai/debugging.md
-"test, unit test":       agentic-ai/testing.md
-"security, audit":       agentic-ai/security.md
-"refactor, cleanup":     agentic-ai/refactoring.md
-"optimize, slow":        agentic-ai/performance.md
-"api design":            agentic-ai/api-design.md
-"database, schema":      agentic-ai/database-design.md
-"deploy, ci/cd":         agentic-ai/devops.md
-"review, PR":            agentic-ai/code-review.md
+"debug, fix, error":     agentic-ai/debugging-agent.md
+"test, unit test":       agentic-ai/test-writing-agent.md
+"security, audit":       agentic-ai/security-audit-agent.md
+"refactor, cleanup":     agentic-ai/refactoring-agent.md
+"optimize, slow":        agentic-ai/performance-optimization-agent.md
+"api design":            agentic-ai/api-design-agent.md
+"database, schema":      agentic-ai/database-design-agent.md
+"deploy, ci/cd":         agentic-ai/devops-cicd-agent.md
+"review, PR":            agentic-ai/code-review-agent.md
 ```
 
 ### Loading Limits
@@ -319,18 +322,16 @@ fi
 - **Reporting:** If it fails, fix the **Critical** blockers first (Security/Lint).
 
 
-**Available Scripts (12 total):**
+**Available Scripts (10 total):**
 | Script | Skill | When to Use |
 |--------|-------|-------------|
 | `security_scan.py` | vulnerability-scanner | Always on deploy |
-| `dependency_analyzer.py` | vulnerability-scanner | Weekly / Deploy |
 | `lint_runner.py` | lint-and-validate | Every code change |
 | `test_runner.py` | testing-patterns | After logic change |
 | `schema_validator.py` | database-design | After DB change |
 | `ux_audit.py` | frontend-design | After UI change |
 | `accessibility_checker.py` | frontend-design | After UI change |
 | `seo_checker.py` | seo-fundamentals | After page change |
-| `bundle_analyzer.py` | performance-profiling | Before deploy |
 | `mobile_audit.py` | mobile-design | After mobile change |
 | `lighthouse_audit.py` | performance-profiling | Before deploy |
 | `playwright_runner.py` | webapp-testing | Before deploy |
@@ -376,7 +377,7 @@ fi
 
 ## 📁 QUICK REFERENCE
 
-### Available Master Agents (8)
+### 8 Primary Entry-Point Agents
 
 | Agent | Domain & Focus |
 |-------|----------------|
@@ -387,7 +388,7 @@ fi
 | `frontend-specialist` | Frontend & Growth (UI/UX + SEO + Edge/Static Deploy) |
 | `mobile-developer` | Mobile Specialist (Cross-platform + Mobile Performance)|
 | `debugger` | Systematic Root Cause Analysis & Bug Fixing |
-| `game-developer` | Specialized Game Logic & Assets & Performance |
+| `game-designer` | Game Design Lead (coordinates mobile-game-developer & pc-game-developer) |
 
 ### Key Skills
 
@@ -399,8 +400,8 @@ fi
 | `frontend-design` | Web UI patterns |
 | `mobile-design` | Mobile UI patterns |
 | `plan-writing` | {task-slug}.md format |
-| `threejs-mastery` | 2025 3D Web (R3F, WebGPU) |
 | `behavioral-modes` | Mode switching |
+| `ui-ux-pro-max` | Design intelligence (67 styles, 21 palettes, 57 fonts) |
 
 ### Script Locations
 
@@ -409,24 +410,38 @@ fi
 | Health check | `.agent/scripts/health-check.ps1` |
 | Security scan | `.agent/skills/vulnerability-scanner/scripts/security_scan.py` |
 | UX audit | `.agent/skills/frontend-design/scripts/ux_audit.py` |
+| Accessibility | `.agent/skills/frontend-design/scripts/accessibility_checker.py` |
 | Mobile audit | `.agent/skills/mobile-design/scripts/mobile_audit.py` |
 | Lighthouse | `.agent/skills/performance-profiling/scripts/lighthouse_audit.py` |
+| SEO checker | `.agent/skills/seo-fundamentals/scripts/seo_checker.py` |
 | Playwright | `.agent/skills/webapp-testing/scripts/playwright_runner.py` |
+| Lint runner | `.agent/skills/lint-and-validate/scripts/lint_runner.py` |
+| Type coverage | `.agent/skills/lint-and-validate/scripts/type_coverage.py` |
+| Test runner | `.agent/skills/testing-patterns/scripts/test_runner.py` |
+| Schema validator | `.agent/skills/database-design/scripts/schema_validator.py` |
+| API validator | `.agent/skills/api-patterns/scripts/api_validator.py` |
+| GEO checker | `.agent/skills/geo-fundamentals/scripts/geo_checker.py` |
+| i18n checker | `.agent/skills/i18n-localization/scripts/i18n_checker.py` |
+| UI/UX core | `.agent/skills/ui-ux-pro-max/scripts/core.py` |
+| Design system | `.agent/skills/ui-ux-pro-max/scripts/design_system.py` |
+| Design search | `.agent/skills/ui-ux-pro-max/scripts/search.py` |
 
-### Expert Rules (68 Total)
+### Expert Rules (137 Total)
 
 > 📚 **Full Catalog:** `@[rules/RULES-INDEX.md]`
 
 | Category | Count | Key Rules |
 |----------|-------|-----------|
-| **Database** | 10 | PostgreSQL, MySQL, Redis, MongoDB, Query Optimization |
-| **Mobile** | 10 | React Native, Flutter, iOS Swift, Android Kotlin |
-| **Backend** | 6 | Laravel, Express, FastAPI, GraphQL, REST API |
-| **Frontend** | 7 | Vue 3, Angular, Svelte, Solid.js, Astro, Remix, Tailwind |
-| **TypeScript** | 6 | Core, React Native, Expo, Vue 3, Angular, NestJS |
-| **Next.js** | 4 | App Router, Server Actions, Authentication, Performance |
-| **Python** | 5 | FastAPI, Flask, AI/ML, Data Science, Automation |
-| **Web Dev** | 8 | HTML/A11y, CSS, JavaScript, Core Web Vitals, Security |
 | **Agentic AI** | 12 | Debugging, Testing, Code Review, Security, Refactoring |
+| **Backend** | 12 | Laravel, Express, FastAPI, GraphQL, gRPC, WebSocket, SSE, MQ |
+| **Database** | 10 | PostgreSQL, MySQL, Redis, MongoDB, Query Optimization |
+| **Frontend** | 7 | Vue 3, Angular, Svelte, Solid.js, Astro, Remix, Tailwind |
+| **Mobile** | 10 | React Native, Flutter, iOS Swift, Android Kotlin |
+| **Next.js** | 13 | App Router, Server Actions, Auth, Performance, i18n, SEO |
+| **Python** | 14 | FastAPI, Flask, AI/ML, Data Science, Automation, DevOps |
+| **TypeScript** | 13 | Core, Generics, Monorepo, React Native, Vue 3, NestJS |
+| **Web Dev** | 12 | HTML/A11y, CSS, JS, Web Components, WASM, CWV, PWA |
+| **Standards** | 25 | Code Quality, Security, Testing, CI/CD, Framework Conventions |
+| **Shared** | 1 | Common utilities |
 
 ---

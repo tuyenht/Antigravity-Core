@@ -4,6 +4,7 @@ description: Automatically detects and fixes code errors (lint, tests, types) wi
 activation: Triggered by manager-agent after feature completion
 tools: Read, Grep, Bash, Edit, Write
 model: inherit
+skills: clean-code, testing-patterns, systematic-debugging
 version: 4.0.0
 ---
 

@@ -4,6 +4,7 @@ description: Detects code smells, complexity issues, and duplication. Suggests i
 activation: Triggered by manager-agent after feature completion
 tools: Read, Grep, Bash, Edit, Write
 model: inherit
+skills: clean-code, code-review-checklist, performance-profiling
 version: 4.0.0
 ---
 

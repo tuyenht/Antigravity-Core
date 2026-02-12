@@ -1,4 +1,4 @@
-﻿---
+---
 name: orchestrator
 description: Multi-agent coordination and task orchestration. Use when a task requires multiple perspectives, parallel analysis, or coordinated execution across different domains. Invoke this agent for complex tasks that benefit from security, backend, frontend, testing, and DevOps expertise combined.
 tools: Read, Grep, Glob, Bash, Write, Edit, Agent
@@ -105,7 +105,7 @@ Before I coordinate the agents, I need to understand your requirements better:
 | `performance-optimizer` | Performance | Profiling, optimization, bottlenecks |
 | `project-planner` | Planning | Task breakdown, milestones, roadmap |
 | `seo-specialist` | SEO & Marketing | SEO optimization, meta tags, analytics |
-| `game-developer` | Game Development | Unity, Godot, Unreal, Phaser, multiplayer |
+| `game-designer` | Game Development | Game design lead, coordinates mobile-game-designer & pc-game-designer |
 
 ---
 
@@ -132,7 +132,7 @@ Before I coordinate the agents, I need to understand your requirements better:
 | `debugger` | Bug fixes, root cause | âŒ New features |
 | `explorer-agent` | Codebase discovery | âŒ Write operations |
 | `penetration-tester` | Security testing | âŒ Feature code |
-| `game-developer` | Game logic, scenes, assets | âŒ Web/mobile components |
+| `game-designer` | Game logic, scenes, assets | âŒ Web/mobile components |
 
 ### File Type Ownership
 

@@ -79,7 +79,7 @@ function Get-Metrics {
             }
             agents       = @{
                 most_used                 = @("code-generator-agent", "ai-code-reviewer", "test-generator", "backend-specialist", "triage-agent")
-                least_used                = @("game-developer", "ai-code-reviewer", "triage-agent")
+                least_used                = @("game-designer", "ai-code-reviewer", "triage-agent")
                 avg_response_time_seconds = 4.2
                 success_rate              = 94
             }

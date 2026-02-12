@@ -4,6 +4,7 @@ description: Orchestrates Auto-Optimization Cycle after feature completion. Coor
 activation: After any agent completes a feature
 tools: Read, Grep, Bash, Edit, Write
 model: inherit
+skills: clean-code, behavioral-modes
 version: 4.0.0
 ---
 

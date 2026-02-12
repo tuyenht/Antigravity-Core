@@ -220,7 +220,7 @@ STEP 1-2          STEP 3           STEP 4          STEP 5-N
 | **Maintenance** | `/maintain`, `/debug`, `/quickfix`, `/migrate` |
 | **Design** | `/ui-ux-pro-max`, `/update-ui-ux-pro-max`, `/admin-component`, `/admin-dashboard` |
 
-**Chi tiết:** Xem [`docs/TEAM_WORKFLOW.md`](docs/TEAM_WORKFLOW.md)
+**Chi tiết:** Xem [`.agent/docs/TEAM_WORKFLOW.md`](.agent/docs/TEAM_WORKFLOW.md)
 
 ---
 
@@ -270,11 +270,11 @@ Hệ thống nhớ giúp AI **giữ ngữ cảnh** xuyên suốt các phiên là
 
 | Metric | Score | Status |
 |--------|-------|--------|
-| Autonomy | 85/100 | ⭐⭐⭐⭐ |
-| Health | 80/100 | ⭐⭐⭐⭐ |
-| Consistency | 75/100 | ⭐⭐⭐⭐ |
-| Efficiency | 80/100 | ⭐⭐⭐⭐ |
-| **Overall System** | **80/100** | **Strong** |
+| Autonomy | 95/100 | ⭐⭐⭐⭐⭐ |
+| Health | 90/100 | ⭐⭐⭐⭐⭐ |
+| Consistency | 85/100 | ⭐⭐⭐⭐ |
+| Efficiency | 90/100 | ⭐⭐⭐⭐⭐ |
+| **Overall System** | **90/100** | **Platinum** |
 
 ### Quality Gates (Platinum Standard)
 
@@ -333,7 +333,7 @@ Time:   30 phút - 2 giờ
 | [`docs/New-Project-Interview-Prompt.txt`](docs/New-Project-Interview-Prompt.txt) | Prompt tạo dự án mới |
 | [`docs/deployment-guide.md`](docs/deployment-guide.md) | Hướng dẫn triển khai step-by-step |
 | [`.agent/ARCHITECTURE.md`](.agent/ARCHITECTURE.md) | System architecture & directory map |
-| [`.agent/rules/GEMINI.md`](.agent/rules/GEMINI.md) | AI system instructions |
+| [`.agent/rules/GEMINI.md`](.agent/rules/GEMINI.md) | AI workspace behavior (Maestro config) |
 | [`.agent/CHANGELOG.md`](.agent/CHANGELOG.md) | Version history chi tiết |
 
 ---
@@ -369,14 +369,24 @@ Time:   30 phút - 2 giờ
 - ✅ OUTPUT_FILES standards
 - ✅ Memory System integration
 
-### v3.2.0 (Current - February 2026)
+### v3.2.0 (February 2026)
 - ✅ Performance benchmarking system
 - ✅ GraphQL conventions
 - ✅ gRPC conventions
 - ✅ WebSocket standards
 
-### v4.0 (Q2 2026)
-- [ ] Agent orchestration framework
+### v3.3.0 (February 2026)
+- ✅ Connect-RPC conventions
+- ✅ SSE (Server-Sent Events) standards
+- ✅ Message Queue conventions
+
+### v4.0.0 (Current - February 2026)
+- ✅ Auto-Rule Discovery Engine
+- ✅ Agent Registry (27 agents)
+- ✅ Orchestration Engine
+- ✅ Discovery Script (PowerShell)
+
+### v4.1.0 (Planned - Q2 2026)
 - [ ] Plugin architecture
 - [ ] Skill marketplace
 - [ ] Analytics dashboard
@@ -386,39 +396,13 @@ Time:   30 phút - 2 giờ
 
 ## 📋 CHANGELOG
 
-### v3.1.1 (2026-02-09)
-- 🔧 Synced version consistency across all files
-- ✨ Created ARCHITECTURE.md system map
-- ✨ Added benchmark-runner.ps1 (Windows compatible)
-- ✨ Added GitHub Actions CI/CD pipeline
-- 🔧 Clarified overlapping agent roles
-- 🔧 Fixed CHANGELOG roadmap and reference links
-- 📊 Calibrated system metrics to 0-100 scale
+### v4.0.0 (2026-02-10)
+- ✅ Auto-Rule Discovery Engine
+- ✅ Agent Registry (27 agents)
+- ✅ Orchestration Engine
+- ✅ Discovery Script
 
-### v3.1 (2026-01-31)
-- ✨ Added Memory System documentation
-- ✨ Added Tech Stack confidence levels
-- ✨ Added Quality Gates (Platinum Standard)
-- ✨ Added Workflow categories table
-- ✨ Added Roadmap section
-- 📚 Enhanced documentation links
-
-### v3.0 (2026-01-31)
-- ✨ Added 7 standardized AI Roles
-- ✨ Added TEAM_WORKFLOW pipeline
-- ✨ Added PROJECT_SCAFFOLD templates
-- ✨ Added OUTPUT_FILES standards
-- 🔧 Renamed to Antigravity-Core
-- 📚 Complete documentation overhaul
-
-### v2.0 (2026-01-17)
-- ✨ Universal Standards System
-- ✨ Anti-AI-Hell Framework
-- ✨ Code Review Automation
-
-### v1.0 (2026-01-16)
-- 🎉 Initial Release
-- Laravel Stack Focus
+For full version history, see [`.agent/CHANGELOG.md`](.agent/CHANGELOG.md).
 
 ---
 

@@ -42,7 +42,7 @@ Antigravity-Core is an **AI-Native Development Operating System** — a structur
 ├── agents/      (27)      ← Agent role definitions
 ├── workflows/   (31)      ← Automated process definitions
 ├── skills/      (59)      ← Specialized knowledge modules
-├── rules/       (130+)    ← Expert coding standards
+├── rules/       (137)     ← Expert coding standards
 ├── scripts/     (14)      ← PowerShell automation
 ├── memory/                ← Persistent context & learning
 ├── roles/                 ← 7-role SDLC framework
@@ -113,7 +113,7 @@ Self-contained knowledge domains with SKILL.md instruction files.
 | **Design** | ui-ux-pro-max, frontend-design |
 | **Meta** | clean-code, architecture-mastery, brainstorming, plan-writing, behavioral-modes |
 
-### 4. Rules (130+ files, 11 categories)
+### 4. Rules (137 files, 11 categories)
 
 Expert-level coding standards auto-loaded by context detection.
 
@@ -121,7 +121,7 @@ Expert-level coding standards auto-loaded by context detection.
 |----------|-------|---------|
 | database/ | 10 | `.sql`, DB keywords |
 | mobile/ | 10 | `.swift`, `.kt`, `.dart` |
-| backend-frameworks/ | 7 | `.php`, `.py`, framework configs |
+| backend-frameworks/ | 12 | `.php`, `.py`, framework configs |
 | frontend-frameworks/ | 7 | `.vue`, `.svelte`, `.astro` |
 | typescript/ | 13 | `.ts`, `.tsx` |
 | nextjs/ | 13 | `next.config.*` |
@@ -224,7 +224,7 @@ Output (Code + Tests + Docs)
 1. **This file** — System map
 2. **`GEMINI.md`** — AI behavior configuration
 3. **`roles/AGENT_ROLES.md`** — 7-role SDLC framework
-4. **`docs/TEAM_WORKFLOW.md`** — Pipeline mapping
+4. **`systems/agent-registry.md`** — 27-agent capability registry
 5. **`rules/STANDARDS.md`** — Quality standards (Golden Rule)
 6. **`INTEGRATION-GUIDE.md`** — Team onboarding
 

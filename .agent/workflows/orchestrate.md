@@ -100,7 +100,7 @@ Onaylıyor musunuz? (Y/N)
 | `seo-specialist` | SEO | Meta, Schema, Rankings |
 | `documentation-writer` | Docs | README, API docs |
 | `debugger` | Debug | Error analysis |
-| `game-developer` | Games | Unity, Godot |
+| `game-designer` | Games | Unity, Godot |
 | `orchestrator` | Meta | Coordination |
 
 ---

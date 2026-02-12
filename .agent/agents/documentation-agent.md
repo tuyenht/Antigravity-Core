@@ -4,6 +4,7 @@ description: Automatically updates documentation after code changes - API docs, 
 activation: Triggered by manager-agent after feature completion
 tools: Read, Grep, Bash, Edit, Write
 model: inherit
+skills: clean-code, documentation-templates, i18n-localization
 version: 4.0.0
 ---
 
