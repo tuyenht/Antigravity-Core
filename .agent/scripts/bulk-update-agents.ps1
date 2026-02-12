@@ -65,7 +65,7 @@ Before ANY code action (create/edit/delete file), you MUST:
 
 "@
 
-$agentsDir = "c:\Projects\Test1\.agent\agents"
+$agentsDir = Join-Path (Split-Path $PSScriptRoot -Parent) "agents"
 $updated = 0
 $skipped = 0
 $errors = @()
