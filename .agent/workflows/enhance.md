@@ -1,63 +1,70 @@
 ---
-description: Add or update features in existing application. Used for iterative development.
+description: Thêm/sửa tính năng cho dự án hiện có
 ---
 
-# /enhance - Update Application
+# /enhance - Cập Nhật Dự Án
 
 $ARGUMENTS
 
 ---
 
-## Task
+## Bước 1: Nhận diện dự án hiện tại
 
-This command adds features or makes updates to existing application.
+**Tự động phát hiện framework:**
 
-### Steps:
+```
+Auto-detect từ project files:
+├── package.json + "next"        → Next.js
+├── package.json + "react"       → React 
+├── package.json + "vue"         → Vue.js
+├── composer.json + "laravel"    → Laravel
+├── pyproject.toml + "fastapi"   → FastAPI
+├── pubspec.yaml                 → Flutter
+└── Cargo.toml                   → Rust
 
-1. **Understand Current State**
-   - Load project state with `session_manager.py`
-   - Understand existing features, tech stack
+→ Load rules tương ứng từ .agent/rules/
+→ Load conventions từ .agent/skills/
+```
 
-2. **Plan Changes**
-   - Determine what will be added/changed
-   - Detect affected files
-   - Check dependencies
+## Bước 2: Lên kế hoạch thay đổi
+- Xác định files bị ảnh hưởng
+- Kiểm tra dependencies
+- Ước lượng phạm vi thay đổi
 
-3. **Present Plan to User** (for major changes)
-   ```
-   "To add admin panel:
-   - I'll create 15 new files
-   - Update 8 files
-   - Takes ~10 minutes
-   
-   Should I start?"
-   ```
+## Bước 3: Trình bày kế hoạch (cho thay đổi lớn)
+```
+"Để thêm admin panel:
+- Tạo mới 15 files
+- Cập nhật 8 files
+- Ước tính ~10 phút
 
-4. **Apply**
-   - Call relevant agents
-   - Make changes
-   - Test
+Bắt đầu chứ?"
+```
 
-5. **Update Preview**
-   - Hot reload or restart
+## Bước 4: Thực hiện
+- Gọi các agent phù hợp
+- Áp dụng thay đổi
+- Chạy test
+
+## Bước 5: Xem kết quả
+- Hot reload hoặc restart server
 
 ---
 
-## Usage Examples
+## Ví dụ
 
 ```
 /enhance add dark mode
 /enhance build admin panel
 /enhance integrate payment system
 /enhance add search feature
-/enhance edit profile page
 /enhance make responsive
 ```
 
 ---
 
-## Caution
+## Lưu ý
 
-- Get approval for major changes
-- Warn on conflicting requests (e.g., "use Firebase" when project uses PostgreSQL)
-- Commit each change with git
+- Xin phép trước khi thay đổi lớn
+- Cảnh báo khi có xung đột (vd: "dùng Firebase" khi project dùng PostgreSQL)
+- Commit mỗi thay đổi với git

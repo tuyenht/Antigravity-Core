@@ -1,5 +1,5 @@
 ---
-description: Debugging command. Activates DEBUG mode for systematic problem investigation.
+description: Tìm và sửa lỗi có hệ thống
 ---
 
 # /debug - Systematic Problem Investigation

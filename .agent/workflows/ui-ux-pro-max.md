@@ -1,5 +1,5 @@
 ---
-description: Plan and implement UI
+description: Thiết kế UI/UX chuyên nghiệp
 auto_execution_mode: 3
 ---
 

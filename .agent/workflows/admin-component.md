@@ -1,5 +1,5 @@
 ---
-description: Generate individual admin components (tables, cards, charts, forms, modals) using Velzon patterns
+description: Tạo component admin (Velzon)
 ---
 
 # Admin Component Generator

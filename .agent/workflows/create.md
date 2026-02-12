@@ -1,59 +1,72 @@
 ---
-description: Create new application command. Triggers App Builder skill and starts interactive dialogue with user.
+description: Tạo dự án mới từ đầu
 ---
 
-# /create - Create Application
+# /create - Tạo Dự Án Mới
 
 $ARGUMENTS
 
 ---
 
-## Task
+## Bước 0: Kiểm tra dự án đã tồn tại
 
-This command starts a new application creation process.
+**QUAN TRỌNG:** Trước khi tạo mới, kiểm tra thư mục hiện tại:
 
-### Steps:
+```
+Check for existing project indicators:
+├── package.json     → Node.js project exists
+├── composer.json    → PHP/Laravel project exists
+├── pyproject.toml   → Python project exists
+├── pubspec.yaml     → Flutter project exists
+├── Cargo.toml       → Rust project exists
+└── .git/            → Git repo exists
 
-1. **Request Analysis**
-   - Understand what the user wants
-   - If information is missing, use `conversation-manager` skill to ask
-
-2. **Project Planning**
-   - Use `project-planner` agent for task breakdown
-   - Determine tech stack
-   - Plan file structure
-   - Create plan file and proceed to building
-
-3. **Application Building (After Approval)**
-   - Orchestrate with `app-builder` skill
-   - Coordinate expert agents:
-     - `database-architect` → Schema
-     - `backend-specialist` → API
-     - `frontend-specialist` → UI
-
-4. **Preview**
-   - Start with `auto_preview.py` when complete
-   - Present URL to user
+If ANY indicator found:
+  → WARN: "Thư mục này đã chứa dự án [type]. Bạn muốn:"
+    1. Thêm tính năng mới (→ chuyển sang /enhance)
+    2. Tạo dự án mới trong thư mục con
+    3. Ghi đè (cần xác nhận rõ ràng)
+```
 
 ---
 
-## Usage Examples
+## Bước 1: Phân tích yêu cầu
+- Hiểu người dùng muốn tạo gì
+- Nếu thiếu thông tin → Kích hoạt Socratic Gate (tối thiểu 3 câu hỏi)
+
+## Bước 2: Lập kế hoạch
+- Dùng `project-planner` agent để phân tách task
+- Chọn tech stack (dựa trên project-detection.md)
+- Lên cấu trúc file
+- Tạo plan file và tiến hành xây dựng
+
+## Bước 3: Xây dựng (sau khi được duyệt)
+- Phối hợp với `app-builder` skill
+- Điều phối các agent chuyên gia:
+  - `backend-specialist` → API, logic
+  - `frontend-specialist` → UI
+  - Database → Schema
+
+## Bước 4: Xem trước
+- Chạy `npm run dev` hoặc tương đương
+- Hiển thị URL cho người dùng
+
+---
+
+## Ví dụ
 
 ```
 /create blog site
 /create e-commerce app with product listing and cart
 /create todo app
-/create Instagram clone
 /create crm system with customer management
 ```
 
 ---
 
-## Before Starting
+## Trước khi bắt đầu
 
-If request is unclear, ask these questions:
-- What type of application?
-- What are the basic features?
-- Who will use it?
-
-Use defaults, add details later.
+Nếu yêu cầu chưa rõ ràng, hỏi:
+- Loại ứng dụng gì?
+- Tính năng cơ bản nào?
+- Ai sẽ sử dụng?

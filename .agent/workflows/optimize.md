@@ -1,5 +1,5 @@
 ---
-description: Identify and fix performance bottlenecks with profiling and optimization
+description: Phân tích và tối ưu hiệu suất
 ---
 
 # /optimize - Performance Tuning Workflow

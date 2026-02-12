@@ -1,5 +1,5 @@
 ---
-description: Requirements-driven development - Create detailed PRD before ANY coding
+description: Viết PRD trước khi code
 ---
 
 # Requirements-First Workflow (PRD Generator)

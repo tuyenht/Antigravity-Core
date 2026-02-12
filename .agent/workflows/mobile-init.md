@@ -1,5 +1,5 @@
 ---
-description: Initialize a new mobile project with best practices configured
+description: Khởi tạo dự án mobile
 ---
 
 # /mobile-init - Initialize Mobile Project

@@ -1,5 +1,5 @@
 ---
-description: Daily self-audit for autonomous workspace maintenance. Detects regressions, drift, duplication, and ensures safety. Automatically applies small safe fixes.
+description: Kiểm tra workspace hàng ngày
 turbo-all: false
 ---
 

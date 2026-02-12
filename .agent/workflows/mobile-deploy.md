@@ -1,5 +1,5 @@
 ---
-description: Deploy mobile app to App Store and Google Play
+description: Triển khai app lên Store
 ---
 
 # /mobile-deploy - App Store Deployment Workflow

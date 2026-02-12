@@ -1,5 +1,5 @@
 ---
-description: Scan code for secrets and credentials before commit/push. Block commits with detected secrets. Industry standard security practice.
+description: Quét mã nguồn tìm thông tin nhạy cảm
 turbo-all: false
 ---
 

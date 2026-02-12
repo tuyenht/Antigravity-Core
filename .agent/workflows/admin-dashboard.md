@@ -1,5 +1,5 @@
 ---
-description: Build new admin dashboard pages using Velzon template patterns (React + TypeScript + Reactstrap + Redux)
+description: Tạo trang admin dashboard (Velzon)
 ---
 
 # Admin Dashboard Page Builder

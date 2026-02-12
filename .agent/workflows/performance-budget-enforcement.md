@@ -1,5 +1,5 @@
 ---
-description: Enforce performance budgets on code changes. Block PRs that violate budgets, suggest fixes. Google-style performance gate.
+description: Kiểm soát ngân sách hiệu suất
 turbo-all: false
 ---
 

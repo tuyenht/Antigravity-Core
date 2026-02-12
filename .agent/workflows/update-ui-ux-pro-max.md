@@ -1,5 +1,5 @@
 ---
-description: Update UI-UX-Pro-Max skill to latest version from GitHub
+description: Cập nhật skill UI-UX-Pro-Max
 ---
 
 # Update UI-UX-Pro-Max Skill

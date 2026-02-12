@@ -6,7 +6,7 @@
 
 | Keywords | Project Type | Template |
 |----------|--------------|----------|
-| blog, post, article | Blog | astro-static |
+| blog, post, article | Blog | nextjs-static |
 | e-commerce, product, cart, payment | E-commerce | nextjs-saas |
 | dashboard, panel, management | Admin Dashboard | nextjs-fullstack |
 | api, backend, service, rest | API Service | express-api |
@@ -17,7 +17,7 @@
 | crm, customer, sales | CRM | nextjs-fullstack |
 | saas, subscription, stripe | SaaS | nextjs-saas |
 | landing, promotional, marketing | Landing Page | nextjs-static |
-| docs, documentation | Documentation | astro-static |
+| docs, documentation | Documentation | nextjs-static |
 | extension, plugin, chrome | Browser Extension | chrome-extension |
 | desktop, electron | Desktop App | electron-desktop |
 | cli, command line, terminal | CLI Tool | cli-tool |

@@ -1,5 +1,5 @@
 ---
-description: Automated framework version migration with code transformation
+description: Nâng cấp framework tự động
 ---
 
 # /migrate - Framework Migration Workflow

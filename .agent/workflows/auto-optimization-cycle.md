@@ -1,5 +1,5 @@
 ---
-description: Auto-Optimization Cycle workflow - runs after ANY feature completion
+description: Chu trình tối ưu tự động sau mỗi tính năng
 trigger: Feature delivery complete
 automation: Auto-triggered by manager-agent
 ---

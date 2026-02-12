@@ -1,5 +1,5 @@
 ---
-description: Universal code review workflow for any project
+description: Review code tự động
 ---
 
 # 🤖 Automated Code Review Workflow

@@ -1,5 +1,5 @@
 ---
-description: Rapid bug identification and resolution for immediate issues
+description: Sửa lỗi nhanh, vấn đề đơn giản
 ---
 
 # /quickfix - Quick Bug Resolution

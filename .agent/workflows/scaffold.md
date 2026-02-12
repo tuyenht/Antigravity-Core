@@ -1,5 +1,5 @@
 ---
-description: Auto-generate complete feature modules with best practices for any framework
+description: Tạo module CRUD hoàn chỉnh theo framework
 ---
 
 # /scaffold - Feature Scaffolding Workflow

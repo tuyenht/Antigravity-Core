@@ -1,5 +1,5 @@
 ---
-description: Intelligent code refactoring with pattern detection and suggestions
+description: Tái cấu trúc code thông minh
 ---
 
 # /refactor - Smart Refactoring Workflow

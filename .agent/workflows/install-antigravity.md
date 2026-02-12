@@ -1,5 +1,5 @@
 ---
-description: Install or update Antigravity-Core for a project
+description: Cài đặt/cập nhật Antigravity-Core
 ---
 
 # Antigravity-Core Installation & Update Guide

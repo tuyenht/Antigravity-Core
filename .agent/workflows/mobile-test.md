@@ -1,5 +1,5 @@
 ---
-description: Run comprehensive mobile tests across platforms
+description: Test mobile đa nền tảng
 ---
 
 # /mobile-test - Mobile Testing Workflow

@@ -1,5 +1,5 @@
 ---
-description: Schema-first development workflow - Define data structures before coding
+description: Thiết kế database trước khi code
 ---
 
 # Schema-First Development Workflow

@@ -1,5 +1,5 @@
 ---
-description: Comprehensive security vulnerability scanning and remediation
+description: Kiểm tra bảo mật toàn diện
 ---
 
 # /security-audit - Security Analysis Workflow

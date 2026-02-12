@@ -1,5 +1,5 @@
 ---
-description: Auto-heal common issues (lint, type, import errors) before escalating to user. Meta-style automatic fixing reduces trivial fix cycles by 50%.
+description: Tự sửa lỗi lint, type, import
 turbo-all: false
 ---
 
