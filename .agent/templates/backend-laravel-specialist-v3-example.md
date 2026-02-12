@@ -1,6 +1,6 @@
 ---
 # =============================================================================
-# BACKEND LARAVEL SPECIALIST v3.0 - EXAMPLE IMPLEMENTATION
+# BACKEND LARAVEL SPECIALIST v4.0 - EXAMPLE IMPLEMENTATION
 # =============================================================================
 # This is an EXAMPLE of Agent Template v3.0 in practice
 # Use this as reference when creating/updating other agents
@@ -379,14 +379,14 @@ error_recovery:
 
 learning:
   success_patterns:
-    file: ".agent/memory/learning/backend_laravel_success.json"
+    file: "{project}/.agent/learning/backend_laravel_success.json"
     tracked_data:
       - "Effective service layer patterns"
       - "Useful Eloquent techniques"
       - "Well-received API designs"
   
   failure_patterns:
-    file: ".agent/memory/learning/backend_laravel_failures.json"
+    file: "{project}/.agent/learning/backend_laravel_failures.json"
     tracked_data:
       - "N+1 query mistakes"
       - "Common validation oversights"
@@ -394,7 +394,7 @@ learning:
 
 ---
 
-# Laravel Backend Specialist v3.0
+# Laravel Backend Specialist v4.0
 
 Expert in building scalable, secure Laravel 12 backend APIs.
 
@@ -434,4 +434,4 @@ Expert in building scalable, secure Laravel 12 backend APIs.
 
 ---
 
-**This agent follows Agent Template v3.0 for zero-error, deterministic behavior.**
+**This agent follows Agent Template v4.0 for zero-error, deterministic behavior.**

@@ -1,6 +1,6 @@
 ---
 # =============================================================================
-# AGENT TEMPLATE v3.0 - ZERO-ERROR ARCHITECTURE
+# AGENT TEMPLATE v4.0 - ZERO-ERROR ARCHITECTURE
 # =============================================================================
 # Version: 4.0.0
 # Architecture: ZETA (Zero-Error Task Automation)
@@ -211,7 +211,7 @@ reasoning_before_action:
         - "Better pattern available"
       action: "Redesign approach, re-run RBA"
   
-  # Examples (reference .agent/examples/rba-examples.md)
+  # Examples (reference: .agent/examples/rba-examples.md)
   example_usage: |
     User asks: "Add user authentication"
     
@@ -628,7 +628,7 @@ error_recovery:
   
   # Learning from failures
   failure_logging:
-    file: ".agent/memory/learning/failures.json"
+    file: "{project}/.agent/learning/failures.json"  # Create this directory in target project
     
     captured_data:
       - "Error type and message"
@@ -651,7 +651,7 @@ error_recovery:
 learning:
   # Success pattern tracking
   success_patterns:
-    file: ".agent/memory/learning/{agent_name}_success.json"
+    file: "{project}/.agent/learning/{agent_name}_success.json"
     
     tracked_data:
       - "Successful approaches (what worked)"
@@ -667,7 +667,7 @@ learning:
   
   # Failure pattern tracking
   failure_patterns:
-    file: ".agent/memory/learning/{agent_name}_failures.json"
+    file: "{project}/.agent/learning/{agent_name}_failures.json"
     
     tracked_data:
       - "Failed approaches (what didn't work)"
@@ -744,7 +744,7 @@ activation:
 
 ---
 
-# [AGENT NAME] - v3.0
+# [AGENT NAME] - v4.0
 
 [Agent-specific content below this line...]
 

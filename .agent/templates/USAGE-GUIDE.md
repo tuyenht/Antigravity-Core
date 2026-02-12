@@ -1,4 +1,4 @@
-# Agent Template v3.0 - Usage Guide
+# Agent Template v4.0 - Usage Guide
 
 **Template:** `.agent/templates/agent-template-v3.md`  
 **Example:** `.agent/templates/backend-laravel-specialist-v3-example.md`  
@@ -349,7 +349,7 @@ Done! 🎉
 
 ## Integration with Orchestrator
 
-Agents v3.0 work with Orchestrator (when implemented):
+Agents v4.0 work with `orchestrator.md` (`.agent/agents/orchestrator.md`):
 
 ```yaml
 # Orchestrator routes task to appropriate agent
@@ -380,11 +380,11 @@ Task: "Build blog API"
 **Reference Files:**
 - Template: `.agent/templates/agent-template-v3.md`
 - Example: `.agent/templates/backend-laravel-specialist-v3-example.md`
-- Architecture Plan: `zero-error-architecture-plan.md`
+- Project Scaffold: `.agent/templates/PROJECT_SCAFFOLD.md`
 
 **Questions?**
 Review the example agent for concrete implementation!
 
 ---
 
-**Remember: Agent Template v3.0 = Zero-Error, Deterministic, Self-Validating!** 🎯
+**Remember: Agent Template v4.0 = Zero-Error, Deterministic, Self-Validating!** 🎯
