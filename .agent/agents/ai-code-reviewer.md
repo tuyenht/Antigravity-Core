@@ -284,7 +284,7 @@ Skill: laravel-performance
 Pattern: DB::(select|statement|raw)\s*\([^)]*\$\w+
 Category: Security
 Severity: CRITICAL
-Skill: security-audit
+Skill: vulnerability-scanner
 ```
 
 **Async Waterfall Detection:**
@@ -300,7 +300,7 @@ Skill: react-performance
 Pattern: public function (update|delete|destroy)\([^)]*\)[\s\S]*?\{(?![\s\S]*?(authorize|Gate|Policy))
 Category: Security
 Severity: CRITICAL
-Skill: security-audit
+Skill: vulnerability-scanner
 ```
 
 ---
@@ -384,7 +384,7 @@ jobs:
 - [laravel-performance skill](file:///.agent/skills/laravel-performance/SKILL.md)
 - [react-performance skill](file:///.agent/skills/react-performance/SKILL.md)
 - [testing-mastery skill](file:///.agent/skills/testing-mastery/SKILL.md)
-- [security-audit skill](file:///.agent/skills/security-audit/SKILL.md)
+- [vulnerability-scanner skill](file:///.agent/skills/vulnerability-scanner/SKILL.md)
 
 ---
 
