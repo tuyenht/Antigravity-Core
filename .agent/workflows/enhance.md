@@ -26,6 +26,17 @@ Auto-detect từ project files:
 → Load conventions từ .agent/skills/
 ```
 
+## Bước 1.5: Tạo/Cập nhật Project Analysis Docs
+
+**Nếu chưa có** `docs/PROJECT-BRIEF.md` hoặc `docs/PROJECT-CONVENTIONS.md`:
+1. Phân tích toàn bộ codebase
+2. Tạo theo template:
+   - `.agent/templates/PROJECT-BRIEF-TEMPLATE.md` → `docs/PROJECT-BRIEF.md`
+   - `.agent/templates/PROJECT-CONVENTIONS-TEMPLATE.md` → `docs/PROJECT-CONVENTIONS.md`
+3. Fill ALL sections bằng dữ liệu thực tế từ codebase
+
+**Nếu đã có**: Đọc và sử dụng làm context cho các bước tiếp theo.
+
 ## Bước 2: Lên kế hoạch thay đổi
 - Xác định files bị ảnh hưởng
 - Kiểm tra dependencies

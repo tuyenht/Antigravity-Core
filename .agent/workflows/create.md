@@ -40,6 +40,14 @@ If ANY indicator found:
 - Lên cấu trúc file
 - Tạo plan file và tiến hành xây dựng
 
+## Bước 2.5: Tạo Project Analysis Docs
+
+Tạo theo template (bắt buộc cho mọi dự án mới):
+1. `.agent/templates/PROJECT-BRIEF-TEMPLATE.md` → `docs/PROJECT-BRIEF.md`
+2. `.agent/templates/PROJECT-CONVENTIONS-TEMPLATE.md` → `docs/PROJECT-CONVENTIONS.md`
+
+Fill ALL sections bằng thông tin từ planning phase.
+
 ## Bước 3: Xây dựng (sau khi được duyệt)
 - Phối hợp với `app-builder` skill
 - Điều phối các agent chuyên gia:
