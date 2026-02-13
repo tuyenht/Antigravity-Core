@@ -28,6 +28,8 @@ Auto-detect từ project files:
 
 ## Bước 1.5: Tạo/Cập nhật Project Analysis Docs
 
+### Tier 1: Bắt buộc (mọi dự án)
+
 **Nếu chưa có** `docs/PROJECT-BRIEF.md` hoặc `docs/PROJECT-CONVENTIONS.md`:
 1. Phân tích toàn bộ codebase
 2. Tạo theo template:
@@ -36,6 +38,15 @@ Auto-detect từ project files:
 3. Fill ALL sections bằng dữ liệu thực tế từ codebase
 
 **Nếu đã có**: Đọc và sử dụng làm context cho các bước tiếp theo.
+
+### Tier 2: Có điều kiện
+
+| Điều kiện | Template | Output |
+|-----------|----------|--------|
+| Project có UI (admin panel, web app, mobile) | `PROJECT-SCREENS-TEMPLATE.md` | `docs/PROJECT-SCREENS.md` |
+| Project có custom API endpoints | `PROJECT-API-TEMPLATE.md` | `docs/PROJECT-API.md` |
+
+**Chỉ tạo Tier 2 khi điều kiện match.** CLI/library chỉ cần Tier 1.
 
 ## Bước 2: Lên kế hoạch thay đổi
 - Xác định files bị ảnh hưởng

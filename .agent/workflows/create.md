@@ -42,11 +42,18 @@ If ANY indicator found:
 
 ## Bước 2.5: Tạo Project Analysis Docs
 
-Tạo theo template (bắt buộc cho mọi dự án mới):
+### Tier 1: Bắt buộc (mọi dự án mới)
 1. `.agent/templates/PROJECT-BRIEF-TEMPLATE.md` → `docs/PROJECT-BRIEF.md`
 2. `.agent/templates/PROJECT-CONVENTIONS-TEMPLATE.md` → `docs/PROJECT-CONVENTIONS.md`
 
 Fill ALL sections bằng thông tin từ planning phase.
+
+### Tier 2: Có điều kiện
+
+| Điều kiện | Template | Output |
+|-----------|----------|--------|
+| Dự án có UI | `PROJECT-SCREENS-TEMPLATE.md` | `docs/PROJECT-SCREENS.md` |
+| Dự án có custom API | `PROJECT-API-TEMPLATE.md` | `docs/PROJECT-API.md` |
 
 ## Bước 3: Xây dựng (sau khi được duyệt)
 - Phối hợp với `app-builder` skill
