@@ -1,4 +1,4 @@
-# Auto-Healing Script
+﻿# Auto-Healing Script
 # Automatically fix common issues (lint, syntax, imports)
 # References: .agent/auto-healing.yml
 

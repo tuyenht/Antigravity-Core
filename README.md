@@ -6,7 +6,7 @@
 [![Version](https://img.shields.io/badge/version-4.0.0-blue.svg)](.agent/CHANGELOG.md)
 [![Agents](https://img.shields.io/badge/agents-27-brightgreen.svg)](.agent/docs/agents/AGENT-CATALOG.md)
 [![Skills](https://img.shields.io/badge/skills-59-orange.svg)](.agent/docs/skills/SKILL-CATALOG.md)
-[![Rules](https://img.shields.io/badge/rules-137-purple.svg)](.agent/docs/rules/RULES-CATALOG.md)
+[![Rules](https://img.shields.io/badge/rules-132-purple.svg)](.agent/docs/rules/RULES-CATALOG.md)
 [![AI Autonomy](https://img.shields.io/badge/AI%20Autonomy-95%25-green.svg)]()
 [![Quality](https://img.shields.io/badge/Quality-Platinum%20Standard-gold.svg)]()
 [![License](https://img.shields.io/badge/license-Proprietary-red.svg)]()
@@ -24,7 +24,7 @@ graph TB
         direction TB
         A["27 Specialized Agents"]
         B["59 Knowledge Skills"]
-        C["137 Expert Rules"]
+        C["132 Expert Rules"]
         D["31 Automated Workflows"]
         E["6 Core Protocols"]
     end
@@ -41,7 +41,7 @@ graph TB
 |----------------------|------------------|
 | 🔴 Passive code generator | 🟢 **27 chuyên gia AI** phối hợp |
 | 🔴 Context-lost every session | 🟢 **Persistent memory system** |
-| 🔴 Generic responses | 🟢 **137 expert rules** tự động load |
+| 🔴 Generic responses | 🟢 **132 expert rules** tự động load |
 | 🔴 No quality gates | 🟢 **Platinum Standard** enforcement |
 | 🔴 Trial and error | 🟢 **59 proven skill modules** |
 | 🔴 One-size-fits-all | 🟢 **Auto-detection** tech stack |
@@ -50,16 +50,38 @@ graph TB
 
 ## ⚡ QUICK START
 
+### 📋 Prerequisites
+
+- **Git** đã cài đặt ([git-scm.com](https://git-scm.com))
+- **PowerShell** 5.1+ (Windows) hoặc Bash (Linux/Mac)
+- Nếu gặp lỗi execution policy, chạy trước:
+  ```powershell
+  Set-ExecutionPolicy -ExecutionPolicy RemoteSigned -Scope CurrentUser
+  ```
+
+---
+
 ### 🌐 STEP 1: Cài đặt Global (một lần duy nhất)
 
+**Recommended: Clone & Install**
+
 ```powershell
-# Download và chạy global installer
+# Clone repo
+git clone --depth 1 https://github.com/tuyenht/Antigravity-Core.git C:\Tools\Antigravity-Core
+
+# Chạy global installer (tự động thêm vào PowerShell Profile)
+& "C:\Tools\Antigravity-Core\.agent\scripts\install-global.ps1"
+
+# Restart PowerShell
+```
+
+**Alternative: Download từ raw URL**
+
+```powershell
+# Download và chạy installer (chỉ hoạt động nếu repo public)
 irm "https://raw.githubusercontent.com/tuyenht/Antigravity-Core/main/.agent/scripts/install-global.ps1" -OutFile install.ps1
 .\install.ps1
 Remove-Item install.ps1
-
-# Thêm vào PowerShell Profile (theo hướng dẫn hiện ra)
-Add-Content -Path $PROFILE -Value ". 'C:\Tools\Antigravity-Core\setup-profile.ps1'"
 
 # Restart PowerShell
 ```
@@ -103,6 +125,16 @@ cp -r temp-ag/docs ./docs
 rm -rf temp-ag
 ```
 
+---
+
+### 🔧 Troubleshooting
+
+| Lỗi | Nguyên nhân | Cách fix |
+|------|-------------|----------|
+| `irm: 404 Not Found` | Repo đang **private** trên GitHub | Chuyển repo sang **public** hoặc dùng `git clone` |
+| `Add-Content $PROFILE: path not found` | Thư mục PowerShell Profile chưa tồn tại | Script v1.1+ tự tạo. Hoặc chạy: `New-Item -ItemType Directory -Path (Split-Path $PROFILE) -Force` |
+| `install.ps1 cannot be loaded` | ExecutionPolicy bị Restricted | `Set-ExecutionPolicy RemoteSigned -Scope CurrentUser` |
+
 Chi tiết: Xem [ONE-COMMAND-SETUP.md](.agent/ONE-COMMAND-SETUP.md)
 
 ---
@@ -127,7 +159,7 @@ Antigravity-Core/
 │   │   ├── ui-ux-pro-max/             vulnerability-scanner/
 │   │   └── ... 53 more skills
 │   │
-│   ├── 📏 rules/ (137)                ← Expert coding rules
+│   ├── 📏 rules/ (132)                ← Expert coding rules
 │   │   ├── backend-frameworks/ (12)   database/ (10)
 │   │   ├── frontend-frameworks/ (7)   mobile/ (10)
 │   │   ├── nextjs/ (13)               python/ (14)
@@ -294,7 +326,7 @@ Hệ thống nhớ giúp AI **giữ ngữ cảnh** xuyên suốt các phiên là
 | **Monitoring** | OpenTelemetry, Grafana, Prometheus, Sentry |
 | **CI/CD** | GitHub Actions, GitLab CI |
 
-### 137 Expert Rules — Auto-Activation
+### 132 Expert Rules — Auto-Activation
 
 Rules tự động load dựa trên context:
 
@@ -404,8 +436,8 @@ Pipeline: /security-audit → /deploy → verify → confirm
 | [AGENT-CATALOG.md](.agent/docs/agents/AGENT-CATALOG.md) | 27 agents chi tiết |
 | [SKILL-CATALOG.md](.agent/docs/skills/SKILL-CATALOG.md) | 59 skills chi tiết |
 | [WORKFLOW-CATALOG.md](.agent/docs/workflows/WORKFLOW-CATALOG.md) | 31 workflows chi tiết |
-| [RULES-CATALOG.md](.agent/docs/rules/RULES-CATALOG.md) | 137 rules chi tiết |
-| [SYSTEMS-CATALOG.md](.agent/docs/systems/SYSTEMS-CATALOG.md) | 6 protocols chi tiết |
+| [RULES-CATALOG.md](.agent/docs/rules/RULES-CATALOG.md) | 132 rules chi tiết |
+| [SYSTEMS-CATALOG.md](.agent/docs/systems/SYSTEMS-CATALOG.md) | 6 protocols (5 files + AOC) |
 
 ### Architecture & Config
 
@@ -433,7 +465,7 @@ Pipeline: /security-audit → /deploy → verify → confirm
 - ✅ Auto-Rule Discovery Engine (3-layer detection)
 - ✅ Agent Registry (27 specialized agents)
 - ✅ Orchestration Engine (automated pipelines)
-- ✅ 137 expert rules across 11 categories
+- ✅ 132 expert rules across 11 categories
 - ✅ Full documentation suite (14 catalog & process docs)
 - ✅ Expert audit: 6 critical issues found & fixed
 
@@ -469,7 +501,7 @@ Proprietary — All rights reserved.
 ```
 ┌──────────────────────────────────────────────┐
 │                                              │
-│  27 Agents. 59 Skills. 137 Rules.            │
+│  27 Agents. 59 Skills. 132 Rules.            │
 │  Copy. Prompt. Build. Deploy.                │
 │  95% AI. 5% You.                             │
 │                                              │

@@ -1,4 +1,4 @@
-#!/usr/bin/env pwsh
+﻿#!/usr/bin/env pwsh
 # .agent STANDARDS Compliance Validator
 # Checks if code meets STANDARDS.md requirements
 

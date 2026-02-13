@@ -2,7 +2,7 @@
 
 **Version:** 4.0.0  
 **Last Updated:** 2026-02-13  
-**Total Rules:** 137 (across 11 categories)
+**Total Rules:** 132 (across 11 categories)
 
 ---
 
@@ -37,7 +37,7 @@ Rules là các **expert-level best practices** được tự động load dựa 
 | `.kt` | `mobile/android-kotlin.md` |
 | `.dart` | `mobile/flutter.md` |
 | `.php` | `backend-frameworks/laravel.md` |
-| `.py` | `python/fastapi.md` hoặc `python/flask.md` |
+| `.py` | `python/rest-api.md` hoặc `python/backend-patterns.md` |
 | `.sql` | `database/postgresql.md`, `database/query-optimization.md` |
 | `.graphql` | `backend-frameworks/graphql.md` |
 | `.proto` | `backend-frameworks/grpc.md` |
@@ -52,7 +52,7 @@ Rules là các **expert-level best practices** được tự động load dựa 
 | `package.json` + vue | `frontend-frameworks/vue3.md` |
 | `composer.json` + laravel | `backend-frameworks/laravel.md` |
 | `pubspec.yaml` | `mobile/flutter.md` |
-| `requirements.txt` / `pyproject.toml` | `python/fastapi.md` |
+| `requirements.txt` / `pyproject.toml` | `python/rest-api.md` |
 
 ### Layer 3: Keyword Detection
 

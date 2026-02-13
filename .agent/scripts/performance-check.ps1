@@ -1,4 +1,4 @@
-# Performance Budget Check Script
+﻿# Performance Budget Check Script
 # Enforces performance budgets defined in .agent/performance-budgets.yml
 # Blocks PRs that violate budgets
 

@@ -25,7 +25,7 @@ cd Antigravity-Core
 ├── agents/       ← 27 agent definitions (frontmatter + rules)
 ├── skills/       ← 59 knowledge modules (SKILL.md + scripts/)
 ├── workflows/    ← 31 slash command workflows
-├── rules/        ← 137 expert rules (11 categories)
+├── rules/        ← 132 expert rules (11 categories)
 ├── scripts/      ← 14 PowerShell automation scripts
 ├── systems/      ← 5 core protocols
 ├── docs/         ← Documentation (you are here)

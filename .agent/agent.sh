@@ -1,4 +1,4 @@
-#!/usr/bin/env bash
+﻿#!/usr/bin/env bash
 #
 # .agent Auto-Initialization Script (Linux/Mac)
 # Version: 4.0.0
@@ -50,10 +50,16 @@ function detect_tech_stack() {
             frontend+=("React")
         elif grep -q '"vue"' package.json; then
             frontend+=("Vue")
+        elif grep -q '"svelte"' package.json; then
+            frontend+=("Svelte")
         fi
         
         if grep -q '"typescript"' package.json || [[ -f "tsconfig.json" ]]; then
             frontend+=("TypeScript")
+        fi
+        
+        if grep -q '"express"' package.json || grep -q '"fastify"' package.json; then
+            backend+=("Node.js")
         fi
     fi
     
@@ -66,12 +72,20 @@ function detect_tech_stack() {
     fi
     
     # Python
-    if [[ -f "requirements.txt" ]]; then
+    if [[ -f "requirements.txt" ]] || [[ -f "pyproject.toml" ]]; then
         detected=true
-        if grep -qi "fastapi" requirements.txt; then
-            backend+=("FastAPI")
-        elif grep -qi "django" requirements.txt; then
-            backend+=("Django")
+        if [[ -f "requirements.txt" ]]; then
+            if grep -qi "fastapi" requirements.txt; then
+                backend+=("FastAPI")
+            elif grep -qi "django" requirements.txt; then
+                backend+=("Django")
+            elif grep -qi "flask" requirements.txt; then
+                backend+=("Flask")
+            else
+                backend+=("Python")
+            fi
+        else
+            backend+=("Python")
         fi
     fi
     
@@ -101,6 +115,10 @@ function detect_tech_stack() {
     # Database
     if [[ -f "prisma/schema.prisma" ]]; then
         database+=("Prisma")
+    fi
+    
+    if [[ -f "drizzle.config.ts" ]] || [[ -f "drizzle.config.js" ]]; then
+        database+=("Drizzle")
     fi
     
     if $detected; then
@@ -137,21 +155,33 @@ function activate_agents() {
     if [[ "$DETECTED_FRONTEND" == *"Next.js"* ]] || [[ "$DETECTED_FRONTEND" == *"React"* ]]; then
         agents+=("frontend-specialist")
         info "  → frontend-specialist (React/Next.js)"
+    elif [[ "$DETECTED_FRONTEND" == *"Vue"* ]]; then
+        agents+=("frontend-specialist")
+        info "  → frontend-specialist (Vue)"
+    elif [[ "$DETECTED_FRONTEND" == *"Svelte"* ]]; then
+        agents+=("frontend-specialist")
+        info "  → frontend-specialist (Svelte)"
     fi
     
     # Backend
     if [[ "$DETECTED_BACKEND" == *"Laravel"* ]]; then
         agents+=("laravel-specialist")
         info "  → laravel-specialist (Laravel)"
-    elif [[ "$DETECTED_BACKEND" == *"Express"* ]] || [[ "$DETECTED_BACKEND" == *"Fastify"* ]]; then
+    elif [[ -n "$DETECTED_BACKEND" ]]; then
         agents+=("backend-specialist")
-        info "  → backend-specialist (Node.js)"
+        info "  → backend-specialist ($DETECTED_BACKEND)"
     fi
     
     # Mobile
     if [[ "$DETECTED_MOBILE" == *"React Native"* ]] || [[ "$DETECTED_MOBILE" == *"Flutter"* ]]; then
         agents+=("mobile-developer")
         info "  → mobile-developer"
+    fi
+    
+    # Database
+    if [[ -n "$DETECTED_DATABASE" ]]; then
+        agents+=("database-architect")
+        info "  → database-architect ($DETECTED_DATABASE)"
     fi
     
     # Always include
@@ -188,43 +218,46 @@ EOF
 
 # Generate README
 function generate_readme() {
-    cat > .agent/PROJECT-README.md << EOF
+    cat > .agent/PROJECT-README.md << 'EOF'
 # .agent Configuration for This Project
 
 **Initialized:** $(date)
 
 ---
 
-## Quick Commands
+## Quick Commands (Linux/Mac)
 
 ```bash
-# Start new feature
-./agent plan "feature description"
+./.agent/agent.sh init             # Initialize project
+./.agent/agent.sh status           # Show configuration
+./.agent/agent.sh agents           # List all agents
+./.agent/agent.sh skills           # List all skills
+./.agent/agent.sh workflows        # List all workflows
+./.agent/agent.sh health           # Run health check
+./.agent/agent.sh help             # Show all commands
+```
 
-# Generate code
-./agent scaffold [component-type]
+## Quick Commands (Windows)
 
-# Run tests
-./agent test
-
-# Security audit
-./agent security-audit
-
-# Deploy
-./agent deploy
+```powershell
+.\.agent\agent.ps1 status         # Show system status
+.\.agent\agent.ps1 health         # Run health check
+.\.agent\agent.ps1 validate       # Run compliance validation
+.\.agent\agent.ps1 heal           # Run auto-healing
+.\.agent\agent.ps1 dx             # Show DX analytics
 ```
 
 ---
 
 ## Example
 
-```bash
-# Build a blog system
-./agent plan "Create a blog with posts, comments, and authentication"
+Just describe what you want to Antigravity:
+
 ```
+USER: "Build a user authentication system"
 
-System will auto-analyze and execute!
-
+Antigravity auto-analyzes your tech stack and executes!
+```
 EOF
     
     success "Project README created: .agent/PROJECT-README.md"
@@ -274,8 +307,68 @@ function initialize_project() {
     echo ""
 }
 
+# Helper functions for feature parity
+function show_agents() {
+    echo ""
+    info "Available Agents"
+    echo "================"
+    echo ""
+    for agent in .agent/agents/*.md; do
+        [[ -f "$agent" ]] && echo "  • $(basename "$agent" .md)"
+    done
+    echo ""
+    echo "Total: $(ls .agent/agents/*.md 2>/dev/null | wc -l) agents"
+    echo ""
+}
+
+function show_skills() {
+    echo ""
+    info "Available Skills"
+    echo "================"
+    echo ""
+    for skill in .agent/skills/*/; do
+        [[ -d "$skill" ]] && echo "  • $(basename "$skill")"
+    done
+    echo ""
+    echo "Total: $(ls -d .agent/skills/*/ 2>/dev/null | wc -l) skills"
+    echo ""
+}
+
+function show_workflows() {
+    echo ""
+    info "Available Workflows"
+    echo "==================="
+    echo ""
+    for wf in .agent/workflows/*.md; do
+        [[ -f "$wf" ]] && echo "  • $(basename "$wf" .md)"
+    done
+    echo ""
+    echo "Total: $(ls .agent/workflows/*.md 2>/dev/null | wc -l) workflows"
+    echo ""
+}
+
+function show_help() {
+    show_banner
+    echo "Usage: ./agent.sh <command> [options]"
+    echo ""
+    echo "Commands:"
+    echo "  init       Initialize .agent for this project"
+    echo "  status     Show configuration"
+    echo "  agents     List all agents"
+    echo "  skills     List all skills"
+    echo "  workflows  List all workflows"
+    echo "  health     Run health check"
+    echo "  validate   Run compliance validation"
+    echo "  scan       Run secret scanning"
+    echo "  perf       Run performance check"
+    echo "  heal       Run auto-healing"
+    echo "  dx         Show DX analytics"
+    echo "  help       Show this help"
+    echo ""
+}
+
 # Main
-case "${1:-init}" in
+case "${1:-help}" in
     init)
         initialize_project "$2"
         ;;
@@ -284,14 +377,83 @@ case "${1:-init}" in
             success "Project initialized!"
             cat .agent/project.json
         else
-            warning "Not initialized. Run: ./agent init"
+            warning "Not initialized. Run: ./agent.sh init"
         fi
         ;;
+    agents)
+        show_agents
+        ;;
+    skills)
+        show_skills
+        ;;
+    workflows)
+        show_workflows
+        ;;
+    health)
+        if command -v pwsh &>/dev/null && [[ -f ".agent/scripts/health-check.ps1" ]]; then
+            pwsh -NoProfile -File ".agent/scripts/health-check.ps1"
+        elif [[ -f ".agent/scripts/health-check.ps1" ]]; then
+            info "Requires PowerShell. Install pwsh or run on Windows:"
+            info "  .\.agent\agent.ps1 health"
+        else
+            warning "health-check.ps1 not found"
+        fi
+        ;;
+    validate)
+        if command -v pwsh &>/dev/null && [[ -f ".agent/scripts/validate-compliance.ps1" ]]; then
+            pwsh -NoProfile -File ".agent/scripts/validate-compliance.ps1"
+        elif [[ -f ".agent/scripts/validate-compliance.ps1" ]]; then
+            info "Requires PowerShell. Install pwsh or run on Windows:"
+            info "  .\.agent\agent.ps1 validate"
+        else
+            warning "validate-compliance.ps1 not found"
+        fi
+        ;;
+    scan)
+        if command -v pwsh &>/dev/null && [[ -f ".agent/scripts/secret-scan.ps1" ]]; then
+            pwsh -NoProfile -File ".agent/scripts/secret-scan.ps1"
+        elif [[ -f ".agent/scripts/secret-scan.ps1" ]]; then
+            info "Requires PowerShell. Install pwsh or run on Windows:"
+            info "  .\.agent\agent.ps1 scan"
+        else
+            warning "secret-scan.ps1 not found"
+        fi
+        ;;
+    perf)
+        if command -v pwsh &>/dev/null && [[ -f ".agent/scripts/performance-check.ps1" ]]; then
+            pwsh -NoProfile -File ".agent/scripts/performance-check.ps1"
+        elif [[ -f ".agent/scripts/performance-check.ps1" ]]; then
+            info "Requires PowerShell. Install pwsh or run on Windows:"
+            info "  .\.agent\agent.ps1 perf"
+        else
+            warning "performance-check.ps1 not found"
+        fi
+        ;;
+    heal)
+        if command -v pwsh &>/dev/null && [[ -f ".agent/scripts/auto-heal.ps1" ]]; then
+            pwsh -NoProfile -File ".agent/scripts/auto-heal.ps1"
+        elif [[ -f ".agent/scripts/auto-heal.ps1" ]]; then
+            info "Requires PowerShell. Install pwsh or run on Windows:"
+            info "  .\.agent\agent.ps1 heal"
+        else
+            warning "auto-heal.ps1 not found"
+        fi
+        ;;
+    dx)
+        if command -v pwsh &>/dev/null && [[ -f ".agent/scripts/dx-analytics.ps1" ]]; then
+            pwsh -NoProfile -File ".agent/scripts/dx-analytics.ps1"
+        elif [[ -f ".agent/scripts/dx-analytics.ps1" ]]; then
+            info "Requires PowerShell. Install pwsh or run on Windows:"
+            info "  .\.agent\agent.ps1 dx"
+        else
+            warning "dx-analytics.ps1 not found"
+        fi
+        ;;
+    help|--help|-h)
+        show_help
+        ;;
     *)
-        echo "Usage: ./agent <command>"
-        echo ""
-        echo "Commands:"
-        echo "  init       Initialize .agent for this project"
-        echo "  status     Show configuration"
+        error "Unknown command: $1"
+        show_help
         ;;
 esac

@@ -15,8 +15,8 @@
 
 **Giải pháp:**
 ```powershell
-# Re-install
-.\.agent\agent.ps1 update
+# Re-install using update script
+pwsh -File .agent/scripts/update-antigravity.ps1
 
 # Hoặc re-init
 .\.agent\agent.ps1 init --force

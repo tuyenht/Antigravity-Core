@@ -1,4 +1,4 @@
-# DX Analytics Script
+﻿# DX Analytics Script
 # Collects and displays developer experience metrics
 # References: .agent/dx-analytics.yml
 

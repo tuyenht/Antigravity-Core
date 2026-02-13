@@ -1,4 +1,4 @@
-#!/usr/bin/env pwsh
+﻿#!/usr/bin/env pwsh
 # Metrics Logger - Append-only JSON Lines format
 # Usage: .\log-metrics.ps1 -TaskType BUILD -Tokens 15000 -Classification "correct"
 

@@ -13,9 +13,9 @@
 | [Agents](#agents) | 1 catalog + 8 guides | 27 specialized AI agents |
 | [Skills](#skills) | 1 catalog + 1 guide | 59 knowledge modules |
 | [Workflows](#workflows) | 1 catalog + 1 guide | 31 slash commands |
-| [Rules](#rules) | 1 catalog | 137 expert rules (11 categories) |
+| [Rules](#rules) | 1 catalog | 132 expert rules (11 categories) |
 | [Scripts](#scripts) | 1 catalog | 14 PowerShell automation scripts |
-| [Systems](#systems) | 1 catalog | 6 core protocols |
+| [Systems](#systems) | 1 catalog | 6 core protocols (5 files + AOC) |
 | [Processes](#processes) | 7 guides | Development workflows |
 | [Reference](#reference) | 8 docs | Policies, ADRs, migration |
 
@@ -57,11 +57,11 @@ Comprehensive documentation cho 27 specialized AI agents.
 
 ## Rules
 
-137 expert rules across 11 categories.
+132 expert rules across 11 categories.
 
 | Document | Description |
 |----------|-------------|
-| [RULES-CATALOG.md](rules/RULES-CATALOG.md) | Bảng tổng hợp 137 rules: auto-activation system, categories |
+| [RULES-CATALOG.md](rules/RULES-CATALOG.md) | Bảng tổng hợp 132 rules: auto-activation system, categories |
 
 ---
 
@@ -81,7 +81,7 @@ Comprehensive documentation cho 27 specialized AI agents.
 
 | Document | Description |
 |----------|-------------|
-| [SYSTEMS-CATALOG.md](systems/SYSTEMS-CATALOG.md) | 6 protocols: RBA, Auto-Rule Discovery, Agent Registry, Orchestration, Coordination, AOC |
+| [SYSTEMS-CATALOG.md](systems/SYSTEMS-CATALOG.md) | 6 protocols (5 files + AOC in manager-agent) |
 
 ---
 
@@ -126,7 +126,7 @@ Existing documentation (pre-audit).
 ├── agents/ (27)             ← Specialized AI agent definitions
 ├── skills/ (59)             ← Knowledge modules
 ├── workflows/ (31)          ← Slash command workflows
-├── rules/ (137)             ← Expert rules (11 categories)
+├── rules/ (132)             ← Expert rules (11 categories)
 ├── scripts/ (14)            ← PowerShell automation
 ├── systems/ (5)             ← Core protocols
 ├── docs/                    ← Documentation (this directory)
@@ -144,5 +144,5 @@ Existing documentation (pre-audit).
 ---
 
 > **Antigravity-Core v4.0.0** — AI-Native Development OS  
-> 27 agents • 59 skills • 31 workflows • 137 rules • 14 scripts • 6 protocols  
+> 27 agents • 59 skills • 31 workflows • 132 rules • 14 scripts • 6 protocols  
 > [GitHub](https://github.com/tuyenht/Antigravity-Core)

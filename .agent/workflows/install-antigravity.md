@@ -20,16 +20,31 @@ Hướng dẫn cài đặt và cập nhật Antigravity-Core cho các dự án.
 
 ## 🌐 STEP 1: CÀI ĐẶT GLOBAL (một lần duy nhất)
 
-### Recommended: 2-Step Pattern
+### Prerequisites
 
 ```powershell
-# Download và chạy global installer
+# Nếu gặp lỗi execution policy:
+Set-ExecutionPolicy -ExecutionPolicy RemoteSigned -Scope CurrentUser
+```
+
+### Recommended: Clone & Install
+
+```powershell
+# Clone repo (cần Git)
+git clone --depth 1 https://github.com/tuyenht/Antigravity-Core.git C:\Tools\Antigravity-Core
+
+# Chạy global installer (tự động thêm vào PowerShell Profile)
+& "C:\Tools\Antigravity-Core\.agent\scripts\install-global.ps1"
+
+# Restart PowerShell
+```
+
+### Alternative: Download Script (chỉ khi repo public)
+
+```powershell
 irm "https://raw.githubusercontent.com/tuyenht/Antigravity-Core/main/.agent/scripts/install-global.ps1" -OutFile install.ps1
 .\install.ps1
 Remove-Item install.ps1
-
-# Thêm vào PowerShell Profile (theo hướng dẫn hiện ra)
-Add-Content -Path $PROFILE -Value ". 'C:\Tools\Antigravity-Core\setup-profile.ps1'"
 
 # Restart PowerShell
 ```
@@ -156,6 +171,16 @@ YourProject/
 
 ---
 
+## 🔧 TROUBLESHOOTING
+
+| Lỗi | Nguyên nhân | Cách fix |
+|------|-------------|----------|
+| `irm: 404 Not Found` | Repo đang **private** trên GitHub | Chuyển repo sang **public** hoặc dùng `git clone` |
+| `Add-Content $PROFILE: path not found` | Thư mục Profile chưa tồn tại | Script v1.1+ tự tạo. Hoặc: `New-Item -ItemType Directory -Path (Split-Path $PROFILE) -Force` |
+| `install.ps1 cannot be loaded` | ExecutionPolicy bị Restricted | `Set-ExecutionPolicy RemoteSigned -Scope CurrentUser` |
+
+---
+
 ## 🔗 LINKS
 
 - **GitHub:** https://github.com/tuyenht/Antigravity-Core
@@ -164,6 +189,5 @@ YourProject/
 
 ---
 
-**Version:** 2.0  
-**Updated:** 2026-01-31
-
+**Version:** 3.0  
+**Updated:** 2026-02-13

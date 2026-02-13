@@ -1,4 +1,4 @@
-#!/usr/bin/env pwsh
+﻿#!/usr/bin/env pwsh
 <#
 .SYNOPSIS
     Install Antigravity-Core to a new project
@@ -46,10 +46,25 @@ if (-not $ProjectPath) {
 
 Write-Host ""
 Write-Host "╔════════════════════════════════════════════════════════════╗" -ForegroundColor Cyan
-Write-Host "║          ANTIGRAVITY-CORE INSTALLER v1.0                   ║" -ForegroundColor Cyan
+Write-Host "║          ANTIGRAVITY-CORE INSTALLER v1.1                   ║" -ForegroundColor Cyan
 Write-Host "║    AI-Native Development Operating System                  ║" -ForegroundColor Cyan
 Write-Host "╚════════════════════════════════════════════════════════════╝" -ForegroundColor Cyan
 Write-Host ""
+
+# Pre-flight: check execution policy
+$execPolicy = Get-ExecutionPolicy -Scope CurrentUser
+if ($execPolicy -eq "Restricted" -or $execPolicy -eq "AllSigned") {
+    Write-Host "⚠️  ExecutionPolicy is '$execPolicy'. Attempting to set RemoteSigned..." -ForegroundColor Yellow
+    try {
+        Set-ExecutionPolicy -ExecutionPolicy RemoteSigned -Scope CurrentUser -Force
+        Write-Host "   ✓ ExecutionPolicy set to RemoteSigned" -ForegroundColor Green
+    }
+    catch {
+        Write-Host "❌ Cannot set ExecutionPolicy. Run manually:" -ForegroundColor Red
+        Write-Host "   Set-ExecutionPolicy -ExecutionPolicy RemoteSigned -Scope CurrentUser" -ForegroundColor Cyan
+        exit 1
+    }
+}
 
 Write-Host "📁 Target: $ProjectPath" -ForegroundColor Gray
 Write-Host "🔗 Source: $REPO_URL" -ForegroundColor Gray

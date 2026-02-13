@@ -1,4 +1,4 @@
-#!/usr/bin/env pwsh
+﻿#!/usr/bin/env pwsh
 <#
 .SYNOPSIS
     Install Antigravity-Core globally (master copy)
@@ -32,10 +32,25 @@ $REPO_ARCHIVE = "https://github.com/tuyenht/Antigravity-Core/archive/refs/heads/
 
 Write-Host ""
 Write-Host "╔════════════════════════════════════════════════════════════╗" -ForegroundColor Cyan
-Write-Host "║      ANTIGRAVITY-CORE GLOBAL INSTALLER v1.0                ║" -ForegroundColor Cyan
+Write-Host "║      ANTIGRAVITY-CORE GLOBAL INSTALLER v1.1                ║" -ForegroundColor Cyan
 Write-Host "║    AI-Native Development Operating System                  ║" -ForegroundColor Cyan
 Write-Host "╚════════════════════════════════════════════════════════════╝" -ForegroundColor Cyan
 Write-Host ""
+
+# Pre-flight: check execution policy
+$execPolicy = Get-ExecutionPolicy -Scope CurrentUser
+if ($execPolicy -eq "Restricted" -or $execPolicy -eq "AllSigned") {
+    Write-Host "⚠️  ExecutionPolicy is '$execPolicy'. Attempting to set RemoteSigned..." -ForegroundColor Yellow
+    try {
+        Set-ExecutionPolicy -ExecutionPolicy RemoteSigned -Scope CurrentUser -Force
+        Write-Host "   ✓ ExecutionPolicy set to RemoteSigned" -ForegroundColor Green
+    }
+    catch {
+        Write-Host "❌ Cannot set ExecutionPolicy. Run manually:" -ForegroundColor Red
+        Write-Host "   Set-ExecutionPolicy -ExecutionPolicy RemoteSigned -Scope CurrentUser" -ForegroundColor Cyan
+        exit 1
+    }
+}
 
 Write-Host "📁 Install Path: $InstallPath" -ForegroundColor Gray
 Write-Host "🔗 Source: $REPO_URL" -ForegroundColor Gray
@@ -211,6 +226,30 @@ finally {
     }
 }
 
+# Auto-add to PowerShell Profile
+$profileDir = Split-Path -Parent $PROFILE
+if (-not (Test-Path $profileDir)) {
+    New-Item -ItemType Directory -Path $profileDir -Force | Out-Null
+    Write-Host "   ✓ Created profile directory: $profileDir" -ForegroundColor Green
+}
+
+$profileLine = ". '$InstallPath\setup-profile.ps1'"
+$profileExists = $false
+if (Test-Path $PROFILE) {
+    $profileContent = Get-Content $PROFILE -Raw -ErrorAction SilentlyContinue
+    if ($profileContent -and $profileContent.Contains($profileLine)) {
+        $profileExists = $true
+    }
+}
+
+if (-not $profileExists) {
+    Add-Content -Path $PROFILE -Value "`n$profileLine"
+    Write-Host "   ✓ Added to PowerShell Profile" -ForegroundColor Green
+}
+else {
+    Write-Host "   ✓ Already in PowerShell Profile" -ForegroundColor Green
+}
+
 Write-Host ""
 Write-Host "╔════════════════════════════════════════════════════════════╗" -ForegroundColor Green
 Write-Host "║    ✅ ANTIGRAVITY-CORE INSTALLED GLOBALLY!                 ║" -ForegroundColor Green
@@ -218,16 +257,9 @@ Write-Host "╚═════════════════════�
 Write-Host ""
 Write-Host "📦 Version: $version" -ForegroundColor Cyan
 Write-Host "📁 Location: $InstallPath" -ForegroundColor Cyan
+Write-Host "📁 Profile:  $PROFILE" -ForegroundColor Cyan
 Write-Host ""
-Write-Host "═══════════════════════════════════════════════════════════════" -ForegroundColor Yellow
-Write-Host "  NEXT STEP: Add to PowerShell Profile" -ForegroundColor Yellow
-Write-Host "═══════════════════════════════════════════════════════════════" -ForegroundColor Yellow
-Write-Host ""
-Write-Host "  Run this command:" -ForegroundColor White
-Write-Host ""
-Write-Host "  Add-Content -Path `$PROFILE -Value `". '$InstallPath\setup-profile.ps1'`"" -ForegroundColor Cyan
-Write-Host ""
-Write-Host "  Then restart PowerShell and use:" -ForegroundColor White
+Write-Host "  Restart PowerShell and use:" -ForegroundColor Yellow
 Write-Host "    agi   - Install to current project" -ForegroundColor Gray
 Write-Host "    agu   - Update current project" -ForegroundColor Gray
 Write-Host "    agug  - Update global installation" -ForegroundColor Gray

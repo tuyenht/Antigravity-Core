@@ -1,4 +1,4 @@
-# Secret Scanning Script
+﻿# Secret Scanning Script
 # Detects secrets and credentials in code before commit
 # References: .agent/secret-scanning.yml
 

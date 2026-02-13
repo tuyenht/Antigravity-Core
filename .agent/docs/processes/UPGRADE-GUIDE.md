@@ -15,7 +15,7 @@ Hướng dẫn nâng cấp `.agent/` system từ version cũ lên version mới.
 
 ```powershell
 # Recommended method
-.\.agent\agent.ps1 update
+pwsh -File .agent/scripts/update-antigravity.ps1
 ```
 
 Script sẽ:
@@ -69,7 +69,7 @@ cp .agent-new-temp/.agent/ARCHITECTURE.md .agent/ARCHITECTURE.md
 
 | Version | Date | Key Changes |
 |---------|------|-------------|
-| 4.0.0 | 2026-02-13 | Auto-Rule Discovery, Agent Registry, 137 rules |
+| 4.0.0 | 2026-02-13 | Auto-Rule Discovery, Agent Registry, 132 rules |
 | 3.0.0 | 2025-xx-xx | RBA Protocol, AOC, 27 agents |
 
 Check `CHANGELOG.md` for full history.
@@ -85,7 +85,7 @@ Check `CHANGELOG.md` for full history.
 - **Scripts** migrated from Bash → PowerShell (cross-platform)
 
 ### Migration Steps
-1. Run `agent.ps1 update`
+1. Run `pwsh -File .agent/scripts/update-antigravity.ps1`
 2. Review `CHANGELOG.md` for specific changes
 3. Check `docs/MIGRATION-GUIDES/` for detailed guides
 

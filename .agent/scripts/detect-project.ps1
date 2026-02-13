@@ -1,4 +1,4 @@
-#!/usr/bin/env pwsh
+﻿#!/usr/bin/env pwsh
 # Auto-Detect Project Context
 # Automatically identifies project name and tech stack
 

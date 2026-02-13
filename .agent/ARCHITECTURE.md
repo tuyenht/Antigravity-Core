@@ -14,7 +14,7 @@ Antigravity-Core is an **AI-Native Development Operating System** — a structur
 │                                                                  │
 │  ┌──────────┐  ┌──────────┐  ┌──────────┐  ┌──────────────────┐ │
 │  │  GEMINI  │  │  AGENTS  │  │  SKILLS  │  │     RULES        │ │
-│  │  .md     │──│  (27)    │──│  (59)    │──│     (137)        │ │
+│  │  .md     │──│  (27)    │──│  (59)    │──│     (132)        │ │
 │  │  (Entry) │  │          │  │          │  │                   │ │
 │  └──────────┘  └──────────┘  └──────────┘  └──────────────────┘ │
 │       │              │             │               │             │
@@ -42,7 +42,7 @@ Antigravity-Core is an **AI-Native Development Operating System** — a structur
 ├── agents/      (27)      ← Agent role definitions
 ├── workflows/   (31)      ← Automated process definitions
 ├── skills/      (59)      ← Specialized knowledge modules
-├── rules/       (137)     ← Expert coding standards
+├── rules/       (132)     ← Expert coding standards
 ├── scripts/     (14)      ← PowerShell automation
 ├── memory/                ← Persistent context & learning
 ├── roles/                 ← 7-role SDLC framework
@@ -113,7 +113,7 @@ Self-contained knowledge domains with SKILL.md instruction files.
 | **Design** | ui-ux-pro-max, frontend-design |
 | **Meta** | clean-code, architecture-mastery, brainstorming, plan-writing, behavioral-modes |
 
-### 4. Rules (137 files, 11 categories)
+### 4. Rules (132 files, 11 categories)
 
 Expert-level coding standards auto-loaded by context detection.
 

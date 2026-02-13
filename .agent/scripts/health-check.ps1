@@ -1,4 +1,4 @@
-# .agent System Health Check
+﻿# .agent System Health Check
 # Purpose: Verify .agent system integrity and compliance
 
 param(

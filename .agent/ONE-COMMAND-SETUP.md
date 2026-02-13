@@ -1,23 +1,38 @@
 # .agent One-Command Setup Guide
 
-**Version:** 4.0.0  
+**Version:** 4.1.0  
+**Updated:** 2026-02-13  
 **Status:** FULLY AUTOMATED ✨
 
 ---
 
-## 🚀 Super Simple Usage
+## 🚀 Quick Start
+
+### Prerequisites
+
+Antigravity-Core phải được cài đặt global trước. Xem [README.md](../README.md) → QUICK START.
 
 ### Step 1: Copy .agent to Your Project
+
+**Windows (PowerShell):**
+```powershell
+# Từ global install
+Copy-Item -Recurse "$env:ANTIGRAVITY_HOME\.agent" .\.agent
+
+# Hoặc từ git clone
+Copy-Item -Recurse "C:\Tools\Antigravity-Core\.agent" .\.agent
+```
+
+**Linux/Mac (Bash):**
 ```bash
-# Copy .agent folder to any project
-cp -r path/to/.agent /your-project/.agent
-cd /your-project
+cp -r ~/Tools/Antigravity-Core/.agent ./.agent
 ```
 
 ### Step 2: Run ONE Command
+
 **Windows (PowerShell):**
 ```powershell
-.\.agent\agent.ps1 init
+.\\.agent\\agent.ps1 init
 ```
 
 **Linux/Mac (Bash):**
@@ -26,39 +41,23 @@ cd /your-project
 ```
 
 ### Step 3: Done! 🎉
+
 System automatically:
 - ✅ Detects your tech stack
 - ✅ Activates appropriate agents
-- ✅ Creates project configuration
+- ✅ Creates `project.json` + `PROJECT-README.md`
 - ✅ Ready to use!
 
 ---
 
 ## 📋 What It Detects
 
-### Automatically Recognizes:
-
-**Frontend:**
-- Next.js (from `package.json`)
-- React
-- Vue
-- Svelte
-- TypeScript
-
-**Backend:**
-- Laravel (from `composer.json`)
-- Express/Fastify (from `package.json`)
-- FastAPI/Django/Flask (from `requirements.txt`)
-- Go (from `go.mod`)
-- Rust (from `Cargo.toml`)
-
-**Mobile:**
-- React Native (`ios/Podfile`, `android/build.gradle`)
-- Flutter (`pubspec.yaml`)
-
-**Database:**
-- Prisma (`prisma/schema.prisma`)
-- Drizzle (`drizzle.config.ts`)
+| Category | Technologies | Detection Source |
+|----------|-------------|-----------------|
+| **Frontend** | Next.js, React, Vue, Svelte, TypeScript | `package.json`, `tsconfig.json` |
+| **Backend** | Laravel, Express, Fastify, FastAPI, Django, Flask, Go, Rust | `composer.json`, `package.json`, `requirements.txt`, `pyproject.toml`, `go.mod`, `Cargo.toml` |
+| **Mobile** | React Native, Flutter | `ios/Podfile`, `android/build.gradle`, `pubspec.yaml` |
+| **Database** | Prisma, Drizzle | `prisma/schema.prisma`, `drizzle.config.ts` |
 
 ---
 
@@ -66,17 +65,14 @@ System automatically:
 
 ### New Laravel + React Project
 
-```bash
-# 1. Create project
+**Windows (PowerShell):**
+```powershell
 composer create-project laravel/laravel my-app
 cd my-app
 npm install react
 
-# 2. Copy .agent
-cp -r ~/path/to/.agent .
-
-# 3. Initialize (ONE COMMAND!)
-.\.agent\agent.ps1 init
+Copy-Item -Recurse "$env:ANTIGRAVITY_HOME\.agent" .\.agent
+.\\.agent\\agent.ps1 init
 
 # Output:
 # ✅ Tech Stack Detected:
@@ -92,21 +88,17 @@ cp -r ~/path/to/.agent .
 
 ### Existing Next.js Project
 
+**Linux/Mac (Bash):**
 ```bash
-# 1. Navigate to project
 cd existing-nextjs-app
-
-# 2. Copy .agent
-cp -r ~/path/to/.agent .
-
-# 3. Initialize
+cp -r ~/Tools/Antigravity-Core/.agent ./.agent
 ./.agent/agent.sh init
 
 # Output:
 # ✅ Tech Stack Detected:
 #   Frontend: Next.js, TypeScript
 # ✅ Agents Activated:
-#   → frontend-specialist (Next.js + TypeScript)
+#   → frontend-specialist (React/Next.js)
 #   → security-auditor
 #   → test-engineer
 # ✅ INITIALIZATION COMPLETE!
@@ -122,12 +114,11 @@ After running `agent init`:
 your-project/
 ├── .agent/
 │   ├── project.json          ← Auto-generated configuration
-│   ├── PROJECT-README.md     ← Quick reference for this project
-│   ├── agent.ps1            ← CLI script (Windows)
-│   ├── agent.sh             ← CLI script (Linux/Mac)
-│   └── [all .agent files...]
-├── package.json             ← Your existing files
-├── composer.json
+│   ├── PROJECT-README.md     ← Quick reference with real commands
+│   ├── agent.ps1             ← CLI script (Windows)
+│   ├── agent.sh              ← CLI script (Linux/Mac)
+│   └── [agents, skills, workflows, rules, scripts...]
+├── package.json              ← Your existing files
 └── ...
 ```
 
@@ -135,43 +126,58 @@ your-project/
 ```json
 {
   "version": "4.0.0",
-  "initialized": "2026-01-17 10:50:00",
+  "initialized": "2026-02-13 10:50:00",
   "tech_stack": {
     "frontend": "Next.js TypeScript",
     "backend": "Laravel",
+    "mobile": "",
     "database": "Prisma"
   },
   "active_agents": [
+    "security-auditor",
+    "test-engineer",
     "frontend-specialist",
     "laravel-specialist",
-    "database-architect",
-    "security-auditor",
-    "test-engineer"
+    "database-architect"
   ]
 }
 ```
 
 ---
 
-## 🔧 Advanced Usage
+## 🔧 Available Commands
 
-### Force Reinitialize
-```powershell
-# Windows
-.\.agent\agent.ps1 init -Force
+### Windows (PowerShell) — Full CLI
 
-# Linux/Mac
-./.agent/agent.sh init --force
-```
+| Command | Description |
+|---------|-------------|
+| `.\agent.ps1 init` | Initialize project (auto-detect stack) |
+| `.\agent.ps1 init -Force` | Reinitialize (overwrite config) |
+| `.\agent.ps1 status` | Show system status |
+| `.\agent.ps1 agents` | List all agents |
+| `.\agent.ps1 skills` | List all skills |
+| `.\agent.ps1 workflows` | List all workflows |
+| `.\agent.ps1 health` | Run health check |
+| `.\agent.ps1 validate` | Run compliance validation |
+| `.\agent.ps1 scan` | Run secret scanning |
+| `.\agent.ps1 perf` | Run performance check |
+| `.\agent.ps1 heal` | Run auto-healing |
+| `.\agent.ps1 heal -DryRun` | Preview auto-healing |
+| `.\agent.ps1 dx` | Show DX analytics dashboard |
+| `.\agent.ps1 dx roi` | Show automation ROI |
 
-### Check Status
-```powershell
-# Windows
-.\.agent\agent.ps1 status
+### Linux/Mac (Bash)
 
-# Linux/Mac
-./.agent/agent.sh status
-```
+| Command | Description |
+|---------|-------------|
+| `./agent.sh init` | Initialize project |
+| `./agent.sh init --force` | Reinitialize |
+| `./agent.sh status` | Show configuration |
+| `./agent.sh agents` | List all agents |
+| `./agent.sh skills` | List all skills |
+| `./agent.sh workflows` | List all workflows |
+| `./agent.sh health` | Run health check |
+| `./agent.sh help` | Show all commands |
 
 ---
 
@@ -179,162 +185,34 @@ your-project/
 
 After initialization, just tell Antigravity what you want:
 
-**Example 1: New Feature**
 ```
 USER: "Build a user authentication system with email/password and OAuth"
 
-ANTIGRAVITY: 
+ANTIGRAVITY:
   [Reads .agent/project.json]
   ✅ Detected: Laravel + React project
   ✅ Activating: laravel-specialist + frontend-specialist
-  
+
   [Auto-generates plan:]
   1. Backend: Laravel Sanctum authentication
   2. Frontend: Login/Register components
   3. OAuth: Google/GitHub integration
   4. Tests: Full coverage
-  
+
   Proceed? (yes/no)
 ```
-
-**Example 2: Quick Task**
-```
-USER: "Add a blog post model with comments"
-
-ANTIGRAVITY:
-  [Reads .agent/project.json]
-  ✅ Laravel project detected
-  ✅ Activating: laravel-specialist
-  
-  [Executes:]
-  Phase 1: Requirements ✓
-  Phase 2: Design schema ✓
-  Phase 3: Create migrations, models, API ✓
-  Phase 4: Write tests ✓
-  Phase 5: Self-check (Pint, PHPStan, Tests) ✓
-  
-  ✅ COMPLETE! All tests passing.
-```
-
----
-
-## 🎯 Benefits
-
-### Before (Manual Setup):
-```bash
-# ❌ Complex manual process
-1. Copy template
-2. Fill placeholders
-3. Configure tech stack
-4. Set constraints
-5. Test workflow
-6. Deploy agent
-```
-
-### After (Auto Init):
-```bash
-# ✅ ONE COMMAND!
-./.agent/agent.sh init
-# Done! 🎉
-```
-
----
-
-## 🔥 Key Features
-
-### 1. **Zero Configuration**
-- No manual file editing
-- No template filling
-- No tech stack selection
-- IT JUST WORKS! ✨
-
-### 2. **Intelligent Detection**
-- Reads `package.json`, `composer.json`, etc.
-- Identifies frameworks automatically
-- Activates appropriate agents
-- Creates optimized config
-
-### 3. **Project-Specific**
-- Each project gets its own config
-- Remembers tech stack
-- Activates only relevant agents
-- Clean, isolated setup
-
-### 4. **Portable**
-- Copy .agent to ANY project
-- Works on Windows, Linux, Mac
-- Same commands everywhere
-- Consistent experience
 
 ---
 
 ## 🚨 Troubleshooting
 
-### Issue: "Could not auto-detect tech stack"
-
-**Solution:** Ensure you have at least one of:
-- `package.json` (Node.js)
-- `composer.json` (PHP)
-- `requirements.txt` (Python)
-- `go.mod` (Go)
-- `Cargo.toml` (Rust)
-
-### Issue: "Project already initialized"
-
-**Solution:** Use `--force` or `-Force`:
-```bash
-./.agent/agent.sh init --force
-```
-
-### Issue: "agent.ps1 cannot be loaded"
-
-**Solution:** Set execution policy (Windows):
-```powershell
-Set-ExecutionPolicy -ExecutionPolicy RemoteSigned -Scope CurrentUser
-```
+| Issue | Solution |
+|-------|----------|
+| `Could not auto-detect tech stack` | Ensure at least one config file exists: `package.json`, `composer.json`, `requirements.txt`, `pyproject.toml`, `go.mod`, `Cargo.toml` |
+| `Project already initialized` | Use `-Force` (Windows) or `--force` (Linux/Mac) |
+| `agent.ps1 cannot be loaded` | Run: `Set-ExecutionPolicy -ExecutionPolicy RemoteSigned -Scope CurrentUser` |
+| `.agent directory not found` | Copy .agent from global install. See [README](../README.md). |
 
 ---
 
-## 📚 Next Steps
-
-After initialization:
-
-1. **Read Project README**
-   ```bash
-   cat .agent/PROJECT-README.md
-   ```
-
-2. **Check Configuration**
-   ```bash
-   ./.agent/agent.sh status
-   ```
-
-3. **Start Building!**
-   Just describe what you want to Antigravity!
-
----
-
-## 🎉 Summary
-
-**OLD WAY (Complex):**
-```
-Copy template → Fill fields → Configure → Test → Deploy
-(30+ minutes manual work)
-```
-
-**NEW WAY (Simple):**
-```bash
-./.agent/agent.sh init
-# 5 seconds, fully automatic! ✨
-```
-
----
-
-**You now have INSTANT, ZERO-CONFIG, AUTO-DETECTING .agent setup!** 🚀
-
-**Just:**
-1. Copy `.agent` folder
-2. Run `./.agent/agent.sh init` (Linux/Mac) or `.\.agent\agent.ps1 init` (Windows)
-3. Start building!
-
-**No configuration, no setup, no hassle!** 🎯
+**Version 4.1.0** · Updated 2026-02-13

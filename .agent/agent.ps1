@@ -1,4 +1,4 @@
-# .agent Interactive CLI
+﻿# .agent Interactive CLI
 # Wrapper for common agent system operations
 # Usage: .\agent.ps1 [command] [options]
 
@@ -30,7 +30,7 @@ function Write-Logo {
     Write-Host "/_/   \_\__, |\___|_| |_| \__|" -ForegroundColor $Cyan
     Write-Host "        |___/                 " -ForegroundColor $Cyan
     Write-Host ""
-    Write-Host "  🚀 Antigravity Core v4.0.0" -ForegroundColor $Green
+    Write-Host "  ðŸš€ Antigravity Core v4.0.0" -ForegroundColor $Green
     Write-Host ""
 }
 
@@ -115,7 +115,7 @@ function Show-Agents {
     
     foreach ($agent in $agents) {
         $name = $agent.BaseName
-        Write-Host "  • $name" -ForegroundColor $Green
+        Write-Host "  â€¢ $name" -ForegroundColor $Green
     }
     
     Write-Host ""
@@ -136,11 +136,11 @@ function Show-Skills {
         $deprecated = Test-Path "$($skill.FullName)/DEPRECATED.md"
         
         if ($deprecated) {
-            Write-Host "  • $name" -ForegroundColor $Yellow -NoNewline
+            Write-Host "  â€¢ $name" -ForegroundColor $Yellow -NoNewline
             Write-Host " [DEPRECATED]" -ForegroundColor $Red
         }
         else {
-            Write-Host "  • $name" -ForegroundColor $Green
+            Write-Host "  â€¢ $name" -ForegroundColor $Green
         }
     }
     
@@ -159,7 +159,7 @@ function Show-Workflows {
     
     foreach ($wf in $workflows) {
         $name = $wf.BaseName
-        Write-Host "  • $name" -ForegroundColor $Green
+        Write-Host "  â€¢ $name" -ForegroundColor $Green
     }
     
     Write-Host ""
@@ -228,36 +228,84 @@ switch ($Command.ToLower()) {
         if (Test-Path "prisma/schema.prisma") { $database += "Prisma"; $activeAgents += "database-architect" }
         if (Test-Path "drizzle.config.ts") { $database += "Drizzle"; $activeAgents += "database-architect" }
         
+        # Mobile detection
+        $mobile = @()
+        if (Test-Path "pubspec.yaml") { $mobile += "Flutter"; $activeAgents += "mobile-developer" }
+        if ((Test-Path "ios/Podfile") -or (Test-Path "android/build.gradle")) { $mobile += "React Native"; $activeAgents += "mobile-developer" }
+        
         $activeAgents = $activeAgents | Select-Object -Unique
         
         Write-Host "  Tech Stack Detected:" -ForegroundColor $Green
         if ($frontend) { Write-Host "    Frontend: $($frontend -join ', ')" }
         if ($backend) { Write-Host "    Backend:  $($backend -join ', ')" }
+        if ($mobile) { Write-Host "    Mobile:   $($mobile -join ', ')" }
         if ($database) { Write-Host "    Database: $($database -join ', ')" }
-        if (-not $frontend -and -not $backend -and -not $database) {
+        if (-not $frontend -and -not $backend -and -not $database -and -not $mobile) {
             Write-Host "    (Could not auto-detect. Ensure package.json/composer.json exists.)" -ForegroundColor $Yellow
         }
         Write-Host ""
         
         Write-Host "  Agents Activated:" -ForegroundColor $Green
-        foreach ($a in $activeAgents) { Write-Host "    → $a" }
+        foreach ($a in $activeAgents) { Write-Host "    â†’ $a" }
         Write-Host ""
         
         # Generate project.json
         $config = @{
-            version = "4.0.0"
-            initialized = Get-Date -Format "yyyy-MM-dd HH:mm:ss"
-            tech_stack = @{
+            version       = "4.0.0"
+            initialized   = Get-Date -Format "yyyy-MM-dd HH:mm:ss"
+            tech_stack    = @{
                 frontend = ($frontend -join " ")
-                backend = ($backend -join " ")
+                backend  = ($backend -join " ")
+                mobile   = ($mobile -join " ")
                 database = ($database -join " ")
             }
             active_agents = $activeAgents
         }
         $config | ConvertTo-Json -Depth 3 | Set-Content ".agent/project.json" -Encoding UTF8
         
+        # Generate PROJECT-README.md
+        $readmeDate = Get-Date -Format "yyyy-MM-dd HH:mm:ss"
+        $cb = '`' + '`' + '`'
+        $readmeLines = @(
+            "# .agent Configuration for This Project"
+            ""
+            "**Initialized:** $readmeDate"
+            ""
+            "---"
+            ""
+            "## Quick Commands (Windows)"
+            ""
+            "${cb}powershell"
+            ".\.agent\agent.ps1 status         # Show system status"
+            ".\.agent\agent.ps1 agents         # List all agents"
+            ".\.agent\agent.ps1 skills         # List all skills"
+            ".\.agent\agent.ps1 workflows      # List all workflows"
+            ".\.agent\agent.ps1 health         # Run health check"
+            ".\.agent\agent.ps1 validate       # Run compliance validation"
+            ".\.agent\agent.ps1 heal           # Run auto-healing"
+            ".\.agent\agent.ps1 dx             # Show DX analytics"
+            "$cb"
+            ""
+            "## Quick Commands (Linux/Mac)"
+            ""
+            "${cb}bash"
+            "./.agent/agent.sh init             # Initialize project"
+            "./.agent/agent.sh status           # Show configuration"
+            "./.agent/agent.sh agents           # List all agents"
+            "./.agent/agent.sh skills           # List all skills"
+            "$cb"
+            ""
+            "---"
+            ""
+            "## Example"
+            ""
+            "Just describe what you want to Antigravity and it auto-executes!"
+        )
+        $readmeLines -join "`n" | Set-Content -Path ".agent/PROJECT-README.md" -Encoding UTF8
+        
         Write-Host "✅ INITIALIZATION COMPLETE!" -ForegroundColor $Green
-        Write-Host "   Config saved to .agent/project.json" -ForegroundColor $Cyan
+        Write-Host "   Config: .agent/project.json" -ForegroundColor $Cyan
+        Write-Host "   README: .agent/PROJECT-README.md" -ForegroundColor $Cyan
         Write-Host ""
     }
     
@@ -281,7 +329,8 @@ switch ($Command.ToLower()) {
     }
     
     "dx" {
-        switch (($Target ?? '').ToLower()) {
+        $t = if ($Target) { $Target.ToLower() } else { '' }
+        switch ($t) {
             "roi" { Run-Command "dx-analytics.ps1" "-ROI" }
             "quality" { Run-Command "dx-analytics.ps1" "-Quality" }
             "bottlenecks" { Run-Command "dx-analytics.ps1" "-Bottlenecks" }

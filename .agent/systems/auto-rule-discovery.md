@@ -87,7 +87,7 @@ file_extension_rules:
     score: 10
 
   ".py":
-    rules: [python/fastapi.md]  # Default; refined by Layer 2
+    rules: [python/rest-api.md]  # Default; refined by Layer 2
     score: 10
 
   ".sql":
@@ -181,13 +181,13 @@ project_config_rules:
     scan_content: true
     patterns:
       "fastapi":
-        rules: [python/fastapi.md]
+        rules: [python/rest-api.md]
         score: 9
       "flask":
-        rules: [python/flask.md]
+        rules: [python/backend-patterns.md]
         score: 9
       "django":
-        rules: [python/fastapi.md]  # Closest pattern
+        rules: [python/backend-patterns.md]  # Closest pattern
         score: 7
 
   ".csproj":
