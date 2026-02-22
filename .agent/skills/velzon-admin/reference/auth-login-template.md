@@ -3,7 +3,43 @@
 > **Source:** `baoson-platform-core` login screen  
 > **Route:** `/{adminPrefix}/login` (default `adminPrefix` = `"admin"`)  
 > **Stack:** Tailwind CSS + Glassmorphism  
-> **Font:** Inter (Latin/Vietnamese) + Noto Sans JP (日本語) + Noto Sans SC (中文)
+> **Font:** Inter (Latin/Vietnamese) + Noto Sans JP (日本語) + Noto Sans SC (中文)  
+> **Default Logo:** `https://baoson.net/wp-content/uploads/2021/06/logo-bao-son.png`
+
+---
+
+## 🚨 Pixel-Perfect Mandate
+
+**This template is the SINGLE SOURCE OF TRUTH for admin login pages.**
+
+Regardless of the target language/framework (React, Next.js, Vue, Laravel Blade, HTML, etc.), the generated login page MUST be **visually identical** to the BaoSon reference design:
+
+1. **Same gradient background** — `from-sky-700 via-blue-600 to-slate-800`, animated
+2. **Same glass card** — `rgba(255,255,255,0.98)`, `blur(40px)`, `padding: 35px`, `border-radius: 21px`
+3. **Same input style** — SVG icons, `@` symbol, eye toggle, exact focus ring
+4. **Same button** — `bg-blue-600`, arrow icon, hover lift effect
+5. **Same social buttons** — Google (4-color logo) + Facebook (blue logo), 2-column grid
+6. **Same language switcher** — glass pill, EN/VI/JA/ZH, top-right on desktop
+7. **Same logo** — centered above card, `h-16 md:h-20`, `drop-shadow-2xl brightness-110`
+8. **Same footer** — `© {year} BaoSon Ads. All rights reserved.` in `text-white/40`
+9. **Same decorative orbs** — `cyan-400/20` top-left + `blue-500/10` bottom-right
+10. **Same i18n** — all 15 keys × 4 locales, instant locale switch (no page reload)
+
+> **If the output does not look identical to the reference screenshot, the implementation is WRONG.**
+
+---
+
+## Default Branding
+
+| Property | Default Value | Configurable |
+|----------|---------------|-------------|
+| **Logo URL** | `https://baoson.net/wp-content/uploads/2021/06/logo-bao-son.png` | Yes — via `{logoUrl}` variable |
+| **Logo alt** | `Bao Son Logo` | Yes — via `{appName}` |
+| **Logo link** | `/{adminPrefix}/dashboard` | Yes — via admin prefix config |
+| **Footer company** | `BaoSon Ads` | Yes — via `{companyName}` variable |
+| **Footer URL** | `https://baoson.net` | Yes — via `{companyUrl}` variable |
+| **Footer text** | `© {year} {companyName}. All rights reserved.` | Pattern fixed |
+| **Admin prefix** | `admin` | Yes — via config/env |
 
 ---
 
@@ -127,6 +163,10 @@ interface AuthLayoutProps {
 }
 
 export default function AuthLayout({ children, title }: AuthLayoutProps) {
+    const LOGO_URL = '{logoUrl}' || 'https://baoson.net/wp-content/uploads/2021/06/logo-bao-son.png';
+    const COMPANY_NAME = '{companyName}' || 'BaoSon Ads';
+    const COMPANY_URL = '{companyUrl}' || 'https://baoson.net';
+
     return (
         <>
             <Head title={title} />
@@ -139,17 +179,29 @@ export default function AuthLayout({ children, title }: AuthLayoutProps) {
                 <LanguageSwitcher />
 
                 <main className="relative w-full max-w-sm md:max-w-md flex flex-col items-center z-10">
-                    {/* Logo */}
+                    {/* Logo - MUST match: h-16 md:h-20, drop-shadow-2xl, brightness-110 */}
                     <div className="mb-4 md:mb-8 hover:scale-105 transition-transform duration-500">
-                        <a href={`/${ADMIN_PREFIX}`}>
-                            <img src="{logoUrl}" alt="{appName}" className="h-16 md:h-20 w-auto drop-shadow-2xl filter brightness-110" />
+                        <a href={`/${ADMIN_PREFIX}/dashboard`} aria-label={appName ?? 'Bao Son'}>
+                            <img
+                                src={LOGO_URL}
+                                alt="Bao Son Logo"
+                                className="h-16 md:h-20 w-auto drop-shadow-2xl filter brightness-110"
+                            />
                         </a>
                     </div>
 
                     {children}
 
+                    {/* Footer - MUST match: © {year} BaoSon Ads. All rights reserved. */}
                     <footer className="mt-4 md:mt-8 text-center text-white/40 text-xs font-medium tracking-wide">
-                        <p>© {new Date().getFullYear()} {appName}. All rights reserved.</p>
+                        <p>
+                            &copy; {new Date().getFullYear()}{' '}
+                            <a href={COMPANY_URL} target="_blank" rel="noopener noreferrer"
+                               className="hover:text-white transition-colors">
+                                {COMPANY_NAME}
+                            </a>
+                            . All rights reserved.
+                        </p>
                     </footer>
                 </main>
             </div>
