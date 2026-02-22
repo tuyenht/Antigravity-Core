@@ -2,7 +2,8 @@
 
 > **Source:** `baoson-platform-core` login screen  
 > **Route:** `/{adminPrefix}/login` (default `adminPrefix` = `"admin"`)  
-> **Stack:** Tailwind CSS + Glassmorphism
+> **Stack:** Tailwind CSS + Glassmorphism  
+> **Font:** Inter (Latin/Vietnamese) + Noto Sans JP (日本語) + Noto Sans SC (中文)
 
 ---
 
@@ -379,21 +380,100 @@ export default function LanguageSwitcher() {
 
 ---
 
-## i18n Keys
+## Font System
 
-| Key | EN | VI |
-|-----|----|----|
-| `auth.welcome` | System Login | Đăng nhập hệ thống |
-| `auth.email_label` | Account | Tài khoản |
-| `auth.email_placeholder` | your-name@gmail.com | your-name@gmail.com |
-| `auth.password_label` | Password | Mật khẩu |
-| `auth.password_placeholder` | •••••••• | •••••••• |
-| `auth.forgot_password` | Forgot password? | Quên mật khẩu? |
-| `auth.sign_in` | Sign In | Đăng nhập |
-| `auth.processing` | Signing in... | Đang đăng nhập... |
-| `auth.or_continue` | Quick Login | Đăng nhập nhanh |
-| `auth.login_with_google` | Login with Google | Đăng nhập Google |
-| `auth.login_with_facebook` | Login with Facebook | Đăng nhập Facebook |
+The login uses a **logical font family** `"UI"` with CJK-aware weight overrides:
+
+```css
+/* Logical Font Family: Inter (Latin/VI) + Noto Sans JP/SC (CJK) */
+@font-face {
+  font-family: "UI";
+  src: url("/fonts/Inter-roman.woff2") format("woff2");
+  font-style: normal;
+  font-weight: 100 900;
+  font-display: swap;
+  unicode-range: U+0000-00FF, U+0100-024F, U+0300-036F, U+1E00-1EFF, U+20AB;
+  ascent-override: 90%; descent-override: 22%; line-gap-override: 0%; size-adjust: 105%;
+}
+
+@font-face {
+  font-family: "UI";
+  src: url("/fonts/NotoSansJP.woff2") format("woff2");
+  font-style: normal;
+  font-weight: 200 900;
+  font-display: swap;
+  unicode-range: U+3040-309F, U+30A0-30FF, U+4E00-9FFF, U+FF00-FFEF;
+}
+
+@font-face {
+  font-family: "UI";
+  src: url("/fonts/NotoSansSC.woff2") format("woff2");
+  font-style: normal;
+  font-weight: 200 900;
+  font-display: swap;
+  unicode-range: U+3400-4DBF, U+4E00-9FFF, U+FF00-FFEF;
+}
+
+:root {
+  --font-ui: "UI", system-ui, -apple-system, "Segoe UI", Roboto, sans-serif;
+  --ui-weight: 400;
+  --ui-heading-weight: 700;
+}
+
+/* Chinese headings need stronger weight */
+:lang(zh), :lang(zh-CN), html[lang|="zh"] {
+  --ui-heading-weight: 800;
+}
+```
+
+**Required font files:** `Inter-roman.woff2`, `Inter-italic.woff2`, `NotoSansJP.woff2`, `NotoSansSC.woff2`
+
+---
+
+## Locale Infrastructure
+
+### LocaleContext (React)
+
+The login requires a `LocaleProvider` wrapping the auth pages:
+
+```tsx
+// LocaleContext provides: { locale, setLocale, syncLocale }
+// - locale: current SupportedLocale ('en' | 'vi' | 'ja' | 'zh')
+// - setLocale: instant UI update + debounced server save (300ms)
+// - Cookie: sets 'locale' cookie immediately for server-side rendering
+// - HTML lang: updates document.documentElement.lang (zh → 'zh-CN')
+```
+
+**Key behaviors:**
+- Locale change is **instant** (no page reload)
+- Cookie `locale={value}` is set immediately so form submissions use correct locale
+- Server save is **debounced 300ms** via axios POST to `/{adminPrefix}/locale`
+- `userChangedLocaleRef` prevents server sync from overriding user's manual choice
+
+---
+
+## i18n Keys (Complete — 15 keys × 4 locales)
+
+Translation file: `locales/translations.json` — single JSON file, eager-loaded, synchronous access.
+
+| Key | EN | VI | JA | ZH |
+|-----|----|----|----|----|  
+| `auth.welcome` | System Login | Đăng nhập Hệ thống | システムログイン | 系统登录 |
+| `auth.email_label` | Account | Tài khoản | アカウント | 账号 |
+| `auth.email_placeholder` | your-name@gmail.com | ten-ban@gmail.com | your-name@gmail.com | your-name@gmail.com |
+| `auth.password_label` | Password | Mật khẩu | パスワード | 密码 |
+| `auth.password_placeholder` | •••••••• | •••••••• | •••••••• | •••••••• |
+| `auth.forgot_password` | Forgot password? | Quên mật khẩu? | パスワードを忘れた？ | 忘记密码？ |
+| `auth.sign_in` | Sign In | Đăng nhập | ログイン | 登录 |
+| `auth.processing` | Processing... | Đang xử lý... | 処理中... | 处理中... |
+| `auth.or_continue` | Quick Login | Đăng nhập nhanh | クイックログイン | 快捷登录 |
+| `auth.login_with_google` | Login with Google | Đăng nhập với Google | Googleでログイン | 使用Google登录 |
+| `auth.login_with_facebook` | Login with Facebook | Đăng nhập với Facebook | Facebookでログイン | 使用Facebook登录 |
+| `auth.google_login_not_enabled` | Google login is not enabled in ENV | Google login chưa được bật trong ENV | GoogleログインはENVで有効になっていません | Google登录未在ENV中启用 |
+| `auth.facebook_login_not_enabled` | Facebook login is not enabled in ENV | Facebook login chưa được bật trong ENV | FacebookログインはENVで有効になっていません | Facebook登录未在ENV中启用 |
+| `auth.socialite_not_installed` | Social login is enabled via ENV but server has not installed laravel/socialite. | Social login đang bật bằng ENV nhưng server chưa cài laravel/socialite. | SocialログインはENVで有効になっていますが、サーバーにlaravel/socialiteがインストールされていません。 | Social登录已通过ENV启用，但服务器未安装laravel/socialite。 |
+| `auth.privacy` | Privacy | Bảo mật | プライバシー | 隐私 |
+| `auth.terms` | Terms | Điều khoản | 規約 | 条款 |
 
 ---
 
