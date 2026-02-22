@@ -115,22 +115,37 @@ Regardless of the target language/framework (React, Next.js, Vue, Laravel Blade,
 
 ## Configurable Admin Prefix
 
-The route prefix is **dynamic** — not hardcoded:
+> [!CAUTION]
+> **ALL admin routes MUST be under `/{adminPrefix}/` prefix. NEVER at root `/`.**  
+> ❌ WRONG: `/login`, `/users`, `/dashboard`  
+> ✅ CORRECT: `/admin/login`, `/admin/users`, `/admin/dashboard`
+
+The route prefix is **dynamic** — default `"admin"`, configurable per project:
 
 ```typescript
 // Configuration
 const ADMIN_PREFIX = process.env.ADMIN_PREFIX ?? 'admin';
 
-// Routes
-`/${ADMIN_PREFIX}/login`        // Login page
-`/${ADMIN_PREFIX}/login/store`  // Login POST
+// ALL admin routes MUST start with /{ADMIN_PREFIX}/
+`/${ADMIN_PREFIX}/login`             // Login page
+`/${ADMIN_PREFIX}/login`             // Login POST (same URL, POST method)
 `/${ADMIN_PREFIX}/password/request`  // Forgot password
 `/${ADMIN_PREFIX}/oauth/{provider}`  // OAuth redirect
-`/${ADMIN_PREFIX}/dashboard`    // After login redirect
+`/${ADMIN_PREFIX}/dashboard`         // After login redirect
+`/${ADMIN_PREFIX}/users`             // User management
+`/${ADMIN_PREFIX}/settings`          // Settings
+// ... ALL admin pages follow this pattern
 ```
 
-**Laravel:** Set via config (`config('admin.prefix', 'admin')`) or `RouteServiceProvider`.  
-**Next.js:** Set via `NEXT_PUBLIC_ADMIN_PREFIX` env var or `next.config.js`.
+### Per-Framework Routing
+
+| Framework | How to Set Admin Prefix | Route File |
+|-----------|------------------------|------------|
+| **Laravel** | `config('admin.prefix', 'admin')` | `routes/admin.php` with `Route::prefix()` |
+| **Next.js** | `NEXT_PUBLIC_ADMIN_PREFIX=admin` in `.env` | `app/(admin)/admin/login/page.tsx` |
+| **Vue/Nuxt** | Router `base` option or `VITE_ADMIN_PREFIX` | `router/admin.ts` |
+| **Express** | `app.use('/admin', adminRouter)` | `routes/admin.ts` |
+| **HTML** | Static folder `/{admin}/` | `admin/login.html` |
 
 ---
 
@@ -138,16 +153,25 @@ const ADMIN_PREFIX = process.env.ADMIN_PREFIX ?? 'admin';
 
 ### File Structure (per stack)
 
+> [!IMPORTANT]
+> **i18n MUST be separate files per locale**, NOT inline constants in components.
+
 ```
 {auth-pages-dir}/
-├── Login.{ext}              ← Login page (this template)
-├── ForgotPassword.{ext}     ← Forgot password form
-├── ResetPassword.{ext}      ← Reset password form
+├── Login.{ext}                ← Login page (this template)
+├── ForgotPassword.{ext}       ← Forgot password form
+├── ResetPassword.{ext}        ← Reset password form
 ├── layouts/
-│   └── AuthLayout.{ext}     ← Shared auth layout (gradient + logo + footer)
-└── components/
-    ├── Input.{ext}           ← Custom input with icon + password toggle
-    └── LanguageSwitcher.{ext} ← Locale selector pill
+│   └── AuthLayout.{ext}       ← Shared auth layout (gradient + logo + footer)
+├── components/
+│   ├── Input.{ext}            ← Custom input with icon + password toggle
+│   └── LanguageSwitcher.{ext} ← Locale selector pill
+└── locales/                   ← 🚨 SEPARATE FILES per locale
+    ├── en.json                ← English translations
+    ├── vi.json                ← Vietnamese translations  
+    ├── ja.json                ← Japanese translations
+    └── zh.json                ← Chinese translations
+```
 ```
 
 ---
@@ -504,9 +528,40 @@ The login requires a `LocaleProvider` wrapping the auth pages:
 
 ---
 
-## i18n Keys (Complete — 15 keys × 4 locales)
+## i18n Keys (Complete — 17 keys × 4 locales)
 
-Translation file: `locales/translations.json` — single JSON file, eager-loaded, synchronous access.
+> [!CAUTION]
+> **Translations MUST be in separate JSON files per locale** (`en.json`, `vi.json`, `ja.json`, `zh.json`).  
+> **NEVER hardcode translations inline** in component files as `const translations = { ... }`.  
+> Load via `import`, `fetch`, or i18n library (e.g., `next-intl`, `react-i18next`, Laravel `__()`).
+
+### File format: `locales/{locale}.json`
+
+```json
+// locales/en.json
+{
+    "auth.welcome": "System Login",
+    "auth.email_label": "Account",
+    "auth.email_placeholder": "your-name@gmail.com",
+    "auth.password_label": "Password",
+    "auth.password_placeholder": "••••••••",
+    "auth.forgot_password": "Forgot password?",
+    "auth.sign_in": "Sign In",
+    "auth.processing": "Processing...",
+    "auth.or_continue": "Quick Login",
+    "auth.login_with_google": "Login with Google",
+    "auth.login_with_facebook": "Login with Facebook",
+    "auth.email_error": "Please enter a valid email address",
+    "auth.password_error": "Password must be at least 6 characters",
+    "auth.google_login_not_enabled": "Google login is not enabled in ENV",
+    "auth.facebook_login_not_enabled": "Facebook login is not enabled in ENV",
+    "auth.socialite_not_installed": "Social login is enabled via ENV but server has not installed laravel/socialite.",
+    "auth.privacy": "Privacy",
+    "auth.terms": "Terms"
+}
+```
+
+### Complete Translation Table
 
 | Key | EN | VI | JA | ZH |
 |-----|----|----|----|----|  
@@ -521,6 +576,8 @@ Translation file: `locales/translations.json` — single JSON file, eager-loaded
 | `auth.or_continue` | Quick Login | Đăng nhập nhanh | クイックログイン | 快捷登录 |
 | `auth.login_with_google` | Login with Google | Đăng nhập với Google | Googleでログイン | 使用Google登录 |
 | `auth.login_with_facebook` | Login with Facebook | Đăng nhập với Facebook | Facebookでログイン | 使用Facebook登录 |
+| `auth.email_error` | Please enter a valid email address | Vui lòng nhập email hợp lệ | 有効なメールアドレスを入力してください | 请输入有效的电子邮件地址 |
+| `auth.password_error` | Password must be at least 6 characters | Mật khẩu phải có ít nhất 6 ký tự | パスワードは6文字以上です | 密码至少6个字符 |
 | `auth.google_login_not_enabled` | Google login is not enabled in ENV | Google login chưa được bật trong ENV | GoogleログインはENVで有効になっていません | Google登录未在ENV中启用 |
 | `auth.facebook_login_not_enabled` | Facebook login is not enabled in ENV | Facebook login chưa được bật trong ENV | FacebookログインはENVで有効になっていません | Facebook登录未在ENV中启用 |
 | `auth.socialite_not_installed` | Social login is enabled via ENV but server has not installed laravel/socialite. | Social login đang bật bằng ENV nhưng server chưa cài laravel/socialite. | SocialログインはENVで有効になっていますが、サーバーにlaravel/socialiteがインストールされていません。 | Social登录已通过ENV启用，但服务器未安装laravel/socialite。 |
