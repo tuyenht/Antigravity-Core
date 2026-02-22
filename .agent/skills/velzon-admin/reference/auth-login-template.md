@@ -1,0 +1,411 @@
+# Auth Login Template — BaoSon Reference Design
+
+> **Source:** `baoson-platform-core` login screen  
+> **Route:** `/{adminPrefix}/login` (default `adminPrefix` = `"admin"`)  
+> **Stack:** Tailwind CSS + Glassmorphism
+
+---
+
+## Design Spec
+
+### Layout Structure
+
+```
+┌──────────────────────────────────────────────────────────────────┐
+│  Animated Gradient Background (sky-700 → blue-600 → slate-800)   │
+│  ┌────────────────────────────────────────────────────────────┐  │
+│  │  Decorative Blur Orbs (cyan-400/20 + blue-500/10)          │  │
+│  │                                                            │  │
+│  │         [Language Switcher: EN VI JA ZH]  ← top-right      │  │
+│  │                                                            │  │
+│  │              ┌─────── Logo ───────┐                        │  │
+│  │              │  {appLogo}         │                        │  │
+│  │              └────────────────────┘                        │  │
+│  │                                                            │  │
+│  │     ┌──────────── Glass Card ────────────────┐             │  │
+│  │     │  System Login (h2, gradient text)       │             │  │
+│  │     │                                         │             │  │
+│  │     │  Account    [👤 email@...          @]   │             │  │
+│  │     │  Password   [🔒 ••••••••          👁]   │             │  │
+│  │     │                      Forgot password?   │             │  │
+│  │     │                                         │             │  │
+│  │     │  [████████ Sign In → ████████]          │             │  │
+│  │     │                                         │             │  │
+│  │     │  ──────── Quick Login ────────           │             │  │
+│  │     │  [ G Google ]  [ f Facebook ]           │             │  │
+│  │     └─────────────────────────────────────────┘             │  │
+│  │                                                            │  │
+│  │           © {year} {appName}. All rights reserved.         │  │
+│  └────────────────────────────────────────────────────────────┘  │
+└──────────────────────────────────────────────────────────────────┘
+```
+
+### Design Tokens
+
+| Token | Value | Notes |
+|-------|-------|-------|
+| **Background Gradient** | `from-sky-700 via-blue-600 to-slate-800` | Animated 12s ease infinite, `background-size: 200% 200%` |
+| **Blur Orb 1** | `bg-cyan-400/20`, 64×64 (w-64 h-64), `blur-3xl`, `animate-pulse` | Top-left |
+| **Blur Orb 2** | `bg-blue-500/10`, 96×96 (w-96 h-96), `blur-3xl`, `animate-bounce 12s` | Bottom-right |
+| **Glass Card bg** | `rgba(255, 255, 255, 0.98)` | |
+| **Glass backdrop** | `blur(40px)` | |
+| **Glass border** | `1px solid rgba(255, 255, 255, 1)` | |
+| **Glass shadow** | `0 25px 50px -12px rgba(0, 0, 0, 0.25)` | |
+| **Glass padding** | `35px` | Override Tailwind `p-10` |
+| **Glass border-radius** | `21px` | Override Tailwind `rounded-3xl` |
+| **Title font** | `22px / 26px`, `font-weight: 800`, gradient text `from-blue-700 to-slate-700` | |
+| **Label font** | `14px / 21px`, `font-weight: 600`, `text-slate-700` | |
+| **Input bg** | `bg-slate-50`, border `border-slate-200`, rounded `rounded-xl` | |
+| **Input focus** | `bg-white`, `border-blue-600`, `ring-4 ring-blue-600/10` | |
+| **Input padding** | `10.5px` top/bottom, `22.5px` line-height | |
+| **Button** | `bg-blue-600`, `hover:bg-blue-700`, `rounded-xl`, `py-3`, `shadow-lg shadow-blue-500/20` | |
+| **Social buttons** | White bg, `border-slate-200`, `rounded-xl`, `shadow-sm` | 2-column grid |
+| **Footer text** | `text-white/40`, `text-xs` | |
+| **Content max-width** | `max-w-sm md:max-w-md` | |
+
+### Language Switcher Spec
+
+| Property | Value |
+|----------|-------|
+| Container | `bg-slate-900/30`, `backdrop-blur-xl`, `p-1.5`, `rounded-full`, `border border-white/10` |
+| Button (active) | `bg-white`, `text-blue-700`, `shadow-lg`, `scale-105` |
+| Button (inactive) | `text-white/60`, `hover:text-white`, `hover:bg-white/10` |
+| Button size | `w-9 h-9` (desktop), `w-7 h-7` (mobile) |
+| Position | Mobile: centered above logo. Desktop: `absolute top-6 right-6` |
+| Default locales | `['en', 'vi', 'ja', 'zh']` (configurable) |
+
+---
+
+## Configurable Admin Prefix
+
+The route prefix is **dynamic** — not hardcoded:
+
+```typescript
+// Configuration
+const ADMIN_PREFIX = process.env.ADMIN_PREFIX ?? 'admin';
+
+// Routes
+`/${ADMIN_PREFIX}/login`        // Login page
+`/${ADMIN_PREFIX}/login/store`  // Login POST
+`/${ADMIN_PREFIX}/password/request`  // Forgot password
+`/${ADMIN_PREFIX}/oauth/{provider}`  // OAuth redirect
+`/${ADMIN_PREFIX}/dashboard`    // After login redirect
+```
+
+**Laravel:** Set via config (`config('admin.prefix', 'admin')`) or `RouteServiceProvider`.  
+**Next.js:** Set via `NEXT_PUBLIC_ADMIN_PREFIX` env var or `next.config.js`.
+
+---
+
+## Component Architecture
+
+### File Structure (per stack)
+
+```
+{auth-pages-dir}/
+├── Login.{ext}              ← Login page (this template)
+├── ForgotPassword.{ext}     ← Forgot password form
+├── ResetPassword.{ext}      ← Reset password form
+├── layouts/
+│   └── AuthLayout.{ext}     ← Shared auth layout (gradient + logo + footer)
+└── components/
+    ├── Input.{ext}           ← Custom input with icon + password toggle
+    └── LanguageSwitcher.{ext} ← Locale selector pill
+```
+
+---
+
+## Reference Code: React + Tailwind (Primary)
+
+### 1. AuthLayout
+
+```tsx
+interface AuthLayoutProps {
+    children: ReactNode;
+    title: string;
+}
+
+export default function AuthLayout({ children, title }: AuthLayoutProps) {
+    return (
+        <>
+            <Head title={title} />
+            <div className="min-h-[100dvh] w-full flex flex-col items-center justify-center px-8 py-6 md:p-4 animate-gradient bg-gradient-to-br from-sky-700 via-blue-600 to-slate-800 relative overflow-hidden">
+                {/* Decorative Blur Orbs */}
+                <div className="absolute top-20 left-20 w-64 h-64 bg-cyan-400/20 rounded-full blur-3xl animate-pulse pointer-events-none" />
+                <div className="absolute bottom-20 right-20 w-96 h-96 bg-blue-500/10 rounded-full blur-3xl animate-bounce duration-[12s] pointer-events-none" />
+
+                {/* Language Switcher */}
+                <LanguageSwitcher />
+
+                <main className="relative w-full max-w-sm md:max-w-md flex flex-col items-center z-10">
+                    {/* Logo */}
+                    <div className="mb-4 md:mb-8 hover:scale-105 transition-transform duration-500">
+                        <a href={`/${ADMIN_PREFIX}`}>
+                            <img src="{logoUrl}" alt="{appName}" className="h-16 md:h-20 w-auto drop-shadow-2xl filter brightness-110" />
+                        </a>
+                    </div>
+
+                    {children}
+
+                    <footer className="mt-4 md:mt-8 text-center text-white/40 text-xs font-medium tracking-wide">
+                        <p>© {new Date().getFullYear()} {appName}. All rights reserved.</p>
+                    </footer>
+                </main>
+            </div>
+        </>
+    );
+}
+```
+
+### 2. Glass CSS
+
+```css
+@keyframes gradient {
+    0% { background-position: 0% 50%; }
+    50% { background-position: 100% 50%; }
+    100% { background-position: 0% 50%; }
+}
+
+.animate-gradient {
+    background-size: 200% 200%;
+    animation: gradient 12s ease infinite;
+}
+
+.glass {
+    background: rgba(255, 255, 255, 0.98);
+    backdrop-filter: blur(40px);
+    -webkit-backdrop-filter: blur(40px);
+    border: 1px solid rgba(255, 255, 255, 1);
+    box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.25);
+    padding: 35px !important;
+    border-radius: 21px !important;
+}
+
+/* Form overrides */
+input[type="email"],
+input[type="password"] {
+    padding-top: 10.5px !important;
+    padding-bottom: 10.5px !important;
+    line-height: 22.5px !important;
+}
+
+h2.text-3xl {
+    font-size: 22px !important;
+    line-height: 26px !important;
+    font-weight: 800 !important;
+}
+
+label.text-base {
+    font-size: 14px !important;
+    line-height: 21px !important;
+}
+```
+
+### 3. Login Card
+
+```tsx
+<div className="glass w-full rounded-3xl p-6 md:p-10 shadow-2xl relative">
+    {/* Title */}
+    <h2 className="text-3xl font-extrabold text-transparent bg-clip-text bg-gradient-to-r from-blue-700 to-slate-700 tracking-tight mb-6">
+        {t('auth.welcome')}  {/* "System Login" */}
+    </h2>
+
+    <form onSubmit={submit} className="space-y-4">
+        {/* Email Input */}
+        <Input label={t('auth.email_label')} placeholder="your-name@gmail.com"
+               type="email" showAtSymbol={true} icon={<UserIcon />} />
+
+        {/* Password Input + Forgot Link */}
+        <div>
+            <Input label={t('auth.password_label')} placeholder="••••••••"
+                   isPassword icon={<LockIcon />} />
+            <div className="flex justify-end mt-2">
+                <a href={forgotPasswordUrl}
+                   className="text-sm font-medium text-blue-600 hover:text-blue-700 hover:underline">
+                    {t('auth.forgot_password')}
+                </a>
+            </div>
+        </div>
+
+        {/* Submit Button */}
+        <button type="submit" className="w-full py-3 md:py-3.5 rounded-xl font-semibold text-[15px]
+            bg-blue-600 text-white hover:bg-blue-700 hover:-translate-y-0.5
+            shadow-lg shadow-blue-500/20 flex items-center justify-center gap-2 transition-all">
+            <span>{t('auth.sign_in')}</span>
+            <ArrowRightIcon />
+        </button>
+    </form>
+
+    {/* Social Divider */}
+    <div className="relative my-6">
+        <div className="absolute inset-0 flex items-center">
+            <div className="w-full border-t border-slate-100" />
+        </div>
+        <div className="relative flex justify-center">
+            <span className="bg-white px-4 text-xs font-medium text-slate-400">
+                {t('auth.or_continue')}  {/* "Quick Login" */}
+            </span>
+        </div>
+    </div>
+
+    {/* Social Buttons (2-col) */}
+    <div className="grid grid-cols-2 gap-3">
+        <SocialButton provider="google" icon={<GoogleIcon />} />
+        <SocialButton provider="facebook" icon={<FacebookIcon />} />
+    </div>
+</div>
+```
+
+### 4. Input Component
+
+```tsx
+interface InputProps extends React.InputHTMLAttributes<HTMLInputElement> {
+    label: string;
+    icon?: React.ReactNode;
+    isPassword?: boolean;
+    showAtSymbol?: boolean;
+}
+
+const Input: React.FC<InputProps> = ({ label, icon, isPassword, showAtSymbol, disabled, ...props }) => {
+    const [showPass, setShowPass] = useState(false);
+
+    return (
+        <div className="space-y-1.5">
+            <label className="block text-base font-semibold text-slate-700 ml-1">{label}</label>
+            <div className="relative group">
+                {/* Left Icon */}
+                {icon && (
+                    <div className="absolute left-3.5 top-1/2 -translate-y-1/2 text-slate-400 group-focus-within:text-blue-600 transition-colors pointer-events-none">
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" className="w-5 h-5">
+                            {icon}
+                        </svg>
+                    </div>
+                )}
+
+                <input {...props} disabled={disabled}
+                    type={isPassword ? (showPass ? 'text' : 'password') : props.type}
+                    className={`w-full ${icon ? 'pl-11' : 'pl-3'} ${(isPassword || showAtSymbol) ? 'pr-11' : 'pr-3'} py-3
+                        bg-slate-50 border border-slate-200 rounded-xl text-slate-900 text-[15px] font-medium
+                        placeholder:text-slate-400 outline-none
+                        focus:bg-white focus:border-blue-600 focus:ring-4 focus:ring-blue-600/10 transition-all`}
+                />
+
+                {/* Right: @ symbol or eye toggle */}
+                {showAtSymbol && <div className="absolute right-3 top-1/2 -translate-y-1/2 text-slate-400 text-sm font-semibold">@</div>}
+                {isPassword && (
+                    <button type="button" onClick={() => setShowPass(!showPass)}
+                        className="absolute right-3 top-1/2 -translate-y-1/2 w-8 h-8 flex items-center justify-center text-slate-400 hover:text-blue-600 rounded-lg transition-all">
+                        {showPass ? <EyeOffIcon /> : <EyeIcon />}
+                    </button>
+                )}
+            </div>
+        </div>
+    );
+};
+```
+
+### 5. LanguageSwitcher
+
+```tsx
+const locales = ['en', 'vi', 'ja', 'zh']; // Configurable
+
+export default function LanguageSwitcher() {
+    const { locale, setLocale } = useLocale();
+
+    return (
+        <div className="relative w-full flex justify-center mb-4 md:mb-6 z-50 md:absolute md:top-6 md:right-6 md:w-auto">
+            <div className="flex gap-1 bg-slate-900/30 backdrop-blur-xl p-1 md:p-1.5 rounded-full border border-white/10 shadow-2xl">
+                {locales.map((l) => (
+                    <button key={l} onClick={() => setLocale(l)}
+                        className={`w-7 h-7 md:w-9 md:h-9 flex items-center justify-center text-[10px] md:text-xs
+                            font-bold rounded-full transition-all duration-300 cursor-pointer
+                            ${locale === l
+                                ? 'bg-white text-blue-700 shadow-lg scale-105'
+                                : 'text-white/60 hover:text-white hover:bg-white/10'}`}>
+                        {l.toUpperCase()}
+                    </button>
+                ))}
+            </div>
+        </div>
+    );
+}
+```
+
+---
+
+## SVG Icons Reference
+
+### User Icon (Account field)
+```html
+<path strokeLinecap="round" strokeLinejoin="round" strokeWidth="1.5" d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2" />
+<circle strokeLinecap="round" strokeLinejoin="round" strokeWidth="1.5" cx="12" cy="7" r="4" />
+```
+
+### Lock Icon (Password field)
+```html
+<rect strokeLinecap="round" strokeLinejoin="round" strokeWidth="1.5" x="3" y="11" width="18" height="11" rx="2" ry="2" />
+<path strokeLinecap="round" strokeLinejoin="round" strokeWidth="1.5" d="M7 11V7a5 5 0 0 1 10 0v4" />
+```
+
+### Arrow Right (Submit button)
+```html
+<path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M14 5l7 7m0 0l-7 7m7-7H3" />
+```
+
+### Eye Icon (Password toggle — show)
+```html
+<path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z" />
+<circle cx="12" cy="12" r="3" />
+```
+
+### Eye Off Icon (Password toggle — hide)
+```html
+<path d="M17.94 17.94A10.07 10.07 0 0 1 12 20c-7 0-11-8-11-8a18.45 18.45 0 0 1 5.06-5.94M9.9 4.24A9.12 9.12 0 0 1 12 4c7 0 11 8 11 8a18.5 18.5 0 0 1-2.16 3.19m-6.72-1.07a3 3 0 1 1-4.24-4.24" />
+<line x1="1" y1="1" x2="23" y2="23" />
+```
+
+### Google Logo (Social button)
+```html
+<path d="M22.56 12.25c0-.78-.07-1.53-.2-2.25H12v4.26h5.92c-.26 1.37-1.04 2.53-2.21 3.31v2.77h3.57c2.08-1.92 3.28-4.74 3.28-8.09z" fill="#4285F4" />
+<path d="M12 23c2.97 0 5.46-.98 7.28-2.66l-3.57-2.77c-.98.66-2.23 1.06-3.71 1.06-2.86 0-5.29-1.93-6.16-4.53H2.18v2.84C3.99 20.53 7.7 23 12 23z" fill="#34A853" />
+<path d="M5.84 14.09c-.22-.66-.35-1.36-.35-2.09s.13-1.43.35-2.09V7.07H2.18C1.43 8.55 1 10.22 1 12s.43 3.45 1.18 4.93l3.66-2.84z" fill="#FBBC05" />
+<path d="M12 5.38c1.62 0 3.06.56 4.21 1.64l3.15-3.15C17.45 2.09 14.97 1 12 1 7.7 1 3.99 3.47 2.18 7.07l3.66 2.84c.87-2.6 3.3-4.53 6.16-4.53z" fill="#EA4335" />
+```
+
+### Facebook Logo (Social button)
+```html
+<path d="M24 12.073c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.99 4.388 10.954 10.125 11.854v-8.385H7.078v-3.47h3.047V9.43c0-3.007 1.792-4.669 4.533-4.669 1.312 0 2.686.235 2.686.235v2.953H15.83c-1.491 0-1.956.925-1.956 1.874v2.25h3.328l-.532 3.47h-2.796v8.385C19.612 23.027 24 18.062 24 12.073z" fill="#1877F2" />
+```
+
+---
+
+## i18n Keys
+
+| Key | EN | VI |
+|-----|----|----|
+| `auth.welcome` | System Login | Đăng nhập hệ thống |
+| `auth.email_label` | Account | Tài khoản |
+| `auth.email_placeholder` | your-name@gmail.com | your-name@gmail.com |
+| `auth.password_label` | Password | Mật khẩu |
+| `auth.password_placeholder` | •••••••• | •••••••• |
+| `auth.forgot_password` | Forgot password? | Quên mật khẩu? |
+| `auth.sign_in` | Sign In | Đăng nhập |
+| `auth.processing` | Signing in... | Đang đăng nhập... |
+| `auth.or_continue` | Quick Login | Đăng nhập nhanh |
+| `auth.login_with_google` | Login with Google | Đăng nhập Google |
+| `auth.login_with_facebook` | Login with Facebook | Đăng nhập Facebook |
+
+---
+
+## Adaptation Guide (Per Stack)
+
+| Stack | Auth Layout | Form | Routing |
+|-------|-------------|------|---------|
+| **React + Inertia (Laravel)** | Inertia `<Head>`, `useForm()`, `usePage()` | `post(route('admin.login.store'))` | Laravel `Route::prefix(config('admin.prefix'))` |
+| **Next.js App Router** | `metadata`, Server Actions | `useFormState()` + `<form action={login}>` | `app/(admin)/[prefix]/login/page.tsx` |
+| **Laravel Blade** | `@extends('auth.layout')` | `<form action="{{ route('admin.login') }}" method="POST">` | `Route::prefix(config('admin.prefix'))` |
+| **HTML/Static** | Standalone HTML file | Standard `<form>` | Static `/{admin}/login.html` |
+
+---
+
+> **Usage:** When Antigravity activates Velzon Admin skill for admin panel creation, this file provides the **exact** login page design to reproduce. All values are pixel-perfect from the BaoSon reference.

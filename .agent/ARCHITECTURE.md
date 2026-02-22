@@ -1,6 +1,6 @@
 # Antigravity-Core Architecture
 
-> **Version:** 4.0.0 | **Last Updated:** 2026-02-13
+> **Version:** 4.0.0 | **Last Updated:** 2026-02-22
 
 ---
 
@@ -14,7 +14,7 @@ Antigravity-Core is an **AI-Native Development Operating System** — a structur
 │                                                                  │
 │  ┌──────────┐  ┌──────────┐  ┌──────────┐  ┌──────────────────┐ │
 │  │  GEMINI  │  │  AGENTS  │  │  SKILLS  │  │     RULES        │ │
-│  │  .md     │──│  (27)    │──│  (59)    │──│     (132)        │ │
+│  │  .md     │──│  (27)    │──│  (59)    │──│     (129)        │ │
 │  │  (Entry) │  │          │  │          │  │                   │ │
 │  └──────────┘  └──────────┘  └──────────┘  └──────────────────┘ │
 │       │              │             │               │             │
@@ -42,7 +42,7 @@ Antigravity-Core is an **AI-Native Development Operating System** — a structur
 ├── agents/      (27)      ← Agent role definitions
 ├── workflows/   (31)      ← Automated process definitions
 ├── skills/      (59)      ← Specialized knowledge modules
-├── rules/       (132)     ← Expert coding standards
+├── rules/       (129)     ← Expert coding standards
 ├── scripts/     (14)      ← PowerShell automation
 ├── memory/                ← Persistent context & learning
 ├── roles/                 ← 7-role SDLC framework
@@ -113,7 +113,7 @@ Self-contained knowledge domains with SKILL.md instruction files.
 | **Design** | ui-ux-pro-max, frontend-design |
 | **Meta** | clean-code, architecture-mastery, brainstorming, plan-writing, behavioral-modes |
 
-### 4. Rules (132 files, 11 categories)
+### 4. Rules (129 files, 11 categories)
 
 Expert-level coding standards auto-loaded by context detection.
 
@@ -160,6 +160,22 @@ Persistent YAML files that maintain context across sessions.
 
 ---
 
+## File Dependencies
+
+When modifying any file below, **co-update ALL dependent files** listed.
+
+| When You Modify | Also Update |
+|-----------------|-------------|
+| An agent (`agents/*.md`) | `ARCHITECTURE.md` counts, `systems/agent-registry.md`, `GEMINI.md` agent list |
+| A skill (`skills/*/SKILL.md`) | `ARCHITECTURE.md` counts, referencing agent frontmatter |
+| A workflow (`workflows/*.md`) | `ARCHITECTURE.md` counts, `GEMINI.md` workflow list |
+| A rule (`rules/**/*.md`) | `ARCHITECTURE.md` counts, `rules/RULES-INDEX.md`, `systems/auto-rule-discovery.md` |
+| A script (`scripts/*.ps1`) | `ARCHITECTURE.md` counts, `GEMINI.md` script table |
+| `GEMINI.md` | `ARCHITECTURE.md` (if counts change) |
+| `ARCHITECTURE.md` | `CHANGELOG.md` (if version bump) |
+
+---
+
 ## Data Flow
 
 ```
@@ -203,6 +219,48 @@ Pipeline Execution (Sequential / Parallel / Conditional)
     │
     ▼
 Output (Code + Tests + Docs)
+```
+
+### Orchestration Workflow Diagram
+
+```mermaid
+graph TD
+    A["🧠 User Request"] --> B{"Request Classifier<br/>(GEMINI.md)"}
+    B -->|QUESTION| C["Text Response"]
+    B -->|SIMPLE CODE| D["Inline Edit"]
+    B -->|COMPLEX CODE| E{"Socratic Gate<br/>(brainstorming skill)"}
+    
+    E -->|Unclear| F["Ask 3+ Questions"]
+    F --> E
+    E -->|Clear| G["project-planner<br/>4-Phase Workflow"]
+    
+    G --> H["Phase 1: ANALYSIS"]
+    H --> I["Phase 2: PLANNING<br/>→ task-slug.md"]
+    I --> J{"User Approval?"}
+    J -->|No| I
+    J -->|Yes| K["Phase 3: SOLUTIONING<br/>Architecture + Schema"]
+    
+    K --> L["orchestrator<br/>Agent Selection"]
+    L --> M["Parallel Execution"]
+    
+    M --> M1["database-architect"]
+    M --> M2["backend-specialist"]
+    M --> M3["frontend-specialist<br/>OR mobile-developer"]
+    M --> M4["security-auditor"]
+    M --> M5["test-engineer"]
+    
+    M1 & M2 & M3 & M4 & M5 --> N["Phase X: Verification"]
+    
+    N --> N1["P0: Security Scan"]
+    N1 --> N2["P1: Lint + Type Check"]
+    N2 --> N3["P2: UX Audit"]
+    N3 --> N4["P3: Lighthouse"]
+    N4 --> N5["P4: E2E Tests"]
+    
+    N5 --> O{"All Pass?"}
+    O -->|No| P["auto-healing / debugger"]
+    P --> M
+    O -->|Yes| Q["✅ Delivery"]
 ```
 
 ---

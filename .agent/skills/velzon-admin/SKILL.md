@@ -16,7 +16,7 @@ Velzon is a premium admin & dashboard template (v4.4.1) providing **200+ pre-bui
 Auto-activate when the request involves:
 - Building admin panels or dashboards
 - Creating management screens (CRUD, lists, details, forms)
-- Keywords: "admin", "dashboard", "admin panel", "bảng điều khiển", "quản lý", "management"
+- Keywords: "admin", "dashboard", "admin panel", "login", "authentication", "bảng điều khiển", "quản lý", "management", "đăng nhập"
 - Data tables, stat widgets, chart dashboards
 
 ## Technology Stack
@@ -141,6 +141,7 @@ Read these for detailed patterns:
 | [aspnet-mvc-patterns.md](reference/aspnet-mvc-patterns.md) | ASP.NET Core 8 + MVC Razor patterns |
 | [asset-catalog.md](reference/asset-catalog.md) | Complete image, font, SCSS, plugin inventory |
 | [api-and-helpers.md](reference/api-and-helpers.md) | API client, auth flows, i18n, toast, file upload, avatars |
+| [auth-login-template.md](reference/auth-login-template.md) | **BaoSon login design**: glassmorphism card, configurable admin prefix, i18n, OAuth |
 
 ## Quick Reference: Common Patterns
 

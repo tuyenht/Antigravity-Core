@@ -159,7 +159,7 @@ When user's prompt is NOT in English:
 └────────────────────────────────────────────────────────────────┘
 ```
 
-### Rule Categories (132 Rules)
+### Rule Categories (129 Rules)
 
 | Category | Count | Path | Key Triggers |
 |----------|-------|------|--------------|
@@ -438,7 +438,7 @@ fi
 | Design system | `.agent/skills/ui-ux-pro-max/scripts/design_system.py` |
 | Design search | `.agent/skills/ui-ux-pro-max/scripts/search.py` |
 
-### Expert Rules (132 Total)
+### Expert Rules (129 Total)
 
 > 📚 **Full Catalog:** `@[rules/RULES-INDEX.md]`
 

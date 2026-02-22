@@ -29,7 +29,7 @@ User Request → Context Detection → Rule Matching → Auto-Load
 
 ---
 
-## 📁 Rules Catalog (132 Rules)
+## 📁 Rules Catalog (129 Rules)
 
 ### Agentic AI Rules (12)
 | Rule | File | Trigger Keywords |
@@ -532,7 +532,7 @@ User can explicitly request:
 | Standards (General) | 16 | ~4,500 |
 | Standards (Framework) | 9 | ~5,000 |
 | Shared | 1 | ~200 |
-| **TOTAL** | **132** | **~73,700** |
+| **TOTAL** | **129** | **~73,700** |
 
 ---
 

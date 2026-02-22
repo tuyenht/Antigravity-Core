@@ -69,7 +69,7 @@ cp .agent-new-temp/.agent/ARCHITECTURE.md .agent/ARCHITECTURE.md
 
 | Version | Date | Key Changes |
 |---------|------|-------------|
-| 4.0.0 | 2026-02-13 | Auto-Rule Discovery, Agent Registry, 132 rules |
+| 4.0.0 | 2026-02-13 | Auto-Rule Discovery, Agent Registry, 129 rules |
 | 3.0.0 | 2025-xx-xx | RBA Protocol, AOC, 27 agents |
 
 Check `CHANGELOG.md` for full history.

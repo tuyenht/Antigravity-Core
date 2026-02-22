@@ -455,7 +455,7 @@ Track these to measure .agent value:
 
 ### "Getting false positives"
 → Submit issue to .agent repo  
-→ Or add exception in project `.agentignore`
+→ Or add inline exceptions in custom rules (`.agent/rules/standards/`)
 
 ---
 

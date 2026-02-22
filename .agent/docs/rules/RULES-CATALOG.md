@@ -2,7 +2,7 @@
 
 **Version:** 4.0.0  
 **Last Updated:** 2026-02-13  
-**Total Rules:** 132 (across 11 categories)
+**Total Rules:** 129 (across 11 categories)
 
 ---
 

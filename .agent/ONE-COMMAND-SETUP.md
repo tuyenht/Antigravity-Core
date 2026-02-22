@@ -1,6 +1,6 @@
 # .agent One-Command Setup Guide
 
-**Version:** 4.1.0  
+**Version:** 4.0.0  
 **Updated:** 2026-02-13  
 **Status:** FULLY AUTOMATED ✨
 
@@ -32,7 +32,7 @@ cp -r ~/Tools/Antigravity-Core/.agent ./.agent
 
 **Windows (PowerShell):**
 ```powershell
-.\\.agent\\agent.ps1 init
+.\.agent\agent.ps1 init
 ```
 
 **Linux/Mac (Bash):**
@@ -72,7 +72,7 @@ cd my-app
 npm install react
 
 Copy-Item -Recurse "$env:ANTIGRAVITY_HOME\.agent" .\.agent
-.\\.agent\\agent.ps1 init
+.\.agent\agent.ps1 init
 
 # Output:
 # ✅ Tech Stack Detected:
@@ -215,4 +215,4 @@ ANTIGRAVITY:
 
 ---
 
-**Version 4.1.0** · Updated 2026-02-13
+**Version 4.0.0** · Updated 2026-02-13

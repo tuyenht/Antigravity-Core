@@ -13,7 +13,7 @@
 | [Agents](#agents) | 1 catalog + 8 guides | 27 specialized AI agents |
 | [Skills](#skills) | 1 catalog + 1 guide | 59 knowledge modules |
 | [Workflows](#workflows) | 1 catalog + 1 guide | 31 slash commands |
-| [Rules](#rules) | 1 catalog | 132 expert rules (11 categories) |
+| [Rules](#rules) | 1 catalog | 129 expert rules (11 categories) |
 | [Scripts](#scripts) | 1 catalog | 14 PowerShell automation scripts |
 | [Systems](#systems) | 1 catalog | 6 core protocols (5 files + AOC) |
 | [Processes](#processes) | 7 guides | Development workflows |
@@ -57,11 +57,11 @@ Comprehensive documentation cho 27 specialized AI agents.
 
 ## Rules
 
-132 expert rules across 11 categories.
+129 expert rules across 11 categories.
 
 | Document | Description |
 |----------|-------------|
-| [RULES-CATALOG.md](rules/RULES-CATALOG.md) | Bảng tổng hợp 132 rules: auto-activation system, categories |
+| [RULES-CATALOG.md](rules/RULES-CATALOG.md) | Bảng tổng hợp 129 rules: auto-activation system, categories |
 
 ---
 
@@ -126,7 +126,7 @@ Existing documentation (pre-audit).
 ├── agents/ (27)             ← Specialized AI agent definitions
 ├── skills/ (59)             ← Knowledge modules
 ├── workflows/ (31)          ← Slash command workflows
-├── rules/ (132)             ← Expert rules (11 categories)
+├── rules/ (129)             ← Expert rules (11 categories)
 ├── scripts/ (14)            ← PowerShell automation
 ├── systems/ (5)             ← Core protocols
 ├── docs/                    ← Documentation (this directory)
@@ -144,5 +144,5 @@ Existing documentation (pre-audit).
 ---
 
 > **Antigravity-Core v4.0.0** — AI-Native Development OS  
-> 27 agents • 59 skills • 31 workflows • 132 rules • 14 scripts • 6 protocols  
+> 27 agents • 59 skills • 31 workflows • 129 rules • 14 scripts • 6 protocols  
 > [GitHub](https://github.com/tuyenht/Antigravity-Core)
