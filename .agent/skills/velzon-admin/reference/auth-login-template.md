@@ -79,8 +79,13 @@ Regardless of the target language/framework (React, Next.js, Vue, Laravel Blade,
 
 ### Design Tokens
 
+> [!CAUTION]
+> **Root font-size MUST be `14px`**, not the browser default `16px`.  
+> Without this, ALL rem-based Tailwind sizes (max-w-md, py-3, etc.) render **14% larger**, causing a ~56px card width difference.
+
 | Token | Value | Notes |
 |-------|-------|-------|
+| **Root font-size** | `html { font-size: 14px; }` | 🚨 **CRITICAL** — affects all rem-based sizes |
 | **Background Gradient** | `from-sky-700 via-blue-600 to-slate-800` | Animated 12s ease infinite, `background-size: 200% 200%` |
 | **Blur Orb 1** | `bg-cyan-400/20`, 64×64 (w-64 h-64), `blur-3xl`, `animate-pulse` | Top-left |
 | **Blur Orb 2** | `bg-blue-500/10`, 96×96 (w-96 h-96), `blur-3xl`, `animate-bounce 12s` | Bottom-right |
@@ -88,7 +93,7 @@ Regardless of the target language/framework (React, Next.js, Vue, Laravel Blade,
 | **Glass backdrop** | `blur(40px)` | |
 | **Glass border** | `1px solid rgba(255, 255, 255, 1)` | |
 | **Glass shadow** | `0 25px 50px -12px rgba(0, 0, 0, 0.25)` | |
-| **Glass padding** | `35px` | Override Tailwind `p-10` |
+| **Glass padding** | `35px` | Override Tailwind `p-10` (= 40px at 16px root) |
 | **Glass border-radius** | `21px` | Override Tailwind `rounded-3xl` |
 | **Title font** | `22px / 26px`, `font-weight: 800`, gradient text `from-blue-700 to-slate-700` | |
 | **Label font** | `14px / 21px`, `font-weight: 600`, `text-slate-700` | |
@@ -98,7 +103,7 @@ Regardless of the target language/framework (React, Next.js, Vue, Laravel Blade,
 | **Button** | `bg-blue-600`, `hover:bg-blue-700`, `rounded-xl`, `py-3`, `shadow-lg shadow-blue-500/20` | |
 | **Social buttons** | White bg, `border-slate-200`, `rounded-xl`, `shadow-sm` | 2-column grid |
 | **Footer text** | `text-white/40`, `text-xs` | |
-| **Content max-width** | `max-w-sm md:max-w-md` | |
+| **Content max-width** | `max-w-sm md:max-w-md` | At 14px root: `max-w-md = 28rem = 392px` |
 
 ### Language Switcher Spec
 
