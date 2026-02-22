@@ -586,15 +586,201 @@ The login requires a `LocaleProvider` wrapping the auth pages:
 
 ---
 
+## Complete Auth System Spec
+
+> [!IMPORTANT]
+> The admin panel does NOT just include a login form. It includes a **complete authentication system** with all screens, flows, and backend logic listed below.
+
+### Auth Pages (5 screens)
+
+| # | Page | Route | Method | Description |
+|---|------|-------|--------|-------------|
+| 1 | **Login** | `/{adminPrefix}/login` | GET | Glass card login form (this template) |
+| 2 | **Forgot Password** | `/{adminPrefix}/forgot-password` | GET | Email input → send reset link |
+| 3 | **Reset Password** | `/{adminPrefix}/reset-password/{token}` | GET | New password + confirm password |
+| 4 | **Two-Factor Challenge** | `/{adminPrefix}/two-factor/challenge` | GET | 2FA code or recovery code input |
+| 5 | **Logout** | `/{adminPrefix}/logout` | POST | No page — session invalidation + redirect to login |
+
+### Complete Route Table (14 routes)
+
+```
+# Guest routes (middleware: guest) — NO authentication required
+GET  /{adminPrefix}/login                         → Login page
+POST /{adminPrefix}/login                         → Login submit (validate + auth)
+GET  /{adminPrefix}/forgot-password               → Forgot password form
+POST /{adminPrefix}/forgot-password               → Send reset email
+GET  /{adminPrefix}/reset-password/{token}         → Reset password form
+POST /{adminPrefix}/reset-password                 → Update password
+GET  /{adminPrefix}/two-factor/challenge           → 2FA challenge form
+POST /{adminPrefix}/two-factor/challenge           → 2FA verify
+GET  /{adminPrefix}/oauth/{provider}/redirect      → OAuth redirect (google|facebook)
+GET  /{adminPrefix}/oauth/{provider}/callback      → OAuth callback
+
+# Auth routes (middleware: auth) — REQUIRES authentication
+POST /{adminPrefix}/logout                         → Logout
+GET  /{adminPrefix}/security/two-factor            → 2FA settings page
+POST /{adminPrefix}/security/two-factor/enable     → Enable 2FA
+POST /{adminPrefix}/security/two-factor/confirm    → Confirm 2FA setup
+POST /{adminPrefix}/security/two-factor/disable    → Disable 2FA
+POST /{adminPrefix}/security/two-factor/recovery-codes → Regenerate recovery codes
+
+# Redirect aliases
+GET  /login  → redirect to /{adminPrefix}/login
+GET  /       → redirect to /{adminPrefix}
+```
+
+### All Screens Use AuthLayout
+
+All auth screens (Login, ForgotPassword, ResetPassword, TwoFactorChallenge) **MUST** use the same `AuthLayout` with the gradient background, logo, language switcher, and footer. The glass card style MUST be consistent.
+
+---
+
+## OAuth Flow (Google / Facebook)
+
+### Environment Configuration
+
+```env
+# Google OAuth
+GOOGLE_CLIENT_ID=your-google-client-id
+GOOGLE_CLIENT_SECRET=your-google-client-secret
+GOOGLE_REDIRECT_URI=${APP_URL}/{adminPrefix}/oauth/google/callback
+GOOGLE_ENABLED=true
+
+# Facebook OAuth
+FACEBOOK_CLIENT_ID=your-facebook-app-id
+FACEBOOK_CLIENT_SECRET=your-facebook-app-secret
+FACEBOOK_REDIRECT_URI=${APP_URL}/{adminPrefix}/oauth/facebook/callback
+FACEBOOK_ENABLED=true
+```
+
+### OAuth Flow Diagram
+
+```
+User clicks "Google" / "Facebook" button
+    │
+    ▼
+GET /{adminPrefix}/oauth/{provider}/redirect
+    ├── Rate limit check (10 attempts/hour per IP)
+    ├── Verify provider is allowed (google | facebook)
+    ├── Verify provider is enabled in ENV
+    ├── Verify Socialite package is installed
+    └── Redirect to provider's authorization URL
+    │
+    ▼
+User authorizes on Google/Facebook
+    │
+    ▼
+GET /{adminPrefix}/oauth/{provider}/callback
+    ├── Rate limit check
+    ├── Get user info from provider (email, name)
+    ├── If email missing → redirect to login with error
+    ├── Find or create user by email
+    │   ├── Existing user → update name if changed
+    │   └── New user → create with random password
+    ├── Mark email as verified
+    ├── Auth::login(user, remember: true)
+    ├── Regenerate session
+    ├── Clear rate limit on success
+    ├── Audit log: oauth.callback_success
+    └── Redirect to /{adminPrefix}/dashboard
+```
+
+### Key OAuth Rules
+
+1. **Rate limiting**: 10 attempts per hour per IP per provider
+2. **Audit logging**: Every OAuth action is logged (redirect, success, failure)
+3. **Auto-create users**: If email not found, create new user with random password
+4. **Auto-verify email**: OAuth users automatically get `email_verified_at` set
+5. **Remember me**: Always enabled for OAuth logins
+6. **Error handling**: All errors redirect back to login with flash message
+
+---
+
+## Logout Flow
+
+```
+POST /{adminPrefix}/logout (requires auth middleware)
+    ├── Audit log: auth.logout
+    ├── Auth::guard('web')->logout()
+    ├── Session invalidate + regenerate CSRF token
+    └── Redirect to /{adminPrefix}/login
+```
+
+**Implementation requirements:**
+- Logout MUST be a POST request (never GET — CSRF protection)
+- Session MUST be fully invalidated (not just cookie cleared)
+- CSRF token MUST be regenerated after logout
+- Redirect MUST go to `/{adminPrefix}/login` (not root `/`)
+
+---
+
+## Login Flow (with 2FA)
+
+```
+POST /{adminPrefix}/login
+    ├── Validate: email (required, email), password (required, string)
+    ├── Rate limit: 5 attempts per 60s per email+IP
+    │   └── Throttled → throw 429 with seconds remaining
+    ├── Find user by email
+    ├── Validate password
+    │   └── Failed → rate limit hit + audit log + error
+    ├── Check 2FA enabled?
+    │   ├── YES → store user_id in session → redirect to /two-factor/challenge
+    │   └── NO  → Auth::login(user, remember) → redirect to /dashboard
+    ├── Regenerate session
+    └── Audit log: auth.login_success
+```
+
+### Two-Factor Challenge Screen
+
+Uses the **same glass card design** as Login. Features:
+- **Code input** (6 digits from Authenticator app) with clock icon
+- **Recovery code input** (fallback, e.g. `ABCDE-FGHIJ`) with recovery icon
+- Only one field can have a value at a time (mutually exclusive)
+- Same blue submit button with arrow icon
+
+---
+
+## Additional i18n Keys (for all auth screens)
+
+Add these keys to **each locale file** (`en.json`, `vi.json`, `ja.json`, `zh.json`):
+
+| Key | EN | VI |
+|-----|----|----|
+| `auth.forgot_password_title` | Forgot Password | Quên mật khẩu |
+| `auth.forgot_password_subtitle` | Enter your email to receive a reset link | Nhập email để nhận link đặt lại mật khẩu |
+| `auth.send_reset_link` | Send Reset Link | Gửi link đặt lại |
+| `auth.sending` | Sending... | Đang gửi... |
+| `auth.back_to_login` | Back to Login | Quay lại đăng nhập |
+| `auth.reset_password_title` | Reset Password | Đặt lại mật khẩu |
+| `auth.reset_password_subtitle` | Create a new password for your account | Tạo mật khẩu mới cho tài khoản |
+| `auth.new_password` | New Password | Mật khẩu mới |
+| `auth.confirm_password` | Confirm Password | Xác nhận mật khẩu |
+| `auth.update_password` | Update Password | Cập nhật mật khẩu |
+| `auth.updating` | Updating... | Đang cập nhật... |
+| `auth.two_factor_title` | Two-Factor Verification | Xác minh 2 bước |
+| `auth.two_factor_subtitle` | Enter code from your Authenticator app | Nhập mã từ ứng dụng Authenticator |
+| `auth.verification_code` | Verification Code | Mã xác minh |
+| `auth.recovery_code` | Recovery Code | Mã khôi phục |
+| `auth.recovery_hint` | Or use a recovery code if you can't access the app | Hoặc dùng mã khôi phục nếu không truy cập được ứng dụng |
+| `auth.verify` | Verify | Xác minh |
+| `auth.oauth_failed` | OAuth login failed. Please try again. | Đăng nhập OAuth thất bại. Vui lòng thử lại. |
+| `auth.oauth_no_email` | Could not get email from OAuth provider. | Không lấy được email từ nhà cung cấp OAuth. |
+| `auth.login_throttled` | Too many login attempts. Please try again in {seconds}s. | Quá nhiều lần thử. Vui lòng thử lại sau {seconds}s. |
+| `auth.credentials_failed` | These credentials do not match our records. | Thông tin đăng nhập không chính xác. |
+
+---
+
 ## Adaptation Guide (Per Stack)
 
 | Stack | Auth Layout | Form | Routing |
 |-------|-------------|------|---------|
 | **React + Inertia (Laravel)** | Inertia `<Head>`, `useForm()`, `usePage()` | `post(route('admin.login.store'))` | Laravel `Route::prefix(config('admin.prefix'))` |
-| **Next.js App Router** | `metadata`, Server Actions | `useFormState()` + `<form action={login}>` | `app/(admin)/[prefix]/login/page.tsx` |
+| **Next.js App Router** | `metadata`, Server Actions | `useFormState()` + `<form action={login}>` | `app/(admin)/admin/login/page.tsx` |
 | **Laravel Blade** | `@extends('auth.layout')` | `<form action="{{ route('admin.login') }}" method="POST">` | `Route::prefix(config('admin.prefix'))` |
+| **Vue / Nuxt** | `<Head>` + composable | `useForm()` or `useFetch()` | `router.addRoute({ path: '/admin/...' })` |
 | **HTML/Static** | Standalone HTML file | Standard `<form>` | Static `/{admin}/login.html` |
 
 ---
 
-> **Usage:** When Antigravity activates Velzon Admin skill for admin panel creation, this file provides the **exact** login page design to reproduce. All values are pixel-perfect from the BaoSon reference.
+> **Usage:** When Antigravity activates Velzon Admin skill for admin panel creation, this file provides the **complete auth system** to reproduce — not just the login page. All screens share the same AuthLayout and glass card design. All flows (login, logout, forgot/reset password, 2FA, OAuth) must be fully functional.
