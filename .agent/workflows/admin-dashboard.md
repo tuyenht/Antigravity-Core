@@ -6,6 +6,9 @@ description: Tạo trang admin dashboard (Velzon)
 
 Build a new admin dashboard or management page using Velzon conventions.
 
+> For full admin system (Auth + RBAC + Users + Dashboard), use `/create-admin` workflow instead.
+> Blueprint: `.agent/skills/velzon-admin/reference/saas-admin-starter.md`
+
 ## Prerequisites
 - Read the Velzon Admin skill: `.agent/skills/velzon-admin/SKILL.md`
 - Identify the closest template page from `reference/page-catalog.md`

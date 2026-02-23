@@ -7,15 +7,15 @@
 | Keywords | Project Type | Template |
 |----------|--------------|----------|
 | blog, post, article | Blog | nextjs-static |
-| e-commerce, product, cart, payment | E-commerce | nextjs-saas |
-| dashboard, panel, management | Admin Dashboard | nextjs-fullstack |
+| e-commerce, product, cart, payment | E-commerce | nextjs-fullstack + `/create-admin` |
+| dashboard, admin, panel, management, login | Admin Dashboard | `/create-admin` workflow |
 | api, backend, service, rest | API Service | express-api |
 | python, fastapi, django | Python API | python-fastapi |
 | mobile, android, ios, react native | Mobile App (RN) | react-native-app |
 | flutter, dart | Mobile App (Flutter) | flutter-app |
 | portfolio, personal, cv | Portfolio | nextjs-static |
 | crm, customer, sales | CRM | nextjs-fullstack |
-| saas, subscription, stripe | SaaS | nextjs-saas |
+| saas, subscription, stripe | SaaS | nextjs-fullstack + `/create-admin` |
 | landing, promotional, marketing | Landing Page | nextjs-static |
 | docs, documentation | Documentation | nextjs-static |
 | extension, plugin, chrome | Browser Extension | chrome-extension |

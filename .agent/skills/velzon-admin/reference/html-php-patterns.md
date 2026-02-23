@@ -283,6 +283,125 @@ export default defineConfig({
 
 ---
 
+## Auth Pages (Admin Prefix)
+
+> [!IMPORTANT]
+> All auth screens use the **BaoSon glassmorphism design** defined in [auth-login-template.md](auth-login-template.md).
+> Auth pages use `layout-without-nav` (no sidebar/topbar) and live at `/{adminPrefix}/login`.
+
+### Auth Screens (5 total)
+
+| Screen | HTML File | PHP File | Blade View |
+|--------|-----------|----------|------------|
+| **Login** | `admin/login.html` | `admin/login.php` | `admin.auth.login` |
+| **Forgot Password** | `admin/forgot-password.html` | `admin/forgot-password.php` | `admin.auth.forgot-password` |
+| **Reset Password** | `admin/reset-password.html` | `admin/reset-password.php` | `admin.auth.reset-password` |
+| **Two-Factor** | `admin/two-factor.html` | `admin/two-factor.php` | `admin.auth.two-factor` |
+| **Logout** | — (POST only) | — (POST only) | — (POST only) |
+
+### HTML Variant — Auth Page
+
+```html
+<!doctype html>
+<html lang="en">
+<head>
+    @@include("partials/title-meta.html", {"title": "Login — Admin"})
+    @@include("partials/head-css.html")
+    <style>
+        /* BaoSon glassmorphism — see auth-login-template.md for full CSS */
+        .glass { backdrop-filter: blur(20px); background: rgba(255,255,255,0.85); }
+    </style>
+</head>
+<body>
+    <!-- NO layout-wrapper, NO topbar, NO sidebar -->
+    <div class="auth-page-wrapper">
+        <!-- Gradient background + glass card content -->
+        <!-- See auth-login-template.md for full HTML -->
+    </div>
+    @@include("partials/vendor-scripts.html")
+</body>
+</html>
+```
+
+### Laravel Blade — Auth Routes
+
+```php
+// routes/web.php
+$adminPrefix = config('admin.prefix', 'admin');
+
+Route::prefix($adminPrefix)->name('admin.')->group(function () {
+    // Guest routes
+    Route::middleware('guest')->group(function () {
+        Route::get('/login', [AdminAuthController::class, 'showLogin'])->name('login');
+        Route::post('/login', [AdminAuthController::class, 'login'])->name('login.store');
+        Route::get('/forgot-password', [AdminAuthController::class, 'showForgotPassword'])->name('forgot-password');
+        Route::post('/forgot-password', [AdminAuthController::class, 'sendResetLink'])->name('forgot-password.store');
+        Route::get('/reset-password/{token}', [AdminAuthController::class, 'showResetPassword'])->name('reset-password');
+        Route::post('/reset-password', [AdminAuthController::class, 'resetPassword'])->name('reset-password.store');
+    });
+
+    // Auth routes
+    Route::middleware('auth')->group(function () {
+        Route::get('/two-factor/challenge', [AdminAuthController::class, 'showTwoFactor'])->name('two-factor');
+        Route::post('/two-factor/challenge', [AdminAuthController::class, 'verifyTwoFactor'])->name('two-factor.verify');
+        Route::post('/logout', [AdminAuthController::class, 'logout'])->name('logout');
+        Route::get('/dashboard', [DashboardController::class, 'index'])->name('dashboard');
+    });
+});
+```
+
+### Laravel Blade — Auth Layout
+
+```blade
+{{-- resources/views/admin/auth/layout.blade.php --}}
+<!doctype html>
+<html lang="{{ str_replace('_', '-', app()->getLocale()) }}">
+<head>
+    <title>@yield('title') | {{ config('app.name') }}</title>
+    @vite(['resources/scss/themes.scss'])
+</head>
+<body>
+    {{-- NO layout-wrapper — BaoSon glassmorphism design --}}
+    <div class="auth-page-wrapper min-h-screen">
+        @yield('content')
+    </div>
+    @vite(['resources/js/app.js'])
+</body>
+</html>
+```
+
+```blade
+{{-- resources/views/admin/auth/login.blade.php --}}
+@extends('admin.auth.layout')
+@section('title', __('auth.login_title'))
+
+@section('content')
+    {{-- Glass card with email/password form --}}
+    {{-- See auth-login-template.md for full Blade implementation --}}
+    <form method="POST" action="{{ route('admin.login.store') }}">
+        @csrf
+        {{-- ... form fields ... --}}
+    </form>
+@endsection
+```
+
+### Laravel Blade — File Structure
+
+```
+resources/views/admin/
+├── auth/
+│   ├── layout.blade.php          ← Glassmorphism auth layout (no sidebar)
+│   ├── login.blade.php
+│   ├── forgot-password.blade.php
+│   ├── reset-password.blade.php
+│   └── two-factor.blade.php
+├── layouts/
+│   └── master.blade.php          ← Main admin layout (sidebar + header)
+└── dashboard.blade.php
+```
+
+---
+
 ## Variant Selection Guide
 
 | Project Type | Recommended Variant | Why |

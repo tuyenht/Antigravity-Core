@@ -360,6 +360,192 @@ Edit `_menu.cshtml` to add navigation link.
 
 ---
 
+## Auth Pages (Admin Prefix)
+
+> [!IMPORTANT]
+> All auth screens use the **BaoSon glassmorphism design** defined in [auth-login-template.md](auth-login-template.md).
+> Auth pages use a separate layout (no sidebar/topbar) at `/{adminPrefix}/login`.
+
+### Auth Screens (5 total)
+
+| Screen | Controller Action | View Path |
+|--------|------------------|-----------|
+| **Login** | `AdminAuthController.Login` | `Views/AdminAuth/Login.cshtml` |
+| **Forgot Password** | `AdminAuthController.ForgotPassword` | `Views/AdminAuth/ForgotPassword.cshtml` |
+| **Reset Password** | `AdminAuthController.ResetPassword` | `Views/AdminAuth/ResetPassword.cshtml` |
+| **Two-Factor** | `AdminAuthController.TwoFactor` | `Views/AdminAuth/TwoFactor.cshtml` |
+| **Logout** | `AdminAuthController.Logout` | — (POST only, redirect) |
+
+### Auth Controller
+
+```csharp
+// Controllers/AdminAuthController.cs
+using Microsoft.AspNetCore.Mvc;
+using Microsoft.AspNetCore.Authorization;
+
+namespace Velzon.Controllers
+{
+    [Route("{adminPrefix}/")]  // Configurable via appsettings.json
+    public class AdminAuthController : Controller
+    {
+        [HttpGet("login")]
+        [AllowAnonymous]
+        public IActionResult Login() => View();
+
+        [HttpPost("login")]
+        [AllowAnonymous]
+        [ValidateAntiForgeryToken]
+        public async Task<IActionResult> Login(LoginViewModel model)
+        {
+            if (!ModelState.IsValid) return View(model);
+            // Authenticate user...
+            return RedirectToAction("Index", "Dashboard");
+        }
+
+        [HttpGet("forgot-password")]
+        [AllowAnonymous]
+        public IActionResult ForgotPassword() => View();
+
+        [HttpPost("forgot-password")]
+        [AllowAnonymous]
+        [ValidateAntiForgeryToken]
+        public async Task<IActionResult> ForgotPassword(ForgotPasswordViewModel model)
+        {
+            // Send reset email...
+            return View("ForgotPasswordConfirmation");
+        }
+
+        [HttpGet("reset-password/{token}")]
+        [AllowAnonymous]
+        public IActionResult ResetPassword(string token) => View(new ResetPasswordViewModel { Token = token });
+
+        [HttpPost("reset-password")]
+        [AllowAnonymous]
+        [ValidateAntiForgeryToken]
+        public async Task<IActionResult> ResetPassword(ResetPasswordViewModel model)
+        {
+            // Reset password...
+            return RedirectToAction("Login");
+        }
+
+        [HttpGet("two-factor/challenge")]
+        [Authorize]
+        public IActionResult TwoFactor() => View();
+
+        [HttpPost("two-factor/challenge")]
+        [Authorize]
+        [ValidateAntiForgeryToken]
+        public async Task<IActionResult> TwoFactor(TwoFactorViewModel model)
+        {
+            // Verify 2FA code...
+            return RedirectToAction("Index", "Dashboard");
+        }
+
+        [HttpPost("logout")]
+        [Authorize]
+        [ValidateAntiForgeryToken]
+        public async Task<IActionResult> Logout()
+        {
+            // Sign out...
+            return RedirectToAction("Login");
+        }
+    }
+}
+```
+
+### Auth Layout (no sidebar)
+
+```html
+@* Views/Shared/_AuthLayout.cshtml *@
+<!doctype html>
+<html lang="en">
+<head>
+    @Html.Partial("~/Views/Shared/_title_meta.cshtml")
+    @Html.Partial("~/Views/Shared/_head_css.cshtml")
+    @RenderSection("styles", required: false)
+</head>
+<body>
+    @* NO layout-wrapper — BaoSon glassmorphism design *@
+    <div class="auth-page-wrapper">
+        @RenderBody()
+    </div>
+    @Html.Partial("~/Views/Shared/_vendor_scripts.cshtml")
+    @RenderSection("scripts", required: false)
+</body>
+</html>
+```
+
+### Auth View Example
+
+```html
+@* Views/AdminAuth/Login.cshtml *@
+@{
+    Layout = "~/Views/Shared/_AuthLayout.cshtml";
+    ViewBag.Title = "Login — Admin Panel";
+}
+
+@section styles {
+    <style>
+        /* BaoSon glassmorphism — see auth-login-template.md for full CSS */
+        .glass { backdrop-filter: blur(20px); background: rgba(255,255,255,0.85); }
+    </style>
+}
+
+<div class="glass-card">
+    <form method="post" asp-action="Login" asp-antiforgery="true">
+        @* See auth-login-template.md for complete HTML structure *@
+        <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+        <input asp-for="Email" class="form-control" placeholder="Email" />
+        <input asp-for="Password" type="password" class="form-control" placeholder="Password" />
+        <button type="submit" class="btn btn-primary w-100">Sign In</button>
+    </form>
+</div>
+```
+
+### Admin Prefix Configuration
+
+```json
+// appsettings.json
+{
+  "AdminSettings": {
+    "Prefix": "admin"
+  }
+}
+```
+
+```csharp
+// Program.cs — route configuration
+var adminPrefix = builder.Configuration.GetValue<string>("AdminSettings:Prefix") ?? "admin";
+
+app.MapControllerRoute(
+    name: "admin-auth",
+    pattern: $"{adminPrefix}/{{action=Login}}",
+    defaults: new { controller = "AdminAuth" });
+
+app.MapControllerRoute(
+    name: "admin",
+    pattern: $"{adminPrefix}/{{controller=Dashboard}}/{{action=Index}}/{{id?}}");
+```
+
+### View Structure
+
+```
+Views/
+├── Shared/
+│   ├── _Layout.cshtml             ← Main admin layout (sidebar + header)
+│   └── _AuthLayout.cshtml         ← Auth layout (glassmorphism, no sidebar)
+├── AdminAuth/
+│   ├── Login.cshtml
+│   ├── ForgotPassword.cshtml
+│   ├── ForgotPasswordConfirmation.cshtml
+│   ├── ResetPassword.cshtml
+│   └── TwoFactor.cshtml
+└── Dashboard/
+    └── Index.cshtml
+```
+
+---
+
 ## 8. Comparison: ASP.NET vs React-TS
 
 | Aspect | ASP.NET (Core/MVC) | React-TS |

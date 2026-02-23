@@ -331,16 +331,126 @@ const handleDelete = () => {
 
 ---
 
-## Auth Pages
+## Auth Pages (Admin Prefix)
 
-Inertia uses Laravel Breeze (or Fortify) for auth. Guest pages use `GuestLayout`:
-```tsx
-// Pages/Auth/Login.tsx
-Login.layout = (page: React.ReactNode) => <GuestLayout>{page}</GuestLayout>;
+> [!IMPORTANT]
+> All auth screens use the **BaoSon glassmorphism design** defined in [auth-login-template.md](auth-login-template.md).
+> Auth pages use `GuestLayout` (no sidebar/topbar) at `/{adminPrefix}/login`.
+
+### Auth Screens (5 total)
+
+| Screen | Laravel Route | Inertia Page |
+|--------|--------------|--------------|
+| **Login** | `GET /{admin}/login` | `Pages/Admin/Auth/Login.tsx` |
+| **Forgot Password** | `GET /{admin}/forgot-password` | `Pages/Admin/Auth/ForgotPassword.tsx` |
+| **Reset Password** | `GET /{admin}/reset-password/{token}` | `Pages/Admin/Auth/ResetPassword.tsx` |
+| **Two-Factor** | `GET /{admin}/two-factor/challenge` | `Pages/Admin/Auth/TwoFactor.tsx` |
+| **Logout** | `POST /{admin}/logout` | — (redirect) |
+
+### Laravel Routes
+
+```php
+// routes/web.php
+$adminPrefix = config('admin.prefix', 'admin');
+
+Route::prefix($adminPrefix)->name('admin.')->group(function () {
+    Route::middleware('guest')->group(function () {
+        Route::get('/login', fn() => Inertia::render('Admin/Auth/Login'))->name('login');
+        Route::post('/login', [AdminAuthController::class, 'login'])->name('login.store');
+        Route::get('/forgot-password', fn() => Inertia::render('Admin/Auth/ForgotPassword'))->name('forgot-password');
+        Route::post('/forgot-password', [AdminAuthController::class, 'sendResetLink'])->name('forgot-password.store');
+        Route::get('/reset-password/{token}', fn($token) => Inertia::render('Admin/Auth/ResetPassword', ['token' => $token]))->name('reset-password');
+        Route::post('/reset-password', [AdminAuthController::class, 'resetPassword'])->name('reset-password.store');
+    });
+
+    Route::middleware('auth')->group(function () {
+        Route::get('/two-factor/challenge', fn() => Inertia::render('Admin/Auth/TwoFactor'))->name('two-factor');
+        Route::post('/two-factor/challenge', [AdminAuthController::class, 'verifyTwoFactor'])->name('two-factor.verify');
+        Route::post('/logout', [AdminAuthController::class, 'logout'])->name('logout');
+        Route::get('/dashboard', fn() => Inertia::render('Dashboard'))->name('dashboard');
+    });
+});
 ```
 
-Velzon auth page visuals (Cover + Basic variants) remain the same TSX.
-Auth logic is handled by Laravel controller, not Redux.
+### Inertia Page Component (Login)
+
+```tsx
+// Pages/Admin/Auth/Login.tsx
+import { useForm, Head, Link } from '@inertiajs/react';
+
+const Login = () => {
+    const { data, setData, post, processing, errors } = useForm({
+        email: '', password: '', remember: false,
+    });
+
+    const handleSubmit = (e: React.FormEvent) => {
+        e.preventDefault();
+        post(route('admin.login.store'));
+    };
+
+    return (
+        <>
+            <Head title="Login — Admin Panel" />
+            {/* BaoSon glassmorphism login form */}
+            {/* See auth-login-template.md for full TSX */}
+            <form onSubmit={handleSubmit}>
+                {/* ... */}
+            </form>
+        </>
+    );
+};
+
+// Use GuestLayout (no sidebar) for auth pages
+Login.layout = (page: React.ReactNode) => <GuestLayout>{page}</GuestLayout>;
+export default Login;
+```
+
+### GuestLayout (Glassmorphism)
+
+```tsx
+// Layouts/GuestLayout.tsx
+const GuestLayout = ({ children }: { children: React.ReactNode }) => {
+    return (
+        <div className="auth-page-wrapper">
+            {/* Gradient background + animated orbs */}
+            {/* See auth-login-template.md for full layout */}
+            <div className="auth-page-content">
+                {children}
+            </div>
+            {/* Footer */}
+        </div>
+    );
+};
+```
+
+### File Structure
+
+```
+resources/js/
+├── Pages/
+│   ├── Admin/
+│   │   └── Auth/
+│   │       ├── Login.tsx                ← useForm() + post(route('admin.login.store'))
+│   │       ├── ForgotPassword.tsx
+│   │       ├── ResetPassword.tsx
+│   │       └── TwoFactor.tsx
+│   └── Dashboard.tsx
+├── Layouts/
+│   ├── index.tsx                        ← Main admin layout (sidebar + header)
+│   ├── GuestLayout.tsx                  ← Auth layout (glassmorphism, no sidebar)
+│   └── ...
+└── Components/
+    └── Auth/
+        ├── AuthCard.tsx                 ← Shared glass card component
+        ├── Input.tsx                    ← Custom input with icon
+        ├── LanguageSwitcher.tsx
+        └── SocialButton.tsx
+```
+
+> [!CAUTION]
+> **Inertia auth uses `useForm()` from `@inertiajs/react`**, NOT `useState` + `axios`.
+> All form submissions go through `post(route('admin.login.store'))`.
+> Validation errors come from Laravel and are available via `errors` from `useForm()`.
 
 ---
 

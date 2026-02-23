@@ -327,7 +327,33 @@ Profile, Team, Timeline, FAQs, Pricing, Gallery, Maintenance, Coming Soon, SiteM
 ### Authentication (20)
 Login/Signup/Reset (Basic/Cover), Verification, Lock Screen, Logout, Errors (404/500)
 
-### UI Elements (18)
+### Admin Prefix Auth Pages
+
+> [!IMPORTANT]
+> All auth screens use the **BaoSon glassmorphism design** defined in [auth-login-template.md](auth-login-template.md).
+> Auth pages are **standalone full pages** (NOT AJAX fragments) — they bypass the SPA shell entirely.
+> Auth pages live at `/{adminPrefix}/login.html`.
+
+#### Auth Fragment Files
+
+```
+ajax/
+├── admin/                              ← Admin prefix folder
+│   ├── login.html                      ← Full standalone page (NOT fragment)
+│   ├── forgot-password.html
+│   ├── reset-password.html
+│   ├── two-factor.html
+│   └── assets/                         ← Symlink or copy of main assets/
+├── index.html                          ← SPA shell (sidebar + topbar)
+└── [163 fragment pages]
+```
+
+> [!CAUTION]
+> **Auth pages in Ajax variant are NOT AJAX fragments.**
+> They are full `<!doctype html>` pages like the HTML variant because the user is NOT authenticated yet — there is no SPA shell to load into.
+> After login, redirect to `index.html` which loads the SPA shell.
+
+---
 Alerts, Badges, Buttons, Cards, Carousel, Colors, Dropdowns, Grid, Images, Lists, Modals, Offcanvas, Placeholders, Progress, Spinners, Tabs, Tooltips, Typography
 
 ### Advanced UI (9)

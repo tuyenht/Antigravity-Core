@@ -746,6 +746,557 @@ Uses the **same glass card design** as Login. Features:
 
 ---
 
+## Reference Code: Additional Auth Screens
+
+> [!IMPORTANT]
+> All screens below **MUST** be wrapped in `<AuthLayout>` and use the same glass card (`className="glass"`) design.
+> They share the same gradient background, logo, language switcher, and footer as Login.
+
+### 6. SocialButton Component
+
+```tsx
+interface SocialButtonProps {
+    provider: 'google' | 'facebook';
+    icon: React.ReactNode;
+    disabled?: boolean;
+    onClick?: () => void;
+}
+
+const SocialButton: React.FC<SocialButtonProps> = ({ provider, icon, disabled, onClick }) => {
+    const { t } = useTranslation();
+    const label = provider === 'google' ? t('auth.login_with_google') : t('auth.login_with_facebook');
+
+    return (
+        <button
+            type="button"
+            disabled={disabled}
+            onClick={onClick}
+            className="flex items-center justify-center gap-2.5 py-2.5 px-4
+                bg-white border border-slate-200 rounded-xl shadow-sm
+                hover:bg-slate-50 hover:shadow-md hover:-translate-y-0.5
+                disabled:opacity-50 disabled:cursor-not-allowed
+                transition-all duration-200 text-[14px] font-medium text-slate-700"
+        >
+            <span className="w-5 h-5 flex-shrink-0">{icon}</span>
+            <span>{label}</span>
+        </button>
+    );
+};
+```
+
+### 7. useLocale Hook
+
+> [!CAUTION]
+> The `useLocale()` hook MUST be framework-aware:
+> - **Next.js**: Cookie-based + `router.refresh()` (NO Axios POST)
+> - **Laravel/Inertia**: Cookie + debounced Axios POST to `/{adminPrefix}/locale`
+> - **Static**: `localStorage` only
+
+```tsx
+// --- types.ts ---
+export type SupportedLocale = 'en' | 'vi' | 'ja' | 'zh';
+export const DEFAULT_LOCALE: SupportedLocale = 'en';
+export const SUPPORTED_LOCALES: SupportedLocale[] = ['en', 'vi', 'ja', 'zh'];
+
+// --- LocaleContext.tsx ---
+import { createContext, useContext, useState, useCallback, ReactNode } from 'react';
+
+interface LocaleContextValue {
+    locale: SupportedLocale;
+    setLocale: (locale: SupportedLocale) => void;
+    t: (key: string) => string;
+}
+
+const LocaleContext = createContext<LocaleContextValue | undefined>(undefined);
+
+export function LocaleProvider({ children }: { children: ReactNode }) {
+    const [locale, setLocaleState] = useState<SupportedLocale>(() => {
+        // Read from cookie or localStorage on init
+        if (typeof document !== 'undefined') {
+            const cookie = document.cookie.match(/locale=(\w+)/);
+            if (cookie && SUPPORTED_LOCALES.includes(cookie[1] as SupportedLocale)) {
+                return cookie[1] as SupportedLocale;
+            }
+        }
+        return DEFAULT_LOCALE;
+    });
+
+    const [messages, setMessages] = useState<Record<string, string>>({});
+
+    // Load translations dynamically
+    const loadMessages = useCallback(async (loc: SupportedLocale) => {
+        const msgs = await import(`@/locales/${loc}.json`);
+        setMessages(msgs.default);
+    }, []);
+
+    // Initialize messages
+    useEffect(() => { loadMessages(locale); }, []);
+
+    const setLocale = useCallback((newLocale: SupportedLocale) => {
+        setLocaleState(newLocale);
+        loadMessages(newLocale);
+
+        // Set cookie immediately (no page reload)
+        document.cookie = `locale=${newLocale};path=/;max-age=31536000;SameSite=Lax`;
+
+        // Update HTML lang attribute
+        document.documentElement.lang = newLocale === 'zh' ? 'zh-CN' : newLocale;
+    }, [loadMessages]);
+
+    const t = useCallback((key: string): string => {
+        return messages[key] ?? key;
+    }, [messages]);
+
+    return (
+        <LocaleContext.Provider value={{ locale, setLocale, t }}>
+            {children}
+        </LocaleContext.Provider>
+    );
+}
+
+export function useLocale() {
+    const ctx = useContext(LocaleContext);
+    if (!ctx) throw new Error('useLocale must be used within LocaleProvider');
+    return ctx;
+}
+```
+
+**Usage:** Wrap auth pages with `<LocaleProvider>` in the auth layout:
+```tsx
+// app/admin/login/page.tsx (Server Component)
+export const metadata = { title: 'Login — Admin Panel' };
+export default function LoginPage() {
+    return <LoginClient />;  // Client Component
+}
+
+// LoginClient.tsx ("use client")
+import { LocaleProvider } from '@/features/auth/hooks/LocaleContext';
+export default function LoginClient() {
+    return (
+        <LocaleProvider>
+            <AuthLayout title="Login"><LoginForm /></AuthLayout>
+        </LocaleProvider>
+    );
+}
+```
+
+### 8. ForgotPasswordForm
+
+```tsx
+'use client';
+import { useState, FormEvent } from 'react';
+import { useLocale } from '@/features/auth/hooks/LocaleContext';
+
+export default function ForgotPasswordForm() {
+    const { t } = useLocale();
+    const [email, setEmail] = useState('');
+    const [loading, setLoading] = useState(false);
+    const [sent, setSent] = useState(false);
+    const [error, setError] = useState('');
+
+    const handleSubmit = async (e: FormEvent) => {
+        e.preventDefault();
+        setError('');
+        if (!email || !/\S+@\S+\.\S+/.test(email)) {
+            setError(t('auth.email_error'));
+            return;
+        }
+        setLoading(true);
+        try {
+            // Replace with actual API call:
+            // await authService.forgotPassword(email);
+            await new Promise(r => setTimeout(r, 1200)); // Mock
+            setSent(true);
+        } catch {
+            setError(t('auth.oauth_failed'));
+        } finally {
+            setLoading(false);
+        }
+    };
+
+    if (sent) {
+        return (
+            <div className="glass w-full rounded-3xl p-6 md:p-10 shadow-2xl text-center space-y-4">
+                {/* Success checkmark */}
+                <div className="w-16 h-16 mx-auto bg-green-100 rounded-full flex items-center justify-center">
+                    <svg className="w-8 h-8 text-green-500" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
+                        <path strokeLinecap="round" strokeLinejoin="round" d="M5 13l4 4L19 7" />
+                    </svg>
+                </div>
+                <h3 className="text-xl font-bold text-slate-800">{t('auth.email_sent')}</h3>
+                <p className="text-sm text-slate-500">{t('auth.check_inbox')}</p>
+                <a href={`/${ADMIN_PREFIX}/login`}
+                   className="inline-block text-sm font-medium text-blue-600 hover:text-blue-700 hover:underline">
+                    {t('auth.back_to_login')}
+                </a>
+            </div>
+        );
+    }
+
+    return (
+        <div className="glass w-full rounded-3xl p-6 md:p-10 shadow-2xl">
+            <h2 className="text-3xl font-extrabold text-transparent bg-clip-text bg-gradient-to-r from-blue-700 to-slate-700 tracking-tight mb-2">
+                {t('auth.forgot_password_title')}
+            </h2>
+            <p className="text-sm text-slate-500 mb-6">{t('auth.forgot_password_subtitle')}</p>
+
+            <form onSubmit={handleSubmit} className="space-y-4">
+                <Input label={t('auth.email_label')} placeholder="your-name@gmail.com"
+                       type="email" value={email} onChange={e => setEmail(e.target.value)}
+                       icon={<UserIcon />} showAtSymbol />
+
+                {error && <p className="text-sm text-red-500 ml-1">{error}</p>}
+
+                <button type="submit" disabled={loading}
+                    className="w-full py-3 md:py-3.5 rounded-xl font-semibold text-[15px]
+                        bg-blue-600 text-white hover:bg-blue-700 hover:-translate-y-0.5
+                        shadow-lg shadow-blue-500/20 flex items-center justify-center gap-2
+                        transition-all disabled:opacity-60 disabled:cursor-not-allowed">
+                    <span>{loading ? t('auth.sending') : t('auth.send_reset_link')}</span>
+                    {!loading && <ArrowRightIcon />}
+                </button>
+            </form>
+
+            <div className="mt-6 text-center">
+                <a href={`/${ADMIN_PREFIX}/login`}
+                   className="text-sm font-medium text-blue-600 hover:text-blue-700 hover:underline">
+                    ← {t('auth.back_to_login')}
+                </a>
+            </div>
+        </div>
+    );
+}
+```
+
+### 9. ResetPasswordForm
+
+```tsx
+'use client';
+import { useState, FormEvent } from 'react';
+import { useLocale } from '@/features/auth/hooks/LocaleContext';
+
+interface ResetPasswordFormProps {
+    token: string;  // From URL param: /admin/reset-password/{token}
+}
+
+export default function ResetPasswordForm({ token }: ResetPasswordFormProps) {
+    const { t } = useLocale();
+    const [password, setPassword] = useState('');
+    const [confirm, setConfirm] = useState('');
+    const [loading, setLoading] = useState(false);
+    const [errors, setErrors] = useState<{ password?: string; confirm?: string }>({});
+
+    const validate = (): boolean => {
+        const errs: typeof errors = {};
+        if (!password || password.length < 6) errs.password = t('auth.password_error');
+        if (password !== confirm) errs.confirm = t('auth.password_mismatch');
+        setErrors(errs);
+        return Object.keys(errs).length === 0;
+    };
+
+    const handleSubmit = async (e: FormEvent) => {
+        e.preventDefault();
+        if (!validate()) return;
+        setLoading(true);
+        try {
+            // Replace with actual API call:
+            // await authService.resetPassword({ token, password, password_confirmation: confirm });
+            await new Promise(r => setTimeout(r, 1200)); // Mock
+            window.location.href = `/${ADMIN_PREFIX}/login`;
+        } catch {
+            setErrors({ password: t('auth.credentials_failed') });
+        } finally {
+            setLoading(false);
+        }
+    };
+
+    return (
+        <div className="glass w-full rounded-3xl p-6 md:p-10 shadow-2xl">
+            <h2 className="text-3xl font-extrabold text-transparent bg-clip-text bg-gradient-to-r from-blue-700 to-slate-700 tracking-tight mb-2">
+                {t('auth.reset_password_title')}
+            </h2>
+            <p className="text-sm text-slate-500 mb-6">{t('auth.reset_password_subtitle')}</p>
+
+            <form onSubmit={handleSubmit} className="space-y-4">
+                <Input label={t('auth.new_password')} placeholder="••••••••"
+                       isPassword value={password} onChange={e => setPassword(e.target.value)}
+                       icon={<LockIcon />} />
+                {errors.password && <p className="text-sm text-red-500 ml-1 -mt-2">{errors.password}</p>}
+
+                <Input label={t('auth.confirm_password')} placeholder="••••••••"
+                       isPassword value={confirm} onChange={e => setConfirm(e.target.value)}
+                       icon={<LockIcon />} />
+                {errors.confirm && <p className="text-sm text-red-500 ml-1 -mt-2">{errors.confirm}</p>}
+
+                <button type="submit" disabled={loading}
+                    className="w-full py-3 md:py-3.5 rounded-xl font-semibold text-[15px]
+                        bg-blue-600 text-white hover:bg-blue-700 hover:-translate-y-0.5
+                        shadow-lg shadow-blue-500/20 flex items-center justify-center gap-2
+                        transition-all disabled:opacity-60 disabled:cursor-not-allowed">
+                    <span>{loading ? t('auth.updating') : t('auth.update_password')}</span>
+                    {!loading && <ArrowRightIcon />}
+                </button>
+            </form>
+
+            <div className="mt-6 text-center">
+                <a href={`/${ADMIN_PREFIX}/login`}
+                   className="text-sm font-medium text-blue-600 hover:text-blue-700 hover:underline">
+                    ← {t('auth.back_to_login')}
+                </a>
+            </div>
+        </div>
+    );
+}
+```
+
+### 10. TwoFactorForm
+
+```tsx
+'use client';
+import { useState, FormEvent } from 'react';
+import { useLocale } from '@/features/auth/hooks/LocaleContext';
+
+export default function TwoFactorForm() {
+    const { t } = useLocale();
+    const [code, setCode] = useState('');
+    const [recoveryCode, setRecoveryCode] = useState('');
+    const [useRecovery, setUseRecovery] = useState(false);
+    const [loading, setLoading] = useState(false);
+    const [error, setError] = useState('');
+
+    const handleSubmit = async (e: FormEvent) => {
+        e.preventDefault();
+        setError('');
+        if (useRecovery) {
+            if (!recoveryCode.trim()) { setError(t('auth.recovery_code_error')); return; }
+        } else {
+            if (!code || !/^\d{6}$/.test(code)) { setError(t('auth.verification_code_error')); return; }
+        }
+
+        setLoading(true);
+        try {
+            // Replace with actual API call:
+            // await authService.verifyTwoFactor({ code, recovery_code: recoveryCode });
+            await new Promise(r => setTimeout(r, 1200)); // Mock
+            window.location.href = `/${ADMIN_PREFIX}/dashboard`;
+        } catch {
+            setError(t('auth.credentials_failed'));
+        } finally {
+            setLoading(false);
+        }
+    };
+
+    return (
+        <div className="glass w-full rounded-3xl p-6 md:p-10 shadow-2xl">
+            <h2 className="text-3xl font-extrabold text-transparent bg-clip-text bg-gradient-to-r from-blue-700 to-slate-700 tracking-tight mb-2">
+                {t('auth.two_factor_title')}
+            </h2>
+            <p className="text-sm text-slate-500 mb-6">{t('auth.two_factor_subtitle')}</p>
+
+            <form onSubmit={handleSubmit} className="space-y-4">
+                {!useRecovery ? (
+                    <div className="space-y-1.5">
+                        <label className="block text-base font-semibold text-slate-700 ml-1">
+                            {t('auth.verification_code')}
+                        </label>
+                        <div className="relative group">
+                            <div className="absolute left-3.5 top-1/2 -translate-y-1/2 text-slate-400 group-focus-within:text-blue-600 transition-colors pointer-events-none">
+                                {/* Clock icon */}
+                                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" className="w-5 h-5">
+                                    <circle cx="12" cy="12" r="10" /><path d="M12 6v6l4 2" />
+                                </svg>
+                            </div>
+                            <input type="text" inputMode="numeric" maxLength={6}
+                                placeholder="000000" value={code}
+                                onChange={e => { setCode(e.target.value.replace(/\D/g, '')); setRecoveryCode(''); }}
+                                className="w-full pl-11 pr-3 py-3 bg-slate-50 border border-slate-200 rounded-xl
+                                    text-slate-900 text-[15px] font-medium tracking-[0.3em] text-center
+                                    placeholder:text-slate-400 placeholder:tracking-[0.3em]
+                                    outline-none focus:bg-white focus:border-blue-600 focus:ring-4 focus:ring-blue-600/10 transition-all"
+                            />
+                        </div>
+                    </div>
+                ) : (
+                    <div className="space-y-1.5">
+                        <label className="block text-base font-semibold text-slate-700 ml-1">
+                            {t('auth.recovery_code')}
+                        </label>
+                        <div className="relative group">
+                            <div className="absolute left-3.5 top-1/2 -translate-y-1/2 text-slate-400 group-focus-within:text-blue-600 transition-colors pointer-events-none">
+                                {/* Key/recovery icon */}
+                                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" className="w-5 h-5">
+                                    <path strokeLinecap="round" strokeLinejoin="round" d="M15 7a2 2 0 012 2m4 0a6 6 0 01-7.5 5.8l-4.28 4.28a.75.75 0 01-.53.22H5v-2.5l6.62-6.62A6 6 0 0121 9z" />
+                                </svg>
+                            </div>
+                            <input type="text" placeholder="ABCDE-FGHIJ" value={recoveryCode}
+                                onChange={e => { setRecoveryCode(e.target.value); setCode(''); }}
+                                className="w-full pl-11 pr-3 py-3 bg-slate-50 border border-slate-200 rounded-xl
+                                    text-slate-900 text-[15px] font-medium tracking-wider
+                                    placeholder:text-slate-400 outline-none
+                                    focus:bg-white focus:border-blue-600 focus:ring-4 focus:ring-blue-600/10 transition-all"
+                            />
+                        </div>
+                    </div>
+                )}
+
+                {error && <p className="text-sm text-red-500 ml-1">{error}</p>}
+
+                <button type="button" onClick={() => { setUseRecovery(!useRecovery); setError(''); }}
+                    className="text-sm font-medium text-blue-600 hover:text-blue-700 hover:underline">
+                    {useRecovery ? t('auth.two_factor_subtitle') : t('auth.recovery_hint')}
+                </button>
+
+                <button type="submit" disabled={loading}
+                    className="w-full py-3 md:py-3.5 rounded-xl font-semibold text-[15px]
+                        bg-blue-600 text-white hover:bg-blue-700 hover:-translate-y-0.5
+                        shadow-lg shadow-blue-500/20 flex items-center justify-center gap-2
+                        transition-all disabled:opacity-60 disabled:cursor-not-allowed">
+                    <span>{loading ? t('auth.processing') : t('auth.verify')}</span>
+                    {!loading && <ArrowRightIcon />}
+                </button>
+            </form>
+
+            <div className="mt-6 text-center">
+                <a href={`/${ADMIN_PREFIX}/login`}
+                   className="text-sm font-medium text-blue-600 hover:text-blue-700 hover:underline">
+                    ← {t('auth.back_to_login')}
+                </a>
+            </div>
+        </div>
+    );
+}
+```
+
+### Additional SVG Icons (for auth screens)
+
+```html
+<!-- Checkmark (ForgotPassword success) -->
+<path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M5 13l4 4L19 7" />
+
+<!-- Clock (2FA code input) -->
+<circle cx="12" cy="12" r="10" /><path d="M12 6v6l4 2" />
+
+<!-- Key (2FA recovery code input) -->
+<path strokeLinecap="round" strokeLinejoin="round" d="M15 7a2 2 0 012 2m4 0a6 6 0 01-7.5 5.8l-4.28 4.28a.75.75 0 01-.53.22H5v-2.5l6.62-6.62A6 6 0 0121 9z" />
+```
+
+---
+
+## Next.js App Router Architecture Notes
+
+> [!IMPORTANT]
+> The reference TSX code above uses a **framework-agnostic SPA pattern** (useState, onSubmit, client-side routing).
+> For **Next.js App Router**, apply the following adaptations.
+
+### Page Route Pattern (Server Component + Client Wrapper)
+
+Every auth page MUST follow this pattern to support both `metadata` and client-side interactivity:
+
+```tsx
+// app/admin/login/page.tsx — SERVER COMPONENT (metadata export works)
+import type { Metadata } from 'next';
+import LoginClient from './LoginClient';
+
+export const metadata: Metadata = {
+    title: 'Login — Admin Panel',
+    description: 'Sign in to the admin dashboard',
+};
+
+export default function LoginPage() {
+    return <LoginClient />;
+}
+```
+
+```tsx
+// app/admin/login/LoginClient.tsx — CLIENT COMPONENT
+'use client';
+import { LocaleProvider } from '@/features/auth/hooks/LocaleContext';
+import AuthLayout from '@/components/login/AuthLayout';
+import LoginForm from '@/components/login/LoginForm';
+
+export default function LoginClient() {
+    return (
+        <LocaleProvider>
+            <AuthLayout title="Login">
+                <LoginForm />
+            </AuthLayout>
+        </LocaleProvider>
+    );
+}
+```
+
+### Admin Prefix Routing (Flat Folder Structure)
+
+```
+src/app/
+├── admin/
+│   ├── login/
+│   │   ├── page.tsx                    ← Server Component (metadata)
+│   │   └── LoginClient.tsx             ← Client Component
+│   ├── forgot-password/
+│   │   ├── page.tsx
+│   │   └── ForgotPasswordClient.tsx
+│   ├── reset-password/
+│   │   └── [token]/
+│   │       ├── page.tsx
+│   │       └── ResetPasswordClient.tsx
+│   ├── two-factor/
+│   │   └── challenge/
+│   │       ├── page.tsx
+│   │       └── TwoFactorClient.tsx
+│   ├── dashboard/
+│   │   ├── layout.tsx                  ← Admin layout (sidebar + header)
+│   │   └── page.tsx
+│   └── page.tsx                        ← redirect to /admin/dashboard
+├── page.tsx                            ← redirect to /admin
+└── layout.tsx                          ← Root layout
+```
+
+> [!CAUTION]
+> **DO NOT use route groups `(auth)` for admin auth pages.**
+> Admin auth pages live at `/admin/login`, NOT at `/login`.
+> Route groups remove the URL segment — `(auth)/login` → `/login` which violates the admin prefix rule.
+
+### Middleware (Auth Guard)
+
+```tsx
+// middleware.ts
+import { NextResponse } from 'next/server';
+import type { NextRequest } from 'next/server';
+
+const ADMIN_PREFIX = process.env.NEXT_PUBLIC_ADMIN_PREFIX ?? 'admin';
+const PUBLIC_PATHS = [
+    `/${ADMIN_PREFIX}/login`,
+    `/${ADMIN_PREFIX}/forgot-password`,
+    `/${ADMIN_PREFIX}/reset-password`,
+    `/${ADMIN_PREFIX}/two-factor`,
+];
+
+export function middleware(request: NextRequest) {
+    const { pathname } = request.nextUrl;
+
+    // Only protect admin routes
+    if (!pathname.startsWith(`/${ADMIN_PREFIX}`)) return NextResponse.next();
+
+    // Allow public auth pages
+    if (PUBLIC_PATHS.some(p => pathname.startsWith(p))) return NextResponse.next();
+
+    // Check auth (cookie/token based)
+    const token = request.cookies.get('auth-token');
+    if (!token) {
+        return NextResponse.redirect(new URL(`/${ADMIN_PREFIX}/login`, request.url));
+    }
+
+    return NextResponse.next();
+}
+
+export const config = {
+    matcher: ['/((?!api|_next/static|_next/image|favicon.ico|fonts|images).*)'],
+};
+```
+
+---
+
 ## Additional i18n Keys (for all auth screens)
 
 Add these keys to **each locale file** (`en.json`, `vi.json`, `ja.json`, `zh.json`):

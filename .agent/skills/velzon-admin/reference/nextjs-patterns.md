@@ -195,15 +195,132 @@ const DashboardClient = ({ initialData }: Props) => {
 import { NextResponse } from 'next/server';
 import type { NextRequest } from 'next/server';
 
+const ADMIN_PREFIX = process.env.NEXT_PUBLIC_ADMIN_PREFIX ?? 'admin';
+const PUBLIC_PATHS = [
+    `/${ADMIN_PREFIX}/login`,
+    `/${ADMIN_PREFIX}/forgot-password`,
+    `/${ADMIN_PREFIX}/reset-password`,
+    `/${ADMIN_PREFIX}/two-factor`,
+];
+
 export function middleware(request: NextRequest) {
-    // Auth check, redirects, etc.
-    const token = request.cookies.get('token');
-    if (!token && !request.nextUrl.pathname.startsWith('/auth-')) {
-        return NextResponse.redirect(new URL('/auth-signin-basic', request.url));
+    const { pathname } = request.nextUrl;
+
+    // Only protect admin routes
+    if (!pathname.startsWith(`/${ADMIN_PREFIX}`)) return NextResponse.next();
+
+    // Allow public auth pages
+    if (PUBLIC_PATHS.some(p => pathname.startsWith(p))) return NextResponse.next();
+
+    // Check auth (cookie/token based)
+    const token = request.cookies.get('auth-token');
+    if (!token) {
+        return NextResponse.redirect(new URL(`/${ADMIN_PREFIX}/login`, request.url));
     }
+
+    return NextResponse.next();
 }
 
 export const config = {
-    matcher: ['/((?!api|_next/static|_next/image|favicon.ico).*)'],
+    matcher: ['/((?!api|_next/static|_next/image|favicon.ico|fonts|images).*)'],
 };
 ```
+
+---
+
+## Auth Pages (Admin Prefix)
+
+> [!IMPORTANT]
+> All auth screens use the **BaoSon glassmorphism design** defined in [auth-login-template.md](reference/auth-login-template.md).
+> Auth pages live at `/{adminPrefix}/login`, NOT at `/login`.
+
+### Folder Structure
+
+```
+src/app/admin/
+├── login/
+│   ├── page.tsx                    ← Server Component (export metadata)
+│   └── LoginClient.tsx             ← Client Component (form + AuthLayout)
+├── forgot-password/
+│   ├── page.tsx
+│   └── ForgotPasswordClient.tsx
+├── reset-password/
+│   └── [token]/
+│       ├── page.tsx
+│       └── ResetPasswordClient.tsx
+├── two-factor/
+│   └── challenge/
+│       ├── page.tsx
+│       └── TwoFactorClient.tsx
+├── dashboard/
+│   ├── layout.tsx                  ← Admin layout (sidebar + header)
+│   └── page.tsx
+└── page.tsx                        ← redirect → /admin/dashboard
+```
+
+### Page Pattern (Server + Client Split)
+
+Every auth page uses a thin Server Component + Client Component wrapper:
+
+```tsx
+// app/admin/forgot-password/page.tsx — Server Component
+import type { Metadata } from 'next';
+import ForgotPasswordClient from './ForgotPasswordClient';
+
+export const metadata: Metadata = {
+    title: 'Forgot Password — Admin Panel',
+};
+
+export default function ForgotPasswordPage() {
+    return <ForgotPasswordClient />;
+}
+```
+
+```tsx
+// ForgotPasswordClient.tsx — "use client"
+'use client';
+import { LocaleProvider } from '@/features/auth/hooks/LocaleContext';
+import AuthLayout from '@/components/login/AuthLayout';
+import ForgotPasswordForm from '@/components/login/ForgotPasswordForm';
+
+export default function ForgotPasswordClient() {
+    return (
+        <LocaleProvider>
+            <AuthLayout title="Forgot Password">
+                <ForgotPasswordForm />
+            </AuthLayout>
+        </LocaleProvider>
+    );
+}
+```
+
+### Admin Config
+
+```tsx
+// src/config/admin.ts
+export const ADMIN_PREFIX = process.env.NEXT_PUBLIC_ADMIN_PREFIX ?? 'admin';
+```
+
+> [!CAUTION]
+> **DO NOT use route groups `(auth)` for admin auth pages.**
+> Route groups remove the URL segment — `(auth)/login` → `/login` which breaks admin prefix.
+
+### Auth Component Files
+
+```
+src/components/login/
+├── AuthLayout.tsx           ← Gradient bg + logo + lang switcher + footer
+├── LoginForm.tsx            ← Email + password + social buttons
+├── ForgotPasswordForm.tsx   ← Email input → send reset link
+├── ResetPasswordForm.tsx    ← New password + confirm
+├── TwoFactorForm.tsx        ← OTP code / recovery code
+├── Input.tsx                ← Custom input with icon + password toggle
+├── LanguageSwitcher.tsx     ← Locale pill (EN/VI/JA/ZH)
+└── SocialButton.tsx         ← Google / Facebook button
+
+src/features/auth/
+├── hooks/
+│   └── LocaleContext.tsx    ← useLocale() provider + t() function
+└── types.ts                 ← SupportedLocale type
+```
+

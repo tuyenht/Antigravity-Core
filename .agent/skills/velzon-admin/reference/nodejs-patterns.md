@@ -448,7 +448,70 @@ Logout → GET /logout → session.destroy → redirect /login
 Password Reset → POST /sendforgotpasswordlink → crypto token → email → GET /resetpassword?token=
 ```
 
----
+### Admin Prefix Auth Pages
+
+> [!IMPORTANT]
+> All auth screens use the **BaoSon glassmorphism design** defined in [auth-login-template.md](auth-login-template.md).
+> Auth pages use `layout-without-nav.ejs` (no sidebar/topbar) at `/{adminPrefix}/login`.
+
+#### Admin Auth Routes
+
+```javascript
+// routes/routes.js — Add admin prefix auth routes
+const ADMIN_PREFIX = process.env.ADMIN_PREFIX || 'admin';
+
+// Guest-only auth routes (no sidebar)
+route.get(`/${ADMIN_PREFIX}/login`, (req, res) => {
+    if (req.session.useremail) return res.redirect(`/${ADMIN_PREFIX}/dashboard`);
+    res.render("admin-auth-login", {
+        title: "Login — Admin",
+        layout: "layouts/layout-without-nav"
+    });
+});
+
+route.get(`/${ADMIN_PREFIX}/forgot-password`, (req, res) => {
+    res.render("admin-auth-forgot-password", {
+        title: "Forgot Password — Admin",
+        layout: "layouts/layout-without-nav"
+    });
+});
+
+route.get(`/${ADMIN_PREFIX}/reset-password/:token`, (req, res) => {
+    res.render("admin-auth-reset-password", {
+        title: "Reset Password — Admin",
+        layout: "layouts/layout-without-nav",
+        token: req.params.token
+    });
+});
+
+route.get(`/${ADMIN_PREFIX}/two-factor/challenge`, (req, res) => {
+    if (!req.session.useremail) return res.redirect(`/${ADMIN_PREFIX}/login`);
+    res.render("admin-auth-two-factor", {
+        title: "Two-Factor — Admin",
+        layout: "layouts/layout-without-nav"
+    });
+});
+
+route.post(`/${ADMIN_PREFIX}/login`, AuthController.validate);
+route.post(`/${ADMIN_PREFIX}/forgot-password`, AuthController.sendResetLink);
+route.post(`/${ADMIN_PREFIX}/reset-password`, AuthController.resetPassword);
+route.post(`/${ADMIN_PREFIX}/two-factor/verify`, AuthController.verifyTwoFactor);
+route.post(`/${ADMIN_PREFIX}/logout`, AuthController.logout);
+```
+
+#### Auth EJS Views
+
+```
+views/
+├── admin-auth-login.ejs              ← BaoSon glassmorphism login
+├── admin-auth-forgot-password.ejs    ← Email input → send reset link
+├── admin-auth-reset-password.ejs     ← New password + confirm
+├── admin-auth-two-factor.ejs         ← OTP code / recovery code
+├── layouts/
+│   └── layout-without-nav.ejs        ← Auth layout (no sidebar)
+└── partials/
+    └── admin-auth-card.ejs           ← Shared glass card partial
+```
 
 ## 8. Webpack Build Pipeline
 

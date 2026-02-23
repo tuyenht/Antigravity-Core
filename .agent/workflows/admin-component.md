@@ -6,6 +6,9 @@ description: Tạo component admin (Velzon)
 
 Generate individual Velzon-style admin components for any supported stack.
 
+> For full admin system (Auth + RBAC + Users + Dashboard), use `/create-admin` workflow instead.
+> Blueprint: `.agent/skills/velzon-admin/reference/saas-admin-starter.md`
+
 ## Prerequisites
 - Read component patterns: `.agent/skills/velzon-admin/reference/component-patterns.md`
 - Detect project variant (see stack detection in `SKILL.md` Multi-Stack section)

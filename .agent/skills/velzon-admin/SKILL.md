@@ -142,6 +142,7 @@ Read these for detailed patterns:
 | [asset-catalog.md](reference/asset-catalog.md) | Complete image, font, SCSS, plugin inventory |
 | [api-and-helpers.md](reference/api-and-helpers.md) | API client, auth flows, i18n, toast, file upload, avatars |
 | [auth-login-template.md](reference/auth-login-template.md) | **BaoSon login design**: glassmorphism card, configurable admin prefix, i18n, OAuth |
+| [saas-admin-starter.md](reference/saas-admin-starter.md) | **SaaS Admin Starter Kit**: Auth + RBAC + User Mgmt + Dashboard (universal, all frameworks) |
 
 ## Quick Reference: Common Patterns
 

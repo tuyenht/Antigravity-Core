@@ -11,24 +11,46 @@ project-name/
 ├── src/
 │   ├── app/                        # Routes only (thin layer)
 │   │   ├── layout.tsx
-│   │   ├── page.tsx
+│   │   ├── page.tsx                # redirect → /admin
 │   │   ├── globals.css
-│   │   ├── (auth)/                 # Route group - auth pages
-│   │   │   ├── login/page.tsx
-│   │   │   └── register/page.tsx
-│   │   ├── (dashboard)/            # Route group - dashboard layout
-│   │   │   ├── layout.tsx
-│   │   │   └── page.tsx
+│   │   ├── admin/                  # Admin prefix (configurable)
+│   │   │   ├── page.tsx            # redirect → /admin/dashboard
+│   │   │   ├── login/
+│   │   │   │   ├── page.tsx        # Server Component (metadata)
+│   │   │   │   └── LoginClient.tsx # Client Component (form)
+│   │   │   ├── forgot-password/
+│   │   │   │   ├── page.tsx
+│   │   │   │   └── ForgotPasswordClient.tsx
+│   │   │   ├── reset-password/
+│   │   │   │   └── [token]/
+│   │   │   │       ├── page.tsx
+│   │   │   │       └── ResetPasswordClient.tsx
+│   │   │   ├── two-factor/
+│   │   │   │   └── challenge/
+│   │   │   │       ├── page.tsx
+│   │   │   │       └── TwoFactorClient.tsx
+│   │   │   └── dashboard/          # Protected admin area
+│   │   │       ├── layout.tsx      # Admin layout (sidebar + header)
+│   │   │       └── page.tsx
 │   │   └── api/
 │   │       └── [resource]/route.ts
 │   │
 │   ├── features/                   # Feature-based modules
 │   │   ├── auth/
 │   │   │   ├── components/
+│   │   │   │   ├── AuthLayout.tsx   # Shared glassmorphism layout
+│   │   │   │   ├── LoginForm.tsx
+│   │   │   │   ├── ForgotPasswordForm.tsx
+│   │   │   │   ├── ResetPasswordForm.tsx
+│   │   │   │   ├── TwoFactorForm.tsx
+│   │   │   │   ├── Input.tsx        # Custom input with icon
+│   │   │   │   ├── LanguageSwitcher.tsx
+│   │   │   │   └── SocialButton.tsx
 │   │   │   ├── hooks/
+│   │   │   │   └── LocaleContext.tsx # useLocale() + t()
 │   │   │   ├── actions.ts          # Server Actions
 │   │   │   ├── queries.ts          # Data fetching
-│   │   │   └── types.ts
+│   │   │   └── types.ts            # SupportedLocale, etc.
 │   │   ├── products/
 │   │   │   ├── components/
 │   │   │   ├── actions.ts

@@ -200,6 +200,7 @@ When user's prompt is NOT in English:
 "package.json + next":         nextjs/app-router.md
 "package.json + react-native": mobile/react-native.md
 "package.json + vue":          frontend-frameworks/vue3.md
+"package.json + nuxt":         frontend-frameworks/vue3.md
 "package.json + svelte":       frontend-frameworks/svelte.md
 "package.json + tailwind":     frontend-frameworks/tailwind.md
 "composer.json + laravel":     backend-frameworks/laravel.md
@@ -334,7 +335,7 @@ fi
 - **Reporting:** If it fails, fix the **Critical** blockers first (Security/Lint).
 
 
-**Available Scripts (10 total):**
+**Available Scripts (17 Python + 14 PowerShell):**
 | Script | Skill | When to Use |
 |--------|-------|-------------|
 | `security_scan.py` | vulnerability-scanner | Always on deploy |

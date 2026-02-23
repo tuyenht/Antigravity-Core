@@ -17,8 +17,8 @@ allowed-tools: Read, Glob, Grep
 | Template | Tech Stack | When to Use |
 |----------|------------|-------------|
 | [nextjs-fullstack](nextjs-fullstack/TEMPLATE.md) | Next.js + Prisma | Full-stack web app |
-| [nextjs-saas](nextjs-saas/TEMPLATE.md) | Next.js + Stripe | SaaS product |
 | [nextjs-static](nextjs-static/TEMPLATE.md) | Next.js + Framer | Landing page |
+| [nuxt-app](nuxt-app/TEMPLATE.md) | Nuxt 3 + Pinia | Vue full-stack app |
 | [express-api](express-api/TEMPLATE.md) | Express + JWT | REST API |
 | [python-fastapi](python-fastapi/TEMPLATE.md) | FastAPI | Python API |
 | [react-native-app](react-native-app/TEMPLATE.md) | Expo + Zustand | Mobile app |
