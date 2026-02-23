@@ -15,12 +15,12 @@
 Regardless of the target language/framework (React, Next.js, Vue, Laravel Blade, HTML, etc.), the generated login page MUST be **visually identical** to the BaoSon reference design:
 
 1. **Same gradient background** — `from-sky-700 via-blue-600 to-slate-800`, animated
-2. **Same glass card** — `rgba(255,255,255,0.98)`, `blur(40px)`, `padding: 35px`, `border-radius: 21px`
+2. **Same glass card** — `rgba(255,255,255,0.98)`, `blur(40px)`, `max-w-[392px]`, `p-[35px]`, `rounded-3xl`
 3. **Same input style** — SVG icons, `@` symbol, eye toggle, exact focus ring
 4. **Same button** — `bg-blue-600`, arrow icon, hover lift effect
 5. **Same social buttons** — Google (4-color logo) + Facebook (blue logo), 2-column grid
 6. **Same language switcher** — glass pill, EN/VI/JA/ZH, top-right on desktop
-7. **Same logo** — centered above card, `h-16 md:h-20`, `drop-shadow-2xl brightness-110`
+7. **Same logo** — centered above card, `h-auto max-h-16 md:max-h-20 w-auto max-w-[200px] object-contain`, `drop-shadow-2xl brightness-110`
 8. **Same footer** — `© {year} BaoSon Ads. All rights reserved.` in `text-white/40`
 9. **Same decorative orbs** — `cyan-400/20` top-left + `blue-500/10` bottom-right
 10. **Same i18n** — all 15 keys × 4 locales, instant locale switch (no page reload)
@@ -80,30 +80,33 @@ Regardless of the target language/framework (React, Next.js, Vue, Laravel Blade,
 ### Design Tokens
 
 > [!CAUTION]
-> **Root font-size MUST be `14px`**, not the browser default `16px`.  
-> Without this, ALL rem-based Tailwind sizes (max-w-md, py-3, etc.) render **14% larger**, causing a ~56px card width difference.
+> **Root font-size SHOULD be `14px`** (Velzon convention) but layout constraints MUST use **px-absolute values**.
+> Do NOT rely on `html { font-size: 14px }` alone for sizing — frameworks can override root font-size.
+> Glass CSS MUST be inside `@layer components` — unlayered CSS breaks Tailwind v4 utility specificity.
 
 | Token | Value | Notes |
 |-------|-------|-------|
-| **Root font-size** | `html { font-size: 14px; }` | 🚨 **CRITICAL** — affects all rem-based sizes |
+| **Root font-size** | `html { font-size: 14px; }` | Velzon convention, but NOT relied upon for layout constraints |
 | **Background Gradient** | `from-sky-700 via-blue-600 to-slate-800` | Animated 12s ease infinite, `background-size: 200% 200%` |
 | **Blur Orb 1** | `bg-cyan-400/20`, 64×64 (w-64 h-64), `blur-3xl`, `animate-pulse` | Top-left |
 | **Blur Orb 2** | `bg-blue-500/10`, 96×96 (w-96 h-96), `blur-3xl`, `animate-bounce 12s` | Bottom-right |
-| **Glass Card bg** | `rgba(255, 255, 255, 0.98)` | |
-| **Glass backdrop** | `blur(40px)` | |
+| **Glass Card bg** | `rgba(255, 255, 255, 0.98)` | Inside `@layer components` — NO !important |
+| **Glass backdrop** | `blur(40px)` | Inside `@layer components` |
 | **Glass border** | `1px solid rgba(255, 255, 255, 1)` | |
 | **Glass shadow** | `0 25px 50px -12px rgba(0, 0, 0, 0.25)` | |
-| **Glass padding** | `35px` | Override Tailwind `p-10` (= 40px at 16px root) |
-| **Glass border-radius** | `21px` | Override Tailwind `rounded-3xl` |
+| **Glass padding** | `p-[35px]` | Tailwind utility on element — NOT in .glass CSS |
+| **Glass border-radius** | `rounded-3xl` (~24px) | Tailwind utility on element — NOT in .glass CSS |
+| **Content max-width** | `max-w-[392px]` | 🚨 **px-absolute** — NOT rem-based `max-w-md` |
 | **Title font** | `22px / 26px`, `font-weight: 800`, gradient text `from-blue-700 to-slate-700` | |
-| **Label font** | `14px / 21px`, `font-weight: 600`, `text-slate-700` | |
+| **Label font** | `text-sm` (14px), `font-weight: 600`, `text-slate-700` | 🚨 NOT `text-base` (16px) |
 | **Input bg** | `bg-slate-50`, border `border-slate-200`, rounded `rounded-xl` | |
 | **Input focus** | `bg-white`, `border-blue-600`, `ring-4 ring-blue-600/10` | |
-| **Input padding** | `10.5px` top/bottom, `22.5px` line-height | |
+| **Input padding** | `py-2.5` (10px top/bottom) | 🚨 NOT `py-3` (12px) |
+| **Input icon offset** | `pl-10 pr-10` | 🚨 NOT `pl-11 pr-11` |
 | **Button** | `bg-blue-600`, `hover:bg-blue-700`, `rounded-xl`, `py-3`, `shadow-lg shadow-blue-500/20` | |
 | **Social buttons** | White bg, `border-slate-200`, `rounded-xl`, `shadow-sm` | 2-column grid |
 | **Footer text** | `text-white/40`, `text-xs` | |
-| **Content max-width** | `max-w-sm md:max-w-md` | At 14px root: `max-w-md = 28rem = 392px` |
+| **Logo** | `h-auto max-h-16 md:max-h-20 w-auto max-w-[200px] object-contain` | 🚨 max-h NOT fixed h — prevents upscale pixelation |
 
 ### Language Switcher Spec
 
@@ -209,14 +212,14 @@ export default function AuthLayout({ children, title }: AuthLayoutProps) {
                 {/* Language Switcher */}
                 <LanguageSwitcher />
 
-                <main className="relative w-full max-w-sm md:max-w-md flex flex-col items-center z-10">
-                    {/* Logo - MUST match: h-16 md:h-20, drop-shadow-2xl, brightness-110 */}
+                <main className="relative w-full max-w-[392px] flex flex-col items-center z-10">
+                    {/* Logo - max-h prevents upscaling small images beyond their native size */}
                     <div className="mb-4 md:mb-8 hover:scale-105 transition-transform duration-500">
                         <a href={`/${ADMIN_PREFIX}/dashboard`} aria-label={appName ?? 'Bao Son'}>
                             <img
                                 src={LOGO_URL}
                                 alt="Bao Son Logo"
-                                className="h-16 md:h-20 w-auto drop-shadow-2xl filter brightness-110"
+                                className="h-auto max-h-16 md:max-h-20 w-auto max-w-[200px] object-contain drop-shadow-2xl filter brightness-110"
                             />
                         </a>
                     </div>
@@ -255,40 +258,33 @@ export default function AuthLayout({ children, title }: AuthLayoutProps) {
     animation: gradient 12s ease infinite;
 }
 
-.glass {
-    background: rgba(255, 255, 255, 0.98);
-    backdrop-filter: blur(40px);
-    -webkit-backdrop-filter: blur(40px);
-    border: 1px solid rgba(255, 255, 255, 1);
-    box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.25);
-    padding: 35px !important;
-    border-radius: 21px !important;
+/* 🚨 MUST be inside @layer components — unlayered CSS breaks Tailwind v4 utility specificity */
+@layer components {
+    .glass {
+        background: rgba(255, 255, 255, 0.98);
+        backdrop-filter: blur(40px);
+        -webkit-backdrop-filter: blur(40px);
+        border: 1px solid rgba(255, 255, 255, 1);
+        box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.25);
+        /* ⛔ NO padding or border-radius here — controlled by Tailwind utilities on the element:
+         *    p-[35px] rounded-3xl
+         * Putting them here with !important BREAKS Tailwind v4 layer system */
+    }
 }
 
-/* Form overrides */
-input[type="email"],
-input[type="password"] {
-    padding-top: 10.5px !important;
-    padding-bottom: 10.5px !important;
-    line-height: 22.5px !important;
-}
-
-h2.text-3xl {
-    font-size: 22px !important;
-    line-height: 26px !important;
-    font-weight: 800 !important;
-}
-
-label.text-base {
-    font-size: 14px !important;
-    line-height: 21px !important;
-}
+/* ⛔ REMOVED: All !important form overrides (input, h2, label)
+ * These values MUST be set via Tailwind utility classes on elements:
+ *   - label: text-sm (14px) — NOT text-base (16px)
+ *   - input: py-2.5 (10px) — NOT py-3 (12px)
+ *   - input icon: pl-10/pr-10 — NOT pl-11/pr-11
+ *   - h2: text-[22px] leading-[26px] font-extrabold
+ * Using !important overrides in unlayered CSS defeats Tailwind's cascade. */
 ```
 
 ### 3. Login Card
 
 ```tsx
-<div className="glass w-full rounded-3xl p-6 md:p-10 shadow-2xl relative">
+<div className="glass w-full max-w-[392px] mx-auto rounded-3xl p-[35px] shadow-2xl relative">
     {/* Title */}
     <h2 className="text-3xl font-extrabold text-transparent bg-clip-text bg-gradient-to-r from-blue-700 to-slate-700 tracking-tight mb-6">
         {t('auth.welcome')}  {/* "System Login" */}
@@ -357,7 +353,7 @@ const Input: React.FC<InputProps> = ({ label, icon, isPassword, showAtSymbol, di
 
     return (
         <div className="space-y-1.5">
-            <label className="block text-base font-semibold text-slate-700 ml-1">{label}</label>
+            <label className="block text-sm font-semibold text-slate-700 ml-1">{label}</label>
             <div className="relative group">
                 {/* Left Icon */}
                 {icon && (
@@ -370,7 +366,7 @@ const Input: React.FC<InputProps> = ({ label, icon, isPassword, showAtSymbol, di
 
                 <input {...props} disabled={disabled}
                     type={isPassword ? (showPass ? 'text' : 'password') : props.type}
-                    className={`w-full ${icon ? 'pl-11' : 'pl-3'} ${(isPassword || showAtSymbol) ? 'pr-11' : 'pr-3'} py-3
+                    className={`w-full ${icon ? 'pl-10' : 'pl-3'} ${(isPassword || showAtSymbol) ? 'pr-10' : 'pr-3'} py-2.5
                         bg-slate-50 border border-slate-200 rounded-xl text-slate-900 text-[15px] font-medium
                         placeholder:text-slate-400 outline-none
                         focus:bg-white focus:border-blue-600 focus:ring-4 focus:ring-blue-600/10 transition-all`}
