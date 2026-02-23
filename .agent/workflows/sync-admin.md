@@ -31,6 +31,8 @@ Scan dự án hiện tại để lập inventory:
 
 ```
 Scan targets:
+├── Assets
+│   └── Images → logos, favicon, flags, avatars (from .agent/skills/velzon-admin/assets/images/)
 ├── Database
 │   ├── Migrations/Schema → tables, columns, indexes
 │   └── Seeders → roles, permissions, admin user
@@ -116,6 +118,7 @@ Bạn muốn:
 **Theo thứ tự an toàn:**
 
 ```
+0. Assets (copy missing logos, favicon, flags from .agent/skills/velzon-admin/assets/images/)
 1. Database migrations (additive only — KHÔNG xóa columns/tables)
 2. Seeders (merge new permissions/roles, KHÔNG reset data)
 3. Models (add new fields, relationships)

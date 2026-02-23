@@ -104,6 +104,7 @@ Components/Common/ (REQUIRED — reuse, không tạo mới)
 
 Theo thứ tự:
 
+0. **Assets** — Copy `.agent/skills/velzon-admin/assets/images/` → project images dir (logos, favicon, flags, avatars, error images)
 1. **Database** — Schema/migration (roles, permissions, pivots)
 2. **Models** — User (extended), Role, Permission
 3. **Seed** — Roles + permissions (mode-aware) + top-level admin user
