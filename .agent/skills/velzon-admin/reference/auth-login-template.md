@@ -20,7 +20,7 @@ Regardless of the target language/framework (React, Next.js, Vue, Laravel Blade,
 4. **Same button** — `bg-blue-600`, arrow icon, hover lift effect
 5. **Same social buttons** — Google (4-color logo) + Facebook (blue logo), 2-column grid
 6. **Same language switcher** — glass pill, EN/VI/JA/ZH, top-right on desktop
-7. **Same logo** — centered above card, `h-auto max-h-16 md:max-h-20 w-auto max-w-[200px] object-contain`, `drop-shadow-2xl brightness-110`
+7. **Same logo** — centered above card, `h-[58px] w-auto`, `drop-shadow-2xl`
 8. **Same footer** — `© {year} BaoSon Ads. All rights reserved.` in `text-white/40`
 9. **Same decorative orbs** — `cyan-400/20` top-left + `blue-500/10` bottom-right
 10. **Same i18n** — all 15 keys × 4 locales, instant locale switch (no page reload)
@@ -106,7 +106,7 @@ Regardless of the target language/framework (React, Next.js, Vue, Laravel Blade,
 | **Button** | `bg-blue-600`, `hover:bg-blue-700`, `rounded-xl`, `py-3`, `shadow-lg shadow-blue-500/20` | |
 | **Social buttons** | White bg, `border-slate-200`, `rounded-xl`, `shadow-sm` | 2-column grid |
 | **Footer text** | `text-white/40`, `text-xs` | |
-| **Logo** | `h-auto max-h-16 md:max-h-20 w-auto max-w-[200px] object-contain` | 🚨 max-h NOT fixed h — prevents upscale pixelation |
+| **Logo** | `h-[58px] w-auto` | Original 167×60 → height 58px, width scales proportionally (~161px) |
 
 ### Language Switcher Spec
 
@@ -213,13 +213,13 @@ export default function AuthLayout({ children, title }: AuthLayoutProps) {
                 <LanguageSwitcher />
 
                 <main className="relative w-full max-w-[392px] flex flex-col items-center z-10">
-                    {/* Logo - max-h prevents upscaling small images beyond their native size */}
+                    {/* Logo — 58px height, proportional width */}
                     <div className="mb-4 md:mb-8 hover:scale-105 transition-transform duration-500">
                         <a href={`/${ADMIN_PREFIX}/dashboard`} aria-label={appName ?? 'Bao Son'}>
                             <img
                                 src={LOGO_URL}
                                 alt="Bao Son Logo"
-                                className="h-auto max-h-16 md:max-h-20 w-auto max-w-[200px] object-contain drop-shadow-2xl filter brightness-110"
+                                className="h-[58px] w-auto drop-shadow-2xl"
                             />
                         </a>
                     </div>
