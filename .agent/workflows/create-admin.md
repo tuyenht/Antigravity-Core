@@ -35,7 +35,51 @@ Mode (from .env or ask):
 
 ---
 
-### Step 2: Load References (parallel)
+### Step 2: Component Readiness Check
+
+> [!IMPORTANT]
+> Mỗi trang tạo ra **PHẢI kế thừa** shared Layouts & Components. Không tạo lại những gì đã có.
+
+**Scan thư mục dự án** để kiểm tra tính sẵn sàng:
+
+```
+Layouts/ (REQUIRED — mọi trang admin wrap trong Layout)
+├── index.tsx          ← Main Layout: Header + Sidebar + {children} + Footer + RightSidebar
+├── Header.tsx         ← Search, hamburger, lang, fullscreen, light/dark, notifications, profile
+├── Sidebar.tsx        ← Permission-filtered menu (LayoutMenuData.tsx)
+├── Footer.tsx         ← Copyright footer
+├── LayoutMenuData.tsx ← Menu items config
+├── GuestLayout.tsx    ← Auth pages (login, forgot, reset, 2FA)
+├── VerticalLayouts/   ← Default sidebar layout
+├── HorizontalLayout/  ← Top nav layout
+└── TwoColumnLayout/   ← Two-column sidebar layout
+
+Components/Common/ (REQUIRED — reuse, không tạo mới)
+├── BreadCrumb.tsx           ← Page breadcrumb
+├── RightSidebar.tsx         ← Theme Customizer (gear icon, slide-out panel)
+├── SearchOption.tsx         ← Global search
+├── LanguageDropdown.tsx     ← Language switcher
+├── LightDark.tsx            ← Dark/light mode toggle
+├── FullScreenDropdown.tsx   ← Fullscreen button
+├── NotificationDropdown.tsx ← Notifications bell
+├── ProfileDropdown.tsx      ← User profile menu
+├── TableContainer.tsx       ← TanStack React Table wrapper
+├── DeleteModal.tsx          ← Delete confirmation modal
+├── Pagination.tsx           ← Table pagination
+├── ExportCSVModal.tsx       ← CSV export modal
+├── Loader.tsx               ← Loading spinner
+└── Spinner.tsx              ← Button spinner
+```
+
+**Quy tắc:**
+1. **Nếu Components/Layouts ĐÃ CÓ** → Import và sử dụng trực tiếp, KHÔNG tạo lại
+2. **Nếu CHƯA CÓ** → Tạo mới theo pattern trong `reference/component-patterns.md`
+3. **Mỗi trang admin** phải được wrap trong `<Layout>` → tự động có Header, Sidebar, Footer, RightSidebar
+4. **Trang auth** (login, forgot, etc.) → dùng `GuestLayout` (KHÔNG có sidebar/header)
+
+---
+
+### Step 3: Load References (parallel)
 
 Đọc **3 files cùng lúc** từ `.agent/skills/velzon-admin/reference/`:
 
@@ -54,7 +98,7 @@ Mode (from .env or ask):
 
 ---
 
-### Step 3: Generate Files
+### Step 4: Generate Files
 
 **Agent:** Framework specialist (`frontend-specialist` / `backend-specialist`)
 
@@ -75,7 +119,7 @@ Theo thứ tự:
 
 ---
 
-### Step 4: Verify
+### Step 5: Verify
 
 ```bash
 # Lint + Build + Dev

@@ -13,6 +13,35 @@ Build a new admin dashboard or management page using Velzon conventions.
 - Read the Velzon Admin skill: `.agent/skills/velzon-admin/SKILL.md`
 - Identify the closest template page from `reference/page-catalog.md`
 
+## Component Readiness Check (MANDATORY)
+
+> [!IMPORTANT]
+> Mỗi trang tạo ra **PHẢI kế thừa** shared Layouts & Components. Không tạo lại những gì đã có.
+
+**Trước khi tạo trang mới**, scan thư mục dự án:
+
+```
+Layouts/ (kiểm tra sự tồn tại)
+├── index.tsx          ← Main Layout: Header + Sidebar + {children} + Footer + RightSidebar
+├── Header.tsx         ← Search, hamburger, lang, fullscreen, light/dark, notifications, profile
+├── Sidebar.tsx        ← Permission-filtered menu
+├── Footer.tsx         ← Copyright footer
+├── LayoutMenuData.tsx ← Menu items config
+└── VerticalLayouts/ | HorizontalLayout/ | TwoColumnLayout/
+
+Components/Common/ (reuse, KHÔNG tạo mới)
+├── BreadCrumb.tsx, TableContainer.tsx, DeleteModal.tsx
+├── RightSidebar.tsx (Theme Customizer), Pagination.tsx
+├── SearchOption.tsx, LanguageDropdown.tsx, LightDark.tsx
+├── FullScreenDropdown.tsx, NotificationDropdown.tsx, ProfileDropdown.tsx
+└── Loader.tsx, Spinner.tsx, ExportCSVModal.tsx
+```
+
+**Quy tắc:**
+1. **ĐÃ CÓ** → Import trực tiếp, KHÔNG duplicate
+2. **CHƯA CÓ** → Tạo mới theo `reference/component-patterns.md`
+3. Trang mới **wrap trong `<Layout>`** → tự động có Header, Sidebar, Footer, RightSidebar
+
 ## Steps
 
 ### 0. Detect Variant
