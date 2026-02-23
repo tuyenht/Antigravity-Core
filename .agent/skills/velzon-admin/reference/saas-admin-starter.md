@@ -129,7 +129,7 @@ GET /reset-password/{token} → POST new password → Login
 |-----------|---------|
 | `AuthLayout` | Glassmorphism wrapper (gradient bg + glass card) |
 | `Input` | Custom input with leading icon + error state |
-| `SocialButton` | OAuth provider button (Google, GitHub, etc.) |
+| `SocialButton` | OAuth provider button — shows provider name only ("Google", "Facebook"), localized tooltip on hover |
 | `LanguageSwitcher` | Locale dropdown in auth pages |
 | `LocaleContext` | `useLocale()` hook + `t()` translation function |
 

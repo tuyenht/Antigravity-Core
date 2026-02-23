@@ -330,10 +330,12 @@ label.text-base {
         </div>
     </div>
 
-    {/* Social Buttons (2-col) */}
+    {/* Social Buttons (2-col) — show provider name only, tooltip on hover */}
     <div className="grid grid-cols-2 gap-3">
-        <SocialButton provider="google" icon={<GoogleIcon />} />
-        <SocialButton provider="facebook" icon={<FacebookIcon />} />
+        <SocialButton provider="google" label="Google" icon={<GoogleIcon />}
+            tooltip={t('auth.login_with_google')} />
+        <SocialButton provider="facebook" label="Facebook" icon={<FacebookIcon />}
+            tooltip={t('auth.login_with_facebook')} />
     </div>
 </div>
 ```
@@ -554,8 +556,8 @@ The login requires a `LocaleProvider` wrapping the auth pages:
     "auth.sign_in": "Sign In",
     "auth.processing": "Processing...",
     "auth.or_continue": "Quick Login",
-    "auth.login_with_google": "Login with Google",
-    "auth.login_with_facebook": "Login with Facebook",
+    "auth.login_with_google": "Login with Google",       // tooltip only (button shows "Google")
+    "auth.login_with_facebook": "Login with Facebook",   // tooltip only (button shows "Facebook")
     "auth.email_error": "Please enter a valid email address",
     "auth.password_error": "Password must be at least 6 characters",
     "auth.google_login_not_enabled": "Google login is not enabled in ENV",
