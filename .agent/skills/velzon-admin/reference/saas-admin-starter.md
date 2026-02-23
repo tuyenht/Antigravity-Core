@@ -37,6 +37,46 @@
 
 ---
 
+## Logo & Assets Usage
+
+> Source: `.agent/skills/velzon-admin/assets/images/` → copy to project images dir
+
+| File | Where Used | Description |
+|------|-----------|-------------|
+| `logo-dark.png` | Sidebar (dark theme mode = "light sidebar") | Logo with **dark text** — visible on light backgrounds |
+| `logo-light.png` | Sidebar (light theme mode = "dark sidebar"), Auth pages (login, forgot, reset, 2FA) | Logo with **white text** — visible on dark/gradient backgrounds |
+| `logo-sm.png` | Sidebar collapsed state, Header mobile | Icon-only logo (no text), used when sidebar is minimized |
+| `favicon.ico` | Browser tab | Site icon |
+| `user-dummy-img.jpg` | Profile, user lists | Default avatar when user has no avatar set |
+
+**Velzon Sidebar logo pattern (Inertia/React):**
+```tsx
+// Sidebar.tsx — dual logo for theme switching
+import logoSm from '{images}/logo-sm.png';
+import logoDark from '{images}/logo-dark.png';
+import logoLight from '{images}/logo-light.png';
+
+// CSS class .logo-dark is visible when sidebar theme = light
+// CSS class .logo-light is visible when sidebar theme = dark (default)
+<Link className="logo logo-dark">
+  <span className="logo-sm"><img src={logoSm} height="22" /></span>
+  <span className="logo-lg"><img src={logoDark} height="48" /></span>
+</Link>
+<Link className="logo logo-light">
+  <span className="logo-sm"><img src={logoSm} height="22" /></span>
+  <span className="logo-lg"><img src={logoLight} height="48" /></span>
+</Link>
+```
+
+**Auth pages logo pattern:**
+```tsx
+// Login.tsx, ForgotPassword.tsx, etc. — always use logo-light.png
+import logoLight from '{images}/logo-light.png';
+// Displayed on blue gradient background → needs white text logo
+```
+
+---
+
 ## 1. Module Architecture
 
 ```

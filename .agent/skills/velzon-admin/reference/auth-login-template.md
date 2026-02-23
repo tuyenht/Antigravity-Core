@@ -192,7 +192,9 @@ interface AuthLayoutProps {
 }
 
 export default function AuthLayout({ children, title }: AuthLayoutProps) {
-    const LOGO_URL = '{logoUrl}' || 'https://baoson.net/wp-content/uploads/2021/06/logo-bao-son.png';
+    // Logo files from .agent/skills/velzon-admin/assets/images/
+    // Auth pages use logo-light.png (white text, visible on blue gradient bg)
+    const LOGO_URL = logoLight; // import logoLight from '{images}/logo-light.png';
     const COMPANY_NAME = '{companyName}' || 'BaoSon Ads';
     const COMPANY_URL = '{companyUrl}' || 'https://baoson.net';
 
