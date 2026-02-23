@@ -21,7 +21,6 @@ Determine which Velzon variant to use based on the project:
 - `next.config.js` → **Next-TS** → read `reference/nextjs-patterns.md`
 - `app.js` + `express` + `.ejs` views → **Node.js** → read `reference/nodejs-patterns.md`
 - `.csproj` + `Program.cs` + `.cshtml` views → **ASP.NET Core** → read `reference/aspnet-mvc-patterns.md`
-- `.csproj` + `Global.asax.cs` + `.cshtml` views → **ASP.NET MVC** → read `reference/aspnet-mvc-patterns.md`
 - `index.html` + AJAX nav + HTML fragments → **Ajax** → read `reference/ajax-patterns.md`
 - `composer.json` + Blade views → **Laravel** → read `reference/html-php-patterns.md`
 - `gulpfile.js` → **HTML** → read `reference/html-php-patterns.md`
@@ -46,109 +45,57 @@ Map the request to the closest Velzon template page:
 
 Read the skill reference files for detailed patterns.
 
-### 3. Create Page File
+### 3. Create Page + Sub-Components
 
 // turbo
-Create the new page file following the Velzon page structure:
-```
-src/pages/{ModuleName}/{PageName}.tsx
-```
+Create the page file following the **detected variant's** page structure pattern:
 
-Use this template:
-```tsx
-import React from "react";
-import { Container, Row, Col } from "reactstrap";
-import BreadCrumb from "../../Components/Common/BreadCrumb";
+| Variant | Page Location | Pattern Reference |
+|---------|---------------|-------------------|
+| **React-TS / Inertia** | `src/pages/{Module}/{Page}.tsx` | `component-patterns.md` §19 |
+| **Next-TS** | `app/admin/{module}/page.tsx` | `nextjs-patterns.md` |
+| **Node.js (EJS)** | `views/admin/{module}/index.ejs` | `nodejs-patterns.md` |
+| **Laravel Blade** | `resources/views/admin/{module}/index.blade.php` | `html-php-patterns.md` |
+| **ASP.NET Core** | `Views/Admin/{Module}/Index.cshtml` | `aspnet-mvc-patterns.md` |
+| **Ajax** | `partials/{module}.html` | `ajax-patterns.md` |
 
-const PageName = () => {
-  document.title = "Page Title | App Name";
-  return (
-    <React.Fragment>
-      <div className="page-content">
-        <Container fluid>
-          <BreadCrumb title="Page Title" pageTitle="Category" />
-          <Row>
-            {/* Page content */}
-          </Row>
-        </Container>
-      </div>
-    </React.Fragment>
-  );
-};
+For dashboard pages, create sub-components per section:
+- Stat widgets (CountUp cards) → `component-patterns.md` §3
+- Charts (ApexCharts) → `component-patterns.md` §9
+- Tables (TableContainer) → `component-patterns.md` §2
+- Activity sidebar → `dashboard-patterns.md` § Activity Sidebar
 
-export default PageName;
-```
-
-### 4. Create Sub-Components
-For dashboard pages, create individual components for each section:
-- `Widgets.tsx` - Stat cards row
-- Chart components (using ApexCharts)
-- Table components (using TableContainer)
-- Activity/sidebar panels
-
-Each component follows the same React.Fragment + Reactstrap pattern.
-
-### 5. Create Redux Slice (if needed)
-If the page needs server data:
+### 4. Wire State Management
 
 // turbo
-Create `src/slices/{moduleName}/reducer.ts`:
-```tsx
-import { createSlice } from "@reduxjs/toolkit";
-import { getData } from './thunk';
+Follow the state management pattern for the detected variant:
 
-const MySlice = createSlice({
-  name: 'MyModule',
-  initialState: { data: [], error: {} },
-  reducers: {},
-  extraReducers: (builder) => {
-    builder.addCase(getData.fulfilled, (state, action) => {
-      state.data = action.payload;
-    });
-  }
-});
+| Variant | Pattern | Reference |
+|---------|---------|-----------|
+| **React-TS / Inertia** | Redux Toolkit: `slices/{module}/reducer.ts` + `thunk.ts` | `dashboard-patterns.md` § Redux |
+| **Next-TS** | Server Components + React hooks, or Redux if complex | `nextjs-patterns.md` |
+| **Node.js (EJS)** | Server-side data via controller, pass to template | `nodejs-patterns.md` |
+| **Laravel Blade** | Blade `@props` / Controller → View | `html-php-patterns.md` |
+| **ASP.NET Core** | ViewModel → View | `aspnet-mvc-patterns.md` |
 
-export default MySlice.reducer;
-```
+### 5. Register Route + Menu
 
 // turbo
-Create `src/slices/{moduleName}/thunk.ts`:
-```tsx
-import { createAsyncThunk } from "@reduxjs/toolkit";
+Add route and sidebar menu item following the detected variant's conventions:
 
-export const getData = createAsyncThunk("myModule/getData", async () => {
-  const response = await fetch('/api/data');
-  return response.json();
-});
-```
+| Variant | Route File | Menu File |
+|---------|------------|-----------|
+| **React-TS** | `Routes/allRoutes.tsx` | `Layouts/LayoutMenuData.tsx` |
+| **Next-TS** | File-based routing (automatic) | Sidebar config |
+| **Inertia** | `routes/web.php` | `Layouts/LayoutMenuData.tsx` |
+| **Node.js** | `routes/admin.js` | Menu config |
+| **Laravel Blade** | `routes/web.php` | Blade partial |
+| **ASP.NET Core** | `Program.cs` / Controller routing | `_Layout.cshtml` nav |
 
-### 6. Register Redux Slice
-Add the new reducer to `src/slices/index.ts`:
-```tsx
-import MyModuleReducer from "./{moduleName}/reducer";
-// ... add to combineReducers
-```
-
-### 7. Register Route
-Add route to `src/Routes/allRoutes.tsx`:
-```tsx
-{ path: "/my-module-page", component: <MyModulePage /> },
-```
-
-### 8. Add to Sidebar Menu
-Add menu item to `src/Layouts/LayoutMenuData.tsx`:
-```tsx
-{
-  id: "myModule",
-  label: "My Module",
-  link: "/my-module-page",
-  parentId: "apps",
-}
-```
-
-### 9. Verify
+### 6. Verify
 - Check page renders correctly at the registered route
 - Verify breadcrumb shows correct title/category
 - Confirm sidebar menu item appears and highlights
 - Test search/filter/pagination if applicable
 - Verify dark mode and responsive behavior
+

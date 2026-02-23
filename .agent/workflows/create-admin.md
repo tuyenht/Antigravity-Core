@@ -92,6 +92,8 @@ npm run lint && npm run build && npm run dev  # or framework equivalent
 
 **Agent:** `debugger`
 
+> **Sau khi hoàn tất:** Dùng `/admin-dashboard` để thêm trang quản lý mới (CRUD, dashboard, kanban, etc.)
+
 ---
 
 ## Error Handling
