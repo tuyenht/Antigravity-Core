@@ -124,11 +124,37 @@ import logoLight from '{images}/logo-light.png';
 
 | Screen | URL | Guard | Design |
 |--------|-----|-------|--------|
-| **Login** | `/{admin}/login` | Guest only | Glassmorphism card, email+password, remember me, social login |
+| **Login** | `/{admin}/login` | Guest only | Glassmorphism card, email+password, remember me, social login (Google/Facebook) |
 | **Forgot Password** | `/{admin}/forgot-password` | Guest only | Email input → send reset link |
 | **Reset Password** | `/{admin}/reset-password/{token}` | Guest only | New password + confirm, token validation |
 | **Two-Factor** | `/{admin}/two-factor/challenge` | Auth (pre-2FA) | 6-digit OTP + recovery code fallback |
 | **Logout** | `POST /{admin}/logout` | Auth | Destroy session, redirect to login |
+
+### OAuth Providers (Google + Facebook)
+
+Social login buttons call `signIn("google")` / `signIn("facebook")` from the auth library.
+Providers are **conditional** — only activated when env vars are set:
+
+```typescript
+// auth.ts — conditional provider registration
+import Google from "next-auth/providers/google";
+import Facebook from "next-auth/providers/facebook";
+
+providers: [
+    ...(process.env.GOOGLE_CLIENT_ID ? [Google({
+        clientId: process.env.GOOGLE_CLIENT_ID,
+        clientSecret: process.env.GOOGLE_CLIENT_SECRET!,
+    })] : []),
+    ...(process.env.FACEBOOK_CLIENT_ID ? [Facebook({
+        clientId: process.env.FACEBOOK_CLIENT_ID,
+        clientSecret: process.env.FACEBOOK_CLIENT_SECRET!,
+    })] : []),
+    Credentials({ /* ... */ }),
+]
+```
+
+Social buttons show **provider name only** ("Google", "Facebook") with localized tooltip on hover.
+Do NOT use `alert()` — always use `signIn()` even if secrets are empty (NextAuth handles gracefully).
 
 ### Auth Flow
 
@@ -604,11 +630,25 @@ function filterMenu(menu: MenuItem[], userPermissions: string[], mode: string): 
 }
 ```
 
+### Icon Font Requirements
+
+> **MANDATORY:** Root layout (`layout.tsx` / `app.tsx`) MUST load these 2 icon fonts via CDN:
+
+```html
+<!-- Remixicon (ri-* classes — sidebar, header, misc icons) -->
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/remixicon@4.6.0/fonts/remixicon.css" />
+
+<!-- Material Design Icons (mdi-* classes — profile dropdown, action icons) -->
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@mdi/font@7.4.47/css/materialdesignicons.min.css" />
+```
+
+Without these fonts, `ri-*` and `mdi-*` icon classes will render as invisible/blank elements.
+
 ### Admin Layout Structure
 
 ```
 ┌─────────────────────────────────────────────────────────┐
-│  Header: Logo | Search | Notifications | Lang | Profile │
+│  Header: Hamburger | Search | Lang | FS | D/L | Noti | Profile │
 ├──────────┬──────────────────────────────────────────────┤
 │          │  Breadcrumb: Dashboard > Users                │
 │ Sidebar  │──────────────────────────────────────────────┤
@@ -621,24 +661,72 @@ function filterMenu(menu: MenuItem[], userPermissions: string[], mode: string): 
 │ Billing ★│  └─────────────────────────────────────────┘  │
 │ Settings │                                               │
 │          ├──────────────────────────────────────────────┤
-│          │  Footer: © 2026 AppName. Crafted by Team      │
+│          │  Footer: © COMPANY_NAME | Live Clock          │
 └──────────┴──────────────────────────────────────────────┘
 ★ = SaaS mode only
 ```
 
+### Header — 7 Components (left → right)
+
+| # | Component | Icon Class | Details |
+|---|-----------|------------|--------|
+| 1 | Hamburger toggle | `ri-menu-line` | Toggle sidebar expanded (250px) ↔ collapsed (70px) |
+| 2 | Search bar | `ri-search-line` | Input placeholder "Search...", subtle background |
+| 3 | Language switcher | `ri-global-line` | Header shows globe icon only (NO flag). Dropdown shows 10 languages with flag + native name |
+| 4 | Fullscreen toggle | `ri-fullscreen-line` / `ri-fullscreen-exit-line` | `document.fullscreenElement` API |
+| 5 | Light/Dark toggle | `ri-moon-line` / `ri-sun-line` | Dispatch `changeLayoutMode` via Redux |
+| 6 | Notification bell | `ri-notification-3-line` | Red badge (unread count) + dropdown with items |
+| 7 | User profile | Avatar + name + "Founder" | Dropdown: Edit Profile, Messages, Taskboard, Help, ──, Settings (+New badge), Logout (red) |
+
+**Profile dropdown icons:** `mdi-account-circle`, `mdi-message-text-outline`, `mdi-calendar-check-outline`, `mdi-lifebuoy`, `mdi-cog-outline`, `mdi-logout`
+
+#### Language Switcher — 10 Languages
+
+```typescript
+const LANGUAGES = [
+    { code: "en", label: "English",    flag: "/images/flags/us.svg" },
+    { code: "cn", label: "中文",       flag: "/images/flags/cn.svg" },
+    { code: "hi", label: "हिन्दी",      flag: "/images/flags/in.svg" },
+    { code: "es", label: "Español",    flag: "/images/flags/es.svg" },
+    { code: "fr", label: "Français",   flag: "/images/flags/fr.svg" },
+    { code: "ar", label: "العربية",    flag: "/images/flags/ae.svg" },
+    { code: "bn", label: "বাংলা",      flag: "/images/flags/bd.svg" },
+    { code: "pt", label: "Português",  flag: "/images/flags/br.svg" },
+    { code: "ru", label: "Русский",    flag: "/images/flags/ru.svg" },
+    { code: "vi", label: "Tiếng Việt", flag: "/images/flags/vn.svg" },
+];
+```
+
+Flag files stored in: `.agent/skills/velzon-admin/assets/images/flags/` → copy to `public/images/flags/`
+
+### Footer
+
+| Position | Content |
+|----------|---------|
+| Left | `Copyright © {COMPANY_NAME}. All rights reserved.` — `COMPANY_NAME` links to `COMPANY_URL` (target="_blank") |
+| Right | Live clock — `dd/MM/yyyy HH:mm:ss` format, updated every 1000ms via `setInterval` + `useState` |
+
+> `COMPANY_NAME` and `COMPANY_URL` are read from environment variables via `config/admin.ts`
+
 ### Theme Customizer (RightSidebar)
 
 Velzon includes a **RightSidebar** theme customizer for layout/appearance switching.
-Generate it with these toggles:
+Generate it with these toggles (10 sections):
 
-| Setting | Options | Data Attribute |
-|---------|---------|----------------|
-| Layout | Vertical, Horizontal, TwoColumn, Semibox | `data-layout` |
-| Mode | Light, Dark | `data-layout-mode` |
-| Sidebar Size | Default (lg), Compact (md), Icon (sm), Hover (sm-hover) | `data-sidebar-size` |
-| Sidebar Color | Light, Dark, Gradient (1-4), Image | `data-sidebar` |
-| Topbar Color | Light, Dark | `data-topbar` |
-| Width | Fluid, Boxed | `data-layout-width` |
+| # | Setting | Options | Data Attribute |
+|---|---------|---------|----------------|
+| 1 | Layout | Vertical, Horizontal, TwoColumn | `data-layout` |
+| 2 | Color Scheme | Light, Dark | `data-layout-mode` |
+| 3 | Layout Position | Fixed, Scrollable | `data-layout-position` |
+| 4 | Topbar Color | Light, Dark | `data-topbar` |
+| 5 | Sidebar Size | Default (lg), Small Icon (sm) | `data-sidebar-size` |
+| 6 | Sidebar View | Default, Detached | `data-sidebar-view` |
+| 7 | Sidebar Color | Light, Dark, Gradient | `data-sidebar` |
+| 8 | Sidebar Images | None, img-1..4 | `data-sidebar-image` |
+| 9 | Primary Color | Blue, Teal, Purple, Green | `data-theme-colors` |
+| 10 | Preloader | Enable, Disable | — |
+
+> **⛔ EXCLUDED:** Do NOT generate "Layout Width" (Fluid/Boxed) or "Sidebar User Profile Avatar" sections.
 
 > **Reference:** Full patterns in [layout-system.md](layout-system.md) § RightSidebar (Theme Customizer)
 
@@ -1094,6 +1182,42 @@ api/webhooks/stripe ← Webhook handler
 | `STRIPE_PUBLISHABLE_KEY` | Stripe client-side |
 | `STRIPE_WEBHOOK_SECRET` | Webhook signature verification |
 | `RESEND_API_KEY` | Transactional email (or SMTP equivalent) |
+
+### .env.example Template
+
+Every generated project MUST include a `.env.example` file at the root with ALL required variables:
+
+```env
+# Database
+DATABASE_URL=""
+
+# Auth.js
+AUTH_SECRET=""
+AUTH_TRUST_HOST=true
+
+# Admin
+NEXT_PUBLIC_ADMIN_PREFIX=admin
+
+# Mode: saas | standalone
+MODE=saas
+
+# Branding
+NEXT_PUBLIC_APP_NAME=""
+NEXT_PUBLIC_COMPANY_NAME=""
+NEXT_PUBLIC_COMPANY_URL=""
+
+# OAuth Providers (leave empty to disable)
+GOOGLE_CLIENT_ID=""
+GOOGLE_CLIENT_SECRET=""
+FACEBOOK_CLIENT_ID=""
+FACEBOOK_CLIENT_SECRET=""
+
+# Optional: Payments & Email
+# STRIPE_SECRET_KEY=""
+# STRIPE_PUBLISHABLE_KEY=""
+# STRIPE_WEBHOOK_SECRET=""
+# RESEND_API_KEY=""
+```
 
 ---
 
