@@ -1,12 +1,12 @@
 {
   "name": "antigravity-core",
-  "version": "4.0.0",
+  "version": "4.0.1",
   "description": "AI-Native Development Operating System",
   "created": "2026-01-16",
   "last_updated": "2026-02-24",
   "foundation": {
     "standards": {
-      "version": "4.0.0",
+      "version": "4.0.1",
       "file": "rules/STANDARDS.md",
       "description": "Golden Rule - Technical Constitution"
     },

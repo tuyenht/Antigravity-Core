@@ -1,6 +1,6 @@
 # GEMINI.md - Maestro Configuration
 
-> **Version 4.0.0** - Maestro AI Development Orchestrator
+> **Version 4.0.1** - Maestro AI Development Orchestrator
 > This file defines how the AI behaves in this workspace.
 
 ---
