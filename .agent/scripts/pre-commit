@@ -1,0 +1,99 @@
+#!/usr/bin/env bash
+# Antigravity-Core Pre-Commit Hook
+# Install: cp .agent/scripts/pre-commit .git/hooks/pre-commit && chmod +x .git/hooks/pre-commit
+# Or:      ln -sf ../../.agent/scripts/pre-commit .git/hooks/pre-commit
+
+set -euo pipefail
+
+RED='\033[0;31m'
+GREEN='\033[0;32m'
+YELLOW='\033[0;33m'
+NC='\033[0m'
+
+ERRORS=0
+
+echo "🔍 Antigravity Pre-Commit Check..."
+
+# ============================================
+# CHECK 1: Version Consistency
+# ============================================
+VERSION_FILE=$(cat .agent/VERSION 2>/dev/null | tr -d '[:space:]')
+
+check_version() {
+  local file="$1" label="$2"
+  if [[ -f "$file" ]] && ! grep -q "$VERSION_FILE" "$file" 2>/dev/null; then
+    echo -e "${RED}[FAIL]${NC} $label has wrong version (expected $VERSION_FILE)"
+    ((ERRORS++))
+  fi
+}
+
+if [[ -n "$VERSION_FILE" ]]; then
+  check_version ".agent/GEMINI.md" "GEMINI.md"
+  check_version ".agent/ARCHITECTURE.md" "ARCHITECTURE.md"
+  check_version ".agent/project.json" "project.json"
+  check_version ".agent/rules/RULES-INDEX.md" "RULES-INDEX.md"
+
+  if [[ $ERRORS -eq 0 ]]; then
+    echo -e "${GREEN}[OK]${NC} Version consistency: $VERSION_FILE"
+  fi
+fi
+
+# ============================================
+# CHECK 2: No Dead Skill References
+# ============================================
+DEAD_REFS=0
+for agent in .agent/agents/*.md; do
+  while IFS= read -r skill; do
+    skill=$(echo "$skill" | sed 's/.*@\[skills\///' | sed 's/\].*//')
+    if [[ -n "$skill" && ! -d ".agent/skills/$skill" ]]; then
+      echo -e "${RED}[FAIL]${NC} $(basename $agent): dead skill ref → $skill"
+      ((DEAD_REFS++))
+    fi
+  done < <(grep -o '@\[skills/[^]]*\]' "$agent" 2>/dev/null || true)
+done
+
+if [[ $DEAD_REFS -eq 0 ]]; then
+  echo -e "${GREEN}[OK]${NC} No dead skill references"
+else
+  ((ERRORS += DEAD_REFS))
+fi
+
+# ============================================
+# CHECK 3: Agent Count Matches
+# ============================================
+ACTUAL_AGENTS=$(find .agent/agents -name "*.md" 2>/dev/null | wc -l | tr -d ' ')
+JSON_AGENTS=$(python3 -c "import json; print(json.load(open('.agent/project.json'))['agents']['total'])" 2>/dev/null || echo "?")
+
+if [[ "$ACTUAL_AGENTS" == "$JSON_AGENTS" ]]; then
+  echo -e "${GREEN}[OK]${NC} Agent count: $ACTUAL_AGENTS"
+else
+  echo -e "${RED}[FAIL]${NC} Agent count mismatch: files=$ACTUAL_AGENTS, project.json=$JSON_AGENTS"
+  ((ERRORS++))
+fi
+
+# ============================================
+# CHECK 4: No Secrets in Staged Files
+# ============================================
+SECRETS=$(git diff --cached --diff-filter=ACM -S 'password=' --name-only 2>/dev/null || true)
+SECRETS+=$(git diff --cached --diff-filter=ACM -S 'api_key=' --name-only 2>/dev/null || true)
+SECRETS+=$(git diff --cached --diff-filter=ACM -S 'secret_key=' --name-only 2>/dev/null || true)
+
+if [[ -z "$SECRETS" ]]; then
+  echo -e "${GREEN}[OK]${NC} No secrets detected"
+else
+  echo -e "${RED}[FAIL]${NC} Possible secrets in: $SECRETS"
+  ((ERRORS++))
+fi
+
+# ============================================
+# RESULT
+# ============================================
+echo ""
+if [[ $ERRORS -gt 0 ]]; then
+  echo -e "${RED}❌ Pre-commit failed ($ERRORS issues). Fix before committing.${NC}"
+  echo -e "${YELLOW}   Tip: Run 'pwsh .agent/scripts/bump-version.ps1 -Version $VERSION_FILE' to fix version sync${NC}"
+  exit 1
+else
+  echo -e "${GREEN}✅ All pre-commit checks passed${NC}"
+  exit 0
+fi
