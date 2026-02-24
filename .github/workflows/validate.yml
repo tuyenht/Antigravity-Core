@@ -9,12 +9,15 @@ on:
     paths: ['.agent/**']
 
 jobs:
-  validate-structure:
-    name: Validate System Structure
+  validate-integrity:
+    name: System Integrity Check
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
 
+      # ============================================
+      # 1. Critical Files
+      # ============================================
       - name: Check critical files exist
         run: |
           echo "🔍 Checking critical files..."
@@ -22,13 +25,13 @@ jobs:
             ".agent/GEMINI.md"
             ".agent/ARCHITECTURE.md"
             ".agent/CHANGELOG.md"
-            ".agent/INTEGRATION-GUIDE.md"
             ".agent/VERSION"
             ".agent/project.json"
             ".agent/roles/AGENT_ROLES.md"
-            ".agent/workflows/TEAM_WORKFLOW.md"
             ".agent/rules/STANDARDS.md"
-            ".agent/standards/OUTPUT_FILES.md"
+            ".agent/rules/RULES-INDEX.md"
+            ".agent/agents/CAPABILITY-MATRIX.md"
+            ".agent/skills/DEPENDENCY-GRAPH.md"
           )
           missing=0
           for f in "${files[@]}"; do
@@ -45,6 +48,147 @@ jobs:
           fi
           echo "✅ All critical files present."
 
+      # ============================================
+      # 2. Version Consistency (ALL 5 files)
+      # ============================================
+      - name: Version consistency check
+        run: |
+          echo "🔍 Checking version consistency across all files..."
+          VERSION=$(cat .agent/VERSION | tr -d '[:space:]')
+          errors=0
+
+          echo "  VERSION file: $VERSION"
+
+          # project.json
+          PJ_VER=$(python3 -c "import json; print(json.load(open('.agent/project.json'))['version'])")
+          if [ "$VERSION" != "$PJ_VER" ]; then
+            echo "  ❌ project.json: $PJ_VER (expected $VERSION)"
+            errors=$((errors + 1))
+          else
+            echo "  ✅ project.json: $PJ_VER"
+          fi
+
+          # GEMINI.md
+          if grep -q "Version $VERSION" .agent/GEMINI.md; then
+            echo "  ✅ GEMINI.md"
+          else
+            echo "  ❌ GEMINI.md: version mismatch"
+            errors=$((errors + 1))
+          fi
+
+          # ARCHITECTURE.md
+          if grep -q "$VERSION" .agent/ARCHITECTURE.md; then
+            echo "  ✅ ARCHITECTURE.md"
+          else
+            echo "  ❌ ARCHITECTURE.md: version mismatch"
+            errors=$((errors + 1))
+          fi
+
+          # RULES-INDEX.md
+          if grep -q "$VERSION" .agent/rules/RULES-INDEX.md; then
+            echo "  ✅ RULES-INDEX.md"
+          else
+            echo "  ❌ RULES-INDEX.md: version mismatch"
+            errors=$((errors + 1))
+          fi
+
+          if [ $errors -gt 0 ]; then
+            echo ""
+            echo "::error::Version mismatch in $errors file(s)! Run: pwsh .agent/scripts/bump-version.ps1 -Version $VERSION"
+            exit 1
+          fi
+          echo "✅ All versions consistent: $VERSION"
+
+      # ============================================
+      # 3. Agent Count Match
+      # ============================================
+      - name: Agent count validation
+        run: |
+          echo "🔍 Checking agent count..."
+          ACTUAL=$(find .agent/agents -name "*.md" ! -name "CAPABILITY-MATRIX.md" | wc -l | tr -d ' ')
+          JSON_COUNT=$(python3 -c "import json; print(json.load(open('.agent/project.json'))['agents']['total'])")
+          JSON_LIST=$(python3 -c "import json; print(len(json.load(open('.agent/project.json'))['agents']['list']))")
+
+          echo "  Agent files: $ACTUAL"
+          echo "  project.json total: $JSON_COUNT"
+          echo "  project.json list: $JSON_LIST"
+
+          if [ "$ACTUAL" != "$JSON_COUNT" ]; then
+            echo "::error::Agent count mismatch: files=$ACTUAL, project.json.total=$JSON_COUNT"
+            exit 1
+          fi
+          if [ "$ACTUAL" != "$JSON_LIST" ]; then
+            echo "::error::Agent list mismatch: files=$ACTUAL, project.json.list=$JSON_LIST"
+            exit 1
+          fi
+          echo "✅ Agent count verified: $ACTUAL"
+
+      # ============================================
+      # 4. Dead Skill References
+      # ============================================
+      - name: Check for dead skill references
+        run: |
+          echo "🔍 Checking for dead skill references in agents..."
+          errors=0
+          for agent in .agent/agents/*.md; do
+            [[ "$(basename $agent)" == "CAPABILITY-MATRIX.md" ]] && continue
+            while IFS= read -r ref; do
+              skill=$(echo "$ref" | sed 's/.*@\[skills\///' | sed 's/\].*//')
+              if [ -n "$skill" ] && [ ! -d ".agent/skills/$skill" ]; then
+                echo "  ❌ $(basename $agent): dead ref → $skill"
+                errors=$((errors + 1))
+              fi
+            done < <(grep -o '@\[skills/[^]]*\]' "$agent" 2>/dev/null || true)
+          done
+          if [ $errors -gt 0 ]; then
+            echo "::error::$errors dead skill reference(s) found!"
+            exit 1
+          fi
+          echo "✅ Zero dead skill references"
+
+      # ============================================
+      # 5. Skills have SKILL.md
+      # ============================================
+      - name: Validate skill completeness
+        run: |
+          echo "🔍 Checking all skills have SKILL.md..."
+          errors=0
+          for d in .agent/skills/*/; do
+            if [ ! -f "${d}SKILL.md" ]; then
+              echo "  ❌ Missing SKILL.md: $d"
+              errors=$((errors + 1))
+            fi
+          done
+          if [ $errors -gt 0 ]; then
+            echo "::error::$errors skill(s) missing SKILL.md!"
+            exit 1
+          fi
+          SKILL_COUNT=$(find .agent/skills -maxdepth 1 -type d | tail -n +2 | wc -l | tr -d ' ')
+          echo "✅ All $SKILL_COUNT skills have SKILL.md"
+
+      # ============================================
+      # 6. Workflow Frontmatter
+      # ============================================
+      - name: Validate workflow frontmatter
+        run: |
+          echo "🔍 Checking workflow frontmatter..."
+          errors=0
+          for wf in .agent/workflows/*.md; do
+            if ! head -1 "$wf" | grep -q '^---$'; then
+              echo "  ❌ No frontmatter: $(basename $wf)"
+              errors=$((errors + 1))
+            fi
+          done
+          if [ $errors -gt 0 ]; then
+            echo "::error::$errors workflow(s) missing frontmatter!"
+            exit 1
+          fi
+          WF_COUNT=$(find .agent/workflows -name "*.md" | wc -l | tr -d ' ')
+          echo "✅ All $WF_COUNT workflows have frontmatter"
+
+      # ============================================
+      # 7. JSON/YAML Validity
+      # ============================================
       - name: Validate JSON files
         run: |
           echo "🔍 Validating JSON files..."
@@ -56,16 +200,16 @@ jobs:
               exit 1
             fi
           done
-          echo "✅ All JSON files valid."
+          echo "✅ All JSON valid."
 
       - name: Validate YAML files
         run: |
-          pip install pyyaml -q
+          pip install pyyaml -q 2>/dev/null
           echo "🔍 Validating YAML files..."
           python3 -c "
           import yaml, sys, os
           errors = 0
-          for root, dirs, files in os.walk('.agent/memory'):
+          for root, dirs, files in os.walk('.agent'):
               for f in files:
                   if f.endswith(('.yaml', '.yml')):
                       path = os.path.join(root, f)
@@ -78,83 +222,31 @@ jobs:
                           errors += 1
           if errors:
               sys.exit(1)
-          print('✅ All YAML files valid.')
+          print('✅ All YAML valid.')
           "
 
-      - name: Check version consistency
-        run: |
-          echo "🔍 Checking version consistency..."
-          VERSION_FILE=$(cat .agent/VERSION | tr -d '[:space:]')
-          PROJECT_JSON_VER=$(python3 -c "import json; print(json.load(open('.agent/project.json'))['version'])")
-
-          echo "  VERSION file:   $VERSION_FILE"
-          echo "  project.json:   $PROJECT_JSON_VER"
-
-          if [ "$VERSION_FILE" != "$PROJECT_JSON_VER" ]; then
-            echo "::error::Version mismatch! VERSION=$VERSION_FILE, project.json=$PROJECT_JSON_VER"
-            exit 1
-          fi
-          echo "✅ Versions are consistent."
-
-      - name: Validate agent files have frontmatter
-        run: |
-          echo "🔍 Checking agent frontmatter..."
-          errors=0
-          for f in .agent/agents/*.md; do
-            if head -1 "$f" | grep -q '^---$'; then
-              name=$(grep '^name:' "$f" | head -1)
-              if [ -z "$name" ]; then
-                echo "  ❌ Missing 'name' in frontmatter: $f"
-                errors=$((errors + 1))
-              else
-                echo "  ✅ $f"
-              fi
-            else
-              echo "  ❌ No frontmatter: $f"
-              errors=$((errors + 1))
-            fi
-          done
-          if [ $errors -gt 0 ]; then
-            echo "::error::$errors agent(s) have frontmatter issues!"
-            exit 1
-          fi
-          echo "✅ All agents have valid frontmatter."
-
-      - name: Validate skills have SKILL.md
-        run: |
-          echo "🔍 Checking skill structure..."
-          errors=0
-          for d in .agent/skills/*/; do
-            if [ -f "${d}SKILL.md" ]; then
-              echo "  ✅ $d"
-            else
-              echo "  ⚠️  Missing SKILL.md: $d"
-              errors=$((errors + 1))
-            fi
-          done
-          if [ $errors -gt 5 ]; then
-            echo "::error::Too many skills missing SKILL.md ($errors)"
-            exit 1
-          fi
-          echo "✅ Skill structure validated ($errors warnings)."
-
-  count-components:
-    name: Component Census
+  # ============================================
+  # Component Census (informational)
+  # ============================================
+  census:
+    name: System Census
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
 
-      - name: System census
+      - name: Component census
         run: |
-          echo "📊 Antigravity-Core Component Census"
-          echo "======================================"
+          echo "📊 Antigravity-Core System Census"
+          echo "========================================"
           echo ""
-          echo "Agents:    $(ls .agent/agents/*.md 2>/dev/null | wc -l)"
-          echo "Workflows: $(ls .agent/workflows/*.md 2>/dev/null | wc -l)"
-          echo "Skills:    $(ls -d .agent/skills/*/ 2>/dev/null | wc -l)"
-          echo "Rules:     $(find .agent/rules -name '*.md' -type f 2>/dev/null | wc -l)"
-          echo "Scripts:   $(ls .agent/scripts/*.ps1 2>/dev/null | wc -l)"
-          echo "Memory:    $(ls .agent/memory/*.yaml 2>/dev/null | wc -l)"
+          echo "Version:    $(cat .agent/VERSION)"
+          echo ""
+          echo "Agents:     $(find .agent/agents -name '*.md' ! -name 'CAPABILITY-MATRIX.md' | wc -l | tr -d ' ')"
+          echo "Skills:     $(find .agent/skills -maxdepth 1 -type d | tail -n +2 | wc -l | tr -d ' ')"
+          echo "Workflows:  $(find .agent/workflows -name '*.md' | wc -l | tr -d ' ')"
+          echo "Rules:      $(find .agent/rules -name '*.md' -type f ! -name 'RULES-INDEX.md' ! -name 'STANDARDS.md' ! -name 'universal-code-standards.md' ! -name 'velzon-admin.md' ! -name 'README.md' ! -name '_index.md' | wc -l | tr -d ' ')"
+          echo "Scripts:    $(find .agent/scripts -type f | wc -l | tr -d ' ') ($(find .agent/scripts -name '*.ps1' | wc -l | tr -d ' ') ps1 + $(find .agent/scripts -name '*.sh' | wc -l | tr -d ' ') sh + other)"
+          echo "Memory:     $(find .agent/memory -name '*.yaml' 2>/dev/null | wc -l | tr -d ' ') YAML files"
           echo ""
           echo "Total size: $(du -sh .agent | cut -f1)"
-          echo "Version:    $(cat .agent/VERSION)"
+          echo "========================================"
