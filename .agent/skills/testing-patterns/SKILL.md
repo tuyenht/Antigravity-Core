@@ -6,6 +6,9 @@ allowed-tools: Read, Write, Edit, Glob, Grep, Bash
 
 # Testing Patterns
 
+> [!NOTE]
+> **Consolidated:** This skill is part of `testing-mastery`. For the full unified skill, see `@[skills/testing-mastery]`.
+
 > Principles for reliable test suites.
 
 ---

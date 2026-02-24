@@ -6,6 +6,9 @@ allowed-tools: Read, Glob, Grep
 
 # Architecture Decision Framework
 
+> [!NOTE]
+> **Consolidated:** This skill is part of `architecture-mastery`. For the full unified skill, see `@[skills/architecture-mastery]`.
+
 > "Requirements drive architecture. Trade-offs inform decisions. ADRs capture rationale."
 
 ## 🎯 Selective Reading Rule

@@ -8,6 +8,9 @@ last_updated: 2026-01-16
 
 # Contract Testing
 
+> [!NOTE]
+> **Consolidated:** This skill is part of `testing-mastery`. For the full unified skill, see `@[skills/testing-mastery]`.
+
 Expert patterns for API contract testing và consumer-driven contracts.
 
 ---

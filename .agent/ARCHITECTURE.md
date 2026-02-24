@@ -14,14 +14,14 @@ Antigravity-Core is an **AI-Native Development Operating System** — a structur
 │                                                                  │
 │  ┌──────────┐  ┌──────────┐  ┌──────────┐  ┌──────────────────┐ │
 │  │  GEMINI  │  │  AGENTS  │  │  SKILLS  │  │     RULES        │ │
-│  │  .md     │──│  (27)    │──│  (59)    │──│     (129)        │ │
+│  │  .md     │──│  (27)    │──│  (59)    │──│     (131)        │ │
 │  │  (Entry) │  │          │  │          │  │                   │ │
 │  └──────────┘  └──────────┘  └──────────┘  └──────────────────┘ │
 │       │              │             │               │             │
 │       ▼              ▼             ▼               ▼             │
 │  ┌──────────┐  ┌──────────┐  ┌──────────┐  ┌──────────────────┐ │
 │  │ WORKFLOWS│  │  MEMORY  │  │ SCRIPTS  │  │   STANDARDS      │ │
-│  │  (31)    │  │  SYSTEM  │  │  (14)    │  │   & TEMPLATES    │ │
+│  │  (36)    │  │  SYSTEM  │  │  (14)    │  │   & TEMPLATES    │ │
 │  └──────────┘  └──────────┘  └──────────┘  └──────────────────┘ │
 └─────────────────────────────────────────────────────────────────┘
 ```
@@ -40,9 +40,9 @@ Antigravity-Core is an **AI-Native Development Operating System** — a structur
 ├── project.json           ← System metadata & metrics
 │
 ├── agents/      (27)      ← Agent role definitions
-├── workflows/   (31)      ← Automated process definitions
+├── workflows/   (36)      ← Automated process definitions
 ├── skills/      (59)      ← Specialized knowledge modules
-├── rules/       (129)     ← Expert coding standards
+├── rules/       (131)     ← Expert coding standards
 ├── scripts/     (14)      ← PowerShell automation
 ├── memory/                ← Persistent context & learning
 ├── roles/                 ← 7-role SDLC framework
@@ -82,20 +82,21 @@ Specialized AI personas, each with defined scope, skills, and responsibilities.
 | `security-auditor` ↔ `penetration-tester` | Defensive review (auditor) vs offensive testing (tester) |
 | `documentation-agent` ↔ `documentation-writer` | Automated sync (agent) vs user-requested writing (writer) |
 
-### 2. Workflows (31 processes)
+### 2. Workflows (36 processes)
 
 Slash-command triggered automation pipelines.
 
 | Phase | Workflows |
 |-------|-----------|
 | **Planning** | `/brainstorm`, `/plan`, `/requirements-first`, `/orchestrate` |
-| **Development** | `/create`, `/scaffold`, `/schema-first`, `/enhance` |
-| **Quality** | `/check`, `/test`, `/code-review-automation` |
+| **Development** | `/create`, `/create-admin`, `/scaffold`, `/schema-first`, `/enhance` |
+| **Quality** | `/check`, `/test`, `/code-review-automation`, `/api-design` |
 | **Security** | `/security-audit`, `/secret-scanning` |
 | **Performance** | `/optimize`, `/auto-optimization-cycle`, `/performance-budget-enforcement` |
 | **Deployment** | `/deploy`, `/mobile-deploy`, `/mobile-init`, `/mobile-test` |
-| **Maintenance** | `/maintain`, `/debug`, `/quickfix`, `/auto-healing`, `/refactor`, `/migrate` |
+| **Maintenance** | `/maintain`, `/debug`, `/quickfix`, `/auto-healing`, `/refactor`, `/migrate`, `/backup`, `/i18n-check` |
 | **Design** | `/ui-ux-pro-max`, `/update-ui-ux-pro-max`, `/admin-component`, `/admin-dashboard` |
+| **System** | `/install-antigravity`, `/sync-admin` |
 
 ### 3. Skills (59 modules)
 
@@ -128,7 +129,7 @@ Expert-level coding standards auto-loaded by context detection.
 | python/ | 14 | `.py`, requirements |
 | web-development/ | 12 | `.html`, `.css`, `.js` |
 | agentic-ai/ | 12 | Debug, test, review keywords |
-| standards/ | 25 | Always active |
+| standards/ | 25 | Always active (16 general + 9 framework) |
 | shared/ | 1 | Common utilities |
 
 ### 5. Memory System

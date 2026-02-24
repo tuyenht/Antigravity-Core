@@ -6,6 +6,9 @@ allowed-tools: Read, Write, Edit, Glob, Grep, Bash
 
 # TDD Workflow
 
+> [!NOTE]
+> **Consolidated:** This skill is part of `testing-mastery`. For the full unified skill, see `@[skills/testing-mastery]`.
+
 > Write tests first, code second.
 
 ---
