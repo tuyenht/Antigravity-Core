@@ -33,7 +33,7 @@
   "agents": {
     "total": 27,
     "template_version": "4.0.0",
-    "template_file": "templates/agent-template-v3.md",
+    "template_file": "templates/agent-template-v4.md",
     "compliance": {
       "standards_reference": true,
       "rba_protocol": true,

@@ -7,6 +7,44 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ---
 
+## [4.0.1] - 2026-02-24
+
+### 🔧 Full System Audit & Expert Panel Fixes
+
+**4-round deep audit verifying all 27 agents, 59 skills, 36 workflows, 129 rules.**
+
+---
+
+### Fixed
+
+- **ARCHITECTURE.md** — Workflow count 31→36, +8 missing workflows in table, standards note
+- **GEMINI.md** — Version "4.0"→"4.0.0", performance year 2025→2026, removed duplicate Socratic Gate header
+- **GEMINI.md** — Added 19 Supporting Agents table (were invisible to AI routing)
+- **RULES-INDEX.md** — Added missing Shared catalog entry for `output-templates.md`
+- **project.json** — Updated `last_updated`, `last_audit`, `audit_type`, template reference v3→v4
+- **health-check.ps1** — Updated template reference v3→v4
+
+### Added
+
+- **Deprecation notes** — `architecture`, `testing-patterns`, `tdd-workflow`, `contract-testing` → point to mastery skills
+- **.github/ISSUE_TEMPLATE/** — Bug report and feature request templates
+- **.github/PULL_REQUEST_TEMPLATE.md** — PR template with cross-reference checklist
+- **Bash equivalents** — `health-check.sh`, `install-global.sh`, `validate-compliance.sh`
+- **benchmarks/reports/audit-2026-02-24.md** — System audit baseline report
+
+### Changed
+
+- **agent-template-v3.md** → **agent-template-v4.md** (name aligns with system version)
+- **standards/OUTPUT_FILES.md** → **docs/OUTPUT_FILES.md** (correct location per convention)
+
+### Verified
+
+- All cross-references synchronized (agent↔skill, GEMINI↔filesystem, RULES-INDEX↔rules, project.json↔agents)
+- Zero dead references across entire system
+- All 17 Python scripts and 14 PowerShell scripts verified
+
+---
+
 ## [4.0.0] - 2026-02-10
 
 ### 🚀 Agent Orchestration Framework & Auto-Rule Discovery
@@ -397,6 +435,7 @@ We follow [Semantic Versioning](https://semver.org/):
 
 ---
 
+[4.0.1]: https://github.com/tuyenht/Antigravity-Core/releases/tag/v4.0.1
 [4.0.0]: https://github.com/tuyenht/Antigravity-Core/releases/tag/v4.0.0
 [3.3.0]: https://github.com/tuyenht/Antigravity-Core/releases/tag/v3.3.0
 [3.2.0]: https://github.com/tuyenht/Antigravity-Core/releases/tag/v3.2.0

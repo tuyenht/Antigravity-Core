@@ -47,7 +47,7 @@ Write-Host "1. Checking core files..." -ForegroundColor Cyan
 
 $coreFiles = @(
     ".agent\rules\STANDARDS.md",
-    ".agent\templates\agent-template-v3.md",
+    ".agent\templates\agent-template-v4.md",
     ".agent\systems\rba-validator.md",
     ".agent\examples\rba-examples.md",
     ".agent\project.json"
