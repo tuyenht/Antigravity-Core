@@ -458,6 +458,11 @@ fi
 | UI/UX core | `.agent/skills/ui-ux-pro-max/scripts/core.py` |
 | Design system | `.agent/skills/ui-ux-pro-max/scripts/design_system.py` |
 | Design search | `.agent/skills/ui-ux-pro-max/scripts/search.py` |
+| Bump version | `.agent/scripts/bump-version.ps1` (or `.sh`) |
+| Pre-commit hook | `.agent/scripts/pre-commit` |
+| Health check (bash) | `.agent/scripts/health-check.sh` |
+| Install global (bash) | `.agent/scripts/install-global.sh` |
+| Validate compliance (bash) | `.agent/scripts/validate-compliance.sh` |
 
 ### Expert Rules (129 Total)
 

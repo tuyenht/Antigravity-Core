@@ -21,7 +21,7 @@ Antigravity-Core is an **AI-Native Development Operating System** — a structur
 │       ▼              ▼             ▼               ▼             │
 │  ┌──────────┐  ┌──────────┐  ┌──────────┐  ┌──────────────────┐ │
 │  │ WORKFLOWS│  │  MEMORY  │  │ SCRIPTS  │  │   STANDARDS      │ │
-│  │  (36)    │  │  SYSTEM  │  │  (14)    │  │   & TEMPLATES    │ │
+│  │  (36)    │  │  SYSTEM  │  │  (20)    │  │   & TEMPLATES    │ │
 │  └──────────┘  └──────────┘  └──────────┘  └──────────────────┘ │
 └─────────────────────────────────────────────────────────────────┘
 ```
@@ -36,17 +36,16 @@ Antigravity-Core is an **AI-Native Development Operating System** — a structur
 ├── ARCHITECTURE.md        ← This file (system map)
 ├── CHANGELOG.md           ← Version history
 ├── INTEGRATION-GUIDE.md   ← Team onboarding
-├── VERSION                ← Semantic version (4.0.0)
+├── VERSION                ← Semantic version (4.0.1)
 ├── project.json           ← System metadata & metrics
 │
 ├── agents/      (27)      ← Agent role definitions
 ├── workflows/   (36)      ← Automated process definitions
 ├── skills/      (59)      ← Specialized knowledge modules
 ├── rules/       (129)     ← Expert coding standards
-├── scripts/     (14)      ← PowerShell automation
+├── scripts/     (20)      ← PowerShell + Bash automation
 ├── memory/                ← Persistent context & learning
 ├── roles/                 ← 7-role SDLC framework
-├── standards/             ← Output quality standards
 ├── templates/             ← Agent & project templates
 ├── systems/               ← Core protocols (RBA, coordination, orchestration engine, auto-discovery)
 ├── benchmarks/            ← Performance baselines
