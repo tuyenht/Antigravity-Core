@@ -203,6 +203,11 @@ User Request → Context Detection → Rule Matching → Auto-Load
 | Svelte | `standards/frameworks/svelte-conventions.md` | SvelteKit |
 | Vue 3 | `standards/frameworks/vue3-conventions.md` | Vue.js 3 |
 
+### Shared Rules (1)
+| Rule | File | Purpose |
+|------|------|---------|
+| Output Templates | `shared/output-templates.md` | Consolidated output format templates (CONSULT/BUILD/DEBUG/OPTIMIZE) |
+
 ---
 
 ## 🔍 Context Detection Rules
@@ -531,8 +536,8 @@ User can explicitly request:
 | Web Development | 12 | ~5,000 |
 | Standards (General) | 16 | ~4,500 |
 | Standards (Framework) | 9 | ~5,000 |
-| Shared | 1 | ~200 |
-| **TOTAL** | **129** | **~73,700** |
+| Shared | 1 | ~350 |
+| **TOTAL** | **129** | **~73,850** |
 
 ---
 

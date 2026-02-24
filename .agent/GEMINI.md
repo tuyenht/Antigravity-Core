@@ -399,9 +399,33 @@ fi
 | `security-auditor` | Master Cybersecurity (Audit + Pentest + Infra Hardening) |
 | `backend-specialist` | Backend Architect (API + Database + Server/Docker Deploy) |
 | `frontend-specialist` | Frontend & Growth (UI/UX + SEO + Edge/Static Deploy) |
-| `mobile-developer` | Mobile Specialist (Cross-platform + Mobile Performance)|
+| `mobile-developer` | Mobile Specialist (Cross-platform + Mobile Performance) |
 | `debugger` | Systematic Root Cause Analysis & Bug Fixing |
 | `game-designer` | Game Design Lead (coordinates mobile-game-developer & pc-game-developer) |
+
+### 19 Supporting Agents
+
+| Agent | Domain & Focus |
+|-------|----------------|
+| `laravel-specialist` | Laravel framework expert (PHP, Eloquent, Blade, Inertia) |
+| `test-engineer` | Testing strategy & infrastructure |
+| `test-generator` | Test code generation |
+| `ai-code-reviewer` | Automated code review |
+| `code-generator-agent` | Code scaffolding & generation |
+| `database-architect` | Database schema design & optimization |
+| `devops-engineer` | CI/CD, deployment, infrastructure |
+| `documentation-agent` | Automated documentation sync |
+| `documentation-writer` | User-requested documentation |
+| `explorer-agent` | Codebase analysis & survey |
+| `manager-agent` | Auto-Optimization Cycle (AOC) coordination |
+| `penetration-tester` | Offensive security testing |
+| `performance-optimizer` | Performance profiling & optimization |
+| `refactor-agent` | Safe code refactoring |
+| `self-correction-agent` | Autonomous error correction |
+| `seo-specialist` | SEO & GEO optimization |
+| `triage-agent` | Issue prioritization & routing |
+| `mobile-game-developer` | Mobile game development (Unity, Godot) |
+| `pc-game-developer` | PC game development (Unreal, Unity) |
 
 ### Key Skills
 

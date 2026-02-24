@@ -14,7 +14,7 @@ Antigravity-Core is an **AI-Native Development Operating System** — a structur
 │                                                                  │
 │  ┌──────────┐  ┌──────────┐  ┌──────────┐  ┌──────────────────┐ │
 │  │  GEMINI  │  │  AGENTS  │  │  SKILLS  │  │     RULES        │ │
-│  │  .md     │──│  (27)    │──│  (59)    │──│     (131)        │ │
+│  │  .md     │──│  (27)    │──│  (59)    │──│     (129)        │ │
 │  │  (Entry) │  │          │  │          │  │                   │ │
 │  └──────────┘  └──────────┘  └──────────┘  └──────────────────┘ │
 │       │              │             │               │             │
@@ -42,7 +42,7 @@ Antigravity-Core is an **AI-Native Development Operating System** — a structur
 ├── agents/      (27)      ← Agent role definitions
 ├── workflows/   (36)      ← Automated process definitions
 ├── skills/      (59)      ← Specialized knowledge modules
-├── rules/       (131)     ← Expert coding standards
+├── rules/       (129)     ← Expert coding standards
 ├── scripts/     (14)      ← PowerShell automation
 ├── memory/                ← Persistent context & learning
 ├── roles/                 ← 7-role SDLC framework
