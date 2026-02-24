@@ -66,7 +66,7 @@ When user's prompt is NOT in English:
 - No over-engineering
 - **Self-Documentation:** Every agent is responsible for documenting their own changes in relevant `.md` files.
 - **Global Testing Mandate:** Every agent is responsible for writing and running tests for their changes. Follow the "Testing Pyramid" (Unit > Integration > E2E) and the "AAA Pattern" (Arrange, Act, Assert).
-- **Global Performance Mandate:** "Measure first, optimize second." Every agent must ensure their changes adhere to 2025 performance standards (Core Web Vitals for Web, query optimization for DB, bundle limits for FS).
+- **Global Performance Mandate:** "Measure first, optimize second." Every agent must ensure their changes adhere to 2026 performance standards (Core Web Vitals for Web, query optimization for DB, bundle limits for FS).
 - **Infrastructure & Safety Mandate:** Every agent is responsible for the deployability and operational safety of their changes. Follow the "5-Phase Deployment Process" (Prepare, Backup, Deploy, Verify, Confirm/Rollback). Always verify environment variables and secrets security.
 
 ### 🔍 Capability Awareness
@@ -295,10 +295,6 @@ fi
 > - Laravel: `@[rules/standards/frameworks/laravel-conventions.md]`
 > - Inertia.js + React: `@[rules/standards/frameworks/inertia-react-conventions.md]`
 > - Universal Standards: `@[rules/standards/technical-standards.md]`
-
-### 🛑 Socratic Gate
-
-**For complex requests, STOP and ASK first:**
 
 ### 🛑 GLOBAL SOCRATIC GATE (TIER 0)
 
