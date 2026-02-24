@@ -1,6 +1,6 @@
 # .agent Quick Start Guide
 
-**Version:** 4.0.0
+**Version:** 4.0.1
 
 ---
 
