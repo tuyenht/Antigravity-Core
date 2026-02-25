@@ -1,7 +1,7 @@
 # Troubleshooting — Xử lý sự cố thường gặp
 
-**Version:** 4.0.0  
-**Last Updated:** 2026-02-13
+**Version:** 4.0.1  
+**Last Updated:** 2026-02-25
 
 ---
 

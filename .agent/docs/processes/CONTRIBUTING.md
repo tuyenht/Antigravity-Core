@@ -1,7 +1,7 @@
 # Contributing — Hướng dẫn đóng góp
 
-**Version:** 4.0.0  
-**Last Updated:** 2026-02-13
+**Version:** 4.0.1  
+**Last Updated:** 2026-02-25
 
 ---
 
@@ -24,9 +24,9 @@ cd Antigravity-Core
 .agent/
 ├── agents/       ← 27 agent definitions (frontmatter + rules)
 ├── skills/       ← 59 knowledge modules (SKILL.md + scripts/)
-├── workflows/    ← 31 slash command workflows
+├── workflows/    ← 37 slash command workflows
 ├── rules/        ← 129 expert rules (11 categories)
-├── scripts/      ← 14 PowerShell automation scripts
+├── scripts/      ← 20 automation scripts
 ├── systems/      ← 5 core protocols
 ├── docs/         ← Documentation (you are here)
 └── GEMINI.md     ← Master config (entry point)

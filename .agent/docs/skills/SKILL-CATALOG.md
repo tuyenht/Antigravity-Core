@@ -1,7 +1,7 @@
 # Skill Catalog — Antigravity-Core
 
-**Version:** 4.0.0  
-**Last Updated:** 2026-02-13  
+**Version:** 4.0.1  
+**Last Updated:** 2026-02-25  
 **Total Skills:** 59
 
 ---
@@ -40,10 +40,10 @@ Skills là **knowledge modules** tải vào agents khi cần. Mỗi skill là m�
 | **🔒 Security** | 2 | `vulnerability-scanner`, `red-team-tactics` |
 | **✅ Testing & Quality** | 7 | `testing-mastery`, `testing-patterns`, `tdd-workflow`, `contract-testing`, `webapp-testing`, `code-review-checklist`, `lint-and-validate` |
 | **⚡ Performance** | 2 | `performance-profiling`, `monitoring-observability` |
-| **🚀 DevOps** | 5 | `deployment-procedures`, `server-management`, `kubernetes-patterns`, `docker-expert`, `bash-linux`, `powershell-windows` |
+| **🚀 DevOps** | 6 | `deployment-procedures`, `server-management`, `kubernetes-patterns`, `docker-expert`, `bash-linux`, `powershell-windows` |
 | **📝 Process & Planning** | 5 | `clean-code`, `brainstorming`, `behavioral-modes`, `plan-writing`, `app-builder` |
 | **🎨 Design & SEO** | 7 | `ui-ux-pro-max`, `seo-fundamentals`, `geo-fundamentals`, `i18n-localization`, `documentation-templates`, `parallel-agents`, `systematic-debugging` |
-| **🤖 AI & Expert** | 3 | `ai-sdk-expert`, `typescript-expert`, `docker-expert` |
+| **🤖 AI & Expert** | 2 | `ai-sdk-expert`, `typescript-expert` |
 
 ---
 

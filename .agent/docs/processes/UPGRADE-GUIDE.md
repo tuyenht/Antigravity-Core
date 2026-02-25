@@ -1,7 +1,7 @@
 # Upgrade Guide — Nâng cấp .agent
 
-**Version:** 4.0.0  
-**Last Updated:** 2026-02-13
+**Version:** 4.0.1  
+**Last Updated:** 2026-02-25
 
 ---
 

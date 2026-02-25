@@ -1,6 +1,7 @@
 # 🎭 ANTIGRAVITY-CORE: Agent Role Definitions
 
-**Version:** 1.0  
+**Version:** 2.0  
+**Antigravity-Core:** v4.0.1  
 **Purpose:** Chuẩn hóa 7 vai trò AI cho mọi dự án  
 **Usage:** Mỗi project sinh ra sẽ kế thừa các role này
 
@@ -26,8 +27,10 @@ Khi Antigravity-Core sinh ra một project mới, 7 vai trò AI sau sẽ đượ
 
 ### Thông tin cơ bản
 - **Trigger phrase:** `business-analyst` hoặc `BA`
-- **Skill folder:** `.agent/skills/brainstorming/`
+- **Antigravity Agent:** `project-planner` + `explorer-agent`
+- **Skill folder:** `.agent/skills/brainstorming/`, `.agent/skills/plan-writing/`
 - **Khi nào gọi:** Bắt đầu dự án, thay đổi requirements
+- **Workflows:** `/requirements-first`, `/brainstorm`
 
 ### Input → Output
 
@@ -65,8 +68,10 @@ Format: Theo chuẩn PROJECT-BRIEF 9 sections.
 
 ### Thông tin cơ bản
 - **Trigger phrase:** `solution-architect` hoặc `SA`
-- **Skill folder:** `.agent/skills/architecture/`
+- **Antigravity Agent:** `backend-specialist` + `database-architect`
+- **Skill folder:** `.agent/skills/architecture-mastery/`, `.agent/skills/database-design/`
 - **Khi nào gọi:** Sau khi có PRD, trước khi code
+- **Workflows:** `/schema-first`, `/plan`
 
 ### Input → Output
 
@@ -109,8 +114,10 @@ Constraints:
 
 ### Thông tin cơ bản
 - **Trigger phrase:** `project-manager` hoặc `PM`
-- **Skill folder:** `.agent/skills/plan-writing/`
+- **Antigravity Agent:** `orchestrator` + `project-planner`
+- **Skill folder:** `.agent/skills/plan-writing/`, `.agent/skills/behavioral-modes/`
 - **Khi nào gọi:** Sau architecture, trước implementation
+- **Workflows:** `/plan`, `/orchestrate`
 
 ### Input → Output
 
@@ -157,8 +164,10 @@ Format User Story:
 
 ### Thông tin cơ bản
 - **Trigger phrase:** `backend-developer` hoặc `BE`
+- **Antigravity Agent:** `backend-specialist` + `laravel-specialist`
 - **Skill folder:** `.agent/skills/` (framework-specific)
 - **Khi nào gọi:** Implementation phase
+- **Workflows:** `/enhance`, `/scaffold`
 
 ### Input → Output
 
@@ -200,8 +209,10 @@ Coding standards: .agent/rules/STANDARDS.md
 
 ### Thông tin cơ bản
 - **Trigger phrase:** `frontend-developer` hoặc `FE`
+- **Antigravity Agent:** `frontend-specialist`
 - **Skill folder:** `.agent/skills/react-patterns/`, `ui-ux-pro-max/`
 - **Khi nào gọi:** Implementation phase (song song với BE)
+- **Workflows:** `/enhance`, `/ui-ux-pro-max`
 
 ### Input → Output
 
@@ -244,8 +255,10 @@ Tech stack: [REACT/VUE/NEXTJS...]
 
 ### Thông tin cơ bản
 - **Trigger phrase:** `qa-engineer` hoặc `QA`
-- **Skill folder:** `.agent/skills/testing-mastery/`
+- **Antigravity Agent:** `test-engineer` + `test-generator`
+- **Skill folder:** `.agent/skills/testing-mastery/`, `.agent/skills/webapp-testing/`
 - **Khi nào gọi:** Sau implementation, trước deploy
+- **Workflows:** `/test`, `/code-review-automation`
 
 ### Input → Output
 
@@ -290,8 +303,10 @@ Priority levels: Critical / High / Medium / Low
 
 ### Thông tin cơ bản
 - **Trigger phrase:** `devops-engineer` hoặc `DO`
-- **Skill folder:** `.agent/skills/deployment-procedures/`, `docker-expert/`
+- **Antigravity Agent:** `devops-engineer`
+- **Skill folder:** `.agent/skills/deployment-procedures/`, `docker-expert/`, `kubernetes-patterns/`
 - **Khi nào gọi:** Setup infrastructure, deploy releases
+- **Workflows:** `/deploy`, `/mobile-deploy`
 
 ### Input → Output
 
@@ -373,6 +388,8 @@ ESCALATE TO HUMAN:
 
 ---
 
-**Version:** 1.0  
+**Version:** 2.0  
 **Created:** 2026-01-31  
-**Status:** ✅ Production Ready
+**Updated:** 2026-02-25  
+**Status:** ✅ Production Ready  
+**Changelog:** v1.0→v2.0: Added Antigravity Agent mapping, workflow references, synced to v4.0.1

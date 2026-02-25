@@ -1,8 +1,8 @@
 # Workflow Catalog — Antigravity-Core
 
-**Version:** 4.0.0  
-**Last Updated:** 2026-02-13  
-**Total Workflows:** 31
+**Version:** 4.0.1  
+**Last Updated:** 2026-02-25  
+**Total Workflows:** 37
 
 ---
 
@@ -51,60 +51,73 @@ Workflows là các quy trình được định nghĩa sẵn, kích hoạt bằng
 | 4 | `/scaffold` | Tạo module CRUD hoàn chỉnh theo framework | Cần CRUD nhanh (User, Post, Product...) |
 | 5 | `/schema-first` | Thiết kế database trước khi code | Design DB schema trước implementation |
 | 6 | `/requirements-first` | Viết PRD trước khi code | Thu thập yêu cầu, viết Product Requirements |
+| 7 | `/create-admin` | Tạo SaaS Admin Starter Kit with Auth & RBAC | Tạo admin panel từ blueprint |
 
 ### 💻 Development
 
 | # | Command | Mô tả | Khi nào dùng |
 |---|---------|--------|-------------|
-| 7 | `/enhance` | Thêm/sửa tính năng cho dự án hiện có | Feature development, improvements |
-| 8 | `/quickfix` | Sửa lỗi nhanh, vấn đề đơn giản | Bug nhỏ, single-file fixes |
-| 9 | `/refactor` | Tái cấu trúc code thông minh | Code cleanup, complexity reduction |
-| 10 | `/brainstorm` | Phân tích ý tưởng, so sánh giải pháp | Cần explore ideas, compare approaches |
-| 11 | `/plan` | Lập kế hoạch dự án (không code) | Planning feature lớn, architecture decisions |
+| 8 | `/enhance` | Thêm/sửa tính năng cho dự án hiện có | Feature development, improvements |
+| 9 | `/quickfix` | Sửa lỗi nhanh, vấn đề đơn giản | Bug nhỏ, single-file fixes |
+| 10 | `/refactor` | Tái cấu trúc code thông minh | Code cleanup, complexity reduction |
+| 11 | `/brainstorm` | Phân tích ý tưởng, so sánh giải pháp | Cần explore ideas, compare approaches |
+| 12 | `/plan` | Lập kế hoạch dự án (không code) | Planning feature lớn, architecture decisions |
 
 ### 🎨 Design
 
 | # | Command | Mô tả | Khi nào dùng |
 |---|---------|--------|-------------|
-| 12 | `/ui-ux-pro-max` | Thiết kế UI/UX chuyên nghiệp | Tạo UI mới với design intelligence |
-| 13 | `/update-ui-ux-pro-max` | Cập nhật skill UI-UX-Pro-Max | Update design skill khi có version mới |
-| 14 | `/admin-component` | Tạo component admin (Velzon) | Admin panel components React + Reactstrap |
-| 15 | `/admin-dashboard` | Tạo trang admin dashboard (Velzon) | Full admin dashboard pages |
+| 13 | `/ui-ux-pro-max` | Thiết kế UI/UX chuyên nghiệp | Tạo UI mới với design intelligence |
+| 14 | `/update-ui-ux-pro-max` | Cập nhật skill UI-UX-Pro-Max | Update design skill khi có version mới |
+| 15 | `/admin-component` | Tạo component admin (Velzon) | Admin panel components React + Reactstrap |
+| 16 | `/admin-dashboard` | Tạo trang admin dashboard (Velzon) | Full admin dashboard pages |
 
 ### ✅ Quality
 
 | # | Command | Mô tả | Khi nào dùng |
 |---|---------|--------|-------------|
-| 16 | `/test` | Tạo và chạy test tự động | Viết tests, increase coverage |
-| 17 | `/code-review-automation` | Review code tự động | Pre-PR review, quality check |
-| 18 | `/auto-healing` | Tự sửa lỗi lint, type, import | Auto-fix common errors |
-| 19 | `/auto-optimization-cycle` | Chu trình tối ưu tự động sau mỗi tính năng | Post-feature optimization |
-| 20 | `/performance-budget-enforcement` | Kiểm soát ngân sách hiệu suất | Enforce bundle size / CWV budgets |
+| 17 | `/test` | Tạo và chạy test tự động | Viết tests, increase coverage |
+| 18 | `/code-review-automation` | Review code tự động | Pre-PR review, quality check |
+| 19 | `/auto-healing` | Tự sửa lỗi lint, type, import | Auto-fix common errors |
+| 20 | `/auto-optimization-cycle` | Chu trình tối ưu tự động sau mỗi tính năng | Post-feature optimization |
+| 21 | `/performance-budget-enforcement` | Kiểm soát ngân sách hiệu suất | Enforce bundle size / CWV budgets |
+| 22 | `/api-design` | Validate API design, contracts, và documentation | API review trước implementation |
 
 ### 🔒 Security
 
 | # | Command | Mô tả | Khi nào dùng |
 |---|---------|--------|-------------|
-| 21 | `/security-audit` | Kiểm tra bảo mật toàn diện | Trước deploy, periodic security check |
-| 22 | `/secret-scanning` | Quét mã nguồn tìm thông tin nhạy cảm | Tìm hardcoded secrets, API keys |
+| 23 | `/security-audit` | Kiểm tra bảo mật toàn diện | Trước deploy, periodic security check |
+| 24 | `/secret-scanning` | Quét mã nguồn tìm thông tin nhạy cảm | Tìm hardcoded secrets, API keys |
 
 ### 🚀 Deploy & Operations
 
 | # | Command | Mô tả | Khi nào dùng |
 |---|---------|--------|-------------|
-| 23 | `/deploy` | Triển khai lên production | Production deployment |
-| 24 | `/mobile-deploy` | Triển khai app lên Store | App Store / Google Play submission |
-| 25 | `/optimize` | Phân tích và tối ưu hiệu suất | Performance improvement |
-| 26 | `/check` | Kiểm tra workspace hàng ngày | Daily health check |
-| 27 | `/maintain` | Bảo trì định kỳ theo lịch | Scheduled maintenance |
-| 28 | `/migrate` | Nâng cấp framework tự động | Framework version upgrade |
+| 25 | `/deploy` | Triển khai lên production | Production deployment |
+| 26 | `/mobile-deploy` | Triển khai app lên Store | App Store / Google Play submission |
+| 27 | `/mobile-test` | Test mobile đa nền tảng | Cross-platform mobile testing |
+| 28 | `/optimize` | Phân tích và tối ưu hiệu suất | Performance improvement |
+| 29 | `/check` | Kiểm tra workspace hàng ngày | Daily health check |
+| 30 | `/maintain` | Bảo trì định kỳ theo lịch | Scheduled maintenance |
+| 31 | `/migrate` | Nâng cấp framework tự động | Framework version upgrade |
+| 32 | `/backup` | Backup database và project state | Trước thay đổi lớn |
+| 33 | `/i18n-check` | Kiểm tra i18n strings và translation coverage | Sau khi thêm strings mới |
 
 ### 🎯 Orchestration
 
 | # | Command | Mô tả | Khi nào dùng |
 |---|---------|--------|-------------|
-| 29 | `/orchestrate` | Phối hợp nhiều agent cho task phức tạp | Complex multi-domain tasks |
-| 30 | `/debug` | Tìm và sửa lỗi có hệ thống | Complex bugs, systematic debugging |
+| 34 | `/orchestrate` | Phối hợp nhiều agent cho task phức tạp | Complex multi-domain tasks |
+| 35 | `/debug` | Tìm và sửa lỗi có hệ thống | Complex bugs, systematic debugging |
+
+### 🔧 System
+
+| # | Command | Mô tả | Khi nào dùng |
+|---|---------|--------|-------------|
+| 36 | `/install-antigravity` | Cài đặt/cập nhật Antigravity-Core | Thêm .agent vào project |
+| 37 | `/sync-admin` | Đồng bộ dự án admin với blueprint mới nhất | Sau khi update core |
+| 38 | `/full-pipeline` | Chạy full team workflow: BA → SA → PM → DEV → QA → DO | Bắt đầu dự án mới hoặc sprint mới |
 
 ---
 

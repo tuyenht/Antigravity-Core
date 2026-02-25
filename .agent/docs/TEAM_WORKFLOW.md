@@ -1,8 +1,10 @@
 # 🔄 TEAM WORKFLOW PIPELINE
 
-**Version:** 1.0  
+**Version:** 2.0  
+**Antigravity-Core:** v4.0.1  
 **Purpose:** Quy trình phát triển chuẩn với Input→Output mapping rõ ràng  
-**Usage:** Mọi project sinh ra từ Antigravity-Core tuân theo workflow này
+**Usage:** Mọi project sinh ra từ Antigravity-Core tuân theo workflow này  
+**Slash Command:** `/full-pipeline`
 
 ---
 
@@ -43,6 +45,24 @@
 │                                                                         │
 └─────────────────────────────────────────────────────────────────────────┘
 ```
+
+---
+
+## 🎯 ROLE → AGENT MAPPING (v2.0)
+
+Các role trong pipeline này được thực thi bởi **27 agents** của Antigravity-Core:
+
+| Pipeline Role | Code | Antigravity Agent | Skills được load | Workflows liên quan |
+|---------------|------|------------------|----------------|--------------------|
+| Business Analyst | `BA` | `project-planner` | `brainstorming`, `plan-writing`, `app-builder` | `/requirements-first`, `/brainstorm` |
+| Solution Architect | `SA` | `backend-specialist` + `database-architect` | `architecture-mastery`, `database-design`, `api-patterns` | `/schema-first`, `/plan` |
+| Project Manager | `PM` | `orchestrator` + `project-planner` | `plan-writing`, `behavioral-modes`, `parallel-agents` | `/plan`, `/orchestrate` |
+| Backend Developer | `BE` | `backend-specialist` + `laravel-specialist` | `laravel-performance`, `testing-mastery`, `database-design` | `/enhance`, `/scaffold` |
+| Frontend Developer | `FE` | `frontend-specialist` | `react-patterns`, `react-performance`, `frontend-design` | `/enhance`, `/ui-ux-pro-max` |
+| QA Engineer | `QA` | `test-engineer` + `test-generator` | `testing-mastery`, `webapp-testing`, `code-review-checklist` | `/test`, `/code-review-automation` |
+| DevOps Engineer | `DO` | `devops-engineer` | `deployment-procedures`, `kubernetes-patterns`, `docker-expert` | `/deploy`, `/mobile-deploy` |
+
+> **Lưu ý:** Khi gọi role bằng trigger phrase (ví dụ: `business-analyst`), hệ thống sẽ tự động route tới agent phù hợp và load các skills tương ứng.
 
 ---
 
@@ -515,6 +535,8 @@ For each Sprint:
 
 ---
 
-**Version:** 1.0  
+**Version:** 2.0  
 **Created:** 2026-01-31  
-**Status:** ✅ Production Ready
+**Updated:** 2026-02-25  
+**Status:** ✅ Production Ready  
+**Changelog:** v1.0→v2.0: Added Role→Agent mapping, slash command `/full-pipeline`, synced to Antigravity-Core v4.0.1

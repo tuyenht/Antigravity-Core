@@ -1,14 +1,14 @@
 # Script Catalog — Antigravity-Core
 
-**Version:** 4.0.0  
-**Last Updated:** 2026-02-13  
-**Total Scripts:** 14
+**Version:** 4.0.1  
+**Last Updated:** 2026-02-25  
+**Total Scripts:** 20
 
 ---
 
 ## Overview
 
-Scripts là các **PowerShell automation tools** trong `.agent/scripts/`. Chạy trên Windows (PowerShell 5.1+) và cross-platform (pwsh 7+).
+Scripts là các **automation tools** trong `.agent/scripts/`. Bao gồm PowerShell (.ps1), Bash (.sh), và Git hooks.
 
 ---
 
@@ -47,6 +47,17 @@ Scripts là các **PowerShell automation tools** trong `.agent/scripts/`. Chạy
 | 12 | `update-antigravity.ps1` | Cập nhật .agent lên version mới | `.\agent.ps1 scripts\update-antigravity.ps1` |
 | 13 | `update-global.ps1` | Cập nhật global installation | `agi update` |
 | 14 | `update-ui-ux-pro-max.ps1` | Cập nhật UI-UX-Pro-Max skill | `/update-ui-ux-pro-max` |
+| 15 | `bump-version.ps1` | Tăng version và sync across files | After releases |
+
+### 🐧 Bash / Cross-Platform Scripts
+
+| # | Script | Mục đích | Usage |
+|---|--------|----------|-------|
+| 16 | `health-check.sh` | Bash equivalent của health-check.ps1 | Linux/Mac |
+| 17 | `install-global.sh` | Bash equivalent của install-global.ps1 | Linux/Mac |
+| 18 | `validate-compliance.sh` | Bash equivalent của validate-compliance.ps1 | Linux/Mac |
+| 19 | `bump-version.sh` | Bash equivalent của bump-version.ps1 | Linux/Mac |
+| 20 | `pre-commit` | Git pre-commit hook | Auto on commit |
 
 ---
 

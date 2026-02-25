@@ -3,10 +3,10 @@
 > **AI-Native Development Operating System**  
 > Hệ Điều Hành Phát Triển Phần Mềm Thuần AI
 
-[![Version](https://img.shields.io/badge/version-4.0.0-blue.svg)](.agent/CHANGELOG.md)
+[![Version](https://img.shields.io/badge/version-4.0.1-blue.svg)](.agent/CHANGELOG.md)
 [![Agents](https://img.shields.io/badge/agents-27-brightgreen.svg)](.agent/docs/agents/AGENT-CATALOG.md)
 [![Skills](https://img.shields.io/badge/skills-59-orange.svg)](.agent/docs/skills/SKILL-CATALOG.md)
-[![Rules](https://img.shields.io/badge/rules-132-purple.svg)](.agent/docs/rules/RULES-CATALOG.md)
+[![Rules](https://img.shields.io/badge/rules-129-purple.svg)](.agent/docs/rules/RULES-CATALOG.md)
 [![AI Autonomy](https://img.shields.io/badge/AI%20Autonomy-95%25-green.svg)]()
 [![Quality](https://img.shields.io/badge/Quality-Platinum%20Standard-gold.svg)]()
 [![License](https://img.shields.io/badge/license-Proprietary-red.svg)]()
@@ -20,12 +20,12 @@
 
 ```mermaid
 graph TB
-    subgraph OS["ANTIGRAVITY-CORE (AI OS v4.0)"]
+    subgraph OS["ANTIGRAVITY-CORE (AI OS v4.0.1)"]
         direction TB
         A["27 Specialized Agents"]
         B["59 Knowledge Skills"]
-        C["132 Expert Rules"]
-        D["31 Automated Workflows"]
+        C["129 Expert Rules"]
+        D["37 Automated Workflows"]
         E["6 Core Protocols"]
     end
 
@@ -41,8 +41,9 @@ graph TB
 |----------------------|------------------|
 | 🔴 Passive code generator | 🟢 **27 chuyên gia AI** phối hợp |
 | 🔴 Context-lost every session | 🟢 **Persistent memory system** |
-| 🔴 Generic responses | 🟢 **132 expert rules** tự động load |
+| 🔴 Generic responses | 🟢 **129 expert rules** tự động load |
 | 🔴 No quality gates | 🟢 **Platinum Standard** enforcement |
+
 | 🔴 Trial and error | 🟢 **59 proven skill modules** |
 | 🔴 One-size-fits-all | 🟢 **Auto-detection** tech stack |
 
@@ -159,7 +160,7 @@ Antigravity-Core/
 │   │   ├── ui-ux-pro-max/             vulnerability-scanner/
 │   │   └── ... 53 more skills
 │   │
-│   ├── 📏 rules/ (132)                ← Expert coding rules
+│   ├── 📏 rules/ (129)                ← Expert coding rules
 │   │   ├── backend-frameworks/ (12)   database/ (10)
 │   │   ├── frontend-frameworks/ (7)   mobile/ (10)
 │   │   ├── nextjs/ (13)               python/ (14)
@@ -167,8 +168,8 @@ Antigravity-Core/
 │   │   ├── agentic-ai/ (12)           standards/ (25)
 │   │   └── shared/ (1)
 │   │
-│   ├── 🔄 workflows/ (31)             ← Slash command workflows
-│   ├── ⚙️ scripts/ (14)               ← PowerShell automation
+│   ├── 🔄 workflows/ (37)             ← Slash command workflows
+│   ├── ⚙️ scripts/ (20)               ← PowerShell + Bash automation
 │   ├── 🧬 systems/ (5)                ← Core protocols (RBA, AOC...)
 │   ├── 🧠 memory/                     ← AI memory system
 │   ├── 📖 docs/                       ← System documentation
@@ -223,7 +224,7 @@ User request →
 
 ---
 
-## 🔄 WORKFLOWS (31 Slash Commands)
+## 🔄 WORKFLOWS (37 Slash Commands)
 
 | Category | Commands |
 |----------|----------|
@@ -326,7 +327,7 @@ Hệ thống nhớ giúp AI **giữ ngữ cảnh** xuyên suốt các phiên là
 | **Monitoring** | OpenTelemetry, Grafana, Prometheus, Sentry |
 | **CI/CD** | GitHub Actions, GitLab CI |
 
-### 132 Expert Rules — Auto-Activation
+### 129 Expert Rules — Auto-Activation
 
 Rules tự động load dựa trên context:
 
@@ -350,7 +351,7 @@ Rules tự động load dựa trên context:
 | Security Audit | OWASP Top 10 | `security-auditor` pre-deploy |
 | Performance Budget | Defined per project | `performance-check.ps1` |
 
-### Automation Scripts (14)
+### Automation Scripts (20)
 
 ```powershell
 .\.agent\agent.ps1 health       # System health check
@@ -435,8 +436,8 @@ Pipeline: /security-audit → /deploy → verify → confirm
 | [📖 **docs/INDEX.md**](.agent/docs/INDEX.md) | **Master index — Bắt đầu từ đây** |
 | [AGENT-CATALOG.md](.agent/docs/agents/AGENT-CATALOG.md) | 27 agents chi tiết |
 | [SKILL-CATALOG.md](.agent/docs/skills/SKILL-CATALOG.md) | 59 skills chi tiết |
-| [WORKFLOW-CATALOG.md](.agent/docs/workflows/WORKFLOW-CATALOG.md) | 31 workflows chi tiết |
-| [RULES-CATALOG.md](.agent/docs/rules/RULES-CATALOG.md) | 132 rules chi tiết |
+| [WORKFLOW-CATALOG.md](.agent/docs/workflows/WORKFLOW-CATALOG.md) | 37 workflows chi tiết |
+| [RULES-CATALOG.md](.agent/docs/rules/RULES-CATALOG.md) | 129 rules chi tiết |
 | [SYSTEMS-CATALOG.md](.agent/docs/systems/SYSTEMS-CATALOG.md) | 6 protocols (5 files + AOC) |
 
 ### Architecture & Config
@@ -460,12 +461,12 @@ Pipeline: /security-audit → /deploy → verify → confirm
 
 ## 🗺️ ROADMAP
 
-### v4.0.0 ✅ (February 2026 — Current)
+### v4.0.1 ✅ (February 2026 — Current)
 
 - ✅ Auto-Rule Discovery Engine (3-layer detection)
 - ✅ Agent Registry (27 specialized agents)
 - ✅ Orchestration Engine (automated pipelines)
-- ✅ 132 expert rules across 11 categories
+- ✅ 129 expert rules across 11 categories
 - ✅ Full documentation suite (14 catalog & process docs)
 - ✅ Expert audit: 6 critical issues found & fixed
 
@@ -501,7 +502,7 @@ Proprietary — All rights reserved.
 ```
 ┌──────────────────────────────────────────────┐
 │                                              │
-│  27 Agents. 59 Skills. 132 Rules.            │
+│  27 Agents. 59 Skills. 129 Rules.            │
 │  Copy. Prompt. Build. Deploy.                │
 │  95% AI. 5% You.                             │
 │                                              │

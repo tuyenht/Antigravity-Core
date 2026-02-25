@@ -331,7 +331,7 @@ fi
 - **Reporting:** If it fails, fix the **Critical** blockers first (Security/Lint).
 
 
-**Available Scripts (17 Python + 14 PowerShell):**
+**Available Scripts (17 Python + 15 PowerShell):**
 | Script | Skill | When to Use |
 |--------|-------|-------------|
 | `security_scan.py` | vulnerability-scanner | Always on deploy |

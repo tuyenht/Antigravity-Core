@@ -21,7 +21,7 @@ Antigravity-Core is an **AI-Native Development Operating System** — a structur
 │       ▼              ▼             ▼               ▼             │
 │  ┌──────────┐  ┌──────────┐  ┌──────────┐  ┌──────────────────┐ │
 │  │ WORKFLOWS│  │  MEMORY  │  │ SCRIPTS  │  │   STANDARDS      │ │
-│  │  (36)    │  │  SYSTEM  │  │  (20)    │  │   & TEMPLATES    │ │
+│  │  (37)    │  │  SYSTEM  │  │  (20)    │  │   & TEMPLATES    │ │
 │  └──────────┘  └──────────┘  └──────────┘  └──────────────────┘ │
 └─────────────────────────────────────────────────────────────────┘
 ```
@@ -40,7 +40,7 @@ Antigravity-Core is an **AI-Native Development Operating System** — a structur
 ├── project.json           ← System metadata & metrics
 │
 ├── agents/      (27)      ← Agent role definitions
-├── workflows/   (36)      ← Automated process definitions
+├── workflows/   (37)      ← Automated process definitions
 ├── skills/      (59)      ← Specialized knowledge modules
 ├── rules/       (129)     ← Expert coding standards
 ├── scripts/     (20)      ← PowerShell + Bash automation
@@ -81,7 +81,7 @@ Specialized AI personas, each with defined scope, skills, and responsibilities.
 | `security-auditor` ↔ `penetration-tester` | Defensive review (auditor) vs offensive testing (tester) |
 | `documentation-agent` ↔ `documentation-writer` | Automated sync (agent) vs user-requested writing (writer) |
 
-### 2. Workflows (36 processes)
+### 2. Workflows (37 processes)
 
 Slash-command triggered automation pipelines.
 

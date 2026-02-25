@@ -1,7 +1,7 @@
 # Antigravity-Core Documentation Index
 
-**Version:** 4.0.0  
-**Last Updated:** 2026-02-13  
+**Version:** 4.0.1  
+**Last Updated:** 2026-02-25  
 **System:** Antigravity-Core — AI-Native Development OS
 
 ---
@@ -12,11 +12,11 @@
 |---------|-------|-------------|
 | [Agents](#agents) | 1 catalog + 8 guides | 27 specialized AI agents |
 | [Skills](#skills) | 1 catalog + 1 guide | 59 knowledge modules |
-| [Workflows](#workflows) | 1 catalog + 1 guide | 31 slash commands |
+| [Workflows](#workflows) | 1 catalog + 1 guide | 37 slash commands |
 | [Rules](#rules) | 1 catalog | 129 expert rules (11 categories) |
-| [Scripts](#scripts) | 1 catalog | 14 PowerShell automation scripts |
+| [Scripts](#scripts) | 1 catalog | 20 automation scripts |
 | [Systems](#systems) | 1 catalog | 6 core protocols (5 files + AOC) |
-| [Processes](#processes) | 7 guides | Development workflows |
+| [Processes](#processes) | 11 guides | Development workflows |
 | [Reference](#reference) | 8 docs | Policies, ADRs, migration |
 
 ---
@@ -46,11 +46,11 @@ Comprehensive documentation cho 27 specialized AI agents.
 
 ## Workflows
 
-31 slash command workflows.
+37 slash command workflows.
 
 | Document | Description |
 |----------|-------------|
-| [WORKFLOW-CATALOG.md](workflows/WORKFLOW-CATALOG.md) | Bảng tổng hợp 31 workflows: categories, usage guides, flow diagrams |
+| [WORKFLOW-CATALOG.md](workflows/WORKFLOW-CATALOG.md) | Bảng tổng hợp 37 workflows: categories, usage guides, flow diagrams |
 | [WORKFLOW-GUIDE.md](WORKFLOW-GUIDE.md) | Hướng dẫn sử dụng workflows |
 
 ---
@@ -67,11 +67,11 @@ Comprehensive documentation cho 27 specialized AI agents.
 
 ## Scripts
 
-14 PowerShell automation scripts.
+20 automation scripts (PowerShell + Bash).
 
 | Document | Description |
 |----------|-------------|
-| [SCRIPT-CATALOG.md](scripts/SCRIPT-CATALOG.md) | Bảng tổng hợp 14 scripts: usage patterns, common commands |
+| [SCRIPT-CATALOG.md](scripts/SCRIPT-CATALOG.md) | Bảng tổng hợp 20 scripts: usage patterns, common commands |
 
 ---
 
@@ -98,6 +98,10 @@ Step-by-step guides for common development workflows.
 | [TROUBLESHOOTING.md](processes/TROUBLESHOOTING.md) | Xử lý sự cố thường gặp |
 | [UPGRADE-GUIDE.md](processes/UPGRADE-GUIDE.md) | Nâng cấp .agent version |
 | [CONTRIBUTING.md](processes/CONTRIBUTING.md) | Hướng dẫn đóng góp |
+| [BRANCHING-STRATEGY.md](processes/BRANCHING-STRATEGY.md) | Git workflow, naming, conventional commits |
+| [INCIDENT-RESPONSE.md](processes/INCIDENT-RESPONSE.md) | Xử lý sự cố P0-P3, post-mortem |
+| [DEFINITION-OF-DONE.md](processes/DEFINITION-OF-DONE.md) | Tiêu chuẩn hoàn thành thống nhất |
+| [METRICS-REVIEW.md](processes/METRICS-REVIEW.md) | Đo lường & đánh giá định kỳ |
 
 ---
 
@@ -125,9 +129,9 @@ Existing documentation (pre-audit).
 ├── CHANGELOG.md             ← Version history
 ├── agents/ (27)             ← Specialized AI agent definitions
 ├── skills/ (59)             ← Knowledge modules
-├── workflows/ (31)          ← Slash command workflows
+├── workflows/ (37)          ← Slash command workflows
 ├── rules/ (129)             ← Expert rules (11 categories)
-├── scripts/ (14)            ← PowerShell automation
+├── scripts/ (20)            ← Automation scripts
 ├── systems/ (5)             ← Core protocols
 ├── docs/                    ← Documentation (this directory)
 │   ├── INDEX.md             ← You are here
@@ -143,6 +147,6 @@ Existing documentation (pre-audit).
 
 ---
 
-> **Antigravity-Core v4.0.0** — AI-Native Development OS  
-> 27 agents • 59 skills • 31 workflows • 129 rules • 14 scripts • 6 protocols  
+> **Antigravity-Core v4.0.1** — AI-Native Development OS  
+> 27 agents • 59 skills • 37 workflows • 129 rules • 20 scripts • 6 protocols  
 > [GitHub](https://github.com/tuyenht/Antigravity-Core)

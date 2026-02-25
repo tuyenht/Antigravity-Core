@@ -1,7 +1,7 @@
 # Rules Catalog — Antigravity-Core
 
-**Version:** 4.0.0  
-**Last Updated:** 2026-02-13  
+**Version:** 4.0.1  
+**Last Updated:** 2026-02-25  
 **Total Rules:** 129 (across 11 categories)
 
 ---

@@ -1,7 +1,7 @@
 # 📖 Hướng Dẫn Sử Dụng Workflows
 
-**Tổng số:** 31 Workflows  
-**Cập nhật:** 2026-02-12
+**Tổng số:** 37 Workflows  
+**Cập nhật:** 2026-02-25
 
 ---
 
@@ -90,6 +90,7 @@
 | `/deploy` | Deploy ứng dụng | Production deploy |
 | `/mobile-deploy` | Deploy mobile | Mobile release |
 | `/mobile-init` | Khởi tạo mobile project | New mobile project |
+| `/backup` | Backup database & state | Trước thay đổi lớn |
 
 ---
 
@@ -122,6 +123,8 @@
 |---------------|----------|--------------|
 | `/install-antigravity` | Cài đặt/cập nhật Antigravity-Core | Setup |
 | `/migrate` | Nâng cấp framework tự động | Tech migrations |
+| `/create-admin` | Tạo SaaS Admin Starter Kit | New admin project |
+| `/sync-admin` | Đồng bộ admin với blueprint | Sau khi update core |
 
 ---
 
@@ -130,6 +133,9 @@
 | Slash Command | Mục Đích | Khi Nào Dùng |
 |---------------|----------|--------------|
 | `/orchestrate` | Multi-agent coordination | Complex tasks |
+| `/full-pipeline` | Full team workflow: BA→SA→PM→DEV→QA→DO | Dự án mới / sprint mới |
+| `/i18n-check` | Kiểm tra i18n & translation | Sau thay đổi UI |
+| `/api-design` | Validate API design & contracts | API development |
 
 ---
 
