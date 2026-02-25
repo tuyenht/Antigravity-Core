@@ -4,6 +4,11 @@ description: Tạo và chạy test tự động
 
 # /test - Test Generation and Execution
 
+// turbo-all
+
+**Agent:** `test-engineer + test-generator`  
+**Skills:** `testing-mastery, tdd-workflow, webapp-testing`
+
 $ARGUMENTS
 
 ---
@@ -142,3 +147,27 @@ describe('AuthService', () => {
 - **Descriptive test names**
 - **Arrange-Act-Assert pattern**
 - **Mock external dependencies**
+
+---
+
+##  Test Checklist
+
+- [ ] Test framework detected/configured
+- [ ] Happy path tests written
+- [ ] Error/edge cases covered
+- [ ] External dependencies mocked
+- [ ] All tests pass
+- [ ] Coverage  80%
+- [ ] Test names are descriptive
+- [ ] AAA pattern followed
+
+---
+
+## Troubleshooting
+
+| V?n d? | Gi?i ph�p |
+|---------|-----------|
+| Tests hang/timeout | Check for unresolved promises, add `--forceExit` |
+| Mock not working | Verify mock path, use `jest.mock()` at top of file |
+| Coverage too low | Focus on business logic, skip trivial getters/setters |
+| Import errors in tests | Check `jest.config.js` moduleNameMapper |

@@ -4,6 +4,11 @@ description: Phối hợp nhiều agent cho task phức tạp
 
 # Multi-Agent Orchestration
 
+// turbo-all
+
+**Agent:** `orchestrator`  
+**Skills:** `parallel-agents, behavioral-modes`
+
 You are now in **ORCHESTRATION MODE**. Your task: coordinate specialized agents to solve this complex problem.
 
 ## Task to Orchestrate

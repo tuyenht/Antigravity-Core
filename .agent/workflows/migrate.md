@@ -4,6 +4,8 @@ description: Nâng cấp framework tự động
 
 # /migrate - Framework Migration Workflow
 
+// turbo-all
+
 Automated migration between framework versions with intelligent code transformation and deprecation handling.
 
 ---
@@ -70,6 +72,7 @@ Dependencies requiring updates:
 ```
 
 **Agent:** Framework specialist + `project-planner`
+**Skills:** `deployment-procedures, database-design`
 
 ---
 

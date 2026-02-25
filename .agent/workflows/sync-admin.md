@@ -6,6 +6,9 @@ description: Đồng bộ dự án admin hiện có với blueprint mới nhất
 
 // turbo-all
 
+**Agent:** `orchestrator`  
+**Skills:** `velzon-admin, app-builder`
+
 Kiểm tra và cập nhật dự án admin đã tạo (bằng `/create-admin`) theo blueprint mới nhất sau khi Antigravity-Core được update.
 
 **Khi nào dùng:** Sau khi chạy `agu` (update Antigravity-Core), mở dự án cũ và chạy `/sync-admin` để nhận thay đổi.

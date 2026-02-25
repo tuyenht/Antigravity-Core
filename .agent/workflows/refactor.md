@@ -4,6 +4,8 @@ description: Tái cấu trúc code thông minh
 
 # /refactor - Smart Refactoring Workflow
 
+// turbo-all
+
 Automatically refactor code with pattern detection, best practices, and maintainability improvements.
 
 ---
@@ -51,6 +53,7 @@ Issues detected:
 ```
 
 **Agent:** `debugger` + `code-review-checklist` skill
+**Skills:** `clean-code, testing-patterns, architecture`
 
 ---
 

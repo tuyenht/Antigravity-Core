@@ -5,6 +5,11 @@ turbo-all: false
 
 # Auto-Healing Workflow
 
+// turbo-all
+
+**Agent:** `self-correction-agent`  
+**Skills:** `lint-and-validate, clean-code, systematic-debugging`
+
 > Automatically fix common issues before escalating to user
 
 ---
@@ -223,3 +228,24 @@ npm run type-check
 **Created:** 2026-01-19  
 **Industry Standard:** Meta Internal Tools  
 **Impact:** 50% fewer trivial fix commits
+---
+
+##  Auto-Healing Checklist
+
+- [ ] Lint errors auto-fixed
+- [ ] Import errors auto-resolved
+- [ ] Type errors auto-fixed (deterministic only)
+- [ ] All auto-fixes verified by re-running checks
+- [ ] Non-fixable issues escalated to user
+- [ ] Max 3 retry attempts respected
+
+---
+
+## Troubleshooting
+
+| V?n d? | Gi?i ph�p |
+|---------|-----------|
+| Lint fix creates new errors | Run `npm run lint -- --fix` twice, check for circular fixes |
+| Type fix changes behavior | Revert and escalate  never auto-fix logic |
+| Import not found after fix | Check `tsconfig.json` paths and `baseUrl` |
+| Auto-heal loops forever | Kill after 3 attempts, present options to user |

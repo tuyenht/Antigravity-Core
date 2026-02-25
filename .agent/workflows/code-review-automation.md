@@ -4,6 +4,11 @@ description: Review code tự động
 
 # 🤖 Automated Code Review Workflow
 
+// turbo-all
+
+**Agent:** `ai-code-reviewer`  
+**Skills:** `code-review-checklist, clean-code, testing-patterns`
+
 **Purpose:** Universal, tech-stack-agnostic code review automation  
 **Applies to:** All projects (Frontend, Backend, Fullstack, Mobile)  
 **Auto-execution:** Can be triggered via `/review` command

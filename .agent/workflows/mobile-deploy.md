@@ -4,6 +4,8 @@ description: Triển khai app lên Store
 
 # /mobile-deploy - App Store Deployment Workflow
 
+// turbo-all
+
 Automated deployment to iOS App Store and Google Play Store.
 
 ## Pre-Deployment Checklist
@@ -116,3 +118,4 @@ If issues:
 ```
 
 **Agent:** `devops-engineer` + `mobile-developer`
+**Skills:** `mobile-design, deployment-procedures`

@@ -4,6 +4,8 @@ description: Kiểm tra bảo mật toàn diện
 
 # /security-audit - Security Analysis Workflow
 
+// turbo-all
+
 Comprehensive security scanning combining automated tools and expert analysis to identify and fix vulnerabilities.
 
 ---
@@ -60,6 +62,7 @@ for (const category of owasp2025) {
 ```
 
 **Agent:** `security-auditor`
+**Skills:** `vulnerability-scanner, red-team-tactics`
 
 ---
 
@@ -98,7 +101,8 @@ HIGH (3):
 
 ```
 
-**Agent:** `security-auditor` + `vulnerability-scanner` skill
+**Agent:** `security-auditor`
+**Skills:** `vulnerability-scanner, red-team-tactics` + `vulnerability-scanner` skill
 
 ---
 
@@ -135,6 +139,7 @@ FIX: Use bcrypt
 ```
 
 **Agent:** `security-auditor`
+**Skills:** `vulnerability-scanner, red-team-tactics`
 
 ---
 
@@ -199,6 +204,7 @@ FIX: Use bcrypt
 ```
 
 **Agent:** `security-auditor`
+**Skills:** `vulnerability-scanner, red-team-tactics`
 
 ---
 
@@ -268,7 +274,8 @@ The following can be auto-fixed safely:
 Apply auto-fixes? (yes/no)
 ```
 
-**Agent:** `security-auditor` + `penetration-tester`
+**Agent:** `security-auditor`
+**Skills:** `vulnerability-scanner, red-team-tactics` + `penetration-tester`
 
 ---
 
@@ -294,6 +301,7 @@ Apply auto-fixes? (yes/no)
 ```
 
 **Agent:** `security-auditor`
+**Skills:** `vulnerability-scanner, red-team-tactics`
 
 ---
 
@@ -314,6 +322,7 @@ Remaining issues require manual review.
 ```
 
 **Agent:** `security-auditor`
+**Skills:** `vulnerability-scanner, red-team-tactics`
 
 ---
 

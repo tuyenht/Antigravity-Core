@@ -4,6 +4,11 @@ description: Thêm/sửa tính năng cho dự án hiện có
 
 # /enhance - Cập Nhật Dự Án
 
+// turbo-all
+
+**Agent:** `orchestrator`  
+**Skills:** `app-builder, clean-code, testing-patterns`
+
 $ARGUMENTS
 
 ---
@@ -90,3 +95,27 @@ Bắt đầu chứ?"
 - Xin phép trước khi thay đổi lớn
 - Cảnh báo khi có xung đột (vd: "dùng Firebase" khi project dùng PostgreSQL)
 - Commit mỗi thay đổi với git
+
+---
+
+##  Enhance Checklist
+
+- [ ] Existing project detected correctly
+- [ ] Current architecture understood
+- [ ] Impact analysis completed (files affected)
+- [ ] Change plan presented to user (for large changes)
+- [ ] Implementation completed
+- [ ] Existing tests still pass
+- [ ] New tests added for new features
+- [ ] Lint/type check clean
+
+---
+
+## Troubleshooting
+
+| V?n d? | Gi?i ph�p |
+|---------|-----------|
+| Framework not detected | Check for config files, specify manually |
+| Conflicts with existing code | Analyze dependencies first, refactor if needed |
+| Breaking existing features | Run full test suite before and after changes |
+| Unclear scope | Ask user to break into smaller tasks |

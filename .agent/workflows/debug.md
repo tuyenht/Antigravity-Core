@@ -4,6 +4,11 @@ description: Tìm và sửa lỗi có hệ thống
 
 # /debug - Systematic Problem Investigation
 
+// turbo-all
+
+**Agent:** `debugger`  
+**Skills:** `systematic-debugging, testing-patterns`
+
 $ARGUMENTS
 
 ---
@@ -101,3 +106,27 @@ When `/debug` is triggered:
 - **Test hypotheses** - don't guess randomly
 - **Explain why** - not just what to fix
 - **Prevent recurrence** - add tests, validation
+
+---
+
+##  Debug Checklist
+
+- [ ] Error message captured
+- [ ] Reproduction steps confirmed
+- [ ] At least 2 hypotheses formed
+- [ ] Each hypothesis tested with evidence
+- [ ] Root cause identified
+- [ ] Fix applied and verified
+- [ ] Regression test added
+- [ ] Prevention measure documented
+
+---
+
+## Troubleshooting
+
+| V?n d? | Gi?i ph�p |
+|---------|-----------|
+| Can't reproduce error | Ask for exact steps, browser/OS, check logs |
+| Error only in production | Check env vars, DB state, network conditions |
+| Multiple possible causes | Binary search: disable half the code, narrow down |
+| Fix breaks something else | Revert, write test for both cases first |

@@ -94,6 +94,9 @@ Match the request to one of:
 
 ### 2. Generate Component
 // turbo
+
+**Agent:** `frontend-specialist`  
+**Skills:** `velzon-admin, frontend-design, react-patterns`
 Create the component file using the appropriate pattern from `reference/component-patterns.md`.
 
 Key rules:

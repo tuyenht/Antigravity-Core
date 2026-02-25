@@ -77,6 +77,9 @@ Read the skill reference files for detailed patterns.
 ### 3. Create Page + Sub-Components
 
 // turbo
+
+**Agent:** `frontend-specialist`  
+**Skills:** `velzon-admin, frontend-design, ui-ux-pro-max`
 Create the page file following the **detected variant's** page structure pattern:
 
 | Variant | Page Location | Pattern Reference |
@@ -97,6 +100,9 @@ For dashboard pages, create sub-components per section:
 ### 4. Wire State Management
 
 // turbo
+
+**Agent:** `frontend-specialist`  
+**Skills:** `velzon-admin, frontend-design, ui-ux-pro-max`
 Follow the state management pattern for the detected variant:
 
 | Variant | Pattern | Reference |
@@ -110,6 +116,9 @@ Follow the state management pattern for the detected variant:
 ### 5. Register Route + Menu
 
 // turbo
+
+**Agent:** `frontend-specialist`  
+**Skills:** `velzon-admin, frontend-design, ui-ux-pro-max`
 Add route and sidebar menu item following the detected variant's conventions:
 
 | Variant | Route File | Menu File |

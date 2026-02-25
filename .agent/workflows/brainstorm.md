@@ -4,6 +4,11 @@ description: Phân tích ý tưởng, so sánh giải pháp
 
 # /brainstorm - Structured Idea Exploration
 
+// turbo-all
+
+**Agent:** `project-planner`  
+**Skills:** `brainstorming, plan-writing`
+
 $ARGUMENTS
 
 ---
@@ -111,3 +116,24 @@ What direction would you like to explore?
 - **Visual when helpful** - use diagrams for architecture
 - **Honest tradeoffs** - don't hide complexity
 - **Defer to user** - present options, let them decide
+
+---
+
+## ? Brainstorm Checklist
+
+- [ ] Problem clearly defined
+- [ ] At least 3 options explored
+- [ ] Each option has pros/cons/effort
+- [ ] Tradeoffs compared honestly
+- [ ] Clear recommendation given
+- [ ] User asked to choose direction
+
+---
+
+## Troubleshooting
+
+| V?n d? | Gi?i ph�p |
+|---------|-----------|
+| Options too similar | Push for more creative/unconventional approach |
+| User can't decide | Create decision matrix with weighted criteria |
+| Scope too broad | Break into sub-problems, brainstorm each |

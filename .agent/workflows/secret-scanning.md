@@ -5,6 +5,11 @@ turbo-all: false
 
 # Secret Scanning Workflow
 
+// turbo-all
+
+**Agent:** `security-auditor`  
+**Skills:** `vulnerability-scanner, red-team-tactics`
+
 > Prevent credential leaks by scanning code before commit
 
 ---

@@ -5,6 +5,11 @@ turbo-all: false
 
 # Daily Self-Audit Mode
 
+// turbo-all
+
+**Agent:** `orchestrator`  
+**Skills:** `lint-and-validate, testing-patterns, clean-code`
+
 You are operating in **DAILY SELF-AUDIT MODE** as part of an autonomous software-evolution system inside Google Antigravity.
 
 ---

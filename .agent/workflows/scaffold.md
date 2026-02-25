@@ -4,6 +4,8 @@ description: Tạo module CRUD hoàn chỉnh theo framework
 
 # /scaffold - Feature Scaffolding Workflow
 
+// turbo-all
+
 Auto-generate complete, production-ready feature modules following framework best practices.
 
 ---
@@ -44,6 +46,7 @@ What feature are you building?
 ```
 
 **Agent:** `project-planner`
+**Skills:** `app-builder, database-design, clean-code`
 
 ---
 
@@ -57,7 +60,8 @@ const framework = detectFramework() || userInput.framework;
 loadStandards(framework); // laravel-conventions.md, etc.
 ```
 
-**Agent:** `project-planner` + framework specialist
+**Agent:** `project-planner`
+**Skills:** `app-builder, database-design, clean-code` + framework specialist
 
 ---
 

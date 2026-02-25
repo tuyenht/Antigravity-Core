@@ -4,6 +4,11 @@ description: Viết PRD trước khi code
 
 # Requirements-First Workflow (PRD Generator)
 
+// turbo-all
+
+**Agent:** `project-planner`  
+**Skills:** `brainstorming, plan-writing`
+
 **Purpose:** Define EXACT requirements to prevent AI guessing and scope creep  
 **Problem Solved:** Unclear flows → conflicting logic → infinite fix loop  
 **When to Use:** Start of EVERY project

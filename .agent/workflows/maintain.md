@@ -24,6 +24,9 @@ Run appropriate maintenance tasks based on current schedule.
 ### 1. Determine Maintenance Schedule
 
 // turbo
+
+**Agent:** `orchestrator`  
+**Skills:** `clean-code, lint-and-validate, testing-patterns`
 Run:
 ```bash
 # If schedule=auto, determine current cycle
@@ -112,6 +115,9 @@ Save to: `.agent/maintenance/reports/YYYY-MM-DD-[type].md`
 ### 6. Update Metrics
 
 // turbo
+
+**Agent:** `orchestrator`  
+**Skills:** `clean-code, lint-and-validate, testing-patterns`
 Update `memory/metrics/tracking.yaml`:
 - Execution time
 - Tasks completed
@@ -121,6 +127,9 @@ Update `memory/metrics/tracking.yaml`:
 ### 7. Commit Changes
 
 // turbo
+
+**Agent:** `orchestrator`  
+**Skills:** `clean-code, lint-and-validate, testing-patterns`
 Commit all changes:
 ```bash
 git add .agent/

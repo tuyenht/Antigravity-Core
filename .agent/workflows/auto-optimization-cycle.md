@@ -6,6 +6,8 @@ automation: Auto-triggered by manager-agent
 
 # Auto-Optimization Cycle (AOC) Workflow
 
+// turbo-all
+
 **Version:** 4.0.0  
 **Purpose:** Automated post-feature quality optimization  
 **Trigger:** After any agent completes a feature
@@ -187,6 +189,7 @@ Ready for optimization cycle.
 **Feature:** User Authentication  
 **Date:** 2026-01-17 12:00:00  
 **Agent:** backend-specialist  
+**Skills:** `performance-profiling, testing-patterns, clean-code`
 **Duration:** 3 minutes
 
 ---

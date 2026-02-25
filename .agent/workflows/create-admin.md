@@ -32,6 +32,7 @@ Mode (from .env or ask):
 ```
 
 **Agent:** `project-planner`
+**Skills:** `velzon-admin, app-builder, database-design`
 
 ---
 

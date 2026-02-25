@@ -4,6 +4,11 @@ description: Triển khai lên production
 
 # /deploy - Production Deployment
 
+// turbo-all
+
+**Agent:** `devops-engineer`  
+**Skills:** `deployment-procedures, docker-expert, server-management`
+
 $ARGUMENTS
 
 ---

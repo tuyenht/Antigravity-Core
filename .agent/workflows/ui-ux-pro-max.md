@@ -5,6 +5,11 @@ auto_execution_mode: 3
 
 # UI/UX Pro Max - Design Intelligence
 
+// turbo-all
+
+**Agent:** `frontend-specialist`  
+**Skills:** `ui-ux-pro-max, frontend-design`
+
 Searchable database of UI styles, color palettes, font pairings, chart types, product recommendations, UX guidelines, and stack-specific best practices.
 
 ## Prerequisites

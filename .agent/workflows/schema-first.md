@@ -4,6 +4,11 @@ description: Thiết kế database trước khi code
 
 # Schema-First Development Workflow
 
+// turbo-all
+
+**Agent:** `database-architect`  
+**Skills:** `database-design, api-patterns`
+
 **Purpose:** Prevent data model chaos by defining schema BEFORE writing ANY code  
 **Problem Solved:** Data structure breaks mid-project  
 **When to Use:** Start of EVERY new project or feature

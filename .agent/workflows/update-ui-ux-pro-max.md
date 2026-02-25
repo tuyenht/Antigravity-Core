@@ -33,6 +33,9 @@ Output sẽ hiển thị danh sách versions với `[latest]` tag.
 
 ```bash
 # // turbo
+
+**Agent:** `orchestrator`  
+**Skills:** `ui-ux-pro-max, frontend-design`
 cd c:\Projects\Antigravity-Core
 
 # Cài/cập nhật CLI nếu cần
@@ -50,6 +53,9 @@ uipro init --ai antigravity
 
 ```powershell
 # // turbo
+
+**Agent:** `orchestrator`  
+**Skills:** `ui-ux-pro-max, frontend-design`
 # Merge data files (ghi đè files cũ với files mới)
 Copy-Item -Path ".shared\ui-ux-pro-max\data\*" -Destination ".agent\skills\ui-ux-pro-max\data\" -Recurse -Force
 
@@ -63,6 +69,9 @@ Copy-Item -Path ".shared\ui-ux-pro-max\scripts\*" -Destination ".agent\skills\ui
 
 ```powershell
 # // turbo
+
+**Agent:** `orchestrator`  
+**Skills:** `ui-ux-pro-max, frontend-design`
 # Xóa thư mục .shared (không cần nữa)
 Remove-Item -Path ".shared" -Recurse -Force
 ```
@@ -78,6 +87,9 @@ Hoặc chạy lệnh:
 
 ```powershell
 # // turbo
+
+**Agent:** `orchestrator`  
+**Skills:** `ui-ux-pro-max, frontend-design`
 (Get-Content ".agent\workflows\ui-ux-pro-max.md") -replace '\.shared/ui-ux-pro-max', '.agent/skills/ui-ux-pro-max' | Set-Content ".agent\workflows\ui-ux-pro-max.md"
 ```
 
@@ -87,6 +99,9 @@ Hoặc chạy lệnh:
 
 ```bash
 # // turbo
+
+**Agent:** `orchestrator`  
+**Skills:** `ui-ux-pro-max, frontend-design`
 # Kiểm tra changes
 git status
 

@@ -4,6 +4,11 @@ description: Sửa lỗi nhanh, vấn đề đơn giản
 
 # /quickfix - Quick Bug Resolution
 
+// turbo-all
+
+**Agent:** `debugger`  
+**Skills:** `systematic-debugging, clean-code`
+
 $ARGUMENTS
 
 ---

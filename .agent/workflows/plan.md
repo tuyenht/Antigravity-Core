@@ -4,6 +4,8 @@ description: Lập kế hoạch dự án (không code)
 
 # /plan — Project Planning Mode
 
+// turbo-all
+
 $ARGUMENTS
 
 **Agent:** `project-planner`  

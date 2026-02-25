@@ -4,6 +4,11 @@ description: Tạo dự án mới từ đầu
 
 # /create - Tạo Dự Án Mới
 
+// turbo-all
+
+**Agent:** `project-planner + orchestrator`  
+**Skills:** `app-builder, plan-writing, architecture`
+
 $ARGUMENTS
 
 ---
@@ -85,3 +90,27 @@ Nếu yêu cầu chưa rõ ràng, hỏi:
 - Loại ứng dụng gì?
 - Tính năng cơ bản nào?
 - Ai sẽ sử dụng?
+
+---
+
+##  Create Checklist
+
+- [ ] Project type detected correctly
+- [ ] Socratic Gate completed (3+ questions)
+- [ ] Tech stack confirmed with user
+- [ ] PROJECT-BRIEF.md created
+- [ ] PROJECT-CONVENTIONS.md created
+- [ ] Project builds without errors
+- [ ] Dev server accessible
+- [ ] Git initialized with .gitignore
+
+---
+
+## Troubleshooting
+
+| V?n d? | Gi?i ph�p |
+|---------|-----------|
+| npx create fails | Check Node.js version, try `npx -y` flag |
+| Port already in use | Kill process on port: `npx kill-port 3000` |
+| Dependencies conflict | Delete `node_modules` + `package-lock.json`, re-install |
+| Template not found | Check framework version, use `--template` flag |

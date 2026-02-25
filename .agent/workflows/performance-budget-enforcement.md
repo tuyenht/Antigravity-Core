@@ -5,6 +5,11 @@ turbo-all: false
 
 # Performance Budget Enforcement Workflow
 
+// turbo-all
+
+**Agent:** `performance-optimizer`  
+**Skills:** `performance-profiling, react-performance`
+
 > Ensure code changes meet performance standards before merge
 
 ---

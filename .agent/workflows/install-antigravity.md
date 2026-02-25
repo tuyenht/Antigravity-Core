@@ -4,6 +4,11 @@ description: Cài đặt/cập nhật Antigravity-Core
 
 # Antigravity-Core Installation & Update Guide
 
+// turbo-all
+
+**Agent:** `orchestrator`  
+**Skills:** `app-builder, clean-code`
+
 Hướng dẫn cài đặt và cập nhật Antigravity-Core cho các dự án.
 
 ---

@@ -4,6 +4,8 @@ description: Phân tích và tối ưu hiệu suất
 
 # /optimize - Performance Tuning Workflow
 
+// turbo-all
+
 Comprehensive performance analysis and optimization for applications and components.
 
 ---
@@ -64,6 +66,7 @@ N+1 queries detected: 23 instances
 ```
 
 **Agent:** `performance-optimizer` + `performance-profiling` skill
+**Skills:** `performance-profiling, react-performance, laravel-performance`
 
 ---
 
