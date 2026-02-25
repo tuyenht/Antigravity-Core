@@ -183,3 +183,15 @@ For each Sprint:
 - [ ] Security audit clean
 - [ ] Production deployed + healthy
 - [ ] Post-deploy monitoring 24h OK
+
+
+---
+
+## Troubleshooting
+
+| Vấn đề | Giải pháp |
+|---------|-----------|
+| PRD quá mơ hồ để implement | Quay lại Step 1, hỏi user thêm chi tiết |
+| Architecture quá phức tạp | Đơn giản hóa, chọn MVP approach trước |
+| Sprint scope quá lớn | Cắt giảm stories, focus vào P1 features |
+| QA fail liên tục | Check root cause: design flaw vs implementation bug |

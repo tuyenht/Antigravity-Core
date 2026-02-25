@@ -520,3 +520,15 @@ Recommended: Review new features documentation
 💡 **Read changelog:** Understand breaking changes  
 💡 **Incremental updates:** Don't skip major versions  
 💡 **Monitor after deploy:** Watch for issues
+
+
+---
+
+## Troubleshooting
+
+| Vấn đề | Giải pháp |
+|---------|-----------|
+| Migration fails mid-way | Rollback DB, check migration file syntax |
+| Breaking changes detected | Tạo adapter layer, deprecate gradually |
+| Dependencies conflict | Resolve version conflicts trong lock file |
+| Data loss risk | Chạy `/backup` trước, test trên staging |

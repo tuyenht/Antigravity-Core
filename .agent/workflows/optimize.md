@@ -487,3 +487,26 @@ Current State:
 💡 **Optimize iteratively:** One change at a time  
 💡 **Monitor in production:** Real user metrics  
 💡 **Budget performance:** Set limits for bundle/queries
+
+
+---
+
+##  Optimize Checklist
+
+- [ ] Prerequisites and environment verified
+- [ ] All workflow steps executed sequentially
+- [ ] Expected output validated against requirements
+- [ ] No unresolved errors or warnings in tests/logs
+- [ ] Related documentation updated if impact is systemic
+
+
+---
+
+## Troubleshooting
+
+| Vấn đề | Giải pháp |
+|---------|-----------|
+| Không tìm thấy bottleneck | Dùng profiler (Chrome DevTools, `EXPLAIN ANALYZE`) |
+| Optimization gây regression | Revert, viết benchmark test trước khi optimize |
+| Bundle size vẫn lớn | Kiểm tra dynamic imports, tree-shaking config |
+| Database query vẫn chậm | Check missing indexes, N+1 queries, connection pooling |

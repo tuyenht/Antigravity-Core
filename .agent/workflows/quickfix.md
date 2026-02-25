@@ -314,3 +314,14 @@ With: setItems([...items, newItem])
 ---
 
 **Remember:** /quickfix is for QUICK fixes. For complex issues requiring deeper analysis, use `/debug` or `/plan`.
+
+
+---
+
+## Troubleshooting
+
+| Vấn đề | Giải pháp |
+|---------|-----------|
+| Fix gây thêm bug mới | Revert, viết test trước rồi fix lại |
+| Không reproduce được lỗi | Thu thập thêm context: browser, OS, steps |
+| Fix cần thay đổi lớn hơn | Chuyển sang `/debug` hoặc `/refactor` |

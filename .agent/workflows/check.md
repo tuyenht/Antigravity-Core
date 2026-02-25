@@ -162,3 +162,13 @@ Select-String -Path ".agent/agents/*.md" -Pattern "testing-patterns|tdd-workflow
 **Created:** 2026-01-20  
 **Version:** 1.0  
 **Purpose:** Autonomous workspace self-maintenance
+
+---
+
+## Troubleshooting
+
+| Vấn đề | Giải pháp |
+|---------|-----------|
+| Lint fails nhưng đã fix | Xóa cache: `rm -rf node_modules/.cache`, chạy lại |
+| Tests pass local nhưng fail CI | Kiểm tra env vars, Node version, OS differences |
+| Workspace scan quá chậm | Exclude `node_modules`, `dist`, `.next` |

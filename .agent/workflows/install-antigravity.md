@@ -196,3 +196,13 @@ YourProject/
 
 **Version:** 3.0  
 **Updated:** 2026-02-13
+
+---
+
+##  Install Antigravity Checklist
+
+- [ ] Prerequisites and environment verified
+- [ ] All workflow steps executed sequentially
+- [ ] Expected output validated against requirements
+- [ ] No unresolved errors or warnings in tests/logs
+- [ ] Related documentation updated if impact is systemic

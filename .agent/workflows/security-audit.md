@@ -435,3 +435,15 @@ Next steps:
 💡 **Automate in CI/CD**  
 💡 **Keep dependencies updated**  
 💡 **Rotate secrets regularly**
+
+
+---
+
+## Troubleshooting
+
+| Vấn đề | Giải pháp |
+|---------|-----------|
+| False positive quá nhiều | Tune rule severity, add exceptions cho known-safe patterns |
+| Dependency vuln không fix được | Check for alternative package, hoặc override version |
+| Audit timeout trên large codebase | Scan từng module, exclude test/vendor files |
+| Secret leak detected | Rotate secret NGAY, remove từ git history: `git filter-branch` |

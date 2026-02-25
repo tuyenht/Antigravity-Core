@@ -126,3 +126,25 @@ Import and place the component in the page layout:
 - Responsive behavior (check md/sm breakpoints)
 - Dark mode compatibility
 - Console free of errors/warnings
+
+
+---
+
+##  Admin Component Checklist
+
+- [ ] Prerequisites and environment verified
+- [ ] All workflow steps executed sequentially
+- [ ] Expected output validated against requirements
+- [ ] No unresolved errors or warnings in tests/logs
+- [ ] Related documentation updated if impact is systemic
+
+---
+
+## Troubleshooting
+
+| Vấn đề | Giải pháp |
+|---------|-----------|
+| Lỗi không xác định hoặc crash | Bật chế độ verbose, kiểm tra log hệ thống, cắt nhỏ phạm vi debug |
+| Thiếu package/dependencies | Kiểm tra file lock, chạy lại npm/composer install |
+| Xung đột context API | Reset session, tắt các plugin/extension không liên quan |
+| Thời gian chạy quá lâu (timeout) | Cấu hình lại timeout, tối ưu hóa các queries nặng |

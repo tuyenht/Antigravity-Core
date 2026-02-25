@@ -137,3 +137,25 @@ Add route and sidebar menu item following the detected variant's conventions:
 - Test search/filter/pagination if applicable
 - Verify dark mode and responsive behavior
 
+
+
+---
+
+##  Admin Dashboard Checklist
+
+- [ ] Prerequisites and environment verified
+- [ ] All workflow steps executed sequentially
+- [ ] Expected output validated against requirements
+- [ ] No unresolved errors or warnings in tests/logs
+- [ ] Related documentation updated if impact is systemic
+
+---
+
+## Troubleshooting
+
+| Vấn đề | Giải pháp |
+|---------|-----------|
+| Lỗi không xác định hoặc crash | Bật chế độ verbose, kiểm tra log hệ thống, cắt nhỏ phạm vi debug |
+| Thiếu package/dependencies | Kiểm tra file lock, chạy lại npm/composer install |
+| Xung đột context API | Reset session, tắt các plugin/extension không liên quan |
+| Thời gian chạy quá lâu (timeout) | Cấu hình lại timeout, tối ưu hóa các queries nặng |

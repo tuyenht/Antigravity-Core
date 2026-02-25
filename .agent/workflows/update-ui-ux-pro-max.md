@@ -160,3 +160,14 @@ Chạy PowerShell với quyền Administrator.
 **Version:** 1.0  
 **Created:** 2026-01-31  
 **Source:** https://github.com/nextlevelbuilder/ui-ux-pro-max-skill
+
+
+---
+
+##  Update Ui Ux Pro Max Checklist
+
+- [ ] Prerequisites and environment verified
+- [ ] All workflow steps executed sequentially
+- [ ] Expected output validated against requirements
+- [ ] No unresolved errors or warnings in tests/logs
+- [ ] Related documentation updated if impact is systemic

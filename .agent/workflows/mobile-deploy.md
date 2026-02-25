@@ -119,3 +119,30 @@ If issues:
 
 **Agent:** `devops-engineer` + `mobile-developer`
 **Skills:** `mobile-design, deployment-procedures`
+
+---
+
+##  Mobile Deploy Checklist
+
+- [ ] All tests passing (unit + integration + E2E)
+- [ ] Version bumped (iOS CFBundleVersion + Android versionCode)
+- [ ] Release notes written
+- [ ] No console.logs or debug flags in production build
+- [ ] Build succeeds without warnings
+- [ ] TestFlight / Internal track tested on real devices
+- [ ] Staged rollout configured (Android)
+- [ ] Crash monitoring active (Crashlytics / Sentry)
+- [ ] Post-deploy 24h monitoring plan ready
+
+---
+
+## Troubleshooting
+
+| Vấn đề | Giải pháp |
+|---------|-----------|
+| iOS build fails | cd ios && pod install --repo-update, check Xcode version |
+| Android signing error | Verify keystore path and passwords in gradle.properties |
+| App rejected by Apple | Check rejection reason, fix and re-submit (expedited review) |
+| Play Store rejected | Check policy violations, content rating, target API level |
+| Crash spike after release | Staged rollback (Android), emergency patch (iOS expedited) |
+| Fastlane auth expired | fastlane spaceauth -u email@example.com |

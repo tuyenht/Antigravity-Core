@@ -179,3 +179,15 @@ Run `/deploy rollback` if needed.
 /deploy production --skip-tests
 /deploy rollback
 ```
+
+
+---
+
+## Troubleshooting
+
+| Vấn đề | Giải pháp |
+|---------|-----------|
+| Build fails on CI | Kiểm tra Node/PHP version, env vars, dependencies |
+| Staging OK nhưng production fail | So sánh .env files, check DNS, SSL certificates |
+| Docker build timeout | Tối ưu Dockerfile layers, dùng multi-stage build |
+| Rollback cần thiết | Xem `/backup` workflow, revert git commit |

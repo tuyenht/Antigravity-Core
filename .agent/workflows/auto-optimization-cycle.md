@@ -539,3 +539,14 @@ User sees:
 **Created:** 2026-01-17  
 **Version:** 4.0.0  
 **Purpose:** Fully automated post-feature optimization
+
+
+---
+
+##  Auto Optimization Cycle Checklist
+
+- [ ] Prerequisites and environment verified
+- [ ] All workflow steps executed sequentially
+- [ ] Expected output validated against requirements
+- [ ] No unresolved errors or warnings in tests/logs
+- [ ] Related documentation updated if impact is systemic

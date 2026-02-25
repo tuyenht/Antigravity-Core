@@ -171,3 +171,15 @@ npm run lint && npm run build && npm run dev
 | File already modified by user | Show 3-way diff (blueprint vs old vs user), ask to merge |
 | Breaking schema change | Create backup first (`/backup`), then apply |
 | No changes detected | Report "Project is up-to-date ✅" |
+
+
+---
+
+## Troubleshooting
+
+| Vấn đề | Giải pháp |
+|---------|-----------|
+| Lỗi không xác định hoặc crash | Bật chế độ verbose, kiểm tra log hệ thống, cắt nhỏ phạm vi debug |
+| Thiếu package/dependencies | Kiểm tra file lock, chạy lại npm/composer install |
+| Xung đột context API | Reset session, tắt các plugin/extension không liên quan |
+| Thời gian chạy quá lâu (timeout) | Cấu hình lại timeout, tối ưu hóa các queries nặng |

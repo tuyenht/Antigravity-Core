@@ -149,3 +149,15 @@ npm run lint && npm run build && npm run dev  # or framework equivalent
 | Framework not detected | Ask user to specify |
 | Database not configured | Setup DB first (sqlite dev, postgres prod) |
 | Existing auth found | Ask: "Integrate or replace?" |
+
+
+---
+
+## Troubleshooting
+
+| Vấn đề | Giải pháp |
+|---------|-----------|
+| Lỗi không xác định hoặc crash | Bật chế độ verbose, kiểm tra log hệ thống, cắt nhỏ phạm vi debug |
+| Thiếu package/dependencies | Kiểm tra file lock, chạy lại npm/composer install |
+| Xung đột context API | Reset session, tắt các plugin/extension không liên quan |
+| Thời gian chạy quá lâu (timeout) | Cấu hình lại timeout, tối ưu hóa các queries nặng |
