@@ -143,11 +143,16 @@ Add route and sidebar menu item following the detected variant's conventions:
 
 ##  Admin Dashboard Checklist
 
-- [ ] Prerequisites and environment verified
-- [ ] All workflow steps executed sequentially
-- [ ] Expected output validated against requirements
-- [ ] No unresolved errors or warnings in tests/logs
-- [ ] Related documentation updated if impact is systemic
+- [ ] Page renders correctly within Layout (Header + Sidebar + Footer)
+- [ ] Breadcrumb shows correct title and category
+- [ ] Sidebar menu item registered and highlights correctly
+- [ ] Stat widgets display with CountUp animation
+- [ ] Charts render with correct data (ApexCharts)
+- [ ] Tables use TableContainer with search/sort/pagination
+- [ ] Dark mode renders correctly
+- [ ] Responsive behavior OK (md/sm breakpoints)
+- [ ] Redux/state management wired correctly
+- [ ] No console errors or warnings
 
 ---
 
@@ -155,7 +160,9 @@ Add route and sidebar menu item following the detected variant's conventions:
 
 | Vấn đề | Giải pháp |
 |---------|-----------|
-| Lỗi không xác định hoặc crash | Bật chế độ verbose, kiểm tra log hệ thống, cắt nhỏ phạm vi debug |
-| Thiếu package/dependencies | Kiểm tra file lock, chạy lại npm/composer install |
-| Xung đột context API | Reset session, tắt các plugin/extension không liên quan |
-| Thời gian chạy quá lâu (timeout) | Cấu hình lại timeout, tối ưu hóa các queries nặng |
+| Page trắng / không render | Kiểm tra Layout wrap, route registration, import paths |
+| Chart không hiển thị | Verify ApexCharts import, check data format (series/options) |
+| TableContainer lỗi | Verify columns config có accessorKey khớp data fields |
+| Sidebar menu không highlight | Kiểm tra path matching trong LayoutMenuData.tsx |
+| Redux state undefined | Kiểm tra slice registered trong store, thunk dispatched |
+| Dark mode bể layout | Kiểm tra CSS variables (--vz-*), dùng bg-*-subtle classes |

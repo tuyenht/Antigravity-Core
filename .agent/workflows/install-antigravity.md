@@ -162,7 +162,7 @@ YourProject/
 │   ├── INTEGRATION-GUIDE.md   # How to use
 │   ├── agents/                # 27+ agent definitions
 │   ├── skills/                # 57+ skills
-│   ├── workflows/             # 37+ workflows
+│   ├── workflows/             # 38+ workflows
 │   ├── rules/                 # Coding standards
 │   ├── scripts/               # Automation scripts
 │   ├── memory/                # Persistent data

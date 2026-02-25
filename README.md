@@ -25,7 +25,7 @@ graph TB
         A["27 Specialized Agents"]
         B["59 Knowledge Skills"]
         C["129 Expert Rules"]
-        D["37 Automated Workflows"]
+        D["38 Automated Workflows"]
         E["6 Core Protocols"]
     end
 
@@ -168,7 +168,7 @@ Antigravity-Core/
 │   │   ├── agentic-ai/ (12)           standards/ (25)
 │   │   └── shared/ (1)
 │   │
-│   ├── 🔄 workflows/ (37)             ← Slash command workflows
+│   ├── 🔄 workflows/ (38)             ← Slash command workflows
 │   ├── ⚙️ scripts/ (20)               ← PowerShell + Bash automation
 │   ├── 🧬 systems/ (5)                ← Core protocols (RBA, AOC...)
 │   ├── 🧠 memory/                     ← AI memory system
@@ -436,7 +436,7 @@ Pipeline: /security-audit → /deploy → verify → confirm
 | [📖 **docs/INDEX.md**](.agent/docs/INDEX.md) | **Master index — Bắt đầu từ đây** |
 | [AGENT-CATALOG.md](.agent/docs/agents/AGENT-CATALOG.md) | 27 agents chi tiết |
 | [SKILL-CATALOG.md](.agent/docs/skills/SKILL-CATALOG.md) | 59 skills chi tiết |
-| [WORKFLOW-CATALOG.md](.agent/docs/workflows/WORKFLOW-CATALOG.md) | 37 workflows chi tiết |
+| [WORKFLOW-CATALOG.md](.agent/docs/workflows/WORKFLOW-CATALOG.md) | 38 Workflows chi tiết |
 | [RULES-CATALOG.md](.agent/docs/rules/RULES-CATALOG.md) | 129 rules chi tiết |
 | [SYSTEMS-CATALOG.md](.agent/docs/systems/SYSTEMS-CATALOG.md) | 6 protocols (5 files + AOC) |
 

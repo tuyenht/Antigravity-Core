@@ -132,11 +132,15 @@ Import and place the component in the page layout:
 
 ##  Admin Component Checklist
 
-- [ ] Prerequisites and environment verified
-- [ ] All workflow steps executed sequentially
-- [ ] Expected output validated against requirements
-- [ ] No unresolved errors or warnings in tests/logs
-- [ ] Related documentation updated if impact is systemic
+- [ ] Component renders with sample/mock data
+- [ ] Imports from reactstrap (not raw Bootstrap for interactive)
+- [ ] Uses Remix Icons (ri-* prefix)
+- [ ] Follows Bootstrap 5 utility classes
+- [ ] TypeScript props interface defined
+- [ ] Dark mode compatible (uses --vz-* CSS vars)
+- [ ] Responsive behavior (md/sm breakpoints)
+- [ ] Integrated into page within Layout
+- [ ] Console free of errors/warnings
 
 ---
 
@@ -144,7 +148,9 @@ Import and place the component in the page layout:
 
 | Vấn đề | Giải pháp |
 |---------|-----------|
-| Lỗi không xác định hoặc crash | Bật chế độ verbose, kiểm tra log hệ thống, cắt nhỏ phạm vi debug |
-| Thiếu package/dependencies | Kiểm tra file lock, chạy lại npm/composer install |
-| Xung đột context API | Reset session, tắt các plugin/extension không liên quan |
-| Thời gian chạy quá lâu (timeout) | Cấu hình lại timeout, tối ưu hóa các queries nặng |
+| Component không render | Kiểm tra import path, verify Layout wraps page |
+| TableContainer lỗi columns | Verify accessorKey khớp data object keys |
+| CountUp không animate | Kiểm tra react-countup import, data phải là number |
+| Modal không mở | Verify isOpen state toggle, check Reactstrap Modal import |
+| Icon không hiển thị | Verify Remix Icons CSS loaded, check ri-* class name |
+| Chart data không load | Verify Redux thunk dispatched, check API endpoint |

@@ -40,7 +40,7 @@ Antigravity-Core is an **AI-Native Development Operating System** — a structur
 ├── project.json           ← System metadata & metrics
 │
 ├── agents/      (27)      ← Agent role definitions
-├── workflows/   (37)      ← Automated process definitions
+├── workflows/   (38)      ← Automated process definitions
 ├── skills/      (59)      ← Specialized knowledge modules
 ├── rules/       (129)     ← Expert coding standards
 ├── scripts/     (20)      ← PowerShell + Bash automation

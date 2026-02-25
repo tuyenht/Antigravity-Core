@@ -1,12 +1,13 @@
 ---
-description: Tạo SaaS Admin Starter Kit with Auth & RBAC cho dự án mới
+description: Tạo Admin Starter Kit (SaaS hoặc Standalone) with Auth & RBAC cho dự án mới
 ---
 
-# /create-admin — SaaS Admin Starter Kit Generator
+# /create-admin — Admin Starter Kit Generator
 
 // turbo-all
 
 Tự động tạo hệ thống admin hoàn chỉnh với Auth + RBAC cho bất kỳ framework nào.
+Hỗ trợ 2 chế độ: **SaaS** (multi-tenant, 7 roles) và **Standalone** (single-tenant, 5 roles).
 
 **Khi nào dùng:** Dự án mới cần admin panel, user yêu cầu "tạo admin/login/build admin panel", chưa có Auth + RBAC.
 
@@ -156,8 +157,11 @@ npm run lint && npm run build && npm run dev  # or framework equivalent
 ## Troubleshooting
 
 | Vấn đề | Giải pháp |
-|---------|-----------|
-| Lỗi không xác định hoặc crash | Bật chế độ verbose, kiểm tra log hệ thống, cắt nhỏ phạm vi debug |
-| Thiếu package/dependencies | Kiểm tra file lock, chạy lại npm/composer install |
-| Xung đột context API | Reset session, tắt các plugin/extension không liên quan |
-| Thời gian chạy quá lâu (timeout) | Cấu hình lại timeout, tối ưu hóa các queries nặng |
+|---------|-----------|  
+| Framework không detect được | Kiểm tra config files (package.json, composer.json), specify thủ công |
+| DB migration fails | Kiểm tra DB connection trong .env, đảm bảo DB service đang chạy |
+| Auth login không hoạt động | Kiểm tra seed data (admin@example.com/password), verify middleware config |
+| Sidebar menu không hiện | Kiểm tra LayoutMenuData.tsx, verify permission seeding |
+| RBAC permission denied sai | Kiểm tra pivot table roles_permissions, reset cache: `php artisan cache:clear` |
+| Glassmorphism auth không hiển thị | Kiểm tra CSS imports, verify GuestLayout wraps auth pages |
+| SaaS vs Standalone confusion | Kiểm tra `MODE` trong .env, re-run seeder cho đúng mode |

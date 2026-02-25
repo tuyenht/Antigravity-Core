@@ -1,6 +1,6 @@
 # 📖 Hướng Dẫn Sử Dụng Workflows
 
-**Tổng số:** 37 Workflows  
+**Tổng số:** 38 Workflows  
 **Cập nhật:** 2026-02-25
 
 ---
@@ -113,7 +113,8 @@
 | `/update-ui-ux-pro-max` | Cập nhật skill UI-UX | Skill update |
 | `/enhance` | Enhance existing features | UX improvement |
 | `/admin-component` | Tạo component admin (Velzon) | Admin panel |
-| `/admin-dashboard` | Tạo trang admin dashboard | Dashboard |
+| `/admin-dashboard` | Tạo trang admin dashboard |
+| `/admin-settings` | Tạo trang Settings cho admin panel | Dashboard |
 
 ---
 

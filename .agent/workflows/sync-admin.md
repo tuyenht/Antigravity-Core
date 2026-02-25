@@ -179,7 +179,10 @@ npm run lint && npm run build && npm run dev
 
 | Vấn đề | Giải pháp |
 |---------|-----------|
-| Lỗi không xác định hoặc crash | Bật chế độ verbose, kiểm tra log hệ thống, cắt nhỏ phạm vi debug |
-| Thiếu package/dependencies | Kiểm tra file lock, chạy lại npm/composer install |
-| Xung đột context API | Reset session, tắt các plugin/extension không liên quan |
-| Thời gian chạy quá lâu (timeout) | Cấu hình lại timeout, tối ưu hóa các queries nặng |
+| Blueprint version mismatch | Chạy agu (update Antigravity-Core) trước, sau đó /sync-admin |
+| Migration conflict với data hiện tại | Show SQL diff cho user, dùng --pretend flag trước |
+| File đã bị user sửa | Show 3-way diff (blueprint vs old vs user), hỏi merge strategy |
+| Custom pages bị mất | Kiểm tra Custom category — KHÔNG BAO GIỜ xóa custom items |
+| Permissions seeder reset data | Dùng updateOrCreate() thay create(), KHÔNG truncate table |
+| Asset images thiếu | Copy lại từ .agent/skills/velzon-admin/assets/images/ |
+| Diff report rỗng | Verify MODE trong .env khớp, check blueprint path đúng |
