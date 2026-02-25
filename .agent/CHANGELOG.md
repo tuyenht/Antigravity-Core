@@ -7,6 +7,34 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ---
 
+## [4.1.0] - 2026-02-25
+
+### 🚀 SDLC Process Upgrade & Team Pipeline v2.0
+
+**27 agents, 59 skills, 37 workflows, 129 rules, 20 scripts, 11 process docs.**
+
+---
+
+### Added
+
+- **BRANCHING-STRATEGY.md** — GitHub Flow + Release Branches, conventional commits, naming convention
+- **INCIDENT-RESPONSE.md** — P0-P3 severity levels, 5-phase workflow, post-mortem template
+- **DEFINITION-OF-DONE.md** — 5-tier unified DoD (Universal, Feature, Bugfix, Release, Hotfix)
+- **METRICS-REVIEW.md** — 4 metric categories, monthly review cadence, alerting thresholds
+- **`/full-pipeline` workflow** — Full team pipeline: BA → SA → PM → DEV → QA → DO
+- **`project.json` stats block** — Centralized counts for CI validation (agents, skills, workflows, rules, scripts)
+
+### Changed
+
+- **TEAM_WORKFLOW.md** v1.0 → v2.0 — Added Role→Agent mapping table bridging 7 pipeline roles to 27 agents
+- **AGENT_ROLES.md** v1.0 → v2.0 — Added Antigravity Agent + Workflows fields to all 7 roles
+- **OUTPUT_FILES.md** v1.0 → v2.0 — Synced to v4.1.0
+- **DEPLOYMENT-PROCESS.md** — Added Environment Matrix, Hotfix Fast-Track Flow, Phase 6 Monitoring (SLA targets)
+- **WORKFLOW-GUIDE.md** — Updated 31→37 workflows, added 6 missing entries
+- **Metrics scores** — consistency_score 75→95, integration_score 78→90 (post-audit improvement)
+
+---
+
 ## [4.0.1] - 2026-02-24
 
 ### 🔧 Full System Audit & Expert Panel Fixes

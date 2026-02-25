@@ -1,6 +1,6 @@
 # Script Catalog — Antigravity-Core
 
-**Version:** 4.0.1  
+**Version:** 4.1.0  
 **Last Updated:** 2026-02-25  
 **Total Scripts:** 20
 

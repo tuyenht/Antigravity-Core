@@ -1,6 +1,6 @@
 # Incident Response — Quy Trình Xử Lý Sự Cố
 
-**Version:** 4.0.1  
+**Version:** 4.1.0  
 **Last Updated:** 2026-02-25
 
 ---

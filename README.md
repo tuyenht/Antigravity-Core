@@ -3,7 +3,7 @@
 > **AI-Native Development Operating System**  
 > Hệ Điều Hành Phát Triển Phần Mềm Thuần AI
 
-[![Version](https://img.shields.io/badge/version-4.0.1-blue.svg)](.agent/CHANGELOG.md)
+[![Version](https://img.shields.io/badge/version-4.1.0-blue.svg)](.agent/CHANGELOG.md)
 [![Agents](https://img.shields.io/badge/agents-27-brightgreen.svg)](.agent/docs/agents/AGENT-CATALOG.md)
 [![Skills](https://img.shields.io/badge/skills-59-orange.svg)](.agent/docs/skills/SKILL-CATALOG.md)
 [![Rules](https://img.shields.io/badge/rules-129-purple.svg)](.agent/docs/rules/RULES-CATALOG.md)
@@ -20,7 +20,7 @@
 
 ```mermaid
 graph TB
-    subgraph OS["ANTIGRAVITY-CORE (AI OS v4.0.1)"]
+    subgraph OS["ANTIGRAVITY-CORE (AI OS v4.1.0)"]
         direction TB
         A["27 Specialized Agents"]
         B["59 Knowledge Skills"]
@@ -461,7 +461,7 @@ Pipeline: /security-audit → /deploy → verify → confirm
 
 ## 🗺️ ROADMAP
 
-### v4.0.1 ✅ (February 2026 — Current)
+### v4.1.0 ✅ (February 2026 — Current)
 
 - ✅ Auto-Rule Discovery Engine (3-layer detection)
 - ✅ Agent Registry (27 specialized agents)
