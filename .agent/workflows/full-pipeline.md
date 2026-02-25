@@ -4,12 +4,16 @@ description: Chạy full team workflow pipeline từ requirements đến deploym
 
 # /full-pipeline — Full Team Workflow Pipeline
 
+// turbo-all
+
 Chạy quy trình phát triển end-to-end theo 6 bước tuần tự.
 Mỗi bước có **Input → Output** mapping rõ ràng. Chỉ chuyển sang bước tiếp khi output đã được validate.
 
-**Reference:** `.agent/docs/TEAM_WORKFLOW.md` (chi tiết)
-**Roles:** `.agent/roles/AGENT_ROLES.md` (7 roles)
-**Output standards:** `.agent/docs/OUTPUT_FILES.md` (templates)
+**Agent:** `orchestrator` (coordinator)
+**Reference:** `.agent/docs/TEAM_WORKFLOW.md` (chi tiết)  
+**Roles:** `.agent/roles/AGENT_ROLES.md` (7 roles)  
+**Output standards:** `.agent/docs/OUTPUT_FILES.md` (templates)  
+**DoD:** `.agent/docs/processes/DEFINITION-OF-DONE.md`
 
 ---
 
@@ -27,7 +31,8 @@ Mỗi bước có **Input → Output** mapping rõ ràng. Chỉ chuyển sang b�
    - [ ] Mỗi feature có user story với acceptance criteria
    - [ ] Priorities assigned (P1/P2/P3)
 
-> ⛔ STOP: User phải review và approve PRD trước khi tiếp tục.
+> ⛔ **STOP GATE:** User PHẢI review và approve PRD trước khi tiếp tục.
+> KHÔNG được tự động chuyển sang Step 3. Chờ user nói "approved" hoặc "tiếp tục".
 
 ---
 
@@ -49,7 +54,8 @@ Mỗi bước có **Input → Output** mapping rõ ràng. Chỉ chuyển sang b�
    - [ ] Schema có indexes + foreign keys
    - [ ] API endpoints được định nghĩa
 
-> ⛔ STOP: User phải review architecture trước khi tiếp tục.
+> ⛔ **STOP GATE:** User PHẢI review architecture trước khi tiếp tục.
+> KHÔNG được tự động chuyển sang Step 4. Chờ user nói "approved" hoặc "tiếp tục".
 
 ---
 
@@ -151,3 +157,29 @@ For each Sprint:
   4. [PM] Retrospective
   5. Repeat
 ```
+
+---
+
+## ⚠️ Rollback & Escalation
+
+| Tình huống | Hành động |
+|-----------|---------|
+| PRD bị reject | Quay lại Step 1, thu thập thêm requirements |
+| Architecture bị reject | Quay lại Step 3, đề xuất phương án khác |
+| QA fail nhưng fix được | Quay lại Step 5 fix, re-test |
+| QA fail và là design flaw | Quay lại Step 3 re-architect |
+| Deploy fail | Xem `/backup` để restore, chạy `/debug` |
+| Production incident | Xem `INCIDENT-RESPONSE.md`, chạy hotfix |
+
+---
+
+## ✅ Pipeline Completion Checklist
+
+- [ ] PRD approved
+- [ ] Architecture approved
+- [ ] Sprint planned
+- [ ] All stories implemented + tested
+- [ ] DoD met (xem DEFINITION-OF-DONE.md)
+- [ ] Security audit clean
+- [ ] Production deployed + healthy
+- [ ] Post-deploy monitoring 24h OK
