@@ -1,5 +1,5 @@
----
-description: Kiểm tra bảo mật toàn diện
+﻿---
+description: "Kiểm tra bảo mật toàn diện"
 ---
 
 # /security-audit - Security Analysis Workflow
@@ -447,3 +447,6 @@ Next steps:
 | Dependency vuln không fix được | Check for alternative package, hoặc override version |
 | Audit timeout trên large codebase | Scan từng module, exclude test/vendor files |
 | Secret leak detected | Rotate secret NGAY, remove từ git history: `git filter-branch` |
+
+
+

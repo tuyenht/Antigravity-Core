@@ -1,5 +1,5 @@
----
-description: Chu trình tối ưu tự động sau mỗi tính năng
+﻿---
+description: "Chu trình tối ưu tự động sau mỗi tính năng"
 trigger: Feature delivery complete
 automation: Auto-triggered by manager-agent
 ---
@@ -550,3 +550,6 @@ User sees:
 - [ ] Expected output validated against requirements
 - [ ] No unresolved errors or warnings in tests/logs
 - [ ] Related documentation updated if impact is systemic
+
+
+

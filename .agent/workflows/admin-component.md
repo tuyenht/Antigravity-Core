@@ -1,5 +1,5 @@
----
-description: Tạo component admin (Velzon)
+﻿---
+description: "Tạo component admin (Velzon)"
 ---
 
 # Admin Component Generator
@@ -154,3 +154,6 @@ Import and place the component in the page layout:
 | Modal không mở | Verify isOpen state toggle, check Reactstrap Modal import |
 | Icon không hiển thị | Verify Remix Icons CSS loaded, check ri-* class name |
 | Chart data không load | Verify Redux thunk dispatched, check API endpoint |
+
+
+

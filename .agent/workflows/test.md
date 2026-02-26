@@ -1,5 +1,5 @@
----
-description: Tạo và chạy test tự động
+﻿---
+description: "Tạo và chạy test tự động"
 ---
 
 # /test - Test Generation and Execution
@@ -165,9 +165,12 @@ describe('AuthService', () => {
 
 ## Troubleshooting
 
-| V?n d? | Gi?i ph�p |
+| V?n d? | Gi?i ph�p |
 |---------|-----------|
 | Tests hang/timeout | Check for unresolved promises, add `--forceExit` |
 | Mock not working | Verify mock path, use `jest.mock()` at top of file |
 | Coverage too low | Focus on business logic, skip trivial getters/setters |
 | Import errors in tests | Check `jest.config.js` moduleNameMapper |
+
+
+

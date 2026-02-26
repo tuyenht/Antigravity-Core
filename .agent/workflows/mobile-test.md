@@ -1,5 +1,5 @@
----
-description: Test mobile đa nền tảng
+﻿---
+description: "Test mobile đa nền tảng"
 ---
 
 # /mobile-test — Mobile Testing Workflow
@@ -164,3 +164,6 @@ python .agent/skills/mobile-design/scripts/mobile_audit.py --root .
 | iOS simulator crash | `xcrun simctl shutdown all && xcrun simctl delete unavailable` |
 | Flutter test timeout | `flutter test --timeout 120s` |
 | Jest out of memory | `NODE_OPTIONS=--max-old-space-size=4096 npm test` |
+
+
+

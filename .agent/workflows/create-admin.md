@@ -1,5 +1,5 @@
----
-description: Tạo Admin Starter Kit (SaaS hoặc Standalone) with Auth & RBAC cho dự án mới
+﻿---
+description: "Tạo Admin Starter Kit (SaaS hoặc Standalone) with Auth & RBAC cho dự án mới"
 ---
 
 # /create-admin — Admin Starter Kit Generator
@@ -165,3 +165,6 @@ npm run lint && npm run build && npm run dev  # or framework equivalent
 | RBAC permission denied sai | Kiểm tra pivot table roles_permissions, reset cache: `php artisan cache:clear` |
 | Glassmorphism auth không hiển thị | Kiểm tra CSS imports, verify GuestLayout wraps auth pages |
 | SaaS vs Standalone confusion | Kiểm tra `MODE` trong .env, re-run seeder cho đúng mode |
+
+
+

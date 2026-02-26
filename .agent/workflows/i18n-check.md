@@ -1,5 +1,5 @@
----
-description: Kiểm tra i18n strings và translation coverage
+﻿---
+description: "Kiểm tra i18n strings và translation coverage"
 ---
 
 # /i18n-check — Internationalization Checker
@@ -167,3 +167,6 @@ Nếu user confirm:
 | Scanner misses framework | Specify framework: `--framework react` / `--framework vue` / `--framework laravel` |
 | False positive on hardcoded | Add to `.i18nignore` file or use `// i18n-ignore` comment |
 | Large locale file performance | Split by namespace: `common.json`, `auth.json`, `dashboard.json` |
+
+
+

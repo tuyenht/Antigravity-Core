@@ -1,5 +1,5 @@
----
-description: Thiết kế database trước khi code
+﻿---
+description: "Thiết kế database trước khi code"
 ---
 
 # Schema-First Development Workflow
@@ -287,3 +287,6 @@ Before writing ANY UI code:
 | Thiếu package/dependencies | Kiểm tra file lock, chạy lại npm/composer install |
 | Xung đột context API | Reset session, tắt các plugin/extension không liên quan |
 | Thời gian chạy quá lâu (timeout) | Cấu hình lại timeout, tối ưu hóa các queries nặng |
+
+
+

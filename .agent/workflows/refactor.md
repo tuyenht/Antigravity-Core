@@ -1,5 +1,5 @@
----
-description: Tái cấu trúc code thông minh
+﻿---
+description: "Tái cấu trúc code thông minh"
 ---
 
 # /refactor - Smart Refactoring Workflow
@@ -409,3 +409,6 @@ Metrics:
 - [ ] Output validated against design specifications
 - [ ] No outstanding errors or warnings in tests/logs
 - [ ] Documentation and related files updated accordingly
+
+
+

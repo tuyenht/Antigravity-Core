@@ -1,5 +1,5 @@
----
-description: Triển khai lên production
+﻿---
+description: "Triển khai lên production"
 ---
 
 # /deploy - Production Deployment
@@ -191,3 +191,6 @@ Run `/deploy rollback` if needed.
 | Staging OK nhưng production fail | So sánh .env files, check DNS, SSL certificates |
 | Docker build timeout | Tối ưu Dockerfile layers, dùng multi-stage build |
 | Rollback cần thiết | Xem `/backup` workflow, revert git commit |
+
+
+

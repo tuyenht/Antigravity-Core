@@ -1,5 +1,5 @@
----
-description: Validate API design, contracts, and documentation
+﻿---
+description: "Validate API design, contracts, and documentation"
 ---
 
 # /api-design — API Design Validator
@@ -165,3 +165,6 @@ npx openapi-to-postmanv2 -s openapi.yaml -o postman_collection.json
 | Route scan fails | Check framework version, ensure routes are defined |
 | OpenAPI parse error | Validate YAML syntax: `npx @apidevtools/swagger-cli validate openapi.yaml` |
 | Missing auth middleware | Check kernel/middleware registration |
+
+
+

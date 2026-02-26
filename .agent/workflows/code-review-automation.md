@@ -1,5 +1,5 @@
----
-description: Review code tự động
+﻿---
+description: "Review code tự động"
 ---
 
 # 🤖 Automated Code Review Workflow
@@ -758,3 +758,6 @@ This workflow leverages:
 | Thiếu package/dependencies | Kiểm tra file lock, chạy lại npm/composer install |
 | Xung đột context API | Reset session, tắt các plugin/extension không liên quan |
 | Thời gian chạy quá lâu (timeout) | Cấu hình lại timeout, tối ưu hóa các queries nặng |
+
+
+

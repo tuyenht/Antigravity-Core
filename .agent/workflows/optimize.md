@@ -1,5 +1,5 @@
----
-description: Phân tích và tối ưu hiệu suất
+﻿---
+description: "Phân tích và tối ưu hiệu suất"
 ---
 
 # /optimize - Performance Tuning Workflow
@@ -510,3 +510,6 @@ Current State:
 | Optimization gây regression | Revert, viết benchmark test trước khi optimize |
 | Bundle size vẫn lớn | Kiểm tra dynamic imports, tree-shaking config |
 | Database query vẫn chậm | Check missing indexes, N+1 queries, connection pooling |
+
+
+

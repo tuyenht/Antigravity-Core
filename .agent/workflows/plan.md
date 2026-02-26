@@ -1,5 +1,5 @@
----
-description: Lập kế hoạch dự án (không code)
+﻿---
+description: "Lập kế hoạch dự án (không code)"
 ---
 
 # /plan — Project Planning Mode
@@ -177,3 +177,6 @@ Next steps:
 | Thiếu package/dependencies | Kiểm tra file lock, chạy lại npm/composer install |
 | Xung đột context API | Reset session, tắt các plugin/extension không liên quan |
 | Thời gian chạy quá lâu (timeout) | Cấu hình lại timeout, tối ưu hóa các queries nặng |
+
+
+

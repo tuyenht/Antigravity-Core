@@ -1,5 +1,5 @@
----
-description: Chạy full team workflow pipeline từ requirements đến deployment (BA → SA → PM → DEV → QA → DO)
+﻿---
+description: "Chạy full team workflow pipeline từ requirements đến deployment (BA → SA → PM → DEV → QA → DO)"
 ---
 
 # /full-pipeline — Full Team Workflow Pipeline
@@ -195,3 +195,6 @@ For each Sprint:
 | Architecture quá phức tạp | Đơn giản hóa, chọn MVP approach trước |
 | Sprint scope quá lớn | Cắt giảm stories, focus vào P1 features |
 | QA fail liên tục | Check root cause: design flaw vs implementation bug |
+
+
+

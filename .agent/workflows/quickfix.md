@@ -1,5 +1,5 @@
----
-description: Sửa lỗi nhanh, vấn đề đơn giản
+﻿---
+description: "Sửa lỗi nhanh, vấn đề đơn giản"
 ---
 
 # /quickfix - Quick Bug Resolution
@@ -325,3 +325,6 @@ With: setItems([...items, newItem])
 | Fix gây thêm bug mới | Revert, viết test trước rồi fix lại |
 | Không reproduce được lỗi | Thu thập thêm context: browser, OS, steps |
 | Fix cần thay đổi lớn hơn | Chuyển sang `/debug` hoặc `/refactor` |
+
+
+

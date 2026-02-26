@@ -1,5 +1,5 @@
----
-description: Triển khai app lên Store
+﻿---
+description: "Triển khai app lên Store"
 ---
 
 # /mobile-deploy - App Store Deployment Workflow
@@ -146,3 +146,5 @@ If issues:
 | Play Store rejected | Check policy violations, content rating, target API level |
 | Crash spike after release | Staged rollback (Android), emergency patch (iOS expedited) |
 | Fastlane auth expired | fastlane spaceauth -u email@example.com |
+
+

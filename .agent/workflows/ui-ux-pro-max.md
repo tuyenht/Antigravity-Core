@@ -1,5 +1,5 @@
----
-description: Thiết kế UI/UX chuyên nghiệp
+﻿---
+description: "Thiết kế UI/UX chuyên nghiệp"
 auto_execution_mode: 3
 ---
 
@@ -246,3 +246,6 @@ Before delivering UI code, verify these items:
 | Thiếu package/dependencies | Kiểm tra file lock, chạy lại npm/composer install |
 | Xung đột context API | Reset session, tắt các plugin/extension không liên quan |
 | Thời gian chạy quá lâu (timeout) | Cấu hình lại timeout, tối ưu hóa các queries nặng |
+
+
+

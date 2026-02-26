@@ -1,5 +1,5 @@
----
-description: Phối hợp nhiều agent cho task phức tạp
+﻿---
+description: "Phối hợp nhiều agent cho task phức tạp"
 ---
 
 # Multi-Agent Orchestration
@@ -251,3 +251,6 @@ Before completing orchestration, verify:
 | Thiếu package/dependencies | Kiểm tra file lock, chạy lại npm/composer install |
 | Xung đột context API | Reset session, tắt các plugin/extension không liên quan |
 | Thời gian chạy quá lâu (timeout) | Cấu hình lại timeout, tối ưu hóa các queries nặng |
+
+
+

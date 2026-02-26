@@ -1,5 +1,5 @@
----
-description: Đồng bộ dự án admin hiện có với blueprint mới nhất từ Antigravity-Core
+﻿---
+description: "Đồng bộ dự án admin hiện có với blueprint mới nhất từ Antigravity-Core"
 ---
 
 # /sync-admin — Admin Blueprint Sync
@@ -186,3 +186,6 @@ npm run lint && npm run build && npm run dev
 | Permissions seeder reset data | Dùng updateOrCreate() thay create(), KHÔNG truncate table |
 | Asset images thiếu | Copy lại từ .agent/skills/velzon-admin/assets/images/ |
 | Diff report rỗng | Verify MODE trong .env khớp, check blueprint path đúng |
+
+
+

@@ -1,5 +1,5 @@
----
-description: Cập nhật skill UI-UX-Pro-Max
+﻿---
+description: "Cập nhật skill UI-UX-Pro-Max"
 ---
 
 # Update UI-UX-Pro-Max Skill
@@ -171,3 +171,6 @@ Chạy PowerShell với quyền Administrator.
 - [ ] Expected output validated against requirements
 - [ ] No unresolved errors or warnings in tests/logs
 - [ ] Related documentation updated if impact is systemic
+
+
+

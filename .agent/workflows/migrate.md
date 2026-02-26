@@ -1,5 +1,5 @@
----
-description: Nâng cấp framework tự động
+﻿---
+description: "Nâng cấp framework tự động"
 ---
 
 # /migrate - Framework Migration Workflow
@@ -532,3 +532,6 @@ Recommended: Review new features documentation
 | Breaking changes detected | Tạo adapter layer, deprecate gradually |
 | Dependencies conflict | Resolve version conflicts trong lock file |
 | Data loss risk | Chạy `/backup` trước, test trên staging |
+
+
+

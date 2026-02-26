@@ -1,5 +1,5 @@
----
-description: Khởi tạo dự án mobile
+﻿---
+description: "Khởi tạo dự án mobile"
 ---
 
 # /mobile-init — Initialize Mobile Project
@@ -273,3 +273,6 @@ Required:
 | Thiếu package/dependencies | Kiểm tra file lock, chạy lại npm/composer install |
 | Xung đột context API | Reset session, tắt các plugin/extension không liên quan |
 | Thời gian chạy quá lâu (timeout) | Cấu hình lại timeout, tối ưu hóa các queries nặng |
+
+
+

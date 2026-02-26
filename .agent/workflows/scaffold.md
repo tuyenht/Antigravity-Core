@@ -1,5 +1,5 @@
----
-description: Tạo module CRUD hoàn chỉnh theo framework
+﻿---
+description: "Tạo module CRUD hoàn chỉnh theo framework"
 ---
 
 # /scaffold - Feature Scaffolding Workflow
@@ -366,3 +366,6 @@ Next steps:
 | Thiếu package/dependencies | Kiểm tra file lock, chạy lại npm/composer install |
 | Xung đột context API | Reset session, tắt các plugin/extension không liên quan |
 | Thời gian chạy quá lâu (timeout) | Cấu hình lại timeout, tối ưu hóa các queries nặng |
+
+
+

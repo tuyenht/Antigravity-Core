@@ -1,5 +1,5 @@
----
-description: Kiểm tra workspace hàng ngày
+﻿---
+description: "Kiểm tra workspace hàng ngày"
 turbo-all: false
 ---
 
@@ -172,3 +172,6 @@ Select-String -Path ".agent/agents/*.md" -Pattern "testing-patterns|tdd-workflow
 | Lint fails nhưng đã fix | Xóa cache: `rm -rf node_modules/.cache`, chạy lại |
 | Tests pass local nhưng fail CI | Kiểm tra env vars, Node version, OS differences |
 | Workspace scan quá chậm | Exclude `node_modules`, `dist`, `.next` |
+
+
+

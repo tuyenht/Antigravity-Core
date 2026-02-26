@@ -1,5 +1,5 @@
----
-description: Tạo dự án mới từ đầu
+﻿---
+description: "Tạo dự án mới từ đầu"
 ---
 
 # /create - Tạo Dự Án Mới
@@ -108,9 +108,12 @@ Nếu yêu cầu chưa rõ ràng, hỏi:
 
 ## Troubleshooting
 
-| V?n d? | Gi?i ph�p |
+| V?n d? | Gi?i ph�p |
 |---------|-----------|
 | npx create fails | Check Node.js version, try `npx -y` flag |
 | Port already in use | Kill process on port: `npx kill-port 3000` |
 | Dependencies conflict | Delete `node_modules` + `package-lock.json`, re-install |
 | Template not found | Check framework version, use `--template` flag |
+
+
+

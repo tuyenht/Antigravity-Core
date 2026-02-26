@@ -1,5 +1,5 @@
----
-description: Tìm và sửa lỗi có hệ thống
+﻿---
+description: "Tìm và sửa lỗi có hệ thống"
 ---
 
 # /debug - Systematic Problem Investigation
@@ -124,9 +124,12 @@ When `/debug` is triggered:
 
 ## Troubleshooting
 
-| V?n d? | Gi?i ph�p |
+| V?n d? | Gi?i ph�p |
 |---------|-----------|
 | Can't reproduce error | Ask for exact steps, browser/OS, check logs |
 | Error only in production | Check env vars, DB state, network conditions |
 | Multiple possible causes | Binary search: disable half the code, narrow down |
 | Fix breaks something else | Revert, write test for both cases first |
+
+
+

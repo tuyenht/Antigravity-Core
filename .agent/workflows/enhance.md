@@ -1,5 +1,5 @@
----
-description: Thêm/sửa tính năng cho dự án hiện có
+﻿---
+description: "Thêm/sửa tính năng cho dự án hiện có"
 ---
 
 # /enhance - Cập Nhật Dự Án
@@ -113,9 +113,12 @@ Bắt đầu chứ?"
 
 ## Troubleshooting
 
-| V?n d? | Gi?i ph�p |
+| V?n d? | Gi?i ph�p |
 |---------|-----------|
 | Framework not detected | Check for config files, specify manually |
 | Conflicts with existing code | Analyze dependencies first, refactor if needed |
 | Breaking existing features | Run full test suite before and after changes |
 | Unclear scope | Ask user to break into smaller tasks |
+
+
+

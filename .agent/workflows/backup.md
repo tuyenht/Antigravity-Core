@@ -1,5 +1,5 @@
----
-description: Backup database và project state trước khi thay đổi lớn
+﻿---
+description: "Backup database và project state trước khi thay đổi lớn"
 ---
 
 # /backup — Project Backup & Restore
@@ -174,3 +174,6 @@ echo "🧹 Old backups cleaned. Keeping 5 most recent."
 | Permission denied | Check DB credentials in .env |
 | Backup too large | Use `--compress` flag hoặc `gzip` |
 | Restore fails | Check database exists, user has permissions |
+
+
+

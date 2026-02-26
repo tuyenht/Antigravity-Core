@@ -1,5 +1,5 @@
----
-description: Cài đặt/cập nhật Antigravity-Core
+﻿---
+description: "Cài đặt/cập nhật Antigravity-Core"
 ---
 
 # Antigravity-Core Installation & Update Guide
@@ -206,3 +206,6 @@ YourProject/
 - [ ] Expected output validated against requirements
 - [ ] No unresolved errors or warnings in tests/logs
 - [ ] Related documentation updated if impact is systemic
+
+
+

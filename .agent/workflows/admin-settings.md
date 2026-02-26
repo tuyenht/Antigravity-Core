@@ -1,5 +1,5 @@
----
-description: Tạo trang Settings cho admin panel
+﻿---
+description: "Tạo trang Settings cho admin panel"
 ---
 
 # /admin-settings — Admin Settings Page Builder
@@ -209,3 +209,6 @@ Sidebar Menu (add to LayoutMenuData.tsx):
 | Test email không gửi | Verify SMTP config, check firewall/port, try với Mailtrap |
 | Profile password change fails | Verify current password validation, check bcrypt hash |
 | Tenant settings hiện ở standalone mode | Kiểm tra MODE env var, wrap component trong SaaS-only guard |
+
+
+

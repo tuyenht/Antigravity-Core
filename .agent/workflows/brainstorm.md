@@ -1,5 +1,5 @@
----
-description: Phân tích ý tưởng, so sánh giải pháp
+﻿---
+description: "Phân tích ý tưởng, so sánh giải pháp"
 ---
 
 # /brainstorm - Structured Idea Exploration
@@ -132,8 +132,11 @@ What direction would you like to explore?
 
 ## Troubleshooting
 
-| V?n d? | Gi?i ph�p |
+| V?n d? | Gi?i ph�p |
 |---------|-----------|
 | Options too similar | Push for more creative/unconventional approach |
 | User can't decide | Create decision matrix with weighted criteria |
 | Scope too broad | Break into sub-problems, brainstorm each |
+
+
+

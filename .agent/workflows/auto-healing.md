@@ -1,5 +1,5 @@
----
-description: Tự sửa lỗi lint, type, import
+﻿---
+description: "Tự sửa lỗi lint, type, import"
 turbo-all: false
 ---
 
@@ -249,3 +249,6 @@ npm run type-check
 | Type fix changes behavior | Revert and escalate  never auto-fix logic |
 | Import not found after fix | Check `tsconfig.json` paths and `baseUrl` |
 | Auto-heal loops forever | Kill after 3 attempts, present options to user |
+
+
+

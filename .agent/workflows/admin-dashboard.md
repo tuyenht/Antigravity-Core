@@ -1,5 +1,5 @@
----
-description: Tạo trang admin dashboard (Velzon)
+﻿---
+description: "Tạo trang admin dashboard (Velzon)"
 ---
 
 # Admin Dashboard Page Builder
@@ -166,3 +166,6 @@ Add route and sidebar menu item following the detected variant's conventions:
 | Sidebar menu không highlight | Kiểm tra path matching trong LayoutMenuData.tsx |
 | Redux state undefined | Kiểm tra slice registered trong store, thunk dispatched |
 | Dark mode bể layout | Kiểm tra CSS variables (--vz-*), dùng bg-*-subtle classes |
+
+
+

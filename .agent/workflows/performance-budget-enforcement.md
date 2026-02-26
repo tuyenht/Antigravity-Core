@@ -1,5 +1,5 @@
----
-description: Kiểm soát ngân sách hiệu suất
+﻿---
+description: "Kiểm soát ngân sách hiệu suất"
 turbo-all: false
 ---
 
@@ -238,3 +238,6 @@ php artisan test --profile
 | Thiếu package/dependencies | Kiểm tra file lock, chạy lại npm/composer install |
 | Xung đột context API | Reset session, tắt các plugin/extension không liên quan |
 | Thời gian chạy quá lâu (timeout) | Cấu hình lại timeout, tối ưu hóa các queries nặng |
+
+
+
