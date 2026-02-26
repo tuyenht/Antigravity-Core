@@ -3,10 +3,10 @@
 > **AI-Native Development Operating System**  
 > Hệ Điều Hành Phát Triển Phần Mềm Thuần AI
 
-[![Version](https://img.shields.io/badge/version-4.1.0-blue.svg)](.agent/CHANGELOG.md)
+[![Version](https://img.shields.io/badge/version-4.1.1-blue.svg)](.agent/CHANGELOG.md)
 [![Agents](https://img.shields.io/badge/agents-27-brightgreen.svg)](.agent/docs/agents/AGENT-CATALOG.md)
 [![Skills](https://img.shields.io/badge/skills-59-orange.svg)](.agent/docs/skills/SKILL-CATALOG.md)
-[![Rules](https://img.shields.io/badge/rules-129-purple.svg)](.agent/docs/rules/RULES-CATALOG.md)
+[![Rules](https://img.shields.io/badge/rules-131-purple.svg)](.agent/docs/rules/RULES-CATALOG.md)
 [![AI Autonomy](https://img.shields.io/badge/AI%20Autonomy-95%25-green.svg)]()
 [![Quality](https://img.shields.io/badge/Quality-Platinum%20Standard-gold.svg)]()
 [![License](https://img.shields.io/badge/license-Proprietary-red.svg)]()
@@ -20,7 +20,7 @@
 
 ```mermaid
 graph TB
-    subgraph OS["ANTIGRAVITY-CORE (AI OS v4.1.0)"]
+    subgraph OS["ANTIGRAVITY-CORE (AI OS v4.1.1)"]
         direction TB
         A["27 Specialized Agents"]
         B["59 Knowledge Skills"]
@@ -437,7 +437,7 @@ Pipeline: /security-audit → /deploy → verify → confirm
 | [AGENT-CATALOG.md](.agent/docs/agents/AGENT-CATALOG.md) | 27 agents chi tiết |
 | [SKILL-CATALOG.md](.agent/docs/skills/SKILL-CATALOG.md) | 59 skills chi tiết |
 | [WORKFLOW-CATALOG.md](.agent/docs/workflows/WORKFLOW-CATALOG.md) | 38 Workflows chi tiết |
-| [RULES-CATALOG.md](.agent/docs/rules/RULES-CATALOG.md) | 129 rules chi tiết |
+| [RULES-CATALOG.md](.agent/docs/rules/RULES-CATALOG.md) | 131 rules chi tiết |
 | [SYSTEMS-CATALOG.md](.agent/docs/systems/SYSTEMS-CATALOG.md) | 6 protocols (5 files + AOC) |
 
 ### Architecture & Config
@@ -461,7 +461,7 @@ Pipeline: /security-audit → /deploy → verify → confirm
 
 ## 🗺️ ROADMAP
 
-### v4.1.0 ✅ (February 2026 — Current)
+### v4.1.1 ✅ (February 2026 — Current)
 
 - ✅ Auto-Rule Discovery Engine (3-layer detection)
 - ✅ Agent Registry (27 specialized agents)
@@ -470,7 +470,7 @@ Pipeline: /security-audit → /deploy → verify → confirm
 - ✅ Full documentation suite (14 catalog & process docs)
 - ✅ Expert audit: 6 critical issues found & fixed
 
-### v4.1.0 (Planned — Q2 2026)
+### v4.2.0 (Planned — Q2 2026)
 
 - [ ] Plugin architecture for custom agents
 - [ ] Skill marketplace

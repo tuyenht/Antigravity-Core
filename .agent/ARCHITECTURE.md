@@ -1,6 +1,6 @@
 # Antigravity-Core Architecture
 
-> **Version:** 4.1.0 | **Last Updated:** 2026-02-24
+> **Version:** 4.1.1 | **Last Updated:** 2026-02-26
 
 ---
 
@@ -14,14 +14,14 @@ Antigravity-Core is an **AI-Native Development Operating System** — a structur
 │                                                                  │
 │  ┌──────────┐  ┌──────────┐  ┌──────────┐  ┌──────────────────┐ │
 │  │  GEMINI  │  │  AGENTS  │  │  SKILLS  │  │     RULES        │ │
-│  │  .md     │──│  (27)    │──│  (59)    │──│     (129)        │ │
+│  │  .md     │──│  (27)    │──│  (59)    │──│     (131)        │ │
 │  │  (Entry) │  │          │  │          │  │                   │ │
 │  └──────────┘  └──────────┘  └──────────┘  └──────────────────┘ │
 │       │              │             │               │             │
 │       ▼              ▼             ▼               ▼             │
 │  ┌──────────┐  ┌──────────┐  ┌──────────┐  ┌──────────────────┐ │
 │  │ WORKFLOWS│  │  MEMORY  │  │ SCRIPTS  │  │   STANDARDS      │ │
-│  │  (37)    │  │  SYSTEM  │  │  (20)    │  │   & TEMPLATES    │ │
+│  │  (38)    │  │  SYSTEM  │  │  (20)    │  │   & TEMPLATES    │ │
 │  └──────────┘  └──────────┘  └──────────┘  └──────────────────┘ │
 └─────────────────────────────────────────────────────────────────┘
 ```
@@ -36,13 +36,13 @@ Antigravity-Core is an **AI-Native Development Operating System** — a structur
 ├── ARCHITECTURE.md        ← This file (system map)
 ├── CHANGELOG.md           ← Version history
 ├── INTEGRATION-GUIDE.md   ← Team onboarding
-├── VERSION                ← Semantic version (4.0.1)
+├── VERSION                ← Semantic version (4.1.1)
 ├── project.json           ← System metadata & metrics
 │
 ├── agents/      (27)      ← Agent role definitions
 ├── workflows/   (38)      ← Automated process definitions
 ├── skills/      (59)      ← Specialized knowledge modules
-├── rules/       (129)     ← Expert coding standards
+├── rules/       (131)     ← Expert coding standards
 ├── scripts/     (20)      ← PowerShell + Bash automation
 ├── memory/                ← Persistent context & learning
 ├── roles/                 ← 7-role SDLC framework
@@ -81,7 +81,7 @@ Specialized AI personas, each with defined scope, skills, and responsibilities.
 | `security-auditor` ↔ `penetration-tester` | Defensive review (auditor) vs offensive testing (tester) |
 | `documentation-agent` ↔ `documentation-writer` | Automated sync (agent) vs user-requested writing (writer) |
 
-### 2. Workflows (37 processes)
+### 2. Workflows (38 processes)
 
 Slash-command triggered automation pipelines.
 
@@ -94,7 +94,7 @@ Slash-command triggered automation pipelines.
 | **Performance** | `/optimize`, `/auto-optimization-cycle`, `/performance-budget-enforcement` |
 | **Deployment** | `/deploy`, `/mobile-deploy`, `/mobile-init`, `/mobile-test` |
 | **Maintenance** | `/maintain`, `/debug`, `/quickfix`, `/auto-healing`, `/refactor`, `/migrate`, `/backup`, `/i18n-check` |
-| **Design** | `/ui-ux-pro-max`, `/update-ui-ux-pro-max`, `/admin-component`, `/admin-dashboard` |
+| **Design** | `/ui-ux-pro-max`, `/update-ui-ux-pro-max`, `/admin-component`, `/admin-dashboard`, `/admin-settings` |
 | **System** | `/install-antigravity`, `/sync-admin` |
 
 ### 3. Skills (59 modules)
@@ -113,7 +113,7 @@ Self-contained knowledge domains with SKILL.md instruction files.
 | **Design** | ui-ux-pro-max, frontend-design |
 | **Meta** | clean-code, architecture-mastery, brainstorming, plan-writing, behavioral-modes |
 
-### 4. Rules (129 files, 11 categories)
+### 4. Rules (131 files, 11 categories)
 
 Expert-level coding standards auto-loaded by context detection.
 
@@ -126,7 +126,7 @@ Expert-level coding standards auto-loaded by context detection.
 | typescript/ | 13 | `.ts`, `.tsx` |
 | nextjs/ | 13 | `next.config.*` |
 | python/ | 14 | `.py`, requirements |
-| web-development/ | 12 | `.html`, `.css`, `.js` |
+| web-development/ | 14 | `.html`, `.css`, `.js` |
 | agentic-ai/ | 12 | Debug, test, review keywords |
 | standards/ | 25 | Always active (16 general + 9 framework) |
 | shared/ | 1 | Common utilities |

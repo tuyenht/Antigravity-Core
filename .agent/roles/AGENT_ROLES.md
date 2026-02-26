@@ -1,7 +1,7 @@
 # 🎭 ANTIGRAVITY-CORE: Agent Role Definitions
 
 **Version:** 2.0  
-**Antigravity-Core:** v4.0.1  
+**Antigravity-Core:** v4.1.1  
 **Purpose:** Chuẩn hóa 7 vai trò AI cho mọi dự án  
 **Usage:** Mỗi project sinh ra sẽ kế thừa các role này
 
@@ -392,4 +392,4 @@ ESCALATE TO HUMAN:
 **Created:** 2026-01-31  
 **Updated:** 2026-02-25  
 **Status:** ✅ Production Ready  
-**Changelog:** v1.0→v2.0: Added Antigravity Agent mapping, workflow references, synced to v4.0.1
+**Changelog:** v1.0→v2.0: Added Antigravity Agent mapping, workflow references, synced to v4.1.1

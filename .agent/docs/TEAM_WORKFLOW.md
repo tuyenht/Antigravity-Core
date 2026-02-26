@@ -1,7 +1,7 @@
 # 🔄 TEAM WORKFLOW PIPELINE
 
 **Version:** 2.0  
-**Antigravity-Core:** v4.0.1  
+**Antigravity-Core:** v4.1.1  
 **Purpose:** Quy trình phát triển chuẩn với Input→Output mapping rõ ràng  
 **Usage:** Mọi project sinh ra từ Antigravity-Core tuân theo workflow này  
 **Slash Command:** `/full-pipeline`
@@ -539,4 +539,4 @@ For each Sprint:
 **Created:** 2026-01-31  
 **Updated:** 2026-02-25  
 **Status:** ✅ Production Ready  
-**Changelog:** v1.0→v2.0: Added Role→Agent mapping, slash command `/full-pipeline`, synced to Antigravity-Core v4.0.1
+**Changelog:** v1.0→v2.0: Added Role→Agent mapping, slash command `/full-pipeline`, synced to Antigravity-Core v4.1.1

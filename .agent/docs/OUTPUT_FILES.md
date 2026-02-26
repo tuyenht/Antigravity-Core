@@ -1,7 +1,7 @@
 # 📋 OUTPUT FILE STANDARDS
 
 **Version:** 2.0  
-**Antigravity-Core:** v4.0.1  
+**Antigravity-Core:** v4.1.1  
 **Purpose:** Chuẩn hóa tất cả files được sinh ra từ Antigravity-Core  
 **Usage:** Đảm bảo consistency và quality cho mọi output
 

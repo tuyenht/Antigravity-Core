@@ -1,6 +1,6 @@
 # Expert Rules Index & Auto-Activation System
 
-> **Version:** 4.0.1 | **Updated:** 2026-02-24  
+> **Version:** 4.1.1 | **Updated:** 2026-02-26  
 > **Purpose:** Automatic rule loading based on context detection  
 > **Priority:** P0 - Load at session start  
 > **Engine:** `systems/auto-rule-discovery.md` (v4.0 automated discovery)
@@ -29,7 +29,7 @@ User Request → Context Detection → Rule Matching → Auto-Load
 
 ---
 
-## 📁 Rules Catalog (129 Rules)
+## 📁 Rules Catalog (131 Rules)
 
 ### Agentic AI Rules (12)
 | Rule | File | Trigger Keywords |
@@ -537,7 +537,7 @@ User can explicitly request:
 | Standards (General) | 16 | ~4,500 |
 | Standards (Framework) | 9 | ~5,000 |
 | Shared | 1 | ~350 |
-| **TOTAL** | **129** | **~73,850** |
+| **TOTAL** | **131** | **~73,850** |
 
 ---
 
