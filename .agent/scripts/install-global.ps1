@@ -154,8 +154,12 @@ function Install-Antigravity {
         Copy-Item -Path `$sourceDocs -Destination ".\docs" -Recurse -Force
     }
     
+    `$installedVersion = "unknown"
+    `$vf = Join-Path `$target "VERSION"
+    if (Test-Path `$vf) { `$installedVersion = (Get-Content `$vf -Raw).Trim() }
+    
     Write-Host "✅ Antigravity-Core installed to current project!" -ForegroundColor Green
-    Write-Host "   Version: $version" -ForegroundColor Gray
+    Write-Host "   Version: `$installedVersion" -ForegroundColor Gray
 }
 
 function Update-Antigravity {
@@ -207,7 +211,10 @@ Set-Alias agi Install-Antigravity
 Set-Alias agu Update-Antigravity
 Set-Alias agug Update-AntigravityGlobal
 
-Write-Host "🚀 Antigravity-Core loaded (v$version)" -ForegroundColor DarkGray
+`$_agVersion = "unknown"
+`$_agVersionFile = Join-Path `$env:ANTIGRAVITY_HOME ".agent\VERSION"
+if (Test-Path `$_agVersionFile) { `$_agVersion = (Get-Content `$_agVersionFile -Raw).Trim() }
+Write-Host "🚀 Antigravity-Core loaded (v`$_agVersion)" -ForegroundColor DarkGray
 
 # ═══════════════════════════════════════════════════════════════
 "@

@@ -1,7 +1,6 @@
 ﻿#!/usr/bin/env bash
 #
 # .agent Auto-Initialization Script (Linux/Mac)
-# Version: 4.0.0
 # Usage: ./agent init
 #
 
@@ -23,10 +22,12 @@ function step() { echo -e "${BLUE}🔹 $1${NC}"; }
 
 # Banner
 function show_banner() {
+    local ag_version="unknown"
+    [[ -f ".agent/VERSION" ]] && ag_version=$(cat .agent/VERSION | tr -d '\r\n ')
     echo ""
     echo -e "${CYAN}╔═══════════════════════════════════════════╗${NC}"
     echo -e "${CYAN}║   .agent Auto-Initialization System      ║${NC}"
-    echo -e "${CYAN}║   Version 4.0.0 - Zero-Error Architecture ║${NC}"
+    echo -e "${CYAN}║   Version $ag_version - Zero-Error Architecture  ║${NC}"
     echo -e "${CYAN}╚═══════════════════════════════════════════╝${NC}"
     echo ""
 }
@@ -196,9 +197,11 @@ function activate_agents() {
 function generate_config() {
     step "Generating project configuration..."
     
+    local proj_version="unknown"
+    [[ -f ".agent/VERSION" ]] && proj_version=$(cat .agent/VERSION | tr -d '\r\n ')
     cat > .agent/project.json << EOF
 {
-  "version": "4.0.0",
+  "version": "$proj_version",
   "initialized": "$(date +"%Y-%m-%d %H:%M:%S")",
   "tech_stack": {
     "frontend": "$DETECTED_FRONTEND",

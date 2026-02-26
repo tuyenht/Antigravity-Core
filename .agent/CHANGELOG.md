@@ -7,6 +7,26 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ---
 
+## [4.1.1] - 2026-02-26
+
+### 🐛 Critical Version System Bug Fix
+
+---
+
+### Fixed
+
+- **install-global.ps1** — Version in `setup-profile.ps1` now reads dynamically from `.agent/VERSION` at runtime (was hardcoded at install time)
+- **update-global.ps1** — Regenerates `setup-profile.ps1` after update instead of restoring stale backup with old version
+- **agent.ps1** — Banner and `project.json` version now read dynamically from `.agent/VERSION` (was hardcoded `v4.0.0`)
+- **agent.sh** — Same dynamic version fix for bash
+- **.agent/VERSION** — Synced to `4.1.1` (was stuck at `4.0.1`)
+
+### Root Cause
+
+`update-global.ps1` backed up old `setup-profile.ps1` (containing hardcoded version), then restored it after downloading the new release — overwriting the new version with the old one. Combined with `install-global.ps1` expanding `$version` into a heredoc at file creation time, version was permanently frozen.
+
+---
+
 ## [4.1.0] - 2026-02-25
 
 ### 🚀 SDLC Process Upgrade & Team Pipeline v2.0
@@ -429,7 +449,7 @@ We follow [Semantic Versioning](https://semver.org/):
 
 ## Upcoming (Planned)
 
-### v4.1.0 (Estimated: Q2 2026)
+### v4.2.0 (Estimated: Q2 2026)
 - [ ] Plugin architecture
 - [ ] Skill marketplace
 - [ ] Analytics dashboard
@@ -463,6 +483,8 @@ We follow [Semantic Versioning](https://semver.org/):
 
 ---
 
+[4.1.1]: https://github.com/tuyenht/Antigravity-Core/releases/tag/v4.1.1
+[4.1.0]: https://github.com/tuyenht/Antigravity-Core/releases/tag/v4.1.0
 [4.0.1]: https://github.com/tuyenht/Antigravity-Core/releases/tag/v4.0.1
 [4.0.0]: https://github.com/tuyenht/Antigravity-Core/releases/tag/v4.0.0
 [3.3.0]: https://github.com/tuyenht/Antigravity-Core/releases/tag/v3.3.0

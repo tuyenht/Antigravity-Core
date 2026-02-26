@@ -22,6 +22,8 @@ $Yellow = "Yellow"
 $Red = "Red"
 
 function Write-Logo {
+    $agVersion = "unknown"
+    if (Test-Path ".agent/VERSION") { $agVersion = (Get-Content ".agent/VERSION" -Raw).Trim() }
     Write-Host ""
     Write-Host "    _                      _   " -ForegroundColor $Cyan
     Write-Host "   / \   __ _  ___ _ __  | |_ " -ForegroundColor $Cyan
@@ -30,7 +32,7 @@ function Write-Logo {
     Write-Host "/_/   \_\__, |\___|_| |_| \__|" -ForegroundColor $Cyan
     Write-Host "        |___/                 " -ForegroundColor $Cyan
     Write-Host ""
-    Write-Host "  ðŸš€ Antigravity Core v4.0.0" -ForegroundColor $Green
+    Write-Host "  🚀 Antigravity Core v$agVersion" -ForegroundColor $Green
     Write-Host ""
 }
 
@@ -250,8 +252,10 @@ switch ($Command.ToLower()) {
         Write-Host ""
         
         # Generate project.json
+        $projVersion = "unknown"
+        if (Test-Path ".agent/VERSION") { $projVersion = (Get-Content ".agent/VERSION" -Raw).Trim() }
         $config = @{
-            version       = "4.0.0"
+            version       = $projVersion
             initialized   = Get-Date -Format "yyyy-MM-dd HH:mm:ss"
             tech_stack    = @{
                 frontend = ($frontend -join " ")
