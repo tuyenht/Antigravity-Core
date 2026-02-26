@@ -132,7 +132,7 @@ What direction would you like to explore?
 
 ## Troubleshooting
 
-| V?n d? | Gi?i ph�p |
+| Vấn đề | Giải pháp |
 |---------|-----------|
 | Options too similar | Push for more creative/unconventional approach |
 | User can't decide | Create decision matrix with weighted criteria |

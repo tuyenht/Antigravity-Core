@@ -50,7 +50,7 @@ Before any design work, answer:
 **Answer these in your thinking:**
 
 ```
-ðŸ” CONTEXT ANALYSIS:
+ðŸ” CONTEXT ANALYSIS:
 ├── What is the sector? → What emotions should it evoke?
 ├── Who is the target audience? → Age, tech-savviness, expectations?
 ├── What do competitors look like? → What should I NOT do?
@@ -63,7 +63,7 @@ Before any design work, answer:
 ├── ðŸš« MODERN CLICHÃ‰ CHECK: Am I using Bento Grid or Mesh Gradient? (IF YES → CHANGE IT!)
 └── Will I remember this design in a year?
 
-📂 LAYOUT HYPOTHESIS:
+📂 LAYOUT HYPOTHESIS:
 ├── How can the Hero be DIFFERENT? (Asymmetry? Overlay? Split?)
 ├── Where can I break the grid?
 ├── Which element can be in an unexpected place?
@@ -157,7 +157,7 @@ Pick a radical path and commit:
 
 ---
 
-### 📂 LAYOUT DIVERSIFICATION MANDATE (REQUIRED)
+### 📂 LAYOUT DIVERSIFICATION MANDATE (REQUIRED)
 
 **Break the "Split Screen" habit. Use these alternative structures instead:**
 
@@ -227,7 +227,7 @@ Standard templates, typical layouts, common color schemes, overused patterns = *
 - NEVER default to "what you've seen before"
 - ALWAYS create fresh, original designs for each project
 
-**📂 VISUAL STYLE VARIETY (CRITICAL):**
+**📂 VISUAL STYLE VARIETY (CRITICAL):**
 - **STOP using "soft lines" (rounded corners/shapes) by default for everything.**
 - Explore **SHARP, GEOMETRIC, and MINIMALIST** edges.
 - **ðŸš« AVOID THE "SAFE BOREDOM" ZONE (4px-8px):**
@@ -239,7 +239,7 @@ Standard templates, typical layouts, common color schemes, overused patterns = *
 - **Break the "Safe/Round/Friendly" habit.** Don't be afraid of "Aggressive/Sharp/Technical" visual styles when appropriate.
 - Every project should have a **DIFFERENT** geometry. One sharp, one rounded, one organic, one brutalist.
 
-**âœ¨ MANDATORY ACTIVE ANIMATION & VISUAL DEPTH (REQUIRED):**
+**✨ MANDATORY ACTIVE ANIMATION & VISUAL DEPTH (REQUIRED):**
 - **STATIC DESIGN IS FAILURE.** UI must always feel alive and "Wow" the user with movement.
 - **Mandatory Layered Animations:**
     - **Reveal:** All sections and main elements must have scroll-triggered (staggered) entrance animations.
@@ -306,7 +306,7 @@ Verify your output against these **Automatic Rejection Triggers**. If ANY are tr
 
 ---
 
-### ðŸ” Phase 4: Verification & Handover
+### ðŸ” Phase 4: Verification & Handover
 - [ ] **Miller's Law** → Info chunked into 5-9 groups?
 - [ ] **Von Restorff** → Key element visually distinct?
 - [ ] **Cognitive Load** → Is the page overwhelming? Add whitespace.
@@ -325,7 +325,7 @@ Build layer by layer:
 
 Verify HONESTLY before delivering:
 
-**ðŸ” The "Template Test" (BRUTAL HONESTY):**
+**ðŸ” The "Template Test" (BRUTAL HONESTY):**
 | Question | FAIL Answer | PASS Answer |
 |----------|-------------|-------------|
 | "Could this be a Vercel/Stripe template?" | "Well, it's clean..." | "No way, this is unique to THIS brand." |

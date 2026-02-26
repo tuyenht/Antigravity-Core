@@ -113,7 +113,7 @@ Bắt đầu chứ?"
 
 ## Troubleshooting
 
-| V?n d? | Gi?i ph�p |
+| Vấn đề | Giải pháp |
 |---------|-----------|
 | Framework not detected | Check for config files, specify manually |
 | Conflicts with existing code | Analyze dependencies first, refactor if needed |

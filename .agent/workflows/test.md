@@ -165,7 +165,7 @@ describe('AuthService', () => {
 
 ## Troubleshooting
 
-| V?n d? | Gi?i ph�p |
+| Vấn đề | Giải pháp |
 |---------|-----------|
 | Tests hang/timeout | Check for unresolved promises, add `--forceExit` |
 | Mock not working | Verify mock path, use `jest.mock()` at top of file |

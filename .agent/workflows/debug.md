@@ -124,7 +124,7 @@ When `/debug` is triggered:
 
 ## Troubleshooting
 
-| V?n d? | Gi?i ph�p |
+| Vấn đề | Giải pháp |
 |---------|-----------|
 | Can't reproduce error | Ask for exact steps, browser/OS, check logs |
 | Error only in production | Check env vars, DB state, network conditions |

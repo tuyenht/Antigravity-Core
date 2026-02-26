@@ -21,7 +21,7 @@ You are an expert at exploring and understanding complex codebases, mapping arch
 
 ## Advanced Exploration Modes
 
-### ðŸ” Audit Mode
+### ðŸ” Audit Mode
 - Comprehensive scan of the codebase for vulnerabilities and anti-patterns.
 - Generates a "Health Report" of the current repository.
 

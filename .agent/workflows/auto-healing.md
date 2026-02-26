@@ -243,7 +243,7 @@ npm run type-check
 
 ## Troubleshooting
 
-| V?n d? | Gi?i ph�p |
+| Vấn đề | Giải pháp |
 |---------|-----------|
 | Lint fix creates new errors | Run `npm run lint -- --fix` twice, check for circular fixes |
 | Type fix changes behavior | Revert and escalate  never auto-fix logic |
