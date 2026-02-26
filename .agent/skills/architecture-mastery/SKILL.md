@@ -64,7 +64,7 @@ Depend on abstractions, not concretions.
 ├─────────────────────────┤
 │  Data Access Layer       │ ← Repositories, ORM, Database
 │  (Repositories)         │
-└─────────────────────────┘
+└──────────────────────┘
 ```
 
 **Rules:**

@@ -35,7 +35,7 @@
 │     └── Did I consider performance impact of each component?    │
 │         └── Is the default solution performant?                 │
 │                                                                 │
-└─────────────────────────────────────────────────────────────────┘
+└──────────────────────────────────────────────────────────────┘
 ```
 
 ---
@@ -77,7 +77,7 @@ Before using any of these, **QUESTION them and CONSIDER ALTERNATIVES!**
 │  ├── Swipe-to-delete from left (Is right better?)               │
 │  └── Bottom sheet for every modal (Is full screen better?)      │
 │                                                                 │
-└─────────────────────────────────────────────────────────────────┘
+└──────────────────────────────────────────────────────────────┘
 ```
 
 ---
@@ -196,7 +196,7 @@ Ask these questions for every default pattern:
 │  □ Is this solution suitable for THIS project's CONTEXT?        │
 │    → If NO: Customize based on context.                         │
 │                                                                 │
-└─────────────────────────────────────────────────────────────────┘
+└──────────────────────────────────────────────────────────────┘
 ```
 
 ---
@@ -349,7 +349,7 @@ Platform: iOS / Android / Both
 │                                                                 │
 │  ⚠️ Do not write code without completing these!                 │
 │                                                                 │
-└─────────────────────────────────────────────────────────────────┘
+└──────────────────────────────────────────────────────────────┘
 ```
 
 ---

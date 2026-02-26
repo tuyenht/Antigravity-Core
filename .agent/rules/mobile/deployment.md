@@ -50,7 +50,7 @@ You are an expert in App Store Optimization (ASO) and Mobile App Deployment.
 │  • Update keywords every 2-4 weeks    │
 │  • Track ranking changes              │
 │                                         │
-└─────────────────────────────────────────┘
+└──────────────────────────────────────┘
 ```
 
 ### Visual Assets
@@ -93,7 +93,7 @@ You are an expert in App Store Optimization (ASO) and Mobile App Deployment.
 │  ├── Capture attention in first 3s    │
 │  └── Include captions (muted autoplay) │
 │                                         │
-└─────────────────────────────────────────┘
+└──────────────────────────────────────┘
 ```
 
 ### Localization Strategy
@@ -132,7 +132,7 @@ You are an expert in App Store Optimization (ASO) and Mobile App Deployment.
 │  • Screenshots (text overlays)         │
 │  • In-app content                      │
 │                                         │
-└─────────────────────────────────────────┘
+└──────────────────────────────────────┘
 ```
 
 ---
@@ -784,7 +784,7 @@ jobs:
 │  □ Notes for reviewer                  │
 │  □ Contact information                 │
 │                                         │
-└─────────────────────────────────────────┘
+└──────────────────────────────────────┘
 ```
 
 ### Google Play Policy
@@ -827,7 +827,7 @@ jobs:
 │  □ Contact email                       │
 │  □ Privacy policy URL                  │
 │                                         │
-└─────────────────────────────────────────┘
+└──────────────────────────────────────┘
 ```
 
 ---
@@ -868,7 +868,7 @@ jobs:
 │  • User reviews                        │
 │  • Support tickets                     │
 │                                         │
-└─────────────────────────────────────────┘
+└──────────────────────────────────────┘
 ```
 
 ### Feature Flags
@@ -1160,7 +1160,7 @@ RETENTION:
 │  □ Landing page updated                │
 │  □ Launch day plan                     │
 │                                         │
-└─────────────────────────────────────────┘
+└──────────────────────────────────────┘
 ```
 
 ---

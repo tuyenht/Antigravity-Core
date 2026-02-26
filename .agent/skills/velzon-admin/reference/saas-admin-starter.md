@@ -109,7 +109,7 @@ import logoLight from '{images}/logo-light.png';
 │  ├── Tenant Settings                                         │
 │  ├── Domain Management                                       │
 │  └── Feature Flags (per-site)                                │
-└─────────────────────────────────────────────────────────────┘
+└──────────────────────────────────────────────────────────┘
 ★ = Expert recommendation (new additions)
 ```
 
@@ -161,28 +161,28 @@ Do NOT use `alert()` — always use `signIn()` even if secrets are empty (NextAu
 ```
                     ┌──────────────┐
                     │  GET /login   │
-                    └──────┬───────┘
+                    └───┬───────┘
                            │ POST credentials
                     ┌──────▼───────┐
                     │  Validate    │──── Invalid ──→ Flash error → Login
-                    └──────┬───────┘
+                    └───┬───────┘
                            │ Valid
                     ┌──────▼────────────┐
                     │  [SaaS] Resolve   │
                     │  tenant from domain│
-                    └──────┬────────────┘
+                    └───┬────────────┘
                            │
                     ┌──────▼───────┐
                     │  2FA Enabled?│──── No ──→ Create session → Dashboard
-                    └──────┬───────┘
+                    └───┬───────┘
                            │ Yes
                     ┌──────▼───────┐
                     │  2FA Challenge│──── Invalid ──→ Flash error → 2FA
-                    └──────┬───────┘
+                    └───┬───────┘
                            │ Valid
                     ┌──────▼───────┐
                     │  Dashboard   │
-                    └──────────────┘
+                    └───────────┘
 
 Forgot Password Flow:
 GET /forgot-password → POST email → Send reset link →
@@ -658,11 +658,11 @@ Without these fonts, `ri-*` and `mdi-*` icon classes will render as invisible/bl
 │ Users    │  │                                         │  │
 │ Roles    │  │  [Card / Table / Form / Dashboard]      │  │
 │ Sites ★  │  │                                         │  │
-│ Billing ★│  └─────────────────────────────────────────┘  │
+│ Billing ★│  └──────────────────────────────────────┘  │
 │ Settings │                                               │
 │          ├──────────────────────────────────────────────┤
 │          │  Footer: © COMPANY_NAME | Live Clock          │
-└──────────┴──────────────────────────────────────────────┘
+└───────┴──────────────────────────────────────────────┘
 ★ = SaaS mode only
 ```
 

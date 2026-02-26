@@ -95,7 +95,7 @@ WHAT ARE YOU TESTING?
                     ├───────────────┤
                     │   Unit Tests  │  40%
                     │    (Jest)     │  Pure logic
-                    └───────────────┘
+                    └────────────┘
 ```
 
 ### Why This Distribution?

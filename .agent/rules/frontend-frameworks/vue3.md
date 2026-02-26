@@ -1434,7 +1434,7 @@ const selectedId = ref<string | null>(null)
 │  □ Use production build               │
 │  □ Analyze bundle size                 │
 │                                         │
-└─────────────────────────────────────────┘
+└──────────────────────────────────────┘
 ```
 
 ---

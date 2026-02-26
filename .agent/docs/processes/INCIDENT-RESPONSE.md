@@ -25,7 +25,7 @@
 │ • Monitoring │     │ • Assign P   │     │ • Hotfix     │
 │ • User report│     │ • Assign     │     │ • Rollback   │
 │ • Alert      │     │   owner      │     │ • Mitigate   │
-└──────────────┘     └──────────────┘     └──────────────┘
+└───────────┘     └───────────┘     └───────────┘
                                                 │
                      ┌──────────────┐     ┌──────┴───────┐
                      │ 5. PREVENT   │ ◄── │  4. RECOVER  │
@@ -33,7 +33,7 @@
                      │ • Post-mortem│     │ • Verify fix │
                      │ • Action item│     │ • Monitor    │
                      │ • Update docs│     │ • Confirm    │
-                     └──────────────┘     └──────────────┘
+                     └───────────┘     └───────────┘
 ```
 
 ---

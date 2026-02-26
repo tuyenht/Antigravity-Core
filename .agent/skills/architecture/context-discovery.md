@@ -39,5 +39,5 @@
 │ Architecture │ Simple        │ Modular      │ Distributed  │
 │ Patterns     │ Minimal       │ Selective    │ Comprehensive│
 │ Example      │ Next.js API   │ NestJS       │ Microservices│
-└─────────────────────────────────────────────────────────────┘
+└──────────────────────────────────────────────────────────┘
 ```

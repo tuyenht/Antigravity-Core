@@ -50,7 +50,7 @@ You are an expert in Mobile Application Security.
 │  • MASVS-CODE: Code quality            │
 │  • MASVS-RESILIENCE: Anti-tampering    │
 │                                         │
-└─────────────────────────────────────────┘
+└──────────────────────────────────────┘
 ```
 
 ---
@@ -1101,7 +1101,7 @@ function SecureWrapper({ children }: { children: React.ReactNode }) {
 │  □ WebView hardened                    │
 │  □ IPC secured                        │
 │                                         │
-└─────────────────────────────────────────┘
+└──────────────────────────────────────┘
 ```
 
 ### Security Testing Tools
@@ -1130,7 +1130,7 @@ function SecureWrapper({ children }: { children: React.ReactNode }) {
 │  • NowSecure                          │
 │  • ImmuniWeb                          │
 │                                         │
-└─────────────────────────────────────────┘
+└──────────────────────────────────────┘
 ```
 
 ---

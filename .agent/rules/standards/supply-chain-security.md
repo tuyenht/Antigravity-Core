@@ -251,8 +251,8 @@ Before adding new dependency:
 MAJOR.MINOR.PATCH
   ^     ^     ^
   |     |     └─ Bug fixes (safe)
-  |     └─────── New features (review)
-  └───────────── Breaking changes (test thoroughly)
+  |     └──── New features (review)
+  └────────── Breaking changes (test thoroughly)
 ```
 
 ### Automated Updates (Controlled)

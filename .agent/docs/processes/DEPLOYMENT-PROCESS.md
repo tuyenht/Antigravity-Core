@@ -135,7 +135,7 @@ Khi production có lỗi P0/P1 cần fix khẩn cấp:
 │              │     │              │     │              │
 │ hotfix/XXX   │     │ Fix + 1 test │     │ Fast PR      │
 │ từ main      │     │ CI must pass │     │ → main → prod│
-└──────────────┘     └──────────────┘     └──────────────┘
+└───────────┘     └───────────┘     └───────────┘
 ```
 
 **Hotfix requirements (tối thiểu):**

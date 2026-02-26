@@ -625,15 +625,15 @@ Android:
 ```
                     ┌──────────────┐
                     │     UI       │
-                    └──────┬───────┘
+                    └───┬───────┘
                            │
                     ┌──────▼───────┐
                     │   Cache      │ ← Read from cache FIRST
-                    └──────┬───────┘
+                    └───┬───────┘
                            │
                     ┌──────▼───────┐
                     │   Network    │ ← Update cache from network
-                    └──────────────┘
+                    └───────────┘
 
 Benefits:
 ├── Instant UI (no loading spinner for cached data)

@@ -25,7 +25,7 @@ Unlike the HTML variant (full-page reload), Ajax uses a **single-page applicatio
 │                                           │  │
 │  163 HTML fragment files ─────────────────┘  │
 │  (e.g., index.html, apps-chat.html, etc.)    │
-└─────────────────────────────────────────────┘
+└──────────────────────────────────────────┘
 ```
 
 ### Key Difference vs HTML Variant

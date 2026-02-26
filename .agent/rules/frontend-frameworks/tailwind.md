@@ -983,7 +983,7 @@ function Alert({ type, size, dismissible }) {
 │  □ Color contrast adequate             │
 │  □ Touch targets sufficient            │
 │                                         │
-└─────────────────────────────────────────┘
+└──────────────────────────────────────┘
 ```
 
 ---

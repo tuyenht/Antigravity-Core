@@ -1234,7 +1234,7 @@ export class OptimizedComponent {
 │  □ Use pure pipes                      │
 │  □ Avoid ngStyle/ngClass objects       │
 │                                         │
-└─────────────────────────────────────────┘
+└──────────────────────────────────────┘
 */
 ```
 

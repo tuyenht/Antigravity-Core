@@ -24,34 +24,34 @@ The Orchestration Engine **automates the entire agent lifecycle**: analyzing req
 │  │    • Domain detection     │                                    │
 │  │    • Complexity scoring   │                                    │
 │  │    • Scope identification │                                    │
-│  └──────────┬───────────────┘                                    │
+│  └───────┬───────────────┘                                    │
 │             ▼                                                    │
 │  ┌──────────────────────────┐  ┌────────────────────────┐        │
 │  │ 2. RULE DISCOVERY        │←─│ auto-rule-discovery.md │        │
-│  │    • 3-layer scan         │  └────────────────────────┘        │
+│  │    • 3-layer scan         │  └─────────────────────┘        │
 │  │    • Dependency resolve   │                                    │
-│  └──────────┬───────────────┘                                    │
+│  └───────┬───────────────┘                                    │
 │             ▼                                                    │
 │  ┌──────────────────────────┐  ┌────────────────────────┐        │
 │  │ 3. AGENT SELECTION       │←─│ agent-registry.md      │        │
-│  │    • Score & rank         │  └────────────────────────┘        │
+│  │    • Score & rank         │  └─────────────────────┘        │
 │  │    • Conflict resolution  │                                    │
-│  └──────────┬───────────────┘                                    │
+│  └───────┬───────────────┘                                    │
 │             ▼                                                    │
 │  ┌──────────────────────────┐                                    │
 │  │ 4. PIPELINE EXECUTION    │                                    │
 │  │    • Sequential/Parallel  │                                    │
 │  │    • Conditional branching│                                    │
-│  └──────────┬───────────────┘                                    │
+│  └───────┬───────────────┘                                    │
 │             ▼                                                    │
 │  ┌──────────────────────────┐                                    │
 │  │ 5. SYNTHESIS & REPORT    │                                    │
 │  │    • Merge results        │                                    │
 │  │    • Quality gate         │                                    │
-│  └──────────────────────────┘                                    │
+│  └───────────────────────┘                                    │
 │                                                                  │
 │  OUTPUT: Coordinated execution with unified deliverables         │
-└─────────────────────────────────────────────────────────────────┘
+└──────────────────────────────────────────────────────────────┘
 ```
 
 ---

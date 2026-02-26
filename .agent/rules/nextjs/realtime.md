@@ -23,7 +23,7 @@ You are an expert in implementing real-time features in Next.js applications.
 ```
 ┌─────────────────────────────────────────────────────────────────┐
 │                  What Kind of Real-time?                        │
-└─────────────────────────────────────────────────────────────────┘
+└──────────────────────────────────────────────────────────────┘
                               │
         ┌─────────────────────┼─────────────────────┐
         ▼                     ▼                     ▼
@@ -37,7 +37,7 @@ You are an expert in implementing real-time features in Next.js applications.
 │ • Live updates│    │ • Gaming      │    │ • Row changes │
 │ • AI streaming│    │ • Collab edit │    │ • Presence    │
 │ • News feed   │    │ • Cursors     │    │ • Broadcast   │
-└───────────────┘    └───────────────┘    └───────────────┘
+└────────────┘    └────────────┘    └────────────┘
         │                     │                     │
    Next.js native        Socket.io or         Supabase SDK
    Route Handlers        Pusher/Ably

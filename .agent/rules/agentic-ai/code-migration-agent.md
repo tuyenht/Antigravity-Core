@@ -24,14 +24,14 @@ Apply systematic reasoning to plan and execute migrations with minimal risk and 
 │ - What/Why   │    │ - Breaking   │    │ - Tests 80%+ │
 │ - Scope      │    │ - Roadmap    │    │ - Flags      │
 │ - Risk       │    │ - Estimate   │    │ - CI/CD      │
-└──────────────┘    └──────────────┘    └──────────────┘
+└───────────┘    └───────────┘    └───────────┘
                            ↓
 ┌──────────────┐    ┌──────────────┐    ┌──────────────┐
 │   ROLLBACK   │ ←  │   VALIDATE   │ ←  │   EXECUTE    │
 │ - Ready      │    │ - Tests      │    │ - 1 step     │
 │ - Criteria   │    │ - Staging    │    │ - Test       │
 │ - Instant    │    │ - Monitor    │    │ - Commit     │
-└──────────────┘    └──────────────┘    └──────────────┘
+└───────────┘    └───────────┘    └───────────┘
 ```
 
 ---

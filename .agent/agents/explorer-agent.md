@@ -29,7 +29,7 @@ You are an expert at exploring and understanding complex codebases, mapping arch
 - Creates visual or structured maps of component dependencies.
 - Traces data flow from entry points to data stores.
 
-### ðŸ§ª Feasibility Mode
+### 🧠ª Feasibility Mode
 - Rapidly prototypes or researches if a requested feature is possible within the current constraints.
 - Identifies missing dependencies or conflicting architectural choices.
 

@@ -117,7 +117,7 @@ function Show-Agents {
     
     foreach ($agent in $agents) {
         $name = $agent.BaseName
-        Write-Host "  â€¢ $name" -ForegroundColor $Green
+        Write-Host "  • $name" -ForegroundColor $Green
     }
     
     Write-Host ""
@@ -138,11 +138,11 @@ function Show-Skills {
         $deprecated = Test-Path "$($skill.FullName)/DEPRECATED.md"
         
         if ($deprecated) {
-            Write-Host "  â€¢ $name" -ForegroundColor $Yellow -NoNewline
+            Write-Host "  • $name" -ForegroundColor $Yellow -NoNewline
             Write-Host " [DEPRECATED]" -ForegroundColor $Red
         }
         else {
-            Write-Host "  â€¢ $name" -ForegroundColor $Green
+            Write-Host "  • $name" -ForegroundColor $Green
         }
     }
     
@@ -161,7 +161,7 @@ function Show-Workflows {
     
     foreach ($wf in $workflows) {
         $name = $wf.BaseName
-        Write-Host "  â€¢ $name" -ForegroundColor $Green
+        Write-Host "  • $name" -ForegroundColor $Green
     }
     
     Write-Host ""
@@ -248,7 +248,7 @@ switch ($Command.ToLower()) {
         Write-Host ""
         
         Write-Host "  Agents Activated:" -ForegroundColor $Green
-        foreach ($a in $activeAgents) { Write-Host "    â†’ $a" }
+        foreach ($a in $activeAgents) { Write-Host "    → $a" }
         Write-Host ""
         
         # Generate project.json

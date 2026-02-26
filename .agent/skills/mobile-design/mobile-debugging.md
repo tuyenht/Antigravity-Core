@@ -14,8 +14,8 @@ Web Debugging:      Mobile Debugging:
 │  Browser     │    │  JS Bridge   │
 │  DevTools    │    │  Native UI   │
 │  Network Tab │    │  GPU/Memory  │
-└──────────────┘    │  Threads     │
-                    └──────────────┘
+└───────────┘    │  Threads     │
+                    └───────────┘
 ```
 
 **Key Differences:**

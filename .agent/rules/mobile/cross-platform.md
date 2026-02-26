@@ -69,7 +69,7 @@ You are an expert in Cross-Platform Mobile Development strategies.
 │  ├── Bundle Size: ~10-20MB                                       │
 │  └── Best For: Web apps, simple apps, PWA                       │
 │                                                                   │
-└───────────────────────────────────────────────────────────────────┘
+└────────────────────────────────────────────────────────────────┘
 ```
 
 ### Decision Framework
@@ -102,7 +102,7 @@ You are an expert in Cross-Platform Mobile Development strategies.
 │    │                                    │
 │    └─► Default: React Native or Flutter│
 │                                         │
-└─────────────────────────────────────────┘
+└──────────────────────────────────────┘
 ```
 
 ### Use Case Recommendations
@@ -139,7 +139,7 @@ You are an expert in Cross-Platform Mobile Development strategies.
 │  └── KMP or Native                     │
 │      (Deep hardware access)            │
 │                                         │
-└─────────────────────────────────────────┘
+└──────────────────────────────────────┘
 ```
 
 ---
@@ -155,29 +155,29 @@ You are an expert in Cross-Platform Mobile Development strategies.
 │  ┌───────────────────────────────────┐ │
 │  │  PLATFORM-SPECIFIC UI            │ │  ← 10-20%
 │  │  (iOS/Android specific styling)  │ │
-│  └───────────────────────────────────┘ │
+│  └────────────────────────────────┘ │
 │                    ▲                    │
 │  ┌───────────────────────────────────┐ │
 │  │  SHARED UI COMPONENTS            │ │  ← 20-30%
 │  │  (Design System, Common layouts) │ │
-│  └───────────────────────────────────┘ │
+│  └────────────────────────────────┘ │
 │                    ▲                    │
 │  ┌───────────────────────────────────┐ │
 │  │  SHARED STATE MANAGEMENT         │ │  ← 100% shared
 │  │  (Stores, ViewModels)            │ │
-│  └───────────────────────────────────┘ │
+│  └────────────────────────────────┘ │
 │                    ▲                    │
 │  ┌───────────────────────────────────┐ │
 │  │  SHARED BUSINESS LOGIC           │ │  ← 100% shared
 │  │  (Use Cases, Domain, Validation) │ │
-│  └───────────────────────────────────┘ │
+│  └────────────────────────────────┘ │
 │                    ▲                    │
 │  ┌───────────────────────────────────┐ │
 │  │  SHARED DATA LAYER               │ │  ← 100% shared
 │  │  (API, Models, Repositories)     │ │
-│  └───────────────────────────────────┘ │
+│  └────────────────────────────────┘ │
 │                                         │
-└─────────────────────────────────────────┘
+└──────────────────────────────────────┘
 ```
 
 ### Platform Abstraction (React Native)
@@ -1173,7 +1173,7 @@ describe('Button', () => {
 │  □ Plan for native fallbacks           │
 │  □ Document platform differences       │
 │                                         │
-└─────────────────────────────────────────┘
+└──────────────────────────────────────┘
 ```
 
 ---

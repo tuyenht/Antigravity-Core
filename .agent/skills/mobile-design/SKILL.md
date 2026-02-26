@@ -179,7 +179,7 @@ Mobile:  Finger is imprecise (~7mm contact area)
 ├─────────────────────────────┤
 │      EASY TO REACH          │ ← PRIMARY CTAs, tab bar
 │    (thumb's natural arc)    │ ← Main content interaction
-└─────────────────────────────┘
+└──────────────────────────┘
         [  HOME  ]
 ```
 

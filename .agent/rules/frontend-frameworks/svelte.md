@@ -1407,7 +1407,7 @@ export const DELETE: RequestHandler = async ({ params }) => {
 │  □ Return validation errors            │
 │  □ Use use:enhance for UX              │
 │                                         │
-└─────────────────────────────────────────┘
+└──────────────────────────────────────┘
 ```
 
 ---

@@ -46,7 +46,7 @@ You are an expert in Mobile Testing strategies and automation.
 │  • Integration: < 10 minutes           │
 │  • E2E:         < 30 minutes           │
 │                                         │
-└─────────────────────────────────────────┘
+└──────────────────────────────────────┘
 ```
 
 ---
@@ -942,7 +942,7 @@ jobs:
 │  ├── 3G/Slow                          │
 │  └── Offline                           │
 │                                         │
-└─────────────────────────────────────────┘
+└──────────────────────────────────────┘
 ```
 
 ### Network Condition Testing
@@ -1172,7 +1172,7 @@ export function createMockProduct(overrides: Partial<Product> = {}): Product {
 │  □ Memory usage stable                 │
 │  □ Battery impact acceptable           │
 │                                         │
-└─────────────────────────────────────────┘
+└──────────────────────────────────────┘
 ```
 
 ---

@@ -1119,7 +1119,7 @@ export default function LoginPage() {
 │  □ Use secure session cookies          │
 │  □ Implement CSRF protection           │
 │                                         │
-└─────────────────────────────────────────┘
+└──────────────────────────────────────┘
 ```
 
 ---

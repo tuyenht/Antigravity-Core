@@ -156,7 +156,7 @@ When user's prompt is NOT in English:
 │  ├── Limit to 3-5 most relevant                                │
 │  └── Apply patterns and best practices                         │
 │                                                                │
-└────────────────────────────────────────────────────────────────┘
+└─────────────────────────────────────────────────────────────┘
 ```
 
 ### Rule Categories (129 Rules)

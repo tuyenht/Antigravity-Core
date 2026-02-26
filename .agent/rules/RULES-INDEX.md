@@ -381,7 +381,7 @@ User Request → Context Detection → Rule Matching → Auto-Load
 │     └── Read frontmatter for dependencies                   │
 │     └── Load in priority order                              │
 │                                                             │
-└─────────────────────────────────────────────────────────────┘
+└──────────────────────────────────────────────────────────┘
 ```
 
 ### Loading Limits

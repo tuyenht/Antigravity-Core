@@ -1207,7 +1207,7 @@ console.log(count());  // Logs the value
 │  □ Use untrack when needed             │
 │  □ Understand when effects run         │
 │                                         │
-└─────────────────────────────────────────┘
+└──────────────────────────────────────┘
 ```
 
 ---

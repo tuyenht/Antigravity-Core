@@ -53,9 +53,9 @@ Where:
 │    │                         │      │
 │    │    [  BUTTON  ]         │ ← Visual: 36px
 │    │                         │      │
-│    └─────────────────────────┘      │
+│    └──────────────────────┘      │
 │                                     │ ← Hit area: 48px (padding extends)
-└─────────────────────────────────────┘
+└──────────────────────────────────┘
 
 ✅ CORRECT: Visual can be smaller if hit area is minimum 44-48px
 ❌ WRONG: Making hit area same as small visual element
@@ -97,10 +97,10 @@ Research shows: 49% of users hold phone one-handed.
 │  │       EASY TO REACH         │    │ ← Tab bar, FAB zone
 │  │      (thumb's arc)          │    │    Put: PRIMARY CTAs!
 │  │                             │    │
-│  └─────────────────────────────┘    │
+│  └──────────────────────────┘    │
 │                                     │
 │          [    HOME    ]             │
-└─────────────────────────────────────┘
+└──────────────────────────────────┘
 ```
 
 ### Thumb Arc (Right-Handed User)
@@ -116,7 +116,7 @@ Right hand holding phone:
 │    OK          EASY      EASY │
 │                               │
 │   EASY         EASY      EASY │
-└───────────────────────────────┘
+└────────────────────────────┘
 
 Left hand is mirrored.
 → Design for BOTH hands or assume right-dominant
@@ -234,8 +234,8 @@ Swipe actions need visual hints:
 ┌─────────────────────────────────────────┐
 │  ┌───┐                                  │
 │  │ ≡ │  Item with hidden actions...   → │ ← Edge hint (partial color)
-│  └───┘                                  │
-└─────────────────────────────────────────┘
+│  └──┘                                  │
+└──────────────────────────────────────┘
 
 ✅ Good: Slight color peek at edge suggesting swipe
 ✅ Good: Drag handle icon ( ≡ ) suggesting reorder

@@ -33,7 +33,7 @@ You are an expert in optimizing mobile application performance.
 │  │ Layout/Measure:   ~2ms            │ │
 │  │ Paint/Render:     ~2ms            │ │
 │  │ Composite:        ~2ms            │ │
-│  └───────────────────────────────────┘ │
+│  └────────────────────────────────┘ │
 │                                         │
 │  WARNING THRESHOLDS:                    │
 │  • Frame drop: >16.67ms               │
@@ -43,7 +43,7 @@ You are an expert in optimizing mobile application performance.
 │  120Hz DISPLAYS (iOS Pro, flagships):  │
 │  Budget: 8.33ms per frame              │
 │                                         │
-└─────────────────────────────────────────┘
+└──────────────────────────────────────┘
 ```
 
 ### Startup Time Budgets
@@ -65,7 +65,7 @@ You are an expert in optimizing mobile application performance.
 │  Time to Interactive (TTI):            │
 │  └── User can interact: <3s           │
 │                                         │
-└─────────────────────────────────────────┘
+└──────────────────────────────────────┘
 ```
 
 ---
@@ -409,7 +409,7 @@ useEffect(() => {
 │  │ List items:  200x200 @3x          │ │
 │  │ Cards:       400x300 @3x          │ │
 │  │ Full screen: Device width @3x     │ │
-│  └───────────────────────────────────┘ │
+│  └────────────────────────────────┘ │
 │                                         │
 │  FILE SIZE TARGETS:                     │
 │  • Thumbnails: <10KB                   │
@@ -420,7 +420,7 @@ useEffect(() => {
 │  • Photos: 75-85%                      │
 │  • Graphics: 85-95%                    │
 │                                         │
-└─────────────────────────────────────────┘
+└──────────────────────────────────────┘
 ```
 
 ---
@@ -594,7 +594,7 @@ class MyViewModel : ViewModel() {
 │  • Android: Android Studio Profiler    │
 │  • Cross-platform: why-did-you-render  │
 │                                         │
-└─────────────────────────────────────────┘
+└──────────────────────────────────────┘
 ```
 
 ---
@@ -1062,7 +1062,7 @@ if (__DEV__) {
 │  □ UI thread animations                 │
 │  □ useNativeDriver: true               │
 │                                         │
-└─────────────────────────────────────────┘
+└──────────────────────────────────────┘
 ```
 
 ---

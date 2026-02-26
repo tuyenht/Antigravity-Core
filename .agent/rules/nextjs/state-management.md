@@ -24,7 +24,7 @@ You are an expert in Next.js state management patterns and libraries.
 ```
 ┌─────────────────────────────────────────────────────────────────┐
 │                    What Kind of State?                          │
-└─────────────────────────────────────────────────────────────────┘
+└──────────────────────────────────────────────────────────────┘
                               │
         ┌─────────────────────┼─────────────────────┐
         ▼                     ▼                     ▼
@@ -39,10 +39,10 @@ You are an expert in Next.js state management patterns and libraries.
 │ - Fetch in SC │    │    ▼      ▼   │    │ - Pagination  │
 │ - Cache       │    │ useState Zustand   │ - Tabs        │
 │ - Revalidate  │    │         ↓     │    │ - Search      │
-└───────────────┘    │    Persist?   │    └───────────────┘
+└────────────┘    │    Persist?   │    └────────────┘
                      │    Yes → Zustand    
                      │           + persist 
-                     └───────────────┘
+                     └────────────┘
 ```
 
 ---

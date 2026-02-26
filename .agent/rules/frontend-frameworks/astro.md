@@ -1169,7 +1169,7 @@ export default defineConfig({
 │  □ Choose appropriate adapter          │
 │  □ Implement caching                   │
 │                                         │
-└─────────────────────────────────────────┘
+└──────────────────────────────────────┘
 ```
 
 ---

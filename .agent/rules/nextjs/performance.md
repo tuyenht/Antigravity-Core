@@ -258,7 +258,7 @@ code {
 │    - Caches RSC payload in browser                         │
 │    - Enables instant back/forward navigation               │
 │    - Prefetched routes stored here                         │
-└─────────────────────────────────────────────────────────────┘
+└──────────────────────────────────────────────────────────┘
 ```
 
 ### Caching Implementation

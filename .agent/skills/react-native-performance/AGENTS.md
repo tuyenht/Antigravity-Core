@@ -73,7 +73,7 @@ Fundamental React Native rendering rules. Violations cause runtime crashes or br
 **Impact: CRITICAL (prevents production crash)**
 
 Never use `{value && <Component />}` when `value` could be an empty string or
-`0`. These are falsy but JSX-renderableâ€”React Native will try to render them as
+`0`. These are falsy but JSX-renderable—React Native will try to render them as
 text outside a `<Text>` component, causing a hard crash in production.
 
 **Incorrect (crashes if count is 0 or name is ""):**
@@ -87,7 +87,7 @@ function Profile({ name, count }: { name: string; count: number }) {
     </View>
   )
 }
-// If name="" or count=0, renders the falsy value â†’ crash
+// If name="" or count=0, renders the falsy value → crash
 ```
 
 **Correct (ternary with null):**
@@ -313,7 +313,7 @@ Reference: [Link to documentation or resource](https://example.com)
 
 List items should be as inexpensive as possible to render. Minimize hooks, avoid
 queries, and limit React Context access. Virtualized lists render many items
-during scrollâ€”expensive items cause jank.
+during scroll—expensive items cause jank.
 
 **Incorrect (heavy list item):**
 
@@ -401,7 +401,7 @@ return JSX.
 **Impact: CRITICAL (virtualization relies on reference stability)**
 
 Don't map or filter data before passing to virtualized lists. Virtualization
-relies on object reference stability to know what changedâ€”new references cause
+relies on object reference stability to know what changed—new references cause
 full re-renders of all visible items. Attempt to prevent frequent renders at the
 list-parent level.
 
@@ -495,7 +495,7 @@ function DomainSearch() {
 }
 
 function DomainItem({ tld }: { tld: Tld }) {
-  // Select only what you needâ€”component only re-renders when keyword changes
+  // Select only what you need—component only re-renders when keyword changes
   const keyword = useSearchStore((s) => s.keyword)
   const domain = `${keyword}.${tld.name}`
   return <Text>{domain}</Text>
@@ -605,7 +605,7 @@ Primitive props make memoization predictable and effective.
 **Impact: HIGH (reduced memory, faster mounts)**
 
 Use a list virtualizer like LegendList or FlashList instead of ScrollView with
-mapped childrenâ€”even for short lists. Virtualizers only render visible items,
+mapped children—even for short lists. Virtualizers only render visible items,
 reducing memory usage and mount time. ScrollView renders all children upfront,
 which gets expensive quickly.
 
@@ -660,7 +660,7 @@ function Feed({ items }: { items: Item[] }) {
 }
 ```
 
-Benefits apply to any screen with scrollable contentâ€”profiles, settings, feeds,
+Benefits apply to any screen with scrollable content—profiles, settings, feeds,
 search results. Default to virtualization.
 
 ### 2.7 Use Compressed Images in Lists
@@ -931,7 +931,7 @@ Reference:
 
 For animated press states (scale, opacity on press), use `GestureDetector` with
 `Gesture.Tap()` and shared values instead of Pressable's
-`onPressIn`/`onPressOut`. Gesture callbacks run on the UI thread as workletsâ€”no
+`onPressIn`/`onPressOut`. Gesture callbacks run on the UI thread as worklets—no
 JS thread round-trip for press animations.
 
 **Incorrect (Pressable with JS thread callbacks):**
@@ -1027,7 +1027,7 @@ Tracking scroll position without causing render thrashing.
 ### 4.1 Never Track Scroll Position in useState
 **Impact: HIGH (prevents render thrashing during scroll)**
 
-Never store scroll position in `useState`. Scroll events fire rapidlyâ€”state
+Never store scroll position in `useState`. Scroll events fire rapidly—state
 updates cause render thrashing and dropped frames. Use a Reanimated shared value
 for animations or a ref for non-reactive tracking.
 
@@ -1364,7 +1364,7 @@ Reference: [Choosing the State Structure](https://react.dev/learn/choosing-the-s
 **Impact: MEDIUM (reactive fallbacks without syncing)**
 
 Use `undefined` as initial state and nullish coalescing (`??`) to fall back to
-parent or server values. State represents user intent onlyâ€”`undefined` means
+parent or server values. State represents user intent only—`undefined` means
 "user hasn't chosen yet." This enables reactive fallbacks that update when the
 source changes, not just on initial render.
 
@@ -1508,7 +1508,7 @@ Ground truth principles for state variables and derived values.
 ### 7.1 State Must Represent Ground Truth
 **Impact: HIGH (cleaner logic, easier debugging, single source of truth)**
 
-State variablesâ€”both React `useState` and Reanimated shared valuesâ€”should
+State variables—both React `useState` and Reanimated shared values—should
 represent the actual state of something (e.g., `pressed`, `progress`, `isOpen`),
 not derived visual values (e.g., `scale`, `opacity`, `translateY`). Derive
 visual values from state using computation or interpolation.
@@ -1554,12 +1554,12 @@ const animatedStyle = useAnimatedStyle(() => ({
 State variables should represent real "state", not necessarily a desired end
 result.
 
-1. **Single source of truth** â€” The state (`pressed`) describes what's
+1. **Single source of truth** — The state (`pressed`) describes what's
    happening; visuals are derived
-2. **Easier to extend** â€” Adding opacity, rotation, or other effects just
+2. **Easier to extend** — Adding opacity, rotation, or other effects just
    requires more interpolations from the same state
-3. **Debugging** â€” Inspecting `pressed = 1` is clearer than `scale = 0.95`
-4. **Reusable logic** â€” The same `pressed` value can drive multiple visual
+3. **Debugging** — Inspecting `pressed = 1` is clearer than `scale = 0.95`
+4. **Reusable logic** — The same `pressed` value can drive multiple visual
    properties
 
 **Same principle for React state:**
@@ -1638,7 +1638,7 @@ function SaveButton({ onSave }) {
 
 With React Compiler enabled, use `.get()` and `.set()` instead of reading or
 writing `.value` directly on Reanimated shared values. The compiler can't track
-property accessâ€”explicit methods ensure correct behavior.
+property access—explicit methods ensure correct behavior.
 
 **Incorrect (breaks with React Compiler):**
 
@@ -1755,7 +1755,7 @@ function MeasuredBox({ children }: { children: React.ReactNode }) {
 }
 ```
 
-Use functional setState to compareâ€”don't read state directly in the callback.
+Use functional setState to compare—don't read state directly in the callback.
 
 ### 9.2 Modern React Native Styling Patterns
 **Impact: MEDIUM (consistent design, smoother borders, cleaner layouts)**
@@ -1768,20 +1768,20 @@ Follow these styling patterns for cleaner, more consistent React Native code.
 // Incorrect
 { borderRadius: 12 }
 
-// Correct â€“ smoother iOS-style corners
+// Correct – smoother iOS-style corners
 { borderRadius: 12, borderCurve: 'continuous' }
 ```
 
 **Use `gap` instead of margin for spacing between elements:**
 
 ```tsx
-// Incorrect â€“ margin on children
+// Incorrect – margin on children
 <View>
   <Text style={{ marginBottom: 8 }}>Title</Text>
   <Text style={{ marginBottom: 8 }}>Subtitle</Text>
 </View>
 
-// Correct â€“ gap on parent
+// Correct – gap on parent
 <View style={{ gap: 8 }}>
   <Text>Title</Text>
   <Text>Subtitle</Text>
@@ -1800,10 +1800,10 @@ Follow these styling patterns for cleaner, more consistent React Native code.
 **Use `experimental_backgroundImage` for linear gradients:**
 
 ```tsx
-// Incorrect â€“ third-party gradient library
+// Incorrect – third-party gradient library
 <LinearGradient colors={['#000', '#fff']} />
 
-// Correct â€“ native CSS gradient syntax
+// Correct – native CSS gradient syntax
 <View
   style={{
     experimental_backgroundImage: 'linear-gradient(to bottom, #000, #fff)',
@@ -1814,23 +1814,23 @@ Follow these styling patterns for cleaner, more consistent React Native code.
 **Use CSS `boxShadow` string syntax for shadows:**
 
 ```tsx
-// Incorrect â€“ legacy shadow objects or elevation
+// Incorrect – legacy shadow objects or elevation
 { shadowColor: '#000', shadowOffset: { width: 0, height: 2 }, shadowOpacity: 0.1 }
 { elevation: 4 }
 
-// Correct â€“ CSS box-shadow syntax
+// Correct – CSS box-shadow syntax
 { boxShadow: '0 2px 8px rgba(0, 0, 0, 0.1)' }
 ```
 
-**Avoid multiple font sizes â€“ use weight and color for emphasis:**
+**Avoid multiple font sizes – use weight and color for emphasis:**
 
 ```tsx
-// Incorrect â€“ varying font sizes for hierarchy
+// Incorrect – varying font sizes for hierarchy
 <Text style={{ fontSize: 18 }}>Title</Text>
 <Text style={{ fontSize: 14 }}>Subtitle</Text>
 <Text style={{ fontSize: 12 }}>Caption</Text>
 
-// Correct â€“ consistent size, vary weight and color
+// Correct – consistent size, vary weight and color
 <Text style={{ fontWeight: '600' }}>Title</Text>
 <Text style={{ color: '#666' }}>Subtitle</Text>
 <Text style={{ color: '#999' }}>Caption</Text>
@@ -1844,7 +1844,7 @@ and grayscale colors for hierarchy instead.
 
 When adding space to the top or bottom of a ScrollView that may change
 (keyboard, toolbars, dynamic content), use `contentInset` instead of padding.
-Changing `contentInset` doesn't trigger layout recalculationâ€”it adjusts the
+Changing `contentInset` doesn't trigger layout recalculation—it adjusts the
 scroll area without re-rendering content.
 
 **Incorrect (padding causes layout recalculation):**
@@ -1989,12 +1989,12 @@ function Avatar({ url }: { url: string }) {
 
 **Key props:**
 
-- `placeholder` â€” Blurhash or thumbnail while loading
-- `contentFit` â€” `cover`, `contain`, `fill`, `scale-down`
-- `transition` â€” Fade-in duration (ms)
-- `priority` â€” `low`, `normal`, `high`
-- `cachePolicy` â€” `memory`, `disk`, `memory-disk`, `none`
-- `recyclingKey` â€” Unique key for list recycling
+- `placeholder` — Blurhash or thumbnail while loading
+- `contentFit` — `cover`, `contain`, `fill`, `scale-down`
+- `transition` — Fade-in duration (ms)
+- `priority` — `low`, `normal`, `high`
+- `cachePolicy` — `memory`, `disk`, `memory-disk`, `none`
+- `recyclingKey` — Unique key for list recycling
 
 For cross-platform (web + native), use `SolitoImage` from `solito/image` which uses `expo-image` under the hood.
 
@@ -2476,7 +2476,7 @@ Dependency management and native module configuration in monorepos.
 **Impact: CRITICAL (required for autolinking to work)**
 
 In a monorepo, packages with native code must be installed in the native app's
-directory directly. Autolinking only scans the app's `node_modules`â€”it won't
+directory directly. Autolinking only scans the app's `node_modules`—it won't
 find native dependencies installed in other packages.
 
 **Incorrect (native dep in shared package only):**
@@ -2489,7 +2489,7 @@ packages/
     package.json  # missing react-native-reanimated
 ```
 
-Autolinking failsâ€”native code not linked.
+Autolinking fails—native code not linked.
 
 **Correct (native dep in app directory):**
 
@@ -2704,7 +2704,7 @@ const relativeFormatter = new Intl.RelativeTimeFormat('en-US', {
 ```
 
 Creating `Intl` objects is significantly more expensive than `RegExp` or plain
-objectsâ€”each instantiation parses locale data and builds internal lookup tables.
+objects—each instantiation parses locale data and builds internal lookup tables.
 
 ---
 
@@ -2765,7 +2765,7 @@ function App() {
 import { Text, View } from 'react-native'
 
 function App() {
-  // No loading state neededâ€”font is already available
+  // No loading state needed—font is already available
   return (
     <View>
       <Text style={{ fontFamily: 'Geist-Bold' }}>Hello</Text>

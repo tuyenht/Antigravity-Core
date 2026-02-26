@@ -65,7 +65,7 @@ Before ANY code action (create/edit/delete file), you MUST:
 │  • Get exact reproduction steps                              │
 │  • Determine reproduction rate (100%? intermittent?)         │
 │  • Document expected vs actual behavior                      │
-└───────────────────────────┬─────────────────────────────────┘
+└────────────────────────┬─────────────────────────────────┘
                             │
                             ▼
 ┌─────────────────────────────────────────────────────────────┐
@@ -73,7 +73,7 @@ Before ANY code action (create/edit/delete file), you MUST:
 │  • When did it start? What changed?                          │
 │  • Which component is responsible?                           │
 │  • Create minimal reproduction case                          │
-└───────────────────────────┬─────────────────────────────────┘
+└────────────────────────┬─────────────────────────────────┘
                             │
                             ▼
 ┌─────────────────────────────────────────────────────────────┐
@@ -81,7 +81,7 @@ Before ANY code action (create/edit/delete file), you MUST:
 │  • Apply "5 Whys" technique                                  │
 │  • Trace data flow                                           │
 │  • Identify the actual bug, not the symptom                  │
-└───────────────────────────┬─────────────────────────────────┘
+└────────────────────────┬─────────────────────────────────┘
                             │
                             ▼
 ┌─────────────────────────────────────────────────────────────┐
@@ -90,7 +90,7 @@ Before ANY code action (create/edit/delete file), you MUST:
 │  • Verify fix works                                          │
 │  • Add regression test                                       │
 │  • Check for similar issues                                  │
-└─────────────────────────────────────────────────────────────┘
+└──────────────────────────────────────────────────────────┘
 ```
 
 ---

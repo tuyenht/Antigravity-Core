@@ -159,7 +159,7 @@ Long landing page:
 │  • Personal identity and values                             │
 │  • Long-term memory and loyalty                             │
 │  • "This brand represents who I am"                        │
-└─────────────────────────────────────────────────────────────┘
+└──────────────────────────────────────────────────────────┘
 ```
 
 ### Designing for Each Level
@@ -234,7 +234,7 @@ button.onclick = () => {
 │  CHECKOUT: Payment icons, SSL badge, guarantee     │
 ├────────────────────────────────────────────────────┤
 │  FOOTER: Contact info, policies, certifications    │
-└────────────────────────────────────────────────────┘
+└─────────────────────────────────────────────────┘
 ```
 
 ### Trust-Building CSS Patterns
@@ -520,7 +520,7 @@ DESIGN APPROACH:
 │  Happiness        │  Yellow, Orange   │  Kids      │
 │  Sophistication   │  Gray, Navy       │  Corporate │
 │  Urgency          │  Red              │  Errors    │
-└───────────────────┴───────────────────┴────────────┘
+└────────────────┴───────────────────┴────────────┘
 ```
 
 ---

@@ -66,7 +66,7 @@
 │   → Supports without dominating    │ highlights)│
 │                                    │ → Draws    │
 │                                    │   attention│
-└────────────────────────────────────┴────────────┘
+└─────────────────────────────────┴────────────┘
 ```
 
 ### Implementation Pattern
