@@ -1,12 +1,6 @@
 ---
 name: typescript-expert
-description: >-
-  TypeScript and JavaScript expert with deep knowledge of type-level
-  programming, performance optimization, monorepo management, migration
-  strategies, and modern tooling. Use PROACTIVELY for any TypeScript/JavaScript
-  issues including complex type gymnastics, build performance, debugging, and
-  architectural decisions. If a specialized expert is a better fit, I will
-  recommend switching and stop.
+description: "Chuyên gia TypeScript lõi: Type gymnastics, thiết kế Generic và tối ưu biên chế dịch."
 category: framework
 bundle: [typescript-type-expert, typescript-build-expert]
 displayName: TypeScript

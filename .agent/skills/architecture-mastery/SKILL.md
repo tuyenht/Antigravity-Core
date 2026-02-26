@@ -1,6 +1,6 @@
 ---
 name: architecture-mastery
-description: Unified architecture skill consolidating architecture, api-patterns, microservices-communication, and graphql-patterns. Single source of truth for software architecture and design patterns.
+description: "Đỉnh cao kiến trúc tổng hợp: API, Microservices, GraphQL và Design Patterns cốt lõi."
 version: 2.0
 consolidates: architecture, api-patterns, microservices-communication, graphql-patterns
 allowed-tools: Read, Write, Edit, Glob, Grep

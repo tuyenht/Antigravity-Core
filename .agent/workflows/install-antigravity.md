@@ -1,5 +1,5 @@
 ﻿---
-description: "Cài đặt/cập nhật Antigravity-Core"
+description: "Cài đặt mới hoặc cập nhật hệ điều hành Antigravity-Core cho dự án."
 ---
 
 # Antigravity-Core Installation & Update Guide

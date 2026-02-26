@@ -1,5 +1,5 @@
 ﻿---
-description: "Test mobile đa nền tảng"
+description: "Chạy quy trình kiểm thử ứng dụng di động đa nền tảng toàn diện."
 ---
 
 # /mobile-test — Mobile Testing Workflow

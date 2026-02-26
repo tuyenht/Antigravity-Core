@@ -1,5 +1,5 @@
 ﻿---
-description: "Triển khai app lên Store"
+description: "Triển khai và phát hành ứng dụng di động lên App Store hoặc Play."
 ---
 
 # /mobile-deploy - App Store Deployment Workflow

@@ -1,6 +1,6 @@
 ---
 name: nodejs-best-practices
-description: Node.js development principles and decision-making. Framework selection, async patterns, security, and architecture. Teaches thinking, not copying.
+description: "Kiến trúc hệ thống Node.js, quản lý tác vụ bất đồng bộ và tối ưu hiệu suất."
 allowed-tools: Read, Write, Edit, Glob, Grep
 ---
 

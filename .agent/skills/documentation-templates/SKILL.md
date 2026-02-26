@@ -1,6 +1,6 @@
 ---
 name: documentation-templates
-description: Documentation templates and structure guidelines. README, API docs, code comments, and AI-friendly documentation.
+description: "Khuôn mẫu tài liệu chuẩn hóa: README, API docs và hướng dẫn thân thiện AI."
 allowed-tools: Read, Glob, Grep
 ---
 

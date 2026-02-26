@@ -1,5 +1,5 @@
 ﻿---
-description: "Cập nhật skill UI-UX-Pro-Max"
+description: "Cập nhật và nâng cấp kho kỹ năng thiết kế UI/UX Pro Max lõi."
 ---
 
 # Update UI-UX-Pro-Max Skill

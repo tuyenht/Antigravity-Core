@@ -1,6 +1,6 @@
 ---
 name: laravel-performance
-description: Production-grade Laravel performance optimization with impact-driven prioritization (inspired by Vercel React Best Practices)
+description: "Tối ưu hóa hiệu suất Laravel toàn diện theo chuẩn doanh nghiệp lớn (Enterprise)."
 version: 1.0
 impact-driven: true
 priority-order: CRITICAL → HIGH → MEDIUM → LOW

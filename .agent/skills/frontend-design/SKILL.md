@@ -1,6 +1,6 @@
 ---
 name: frontend-design
-description: Design thinking and decision-making for web UI. Use when designing components, layouts, color schemes, typography, or creating aesthetic interfaces. Teaches principles, not fixed values.
+description: "Tư duy thiết kế UI/UX Frontend, xây dựng hệ thống component và trải nghiệm người."
 allowed-tools: Read, Write, Edit, Glob, Grep, Bash
 ---
 

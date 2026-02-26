@@ -1,6 +1,6 @@
 ---
 name: clean-code
-description: Pragmatic coding standards - concise, direct, no over-engineering, no unnecessary comments
+description: "Tiêu chuẩn lập trình thực dụng: mã nguồn ngắn gọn, tường minh, không over-engineering."
 allowed-tools: Read, Write, Edit
 version: 2.0
 priority: CRITICAL

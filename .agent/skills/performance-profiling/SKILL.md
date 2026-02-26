@@ -1,6 +1,6 @@
 ---
 name: performance-profiling
-description: Performance profiling principles. Measurement, analysis, and optimization techniques.
+description: "Phương pháp đo lường, cấu hình và tinh chỉnh hiệu suất cơ sở hệ thống chuyên sâu."
 allowed-tools: Read, Glob, Grep, Bash
 ---
 

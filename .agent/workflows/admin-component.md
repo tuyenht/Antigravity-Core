@@ -1,5 +1,5 @@
 ﻿---
-description: "Tạo component admin (Velzon)"
+description: "Tạo React component cho hệ thống Admin Panel (áp dụng chuẩn Velzon)."
 ---
 
 # Admin Component Generator

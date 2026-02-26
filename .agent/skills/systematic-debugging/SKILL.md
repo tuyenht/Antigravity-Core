@@ -1,6 +1,6 @@
 ---
 name: systematic-debugging
-description: 4-phase systematic debugging methodology with root cause analysis and evidence-based verification. Use when debugging complex issues.
+description: "Khung phương pháp gỡ lỗi có hệ thống, truy xuất nguyên nhân gốc rễ vòng lặp chéo."
 allowed-tools: Read, Glob, Grep
 ---
 

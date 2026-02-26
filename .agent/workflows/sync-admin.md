@@ -1,5 +1,5 @@
 ﻿---
-description: "Đồng bộ dự án admin hiện có với blueprint mới nhất từ Antigravity-Core"
+description: "Đồng bộ hóa dự án admin hiện tại với blueprint mới nhất từ Antigravity."
 ---
 
 # /sync-admin — Admin Blueprint Sync

@@ -1,6 +1,6 @@
 ---
 name: plan-writing
-description: Structured task planning with clear breakdowns, dependencies, and verification criteria. Use when implementing features, refactoring, or any multi-step work.
+description: "Kỹ năng lập kế hoạch công việc chuẩn xác, chia nhỏ tác vụ và nghiệm thu."
 allowed-tools: Read, Glob, Grep
 ---
 

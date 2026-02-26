@@ -1,6 +1,6 @@
 ---
 name: Contract Testing
-description: Expert patterns for API contract testing, consumer-driven contracts, Pact framework, and contract validation in microservices
+description: "Kiến trúc kiểm thử hợp đồng API (Contract Testing) chuyên sâu cho hệ thống Microservices."
 category: Testing & Quality
 difficulty: Advanced
 last_updated: 2026-01-16

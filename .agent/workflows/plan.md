@@ -1,5 +1,5 @@
 ﻿---
-description: "Lập kế hoạch dự án (không code)"
+description: "Lập kế hoạch phát triển dự án chi tiết (chỉ phân tích, không code)."
 ---
 
 # /plan — Project Planning Mode

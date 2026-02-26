@@ -1,6 +1,6 @@
 ---
 name: Microservices Communication
-description: Expert patterns for microservices communication including gRPC, message queues, event-driven architecture, service mesh, and distributed system patterns
+description: "Thiết kế kiến trúc giao tiếp Microservices (gRPC, message queues, event-driven pattern)."
 category: Backend Architecture
 difficulty: Advanced
 last_updated: 2026-01-16

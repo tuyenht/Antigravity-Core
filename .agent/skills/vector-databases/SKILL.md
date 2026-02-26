@@ -1,6 +1,6 @@
 ---
 name: Vector Databases
-description: Expert patterns for vector databases, similarity search, embeddings, and RAG (Retrieval-Augmented Generation) for AI/ML applications
+description: "Cấu trúc cơ sở dữ liệu Vector, truy vấn ngữ nghĩa AI và mô hình tối ưu truy RAG."
 category: Database & AI/ML
 difficulty: Advanced
 last_updated: 2026-01-16

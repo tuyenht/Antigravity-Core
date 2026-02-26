@@ -1,6 +1,6 @@
 ---
 name: Velzon Admin Dashboard
-description: Expert patterns for building admin dashboards using Velzon template conventions. React + TypeScript + Bootstrap 5 + Reactstrap + Redux Toolkit. Auto-activates for admin panel, dashboard, and management screen requests.
+description: "Kiến trúc xây dựng Admin Dashboard hoàn cấp theo tiêu chuẩn Velzon chuyên nghiệp nhất."
 ---
 
 # Velzon Admin Dashboard Skill

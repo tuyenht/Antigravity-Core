@@ -1,5 +1,5 @@
 ﻿---
-description: "Bảo trì định kỳ theo lịch"
+description: "Bảo trì dự án, cập nhật dependency định kỳ theo lịch trình tự động."
 ---
 
 # Maintenance Workflow

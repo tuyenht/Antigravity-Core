@@ -1,5 +1,5 @@
 ﻿---
-description: "Phân tích và tối ưu hiệu suất"
+description: "Phân tích mã nguồn hiện tại và tối ưu hiệu suất thực thi ứng dụng."
 ---
 
 # /optimize - Performance Tuning Workflow

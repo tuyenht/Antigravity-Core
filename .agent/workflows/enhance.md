@@ -1,5 +1,5 @@
 ﻿---
-description: "Thêm/sửa tính năng cho dự án hiện có"
+description: "Thêm mới hoặc sửa đổi các tính năng nâng cao cho dự án."
 ---
 
 # /enhance - Cập Nhật Dự Án

@@ -1,6 +1,6 @@
 ---
 name: Terraform & Infrastructure as Code
-description: Expert patterns for Infrastructure as Code using Terraform, multi-cloud deployments, state management, and infrastructure testing
+description: "Chuyên gia Terraform: quy trình Infrastructure as Code (IaC) và đám mây tích hợp."
 category: DevOps & Infrastructure
 difficulty: Advanced
 last_updated: 2026-01-16

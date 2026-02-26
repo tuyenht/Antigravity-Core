@@ -1,6 +1,6 @@
 ---
 name: geo-fundamentals
-description: Generative Engine Optimization for AI search engines (ChatGPT, Claude, Perplexity).
+description: "Tối ưu hóa công cụ tìm kiếm chuẩn AI (GEO) và chiến lược hiển thị tổng."
 allowed-tools: Read, Glob, Grep
 ---
 

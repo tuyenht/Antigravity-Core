@@ -1,5 +1,5 @@
 ﻿---
-description: "Phối hợp nhiều agent cho task phức tạp"
+description: "Phối hợp đồng thời nhiều agent chuyên biệt để giải quyết tác vụ khó."
 ---
 
 # Multi-Agent Orchestration

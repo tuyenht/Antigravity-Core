@@ -1,5 +1,5 @@
 ﻿---
-description: "Chạy full team workflow pipeline từ requirements đến deployment (BA → SA → PM → DEV → QA → DO)"
+description: "Chạy luồng làm việc nhóm từ requirement đến deploy (BA-SA-PM-DEV-QA-DO)."
 ---
 
 # /full-pipeline — Full Team Workflow Pipeline

@@ -1,6 +1,6 @@
 ---
 name: python-patterns
-description: Python development principles and decision-making. Framework selection, async patterns, type hints, project structure. Teaches thinking, not copying.
+description: "Kiến trúc lõi Python: async, type hints, web scraping và phân tích dữ liệu AI nền."
 allowed-tools: Read, Write, Edit, Glob, Grep
 ---
 

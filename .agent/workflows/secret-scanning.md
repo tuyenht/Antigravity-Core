@@ -1,5 +1,5 @@
 ﻿---
-description: "Quét mã nguồn tìm thông tin nhạy cảm"
+description: "Quét toàn bộ mã nguồn để tìm kiếm thông tin cấu hình nhạy cảm."
 turbo-all: false
 ---
 

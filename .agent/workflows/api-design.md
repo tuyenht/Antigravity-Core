@@ -1,5 +1,5 @@
 ﻿---
-description: "Validate API design, contracts, and documentation"
+description: "Đánh giá thiết kế, hợp đồng cấu trúc API và tài liệu theo chuẩn."
 ---
 
 # /api-design — API Design Validator

@@ -1,6 +1,6 @@
 ---
 name: i18n-localization
-description: Internationalization and localization patterns. Detecting hardcoded strings, managing translations, locale files, RTL support.
+description: "Giải pháp ứng dụng đa ngôn ngữ (i18n), quản lý bản dịch và hỗ trợ đa quốc."
 allowed-tools: Read, Glob, Grep
 ---
 

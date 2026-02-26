@@ -1,5 +1,5 @@
 ﻿---
-description: "Viết PRD trước khi code"
+description: "Phân tích yêu cầu nghiệp vụ và viết tài liệu PRD trước khi code."
 ---
 
 # Requirements-First Workflow (PRD Generator)

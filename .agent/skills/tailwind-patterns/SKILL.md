@@ -1,6 +1,6 @@
 ---
 name: tailwind-patterns
-description: Tailwind CSS v4 principles. CSS-first configuration, container queries, modern patterns, design token architecture.
+description: "Tối ưu hóa kiến trúc Tailwind CSS v4, tổ chức class và chuẩn thiết kế Responsive."
 allowed-tools: Read, Write, Edit, Glob, Grep
 ---
 

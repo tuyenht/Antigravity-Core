@@ -1,6 +1,6 @@
 ---
 name: webapp-testing
-description: Web application testing principles. E2E, Playwright, deep audit strategies.
+description: "Kiểm thử tự động Web App End-to-End nâng cao bằng framework Playwright chuyên nghiệp cực."
 allowed-tools: Read, Write, Edit, Glob, Grep, Bash
 ---
 

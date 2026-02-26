@@ -1,5 +1,5 @@
 ﻿---
-description: "Tìm và sửa lỗi có hệ thống"
+description: "Tìm kiếm, phân tích nguyên nhân gốc rễ và sửa lỗi code hệ thống."
 ---
 
 # /debug - Systematic Problem Investigation

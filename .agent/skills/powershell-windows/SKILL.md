@@ -1,6 +1,6 @@
 ---
 name: powershell-windows
-description: PowerShell Windows patterns. Critical pitfalls, operator syntax, error handling.
+description: "Viết kịch bản tự động hóa PowerShell chuyên sâu và quản trị hệ điều hành Windows."
 allowed-tools: Read, Write, Edit, Glob, Grep, Bash
 ---
 

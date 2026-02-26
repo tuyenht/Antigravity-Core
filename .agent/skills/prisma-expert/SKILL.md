@@ -1,6 +1,6 @@
 ---
 name: prisma-expert
-description: Prisma ORM expert for schema design, migrations, query optimization, relations modeling, and database operations. Use PROACTIVELY for Prisma schema issues, migration problems, query performance, relation design, or database connection issues.
+description: "Chuyên gia Prisma ORM: thiết kế schema, truy vấn phức tạp và tối ưu database dữ."
 ---
 
 # Prisma Expert

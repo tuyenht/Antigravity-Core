@@ -1,6 +1,6 @@
 ---
 name: react-performance
-description: Production-grade React performance optimization based on Vercel Best Practices (10+ years production experience)
+description: "Tối ưu hiệu năng ứng dụng React chuyên nghiệp dựa trên tiêu chuẩn Vercel."
 version: 1.1
 impact-driven: true
 priority-order: CRITICAL → HIGH → MEDIUM → LOW

@@ -1,6 +1,6 @@
 ---
 name: NoSQL Patterns
-description: NoSQL database patterns for MongoDB, Redis, and other NoSQL databases
+description: "Các mẫu tối ưu cho cơ sở dữ liệu NoSQL (MongoDB, Redis và hệ phân tán đa)."
 category: Database
 difficulty: Intermediate
 last_updated: 2026-01-16

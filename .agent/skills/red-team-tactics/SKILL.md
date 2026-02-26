@@ -1,6 +1,6 @@
 ---
 name: red-team-tactics
-description: Red team tactics principles based on MITRE ATT&CK. Attack phases, detection evasion, reporting.
+description: "Chiến thuật tấn công Red Team (MITRE ATT&CK), mô phỏng đe dọa và phòng thủ."
 allowed-tools: Read, Glob, Grep
 ---
 

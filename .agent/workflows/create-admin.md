@@ -1,5 +1,5 @@
 ﻿---
-description: "Tạo Admin Starter Kit (SaaS hoặc Standalone) with Auth & RBAC cho dự án mới"
+description: "Khởi tạo nhanh Admin Starter Kit (SaaS/Standalone) kèm Auth và phân quyền."
 ---
 
 # /create-admin — Admin Starter Kit Generator

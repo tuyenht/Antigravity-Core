@@ -1,5 +1,5 @@
 ﻿---
-description: "Backup database và project state trước khi thay đổi lớn"
+description: "Sao lưu an toàn cơ sở dữ liệu và trạng thái mã nguồn dự án."
 ---
 
 # /backup — Project Backup & Restore

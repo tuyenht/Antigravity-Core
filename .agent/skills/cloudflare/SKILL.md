@@ -1,6 +1,6 @@
 ---
 name: cloudflare
-description: Comprehensive Cloudflare platform skill covering Workers, Pages, storage (KV, D1, R2), AI (Workers AI, Vectorize, Agents SDK), networking (Tunnel, Spectrum), security (WAF, DDoS), and infrastructure-as-code (Terraform, Pulumi). Use for any Cloudflare development task.
+description: "Chuyên gia nền tảng Cloudflare: Workers, Pages, cấu trúc lưu trữ và phân phối."
 category: Cloud Platform & Edge Computing
 difficulty: Advanced
 last_updated: 2026-01-16

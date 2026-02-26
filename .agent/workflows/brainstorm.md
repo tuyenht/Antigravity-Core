@@ -1,5 +1,5 @@
 ﻿---
-description: "Phân tích ý tưởng, so sánh giải pháp"
+description: "Phân tích ý tưởng chuyên sâu và so sánh các giải pháp kỹ thuật."
 ---
 
 # /brainstorm - Structured Idea Exploration

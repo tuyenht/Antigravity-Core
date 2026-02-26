@@ -1,6 +1,6 @@
 ---
 name: game-development
-description: Game development orchestrator. Routes to platform-specific skills based on project needs.
+description: "Điều phối dự án phát triển game, định tuyến tới các nền tảng thiết kế phù hợp."
 allowed-tools: Read, Write, Edit, Glob, Grep, Bash
 ---
 

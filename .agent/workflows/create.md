@@ -1,5 +1,5 @@
 ﻿---
-description: "Tạo dự án mới từ đầu"
+description: "Khởi tạo dự án phần mềm mới từ đầu theo tiêu chuẩn Antigravity."
 ---
 
 # /create - Tạo Dự Án Mới

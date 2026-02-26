@@ -1,6 +1,6 @@
 ---
 name: mcp-builder
-description: MCP (Model Context Protocol) server building principles. Tool design, resource patterns, best practices.
+description: "Nguyên lý xây dựng MCP Server, cấu trúc tài nguyên và quản lý tool kết nối."
 allowed-tools: Read, Write, Edit, Glob, Grep
 ---
 

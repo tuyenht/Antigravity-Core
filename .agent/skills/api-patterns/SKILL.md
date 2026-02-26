@@ -1,6 +1,6 @@
 ---
 name: api-patterns
-description: API design principles and decision-making. REST vs GraphQL vs tRPC selection, response formats, versioning, pagination.
+description: "Nguyên tắc thiết kế API chuyên sâu (REST/GraphQL/tRPC), định dạng phản hồi và phiên bản."
 allowed-tools: Read, Write, Edit, Glob, Grep
 ---
 

@@ -1,5 +1,5 @@
 ﻿---
-description: "Tự sửa lỗi lint, type, import"
+description: "Tự động rà soát, phát hiện và sửa các lỗi lint, type, import."
 turbo-all: false
 ---
 

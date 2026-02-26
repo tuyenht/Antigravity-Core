@@ -1,5 +1,5 @@
 ﻿---
-description: "Khởi tạo dự án mobile"
+description: "Khởi tạo mã nguồn dự án ứng dụng di động (React Native/Flutter mới)."
 ---
 
 # /mobile-init — Initialize Mobile Project

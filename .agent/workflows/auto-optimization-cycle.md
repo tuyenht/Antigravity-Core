@@ -1,5 +1,5 @@
 ﻿---
-description: "Chu trình tối ưu tự động sau mỗi tính năng"
+description: "Chu trình tối ưu hóa code tự động sau khi hoàn thành tính năng."
 trigger: Feature delivery complete
 automation: Auto-triggered by manager-agent
 ---

@@ -1,6 +1,6 @@
 ---
 name: inertia-performance
-description: Inertia.js performance optimization patterns for Laravel + React bridge
+description: "Tùy biến hiệu suất hệ thống Inertia.js (Laravel + React) cho ứng dụng mượt mà."
 version: 1.0
 impact-driven: true
 priority-order: CRITICAL → HIGH → MEDIUM → LOW

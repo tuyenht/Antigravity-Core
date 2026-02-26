@@ -1,5 +1,5 @@
 ﻿---
-description: "Review code tự động"
+description: "Tự động đánh giá chất lượng mã nguồn lỗi trước khi merge."
 ---
 
 # 🤖 Automated Code Review Workflow

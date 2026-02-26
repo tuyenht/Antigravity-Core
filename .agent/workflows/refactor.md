@@ -1,5 +1,5 @@
 ﻿---
-description: "Tái cấu trúc code thông minh"
+description: "Tái cấu trúc mã nguồn thông minh, giảm độ phức tạp và tăng bảo trì."
 ---
 
 # /refactor - Smart Refactoring Workflow

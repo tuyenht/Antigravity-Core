@@ -1,5 +1,5 @@
 ﻿---
-description: "Kiểm soát ngân sách hiệu suất"
+description: "Kiểm soát và bắt buộc tuân thủ ngân sách hiệu suất (Core Web Vitals)."
 turbo-all: false
 ---
 

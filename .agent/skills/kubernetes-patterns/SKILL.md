@@ -1,6 +1,6 @@
 ---
 name: Kubernetes Patterns
-description: Production-ready Kubernetes patterns for deployment, scaling, service discovery, configuration management, and container orchestration best practices
+description: "Các mẫu triển khai Kubernetes chuẩn production, cấu hình mạng và quản lý container."
 category: DevOps & Infrastructure
 difficulty: Advanced
 last_updated: 2026-01-16

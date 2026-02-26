@@ -1,5 +1,5 @@
 ﻿---
-description: "Triển khai lên production"
+description: "Triển khai mã nguồn dự án lên môi trường production an toàn chuẩn xác."
 ---
 
 # /deploy - Production Deployment

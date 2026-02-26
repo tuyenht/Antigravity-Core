@@ -1,6 +1,6 @@
 ---
 name: behavioral-modes
-description: AI operational modes (brainstorm, implement, debug, review, teach, ship, orchestrate). Use to adapt behavior based on task type.
+description: "Quản lý và chuyển đổi các chế độ hoạt động thông minh của AI Agent."
 allowed-tools: Read, Glob, Grep
 ---
 

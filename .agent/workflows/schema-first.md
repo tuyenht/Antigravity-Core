@@ -1,5 +1,5 @@
 ﻿---
-description: "Thiết kế database trước khi code"
+description: "Thiết kế và tối ưu cấu trúc cơ sở dữ liệu trước khi bắt đầu."
 ---
 
 # Schema-First Development Workflow

@@ -1,6 +1,6 @@
 ---
 name: State Management
-description: State management patterns for React (Redux, Zustand), Vue (Pinia), and other frameworks
+description: "Mô hình quản lý trạng thái luồng dữ liệu (Redux, Zustand, Pinia) hiệu quả bền."
 category: Frontend
 difficulty: Intermediate
 last_updated: 2026-01-16

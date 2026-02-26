@@ -1,5 +1,5 @@
 ﻿---
-description: "Thiết kế UI/UX chuyên nghiệp"
+description: "Thiết kế và triển khai giao diện UI/UX chuyên nghiệp, đẳng cấp Pro Max."
 auto_execution_mode: 3
 ---
 

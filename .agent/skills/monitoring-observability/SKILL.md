@@ -1,6 +1,6 @@
 ---
 name: Monitoring & Observability
-description: Production monitoring, logging, metrics, distributed tracing, and observability patterns with Prometheus, Grafana, ELK, OpenTelemetry, and SLO/SLI/SLA practices
+description: "Thiết kế hệ thống giám sát production, logging, metrics và quan sát (Observability)."
 category: DevOps & Operations
 difficulty: Advanced
 last_updated: 2026-01-16

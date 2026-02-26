@@ -1,5 +1,5 @@
 ﻿---
-description: "Sửa lỗi nhanh, vấn đề đơn giản"
+description: "Phân tích nhanh và sửa chớp nhoáng các lỗi đơn giản hoặc vấn đề nhỏ."
 ---
 
 # /quickfix - Quick Bug Resolution

@@ -1,6 +1,6 @@
 ---
 name: tdd-workflow
-description: Test-Driven Development workflow principles. RED-GREEN-REFACTOR cycle.
+description: "Quy trình phát triển phần mềm kiểm thử dẫn động (Test-Driven Development thực chiến lõi)."
 allowed-tools: Read, Write, Edit, Glob, Grep, Bash
 ---
 

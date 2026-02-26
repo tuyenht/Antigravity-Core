@@ -1,6 +1,6 @@
 ---
 name: GraphQL Patterns
-description: Comprehensive GraphQL API design patterns, schema design, resolvers, and best practices
+description: "Các mẫu thiết kế GraphQL API toàn diện, cấu trúc schema và best practices."
 category: API Development
 difficulty: Intermediate
 last_updated: 2026-01-16

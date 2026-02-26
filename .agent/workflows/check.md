@@ -1,5 +1,5 @@
 ﻿---
-description: "Kiểm tra workspace hàng ngày"
+description: "Kiểm tra toàn diện sức khỏe workspace và kho lưu trữ mã nguồn hàng ngày."
 turbo-all: false
 ---
 

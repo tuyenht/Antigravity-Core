@@ -1,6 +1,6 @@
 ---
 name: react-native-performance
-description: Production-grade React Native and Expo performance optimization based on Vercel Best Practices. Use when building React Native components, optimizing list performance, implementing animations, or working with native modules.
+description: "Tối ưu ứng dụng React Native/Expo đạt chuẩn production mượt mà chuyên nghiệp."
 version: 1.0
 impact-driven: true
 priority-order: CRITICAL → HIGH → MEDIUM → LOW

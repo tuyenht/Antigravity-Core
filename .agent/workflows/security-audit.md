@@ -1,5 +1,5 @@
 ﻿---
-description: "Kiểm tra bảo mật toàn diện"
+description: "Kiểm tra định kỳ và đánh giá rủi ro bảo mật hệ thống toàn diện."
 ---
 
 # /security-audit - Security Analysis Workflow

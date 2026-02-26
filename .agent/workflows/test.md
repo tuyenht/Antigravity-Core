@@ -1,5 +1,5 @@
 ﻿---
-description: "Tạo và chạy test tự động"
+description: "Tự động tạo kịch bản kiểm thử và chạy bộ test suite toàn diện."
 ---
 
 # /test - Test Generation and Execution

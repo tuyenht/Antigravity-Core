@@ -1,6 +1,6 @@
 ---
 name: seo-fundamentals
-description: SEO fundamentals, E-E-A-T, Core Web Vitals, and Google algorithm principles.
+description: "Nền tảng chuẩn SEO kỹ thuật, Core Web Vitals, và thuật toán xếp hạng Google."
 allowed-tools: Read, Glob, Grep
 ---
 

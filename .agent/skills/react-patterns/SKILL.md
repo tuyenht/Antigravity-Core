@@ -1,6 +1,6 @@
 ---
 name: react-patterns
-description: Modern React patterns and principles. Hooks, composition, performance, TypeScript best practices.
+description: "Mẫu thiết kế React hiện đại: Hooks, Server Components và tối ưu re-render bộ."
 allowed-tools: Read, Write, Edit, Glob, Grep
 ---
 

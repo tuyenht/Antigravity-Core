@@ -1,5 +1,5 @@
 ﻿---
-description: "Tạo module CRUD hoàn chỉnh theo framework"
+description: "Tự động tạo trọn gói module CRUD hoàn chỉnh theo kiến trúc framework chuẩn."
 ---
 
 # /scaffold - Feature Scaffolding Workflow

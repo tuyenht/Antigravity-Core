@@ -1,5 +1,5 @@
 ﻿---
-description: "Tạo trang Settings cho admin panel"
+description: "Tạo trang cấu hình hệ thống (Settings) dành riêng cho Admin Panel."
 ---
 
 # /admin-settings — Admin Settings Page Builder

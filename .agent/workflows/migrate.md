@@ -1,5 +1,5 @@
 ﻿---
-description: "Nâng cấp framework tự động"
+description: "Nâng cấp phiên bản framework và tự động chuyển đổi mã nguồn tương thích."
 ---
 
 # /migrate - Framework Migration Workflow

@@ -1,5 +1,5 @@
 ﻿---
-description: "Tạo trang admin dashboard (Velzon)"
+description: "Thiết kế và xây dựng trang chủ Admin Dashboard (áp dụng chuẩn Velzon)."
 ---
 
 # Admin Dashboard Page Builder

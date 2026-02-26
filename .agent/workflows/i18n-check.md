@@ -1,5 +1,5 @@
 ﻿---
-description: "Kiểm tra i18n strings và translation coverage"
+description: "Kiểm tra chuỗi đa ngôn ngữ (i18n) và độ bao phủ bản dịch."
 ---
 
 # /i18n-check — Internationalization Checker

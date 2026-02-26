@@ -1,6 +1,6 @@
 ---
 name: vue-expert
-description: Provides Vue 3 expertise including Composition API, reactivity system, component patterns, performance optimization, state management with Pinia, and Nuxt.js integration. Use this skill for Vue component issues, reactivity problems, re-rendering issues, or state management challenges.
+description: "Chuyên gia Vue 3 / Nuxt: Composition API, Pinia, tối ưu hiệu suất và Server-Side Render."
 ---
 
 # Vue Expert

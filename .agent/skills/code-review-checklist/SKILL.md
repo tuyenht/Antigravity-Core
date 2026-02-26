@@ -1,6 +1,6 @@
 ---
 name: code-review-checklist
-description: Code review guidelines covering code quality, security, and best practices.
+description: "Tiêu chuẩn đánh giá mã nguồn, rà soát bảo mật và thực hành lập trình tốt."
 allowed-tools: Read, Glob, Grep
 ---
 

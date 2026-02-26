@@ -1,6 +1,6 @@
 ---
 name: testing-mastery
-description: Unified testing skill consolidating testing-patterns, tdd-workflow, contract-testing, and webapp-testing. Single source of truth for all testing methodologies and best practices.
+description: "Đỉnh cao kiểm thử tổng hợp: TDD, Contract, Web App End-to-End và Mocking toàn diện ảo."
 version: 2.0
 consolidates: testing-patterns, tdd-workflow, contract-testing, webapp-testing
 allowed-tools: Read, Write, Edit, Glob, Grep

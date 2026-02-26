@@ -1,6 +1,6 @@
 ---
 name: testing-patterns
-description: Testing patterns and principles. Unit, integration, mocking strategies.
+description: "Nguyên tắc và quy chuẩn kiểm thử phần mềm nền tảng (Unit, Integration, E2E)."
 allowed-tools: Read, Write, Edit, Glob, Grep, Bash
 ---
 

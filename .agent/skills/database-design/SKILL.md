@@ -1,6 +1,6 @@
 ---
 name: database-design
-description: Database design principles and decision-making. Schema design, indexing strategy, ORM selection, serverless databases.
+description: "Nguyên tắc thiết kế cơ sở dữ liệu, chiến lược đánh chỉ mục và lựa chọn ORM."
 allowed-tools: Read, Write, Edit, Glob, Grep
 ---
 

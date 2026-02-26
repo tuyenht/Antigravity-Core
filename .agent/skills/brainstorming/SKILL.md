@@ -1,6 +1,6 @@
 ---
 name: brainstorming
-description: Socratic questioning protocol + user communication. MANDATORY for complex requests, new features, or unclear requirements. Includes progress reporting and error handling.
+description: "Giao thức đặt câu hỏi Socratic, khơi gợi và làm rõ yêu cầu nghiệp vụ."
 allowed-tools: Read, Glob, Grep
 ---
 

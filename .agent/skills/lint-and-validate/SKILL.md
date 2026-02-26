@@ -1,6 +1,6 @@
 ---
 name: lint-and-validate
-description: Automatic quality control, linting, and static analysis procedures. Use after every code modification to ensure syntax correctness and project standards. Triggers onKeywords: lint, format, check, validate, types, static analysis.
+description: "Quy trình kiểm soát chất lượng tự động, linting và phân tích mã lỗi tĩnh."
 allowed-tools: Read, Glob, Grep, Bash
 ---
 
