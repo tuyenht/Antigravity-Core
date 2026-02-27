@@ -1,7 +1,7 @@
 # Systems & Protocols Catalog — Antigravity-Core
 
-**Version:** 4.1.0  
-**Last Updated:** 2026-02-25  
+**Version:** 5.0.0  
+**Last Updated:** 2026-02-27  
 **Total Systems:** 6 (5 files + AOC in manager-agent)
 
 ---

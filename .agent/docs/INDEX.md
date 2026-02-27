@@ -71,7 +71,7 @@ Comprehensive documentation cho 27 specialized AI agents.
 
 | Document | Description |
 |----------|-------------|
-| [SCRIPT-CATALOG.md](scripts/SCRIPT-CATALOG.md) | Bảng tổng hợp 20 scripts: usage patterns, common commands |
+| [SCRIPT-CATALOG.md](scripts/SCRIPT-CATALOG.md) | Bảng tổng hợp 37 scripts (20 core + 17 skill): classification, usage patterns |
 
 ---
 
