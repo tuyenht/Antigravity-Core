@@ -12,9 +12,9 @@
 |---------|-------|-------------|
 | [Agents](#agents) | 1 catalog + 8 guides | 27 specialized AI agents |
 | [Skills](#skills) | 1 catalog + 1 guide | 59 knowledge modules |
-| [Workflows](#workflows) | 1 catalog + 1 guide | 37 slash commands |
-| [Rules](#rules) | 1 catalog | 129 expert rules (11 categories) |
-| [Scripts](#scripts) | 1 catalog | 20 automation scripts |
+| [Workflows](#workflows) | 1 catalog + 1 guide | 34 slash commands |
+| [Rules](#rules) | 1 catalog | 110 expert rules (11 categories) |
+| [Scripts](#scripts) | 1 catalog | 37 automation scripts |
 | [Systems](#systems) | 1 catalog | 6 core protocols (5 files + AOC) |
 | [Processes](#processes) | 11 guides | Development workflows |
 | [Reference](#reference) | 8 docs | Policies, ADRs, migration |
@@ -46,28 +46,28 @@ Comprehensive documentation cho 27 specialized AI agents.
 
 ## Workflows
 
-37 slash command workflows.
+34 slash command workflows.
 
 | Document | Description |
 |----------|-------------|
-| [WORKFLOW-CATALOG.md](workflows/WORKFLOW-CATALOG.md) | Bảng tổng hợp 37 workflows: categories, usage guides, flow diagrams |
+| [WORKFLOW-CATALOG.md](workflows/WORKFLOW-CATALOG.md) | Bảng tổng hợp 34 workflows: categories, usage guides, flow diagrams |
 | [WORKFLOW-GUIDE.md](WORKFLOW-GUIDE.md) | Hướng dẫn sử dụng workflows |
 
 ---
 
 ## Rules
 
-129 expert rules across 11 categories.
+110 expert rules across 11 categories.
 
 | Document | Description |
 |----------|-------------|
-| [RULES-CATALOG.md](rules/RULES-CATALOG.md) | Bảng tổng hợp 129 rules: auto-activation system, categories |
+| [RULES-CATALOG.md](rules/RULES-CATALOG.md) | Bảng tổng hợp 110 rules: auto-activation system, categories |
 
 ---
 
 ## Scripts
 
-20 automation scripts (PowerShell + Bash).
+37 automation scripts (20 core + 17 skill scripts).
 
 | Document | Description |
 |----------|-------------|
@@ -129,10 +129,10 @@ Existing documentation (pre-audit).
 ├── CHANGELOG.md             ← Version history
 ├── agents/ (27)             ← Specialized AI agent definitions
 ├── skills/ (59)             ← Knowledge modules
-├── workflows/ (37)          ← Slash command workflows
-├── rules/ (129)             ← Expert rules (11 categories)
-├── scripts/ (20)            ← Automation scripts
-├── systems/ (5)             ← Core protocols
+├── workflows/ (34)          ← Slash command workflows
+├── rules/ (110)             ← Expert rules (11 categories)
+├── scripts/ (37)            ← Automation scripts (20 core + 17 skill)
+├── systems/ (6)             ← Core protocols
 ├── docs/                    ← Documentation (this directory)
 │   ├── INDEX.md             ← You are here
 │   ├── agents/              ← Agent documentation
