@@ -71,7 +71,7 @@ Verifies:
 
 ### After Approval
 ```bash
-git merge feature-branch
+git merge feature/US-042-auth
 ```
 
 ### AOC Auto-Trigger
