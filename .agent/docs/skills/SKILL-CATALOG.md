@@ -38,11 +38,11 @@ Skills là **knowledge modules** tải vào agents khi cần. Mỗi skill là m�
 | **📱 Mobile** | 3 | `mobile-design`, `react-native-performance`, `game-development` |
 | **🗄️ Data** | 4 | `database-design`, `nosql-patterns`, `vector-databases`, `terraform-iac` |
 | **🔒 Security** | 2 | `vulnerability-scanner`, `red-team-tactics` |
-| **✅ Testing & Quality** | 7 | `testing-mastery`, `testing-patterns`, `tdd-workflow`, `contract-testing`, `webapp-testing`, `code-review-checklist`, `lint-and-validate` |
+| **✅ Testing & Quality** | 8 | `testing-mastery`, `testing-patterns`, `tdd-workflow`, `contract-testing`, `webapp-testing`, `code-review-checklist`, `lint-and-validate`, `systematic-debugging` |
 | **⚡ Performance** | 2 | `performance-profiling`, `monitoring-observability` |
 | **🚀 DevOps** | 6 | `deployment-procedures`, `server-management`, `kubernetes-patterns`, `docker-expert`, `bash-linux`, `powershell-windows` |
-| **📝 Process & Planning** | 5 | `clean-code`, `brainstorming`, `behavioral-modes`, `plan-writing`, `app-builder` |
-| **🎨 Design & SEO** | 7 | `ui-ux-pro-max`, `seo-fundamentals`, `geo-fundamentals`, `i18n-localization`, `documentation-templates`, `parallel-agents`, `systematic-debugging` |
+| **📝 Process & Planning** | 6 | `clean-code`, `brainstorming`, `behavioral-modes`, `plan-writing`, `app-builder`, `parallel-agents` |
+| **🎨 Design & SEO** | 5 | `ui-ux-pro-max`, `seo-fundamentals`, `geo-fundamentals`, `i18n-localization`, `documentation-templates` |
 | **🤖 AI & Expert** | 2 | `ai-sdk-expert`, `typescript-expert` |
 
 ---
