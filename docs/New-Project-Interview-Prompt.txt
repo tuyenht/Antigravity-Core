@@ -15,7 +15,7 @@
 Với vai trò là chuyên gia cao cấp/ nhóm chuyên gia cao cấp/ hội đồng chuyên gia cao cấp hàng đầu phù hợp, tốt nhất, năng lực chuyên môn mạnh nhất.
 
 🎯 CONTEXT:
-I want to start a NEW PROJECT from scratch using .agent v4.0 development system.
+I want to start a NEW PROJECT from scratch using .agent v5.0 development system.
 
 🎯 YOUR ROLE:
 You are a Senior Solution Architect + Product Consultant + UX Strategist team. Your task is to:
@@ -166,19 +166,17 @@ Provide **CLEAR RECOMMENDATION** with reasoning based on their specific answers.
 
 ---
 
-**Step 2: Generate PROJECT BRIEF**
+**Step 2: Generate Project Plan**
 
-Create complete 9-section PROJECT BRIEF:
+Create complete `docs/PLAN.md` following v5.0 `project-bootstrap.md` template:
 
-1. **PROJECT OVERVIEW** (from Q1-5)
-2. **TECHNICAL REQUIREMENTS** (from Q6-12)
-3. **TECHNOLOGY STACK** (from Step 1 recommendation)
-4. **CURRENT STATE** (N/A for new projects — mark as "Greenfield")
-5. **.agent INTEGRATION** (agent assignments based on stack)
-6. **ROADMAP** (4 phases: Foundation → Core Features → Polish → Launch)
-7. **RISKS** (based on timeline, tech choices, integrations, security)
-8. **SUCCESS METRICS** (from Q3, with specific numbers)
-9. **APPROVAL** (leave blank for client sign-off)
+1. **MVP SCOPE** (from Q1-5, Q6-12)
+2. **ARCHITECTURE OVERVIEW** (from tech stack recommendation)
+3. **DATABASE SCHEMA** (from Q9 data model)
+4. **TECH DECISIONS** (from Step 1 recommendation, with WHY)
+5. **CURRENT STATE & MATURITY** (N/A for new projects — mark as "Greenfield")
+6. **TECHNICAL DEBT & RISKS** (from timeline, tech choices, integrations, security)
+7. **MILESTONES & ROADMAP** (4 phases: Foundation → Core Features → Polish → Launch)
 
 ---
 
@@ -237,11 +235,12 @@ irm "https://raw.githubusercontent.com/tuyenht/Antigravity-Core/main/.agent/scri
 
 📂 OUTPUT FILES:
 
-Save to: `[PROJECT_ROOT]/docs/`
+Save to: `[PROJECT_ROOT]/docs/` and `[PROJECT_ROOT]/tasks/`
 
-1. **PROJECT-BRIEF.md** — Complete 9-section brief (all data from interview)
-2. **TECH-STACK-ANALYSIS.md** — Detailed comparison with recommendation
-3. **GETTING-STARTED.md** — Step-by-step setup with exact commands
+1. **docs/PLAN.md** — Complete project plan (all data from interview + tech decisions)
+2. **tasks/todo.md** — Task tracking with MVP features
+3. **tasks/lessons.md** — Learning file (empty template)
+4. **README.md** — Quick start with setup commands for chosen stack
 
 ---
 
@@ -251,10 +250,10 @@ Before delivering:
 - [ ] All 26 questions answered
 - [ ] Tech stack comparison complete (2-3 options per layer)
 - [ ] Recommendation justified with specific reasons from answers
-- [ ] PROJECT BRIEF complete (no placeholders, no "[TBD]")
+- [ ] docs/PLAN.md complete (no placeholders, no "[TBD]")
 - [ ] Roadmap realistic (matches timeline from Q4)
 - [ ] Setup commands correct for chosen stack
-- [ ] All 3 files created and complete
+- [ ] All output files created and complete
 - [ ] Security requirements addressed (from Q23-24)
 - [ ] Design preferences captured (from Q20-22)
 
@@ -264,11 +263,11 @@ Before delivering:
 
 ```yaml
 interview_plan:
-  objective: "Generate PROJECT BRIEF via 26-question interview"
+  objective: "Generate Project Plan via 26-question interview"
   approach: "Ask 7 categories sequentially, wait for answers each time"
   categories: 7
   questions: 26
-  outputs: ["PROJECT-BRIEF.md", "TECH-STACK-ANALYSIS.md", "GETTING-STARTED.md"]
+  outputs: ["docs/PLAN.md", "tasks/todo.md", "tasks/lessons.md", "README.md"]
   decision: "PROCEED"
   reason: "Structured interview ensures complete requirements with zero gaps"
   additions_vs_v1:

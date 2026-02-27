@@ -38,7 +38,7 @@
 
 1. **Familiarity** with the Antigravity-Core system
 2. **Read** the [README.md](README.md) thoroughly
-3. **Understand** the [PROJECT-BRIEF-SYSTEM](docs/PROJECT-BRIEF-SYSTEM.md)
+3. **Understand** the [Pipeline System](.agent/pipelines/) and [ARCHITECTURE](.agent/ARCHITECTURE.md)
 4. **Review** the [ARCHITECTURE.md](.agent/ARCHITECTURE.md) for system overview
 
 ### Setting Up Development Environment

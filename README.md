@@ -179,10 +179,8 @@ Antigravity-Core/
 │   └── CHANGELOG.md                   ← Version history
 │
 ├── 📖 docs/                            ← Project documentation
-│   ├── PROJECT-BRIEF-SYSTEM.md        (Master guide)
-│   ├── New-Project-Interview-Prompt.txt
-│   ├── Analyze-Existing-Project-Prompt.txt
-│   └── deployment-guide.md
+│   ├── New-Project-Interview-Prompt.txt (26-question structured interview)
+│   └── Analyze-Existing-Project-Prompt.txt (17-category codebase analysis)
 │
 └── README.md                           ← You are here
 ```
@@ -507,8 +505,8 @@ Time:     30 phút - 2 giờ
 
 | Document | Mô tả |
 |----------|-------|
-| [PROJECT-BRIEF-SYSTEM.md](docs/PROJECT-BRIEF-SYSTEM.md) | Master guide cho project briefs |
-| [deployment-guide.md](docs/deployment-guide.md) | Hướng dẫn triển khai step-by-step |
+| [New-Project-Interview-Prompt.txt](docs/New-Project-Interview-Prompt.txt) | 26-question interview cho dự án mới |
+| [Analyze-Existing-Project-Prompt.txt](docs/Analyze-Existing-Project-Prompt.txt) | 17-category phân tích dự án có sẵn |
 
 ### v5.0 Pipeline System
 

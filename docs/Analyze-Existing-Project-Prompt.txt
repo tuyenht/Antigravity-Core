@@ -15,7 +15,7 @@
 Với vai trò là chuyên gia cao cấp/ nhóm chuyên gia cao cấp/ hội đồng chuyên gia cao cấp hàng đầu phù hợp, tốt nhất, năng lực chuyên môn mạnh nhất.
 
 🎯 CONTEXT:
-I have an EXISTING PROJECT that I want to analyze comprehensively and integrate with .agent v4.0 development system.
+I have an EXISTING PROJECT that I want to analyze comprehensively and integrate with .agent v5.0 development system.
 
 I need you to perform an ULTIMATE COMPREHENSIVE ANALYSIS to generate complete PROJECT BRIEF and PROJECT CONVENTIONS documentation.
 
@@ -27,8 +27,8 @@ You are an elite team of Senior Technical Architects (Backend, Frontend, DevOps,
 1. **ANALYZE** the existing codebase COMPREHENSIVELY (17 categories)
 2. **EXTRACT** all relevant information (tech stack, features, structure, quality, performance, history)
 3. **VISUALIZE** complexity, dependencies, and patterns
-4. **GENERATE** complete PROJECT-BRIEF.md (9 sections, 100% filled)
-5. **CREATE** PROJECT-CONVENTIONS.md (all patterns)
+4. **GENERATE** complete docs/PLAN.md (project plan with current state assessment)
+5. **CREATE** docs/CONVENTIONS.md (all patterns detected)
 6. **RECOMMEND** .agent integration + performance improvements
 
 ---
@@ -623,64 +623,58 @@ git log --pretty=format: --name-only | sort | uniq -c | sort -rn | head -20
 
 After completing ALL 17 categories, you MUST generate:
 
-### FILE 1: PROJECT-BRIEF.md
+### FILE 1: docs/PLAN.md
 
-Save to: `[PROJECT_ROOT]/docs/PROJECT-BRIEF.md`
+Save to: `[PROJECT_ROOT]/docs/PLAN.md`
 
-**Structure (9 sections):**
+**Structure (v5.0 project-bootstrap template):**
 ```markdown
-# PROJECT BRIEF
+# [Project Name] — Project Plan
 
-## 1. Project Overview
-- Project name, description, purpose
-- Primary users, business context
-- Current status (production/staging/development)
+## MVP Scope
+- Feature 1 (from analysis — existing, working)
+- Feature 2 (existing, partial)
+- Feature 3 (planned)
 
-## 2. Technical Requirements
-- Core features list (from analysis)
-- Non-functional requirements (performance, scale, security)
+## Architecture Overview
+- System diagram (Mermaid) from Category 5-6
+- Data flow, component relationships
 
-## 3. Technology Stack
-- Full stack details (from Category 1)
-- Version matrix
-- Key dependencies
+## Database Schema
+- Schema from Category 4-5 analysis
 
-## 4. Current State Assessment
-- Codebase health score (1-10)
-- Strengths and weaknesses
-- Technical debt summary
+## Tech Decisions
+| Decision | Reason | Alternatives |
+|----------|--------|-------------|
+| {tech from Category 1} | {why} | {other options} |
 
-## 5. Architecture
-- System diagram (Mermaid)
-- Data flow
-- Component relationships
+## Current State & Maturity
+### ✅ Completed
+- {from analysis — what's built and working}
+### ⬜ Not Started / Placeholder
+- {from analysis — stubs or gaps}
 
-## 6. .agent Integration Plan
-- Which agents to activate
-- Skill recommendations
-- Workflow suggestions
+## Technical Debt & Risks
+| Priority | Issue | Location |
+|----------|-------|----------|
+| 🔴 HIGH | {from Category 11-14} | {file} |
+| 🟡 MEDIUM | {moderate issue} | {file} |
 
-## 7. Roadmap
-- Phase 1: Critical fixes (security, performance)
-- Phase 2: Quality improvements (tests, docs)
-- Phase 3: Feature development
-- Phase 4: Optimization & scaling
+## Milestones & Roadmap
+| Phase | Milestone | Target | Status |
+|-------|-----------|--------|--------|
+| Fix | Critical fixes (security, perf) | Week 1 | ⬜ |
+| Quality | Tests + docs | Week 2-3 | ⬜ |
+| Features | New development | Week 4+ | ⬜ |
 
-## 8. Risks
-- Technical risks (from analysis findings)
-- Mitigation strategies
-
-## 9. Success Metrics
-- Code coverage target
-- Performance benchmarks
-- Quality gates
+<!-- antigravity: v1.0 -->
 ```
 
 ---
 
-### FILE 2: PROJECT-CONVENTIONS.md
+### FILE 2: docs/CONVENTIONS.md
 
-Save to: `[PROJECT_ROOT]/docs/PROJECT-CONVENTIONS.md`
+Save to: `[PROJECT_ROOT]/docs/CONVENTIONS.md`
 
 **Structure:**
 ```markdown
@@ -706,28 +700,48 @@ Save to: `[PROJECT_ROOT]/docs/PROJECT-CONVENTIONS.md`
 
 ---
 
-### FILE 3: PERFORMANCE-OPTIMIZATION-RECOMMENDATIONS.md
+### FILE 3: tasks/todo.md + tasks/lessons.md
 
-Save to: `[PROJECT_ROOT]/docs/PERFORMANCE-OPTIMIZATION-RECOMMENDATIONS.md`
+Save to: `[PROJECT_ROOT]/tasks/`
 
 **Structure:**
 ```markdown
-# PERFORMANCE OPTIMIZATION RECOMMENDATIONS
+# [Project Name] — Tasks
 
-## Immediate Wins (1-2 days)
-- Fix N+1 queries (list all with fix)
-- Add missing indexes (list all)
-- Remove unused packages (list all)
+**Updated:** {date}
 
-## Short-term (1-2 weeks)
-- Implement caching strategy
-- Add API pagination
-- Refactor god classes
+## In Progress
+- [ ] Fix N+1 queries (from Category 14)
+- [ ] Add missing indexes (from Category 5)
 
-## Long-term (1-3 months)
-- Add integration tests
-- Performance monitoring (APM)
-- Load testing
+## Backlog
+- [ ] Implement caching strategy
+- [ ] Add API pagination
+- [ ] Refactor god classes (from Category 16)
+- [ ] Add integration tests (from Category 9)
+
+## Completed
+- [x] Codebase analysis ({date})
+
+<!-- antigravity: v1.0 -->
+```
+
+Also create `tasks/lessons.md`:
+```markdown
+# [Project Name] — Lessons Learned
+
+**Updated:** {date}
+
+## Patterns That Work
+{To be filled by PHASE FINAL}
+
+## Mistakes Made
+{To be filled when issues occur}
+
+## Rules
+{Project-specific rules}
+
+<!-- antigravity: v1.0 -->
 ```
 
 ---
@@ -737,12 +751,14 @@ Save to: `[PROJECT_ROOT]/docs/PERFORMANCE-OPTIMIZATION-RECOMMENDATIONS.md`
 Before delivering, verify:
 
 - [ ] All 17 categories analyzed with REAL data (not generic examples)
-- [ ] All 3 output files generated and complete
+- [ ] docs/PLAN.md generated and complete (v5.0 project-bootstrap format)
+- [ ] docs/CONVENTIONS.md generated with detected patterns
+- [ ] tasks/todo.md generated with prioritized action items
+- [ ] tasks/lessons.md template created
 - [ ] No placeholders — every metric is from actual analysis
 - [ ] Framework-specific recommendations (not generic advice)
 - [ ] Security findings flagged with severity
 - [ ] Performance improvements quantified (estimated % improvement)
-- [ ] .agent integration recommendations specific to this project
 
 ---
 
@@ -750,10 +766,10 @@ Before delivering, verify:
 
 ```yaml
 analysis_plan:
-  objective: "Generate complete PROJECT BRIEF via 17-category analysis"
+  objective: "Generate complete Project Plan via 17-category analysis"
   approach: "Systematic file-by-file analysis, extract metrics, generate docs"
   categories: 17
-  outputs: ["PROJECT-BRIEF.md", "PROJECT-CONVENTIONS.md", "PERFORMANCE-OPTIMIZATION-RECOMMENDATIONS.md"]
+  outputs: ["docs/PLAN.md", "docs/CONVENTIONS.md", "tasks/todo.md", "tasks/lessons.md"]
   decision: "PROCEED"
   reason: "Structured analysis ensures comprehensive coverage"
   risks:
