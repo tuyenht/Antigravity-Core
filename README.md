@@ -6,7 +6,7 @@
 [![Version](https://img.shields.io/badge/version-5.0.0-blue.svg)](.agent/CHANGELOG.md)
 [![Agents](https://img.shields.io/badge/agents-27-brightgreen.svg)](.agent/docs/agents/AGENT-CATALOG.md)
 [![Skills](https://img.shields.io/badge/skills-59-orange.svg)](.agent/docs/skills/SKILL-CATALOG.md)
-[![Rules](https://img.shields.io/badge/rules-131-purple.svg)](.agent/docs/rules/RULES-CATALOG.md)
+[![Rules](https://img.shields.io/badge/rules-95-purple.svg)](.agent/docs/rules/RULES-CATALOG.md)
 [![AI Autonomy](https://img.shields.io/badge/AI%20Autonomy-95%25-green.svg)]()
 [![Quality](https://img.shields.io/badge/Quality-Platinum%20Standard-gold.svg)]()
 [![License](https://img.shields.io/badge/license-Proprietary-red.svg)]()
@@ -168,7 +168,7 @@ Antigravity-Core/
 │   │   ├── agentic-ai/ (12)           standards/ (25)
 │   │   └── shared/ (1)
 │   │
-│   ├── 🔄 workflows/ (38)             ← Slash command workflows
+│   ├── 🔄 workflows/ (34)             ← Slash command workflows
 │   ├── ⚙️ scripts/ (20)               ← PowerShell + Bash automation
 │   ├── 🧬 systems/ (5)                ← Core protocols (RBA, AOC...)
 │   ├── 🧠 memory/                     ← AI memory system
@@ -489,8 +489,8 @@ Time:     30 phút - 2 giờ
 | [📖 **docs/INDEX.md**](.agent/docs/INDEX.md) | **Master index — Bắt đầu từ đây** |
 | [AGENT-CATALOG.md](.agent/docs/agents/AGENT-CATALOG.md) | 27 agents chi tiết |
 | [SKILL-CATALOG.md](.agent/docs/skills/SKILL-CATALOG.md) | 59 skills chi tiết |
-| [WORKFLOW-CATALOG.md](.agent/docs/workflows/WORKFLOW-CATALOG.md) | 38 Workflows chi tiết |
-| [RULES-CATALOG.md](.agent/docs/rules/RULES-CATALOG.md) | 131 rules chi tiết |
+| [WORKFLOW-CATALOG.md](.agent/docs/workflows/WORKFLOW-CATALOG.md) | 34 Workflows chi tiết |
+| [RULES-CATALOG.md](.agent/docs/rules/RULES-CATALOG.md) | 95 rules chi tiết |
 | [SYSTEMS-CATALOG.md](.agent/docs/systems/SYSTEMS-CATALOG.md) | 6 protocols (5 files + AOC) |
 
 ### Architecture & Config
@@ -537,7 +537,7 @@ Time:     30 phút - 2 giờ
 
 - ✅ Auto-Rule Discovery Engine (3-layer detection)
 - ✅ Agent Registry (27 specialized agents)
-- ✅ 129 expert rules, 59 skills, 38 workflows
+- ✅ 95 expert rules, 59 skills, 34 workflows
 - ✅ Full documentation suite
 
 ### v5.1.0 (Planned — Q2 2026)

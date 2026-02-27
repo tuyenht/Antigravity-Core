@@ -1,6 +1,6 @@
 # Antigravity-Core Architecture
 
-> **Version:** 5.0.0 | **Last Updated:** 2026-02-26
+> **Version:** 5.0.1 | **Last Updated:** 2026-02-27
 
 ---
 
@@ -27,7 +27,7 @@ Antigravity-Core is an **AI-Native Development Operating System** — a structur
 │  LAYER 3: PIPELINE CHAINS (pipelines/)                           │
 │  → Auto-sequence workflows + agents for end-to-end execution     │
 ├──────────────────────────────────────────────────────────────────┤
-│  ENGINE: 27 Agents │ 59 Skills │ 131 Rules │ 38 Workflows        │
+│  ENGINE: 27 Agents │ 59 Skills │ 95 Rules │ 34 Workflows          │
 │          20 Scripts │ Memory │ Standards │ Templates              │
 │  → Reference: reference-catalog.md (lazy-loaded)                 │
 └──────────────────────────────────────────────────────────────────┘
@@ -49,9 +49,9 @@ Antigravity-Core is an **AI-Native Development Operating System** — a structur
 │
 ├── pipelines/   (6)       ← Pipeline Chains (BUILD, ENHANCE, FIX, IMPROVE, SHIP, REVIEW)
 ├── agents/      (27)      ← Agent role definitions
-├── workflows/   (38)      ← Automated process definitions (used by pipelines)
+├── workflows/   (34)      ← Automated process definitions (used by pipelines)
 ├── skills/      (59)      ← Specialized knowledge modules
-├── rules/       (131)     ← Expert coding standards
+├── rules/       (95)      ← Expert coding standards
 ├── scripts/     (20)      ← PowerShell + Bash automation
 ├── systems/               ← Core protocols (Intent Router, RBA, orchestration, auto-discovery)
 ├── memory/                ← Persistent context & learning
@@ -76,10 +76,10 @@ Specialized AI personas, each with defined scope, skills, and responsibilities.
 | **Core Dev** | backend-specialist, frontend-specialist, laravel-specialist, mobile-developer | Code generation & architecture |
 | **Quality** | test-engineer, test-generator, ai-code-reviewer, debugger | Testing & code review |
 | **Security** | security-auditor, penetration-tester | Vulnerability assessment & hardening |
-| **Architecture** | database-architect, orchestrator, project-planner | System design & coordination |
+| **Architecture** | database-architect, orchestrator, project-planner, explorer-agent | System design, coordination & discovery |
 | **Operations** | devops-engineer, performance-optimizer, manager-agent | Deployment & optimization |
 | **Specialized** | game-designer, mobile-game-developer, pc-game-developer, seo-specialist | Domain-specific expertise |
-| **Automation** | self-correction-agent, triage-agent, refactor-agent, code-generator-agent, explorer-agent | Autonomous improvement |
+| **Automation** | self-correction-agent, triage-agent, refactor-agent, code-generator-agent | Autonomous improvement |
 | **Documentation** | documentation-agent, documentation-writer | Auto-sync docs |
 
 **Agent Relationships:**
@@ -103,7 +103,7 @@ Auto-sequenced end-to-end workflows triggered by the Intent Router.
 | `SHIP.md` | 🚀 Triển khai | Pre-flight → Build → Deploy → Post-deploy | security-auditor, devops-engineer |
 | `REVIEW.md` | 📋 Đánh giá | Scan (parallel) → Report → Action | ai-code-reviewer, security-auditor |
 
-### 3. Workflows (38 processes)
+### 3. Workflows (34 processes)
 
 Slash-command triggered automation pipelines. Also used internally by Pipeline Chains.
 
@@ -114,10 +114,10 @@ Slash-command triggered automation pipelines. Also used internally by Pipeline C
 | **Quality** | `/check`, `/test`, `/api-design` |
 | **Security** | `/security-audit`, `/secret-scanning` |
 | **Performance** | `/optimize`, `/auto-optimization-cycle`, `/performance-budget-enforcement` |
-| **Deployment** | `/deploy`, `/mobile-deploy`, `/mobile-init`, `/mobile-test` |
-| **Maintenance** | `/maintain`, `/debug`, `/quickfix`, `/auto-healing`, `/refactor`, `/migrate`, `/backup`, `/i18n-check` |
+| **Deployment** | `/deploy`, `/mobile-deploy`, `/mobile-test` |
+| **Maintenance** | `/maintain`, `/debug`, `/quickfix`, `/auto-healing`, `/refactor`, `/backup`, `/i18n-check` |
 | **Design** | `/ui-ux-pro-max`, `/update-ui-ux-pro-max`, `/admin-component`, `/admin-dashboard`, `/admin-settings` |
-| **System** | `/install-antigravity`, `/sync-admin` |
+| **System** | `/full-pipeline`, `/sync-admin` |
 
 ### 4. Skills (59 modules)
 
@@ -135,7 +135,7 @@ Self-contained knowledge domains with SKILL.md instruction files.
 | **Design** | ui-ux-pro-max, frontend-design |
 | **Meta** | clean-code, architecture-mastery, brainstorming, plan-writing, behavioral-modes |
 
-### 5. Rules (131 files, 11 categories)
+### 5. Rules (95 files, 11 categories)
 
 Expert-level coding standards auto-loaded by context detection.
 
@@ -148,9 +148,9 @@ Expert-level coding standards auto-loaded by context detection.
 | typescript/ | 13 | `.ts`, `.tsx` |
 | nextjs/ | 13 | `next.config.*` |
 | python/ | 14 | `.py`, requirements |
-| web-development/ | 14 | `.html`, `.css`, `.js` |
+| web-development/ | 2 | `.html`, `.css`, `.js` |
 | agentic-ai/ | 12 | Debug, test, review keywords |
-| standards/ | 25 | Always active (16 general + 9 framework) |
+| standards/ | 1 | Always active |
 | shared/ | 1 | Common utilities |
 
 ### 6. Memory System
@@ -179,7 +179,6 @@ Persistent YAML files that maintain context across sessions.
 | **Orchestration Engine** | `systems/orchestration-engine.md` | Automated agent selection & pipeline execution |
 | **Auto-Rule Discovery** | `systems/auto-rule-discovery.md` | Intelligent rule loading by project context |
 | **Agent Registry** | `systems/agent-registry.md` | Machine-readable 27-agent capability registry |
-| **STANDARDS** | `rules/STANDARDS.md` | Golden Rule — technical constitution |
 
 ---
 
@@ -189,13 +188,14 @@ When modifying any file below, **co-update ALL dependent files** listed.
 
 | When You Modify | Also Update |
 |-----------------|-------------|
-| An agent (`agents/*.md`) | `ARCHITECTURE.md` counts, `systems/agent-registry.md`, `GEMINI.md` agent list |
-| A skill (`skills/*/SKILL.md`) | `ARCHITECTURE.md` counts, referencing agent frontmatter |
-| A workflow (`workflows/*.md`) | `ARCHITECTURE.md` counts, `GEMINI.md` workflow list |
-| A rule (`rules/**/*.md`) | `ARCHITECTURE.md` counts, `rules/RULES-INDEX.md`, `systems/auto-rule-discovery.md` |
-| A script (`scripts/*.ps1`) | `ARCHITECTURE.md` counts, `GEMINI.md` script table |
-| `GEMINI.md` | `ARCHITECTURE.md` (if counts change) |
-| `ARCHITECTURE.md` | `CHANGELOG.md` (if version bump) |
+| An agent (`agents/*.md`) | `ARCHITECTURE.md` counts, `project.json` stats, `systems/agent-registry.md` |
+| A skill (`skills/*/SKILL.md`) | `ARCHITECTURE.md` counts, `project.json` stats, referencing agent frontmatter |
+| A workflow (`workflows/*.md`) | `ARCHITECTURE.md` counts, `project.json` stats |
+| A rule (`rules/**/*.md`) | `ARCHITECTURE.md` counts, `project.json` stats, `systems/auto-rule-discovery.md` |
+| A script (`scripts/*.ps1`) | `ARCHITECTURE.md` counts, `project.json` stats |
+| `GEMINI.md` | `ARCHITECTURE.md` (if structure changes) |
+| `ARCHITECTURE.md` | `CHANGELOG.md` (if version bump), `project.json` |
+| Any component count | `project.json` stats (single source of truth for counts) |
 
 ---
 
@@ -227,46 +227,37 @@ Pipeline Chain (pipelines/{INTENT}.md)
 Output (Code + Tests + Report)
 ```
 
-### Orchestration Workflow Diagram
+### v5.0 Pipeline Flow Diagram
 
 ```mermaid
 graph TD
-    A["🧠 User Request"] --> B{"Request Classifier<br/>(GEMINI.md)"}
-    B -->|QUESTION| C["Text Response"]
-    B -->|SIMPLE CODE| D["Inline Edit"]
-    B -->|COMPLEX CODE| E{"Socratic Gate<br/>(brainstorming skill)"}
-    
-    E -->|Unclear| F["Ask 3+ Questions"]
-    F --> E
-    E -->|Clear| G["project-planner<br/>4-Phase Workflow"]
-    
-    G --> H["Phase 1: ANALYSIS"]
-    H --> I["Phase 2: PLANNING<br/>→ task-slug.md"]
-    I --> J{"User Approval?"}
-    J -->|No| I
-    J -->|Yes| K["Phase 3: SOLUTIONING<br/>Architecture + Schema"]
-    
-    K --> L["orchestrator<br/>Agent Selection"]
-    L --> M["Parallel Execution"]
-    
-    M --> M1["database-architect"]
-    M --> M2["backend-specialist"]
-    M --> M3["frontend-specialist<br/>OR mobile-developer"]
-    M --> M4["security-auditor"]
-    M --> M5["test-engineer"]
-    
-    M1 & M2 & M3 & M4 & M5 --> N["Phase X: Verification"]
-    
-    N --> N1["P0: Security Scan"]
-    N1 --> N2["P1: Lint + Type Check"]
-    N2 --> N3["P2: UX Audit"]
-    N3 --> N4["P3: Lighthouse"]
-    N4 --> N5["P4: E2E Tests"]
-    
-    N5 --> O{"All Pass?"}
-    O -->|No| P["auto-healing / debugger"]
-    P --> M
-    O -->|Yes| Q["✅ Delivery"]
+    A["🧠 User Request"] --> B{"Intent Router<br/>(GEMINI.md § 1)"}
+    B -->|"🆕 BUILD"| C1["BUILD Pipeline"]
+    B -->|"➕ ENHANCE"| C2["ENHANCE Pipeline"]
+    B -->|"🔧 FIX"| C3["FIX Pipeline"]
+    B -->|"🔄 IMPROVE"| C4["IMPROVE Pipeline"]
+    B -->|"🚀 SHIP"| C5["SHIP Pipeline"]
+    B -->|"📋 REVIEW"| C6["REVIEW Pipeline"]
+    B -->|"Unclear"| Q["Ask max 2 questions"]
+    Q --> B
+
+    C1 & C2 & C3 & C4 & C5 & C6 --> D["Phase 0: Bootstrap"]
+    D --> E["Phase 1: Context / Discovery"]
+    E --> F["Phase 2: Planning / Design"]
+    F --> G{"User Approval?"}
+    G -->|"No"| F
+    G -->|"Yes"| H["Phase 3: Execution"]
+
+    H --> H1["Auto-select Agents"]
+    H --> H2["Auto-load Rules"]
+    H --> H3["Chain Workflows"]
+
+    H1 & H2 & H3 --> I["Phase 4: Verification"]
+    I --> J{"Quality Gates Pass?"}
+    J -->|"No"| K["auto-healing / debugger"]
+    K --> H
+    J -->|"Yes"| L["✅ Delivery"]
+    L --> M["PHASE FINAL: Learning"]
 ```
 
 ---
@@ -287,10 +278,10 @@ graph TD
 
 1. **This file** — System map
 2. **`GEMINI.md`** — AI behavior configuration
-3. **`roles/AGENT_ROLES.md`** — 7-role SDLC framework
-4. **`systems/agent-registry.md`** — 27-agent capability registry
-5. **`rules/STANDARDS.md`** — Quality standards (Golden Rule)
-6. **`INTEGRATION-GUIDE.md`** — Team onboarding
+3. **`pipelines/`** — 6 Pipeline Chains (v5.0 core)
+4. **`systems/intent-router.md`** — Request classification protocol
+5. **`systems/agent-registry.md`** — 27-agent capability registry
+6. **`reference-catalog.md`** — All lookup tables (lazy-loaded)
 
 ---
 

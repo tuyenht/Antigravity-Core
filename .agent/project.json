@@ -3,12 +3,12 @@
   "version": "5.0.0",
   "description": "AI-Native Development Operating System",
   "created": "2026-01-16",
-  "last_updated": "2026-02-26",
+  "last_updated": "2026-02-27",
   "foundation": {
     "standards": {
       "version": "5.0.0",
-      "file": "rules/STANDARDS.md",
-      "description": "Golden Rule - Technical Constitution"
+      "file": "rules/standards/",
+      "description": "Expert coding standards (11 categories)"
     },
     "rba": {
       "version": "1.0.0",
@@ -39,8 +39,8 @@
   },
   "agents": {
     "total": 27,
-    "template_version": "4.0.0",
-    "template_file": "templates/agent-template-v4.md",
+    "template_version": "5.0.0",
+    "template_file": "templates/agent-template.md",
     "compliance": {
       "standards_reference": true,
       "rba_protocol": true,
@@ -109,14 +109,14 @@
     "ci_cd_score": 45,
     "cross_platform_score": 55,
     "last_audit": "2026-02-26",
-    "audit_type": "Full System Audit v5.0.0 (27 agents, 59 skills, 38 workflows, 131 rules, 20 scripts, 6 pipelines verified)"
+    "audit_type": "Full System Audit v5.0.1 (27 agents, 59 skills, 34 workflows, 95 rules, 20 scripts, 6 pipelines verified)"
   },
   "stats": {
     "agents": 27,
     "skills": 59,
-    "workflows": 38,
+    "workflows": 34,
     "pipelines": 6,
-    "rules": 131,
+    "rules": 95,
     "scripts": 20,
     "systems": 6,
     "process_docs": 11,
