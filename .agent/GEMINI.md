@@ -108,7 +108,7 @@ Rules loaded automatically based on context. See `systems/auto-rule-discovery.md
 - **Deployment:** 5-Phase (Prepare, Backup, Deploy, Verify, Confirm/Rollback)
 
 ### Final Checklist Protocol
-**Trigger:** "final checks", "son kontrolleri yap", or end of pipeline
+**Trigger:** "final checks" or end of pipeline
 
 **Priority:** Security → Lint → Schema → Tests → UX → SEO → Lighthouse/E2E
 
@@ -168,7 +168,7 @@ Load framework standards ONLY when writing code for that framework. See `referen
 
 | Mode | Agent | Behavior |
 |------|-------|----------|
-| **plan** | `project-planner` | 4-phase methodology. NO CODE before Phase 4. |
+| **plan** | `project-planner` | Multi-phase pipeline methodology. NO CODE before execution phase. |
 | **ask** | — | Focus on understanding. Ask questions. |
 | **edit** | Via Intent Router | Classify → Pipeline → Execute |
 
@@ -184,12 +184,12 @@ When user uses a slash command directly, BYPASS Intent Router:
 /debug, /quickfix                → FIX pipeline
 /refactor, /optimize             → IMPROVE pipeline
 /deploy, /mobile-deploy          → SHIP pipeline
-/check, /code-review, /security-audit → REVIEW pipeline
+/check, /security-audit             → REVIEW pipeline
 /orchestrate                     → Orchestrator agent (manual)
 /full-pipeline                   → BUILD pipeline (full) → SHIP pipeline
 ```
 
-All 35+ workflows remain accessible via their original slash commands.
+All 34 workflows remain accessible via their original slash commands.
 
 ---
 

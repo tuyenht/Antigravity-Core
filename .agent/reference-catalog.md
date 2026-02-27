@@ -57,7 +57,7 @@
 
 ## 2. Expert Rules Auto-Activation
 
-### Rule Categories (131 Rules)
+### Rule Categories (95 Rules)
 
 | Category | Count | Path | Key Triggers |
 |----------|-------|------|--------------|

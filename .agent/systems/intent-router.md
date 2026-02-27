@@ -164,13 +164,12 @@ Khi user dùng slash command trực tiếp, BYPASS Intent Router và chạy work
 /optimize        → IMPROVE pipeline
 /deploy          → SHIP pipeline
 /check           → REVIEW pipeline
-/code-review     → REVIEW pipeline
 /security-audit  → REVIEW pipeline (security focus)
 /full-pipeline   → BUILD pipeline (full team mode)
 /orchestrate     → Orchestrator agent (manual multi-agent)
 ```
 
-All other workflows remain accessible via their original slash commands.
+All 34 workflows remain accessible via their original slash commands.
 
 ---
 
