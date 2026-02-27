@@ -46,7 +46,7 @@ Announcement → Warning Period → Deprecation → Removal
 ## [2.5.0] - 2026-06-01
 ### Deprecated
 - ⚠️ `workflow/old-security-scan.md` - Use `workflow/security-audit.md` instead
-  - Migration guide: docs/MIGRATION-GUIDES/security-workflow-v2-5.md
+  - Migration guide: see CHANGELOG.md entry for v2.5.0
   - Removal planned: v3.0.0 (December 2026)
 ```
 
@@ -81,7 +81,7 @@ Announcement → Warning Period → Deprecation → Removal
 ⚠️ **This workflow is deprecated and will be removed in v3.0.0**
 
 **Migration:** Use `security-audit.md` instead
-**Guide:** See docs/MIGRATION-GUIDES/security-workflow-v2-5.md
+**Guide:** See CHANGELOG.md entry for v2.5.0
 ```
 
 ---
@@ -99,7 +99,7 @@ Announcement → Warning Period → Deprecation → Removal
 - 🗑️ `workflow/old-security-scan.md` 
   - Deprecated since v2.5.0
   - Use `workflow/security-audit.md`
-  - Migration guide: docs/MIGRATION-GUIDES/security-workflow-v2-5.md
+  - Migration guide: see CHANGELOG.md entry for v2.5.0
 ```
 
 ---

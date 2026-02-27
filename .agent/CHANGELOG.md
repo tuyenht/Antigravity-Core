@@ -349,7 +349,7 @@ AFTER:  User → GEMINI.md (6KB) → Intent Router → 6 Pipelines → Auto-chai
 - **`VERSION`** file - Semantic versioning tracking
 - **`CHANGELOG.md`** - This file!
 - **`docs/DEPRECATION-POLICY.md`** - Governance for breaking changes
-- **`docs/MIGRATION-GUIDES/v1-to-v2.md`** - Zero-breaking-change upgrade guide
+- ~~`docs/MIGRATION-GUIDES/v1-to-v2.md`~~ — Archived (see v2.0 changelog above)
 
 #### Performance & Quality
 - **`benchmarks/performance-metrics.yml`** - Performance baseline tracking
@@ -425,7 +425,7 @@ AFTER:  User → GEMINI.md (6KB) → Intent Router → 6 Pipelines → Auto-chai
 ---
 
 ### Migration Guide
-See: `docs/MIGRATION-GUIDES/v1-to-v2.md` (if coming from v1.x)
+See v2.0 changelog entry above (migration guide archived)
 
 **No breaking changes for existing v1.x users - fully backward compatible.**
 

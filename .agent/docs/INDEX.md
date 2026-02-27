@@ -115,7 +115,6 @@ Existing documentation (pre-audit).
 | [DEPRECATION-POLICY.md](DEPRECATION-POLICY.md) | Deprecation policy |
 | [ROLLBACK-PROCEDURES.md](ROLLBACK-PROCEDURES.md) | Rollback procedures |
 | [TEAM_WORKFLOW.md](TEAM_WORKFLOW.md) | Team workflow guide |
-| [MIGRATION-GUIDES/](MIGRATION-GUIDES/) | Migration guides |
 | [adr/](adr/) | Architecture Decision Records |
 
 ---
