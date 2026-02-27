@@ -28,7 +28,7 @@ cd Antigravity-Core
 ├── rules/        ← 110 expert rules (11 categories)
 ├── pipelines/    ← 6 pipeline chains (BUILD, ENHANCE, FIX, IMPROVE, SHIP, REVIEW)
 ├── systems/      ← 5 core protocols (+ Intent Router)
-├── scripts/      ← 37 automation scripts (20 core + 17 skill scripts)
+├── scripts/      ← 19 automation scripts (15 PowerShell + 4 Bash)
 ├── docs/         ← Documentation
 └── GEMINI.md     ← Master config (entry point)
 ```
@@ -80,8 +80,7 @@ cd Antigravity-Core
 1. Create `.agent/rules/<category>/<rule-name>.md`
 2. Follow existing rule format in the category
 3. Add auto-activation triggers to `auto-rule-discovery.md`
-4. Update `RULES-INDEX.md`
-5. Update category count in `ARCHITECTURE.md`
+4. Update category count in `ARCHITECTURE.md`
 
 ### Adding a New Workflow
 
