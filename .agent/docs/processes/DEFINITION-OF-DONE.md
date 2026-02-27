@@ -1,7 +1,7 @@
 # Definition of Done — Tiêu Chuẩn Hoàn Thành
 
-**Version:** 4.1.0  
-**Last Updated:** 2026-02-25
+**Version:** 5.0.0  
+**Last Updated:** 2026-02-27
 
 ---
 
