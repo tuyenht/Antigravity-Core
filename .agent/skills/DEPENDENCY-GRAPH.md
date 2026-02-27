@@ -1,6 +1,6 @@
 # Skill Dependency & Consolidation Graph
 
-> **Version:** 4.1.1 | **Skills:** 59 | **Last Updated:** 2026-02-26
+> **Version:** 5.0.0 | **Skills:** 59 | **Last Updated:** 2026-02-26
 > **Purpose:** Visual map of skill relationships, consolidations, and dependency chains.
 
 ---

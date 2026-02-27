@@ -436,4 +436,4 @@ After Laravel changes:
 
 ---
 
-> **Note:** This agent loads Laravel-specific standards from `.agent/rules/standards/frameworks/laravel-conventions.md` and Inertia.js patterns from `inertia-react-conventions.md`. Follow these standards rigorously for best practice Laravel development.
+> **Note:** This agent loads Laravel-specific standards from `.agent/rules/backend-frameworks/laravel.md` and Inertia.js patterns from `inertia-react-conventions.md`. Follow these standards rigorously for best practice Laravel development.

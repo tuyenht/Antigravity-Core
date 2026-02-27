@@ -1,15 +1,15 @@
 ---
 technology: Django
-version: 5.0+
-last_updated: 2026-01-16
+version: 5.0.0
+last_updated: 2026-02-27
 official_docs: https://docs.djangoproject.com/
+priority: P1 - Load when Django detected
 ---
 
 # Django - Best Practices & Conventions
 
-**Version:** Django 5.0+  
-**Updated:** 2026-01-16  
-**Source:** Official Django docs + industry best practices
+> **Version:** 5.0.0 | **Updated:** 2026-02-27  
+> **Source:** Official Django docs + industry best practices
 
 ---
 
@@ -103,6 +103,29 @@ Product.objects.bulk_create([
 
 # ✅ Bulk update
 Product.objects.filter(active=False).update(status='archived')
+```
+
+---
+
+## Async Views (Django 5.0+)
+
+```python
+from django.http import JsonResponse
+from asgiref.sync import sync_to_async
+
+# ✅ Native async view
+async def product_list(request):
+    products = [p async for p in Product.objects.filter(active=True)]
+    return JsonResponse({'products': [p.name for p in products]})
+
+# ✅ Wrap sync ORM calls when needed
+@sync_to_async
+def get_products():
+    return list(Product.objects.select_related('category').all())
+
+async def async_view(request):
+    products = await get_products()
+    return JsonResponse({'count': len(products)})
 ```
 
 ---
@@ -371,6 +394,52 @@ ALLOWED_HOSTS = os.environ.get('ALLOWED_HOSTS', '').split(',')
 
 ---
 
+## Signals — Anti-Patterns
+
+```python
+# ❌ BAD — Business logic hidden in signals (invisible side effects)
+from django.db.models.signals import post_save
+
+@receiver(post_save, sender=Order)
+def send_notification(sender, instance, created, **kwargs):
+    if created:
+        send_email(instance.user.email)  # Hidden, hard to debug!
+
+# ✅ GOOD — Use explicit service layer
+class OrderService:
+    @staticmethod
+    def create_order(data: dict) -> Order:
+        order = Order.objects.create(**data)
+        NotificationService.send_order_confirmation(order)  # Explicit!
+        return order
+```
+
+**When signals ARE appropriate:** Cache invalidation, audit logging, denormalization.
+
+---
+
+## Celery Task Patterns
+
+```python
+from celery import shared_task
+
+@shared_task(bind=True, max_retries=3, default_retry_delay=60)
+def process_order(self, order_id: int):
+    """Async order processing with retry logic."""
+    try:
+        order = Order.objects.get(id=order_id)
+        order.process()
+    except Order.DoesNotExist:
+        pass  # Don't retry if order deleted
+    except Exception as exc:
+        self.retry(exc=exc, countdown=60 * (self.request.retries + 1))
+
+# ✅ Call from service layer
+process_order.delay(order_id=42)
+```
+
+---
+
 ## Anti-Patterns to Avoid
 
 ❌ **Logic in templates** → Move to views/services  
@@ -379,7 +448,9 @@ ALLOWED_HOSTS = os.environ.get('ALLOWED_HOSTS', '').split(',')
 ❌ **N+1 queries** → Use select_related/prefetch_related  
 ❌ **Raw SQL everywhere** → Use ORM  
 ❌ **No migrations** → Always create migrations  
-❌ **Hardcoded settings** → Use environment variables
+❌ **Hardcoded settings** → Use environment variables  
+❌ **Business logic in signals** → Use service layer  
+❌ **Sync views for I/O-heavy** → Use async views (Django 5.0+)
 
 ---
 

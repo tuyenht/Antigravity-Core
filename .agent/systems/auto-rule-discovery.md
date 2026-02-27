@@ -1,6 +1,6 @@
 # 🔍 Auto-Rule Discovery Engine
 
-> **Version:** 1.0.0 | **Updated:** 2026-02-10  
+> **Version:** 5.0.0 | **Updated:** 2026-02-27  
 > **Purpose:** Intelligent, automated rule loading based on project context  
 > **Priority:** P0 — Core system, loaded at session start
 
@@ -531,6 +531,6 @@ loaded:
 
 ---
 
-**Version:** 1.0.0  
-**System:** Antigravity-Core v4.0  
-**Created:** 2026-02-10
+**Version:** 5.0.0  
+**System:** Antigravity-Core v5.0.0  
+**Updated:** 2026-02-27

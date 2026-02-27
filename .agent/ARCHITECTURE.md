@@ -1,6 +1,6 @@
 # Antigravity-Core Architecture
 
-> **Version:** 4.1.1 | **Last Updated:** 2026-02-26
+> **Version:** 5.0.0 | **Last Updated:** 2026-02-26
 
 ---
 
@@ -8,22 +8,29 @@
 
 Antigravity-Core is an **AI-Native Development Operating System** — a structured framework of agents, skills, workflows, rules, and memory that operates as an intelligent development team.
 
+### 3-Layer "Zero-Confusion" Architecture (v5.0)
+
 ```
-┌─────────────────────────────────────────────────────────────────┐
-│                    ANTIGRAVITY-CORE (AI OS)                      │
-│                                                                  │
-│  ┌──────────┐  ┌──────────┐  ┌──────────┐  ┌──────────────────┐ │
-│  │  GEMINI  │  │  AGENTS  │  │  SKILLS  │  │     RULES        │ │
-│  │  .md     │──│  (27)    │──│  (59)    │──│     (131)        │ │
-│  │  (Entry) │  │          │  │          │  │                   │ │
-│  └───────┘  └───────┘  └───────┘  └───────────────┘ │
-│       │              │             │               │             │
-│       ▼              ▼             ▼               ▼             │
-│  ┌──────────┐  ┌──────────┐  ┌──────────┐  ┌──────────────────┐ │
-│  │ WORKFLOWS│  │  MEMORY  │  │ SCRIPTS  │  │   STANDARDS      │ │
-│  │  (38)    │  │  SYSTEM  │  │  (20)    │  │   & TEMPLATES    │ │
-│  └───────┘  └───────┘  └───────┘  └───────────────┘ │
-└──────────────────────────────────────────────────────────────┘
+┌──────────────────────────────────────────────────────────────────┐
+│  LAYER 1: GEMINI.md SLIM (~6KB)                                  │
+│  → Core Rules + Intent Router pointer + Lazy Load protocol       │
+├──────────────────────────────────────────────────────────────────┤
+│  LAYER 2: INTENT ROUTER (systems/intent-router.md)               │
+│  → Classify request → 1 of 6 intents → activate Pipeline Chain  │
+│                                                                   │
+│  ┌────────┐ ┌────────┐ ┌────────┐                                │
+│  │ BUILD  │ │ENHANCE │ │  FIX   │                                │
+│  ├────────┤ ├────────┤ ├────────┤                                │
+│  │IMPROVE │ │  SHIP  │ │ REVIEW │                                │
+│  └────────┘ └────────┘ └────────┘                                │
+├──────────────────────────────────────────────────────────────────┤
+│  LAYER 3: PIPELINE CHAINS (pipelines/)                           │
+│  → Auto-sequence workflows + agents for end-to-end execution     │
+├──────────────────────────────────────────────────────────────────┤
+│  ENGINE: 27 Agents │ 59 Skills │ 131 Rules │ 38 Workflows        │
+│          20 Scripts │ Memory │ Standards │ Templates              │
+│  → Reference: reference-catalog.md (lazy-loaded)                 │
+└──────────────────────────────────────────────────────────────────┘
 ```
 
 ---
@@ -32,22 +39,24 @@ Antigravity-Core is an **AI-Native Development Operating System** — a structur
 
 ```
 .agent/
-├── GEMINI.md              ← System entry point (AI reads this first)
+├── GEMINI.md              ← System entry point (SLIM ~6KB, AI reads this first)
+├── reference-catalog.md   ← All lookup tables (lazy-loaded, NOT read at start)
 ├── ARCHITECTURE.md        ← This file (system map)
 ├── CHANGELOG.md           ← Version history
 ├── INTEGRATION-GUIDE.md   ← Team onboarding
-├── VERSION                ← Semantic version (4.1.1)
+├── VERSION                ← Semantic version (5.0.0)
 ├── project.json           ← System metadata & metrics
 │
+├── pipelines/   (6)       ← Pipeline Chains (BUILD, ENHANCE, FIX, IMPROVE, SHIP, REVIEW)
 ├── agents/      (27)      ← Agent role definitions
-├── workflows/   (38)      ← Automated process definitions
+├── workflows/   (38)      ← Automated process definitions (used by pipelines)
 ├── skills/      (59)      ← Specialized knowledge modules
 ├── rules/       (131)     ← Expert coding standards
 ├── scripts/     (20)      ← PowerShell + Bash automation
+├── systems/               ← Core protocols (Intent Router, RBA, orchestration, auto-discovery)
 ├── memory/                ← Persistent context & learning
 ├── roles/                 ← 7-role SDLC framework
 ├── templates/             ← Agent & project templates
-├── systems/               ← Core protocols (RBA, coordination, orchestration engine, auto-discovery)
 ├── benchmarks/            ← Performance baselines
 ├── maintenance/           ← Scheduled tasks
 ├── examples/              ← RBA & CI/CD examples
@@ -81,15 +90,28 @@ Specialized AI personas, each with defined scope, skills, and responsibilities.
 | `security-auditor` ↔ `penetration-tester` | Defensive review (auditor) vs offensive testing (tester) |
 | `documentation-agent` ↔ `documentation-writer` | Automated sync (agent) vs user-requested writing (writer) |
 
-### 2. Workflows (38 processes)
+### 2. Pipeline Chains (6 automated flows) — **NEW in v5.0**
 
-Slash-command triggered automation pipelines.
+Auto-sequenced end-to-end workflows triggered by the Intent Router.
+
+| Pipeline | Intent | Phases | Key Agents |
+|----------|--------|--------|------------|
+| `BUILD.md` | 🆕 Tạo mới | Discovery → Planning → Scaffolding → Quality → Delivery | project-planner, backend/frontend-specialist |
+| `ENHANCE.md` | ➕ Thêm tính năng | Context → Design → Implement → Verify | explorer, project-planner, domain agent |
+| `FIX.md` | 🔧 Sửa lỗi | Reproduce → Diagnose → Fix → Verify | debugger, domain agent, test-engineer |
+| `IMPROVE.md` | 🔄 Cải thiện | Analyze → Plan → Execute → Verify | ai-code-reviewer, refactor-agent |
+| `SHIP.md` | 🚀 Triển khai | Pre-flight → Build → Deploy → Post-deploy | security-auditor, devops-engineer |
+| `REVIEW.md` | 📋 Đánh giá | Scan (parallel) → Report → Action | ai-code-reviewer, security-auditor |
+
+### 3. Workflows (38 processes)
+
+Slash-command triggered automation pipelines. Also used internally by Pipeline Chains.
 
 | Phase | Workflows |
 |-------|-----------|
 | **Planning** | `/brainstorm`, `/plan`, `/requirements-first`, `/orchestrate` |
 | **Development** | `/create`, `/create-admin`, `/scaffold`, `/schema-first`, `/enhance` |
-| **Quality** | `/check`, `/test`, `/code-review-automation`, `/api-design` |
+| **Quality** | `/check`, `/test`, `/api-design` |
 | **Security** | `/security-audit`, `/secret-scanning` |
 | **Performance** | `/optimize`, `/auto-optimization-cycle`, `/performance-budget-enforcement` |
 | **Deployment** | `/deploy`, `/mobile-deploy`, `/mobile-init`, `/mobile-test` |
@@ -97,7 +119,7 @@ Slash-command triggered automation pipelines.
 | **Design** | `/ui-ux-pro-max`, `/update-ui-ux-pro-max`, `/admin-component`, `/admin-dashboard`, `/admin-settings` |
 | **System** | `/install-antigravity`, `/sync-admin` |
 
-### 3. Skills (59 modules)
+### 4. Skills (59 modules)
 
 Self-contained knowledge domains with SKILL.md instruction files.
 
@@ -113,7 +135,7 @@ Self-contained knowledge domains with SKILL.md instruction files.
 | **Design** | ui-ux-pro-max, frontend-design |
 | **Meta** | clean-code, architecture-mastery, brainstorming, plan-writing, behavioral-modes |
 
-### 4. Rules (131 files, 11 categories)
+### 5. Rules (131 files, 11 categories)
 
 Expert-level coding standards auto-loaded by context detection.
 
@@ -131,7 +153,7 @@ Expert-level coding standards auto-loaded by context detection.
 | standards/ | 25 | Always active (16 general + 9 framework) |
 | shared/ | 1 | Common utilities |
 
-### 5. Memory System
+### 6. Memory System
 
 Persistent YAML files that maintain context across sessions.
 
@@ -146,10 +168,11 @@ Persistent YAML files that maintain context across sessions.
 | `experiments.yaml` | A/B testing data | System |
 | `predictive-improvements.yaml` | Proactive suggestions | System |
 
-### 6. Core Protocols
+### 7. Core Protocols
 
 | Protocol | File | Purpose |
 |----------|------|---------|
+| **Intent Router** | `systems/intent-router.md` | Universal request classification (v5.0) |
 | **RBA** | `systems/rba-validator.md` | Reasoning-Before-Action (mandatory for all agents) |
 | **AOC** | `agents/manager-agent.md` | Auto-Optimization Cycle |
 | **Agent Coordination** | `systems/agent-coordination.md` | Multi-agent coordination |
@@ -176,49 +199,32 @@ When modifying any file below, **co-update ALL dependent files** listed.
 
 ---
 
-## Data Flow
+## Data Flow (v5.0 — Zero-Confusion)
 
 ```
-User Request
+User Request (natural language)
     │
     ▼
-GEMINI.md (Entry Point)
+GEMINI.md SLIM (§ 1: Intent Router)
     │
-    ├── Classify Request Type
-    ├── Load Memory Context
-    ├── Check Capability Boundaries
-    │
-    ▼
-Auto-Rule Discovery Engine (systems/auto-rule-discovery.md)
-    │
-    ├── Layer 1: File Extension Scan
-    ├── Layer 2: Project Config Scan
-    ├── Layer 3: Request Keyword Analysis
-    ├── Merge, Rank & Resolve Dependencies
+    ├── Classify → 1 of 6 intents (BUILD/ENHANCE/FIX/IMPROVE/SHIP/REVIEW)
+    │                ↕ If unclear → Ask max 2 questions → re-classify
     │
     ▼
-Orchestration Engine (systems/orchestration-engine.md)
+Pipeline Chain (pipelines/{INTENT}.md)
     │
-    ├── Context Analysis (domain, complexity, scope)
-    ├── Agent Selection (via agent-registry.md)
-    ├── Conflict Resolution
-    │
-    ▼
-RBA Protocol (Reasoning-Before-Action)
-    │
-    ├── PROCEED → Execute with pipeline
-    ├── ESCALATE → Ask user
-    └── ALTERNATIVE → Suggest different approach
-    │
-    ▼
-Pipeline Execution (Sequential / Parallel / Conditional)
-    │
-    ├── Generate artifacts
-    ├── Run quality gates
-    ├── Update memory
+    ├── Phase 1: Context/Discovery
+    ├── Phase 2: Planning/Design
+    │     └── ⛔ Checkpoint (user approve if complex)
+    ├── Phase 3: Execution
+    │     ├── Auto-select Agents (via pipeline spec)
+    │     ├── Auto-load Rules (via auto-rule-discovery.md)
+    │     └── Chain existing workflows (/create, /scaffold, etc.)
+    ├── Phase 4: Verification
+    │     └── Tests + Lint + Quality gates
     │
     ▼
-Output (Code + Tests + Docs)
+Output (Code + Tests + Report)
 ```
 
 ### Orchestration Workflow Diagram

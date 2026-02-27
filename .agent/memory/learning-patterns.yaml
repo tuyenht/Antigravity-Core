@@ -211,3 +211,20 @@ continuous_improvement:
     - "Complete capability overhaul"
     - "Career progression check"
     - "Technology stack evolution"
+
+# =================================================================
+# PIPELINE SESSIONS (v5.0 Learning Loop)
+# Auto-populated by PHASE FINAL in each pipeline.
+# Each entry records what worked / what failed for evolution.
+# =================================================================
+pipeline_sessions:
+  # Example entry (pipelines append here):
+  # - date: "2026-02-26"
+  #   pipeline: "BUILD"
+  #   project: "my-app"
+  #   tech_stack: "Next.js"
+  #   what_worked: "Scaffold was fast, tests generated cleanly"
+  #   what_failed: "ESLint config conflicts with Prettier"
+  #   user_friction: "None"
+  #   time_taken: "25 min"
+  #   improvement_idea: "Auto-detect Prettier and adjust ESLint config"

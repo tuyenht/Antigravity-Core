@@ -2,8 +2,9 @@
 
 **Purpose:** Validate that agents follow Reasoning-Before-Action protocol
 
-**Version:** 1.0.0  
-**Location:** `.agent/systems/rba-validator.md`
+**Version:** 5.0.0  
+**Location:** `.agent/systems/rba-validator.md`  
+**Updated:** 2026-02-27
 
 ---
 
@@ -357,5 +358,7 @@ Retry with complete REASONING BLOCK.
 ---
 
 **Created:** 2026-01-17  
-**Version:** 1.0.0  
+**Updated:** 2026-02-27  
+**Version:** 5.0.0  
+**System:** Antigravity-Core v5.0.0  
 **Purpose:** Enforce RBA protocol compliance across all agents

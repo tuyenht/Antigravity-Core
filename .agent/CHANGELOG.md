@@ -7,6 +7,41 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ---
 
+## [5.0.0] - 2026-02-26
+
+### 🧭 Zero-Confusion Architecture — Intent Router + Pipeline Chains
+
+**Major architectural reorganization. All 27 agents, 59 skills, 131 rules, 38 workflows preserved.**
+
+---
+
+### Added
+
+- **Intent Router** (`systems/intent-router.md`) — Universal request classification into 6 intents (BUILD, ENHANCE, FIX, IMPROVE, SHIP, REVIEW)
+- **6 Pipeline Chains** (`pipelines/`) — Auto-sequenced end-to-end workflows:
+  - `BUILD.md` — Discovery → Planning → Scaffolding → Quality → Delivery
+  - `ENHANCE.md` — Context → Design → Implement → Verify
+  - `FIX.md` — Reproduce → Diagnose → Fix → Verify
+  - `IMPROVE.md` — Analyze → Plan → Execute → Verify
+  - `SHIP.md` — Pre-flight → Build → Deploy → Post-deploy
+  - `REVIEW.md` — Scan (parallel) → Report → Action
+- **Reference Catalog** (`reference-catalog.md`) — All lookup tables extracted from GEMINI.md for lazy loading
+
+### Changed
+
+- **GEMINI.md** — Restructured from 485 lines (22KB) to 186 lines (6.4KB). Core rules + Intent Router pointer only
+- **ARCHITECTURE.md** — New 3-layer diagram (GEMINI Slim → Intent Router → Pipeline Chains → Engine)
+- **project.json** — v5.0.0, added pipelines stats, intent_router foundation entry
+
+### Architecture
+
+```
+BEFORE: User → GEMINI.md (22KB) → 35 workflows (confusion)
+AFTER:  User → GEMINI.md (6KB) → Intent Router → 6 Pipelines → Auto-chain workflows
+```
+
+---
+
 ## [4.1.1] - 2026-02-26
 
 ### 🐛 Critical Version System Bug Fix
@@ -483,6 +518,7 @@ We follow [Semantic Versioning](https://semver.org/):
 
 ---
 
+[5.0.0]: https://github.com/tuyenht/Antigravity-Core/releases/tag/v5.0.0
 [4.1.1]: https://github.com/tuyenht/Antigravity-Core/releases/tag/v4.1.1
 [4.1.0]: https://github.com/tuyenht/Antigravity-Core/releases/tag/v4.1.0
 [4.0.1]: https://github.com/tuyenht/Antigravity-Core/releases/tag/v4.0.1

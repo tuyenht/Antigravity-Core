@@ -3,7 +3,7 @@
 > **AI-Native Development Operating System**  
 > Hệ Điều Hành Phát Triển Phần Mềm Thuần AI
 
-[![Version](https://img.shields.io/badge/version-4.1.1-blue.svg)](.agent/CHANGELOG.md)
+[![Version](https://img.shields.io/badge/version-5.0.0-blue.svg)](.agent/CHANGELOG.md)
 [![Agents](https://img.shields.io/badge/agents-27-brightgreen.svg)](.agent/docs/agents/AGENT-CATALOG.md)
 [![Skills](https://img.shields.io/badge/skills-59-orange.svg)](.agent/docs/skills/SKILL-CATALOG.md)
 [![Rules](https://img.shields.io/badge/rules-131-purple.svg)](.agent/docs/rules/RULES-CATALOG.md)
@@ -20,7 +20,7 @@
 
 ```mermaid
 graph TB
-    subgraph OS["ANTIGRAVITY-CORE (AI OS v4.1.1)"]
+    subgraph OS["ANTIGRAVITY-CORE (AI OS v5.0.0)"]
         direction TB
         A["27 Specialized Agents"]
         B["59 Knowledge Skills"]
@@ -236,15 +236,20 @@ User request →
 | **🚀 Deploy** | `/deploy`, `/mobile-deploy`, `/optimize`, `/check`, `/maintain`, `/migrate` |
 | **🎯 Multi-agent** | `/orchestrate`, `/debug` |
 
-### Typical Flow
+### Typical Flow (v5.0 — Pipeline Chains)
 
 ```
-/requirements-first  →  /plan  →  /schema-first  →  /scaffold
-        ↓                                                ↓
-  PRD Document                                    CRUD Modules
-        ↓                                                ↓
-    /enhance  →  /test  →  /code-review-automation  →  /deploy
+User Request → Intent Router → Pipeline tự động
+        │
+        ├── "Tạo dự án mới"      → BUILD Pipeline  (Phase 0→5 + FINAL)
+        ├── "Thêm tính năng"     → ENHANCE Pipeline (Phase 0→4 + FINAL)
+        ├── "Sửa lỗi"           → FIX Pipeline     (Phase 0→4 + FINAL)
+        ├── "Refactor/optimize"  → IMPROVE Pipeline
+        ├── "Deploy"             → SHIP Pipeline
+        └── "Review code"       → REVIEW Pipeline
 ```
+
+> Mỗi Pipeline tự chạy từ đầu đến cuối — không cần gọi thủ công từng workflow.
 
 **Chi tiết:** Xem [WORKFLOW-CATALOG.md](.agent/docs/workflows/WORKFLOW-CATALOG.md)
 
@@ -371,39 +376,89 @@ Rules tự động load dựa trên context:
 ### 1️⃣ Tạo dự án mới từ đầu
 
 ```
-Input:  Ý tưởng + 21 câu trả lời
-Output: PROJECT-BRIEF.md + TECH-STACK.md + GETTING-STARTED.md
-Time:   30-45 phút
-Agent:  project-planner → orchestrator
+Input:    Mô tả ý tưởng (ngôn ngữ tự nhiên)
+Pipeline: Intent Router → BUILD Pipeline (tự động 6 pha)
+
+Phase 0:  Bootstrap — tạo docs/PLAN.md, tasks/todo.md, tasks/lessons.md, README.md
+          + Smart PRD (nếu dự án phức tạp 3+ features → chain /requirements-first → docs/PRD.md)
+Phase 1:  Discovery — Smart Interview (tự chọn tầng theo complexity):
+          • Simple (2Q): chỉ hỏi loại app + MVP
+          • Moderate (7-10Q): business + tech + design
+          • Complex (26Q/7 categories): chain full structured interview
+Phase 2:  Planning — kế hoạch + schema + ⛔ CHECKPOINT (user approve)
+Phase 3:  Scaffolding — code + structure + tests
+Phase 4:  Quality — lint + test + security scan
+Phase 5:  Delivery — dev server + demo
+FINAL:    Learning Loop — ghi bài học vào learning-patterns.yaml
+
+Output:   docs/PLAN.md + docs/PRD.md (nếu complex) + Code + Tests + README.md
+Time:     15-45 phút (tùy complexity)
 ```
 
 ### 2️⃣ Tiếp nhận dự án Legacy
 
 ```
-Input:  Project path
-Output: PROJECT-BRIEF.md + CONVENTIONS.md + PERFORMANCE-RECOMMENDATIONS.md
-Time:   15-20 phút
-Agent:  explorer-agent → ai-code-reviewer
+Input:    Project path (mô tả yêu cầu hoặc chỉ cần mở project)
+Pipeline: Intent Router → ENHANCE/FIX Pipeline
+
+Phase 0:  Onboarding — 3-Tier Check:
+          • Chưa có docs    → CREATE: scan project + tạo docs/PLAN.md, tasks/todo.md, tasks/lessons.md
+          • Có docs nhưng chưa chuẩn → UPGRADE: hỏi user 1 lần + bổ sung + gắn compliance stamp
+          • Docs đã chuẩn   → SKIP: qua thẳng Phase 1
+Phase 1+: ENHANCE hoặc FIX pipeline (tùy yêu cầu)
+FINAL:    Learning Loop — ghi bài học
+
+Output:   docs/PLAN.md + tasks/todo.md + tasks/lessons.md + Code changes
+Time:     10-20 phút (onboarding) + thời gian feature/fix
 ```
 
 ### 3️⃣ Phát triển feature mới
 
 ```
-Input:  User Story từ backlog
-Output: Code + Tests + Docs (auto-generated)
-Time:   1-3 giờ/feature
-AI:     95% autonomous
-Pipeline: /plan → /enhance → /test → /code-review-automation
+Input:    Mô tả tính năng (ngôn ngữ tự nhiên hoặc User Story)
+Pipeline: Intent Router → ENHANCE Pipeline (tự động 5 pha)
+
+Phase 0:  Onboarding (skip nếu đã có docs)
+Phase 1:  Context — đọc project, hiểu kiến trúc hiện tại
+Phase 2:  Design — impact analysis + ⛔ CHECKPOINT
+Phase 3:  Implement — code + integration tests
+Phase 4:  Verify — tests + lint + quality gates
+FINAL:    Learning Loop
+
+Output:   Code + Tests + Change Summary (WHY/WHAT/IMPACT/RISK)
+Time:     1-3 giờ/feature
+AI:       95% autonomous
 ```
 
 ### 4️⃣ Deploy lên production
 
 ```
-Input:  Approved code
-Output: CI/CD + Docker + Production URL
-Time:   30 phút - 2 giờ
-Pipeline: /security-audit → /deploy → verify → confirm
+Input:    Approved code
+Pipeline: Intent Router → SHIP Pipeline (tự động 5 pha)
+
+Phase 1:  Pre-flight checks (tests, security scan)
+Phase 2:  Build + bundle
+Phase 3:  Deploy (staging → production)
+Phase 4:  Verify (health checks, smoke tests)
+Phase 5:  Confirm hoặc Rollback
+FINAL:    Learning Loop
+
+Output:   Production URL + deploy report
+Time:     30 phút - 2 giờ
 ```
+
+### 📄 Mapping tài liệu cũ → v5.0
+
+| Doc cũ (v3.x-v4.x) | Doc mới (v5.0) | Ghi chú |
+|---------------------|----------------|----------|
+| PROJECT-BRIEF.md | `docs/PLAN.md` | Gộp overview + goals + constraints |
+| TECH-STACK.md | `docs/PLAN.md → Tech Decisions` | Gộp vào section Tech Decisions |
+| GETTING-STARTED.md | `README.md` | Quick Start + Installation |
+| CONVENTIONS.md | Auto-loaded từ `rules/` | AI tự detect framework → load rules phù hợp |
+| PERFORMANCE-RECOMMENDATIONS.md | REVIEW Pipeline output | Tạo khi chạy `/check` hoặc REVIEW pipeline |
+| _(không có)_ | `docs/PRD.md` | **MỚI** — 9-section PRD cho dự án phức tạp |
+| _(không có)_ | `tasks/todo.md` | **MỚI** — Task tracking |
+| _(không có)_ | `tasks/lessons.md` | **MỚI** — Bài học rút ra |
 
 ---
 
@@ -453,29 +508,45 @@ Pipeline: /security-audit → /deploy → verify → confirm
 | Document | Mô tả |
 |----------|-------|
 | [PROJECT-BRIEF-SYSTEM.md](docs/PROJECT-BRIEF-SYSTEM.md) | Master guide cho project briefs |
-| [New-Project-Interview-Prompt.txt](docs/New-Project-Interview-Prompt.txt) | Prompt tạo dự án mới |
-| [Analyze-Existing-Project-Prompt.txt](docs/Analyze-Existing-Project-Prompt.txt) | Prompt phân tích dự án hiện có |
 | [deployment-guide.md](docs/deployment-guide.md) | Hướng dẫn triển khai step-by-step |
+
+### v5.0 Pipeline System
+
+| Document | Mô tả |
+|----------|-------|
+| [BUILD.md](.agent/pipelines/BUILD.md) | Pipeline tạo dự án mới (6 pha) |
+| [ENHANCE.md](.agent/pipelines/ENHANCE.md) | Pipeline thêm tính năng (5 pha) |
+| [FIX.md](.agent/pipelines/FIX.md) | Pipeline sửa lỗi (5 pha) |
+| [project-bootstrap.md](.agent/templates/project-bootstrap.md) | Template tài liệu dự án bắt buộc |
 
 ---
 
 ## 🗺️ ROADMAP
 
-### v4.1.1 ✅ (February 2026 — Current)
+### v5.0.0 ✅ (February 2026 — Current)
+
+- ✅ **Intent Router** — Entry point duy nhất, auto-classify mọi request
+- ✅ **6 Pipeline Chains** — BUILD, ENHANCE, FIX, IMPROVE, SHIP, REVIEW
+- ✅ **Project Bootstrap** — Auto-generate project docs (PHASE 0)
+- ✅ **Smart PRD** — Auto-detect complexity, chain /requirements-first
+- ✅ **Compliance Stamp** — 3-tier doc check (CREATE/UPGRADE/SKIP)
+- ✅ **Learning Loop** — PHASE FINAL tự ghi bài học mỗi pipeline
+- ✅ **Usage Tracking** — Pipeline metrics cho quarterly review
+- ✅ **GEMINI.md Slim** — Giảm 71% context footprint
+- ✅ **STANDARDS.md §9-10** — Context Window Discipline + Change Summary
+
+### v4.1.1 ✅ (February 2026)
 
 - ✅ Auto-Rule Discovery Engine (3-layer detection)
 - ✅ Agent Registry (27 specialized agents)
-- ✅ Orchestration Engine (automated pipelines)
-- ✅ 129 expert rules across 11 categories
-- ✅ Full documentation suite (14 catalog & process docs)
-- ✅ Expert audit: 6 critical issues found & fixed
+- ✅ 129 expert rules, 59 skills, 38 workflows
+- ✅ Full documentation suite
 
-### v4.2.0 (Planned — Q2 2026)
+### v5.1.0 (Planned — Q2 2026)
 
-- [ ] Plugin architecture for custom agents
+- [ ] True parallel agent execution (pending IDE support)
 - [ ] Skill marketplace
 - [ ] Analytics dashboard (DX metrics visualization)
-- [ ] ML/AI deployment standards
 - [ ] Multi-language CLI (bash + pwsh feature parity)
 
 ---
@@ -502,7 +573,7 @@ Proprietary — All rights reserved.
 ```
 ┌──────────────────────────────────────────────┐
 │                                              │
-│  27 Agents. 59 Skills. 129 Rules.            │
+│  27 Agents. 59 Skills. 129 Rules. 6 Pipelines.│
 │  Copy. Prompt. Build. Deploy.                │
 │  95% AI. 5% You.                             │
 │                                              │

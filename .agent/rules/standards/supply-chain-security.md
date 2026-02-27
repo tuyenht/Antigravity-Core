@@ -1,8 +1,8 @@
 # Supply Chain Security Guidelines
 
-**Version:** 1.0  
-**Updated:** 2026-01-16  
-**Scope:** Software Supply Chain Security
+> **Version:** 5.0.0 | **Updated:** 2026-02-27  
+> **Scope:** Software Supply Chain Security  
+> **Priority:** P1 - Load for dependency/security context
 
 ---
 
@@ -243,68 +243,30 @@ Before adding new dependency:
 
 ---
 
-## 8. Update Strategy
+## 8. SCA Tool Comparison
 
-### Semantic Versioning
+| Tool | Languages | CI Integration | SBOM | License Check | Cost |
+|------|-----------|---------------|------|---------------|------|
+| npm audit | Node.js | Native | ❌ | ❌ | Free |
+| Snyk | Multi | GitHub Action | ✅ | ✅ | Freemium |
+| Trivy | Multi | GitHub Action | ✅ | ✅ | Free |
+| OWASP Dep-Check | Java/Multi | CLI/CI | ❌ | ❌ | Free |
+| Grype | Multi | CLI/CI | ✅ | ❌ | Free |
+| pip-audit | Python | CLI/CI | ❌ | ❌ | Free |
+| composer audit | PHP | Native | ❌ | ❌ | Free |
 
+### Recommended Stack
 ```
-MAJOR.MINOR.PATCH
-  ^     ^     ^
-  |     |     └─ Bug fixes (safe)
-  |     └──── New features (review)
-  └────────── Breaking changes (test thoroughly)
-```
-
-### Automated Updates (Controlled)
-
-```yaml
-# Dependabot - only patch/minor
-version: 2
-updates:
-  - package-ecosystem: "npm"
-    versioning-strategy: increase-if-necessary
-    ignore:
-      - dependency-name: "*"
-        update-types: ["version-update:semver-major"]
+Node.js → npm audit + Snyk (CI)
+Python  → pip-audit + Trivy (CI)
+PHP     → composer audit + Snyk (CI)
+Docker  → Trivy (container scanning)
+Multi   → Snyk (unified dashboard)
 ```
 
 ---
 
-## 9. Incident Response
-
-### Vulnerability Response Plan
-
-```
-1. DETECT (automated alerts)
-   ↓
-2. ASSESS (severity, exploitability)
-   ↓
-3. PATCH (update dependency)
-   ↓
-4. TEST (regression testing)
-   ↓
-5. DEPLOY (emergency deployment if critical)
-   ↓
-6. VERIFY (confirm fix)
-   ↓
-7. DOCUMENT (postmortem)
-```
-
-### Emergency Patching
-
-```bash
-# Critical vulnerability detected
-npm audit fix --force  # Caution: may break things
-
-# Manual patch
-npm install package@safe-version
-npm test  # Critical: test before deploy
-git commit -m "security: patch CVE-2024-12345"
-```
-
----
-
-## 10. Security Checklist
+## 9. Security Checklist
 
 **Daily:**
 - [ ] Monitor Dependabot/Snyk alerts

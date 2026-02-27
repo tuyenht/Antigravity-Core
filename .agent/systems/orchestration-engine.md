@@ -1,6 +1,6 @@
 # 🎯 Agent Orchestration Engine
 
-> **Version:** 1.0.0 | **Updated:** 2026-02-10  
+> **Version:** 5.0.0 | **Updated:** 2026-02-27  
 > **Purpose:** Automated agent selection, pipeline execution, and conflict resolution  
 > **Priority:** P0 — Core system, read by orchestrator agent  
 > **Dependencies:** `auto-rule-discovery.md`, `agent-registry.md`
@@ -343,6 +343,6 @@ backwards_compatibility:
 
 ---
 
-**Version:** 1.0.0  
-**System:** Antigravity-Core v4.0  
-**Created:** 2026-02-10
+**Version:** 5.0.0  
+**System:** Antigravity-Core v5.0.0  
+**Updated:** 2026-02-27

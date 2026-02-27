@@ -1,8 +1,12 @@
 # 🤝 Agent Coordination Protocol
 
-**Version:** 1.0  
+**Version:** 5.0.0  
 **Purpose:** Resolve agent overlaps and conflicts  
-**Last Updated:** 2026-01-17
+**Last Updated:** 2026-02-27
+
+> [!NOTE]
+> For quick agent lookup by task/extension, see `agents/CAPABILITY-MATRIX.md`.
+> This file covers **coordination protocols** and **execution patterns**.
 
 ---
 
@@ -471,6 +475,6 @@ Track coordination efficiency:
 ---
 
 **Created:** 2026-01-17  
-**Updated:** 2026-02-12  
-**Version:** 1.1  
+**Updated:** 2026-02-27  
+**Version:** 5.0.0  
 **Purpose:** Define how 27 agents coordinate without conflicts

@@ -1,7 +1,8 @@
 # 📋 OUTPUT FILE STANDARDS
 
-**Version:** 2.0  
-**Antigravity-Core:** v4.1.1  
+**Version:** 5.0.0  
+**Antigravity-Core:** v5.0.0  
+**Updated:** 2026-02-27  
 **Purpose:** Chuẩn hóa tất cả files được sinh ra từ Antigravity-Core  
 **Usage:** Đảm bảo consistency và quality cho mọi output
 
@@ -19,6 +20,8 @@
 ## 📁 OUTPUT FILES BY PHASE
 
 ### Phase 1-2: Requirements (Business Analyst)
+
+> **Pipeline:** `pipelines/BUILD.md` Phase 1-2
 
 | File | Bắt buộc | Mô tả | Validation |
 |------|----------|-------|------------|
@@ -115,6 +118,8 @@
 ---
 
 ### Phase 3: Architecture (Solution Architect)
+
+> **Pipeline:** `pipelines/BUILD.md` Phase 2-3
 
 | File | Bắt buộc | Mô tả | Validation |
 |------|----------|-------|------------|
@@ -239,6 +244,8 @@ COMMENT ON TABLE users IS 'Application users';
 
 ### Phase 4: Planning (Project Manager)
 
+> **Pipeline:** `pipelines/BUILD.md` Phase 3
+
 | File | Bắt buộc | Mô tả | Validation |
 |------|----------|-------|------------|
 | `docs/backlog.md` | ✅ Yes | Product Backlog | Tất cả features covered |
@@ -280,6 +287,8 @@ COMMENT ON TABLE users IS 'Application users';
 ---
 
 ### Phase 5+: Implementation (Developers)
+
+> **Pipeline:** `pipelines/BUILD.md` Phase 4
 
 | File | Bắt buộc | Mô tả | Validation |
 |------|----------|-------|------------|
@@ -330,6 +339,8 @@ List all users
 
 ### QA Phase (QA Engineer)
 
+> **Pipeline:** `pipelines/BUILD.md` Phase 5 + `pipelines/REVIEW.md`
+
 | File | Bắt buộc | Mô tả | Validation |
 |------|----------|-------|------------|
 | `tests/e2e/**` | ✅ Yes | E2E tests | Critical paths covered |
@@ -338,6 +349,8 @@ List all users
 ---
 
 ### Deployment Phase (DevOps Engineer)
+
+> **Pipeline:** `pipelines/SHIP.md`
 
 | File | Bắt buộc | Mô tả | Validation |
 |------|----------|-------|------------|
@@ -413,7 +426,7 @@ Thêm vào Minimal:
 
 ---
 
-**Version:** 2.0  
+**Version:** 5.0.0  
 **Created:** 2026-01-31  
-**Updated:** 2026-02-25  
+**Updated:** 2026-02-27  
 **Status:** ✅ Production Ready

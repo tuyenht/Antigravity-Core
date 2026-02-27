@@ -1,6 +1,6 @@
 # 🤖 Agent Registry
 
-> **Version:** 1.0.0 | **Updated:** 2026-02-10  
+> **Version:** 5.0.0 | **Updated:** 2026-02-27  
 > **Purpose:** Machine-readable capability registry for all 27 agents  
 > **Priority:** P0 — Required by Orchestration Engine
 
@@ -561,6 +561,6 @@ FUNCTION selectAgents(request, projectContext, discoveredRules):
 
 ---
 
-**Version:** 1.0.0  
-**System:** Antigravity-Core v4.0  
-**Created:** 2026-02-10
+**Version:** 5.0.0  
+**System:** Antigravity-Core v5.0.0  
+**Updated:** 2026-02-27

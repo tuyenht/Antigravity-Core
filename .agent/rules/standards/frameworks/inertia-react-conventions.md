@@ -1,15 +1,15 @@
 ---
 technology: Inertia.js + React
-version: Inertia 2.x + React 19
-last_updated: 2026-01-16
+version: 5.0.0
+last_updated: 2026-02-27
 official_docs: https://inertiajs.com
+priority: P1 - Load when Inertia + React detected
 ---
 
 # Inertia.js + React + TypeScript - Best Practices
 
-**Stack:** Inertia.js + React + TypeScript  
-**Updated:** 2026-01-16  
-**Source:** Official Inertia.js docs + React best practices
+> **Version:** 5.0.0 | **Updated:** 2026-02-27  
+> **Stack:** Inertia.js 2.x + React 19 + TypeScript
 
 ---
 
@@ -469,7 +469,11 @@ export default function Posts({ posts }: PaginatedProps) {
 ❌ **Not typing page props**  
 ❌ **Full page reloads instead of partial**  
 ❌ **Ignoring preserveScroll**  
-❌ **Not handling form errors**
+❌ **Not handling form errors**  
+❌ **No code splitting** → Split routes and heavy components  
+❌ **Large bundle sizes** → Analyze and optimize  
+❌ **Unnecessary re-renders** → Use React 19 compiler  
+❌ **Not using Suspense** → Improves perceived performance
 
 ---
 
@@ -495,7 +499,7 @@ declare module '@inertiajs/core' {
 
 ---
 
-## Performance Optimization
+## Advanced Performance (React 19 + Vite)
 
 ### React 19 Compiler (Automatic Memoization!)
 

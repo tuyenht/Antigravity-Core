@@ -75,6 +75,33 @@ Run:
 - [ ] External validation against industry standards
 - [ ] Trend analysis (3 months)
 
+#### 4B. $([char]0x1F9EC) Quarterly Evolution Review (v5.0)
+
+**Data-driven self-improvement based on real usage.**
+
+**Step 1: Usage Analysis**
+- [ ] Read `project.json -> usage_tracking.pipelines_used` -> Rank by usage
+- [ ] Read `memory/learning-patterns.yaml` -> Extract recurring patterns
+- [ ] Identify: Most/least used pipelines, agents, skills
+
+**Step 2: Component Review**
+- [ ] List skills loaded 0 times in 3 months -> Candidate for archive
+- [ ] List rules with 0 auto-discovery matches -> Candidate for archive
+- [ ] Identify overlapping skills/workflows -> Candidate for merge
+
+**Step 3: Pipeline Refinement**
+- [ ] Review `learning-patterns.yaml` for recurring `what_failed` -> Fix
+- [ ] Review `user_friction` entries -> Simplify those steps
+- [ ] Adjust checkpoint frequency based on user feedback
+
+**Step 4: Generate Evolution Report**
+Save to: `.agent/maintenance/reports/YYYY-QX-evolution.md`
+
+**Step 5: Reset & Plan**
+- [ ] Reset `usage_tracking.pipelines_used` counters to 0
+- [ ] Update `quarterly_review_due` in `project.json`
+- [ ] Archive learning-patterns entries to `memory/archive/`
+
 ### 5. Document Results
 
 Create maintenance report:
