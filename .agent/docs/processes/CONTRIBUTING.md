@@ -1,7 +1,7 @@
 # Contributing — Hướng dẫn đóng góp
 
-**Version:** 4.1.0  
-**Last Updated:** 2026-02-25
+**Version:** 5.0.0  
+**Last Updated:** 2026-02-27
 
 ---
 
@@ -25,10 +25,11 @@ cd Antigravity-Core
 ├── agents/       ← 27 agent definitions (frontmatter + rules)
 ├── skills/       ← 59 knowledge modules (SKILL.md + scripts/)
 ├── workflows/    ← 38 slash command workflows
-├── rules/        ← 129 expert rules (11 categories)
+├── rules/        ← 131 expert rules (11 categories)
+├── pipelines/    ← 6 pipeline chains (BUILD, ENHANCE, FIX, IMPROVE, SHIP, REVIEW)
+├── systems/      ← 5 core protocols (+ Intent Router)
 ├── scripts/      ← 20 automation scripts
-├── systems/      ← 5 core protocols
-├── docs/         ← Documentation (you are here)
+├── docs/         ← Documentation
 └── GEMINI.md     ← Master config (entry point)
 ```
 
@@ -56,7 +57,7 @@ cd Antigravity-Core
    ```
 3. Include sections: Role, Reasoning-Before-Action, Workflow, When to Use
 4. Update `ARCHITECTURE.md` agent count
-5. Update `agent-registry.md` entries
+5. Update `project.json` → `component_counts.agents`
 6. Create PR with test evidence
 
 ### Adding a New Skill
@@ -72,6 +73,7 @@ cd Antigravity-Core
 3. Optionally add `scripts/`, `examples/`, `resources/`
 4. Reference skill in relevant agent frontmatter
 5. Update `ARCHITECTURE.md` skill count
+6. Update `project.json` → `component_counts.skills`
 
 ### Adding a New Rule
 
@@ -91,42 +93,26 @@ cd Antigravity-Core
    ---
    [Step-by-step instructions]
    ```
-3. Update `GEMINI.md` workflow list
-4. Update `ARCHITECTURE.md` workflow count
+3. Update `ARCHITECTURE.md` workflow count
+4. Update `project.json` → `component_counts.workflows`
 
 ---
 
 ## Quality Standards
 
 - [ ] All counts in `ARCHITECTURE.md` accurate
+- [ ] `project.json` component counts updated
 - [ ] Cross-references in `GEMINI.md` valid
 - [ ] No broken file paths
 - [ ] Frontmatter format consistent
-- [ ] `agent.ps1 health` passes after changes
+- [ ] `CHANGELOG.md` entry added
 
 ---
 
-## Pull Request Template
+## Pull Request
 
-```markdown
-## Description
-Brief description of changes
-
-## Type
-- [ ] New Agent
-- [ ] New Skill
-- [ ] New Rule
-- [ ] New Workflow
-- [ ] Bug Fix
-- [ ] Documentation
-
-## Checklist
-- [ ] ARCHITECTURE.md counts updated
-- [ ] health-check passes
-- [ ] No broken references
-- [ ] Documentation updated
-```
+PR template is auto-applied by [`.github/PULL_REQUEST_TEMPLATE.md`](../../.github/PULL_REQUEST_TEMPLATE.md). No need to copy-paste.
 
 ---
 
-> **See also:** [Architecture](../../ARCHITECTURE.md) | [CHANGELOG](../../CHANGELOG.md)
+> **See also:** [Architecture](../../ARCHITECTURE.md) | [CHANGELOG](../../CHANGELOG.md) | [Branching Strategy](./BRANCHING-STRATEGY.md) | [Definition of Done](./DEFINITION-OF-DONE.md)
