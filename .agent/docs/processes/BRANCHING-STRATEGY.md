@@ -136,7 +136,7 @@ git branch -d release/v2.1.0
 
 ```
 ✅ /auto-healing           → Lint & type errors fixed
-✅ /check                     → AI code review passed
+✅ /check                  → AI code review passed
 ✅ /test                   → All tests passing
 ✅ /secret-scanning        → No secrets in code
 ✅ Conventional commit messages
