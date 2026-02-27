@@ -57,7 +57,7 @@
 
 ## 2. Expert Rules Auto-Activation
 
-### Rule Categories (95 Rules)
+### Rule Categories (108 Rules)
 
 | Category | Count | Path | Key Triggers |
 |----------|-------|------|--------------|
@@ -70,8 +70,8 @@
 | **Python** | 14 | `rules/python/` | .py, fastapi, flask, ai, ml, data, automation |
 | **TypeScript** | 13 | `rules/typescript/` | .ts, .tsx, typescript, generics, monorepo |
 | **Web Dev** | 12 | `rules/web-development/` | html, css, javascript, accessibility, pwa |
-| **Standards (General)** | 16 | `rules/standards/` | code quality, security, testing, ci/cd |
-| **Standards (Framework)** | 9 | `rules/standards/frameworks/` | laravel, nextjs, flutter, vue3 conventions |
+| **Standards (General)** | 1 | `rules/standards/` | supply-chain security |
+| **Standards (Framework)** | 3 | `rules/standards/frameworks/` | nextjs, inertia, django conventions |
 | **Shared** | 1 | `rules/shared/` | common utilities |
 
 ### File Extension → Rule Mapping

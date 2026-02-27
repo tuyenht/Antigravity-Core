@@ -109,14 +109,14 @@
     "ci_cd_score": 45,
     "cross_platform_score": 55,
     "last_audit": "2026-02-26",
-    "audit_type": "Full System Audit v5.0.1 (27 agents, 59 skills, 34 workflows, 95 rules, 20 scripts, 6 pipelines verified)"
+    "audit_type": "Full System Audit v5.0.1 (27 agents, 59 skills, 34 workflows, 108 rules, 20 scripts, 6 pipelines verified)"
   },
   "stats": {
     "agents": 27,
     "skills": 59,
     "workflows": 34,
     "pipelines": 6,
-    "rules": 95,
+    "rules": 108,
     "scripts": 20,
     "systems": 6,
     "process_docs": 11,

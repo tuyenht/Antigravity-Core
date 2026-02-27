@@ -11,7 +11,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ### 🧭 Zero-Confusion Architecture — Intent Router + Pipeline Chains
 
-**Major architectural reorganization. All 27 agents, 59 skills, 95 rules, 34 workflows preserved.**
+**Major architectural reorganization. All 27 agents, 59 skills, 108 rules, 34 workflows preserved.**
 
 ---
 

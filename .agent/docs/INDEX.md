@@ -148,5 +148,5 @@ Existing documentation (pre-audit).
 ---
 
 > **Antigravity-Core v5.0.0** — AI-Native Development OS  
-> 27 agents • 59 skills • 34 workflows • 95 rules • 20 scripts • 6 protocols  
+> 27 agents • 59 skills • 34 workflows • 108 rules • 20 scripts • 6 protocols  
 > [GitHub](https://github.com/tuyenht/Antigravity-Core)

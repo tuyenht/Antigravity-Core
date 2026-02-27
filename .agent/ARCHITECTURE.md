@@ -27,7 +27,7 @@ Antigravity-Core is an **AI-Native Development Operating System** — a structur
 │  LAYER 3: PIPELINE CHAINS (pipelines/)                           │
 │  → Auto-sequence workflows + agents for end-to-end execution     │
 ├──────────────────────────────────────────────────────────────────┤
-│  ENGINE: 27 Agents │ 59 Skills │ 95 Rules │ 34 Workflows          │
+│  ENGINE: 27 Agents │ 59 Skills │ 108 Rules │ 34 Workflows         │
 │          20 Scripts │ Memory │ Standards │ Templates              │
 │  → Reference: reference-catalog.md (lazy-loaded)                 │
 └──────────────────────────────────────────────────────────────────┘
@@ -50,7 +50,7 @@ Antigravity-Core is an **AI-Native Development Operating System** — a structur
 ├── agents/      (27)      ← Agent role definitions
 ├── workflows/   (34)      ← Automated process definitions (used by pipelines)
 ├── skills/      (59)      ← Specialized knowledge modules
-├── rules/       (95)      ← Expert coding standards
+├── rules/       (108)     ← Expert coding standards
 ├── scripts/     (20)      ← PowerShell + Bash automation
 ├── systems/               ← Core protocols (Intent Router, RBA, orchestration, auto-discovery)
 ├── memory/                ← Persistent context & learning
@@ -134,7 +134,7 @@ Self-contained knowledge domains with SKILL.md instruction files.
 | **Design** | ui-ux-pro-max, frontend-design |
 | **Meta** | clean-code, architecture-mastery, brainstorming, plan-writing, behavioral-modes |
 
-### 5. Rules (95 files, 11 categories)
+### 5. Rules (108 files, 11 categories)
 
 Expert-level coding standards auto-loaded by context detection.
 
@@ -147,9 +147,9 @@ Expert-level coding standards auto-loaded by context detection.
 | typescript/ | 13 | `.ts`, `.tsx` |
 | nextjs/ | 13 | `next.config.*` |
 | python/ | 14 | `.py`, requirements |
-| web-development/ | 2 | `.html`, `.css`, `.js` |
+| web-development/ | 12 | `.html`, `.css`, `.js` |
 | agentic-ai/ | 12 | Debug, test, review keywords |
-| standards/ | 1 | Always active |
+| standards/ | 4 | Always active (1 general + 3 framework conventions) |
 | shared/ | 1 | Common utilities |
 
 ### 6. Memory System

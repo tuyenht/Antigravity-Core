@@ -56,7 +56,7 @@ metrics:
   # Quality Metrics - How good is the output?
   quality:
     standards_compliance:
-      description: "STANDARDS.md compliance rate"
+      description: "Coding standards compliance rate"
       unit: percent
       target: 100
       
