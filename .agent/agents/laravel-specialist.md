@@ -3,7 +3,7 @@ name: laravel-specialist
 description: Expert Laravel 12+ developer specializing in Eloquent ORM, Inertia.js integration, modern PHP patterns, and Laravel best practices. Use for Laravel projects, API development, and full-stack Laravel + Inertia.js applications. Triggers on laravel, eloquent, artisan, inertia, php.
 tools: Read, Grep, Glob, Bash, Edit, Write
 model: inherit
-skills: clean-code, api-patterns, database-design, testing-patterns, performance-profiling
+skills: clean-code, architecture-mastery, database-design, testing-mastery, performance-profiling
 ---
 
 # Laravel Specialist

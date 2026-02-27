@@ -1,7 +1,7 @@
 # Agent Catalog — Antigravity-Core
 
-**Version:** 4.1.0  
-**Last Updated:** 2026-02-25  
+**Version:** 5.0.0  
+**Last Updated:** 2026-02-27  
 **Total Agents:** 27
 
 ---
@@ -22,7 +22,7 @@ Antigravity-Core sử dụng **27 specialized agents** — mỗi agent là một
 
 1. **Single Responsibility** — Mỗi agent chỉ xử lý domain riêng
 2. **RBA Protocol** — Reasoning-Before-Action bắt buộc trước mọi thay đổi code
-3. **STANDARDS.md Compliance** — Tất cả agents phải tuân thủ Golden Rule
+3. **Clean Code Compliance** — Tất cả agents load `clean-code` skill bắt buộc
 4. **Skill Loading** — Agents tự động load skills cần thiết từ frontmatter
 
 ---
@@ -50,7 +50,7 @@ Antigravity-Core sử dụng **27 specialized agents** — mỗi agent là một
 |-------|-------|
 | **Vai trò** | Multi-agent coordination và task orchestration |
 | **Khi nào dùng** | Task phức tạp cần nhiều agents phối hợp (security + backend + frontend + testing) |
-| **Skills** | `clean-code`, `parallel-agents`, `behavioral-modes`, `plan-writing`, `brainstorming`, `architecture`, `powershell-windows`, `bash-linux` |
+| **Skills** | `clean-code`, `parallel-agents`, `behavioral-modes`, `plan-writing`, `brainstorming`, `architecture-mastery`, `powershell-windows`, `bash-linux` |
 | **Tools** | Read, Grep, Glob, Bash, Write, Edit, Agent |
 | **Đặc biệt** | Agent duy nhất có tool `Agent` — có thể invoke agents khác |
 
@@ -107,7 +107,7 @@ Antigravity-Core sử dụng **27 specialized agents** — mỗi agent là một
 | **Vai trò** | Expert Laravel 12+ — Eloquent, Inertia.js, modern PHP |
 | **Khi nào dùng** | Laravel projects, Laravel API, Inertia.js full-stack |
 | **Triggers** | `laravel`, `eloquent`, `artisan`, `inertia`, `php` |
-| **Skills** | `clean-code`, `api-patterns`, `database-design`, `testing-patterns`, `performance-profiling` |
+| **Skills** | `clean-code`, `architecture-mastery`, `database-design`, `testing-mastery`, `performance-profiling` |
 | **Tools** | Read, Grep, Glob, Bash, Edit, Write |
 
 ---
@@ -130,7 +130,7 @@ Antigravity-Core sử dụng **27 specialized agents** — mỗi agent là một
 | **Vai trò** | Expert database — schema design, query optimization, migrations |
 | **Khi nào dùng** | Database operations, schema changes, indexing, data modeling |
 | **Triggers** | `database`, `sql`, `schema`, `migration`, `query`, `postgres`, `index` |
-| **Skills** | `clean-code`, `database-design`, `prisma-expert`, `api-patterns`, `performance-profiling`, `nosql-patterns`, `microservices-communication`, `vector-databases` |
+| **Skills** | `clean-code`, `database-design`, `prisma-expert`, `architecture-mastery`, `performance-profiling`, `nosql-patterns`, `vector-databases` |
 | **Tools** | Read, Grep, Glob, Bash, Edit, Write |
 
 ---
@@ -152,7 +152,7 @@ Antigravity-Core sử dụng **27 specialized agents** — mỗi agent là một
 | **Vai trò** | Offensive security — red team, vulnerability exploitation |
 | **Khi nào dùng** | Active exploitation testing, attack simulation, red team exercises |
 | **Triggers** | `pentest`, `exploit`, `attack`, `hack`, `breach`, `redteam`, `offensive` |
-| **Skills** | `clean-code`, `vulnerability-scanner`, `red-team-tactics`, `api-patterns`, `database-design`, `performance-profiling` |
+| **Skills** | `clean-code`, `vulnerability-scanner`, `red-team-tactics`, `architecture-mastery`, `database-design`, `performance-profiling` |
 | **Tools** | Read, Grep, Glob, Bash, Edit, Write |
 
 ---
@@ -194,7 +194,7 @@ Antigravity-Core sử dụng **27 specialized agents** — mỗi agent là một
 |-------|-------|
 | **Vai trò** | Auto-detect và fix code errors (lint, tests, types) |
 | **Khi nào dùng** | Tự động trigger khi có lint/type/test failures. Max 3 iterations |
-| **Skills** | `clean-code`, `testing-patterns`, `systematic-debugging` |
+| **Skills** | `clean-code`, `testing-mastery`, `systematic-debugging` |
 | **Tools** | Read, Grep, Bash, Edit, Write |
 
 ---
@@ -236,7 +236,7 @@ Antigravity-Core sử dụng **27 specialized agents** — mỗi agent là một
 | **Vai trò** | Performance optimization, profiling, Core Web Vitals |
 | **Khi nào dùng** | Speed improvement, bundle size reduction, runtime optimization |
 | **Triggers** | `performance`, `optimize`, `speed`, `slow`, `memory`, `lighthouse` |
-| **Skills** | `clean-code`, `performance-profiling`, `database-design`, `api-patterns`, `react-patterns`, `monitoring-observability` |
+| **Skills** | `clean-code`, `performance-profiling`, `database-design`, `architecture-mastery`, `react-patterns`, `monitoring-observability` |
 | **Tools** | Read, Grep, Glob, Bash, Edit, Write |
 
 ---
@@ -256,7 +256,7 @@ Antigravity-Core sử dụng **27 specialized agents** — mỗi agent là một
 |-------|-------|
 | **Vai trò** | Technical documentation expert |
 | **Khi nào dùng** | KHI user yêu cầu cụ thể (README, API docs, changelog). Không auto-invoke |
-| **Skills** | `clean-code`, `documentation-templates`, `architecture`, `api-patterns`, `plan-writing` |
+| **Skills** | `clean-code`, `documentation-templates`, `architecture-mastery`, `plan-writing` |
 | **Tools** | Read, Grep, Glob, Bash, Edit, Write |
 
 ---
@@ -287,7 +287,7 @@ Antigravity-Core sử dụng **27 specialized agents** — mỗi agent là một
 |-------|-------|
 | **Vai trò** | Advanced codebase discovery, deep architectural analysis |
 | **Khi nào dùng** | Initial audits, refactoring plans, deep investigation |
-| **Skills** | `clean-code`, `architecture`, `plan-writing`, `brainstorming`, `systematic-debugging` |
+| **Skills** | `clean-code`, `architecture-mastery`, `plan-writing`, `brainstorming`, `systematic-debugging` |
 | **Tools** | Read, Grep, Glob, Bash, ViewCodeItem, FindByName |
 | **Đặc biệt** | Có tools đặc biệt `ViewCodeItem` và `FindByName` cho deep analysis |
 
@@ -309,7 +309,7 @@ Antigravity-Core sử dụng **27 specialized agents** — mỗi agent là một
 | **Vai trò** | Game Design Lead — mechanics, multiplayer, art direction, audio |
 | **Khi nào dùng** | Game design, gameplay balancing, player experience |
 | **Triggers** | `game design`, `gameplay`, `mechanics`, `multiplayer`, `level design` |
-| **Skills** | `clean-code`, `game-development`, `plan-writing`, `brainstorming`, `architecture` |
+| **Skills** | `clean-code`, `game-development`, `plan-writing`, `brainstorming`, `architecture-mastery` |
 | **Tools** | Read, Grep, Glob, Bash, Edit, Write |
 
 ---
