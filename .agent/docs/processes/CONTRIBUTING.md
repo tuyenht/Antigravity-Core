@@ -24,11 +24,11 @@ cd Antigravity-Core
 .agent/
 ├── agents/       ← 27 agent definitions (frontmatter + rules)
 ├── skills/       ← 59 knowledge modules (SKILL.md + scripts/)
-├── workflows/    ← 38 slash command workflows
-├── rules/        ← 108 expert rules (11 categories)
+├── workflows/    ← 34 slash command workflows
+├── rules/        ← 110 expert rules (11 categories)
 ├── pipelines/    ← 6 pipeline chains (BUILD, ENHANCE, FIX, IMPROVE, SHIP, REVIEW)
 ├── systems/      ← 5 core protocols (+ Intent Router)
-├── scripts/      ← 20 automation scripts
+├── scripts/      ← 37 automation scripts (20 core + 17 skill scripts)
 ├── docs/         ← Documentation
 └── GEMINI.md     ← Master config (entry point)
 ```

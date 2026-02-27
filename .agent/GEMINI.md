@@ -151,16 +151,12 @@ After EVERY pipeline completes, you MUST execute the **PHASE FINAL** defined at 
 
 ## § 7. FRAMEWORK AUTO-DETECTION
 
-Detect project type from config files at project root:
+Detect project type from config files at project root → auto-select agent + load rules.
 
-| Config File | Framework | Standards |
-|------------|-----------|-----------|
-| `composer.json` + laravel | Laravel | `rules/backend-frameworks/laravel.md` |
-| `package.json` + next | Next.js | `rules/nextjs/app-router.md` + `rules/standards/frameworks/nextjs-conventions.md` |
-| `package.json` + react + inertia | Laravel+Inertia+React | Both Laravel + Inertia conventions |
-| `pubspec.yaml` | Flutter | `rules/mobile/flutter.md` |
+**Full routing table (10 frameworks):** See `reference-catalog.md` § 4.
+**Rule loading engine:** See `systems/auto-rule-discovery.md`.
 
-Load framework standards ONLY when writing code for that framework. See `reference-catalog.md` for full mapping.
+Load framework standards ONLY when writing code for that framework.
 
 ---
 

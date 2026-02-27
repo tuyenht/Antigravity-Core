@@ -37,15 +37,15 @@ Mở file `ten-agent-moi.md` vừa copy và chỉnh sửa các `[Placeholders]`.
 
 ### Bước 3: Đăng ký Agent (Agent Registration Protocol)
 > [!IMPORTANT]
-> Đây là hành động bắt buộc. File Agent nằm trong `.agent/agents/` sẽ "chết" nếu không được khai báo.
+> Đây là hành động bắt buộc. File Agent nằm trong `.agent/agents/` sẽ "chết" nếu không được khai báo ở **CẢ 2 NƠI**.
 
-Mở file `.agent/reference-catalog.md` và thêm Agent mới vào danh sách **§ 1. AGENT REGISTRY**:
+#### 3a. Đăng ký vào `systems/agent-registry.md` (Runtime — BẮT BUỘC)
+Thêm entry đầy đủ theo schema (triggers, skills, rules, exclusions, conflicts, priority, complexity_range).
+Đây là file mà **Orchestration Engine** sử dụng để tự động chọn agent.
 
-```markdown
-| Role | Recommended Agent | Trigger Keywords / Context |
-|------|-------------------|----------------------------|
-| Custom Backend | `ten-agent-moi` | .go, fiber, golang |
-```
+#### 3b. Đăng ký vào `reference-catalog.md` § 1 (Quick Reference)
+Thêm tên agent vào bảng category tương ứng.
+Đây là file tra cứu nhanh cho AI lazy-loading.
 
 ---
 
@@ -54,6 +54,7 @@ Mở file `.agent/reference-catalog.md` và thêm Agent mới vào danh sách **
 
 - [ ] Tên file tuân thủ **kebab-case** (VD: `sap-erp-specialist.md`).
 - [ ] Không rác thừa (Zero-fluff). Không chứa các hướng dẫn quy trình tự biên tự diễn (Cấm định nghĩa workflow riêng cho Agent).
-- [ ] Đã thêm mục Agent vào bảng Registry trong `reference-catalog.md`.
+- [ ] Đã thêm entry **đầy đủ** vào `systems/agent-registry.md` (triggers, skills, rules, exclusions, conflicts).
+- [ ] Đã thêm tên Agent vào bảng category trong `reference-catalog.md` § 1.
 - [ ] Ràng buộc ranh giới file (`file_boundaries`) được thiết lập chặt chẽ để cắm Agent chôn chân vào đúng module (Ngăn đụng chạm code không liên quan).
 - [ ] Test thực tế bằng cách gọi Pipeline thông thường (VD `/enhance`) với keyword liên quan để xem Intent Router có định tuyến đúng về Agent mới không.
