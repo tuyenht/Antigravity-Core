@@ -43,7 +43,6 @@ Antigravity-Core is an **AI-Native Development Operating System** — a structur
 ├── reference-catalog.md   ← All lookup tables (lazy-loaded, NOT read at start)
 ├── ARCHITECTURE.md        ← This file (system map)
 ├── CHANGELOG.md           ← Version history
-├── INTEGRATION-GUIDE.md   ← Team onboarding
 ├── VERSION                ← Semantic version (5.0.0)
 ├── project.json           ← System metadata & metrics
 │
