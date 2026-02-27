@@ -147,7 +147,7 @@ Expert-level coding standards auto-loaded by context detection.
 | typescript/ | 13 | `.ts`, `.tsx` |
 | nextjs/ | 13 | `next.config.*` |
 | python/ | 14 | `.py`, requirements |
-| web-development/ | 12 | `.html`, `.css`, `.js` |
+| web-development/ | 14 | `.html`, `.css`, `.js` |
 | agentic-ai/ | 12 | Debug, test, review keywords |
 | standards/ | 4 | Always active (1 general + 3 framework conventions) |
 | shared/ | 1 | Common utilities |
