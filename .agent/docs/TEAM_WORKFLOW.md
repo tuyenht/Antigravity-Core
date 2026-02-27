@@ -59,7 +59,7 @@ Các role trong pipeline này được thực thi bởi **27 agents** của Anti
 | Project Manager | `PM` | `orchestrator` + `project-planner` | `plan-writing`, `behavioral-modes`, `parallel-agents` | `/plan`, `/orchestrate` |
 | Backend Developer | `BE` | `backend-specialist` + `laravel-specialist` | `laravel-performance`, `testing-mastery`, `database-design` | `/enhance`, `/scaffold` |
 | Frontend Developer | `FE` | `frontend-specialist` | `react-patterns`, `react-performance`, `frontend-design` | `/enhance`, `/ui-ux-pro-max` |
-| QA Engineer | `QA` | `test-engineer` + `test-generator` | `testing-mastery`, `webapp-testing`, `code-review-checklist` | `/test`, `/code-review-automation` |
+| QA Engineer | `QA` | `test-engineer` + `test-generator` | `testing-mastery`, `webapp-testing`, `code-review-checklist` | `/test`, `/check` |
 | DevOps Engineer | `DO` | `devops-engineer` | `deployment-procedures`, `kubernetes-patterns`, `docker-expert` | `/deploy`, `/mobile-deploy` |
 
 > **Lưu ý:** Khi gọi role bằng trigger phrase (ví dụ: `business-analyst`), hệ thống sẽ tự động route tới agent phù hợp và load các skills tương ứng.

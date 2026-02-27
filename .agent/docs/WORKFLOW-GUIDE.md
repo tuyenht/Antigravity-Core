@@ -101,7 +101,7 @@
 | `/plan` | Lập kế hoạch | Bắt đầu project/feature |
 | `/brainstorm` | Brainstorm ideas | Ideation |
 | `/requirements-first` | Viết PRD trước khi code | Từ spec/PRD |
-| `/code-review-automation` | Auto code review | PR review |
+| `/check` | Auto code review | PR review |
 
 ---
 

@@ -41,7 +41,7 @@ Checklist thống nhất áp dụng cho **mọi feature, bugfix, và task** trư
 - [ ] README updated if needed
 
 ### Review
-- [ ] AI code review passed (`/code-review-automation`)
+- [ ] AI code review passed (`/check`)
 - [ ] PR created with clear description
 - [ ] At least 1 human approval
 

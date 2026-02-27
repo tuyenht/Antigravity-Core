@@ -58,7 +58,7 @@
 
 ```
 ✅ /auto-healing         → Lint & type errors fixed
-✅ /code-review-automation → AI code review passed
+✅ /check                     → AI code review passed
 ✅ /test                 → All tests passing
 ✅ /secret-scanning      → No secrets in code
 ```

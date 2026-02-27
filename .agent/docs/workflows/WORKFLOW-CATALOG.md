@@ -32,7 +32,7 @@ Workflows là các quy trình được định nghĩa sẵn, kích hoạt bằng
 | **🏗️ Khởi tạo & Setup** | `/create`, `/install-antigravity`, `/mobile-init`, `/scaffold`, `/schema-first`, `/requirements-first` | Tạo mới dự án, module, database |
 | **💻 Development** | `/enhance`, `/quickfix`, `/refactor`, `/brainstorm`, `/plan` | Phát triển tính năng, sửa lỗi, planning |
 | **🎨 Design** | `/ui-ux-pro-max`, `/update-ui-ux-pro-max`, `/admin-component`, `/admin-dashboard` | Thiết kế UI/UX, admin components |
-| **✅ Quality** | `/test`, `/code-review-automation`, `/auto-healing`, `/auto-optimization-cycle`, `/performance-budget-enforcement` | Testing, review, auto-fix |
+| **✅ Quality** | `/test`, `/check`, `/auto-healing`, `/auto-optimization-cycle`, `/performance-budget-enforcement` | Testing, review, auto-fix |
 | **🔒 Security** | `/security-audit`, `/secret-scanning` | Kiểm tra bảo mật |
 | **🚀 Deploy & Ops** | `/deploy`, `/mobile-deploy`, `/optimize`, `/check`, `/maintain`, `/migrate` | Triển khai, vận hành, bảo trì |
 | **🎯 Orchestration** | `/orchestrate`, `/debug` | Phối hợp agents, debugging |
@@ -77,7 +77,7 @@ Workflows là các quy trình được định nghĩa sẵn, kích hoạt bằng
 | # | Command | Mô tả | Khi nào dùng |
 |---|---------|--------|-------------|
 | 17 | `/test` | Tạo và chạy test tự động | Viết tests, increase coverage |
-| 18 | `/code-review-automation` | Review code tự động | Pre-PR review, quality check |
+| 18 | `/check` | Review code tự động | Pre-PR review, quality check |
 | 19 | `/auto-healing` | Tự sửa lỗi lint, type, import | Auto-fix common errors |
 | 20 | `/auto-optimization-cycle` | Chu trình tối ưu tự động sau mỗi tính năng | Post-feature optimization |
 | 21 | `/performance-budget-enforcement` | Kiểm soát ngân sách hiệu suất | Enforce bundle size / CWV budgets |
@@ -138,7 +138,7 @@ Workflows là các quy trình được định nghĩa sẵn, kích hoạt bằng
     ↓
 /test                  → Viết tests
     ↓
-/code-review-automation → Review
+/check → Review
     ↓
 /security-audit        → Security check
     ↓
@@ -158,7 +158,7 @@ Workflows là các quy trình được định nghĩa sẵn, kích hoạt bằng
 ```
 Morning:  /check          → Health check workspace
 Coding:   /enhance        → Feature development
-Pre-PR:   /code-review-automation + /test
+Pre-PR:   /check + /test
 Weekly:   /maintain       → Scheduled maintenance
 Monthly:  /security-audit → Full security scan
 ```

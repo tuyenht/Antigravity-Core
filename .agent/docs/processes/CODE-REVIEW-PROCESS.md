@@ -15,7 +15,7 @@ Quy trình code review kết hợp **AI review tự động** và **human review
 
 ### Run AI Code Review
 ```
-/code-review-automation
+/check
 ```
 
 AI agent `ai-code-reviewer` sẽ kiểm tra:

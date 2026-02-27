@@ -1,7 +1,7 @@
 # Branching Strategy — Git Workflow Chuẩn
 
-**Version:** 4.1.0  
-**Last Updated:** 2026-02-25
+**Version:** 5.0.0  
+**Last Updated:** 2026-02-27
 
 ---
 
@@ -136,7 +136,7 @@ git branch -d release/v2.1.0
 
 ```
 ✅ /auto-healing           → Lint & type errors fixed
-✅ /code-review-automation → AI code review passed
+✅ /check                     → AI code review passed
 ✅ /test                   → All tests passing
 ✅ /secret-scanning        → No secrets in code
 ✅ Conventional commit messages
