@@ -1,7 +1,7 @@
 # Skill Catalog — Antigravity-Core
 
-**Version:** 4.1.0  
-**Last Updated:** 2026-02-25  
+**Version:** 5.0.0  
+**Last Updated:** 2026-02-27  
 **Total Skills:** 59
 
 ---
@@ -28,7 +28,7 @@ Skills là **knowledge modules** tải vào agents khi cần. Mỗi skill là m�
 
 ## Skill Classification
 
-### By Domain (11 Categories)
+### By Domain (12 Categories)
 
 | Category | Count | Skills |
 |----------|-------|--------|
@@ -147,4 +147,4 @@ Agent activated → Check frontmatter "skills:" field
 
 ---
 
-> **See also:** [SKILL-DISCOVERY.md](../SKILL-DISCOVERY.md) | [Agent Catalog](../agents/AGENT-CATALOG.md) | [Rules Catalog](../rules/RULES-CATALOG.md)
+> **See also:** [SKILL-DISCOVERY.md](../SKILL-DISCOVERY.md) | [Agent Catalog](../agents/AGENT-CATALOG.md)
