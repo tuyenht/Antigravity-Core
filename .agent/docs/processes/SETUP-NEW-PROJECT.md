@@ -65,8 +65,8 @@ rm -rf .agent-temp
 
 Script sẽ tự động:
 - Detect tech stack (frameworks, languages, databases)
-- Generate `.agent/context.yml`
-- Suggest relevant rules
+- Generate `.agent/project.json`
+- Activate relevant agents
 
 ### Step 4: Verify setup
 

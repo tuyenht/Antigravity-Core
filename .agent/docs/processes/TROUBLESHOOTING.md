@@ -19,7 +19,7 @@
 pwsh -File .agent/scripts/update-antigravity.ps1
 
 # Hoặc re-init
-.\.agent\agent.ps1 init --force
+.\.agent\agent.ps1 init -Force
 ```
 
 ---
@@ -60,7 +60,7 @@ pwsh -File .agent/scripts/update-antigravity.ps1
 **Triệu chứng:** Secret scan flags non-secret strings
 
 **Giải pháp:**
-- Add exceptions to `.agent/secret-patterns.yml`
+- Add exception patterns to the scan script configuration
 - Use `# nosecret` comment inline
 - Whitelist file paths
 

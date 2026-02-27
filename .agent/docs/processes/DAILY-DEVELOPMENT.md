@@ -17,7 +17,7 @@
 
 ### 2. Secret Scan (1 phút)
 ```powershell
-.\.agent\agent.ps1 secret-scan
+.\.agent\agent.ps1 scan
 ```
 - Detect accidentally committed secrets
 - Check `.env` files
@@ -58,7 +58,7 @@
 
 ```
 ✅ /auto-healing         → Lint & type errors fixed
-✅ /check                     → AI code review passed
+✅ /check                → AI code review passed
 ✅ /test                 → All tests passing
 ✅ /secret-scanning      → No secrets in code
 ```
