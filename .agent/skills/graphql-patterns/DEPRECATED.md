@@ -27,6 +27,6 @@ skills: architecture-mastery
 
 ---
 
-**Reference:** [ADR-003: Skill Consolidation Strategy](../docs/adr/003-skill-consolidation-strategy.md)
+**Reference:** [ADR-003: Skill Consolidation Strategy](../../docs/adr/003-skill-consolidation-strategy.md)
 </Parameter>
 <parameter name="Complexity">2
