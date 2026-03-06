@@ -8,12 +8,28 @@
 ## §1 — Template Families
 
 > [!IMPORTANT]
-> Velzon has **2 template families**, not 11. All variants within a family share the **same component architecture**.
+> Velzon has **2 template families** across 11 variants. All variants within a family share the **same component architecture**.
 
 | Family | Variants | Component Pattern |
 |--------|----------|-------------------|
-| **A — React-based** | React-TS, Next-TS, React+Inertia | JSX components in `Components/Common/` + `Layouts/` |
-| **B — Server-rendered** | PHP, HTML, Node.js (EJS), Laravel (Blade), Ajax, ASP.NET (MVC/Razor) | Partials/includes in `layouts/` or `partials/` |
+| **A — React-based** (4) | React-TS, React (JS), Next-TS, React+Inertia | JSX/TSX components in `Components/Common/` + `Layouts/` |
+| **B — Server-rendered** (7) | PHP, HTML (Gulp), Node.js (EJS), Laravel (Blade), Ajax, ASP.NET Core (Razor), MVC (.NET Framework Razor) | Partials/includes in `layouts/`, `partials/`, or `Views/Shared/` |
+
+### Per-Variant Component Counts
+
+| Variant | Common Components | Layout Files | Partials | Total Pages |
+|---------|-------------------|--------------|----------|-------------|
+| **React-TS** | 29 (.tsx) | 9 | — | 200+ |
+| **React (JS)** | 27 (.js) | 9 | — | 200+ |
+| **Next-TS** | 30 (.tsx) | 7 + sub-dirs | — | 200+ |
+| **React+Inertia** | 28 (.tsx) | 6 + sub-dirs | — | 200+ |
+| **PHP** | — | — | 14 | 193 |
+| **HTML (Gulp)** | — | — | 10 | 193 |
+| **Node.js (EJS)** | — | 7 | 10 | 193 |
+| **Laravel (Blade)** | — | — | 12 | 193 |
+| **Ajax** | — | — | 0 (inline) | 163 |
+| **ASP.NET Core** | — | — | 12 (.cshtml) | 200+ |
+| **MVC (.NET FW)** | — | — | 11 (.cshtml) | 200+ |
 
 ---
 
@@ -89,26 +105,36 @@
 
 ## §3 — Canonical Partial Table (Family B — Server-Rendered)
 
-> Source: `C:\Projects\Velzon Admin\PHP\master\layouts\` and `Node\Master\views\partials\`
+> Source: Deep audit of all 7 server-rendered variants at `C:\Projects\Velzon Admin`
 
-### Layout Partials (Create once, include in every page)
+### Layout Partials — Cross-Variant Map
 
-| # | Partial | PHP File | EJS File | HTML equiv | Purpose |
-|---|---------|----------|----------|------------|---------|
-| P1 | **Main Layout** | `layouts/main.php` | `layouts/layout.ejs` | N/A (inline) | Master template: include head, sidebar, topbar, content, footer, scripts |
-| P2 | **Topbar** | `layouts/topbar.php` | `partials/topbar.ejs` | N/A (inline) | Header bar: hamburger, search, lang, fullscreen, dark mode, notifications, profile |
-| P3 | **Sidebar** | `layouts/sidebar.php` | `partials/sidebar.ejs` | N/A (inline) | Left navigation menu (full HTML menu tree) |
-| P4 | **Footer** | `layouts/footer.php` | `partials/footer.ejs` | N/A (inline) | Footer copyright text |
-| P5 | **Customizer** | `layouts/customizer.php` | `partials/customizer.ejs` | N/A (inline) | Theme customizer offcanvas (= RightSidebar in React) |
-| P6 | **Page Title** | `layouts/page-title.php` | `partials/page-title.ejs` | N/A (inline) | Breadcrumb + page title (= BreadCrumb in React) |
-| P7 | **Head CSS** | `layouts/head-css.php` | `partials/head-css.ejs` | `<head>` section | CSS includes (Bootstrap, app.css, icons) |
-| P8 | **Vendor Scripts** | `layouts/vendor-scripts.php` | `partials/vendor-scripts.ejs` | Bottom scripts | JS includes (Bootstrap, simplebar, lord-icon, app.js) |
-| P9 | **Title Meta** | `layouts/title-meta.php` | `partials/title-meta.ejs` | `<title>` | `<title>` + meta tags |
-| P10 | **Menu Data** | `layouts/menu.php` | `partials/menu.ejs` | N/A (inline in sidebar) | Menu items configuration |
-| P11 | **Config** | `layouts/config.php` | N/A | N/A | Layout configuration (theme, sidebar, topbar defaults) |
-| P12 | **Session** | `layouts/session.php` | N/A | N/A | PHP session init |
-| P13 | **Lang** | `layouts/lang.php` | N/A | N/A | Language initialization |
-| P14 | **Main Diff Layouts** | `layouts/main-diff-layouts.php` | N/A | N/A | Alternative layout templates (horizontal, detached, two-column) |
+| # | Partial | PHP | EJS | HTML (Gulp) | Laravel (Blade) | ASP.NET Core | MVC (.NET FW) |
+|---|---------|-----|-----|-------------|-----------------|--------------|---------------|
+| P1 | **Master Layout** | `layouts/main.php` | `layouts/layout.ejs` | `partials/main.html` | `layouts/master.blade.php` | `Shared/_Layout.cshtml` | `Shared/_Layout.cshtml` |
+| P2 | **Topbar** | `layouts/topbar.php` | `partials/topbar.ejs` | `partials/topbar.html` | `layouts/topbar.blade.php` | `Shared/_topbar.cshtml` | `Shared/_topbar.cshtml` |
+| P3 | **Sidebar** | `layouts/sidebar.php` | `partials/sidebar.ejs` | `partials/sidebar.html` | `layouts/sidebar.blade.php` | `Shared/_sidebar.cshtml` | `Shared/_sidebar.cshtml` |
+| P4 | **Footer** | `layouts/footer.php` | `partials/footer.ejs` | `partials/footer.html` | `layouts/footer.blade.php` | `Shared/_footer.cshtml` | `Shared/_footer.cshtml` |
+| P5 | **Customizer** | `layouts/customizer.php` | `partials/customizer.ejs` | `partials/customizer.html` | `layouts/customizer.blade.php` | `Shared/_customizer.cshtml` | `Shared/_customizer.cshtml` |
+| P6 | **Page Title** | `layouts/page-title.php` | `partials/page-title.ejs` | `partials/page-title.html` | N/A (via `@section`) | `Shared/_page_title.cshtml` | `Shared/_page_title.cshtml` |
+| P7 | **Head CSS** | `layouts/head-css.php` | `partials/head-css.ejs` | `partials/head-css.html` | `layouts/head-css.blade.php` | `Shared/_head_css.cshtml` | `Shared/_head_css.cshtml` |
+| P8 | **Vendor Scripts** | `layouts/vendor-scripts.php` | `partials/vendor-scripts.ejs` | `partials/vendor-scripts.html` | `layouts/vendor-scripts.blade.php` | `Shared/_vendor_scripts.cshtml` | `Shared/_vendor_scripts.cshtml` |
+| P9 | **Title Meta** | `layouts/title-meta.php` | `partials/title-meta.ejs` | `partials/title-meta.html` | N/A (via `@section('title')`) | `Shared/_title_meta.cshtml` | `Shared/_title_meta.cshtml` |
+| P10 | **Menu** | `layouts/menu.php` | `partials/menu.ejs` | `partials/menu.html` | N/A (inline in sidebar) | `Shared/_menu.cshtml` | `Shared/_menu.cshtml` |
+
+### Variant-Specific Partials
+
+| Partial | PHP Only | EJS Only | Laravel Only | ASP.NET Core Only |
+|---------|----------|----------|--------------|-------------------|
+| `config` | `layouts/config.php` | — | — | — |
+| `session` | `layouts/session.php` | — | — | — |
+| `lang` | `layouts/lang.php` | — | — | — |
+| `main-diff-layouts` | `layouts/main-diff-layouts.php` | — | — | — |
+| Alt layouts | — | 7 layout EJS files | 4 alt Blade layouts | — |
+| `master-without-nav` | — | `layout-without-nav.ejs` | `master-without-nav.blade.php` | — |
+| `GuestLayout` | — | — | — (React+Inertia only) | — |
+| `_ValidationScripts` | — | — | — | `_ValidationScriptsPartial.cshtml` |
+| `Error` | — | — | — | `Error.cshtml` |
 
 ### Node.js Layout Templates (EJS)
 
@@ -121,6 +147,17 @@
 | `layouts/layout-verti-hoverd.ejs` | Vertical hover-collapsed layout |
 | `layouts/layout-without-bradcrumb.ejs` | Layout without breadcrumb |
 | `layouts/layout-without-nav.ejs` | Auth page layout (no sidebar/header) |
+
+### Laravel Layout Templates (Blade)
+
+| File | Purpose |
+|------|---------|
+| `layouts/master.blade.php` | Default vertical sidebar layout |
+| `layouts/layouts-horizontal.blade.php` | Horizontal top-nav layout |
+| `layouts/layouts-two-column.blade.php` | Two-column sidebar layout |
+| `layouts/layouts-detached.blade.php` | Detached sidebar layout |
+| `layouts/layouts-vertical-hovered.blade.php` | Vertical hover-collapsed layout |
+| `layouts/master-without-nav.blade.php` | Auth page layout (no sidebar/header) |
 
 ---
 
@@ -141,14 +178,16 @@
 
 ### Family B — Server-rendered
 
-| Location | PHP | Node.js (EJS) | HTML (Gulp) | Laravel (Blade) | ASP.NET (Razor) |
-|----------|-----|---------------|-------------|-----------------|-----------------|
-| **Partials** | `layouts/*.php` | `views/partials/*.ejs` | `src/partials/` (Gulp) | `resources/views/layouts/*.blade.php` | `Views/Shared/*.cshtml` |
-| **Layout master** | `layouts/main.php` | `views/layouts/layout.ejs` | N/A (flat HTML) | `resources/views/layouts/master.blade.php` | `Views/Shared/_Layout.cshtml` |
-| **Pages** | `*.php` (flat) | `views/*.ejs` | `src/*.html` | `resources/views/*.blade.php` | `Views/{Controller}/*.cshtml` |
-| **Assets** | `assets/` | `public/assets/` + `src/` | `src/assets/` → `dist/assets/` | `public/assets/` | `wwwroot/assets/` |
-| **JS** | `assets/js/` | `src/js/` (webpack) | `src/js/` (Gulp) | `public/assets/js/` | `wwwroot/js/` |
-| **SCSS** | `assets/scss/` | `src/scss/` | `src/scss/` | `resources/sass/` | `wwwroot/css/` |
+| Location | PHP | Node.js (EJS) | HTML (Gulp) | Laravel (Blade) | ASP.NET Core | MVC (.NET FW) |
+|----------|-----|---------------|-------------|-----------------|--------------|---------------|
+| **Partials** | `layouts/*.php` | `views/partials/*.ejs` | `src/partials/` | `resources/views/layouts/*.blade.php` | `Views/Shared/_*.cshtml` | `Views/Shared/_*.cshtml` |
+| **Layout master** | `layouts/main.php` | `views/layouts/layout.ejs` | N/A (flat HTML) | `layouts/master.blade.php` | `Views/Shared/_Layout.cshtml` | `Views/Shared/_Layout.cshtml` |
+| **Pages** | `*.php` (flat) | `views/*.ejs` | `src/*.html` | `resources/views/*.blade.php` | `Views/{Module}/*.cshtml` | `Views/{Module}/*.cshtml` |
+| **Assets** | `assets/` | `public/assets/` + `src/` | `src/assets/` → `dist/` | `public/assets/` | `wwwroot/assets/` | `Content/` + `assets/` |
+| **JS** | `assets/js/` | `src/js/` (webpack) | `src/js/` (Gulp) | `public/assets/js/` | `wwwroot/js/` | `Scripts/` |
+| **SCSS** | `assets/scss/` | `src/scss/` | `src/scss/` | `resources/sass/` | `wwwroot/css/` | `Content/css/` |
+| **Routing** | N/A (direct URL) | `routes/*.js` (Express) | N/A | `routes/web.php` | `Controllers/*.cs` | `App_Start/RouteConfig.cs` |
+| **Config** | `layouts/config.php` | `config.env` | N/A | `.env` + `config/` | `appsettings.json` | `Web.config` |
 
 ---
 
