@@ -6,7 +6,7 @@ allowed-tools: Read, Write, Edit, Glob, Grep
 
 # Node.js Best Practices
 
-> Principles and decision-making for Node.js development in 2025.
+> Principles and decision-making for Node.js development in 2026.
 > **Learn to THINK, not memorize code patterns.**
 
 ---

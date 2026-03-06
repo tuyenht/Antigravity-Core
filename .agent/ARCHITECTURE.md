@@ -27,7 +27,7 @@ Antigravity-Core is an **AI-Native Development Operating System** — a structur
 │  LAYER 3: PIPELINE CHAINS (pipelines/)                           │
 │  → Auto-sequence workflows + agents for end-to-end execution     │
 ├──────────────────────────────────────────────────────────────────┤
-│  ENGINE: 27 Agents │ 59 Skills │ 110 Rules │ 34 Workflows         │
+│  ENGINE: 27 Agents │ 62 Skills │ 110 Rules │ 34 Workflows         │
 │          37 Scripts │ Memory │ Standards │ Templates              │
 │  → Reference: reference-catalog.md (lazy-loaded)                 │
 └──────────────────────────────────────────────────────────────────┘
@@ -49,7 +49,7 @@ Antigravity-Core is an **AI-Native Development Operating System** — a structur
 ├── pipelines/   (6)       ← Pipeline Chains (BUILD, ENHANCE, FIX, IMPROVE, SHIP, REVIEW)
 ├── agents/      (27)      ← Agent role definitions
 ├── workflows/   (34)      ← Automated process definitions (used by pipelines)
-├── skills/      (59)      ← Specialized knowledge modules
+├── skills/      (62)      ← Specialized knowledge modules
 ├── rules/       (110)     ← Expert coding standards
 ├── scripts/     (20 core) ← PowerShell + Bash automation (+ 17 skill scripts in skills/*/scripts/)
 ├── systems/               ← Core protocols (Intent Router, RBA, orchestration, auto-discovery)
@@ -117,7 +117,7 @@ Slash-command triggered automation pipelines. Also used internally by Pipeline C
 | **Design** | `/ui-ux-pro-max`, `/update-ui-ux-pro-max`, `/admin-component`, `/admin-dashboard`, `/admin-settings` |
 | **System** | `/full-pipeline`, `/sync-admin` |
 
-### 4. Skills (59 modules)
+### 4. Skills (62 modules)
 
 Self-contained knowledge domains with SKILL.md instruction files.
 
@@ -129,7 +129,8 @@ Self-contained knowledge domains with SKILL.md instruction files.
 | **Infrastructure** | docker-expert, kubernetes-patterns, terraform-iac, cloudflare, server-management |
 | **Testing** | testing-mastery, testing-patterns, tdd-workflow, contract-testing, webapp-testing |
 | **Security** | vulnerability-scanner, red-team-tactics |
-| **AI/ML** | ai-sdk-expert, vector-databases, mcp-builder |
+| **AI/ML** | ai-sdk-expert, ai-ml-pipeline, vector-databases, mcp-builder |
+| **Systems** | rust-patterns, go-patterns |
 | **Design** | ui-ux-pro-max, frontend-design |
 | **Meta** | clean-code, architecture-mastery, brainstorming, plan-writing, behavioral-modes |
 

@@ -1,6 +1,6 @@
 ---
 name: react-patterns
-description: "Mẫu thiết kế React hiện đại: Hooks, Server Components và tối ưu re-render bộ."
+description: "Mẫu thiết kế React 19.2 hiện đại: Compiler, Hooks, Server Components và tối ưu re-render."
 allowed-tools: Read, Write, Edit, Glob, Grep
 ---
 
