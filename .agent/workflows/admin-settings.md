@@ -27,6 +27,10 @@ Tạo trang cấu hình (Settings) cho admin panel: app config, email, integrati
 
 ---
 
+## Prerequisites
+- **Read component registry**: `.agent/skills/velzon-admin/reference/component-registry.md` (§4 Directory Map + §6 Creation Rules)
+- Read design tokens: `.agent/skills/velzon-admin/reference/design-tokens.md`
+
 ## Step 1: Detect Framework & Existing Admin
 
 ```

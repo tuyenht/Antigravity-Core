@@ -173,6 +173,17 @@ Add route and sidebar menu item following the detected variant's conventions:
 - [ ] Redux/state management wired correctly
 - [ ] No console errors or warnings
 
+### Visual Fidelity Check (RECOMMENDED)
+
+After the dev server is running, compare output against the original Velzon Admin template:
+
+1. **Open the dev server in browser** (use browser tools if available)
+2. **Compare sidebar:** Menu items, icons, collapse behavior, hover states, active highlighting
+3. **Compare header:** Logo placement, dropdown alignment, notification bell, profile position
+4. **Compare cards/widgets:** Border radius, shadows, spacing, font sizes, CountUp animation
+5. **Compare dark mode:** Toggle and verify all `--vz-*` variables resolve correctly
+6. **Screenshot comparison:** If possible, capture and compare key views against Velzon source screenshots
+
 ---
 
 ## Troubleshooting

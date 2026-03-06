@@ -204,6 +204,7 @@ Read these for detailed patterns:
 | [ajax-patterns.md](reference/ajax-patterns.md) | jQuery AJAX single-page shell patterns |
 | [aspnet-mvc-patterns.md](reference/aspnet-mvc-patterns.md) | ASP.NET Core 8 + MVC Razor patterns |
 | [component-registry.md](reference/component-registry.md) | **🚨 MANDATORY** — Canonical component table, cross-variant directory map, creation/inheritance rules |
+| [package-versions.md](reference/package-versions.md) | **Version Lock** — Exact dependency versions for all Velzon packages (React, charts, forms, icons, utils) |
 | [asset-catalog.md](reference/asset-catalog.md) | Complete image, font, SCSS, plugin inventory |
 | [api-and-helpers.md](reference/api-and-helpers.md) | API client, auth flows, i18n, toast, file upload, avatars |
 | [auth-login-template.md](reference/auth-login-template.md) | **BaoSon login design**: glassmorphism card, configurable admin prefix, i18n, OAuth |
@@ -364,10 +365,10 @@ Also available: BoxIcons (`bx bx-*`), Material Design, Feather, Line Awesome, Cr
 
 | Variant | Path | Install | Dev Server | Build |
 |---------|------|---------|------------|-------|
-| **React-TS** | `React-TS/Master/` | `npm install` | `npm start` (CRA) | `npm run build` |
+| **React-TS** | `React-TS/Master/` | `pnpm install` | `pnpm start` (CRA) | `pnpm build` |
 | **Next.js** | `Nextjs/Master/` | `pnpm install` | `pnpm dev` (Next 16) | `pnpm build` |
-| **HTML** | `HTML/Master/` | `npm install` | `npx gulp` (BrowserSync) | `npx gulp build` |
-| **Laravel** | `Laravel/` | `composer install && npm install` | `php artisan serve` + `npm run dev` | `npm run build` |
+| **HTML** | `HTML/Master/` | `pnpm install` | `pnpm exec gulp` (BrowserSync) | `pnpm exec gulp build` |
+| **Laravel** | `Laravel/` | `composer install && pnpm install` | `php artisan serve` + `pnpm dev` | `pnpm build` |
 | **PHP** | `PHP/` | N/A (static includes) | Local PHP server | N/A |
 
 ### CSS/SCSS Compilation

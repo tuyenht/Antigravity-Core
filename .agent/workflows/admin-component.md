@@ -10,6 +10,7 @@ Generate individual Velzon-style admin components for any supported stack.
 > Blueprint: `.agent/skills/velzon-admin/reference/saas-admin-starter.md`
 
 ## Prerequisites
+- **Read component registry**: `.agent/skills/velzon-admin/reference/component-registry.md` (§4 Directory Map + §6 Creation Rules)
 - Read component patterns: `.agent/skills/velzon-admin/reference/component-patterns.md`
 - Detect project variant (see stack detection in `SKILL.md` Multi-Stack section)
 - For Inertia projects: also read `reference/inertia-bridge.md`

@@ -256,3 +256,55 @@
 | C14 MyCartDropdown | E-commerce projects |
 | C15 WebAppsDropdown | Multi-app projects |
 | C16 RightSidebar | Theme customization |
+
+---
+
+## §8 — SCSS Blueprint (Mandatory Style Files)
+
+> [!CAUTION]
+> **Without these SCSS files, the `--vz-*` CSS variable system breaks completely.** All colors, spacing, shadows, and dark mode will fail.
+
+### Required SCSS Files (Create/Copy during `/create-admin`)
+
+| # | File | Size | Purpose | MUST COPY |
+|---|------|------|---------|-----------|
+| S1 | `_variables.scss` | 70KB | ALL Bootstrap 5 variable overrides + Velzon custom vars | ✅ YES |
+| S2 | `_variables-custom.scss` | ~2KB | Velzon-specific CSS custom properties (`--vz-*`) | ✅ YES |
+| S3 | `_variables-dark.scss` | ~8KB | Dark mode variable overrides | ✅ YES |
+| S4 | `bootstrap.scss` | ~1KB | Bootstrap import with variable overrides | ✅ YES |
+| S5 | `app.scss` | ~2KB | Main app stylesheet (imports components, structure, pages, plugins) | ✅ YES |
+| S6 | `themes.scss` | ~1KB | Entry point imported in App.tsx / layout.tsx | ✅ YES |
+| S7 | `custom.scss` | ~1KB | User customization overrides (empty by default) | ✅ YES |
+
+### SCSS Directory Structure (Canonical)
+
+```
+assets/scss/
+├── _variables.scss              ← S1: Core override file
+├── _variables-custom.scss       ← S2: --vz-* properties
+├── _variables-dark.scss         ← S3: Dark mode
+├── bootstrap.scss               ← S4: BS5 imports
+├── app.scss                     ← S5: Main import
+├── themes.scss                  ← S6: Entry point
+├── custom.scss                  ← S7: User overrides
+├── components/                  ← 31 files (_root, _card, _buttons, _nav, _modal, _table, _widgets...)
+├── structure/                   ← 8 files (_vertical, _horizontal, _two-column, _topbar, _footer...)
+├── pages/                       ← 22 files (_dashboard, _chat, _email, _authentication...)
+├── plugins/                     ← 3rd party style overrides
+├── theme/                       ← Theme-specific overrides
+├── fonts/                       ← Custom font declarations
+└── rtl/                         ← RTL layout mirror styles
+```
+
+### Per-Variant SCSS Location
+
+| Variant | SCSS Source Path |
+|---------|-----------------|
+| React-TS | `src/assets/scss/` |
+| Next-TS | `src/assets/scss/` |
+| React+Inertia | `resources/scss/` or `resources/css/` |
+| PHP | `assets/scss/` |
+| HTML | `src/scss/` → compiled to `dist/css/` |
+| Node.js | `src/scss/` → compiled via webpack |
+| Laravel | `resources/sass/` |
+| ASP.NET | `wwwroot/css/` (pre-compiled) |
