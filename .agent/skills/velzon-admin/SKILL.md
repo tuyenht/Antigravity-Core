@@ -189,6 +189,7 @@ Read these for detailed patterns:
 | [nodejs-patterns.md](reference/nodejs-patterns.md) | Node.js Express + EJS patterns |
 | [ajax-patterns.md](reference/ajax-patterns.md) | jQuery AJAX single-page shell patterns |
 | [aspnet-mvc-patterns.md](reference/aspnet-mvc-patterns.md) | ASP.NET Core 8 + MVC Razor patterns |
+| [component-registry.md](reference/component-registry.md) | **🚨 MANDATORY** — Canonical component table, cross-variant directory map, creation/inheritance rules |
 | [asset-catalog.md](reference/asset-catalog.md) | Complete image, font, SCSS, plugin inventory |
 | [api-and-helpers.md](reference/api-and-helpers.md) | API client, auth flows, i18n, toast, file upload, avatars |
 | [auth-login-template.md](reference/auth-login-template.md) | **BaoSon login design**: glassmorphism card, configurable admin prefix, i18n, OAuth |

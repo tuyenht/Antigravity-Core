@@ -11,6 +11,7 @@ Build a new admin dashboard or management page using Velzon conventions.
 
 ## Prerequisites
 - Read the Velzon Admin skill: `.agent/skills/velzon-admin/SKILL.md`
+- **Read component registry**: `.agent/skills/velzon-admin/reference/component-registry.md` (§4 Directory Map + §6 Creation Rules)
 - Identify the closest template page from `reference/page-catalog.md`
 
 ## Component Readiness Check (MANDATORY)
