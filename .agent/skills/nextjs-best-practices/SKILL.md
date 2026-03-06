@@ -179,6 +179,7 @@ Does it need...?
 | Skip loading states | Use loading.tsx |
 | Ignore error boundaries | Use error.tsx |
 | Large client bundles | Dynamic imports |
+| Read locale cookie in `useState` | Read on server via `cookies()`, pass as props |
 
 ---
 

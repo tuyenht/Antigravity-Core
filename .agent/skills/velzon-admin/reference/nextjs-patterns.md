@@ -12,7 +12,7 @@ src/
 ├── app/
 │   ├── layout.tsx                      # Root layout (html, body, providers)
 │   ├── globals.css
-│   ├── page.tsx                        # Root page (redirect to dashboard)
+│   ├── page.tsx                        # Root page (MUST redirect to /{ADMIN_PREFIX}/dashboard)
 │   ├── (auth)/                         # Auth route group (no admin layout)
 │   │   ├── layout.tsx                  # Guest layout wrapper
 │   │   ├── auth-signin-basic/page.tsx
@@ -39,6 +39,24 @@ src/
 ├── config/                             # App config
 ├── types/                              # TypeScript types
 └── assets/scss/                        # Same SCSS as React-TS
+```
+
+---
+
+## Root Page (Redirect)
+
+> [!CAUTION]
+> **MUST overwrite** the default `src/app/page.tsx` created by `create-next-app`.
+> Without this, visiting `/` shows the Next.js default template instead of redirecting to admin.
+
+```tsx
+// src/app/page.tsx — Overwrite default Next.js page
+import { redirect } from 'next/navigation';
+import { ADMIN_PREFIX } from '@/config/admin';
+
+export default function Home() {
+  redirect(`/${ADMIN_PREFIX}/dashboard`);
+}
 ```
 
 ---
@@ -263,29 +281,36 @@ src/app/admin/
 Every auth page uses a thin Server Component + Client Component wrapper:
 
 ```tsx
-// app/admin/forgot-password/page.tsx — Server Component
+// app/admin/forgot-password/page.tsx — Server Component (ASYNC!)
 import type { Metadata } from 'next';
+import { getServerLocale } from '@/lib/locale-server';
 import ForgotPasswordClient from './ForgotPasswordClient';
 
 export const metadata: Metadata = {
     title: 'Forgot Password — Admin Panel',
 };
 
-export default function ForgotPasswordPage() {
-    return <ForgotPasswordClient />;
+export default async function ForgotPasswordPage() {
+    const { locale, messages } = await getServerLocale();
+    return <ForgotPasswordClient initialLocale={locale} initialMessages={messages} />;
 }
 ```
 
 ```tsx
 // ForgotPasswordClient.tsx — "use client"
 'use client';
-import { LocaleProvider } from '@/features/auth/hooks/LocaleContext';
+import { LocaleProvider, SupportedLocale } from '@/features/auth/hooks/LocaleContext';
 import AuthLayout from '@/components/login/AuthLayout';
 import ForgotPasswordForm from '@/components/login/ForgotPasswordForm';
 
-export default function ForgotPasswordClient() {
+interface Props {
+    initialLocale: SupportedLocale;
+    initialMessages: Record<string, string>;
+}
+
+export default function ForgotPasswordClient({ initialLocale, initialMessages }: Props) {
     return (
-        <LocaleProvider>
+        <LocaleProvider initialLocale={initialLocale} initialMessages={initialMessages}>
             <AuthLayout title="Forgot Password">
                 <ForgotPasswordForm />
             </AuthLayout>

@@ -103,10 +103,55 @@ locales/
 - Assume text length (German is 30% longer)
 - Forget about RTL layout
 - Mix languages in same file
+- Read `document.cookie` in `useState` initializer (see § 6)
 
 ---
 
-## 6. Common Issues
+## 6. Next.js App Router: SSR Hydration Rules
+
+> [!CAUTION]
+> These rules are **MANDATORY** for Next.js App Router projects using custom i18n.
+> Violating any rule causes React hydration mismatch and flash of wrong language.
+
+### Rule 1: NEVER read `document.cookie` in `useState` initializer
+
+```tsx
+// ❌ BAD — Hydration mismatch: server='en', client='vi'
+const [locale, setLocale] = useState(() => {
+    const cookie = document.cookie.match(/locale=(\w+)/);
+    return cookie?.[1] ?? 'en';
+});
+
+// ✅ GOOD — Accept from server props, fallback in useEffect
+const [locale, setLocale] = useState(initialLocale ?? 'en');
+```
+
+### Rule 2: ALWAYS read locale on server via `cookies()`
+
+```typescript
+import { cookies } from 'next/headers';
+
+export async function getServerLocale() {
+    const cookieStore = await cookies();
+    const locale = cookieStore.get('locale')?.value ?? 'en';
+    const messages = (await import(`@/locales/${locale}.json`)).default;
+    return { locale, messages };
+}
+```
+
+### Rule 3: Pass `initialLocale` + `initialMessages` from server to client
+
+```tsx
+// page.tsx (async Server Component)
+export default async function Page() {
+    const { locale, messages } = await getServerLocale();
+    return <ClientComponent initialLocale={locale} initialMessages={messages} />;
+}
+```
+
+---
+
+## 7. Common Issues
 
 | Issue | Solution |
 |-------|----------|
@@ -115,10 +160,11 @@ locales/
 | Date format | Use Intl.DateTimeFormat |
 | Number format | Use Intl.NumberFormat |
 | Pluralization | Use ICU message format |
+| Hydration mismatch | Read locale on server, pass as props (see § 6) |
 
 ---
 
-## 7. RTL Support
+## 8. RTL Support
 
 ```css
 /* CSS Logical Properties */

@@ -549,7 +549,7 @@ model Post {
 // Auto-generated types
 // ==========================================
 
-// After: npx prisma generate
+// After: pnpm exec prisma generate
 import { User, Post, Prisma } from '@prisma/client';
 
 // Input types
@@ -568,10 +568,10 @@ type UserWithPosts = Prisma.UserGetPayload<{
 
 {
   "scripts": {
-    "db:generate": "prisma generate",
-    "db:push": "prisma db push",
-    "db:migrate": "prisma migrate dev",
-    "db:studio": "prisma studio"
+    "db:generate": "pnpm exec prisma generate",
+    "db:push": "pnpm exec prisma db push",
+    "db:migrate": "pnpm exec prisma migrate dev",
+    "db:studio": "pnpm exec prisma studio"
   }
 }
 ```

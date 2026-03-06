@@ -60,7 +60,7 @@ git push origin main --tags
 
 # Run migrations
 php artisan migrate       # Laravel
-npx prisma migrate deploy # Prisma
+pnpm exec prisma migrate deploy # Prisma
 ```
 
 ### Phase 4: Verify

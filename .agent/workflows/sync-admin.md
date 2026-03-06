@@ -144,7 +144,7 @@ Bạn muốn:
 
 ```bash
 # Run migrations
-php artisan migrate  # or npx prisma migrate dev
+php artisan migrate  # or pnpm exec prisma migrate dev
 
 # Run seeders (additive only)
 php artisan db:seed --class=SyncPermissionsSeeder

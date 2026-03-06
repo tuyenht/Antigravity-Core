@@ -4,6 +4,7 @@
 > **Route:** `/{adminPrefix}/login` (default `adminPrefix` = `"admin"`)  
 > **Stack:** Tailwind CSS + Glassmorphism  
 > **Font:** Inter (Latin/Vietnamese) + Noto Sans JP (日本語) + Noto Sans SC (中文)  
+> **Font Import:** `next/font/google` (Next.js) or `@import url('...Inter...')` (CSS fallback)  
 > **Default Logo:** `https://baoson.net/wp-content/uploads/2021/06/logo-bao-son.png`
 
 ---
@@ -60,7 +61,7 @@ Regardless of the target language/framework (React, Next.js, Vue, Laravel Blade,
 │  │              └─────────────────┘                        │  │
 │  │                                                            │  │
 │  │     ┌──────────── Glass Card ────────────────┐             │  │
-│  │     │  System Login (h2, gradient text)       │             │  │
+│  │     │  System Login (h2, solid slate-900)       │             │  │
 │  │     │                                         │             │  │
 │  │     │  Account    [👤 email@...          @]   │             │  │
 │  │     │  Password   [🔒 ••••••••          👁]   │             │  │
@@ -97,7 +98,7 @@ Regardless of the target language/framework (React, Next.js, Vue, Laravel Blade,
 | **Glass padding** | `p-[35px]` | Tailwind utility on element — NOT in .glass CSS |
 | **Glass border-radius** | `rounded-3xl` (~24px) | Tailwind utility on element — NOT in .glass CSS |
 | **Content max-width** | `max-w-[392px]` | 🚨 **px-absolute** — NOT rem-based `max-w-md` |
-| **Title font** | `22px / 26px`, `font-weight: 800`, gradient text `from-blue-700 to-slate-700` | |
+| **Title font** | `text-2xl` (~24px), `font-weight: 800`, `text-slate-900 dark:text-white` | 🚨 Solid color — NO gradient text |
 | **Label font** | `text-sm` (14px), `font-weight: 600`, `text-slate-700` | 🚨 NOT `text-base` (16px) |
 | **Input bg** | `bg-slate-50`, border `border-slate-200`, rounded `rounded-xl` | |
 | **Input focus** | `bg-white`, `border-blue-600`, `ring-4 ring-blue-600/10` | |
@@ -277,7 +278,7 @@ export default function AuthLayout({ children, title }: AuthLayoutProps) {
  *   - label: text-sm (14px) — NOT text-base (16px)
  *   - input: py-2.5 (10px) — NOT py-3 (12px)
  *   - input icon: pl-10/pr-10 — NOT pl-11/pr-11
- *   - h2: text-[22px] leading-[26px] font-extrabold
+ *   - h2: text-2xl font-extrabold text-slate-900 dark:text-white
  * Using !important overrides in unlayered CSS defeats Tailwind's cascade. */
 ```
 
@@ -286,7 +287,7 @@ export default function AuthLayout({ children, title }: AuthLayoutProps) {
 ```tsx
 <div className="glass w-full max-w-[392px] mx-auto rounded-3xl p-[35px] shadow-2xl relative">
     {/* Title */}
-    <h2 className="text-3xl font-extrabold text-transparent bg-clip-text bg-gradient-to-r from-blue-700 to-slate-700 tracking-tight mb-6">
+    <h2 className="text-2xl font-extrabold text-slate-900 dark:text-white tracking-tight mb-6">
         {t('auth.welcome')}  {/* "System Login" */}
     </h2>
 
@@ -513,23 +514,61 @@ The login uses a **logical font family** `"UI"` with CJK-aware weight overrides:
 
 ## Locale Infrastructure
 
+### Server-Side Locale Resolution (Next.js)
+
+> [!CAUTION]
+> **NEVER read `document.cookie` in `useState` initializer or render phase.**
+> This causes hydration mismatch: server renders `'en'`, client reads cookie `'vi'` → React error + flash of wrong language.
+>
+> **ALWAYS read locale cookie in Server Component** via `cookies()` from `next/headers`, then pass to client via props.
+
+```typescript
+// src/lib/locale-server.ts — Server-side locale helper
+import { cookies } from 'next/headers';
+import type { SupportedLocale } from '@/features/auth/hooks/LocaleContext';
+
+const SUPPORTED: SupportedLocale[] = ['en', 'vi', 'ja', 'zh'];
+
+export async function getServerLocale(): Promise<{
+    locale: SupportedLocale;
+    messages: Record<string, string>;
+}> {
+    const cookieStore = await cookies();
+    const raw = cookieStore.get('locale')?.value;
+    const locale: SupportedLocale =
+        raw && SUPPORTED.includes(raw as SupportedLocale)
+            ? (raw as SupportedLocale)
+            : 'en';
+
+    let messages: Record<string, string>;
+    try {
+        messages = (await import(`@/locales/${locale}.json`)).default;
+    } catch {
+        messages = (await import('@/locales/en.json')).default;
+    }
+
+    return { locale, messages };
+}
+```
+
 ### LocaleContext (React)
 
-The login requires a `LocaleProvider` wrapping the auth pages:
+The login requires a `LocaleProvider` wrapping the auth pages.
+The provider **MUST** receive `initialLocale` and `initialMessages` from a Server Component:
 
 ```tsx
-// LocaleContext provides: { locale, setLocale, syncLocale }
-// - locale: current SupportedLocale ('en' | 'vi' | 'ja' | 'zh')
-// - setLocale: instant UI update + debounced server save (300ms)
-// - Cookie: sets 'locale' cookie immediately for server-side rendering
+// LocaleContext provides: { locale, setLocale, t }
+// - initialLocale: resolved from cookie on the SERVER (no hydration mismatch)
+// - initialMessages: pre-loaded translations from server (no flash of raw keys)
+// - setLocale: instant UI update + sets cookie for future server reads
 // - HTML lang: updates document.documentElement.lang (zh → 'zh-CN')
 ```
 
 **Key behaviors:**
+- Server reads cookie → passes `initialLocale` + `initialMessages` to client
+- Client renders immediately with correct locale (zero flash)
 - Locale change is **instant** (no page reload)
-- Cookie `locale={value}` is set immediately so form submissions use correct locale
-- Server save is **debounced 300ms** via axios POST to `/{adminPrefix}/locale`
-- `userChangedLocaleRef` prevents server sync from overriding user's manual choice
+- Cookie `locale={value}` is set immediately so server reads correct locale on next request
 
 ---
 
@@ -799,7 +838,8 @@ export const DEFAULT_LOCALE: SupportedLocale = 'en';
 export const SUPPORTED_LOCALES: SupportedLocale[] = ['en', 'vi', 'ja', 'zh'];
 
 // --- LocaleContext.tsx ---
-import { createContext, useContext, useState, useCallback, ReactNode } from 'react';
+import { createContext, useContext, useState, useCallback, useEffect, ReactNode } from 'react';
+import defaultMessages from '@/locales/en.json';
 
 interface LocaleContextValue {
     locale: SupportedLocale;
@@ -807,21 +847,18 @@ interface LocaleContextValue {
     t: (key: string) => string;
 }
 
+interface LocaleProviderProps {
+    children: ReactNode;
+    initialLocale?: SupportedLocale;
+    initialMessages?: Record<string, string>;
+}
+
 const LocaleContext = createContext<LocaleContextValue | undefined>(undefined);
 
-export function LocaleProvider({ children }: { children: ReactNode }) {
-    const [locale, setLocaleState] = useState<SupportedLocale>(() => {
-        // Read from cookie or localStorage on init
-        if (typeof document !== 'undefined') {
-            const cookie = document.cookie.match(/locale=(\w+)/);
-            if (cookie && SUPPORTED_LOCALES.includes(cookie[1] as SupportedLocale)) {
-                return cookie[1] as SupportedLocale;
-            }
-        }
-        return DEFAULT_LOCALE;
-    });
-
-    const [messages, setMessages] = useState<Record<string, string>>({});
+export function LocaleProvider({ children, initialLocale, initialMessages }: LocaleProviderProps) {
+    // Server already resolved locale — use it directly (no hydration mismatch)
+    const [locale, setLocaleState] = useState<SupportedLocale>(initialLocale ?? DEFAULT_LOCALE);
+    const [messages, setMessages] = useState<Record<string, string>>(initialMessages ?? defaultMessages);
 
     // Load translations dynamically
     const loadMessages = useCallback(async (loc: SupportedLocale) => {
@@ -829,8 +866,16 @@ export function LocaleProvider({ children }: { children: ReactNode }) {
         setMessages(msgs.default);
     }, []);
 
-    // Initialize messages
-    useEffect(() => { loadMessages(locale); }, []);
+    // Client-side fallback: if server didn't pass initialLocale, read cookie
+    useEffect(() => {
+        if (initialLocale) return; // Server already resolved — skip
+        const cookie = document.cookie.match(/locale=(\w+)/);
+        if (cookie && SUPPORTED_LOCALES.includes(cookie[1] as SupportedLocale)) {
+            const cookieLocale = cookie[1] as SupportedLocale;
+            setLocaleState(cookieLocale);
+            loadMessages(cookieLocale);
+        }
+    }, [initialLocale, loadMessages]);
 
     const setLocale = useCallback((newLocale: SupportedLocale) => {
         setLocaleState(newLocale);
@@ -861,19 +906,33 @@ export function useLocale() {
 }
 ```
 
-**Usage:** Wrap auth pages with `<LocaleProvider>` in the auth layout:
+**Usage:** Wrap auth pages with `<LocaleProvider>` — **pass `initialLocale` and `initialMessages` from server:**
 ```tsx
-// app/admin/login/page.tsx (Server Component)
-export const metadata = { title: 'Login — Admin Panel' };
-export default function LoginPage() {
-    return <LoginClient />;  // Client Component
+// app/admin/login/page.tsx (Server Component — async!)
+import type { Metadata } from 'next';
+import { getServerLocale } from '@/lib/locale-server';
+import LoginClient from './LoginClient';
+
+export const metadata: Metadata = { title: 'Login — Admin Panel' };
+
+export default async function LoginPage() {
+    const { locale, messages } = await getServerLocale();
+    return <LoginClient initialLocale={locale} initialMessages={messages} />;
 }
 
 // LoginClient.tsx ("use client")
-import { LocaleProvider } from '@/features/auth/hooks/LocaleContext';
-export default function LoginClient() {
+import { LocaleProvider, SupportedLocale } from '@/features/auth/hooks/LocaleContext';
+import AuthLayout from '@/components/login/AuthLayout';
+import LoginForm from '@/components/login/LoginForm';
+
+interface Props {
+    initialLocale: SupportedLocale;
+    initialMessages: Record<string, string>;
+}
+
+export default function LoginClient({ initialLocale, initialMessages }: Props) {
     return (
-        <LocaleProvider>
+        <LocaleProvider initialLocale={initialLocale} initialMessages={initialMessages}>
             <AuthLayout title="Login"><LoginForm /></AuthLayout>
         </LocaleProvider>
     );
@@ -935,7 +994,7 @@ export default function ForgotPasswordForm() {
 
     return (
         <div className="glass w-full rounded-3xl p-6 md:p-10 shadow-2xl">
-            <h2 className="text-3xl font-extrabold text-transparent bg-clip-text bg-gradient-to-r from-blue-700 to-slate-700 tracking-tight mb-2">
+            <h2 className="text-2xl font-extrabold text-slate-900 dark:text-white tracking-tight mb-2">
                 {t('auth.forgot_password_title')}
             </h2>
             <p className="text-sm text-slate-500 mb-6">{t('auth.forgot_password_subtitle')}</p>
@@ -1012,7 +1071,7 @@ export default function ResetPasswordForm({ token }: ResetPasswordFormProps) {
 
     return (
         <div className="glass w-full rounded-3xl p-6 md:p-10 shadow-2xl">
-            <h2 className="text-3xl font-extrabold text-transparent bg-clip-text bg-gradient-to-r from-blue-700 to-slate-700 tracking-tight mb-2">
+            <h2 className="text-2xl font-extrabold text-slate-900 dark:text-white tracking-tight mb-2">
                 {t('auth.reset_password_title')}
             </h2>
             <p className="text-sm text-slate-500 mb-6">{t('auth.reset_password_subtitle')}</p>
@@ -1088,7 +1147,7 @@ export default function TwoFactorForm() {
 
     return (
         <div className="glass w-full rounded-3xl p-6 md:p-10 shadow-2xl">
-            <h2 className="text-3xl font-extrabold text-transparent bg-clip-text bg-gradient-to-r from-blue-700 to-slate-700 tracking-tight mb-2">
+            <h2 className="text-2xl font-extrabold text-slate-900 dark:text-white tracking-tight mb-2">
                 {t('auth.two_factor_title')}
             </h2>
             <p className="text-sm text-slate-500 mb-6">{t('auth.two_factor_subtitle')}</p>
@@ -1193,8 +1252,9 @@ export default function TwoFactorForm() {
 Every auth page MUST follow this pattern to support both `metadata` and client-side interactivity:
 
 ```tsx
-// app/admin/login/page.tsx — SERVER COMPONENT (metadata export works)
+// app/admin/login/page.tsx — SERVER COMPONENT (async! metadata export works)
 import type { Metadata } from 'next';
+import { getServerLocale } from '@/lib/locale-server';
 import LoginClient from './LoginClient';
 
 export const metadata: Metadata = {
@@ -1202,21 +1262,27 @@ export const metadata: Metadata = {
     description: 'Sign in to the admin dashboard',
 };
 
-export default function LoginPage() {
-    return <LoginClient />;
+export default async function LoginPage() {
+    const { locale, messages } = await getServerLocale();
+    return <LoginClient initialLocale={locale} initialMessages={messages} />;
 }
 ```
 
 ```tsx
 // app/admin/login/LoginClient.tsx — CLIENT COMPONENT
 'use client';
-import { LocaleProvider } from '@/features/auth/hooks/LocaleContext';
+import { LocaleProvider, SupportedLocale } from '@/features/auth/hooks/LocaleContext';
 import AuthLayout from '@/components/login/AuthLayout';
 import LoginForm from '@/components/login/LoginForm';
 
-export default function LoginClient() {
+interface Props {
+    initialLocale: SupportedLocale;
+    initialMessages: Record<string, string>;
+}
+
+export default function LoginClient({ initialLocale, initialMessages }: Props) {
     return (
-        <LocaleProvider>
+        <LocaleProvider initialLocale={initialLocale} initialMessages={initialMessages}>
             <AuthLayout title="Login">
                 <LoginForm />
             </AuthLayout>

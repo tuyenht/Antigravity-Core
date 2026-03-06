@@ -107,18 +107,42 @@ Components/Common/ (REQUIRED — reuse, không tạo mới)
 Theo thứ tự:
 
 0. **Assets** — Copy `.agent/skills/velzon-admin/assets/images/` → project images dir (logos, favicon, flags, avatars, error images)
-1. **Database** — Schema/migration (roles, permissions, pivots)
-2. **Models** — User (extended), Role, Permission
-3. **Seed** — Roles + permissions (mode-aware) + top-level admin user
-4. **Auth** — 5 screens (Login, Forgot, Reset, 2FA, Logout)
-5. **Middleware** — Auth guard + RBAC permission guard
-6. **Admin Layout** — Sidebar (permission-filtered), Header, Footer
-7. **Dashboard** — Stat widgets + welcome card + activity log
-8. **User Management** — List, Create, Edit, Invite, Delete
-9. **Role Management** — List, Edit (permission matrix)
-10. **Error Pages** — 403, 404, 500
-11. **i18n** — Translation keys for auth + admin
-12. **Config** — Admin prefix, app settings
+1. **COPY BỘ KHUNG VELZON** — Copy layout shell from `velzon-admin/source/`:
+    - **ALWAYS copy:** `source/scss/` → project SCSS dir (design tokens, colors, dark mode)
+    - **IF React / Next.js / Inertia+React:**
+      - Copy `source/react-ts/layouts/` → adapt import paths, routing
+      - Copy `source/react-ts/header-components/` → Topbar dropdowns
+      - Copy `source/react-ts/theme-customizer/` → RightSidebar
+      - Copy `source/react-ts/slices/layouts/` → Redux layout state
+      - Copy `source/react-ts/common/` → withRouter, BreadCrumb
+    - **IF Vue / Laravel / PHP / Node / ASP.NET / ANY other framework:**
+      - Read `source/html-canonical/*` as DOM reference
+      - Convert to framework syntax (Blade/EJS/Razor/Vue `<template>`)
+      - **MUST preserve:** CSS classes, DOM nesting, `--vz-*` variables
+    - **Invariance rules:** sidebar dark (#405189), topbar dropdown order, menu category structure
+    - Nội dung bên trong → tạo mới theo `reference/component-patterns.md`
+2. **Root page.tsx** — Overwrite `src/app/page.tsx` (mặc định của `create-next-app`) bằng redirect tới admin dashboard:
+    ```tsx
+    // src/app/page.tsx — OVERWRITE default Next.js page
+    import { redirect } from 'next/navigation';
+    import { ADMIN_PREFIX } from '@/config/admin';
+    export default function Home() {
+      redirect(`/${ADMIN_PREFIX}/dashboard`);
+    }
+    ```
+    > ⚠️ Nếu KHÔNG overwrite, truy cập `/` sẽ hiển thị trang mặc định "To get started, edit the page.tsx file".
+2. **Database** — Schema/migration (roles, permissions, pivots)
+3. **Models** — User (extended), Role, Permission
+4. **Seed** — Roles + permissions (mode-aware) + top-level admin user
+5. **Auth** — 5 screens (Login, Forgot, Reset, 2FA, Logout)
+6. **Middleware** — Auth guard + RBAC permission guard
+7. **Admin Layout** — Sidebar (permission-filtered), Header, Footer
+8. **Dashboard** — Stat widgets + welcome card + activity log
+9. **User Management** — List, Create, Edit, Invite, Delete
+10. **Role Management** — List, Edit (permission matrix)
+11. **Error Pages** — 403, 404, 500
+12. **i18n** — Translation keys for auth + admin
+13. **Config** — Admin prefix, app settings
 
 ---
 
@@ -159,6 +183,7 @@ pnpm lint && pnpm build && pnpm dev  # or framework equivalent
 | Vấn đề | Giải pháp |
 |---------|-----------|  
 | Framework không detect được | Kiểm tra config files (package.json, composer.json), specify thủ công |
+| Trang `/` hiện template mặc định Next.js | Overwrite `src/app/page.tsx` bằng redirect tới `/{ADMIN_PREFIX}/dashboard` (xem Step 4 item 1) |
 | DB migration fails | Kiểm tra DB connection trong .env, đảm bảo DB service đang chạy |
 | Auth login không hoạt động | Kiểm tra seed data (admin@example.com/password), verify middleware config |
 | Sidebar menu không hiện | Kiểm tra LayoutMenuData.tsx, verify permission seeding |

@@ -83,9 +83,9 @@ project-name/
    ```ts
    modules: ['@pinia/nuxt', '@nuxtjs/tailwindcss']
    ```
-6. `npx prisma init`
+6. `pnpm exec prisma init`
 7. Configure schema
-8. `npx prisma db push`
+8. `pnpm exec prisma db push`
 9. `pnpm dev`
 
 ---

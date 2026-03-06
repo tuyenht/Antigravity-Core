@@ -280,7 +280,7 @@ COPY prisma ./prisma/
 RUN npm ci --frozen-lockfile
 
 # Generate Prisma client
-RUN npx prisma generate
+RUN pnpm exec prisma generate
 
 
 # Stage 2: Builder

@@ -60,7 +60,7 @@ cp "$DB_DATABASE" "$BACKUP_DIR/database.sqlite"
 php artisan backup:run --only-db
 
 # Prisma
-npx prisma db pull && cp prisma/schema.prisma "$BACKUP_DIR/"
+pnpm exec prisma db pull && cp prisma/schema.prisma "$BACKUP_DIR/"
 
 # Critical files backup
 cp .env "$BACKUP_DIR/.env.bak"
@@ -145,7 +145,7 @@ cp .backups/latest/.env.bak .env
 - [ ] App starts without errors
 - [ ] Database connection OK
 - [ ] Key data is present (spot-check)
-- [ ] Migrations status correct (`php artisan migrate:status` / `npx prisma migrate status`)
+- [ ] Migrations status correct (`php artisan migrate:status` / `pnpm exec prisma migrate status`)
 
 ---
 

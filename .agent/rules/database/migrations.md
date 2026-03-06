@@ -274,7 +274,7 @@ public async up(queryRunner: QueryRunner): Promise<void> {
 }
 
 // Prisma: Use raw SQL in separate step
-// 1. Run: npx prisma migrate deploy
+// 1. Run: pnpm exec prisma migrate deploy
 // 2. Run: psql -c "CREATE INDEX CONCURRENTLY..."
 
 
@@ -701,7 +701,7 @@ jobs:
       
       - name: Check pending migrations
         run: |
-          npx prisma migrate status
+          pnpm exec prisma migrate status
       
       - name: Create backup
         run: |
@@ -709,12 +709,12 @@ jobs:
           # Upload to S3 or artifact storage
       
       - name: Run migrations
-        run: npx prisma migrate deploy
+        run: pnpm exec prisma migrate deploy
       
       - name: Verify migration
         run: |
-          npx prisma db pull --force
-          npx prisma generate
+          pnpm exec prisma db pull --force
+          pnpm exec prisma generate
           npm run test:db  # Run database tests
       
       - name: Notify on failure
@@ -753,7 +753,7 @@ jobs:
       - name: Run production migrations
         env:
           DATABASE_URL: ${{ secrets.DATABASE_URL_PRODUCTION }}
-        run: npx prisma migrate deploy
+        run: pnpm exec prisma migrate deploy
       
       - name: Health check
         run: |
@@ -785,7 +785,7 @@ source .env.$ENVIRONMENT
 
 # Pre-flight checks
 echo "📋 Pre-flight checks..."
-npx prisma migrate status
+pnpm exec prisma migrate status
 
 if [ "$ACTION" == "deploy" ]; then
     # Create backup
@@ -795,11 +795,11 @@ if [ "$ACTION" == "deploy" ]; then
     
     # Run migration
     echo "🚀 Running migrations..."
-    npx prisma migrate deploy
+    pnpm exec prisma migrate deploy
     
     # Verify
     echo "✅ Verifying..."
-    npx prisma db pull --force
+    pnpm exec prisma db pull --force
     
     echo "🎉 Migration completed successfully"
     
@@ -820,7 +820,7 @@ elif [ "$ACTION" == "rollback" ]; then
     fi
     
 elif [ "$ACTION" == "status" ]; then
-    npx prisma migrate status
+    pnpm exec prisma migrate status
 fi
 ```
 
@@ -852,13 +852,13 @@ enum UserStatus {
 }
 
 // 2. Generate migration
-// $ npx prisma migrate dev --name add_user_status
+// $ pnpm exec prisma migrate dev --name add_user_status
 
 // 3. Review generated SQL
 // prisma/migrations/20240115000000_add_user_status/migration.sql
 
 // 4. Deploy to production
-// $ npx prisma migrate deploy
+// $ pnpm exec prisma migrate deploy
 
 // 5. Custom data migration
 // prisma/migrations/20240115000000_add_user_status/data.ts

@@ -7,6 +7,168 @@ description: "Chuyên gia Prisma ORM: thiết kế schema, truy vấn phức t�
 
 You are an expert in Prisma ORM with deep knowledge of schema design, migrations, query optimization, relations modeling, and database operations across PostgreSQL, MySQL, and SQLite.
 
+## CLI Golden Rule
+
+> [!CAUTION]
+> **TUYỆT ĐỐI KHÔNG dùng `npx prisma` hoặc `pnpm dlx prisma` trong BẤT KỲ script/command nào.**
+> `npx`/`dlx` luôn tải phiên bản MỚI NHẤT (v7.x) bất kể version pin trong `devDependencies`.
+> Chạy CLI v7 trên schema v6 → crash ngay lập tức với lỗi P1012.
+>
+> **LUÔN dùng `pnpm exec prisma`** để chạy CLI từ `devDependencies` của project.
+
+### Mandatory package.json Scripts
+
+```json
+{
+  "scripts": {
+    "db:generate": "pnpm exec prisma generate",
+    "db:push": "pnpm exec prisma db push",
+    "db:seed": "pnpm exec tsx prisma/seed.ts",
+    "db:reset": "pnpm exec prisma db push --force-reset && pnpm exec tsx prisma/seed.ts",
+    "db:studio": "pnpm exec prisma studio"
+  }
+}
+```
+
+---
+
+## Version-Specific Setup
+
+> [!IMPORTANT]
+> Khi tạo project mới, PHẢI hỏi user chọn phiên bản Prisma, hoặc mặc định dùng **v7** (mới nhất).
+
+### Prisma v6 (Stable — recommended for MongoDB or quick setup)
+
+**Dùng khi:** Setup nhanh, project dùng MongoDB, hoặc cần tối đa compatibility.
+
+#### schema.prisma (v6)
+
+```prisma
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "sqlite"
+  url      = env("DATABASE_URL")
+}
+```
+
+#### PrismaClient singleton (v6) — `src/lib/prisma.ts`
+
+```typescript
+import { PrismaClient } from '@prisma/client';
+
+const globalForPrisma = globalThis as unknown as { prisma: PrismaClient };
+
+export const prisma = globalForPrisma.prisma || new PrismaClient();
+
+if (process.env.NODE_ENV !== 'production') globalForPrisma.prisma = prisma;
+```
+
+#### package.json dependencies (v6)
+
+```json
+{
+  "dependencies": {
+    "@prisma/client": "^6.19.2"
+  },
+  "devDependencies": {
+    "prisma": "^6.19.2"
+  }
+}
+```
+
+---
+
+### Prisma v7 (Latest — TypeScript Query Engine, ESM-first)
+
+**Dùng khi:** Muốn TS query engine (nhẹ + nhanh hơn), ESM-first. **KHÔNG** hỗ trợ MongoDB.
+**Yêu cầu:** Node.js >= 20.19.0, TypeScript >= 5.4.0
+
+#### Step 1 — package.json dependencies (v7)
+
+```json
+{
+  "dependencies": {
+    "@prisma/client": "^7.0.0",
+    "@prisma/adapter-better-sqlite3": "^7.0.0",
+    "better-sqlite3": "^12.0.0"
+  },
+  "devDependencies": {
+    "prisma": "^7.0.0"
+  }
+}
+```
+
+> Cho PostgreSQL: thay `@prisma/adapter-better-sqlite3` + `better-sqlite3` bằng `@prisma/adapter-pg` + `pg`
+
+#### Step 2 — schema.prisma (v7 — sạch hơn, không còn `datasource url`)
+
+```prisma
+generator client {
+  provider = "prisma-client"
+  output   = "./generated/prisma/client"
+}
+
+datasource db {
+  provider = "sqlite"
+}
+```
+
+#### Step 3 — prisma.config.ts (MỚI, đặt ở root project)
+
+```typescript
+import path from 'node:path';
+import 'dotenv/config';
+import { defineConfig } from 'prisma/config';
+
+export default defineConfig({
+  earlyAccess: true,
+  schema: path.join(import.meta.dirname, 'prisma', 'schema.prisma'),
+  migrate: {
+    async development(params) {
+      const { url } = await params.datasource();
+      return { url };
+    },
+  },
+});
+```
+
+#### Step 4 — PrismaClient singleton với driver adapter (v7) — `src/lib/prisma.ts`
+
+```typescript
+import { PrismaClient } from '../prisma/generated/prisma/client';
+import { PrismaBetterSQLite3 } from '@prisma/adapter-better-sqlite3';
+
+const adapter = new PrismaBetterSQLite3({ url: process.env.DATABASE_URL! });
+const globalForPrisma = globalThis as unknown as { prisma: PrismaClient };
+
+export const prisma = globalForPrisma.prisma || new PrismaClient({ adapter });
+
+if (process.env.NODE_ENV !== 'production') globalForPrisma.prisma = prisma;
+```
+
+#### Step 5 — .gitignore thêm
+
+```
+prisma/generated/
+```
+
+#### Step 6 — tsconfig.json cần
+
+```json
+{
+  "compilerOptions": {
+    "moduleResolution": "bundler"
+  }
+}
+```
+
+> Hoặc `"nodenext"` — cả hai đều hỗ trợ Prisma v7.
+
+---
+
 ## When Invoked
 
 ### Step 0: Recommend Specialist and Stop
@@ -18,7 +180,7 @@ If the issue is specifically about:
 ### Environment Detection
 ```bash
 # Check Prisma version
-npx prisma --version 2>/dev/null || echo "Prisma not installed"
+pnpm exec prisma --version 2>/dev/null || echo "Prisma not installed"
 
 # Check database provider
 grep "provider" prisma/schema.prisma 2>/dev/null | head -1
@@ -28,6 +190,9 @@ ls -la prisma/migrations/ 2>/dev/null | head -5
 
 # Check Prisma Client generation status
 ls -la node_modules/.prisma/client/ 2>/dev/null | head -3
+
+# Check for v7 config file
+test -f prisma.config.ts && echo "Prisma v7 detected" || echo "Prisma v6 or earlier"
 ```
 
 ### Apply Strategy
@@ -48,13 +213,13 @@ ls -la node_modules/.prisma/client/ 2>/dev/null | head -3
 **Diagnosis:**
 ```bash
 # Validate schema
-npx prisma validate
+pnpm exec prisma validate
 
 # Check for schema drift
-npx prisma migrate diff --from-schema-datamodel prisma/schema.prisma --to-schema-datasource prisma/schema.prisma
+pnpm exec prisma migrate diff --from-schema-datamodel prisma/schema.prisma --to-schema-datasource prisma/schema.prisma
 
 # Format schema
-npx prisma format
+pnpm exec prisma format
 ```
 
 **Prioritized Fixes:**
@@ -103,7 +268,7 @@ model Post {
 **Diagnosis:**
 ```bash
 # Check migration status
-npx prisma migrate status
+pnpm exec prisma migrate status
 
 # View pending migrations
 ls -la prisma/migrations/
@@ -120,15 +285,15 @@ ls -la prisma/migrations/
 **Safe Migration Workflow:**
 ```bash
 # Development
-npx prisma migrate dev --name descriptive_name
+pnpm exec prisma migrate dev --name descriptive_name
 
 # Production (never use migrate dev!)
-npx prisma migrate deploy
+pnpm exec prisma migrate deploy
 
 # If migration fails in production
-npx prisma migrate resolve --applied "migration_name"
+pnpm exec prisma migrate resolve --applied "migration_name"
 # or
-npx prisma migrate resolve --rolled-back "migration_name"
+pnpm exec prisma migrate resolve --rolled-back "migration_name"
 ```
 
 **Resources:**
@@ -340,6 +505,12 @@ const updateWithVersion = await prisma.post.update({
 - [ ] Query logging enabled in development
 - [ ] Slow queries identified and optimized
 
+### CLI & Scripts
+- [ ] All scripts use `pnpm exec prisma` (NEVER `npx prisma` or `pnpm dlx prisma`)
+- [ ] `db:generate`, `db:push`, `db:seed`, `db:reset`, `db:studio` scripts defined
+- [ ] Prisma version pinned in `devDependencies`
+- [ ] v7 projects include `prisma.config.ts` and `prisma/generated/` in `.gitignore`
+
 ### Migration Safety
 - [ ] Migrations tested before production deployment
 - [ ] Backward-compatible schema changes (no data loss)
@@ -353,3 +524,4 @@ const updateWithVersion = await prisma.post.update({
 3. **Ignoring Connection Limits**: Always configure pool size for your environment
 4. **Raw Query Abuse**: Use Prisma queries when possible, raw only for complex cases
 5. **Migration in Production Dev Mode**: Never use `migrate dev` in production
+6. **Using `npx prisma` or `pnpm dlx prisma`**: Always use `pnpm exec prisma` to respect version pin

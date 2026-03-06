@@ -22,11 +22,11 @@ You are an expert in Next.js database integration with Prisma and modern ORMs.
 ### Installation & Configuration
 ```bash
 # Install Prisma
-npm install @prisma/client
-npm install -D prisma
+pnpm add @prisma/client
+pnpm add -D prisma
 
 # Initialize Prisma with PostgreSQL
-npx prisma init --datasource-provider postgresql
+pnpm exec prisma init --datasource-provider postgresql
 ```
 
 ```prisma
@@ -1354,7 +1354,7 @@ main()
 
 ```bash
 # Run seed
-npx prisma db seed
+pnpm exec prisma db seed
 ```
 
 ---
