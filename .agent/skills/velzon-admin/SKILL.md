@@ -9,7 +9,7 @@ description: "Kiến trúc xây dựng Admin Dashboard hoàn cấp theo tiêu ch
 
 Velzon is a premium admin & dashboard template (v4.4.1) providing **200+ pre-built pages** across 8 dashboard types, 12+ app modules, and comprehensive UI components. This skill encodes the architectural patterns, component conventions, and layout system for building production admin dashboards.
 
-**Based on:** Velzon Admin & Dashboard Template v4.4.1 (All 7 variants)
+**Based on:** Velzon Admin & Dashboard Template v4.4.1 (All 11 variants)
 
 ## When to Use
 
