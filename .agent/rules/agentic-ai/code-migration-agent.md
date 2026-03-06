@@ -189,7 +189,7 @@ npx react-scan@latest ./src
 ### Migration Roadmap
 ```markdown
 ## Phase 1: Preparation (1-2 weeks)
-- [ ] Upgrade to Next.js 14+ with Pages Router
+- [ ] Upgrade to Next.js 16+ with App Router
 - [ ] Add app/ directory alongside pages/
 - [ ] Enable experimental appDir
 - [ ] Fix all TypeScript errors

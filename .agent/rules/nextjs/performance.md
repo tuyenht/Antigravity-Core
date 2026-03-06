@@ -759,7 +759,7 @@ const nextConfig = {
   // ==========================================
   
   experimental: {
-    // Partial Prerendering (Next.js 14+)
+    // Partial Prerendering (Next.js 16 — stable)
     ppr: true,
     
     // Optimized package imports

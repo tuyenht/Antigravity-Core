@@ -177,22 +177,22 @@ Galaxy-specific decorative images
 # Install via SCSS (already included in scss/icons.scss)
 # Or install via CDN:
 # Remix Icon
-npm install remixicon
+pnpm add remixicon
 # or: <link href="https://cdn.jsdelivr.net/npm/remixicon@4.5.0/fonts/remixicon.css" rel="stylesheet">
 
 # BoxIcons
-npm install boxicons
+pnpm add boxicons
 # or: <link href="https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css" rel="stylesheet">
 
 # Material Design Icons
-npm install @mdi/font
+pnpm add @mdi/font
 # or: <link href="https://cdn.jsdelivr.net/npm/@mdi/font@7.4.47/css/materialdesignicons.min.css" rel="stylesheet">
 
 # Line Awesome
 # <link href="https://maxst.icons8.com/vue-static/lanern/line-awesome/line-awesome/1.3.0/css/line-awesome.min.css" rel="stylesheet">
 
 # Feather Icons (React)
-npm install feather-icons-react@^0.9.0
+pnpm add feather-icons-react@^0.9.0
 
 # Lord Icons (CDN only)
 # <script src="https://cdn.lordicon.com/lordicon.js"></script>
@@ -534,10 +534,10 @@ To recreate the Velzon asset structure from scratch:
 mkdir -p src/assets/{images/{users,companies,products,flags,brands,clients,blog,small,nft,nft/gif,nft/wallet,layouts,demos,sidebar,landing/features,modals,sweetalert2,svg/crypto-icons,galaxy},fonts,scss/{components,fonts,pages,plugins/icons,rtl,structure,theme}}
 
 # 2. Install icon fonts
-npm install remixicon boxicons @mdi/font
+pnpm add remixicon boxicons @mdi/font
 
 # 3. Install core dependencies (from Section 4)
-npm install bootstrap@5.3.7 reactstrap@^9.2.3 @reduxjs/toolkit@^2.8.2 ...
+pnpm add bootstrap@5.3.7 reactstrap@^9.2.3 @reduxjs/toolkit@^2.8.2 ...
 
 # 4. Copy SCSS from bootstrap and create Velzon overrides
 # Start with _variables.scss overrides → components → structure → theme

@@ -13,7 +13,7 @@ priority: P1 - Load when Next.js 16+ detected
 > **React:** 19.2+ | **Node.js:** 20.9+ | **Build:** Turbopack (default)
 
 > [!IMPORTANT]
-> For **Next.js 14/15 fundamentals** (App Router, Server/Client Components, Server Actions, Data Fetching, Layouts):
+> For **Next.js 14/15/16 fundamentals** (App Router, Server/Client Components, Server Actions, Data Fetching, Layouts):
 > see `rules/nextjs/app-router.md` (P0).
 > **This file covers ONLY Next.js 16-specific features and enhancements.**
 

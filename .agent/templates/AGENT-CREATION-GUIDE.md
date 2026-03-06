@@ -32,7 +32,7 @@ Copy-Item .agent\templates\agent-template-v5.md .agent\agents\ten-agent-moi.md
 Mở file `ten-agent-moi.md` vừa copy và chỉnh sửa các `[Placeholders]`.
 
 1. **Identity:** Khai báo chính xác mảng mà Agent giỏi nhất.
-2. **Constraints:** Cố định phiên bản tech stack (Ví dụ: `Next.js 15+` thay vì `Next.js`).
+2. **Constraints:** Cố định phiên bản tech stack (Ví dụ: `Next.js 16+` thay vì `Next.js`).
 3. **Pipeline Execution:** Quy định rõ thao tác của Agent khi Pipeline đưa yêu cầu "Lên thiết kế (Phase 2)" hoặc "Bắt đầu code (Phase 3)".
 
 ### Bước 3: Đăng ký Agent (Agent Registration Protocol)

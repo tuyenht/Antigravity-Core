@@ -444,7 +444,7 @@ Before creating a component, ask:
 
 ### Performance Optimization
 ✅ Measure before optimizing (use Profiler, DevTools)
-✅ Use Server Components by default (Next.js 14+)
+✅ Use Server Components by default (Next.js 16+)
 ✅ Implement lazy loading for heavy components/routes
 ✅ Optimize images (next/image, proper formats)
 ✅ Minimize client-side JavaScript
