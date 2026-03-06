@@ -5,7 +5,7 @@
 
 [![Version](https://img.shields.io/badge/version-5.0.0-blue.svg)](.agent/CHANGELOG.md)
 [![Agents](https://img.shields.io/badge/agents-27-brightgreen.svg)](.agent/docs/agents/AGENT-CATALOG.md)
-[![Skills](https://img.shields.io/badge/skills-59-orange.svg)](.agent/docs/skills/SKILL-CATALOG.md)
+[![Skills](https://img.shields.io/badge/skills-62-orange.svg)](.agent/docs/skills/SKILL-CATALOG.md)
 [![Rules](https://img.shields.io/badge/rules-110-purple.svg)](.agent/systems/auto-rule-discovery.md)
 [![AI Autonomy](https://img.shields.io/badge/AI%20Autonomy-95%25-green.svg)]()
 [![Quality](https://img.shields.io/badge/Quality-Platinum%20Standard-gold.svg)]()
@@ -23,7 +23,7 @@ graph TB
     subgraph OS["ANTIGRAVITY-CORE (AI OS v5.0.0)"]
         direction TB
         A["27 Specialized Agents"]
-        B["59 Knowledge Skills"]
+        B["62 Knowledge Skills"]
         C["110 Expert Rules"]
         D["34 Automated Workflows"]
         E["6 Core Protocols"]
@@ -44,7 +44,7 @@ graph TB
 | 🔴 Generic responses | 🟢 **110 expert rules** tự động load |
 | 🔴 No quality gates | 🟢 **Platinum Standard** enforcement |
 
-| 🔴 Trial and error | 🟢 **59 proven skill modules** |
+| 🔴 Trial and error | 🟢 **62 proven skill modules** |
 | 🔴 One-size-fits-all | 🟢 **Auto-detection** tech stack |
 
 ---
@@ -154,11 +154,11 @@ Antigravity-Core/
 │   │   ├── security-auditor.md        (OWASP, pentest)
 │   │   └── ... 23 more agents
 │   │
-│   ├── 🎯 skills/ (59)                ← Knowledge modules
+│   ├── 🎯 skills/ (62)                ← Knowledge modules
 │   │   ├── react-patterns/            prisma-expert/
 │   │   ├── laravel-performance/       docker-expert/
 │   │   ├── ui-ux-pro-max/             vulnerability-scanner/
-│   │   └── ... 53 more skills
+│   │   └── ... 56 more skills
 │   │
 │   ├── 📏 rules/ (110)                ← Expert coding rules
 │   │   ├── backend-frameworks/ (12)   database/ (10)
@@ -488,7 +488,7 @@ Time:     30 phút - 2 giờ
 |----------|-------|
 | [📖 **docs/INDEX.md**](.agent/docs/INDEX.md) | **Master index — Bắt đầu từ đây** |
 | [AGENT-CATALOG.md](.agent/docs/agents/AGENT-CATALOG.md) | 27 agents chi tiết |
-| [SKILL-CATALOG.md](.agent/docs/skills/SKILL-CATALOG.md) | 59 skills chi tiết |
+| [SKILL-CATALOG.md](.agent/docs/skills/SKILL-CATALOG.md) | 62 skills chi tiết |
 | [WORKFLOW-CATALOG.md](.agent/docs/workflows/WORKFLOW-CATALOG.md) | 34 Workflows chi tiết |
 | [Auto-Rule Discovery](.agent/systems/auto-rule-discovery.md) | 110 rules chi tiết |
 | [SYSTEMS-CATALOG.md](.agent/docs/systems/SYSTEMS-CATALOG.md) | 6 protocols (5 files + AOC) |
@@ -537,7 +537,7 @@ Time:     30 phút - 2 giờ
 
 - ✅ Auto-Rule Discovery Engine (3-layer detection)
 - ✅ Agent Registry (27 specialized agents)
-- ✅ 110 expert rules, 59 skills, 34 workflows
+- ✅ 110 expert rules, 62 skills, 34 workflows
 - ✅ Full documentation suite
 
 ### v5.1.0 (Planned — Q2 2026)
@@ -571,7 +571,7 @@ Proprietary — All rights reserved.
 ```
 ┌──────────────────────────────────────────────┐
 │                                              │
-│  27 Agents. 59 Skills. 110 Rules. 6 Pipelines.│
+│  27 Agents. 62 Skills. 110 Rules. 6 Pipelines.│
 │  Copy. Prompt. Build. Deploy.                │
 │  95% AI. 5% You.                             │
 │                                              │
