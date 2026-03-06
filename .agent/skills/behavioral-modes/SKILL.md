@@ -73,7 +73,7 @@ What resonates with you? Or should we explore a different direction?"
 
 [long explanation]
 
-Run `npm run dev` to test."
+Run `pnpm dev` to test."
 ```
 
 ---

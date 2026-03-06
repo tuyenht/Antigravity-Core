@@ -1240,7 +1240,7 @@ Before marking starter kit as complete, verify:
 - [ ] **Dark Mode**: `data-bs-theme="dark"` toggles correctly
 - [ ] **Security**: Login throttling active, password policy enforced
 - [ ] **[SaaS]**: Tenant resolution works, SaaS menu items visible only in SaaS mode
-- [ ] **Dev Server**: `npm run dev` / `php artisan serve` starts without errors
+- [ ] **Dev Server**: `pnpm dev` / `php artisan serve` starts without errors
 
 ---
 

@@ -17,7 +17,7 @@ turbo-all: false
 ## 🎯 Purpose
 
 **Problem:** Developers waste time on trivial fixes:
-- `npm run lint` fails → fix → run again → repeat
+- `pnpm lint` fails → fix → run again → repeat
 - Type error → fix import → run again → repeat
 - 50% of commits are "fix lint" / "fix types"
 
@@ -171,7 +171,7 @@ code-generator-agent generates CRUD
     ↓
 Lint check fails (missing semicolon)
     ↓
-Auto-heal: Run `npm run lint --fix`
+Auto-heal: Run `pnpm lint --fix`
     ↓
 Lint passes ✅
     ↓
@@ -245,7 +245,7 @@ npm run type-check
 
 | Vấn đề | Giải pháp |
 |---------|-----------|
-| Lint fix creates new errors | Run `npm run lint -- --fix` twice, check for circular fixes |
+| Lint fix creates new errors | Run `pnpm lint --fix` twice, check for circular fixes |
 | Type fix changes behavior | Revert and escalate  never auto-fix logic |
 | Import not found after fix | Check `tsconfig.json` paths and `baseUrl` |
 | Auto-heal loops forever | Kill after 3 attempts, present options to user |

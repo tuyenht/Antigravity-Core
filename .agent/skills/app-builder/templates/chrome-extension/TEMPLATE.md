@@ -68,7 +68,7 @@ project-name/
 2. Add Chrome types: `npm install -D @types/chrome`
 3. Configure Vite for multi-entry
 4. Create manifest.json
-5. `npm run dev` (watch mode)
+5. `pnpm dev` (watch mode)
 6. Load in Chrome: `chrome://extensions` → Load unpacked
 
 ---
@@ -80,7 +80,7 @@ project-name/
 | Debug Popup | Right-click icon → Inspect |
 | Debug Background | Extensions page → Service worker |
 | Debug Content | DevTools console on page |
-| Hot Reload | `npm run dev` with watch |
+| Hot Reload | `pnpm dev` with watch |
 
 ---
 

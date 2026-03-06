@@ -83,7 +83,7 @@ const nextConfig = {
 2. Install: `npm install framer-motion lucide-react next-seo`
 3. Configure static export
 4. Create sections
-5. `npm run dev`
+5. `pnpm dev`
 
 ---
 

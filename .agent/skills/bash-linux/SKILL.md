@@ -50,7 +50,7 @@ allowed-tools: Read, Write, Edit, Glob, Grep, Bash
 | Kill by PID | `kill -9 <PID>` |
 | Find port user | `lsof -i :3000` |
 | Kill port | `kill -9 $(lsof -t -i :3000)` |
-| Background | `npm run dev &` |
+| Background | `pnpm dev &` |
 | Jobs | `jobs -l` |
 | Bring to front | `fg %1` |
 

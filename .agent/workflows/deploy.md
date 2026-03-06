@@ -149,7 +149,7 @@ error TS2345: Argument of type 'string' is not assignable...
 
 ### Resolution
 1. Fix TypeScript error in `src/services/user.ts:45`
-2. Run `npm run build` locally to verify
+2. Run `pnpm build` locally to verify
 3. Try `/deploy` again
 
 ### Rollback Available

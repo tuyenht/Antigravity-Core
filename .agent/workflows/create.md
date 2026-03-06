@@ -68,7 +68,7 @@ Fill ALL sections bằng thông tin từ planning phase.
   - Database → Schema
 
 ## Bước 4: Xem trước
-- Chạy `npm run dev` hoặc tương đương
+- Chạy `pnpm dev` hoặc tương đương
 - Hiển thị URL cho người dùng
 
 ---
@@ -157,7 +157,7 @@ Fill ALL sections bằng thông tin từ planning phase.
   - Database → Schema
 
 ## Bước 4: Xem trước
-- Chạy `npm run dev` hoặc tương đương
+- Chạy `pnpm dev` hoặc tương đương
 - Hiển thị URL cho người dùng
 
 ---

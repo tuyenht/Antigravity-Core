@@ -86,7 +86,7 @@ project-name/
 6. `npx prisma init`
 7. Configure schema
 8. `npx prisma db push`
-9. `npm run dev`
+9. `pnpm dev`
 
 ---
 

@@ -69,8 +69,8 @@ project-name/
 2. `npm init -y`
 3. Install deps: `npm install express prisma zod bcrypt jsonwebtoken`
 4. Configure Prisma
-5. `npm run db:push`
-6. `npm run dev`
+5. `pnpm db:push`
+6. `pnpm dev`
 
 ---
 

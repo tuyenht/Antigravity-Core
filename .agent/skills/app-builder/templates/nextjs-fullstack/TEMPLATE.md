@@ -68,8 +68,8 @@ project-name/
 2. `npm install prisma @prisma/client zod`
 3. `npx prisma init`
 4. Configure schema
-5. `npm run db:push`
-6. `npm run dev`
+5. `pnpm db:push`
+6. `pnpm dev`
 
 ---
 

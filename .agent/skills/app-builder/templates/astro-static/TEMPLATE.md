@@ -53,7 +53,7 @@ project-name/
 2. Add integrations: `npx astro add mdx tailwind sitemap`
 3. Configure `astro.config.mjs`
 4. Create content collections
-5. `npm run dev`
+5. `pnpm dev`
 
 ---
 

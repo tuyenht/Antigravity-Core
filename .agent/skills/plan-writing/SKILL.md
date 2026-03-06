@@ -102,7 +102,7 @@ This skill provides a framework for breaking down work into clear, actionable ta
 
 | ❌ Wrong | ✅ Right |
 |----------|----------|
-| "Verify the component works correctly" | "Run `npm run dev`, click button, see toast" |
+| "Verify the component works correctly" | "Run `pnpm dev`, click button, see toast" |
 | "Test the API" | "curl localhost:3000/api/users returns 200" |
 | "Check styles" | "Open browser, verify dark mode toggle works" |
 
