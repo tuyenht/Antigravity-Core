@@ -63,7 +63,7 @@ Ready for optimization cycle.
 **Tasks:**
 1. Run all validation checks:
    ```bash
-   npm run lint        # or pint, ruff
+   pnpm lint        # or pint, ruff
    npx tsc --noEmit    # or phpstan, mypy
    npm test            # or pest, pytest
    npm audit           # or composer audit

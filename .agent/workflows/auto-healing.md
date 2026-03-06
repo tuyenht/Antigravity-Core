@@ -60,7 +60,7 @@ When error occurs, classify:
 ./vendor/bin/pint
 
 # TypeScript/JavaScript
-npm run lint -- --fix
+pnpm lint --fix
 ```
 
 **For Import Errors:**
@@ -86,9 +86,9 @@ function add(a: number, b: number): number { return a + b }
 
 ```bash
 # Run checks again
-npm run lint           # Should pass
-npm run type-check     # Should pass
-npm run test           # Should pass
+pnpm lint           # Should pass
+pnpm type-check     # Should pass
+pnpm test           # Should pass
 ```
 
 **If all pass:** ✅ Continue with delivery
@@ -206,8 +206,8 @@ Deliver to user (no intervention needed!)
 ./vendor/bin/phpstan analyse --fix
 
 # For TypeScript
-npm run lint -- --fix
-npm run type-check
+pnpm lint --fix
+pnpm type-check
 ```
 
 **Check auto-healing config:**

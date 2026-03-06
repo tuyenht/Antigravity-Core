@@ -35,7 +35,7 @@ Identify file types:
 **Bundle Size Check:**
 ```bash
 # Build and measure
-npm run build
+pnpm build
 
 # Check bundle sizes
 npx webpack-bundle-analyzer dist/stats.json --mode static --report bundle-report.html
@@ -97,7 +97,7 @@ Log::info('Props size: ' . strlen(json_encode($props)) . ' bytes');
 **Get baseline from main branch:**
 ```bash
 git checkout main
-npm run build -- --json > baseline-stats.json
+pnpm build -- --json > baseline-stats.json
 git checkout -
 ```
 
@@ -183,13 +183,13 @@ Action: Can merge, consider optimization
 **Full check:**
 ```bash
 # Run all performance checks
-npm run perf:check
+pnpm perf:check
 ```
 
 **Bundle only:**
 ```bash
-npm run build
-npm run analyze
+pnpm build
+pnpm analyze
 ```
 
 **Backend only:**

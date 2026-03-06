@@ -150,7 +150,7 @@ php artisan migrate  # or npx prisma migrate dev
 php artisan db:seed --class=SyncPermissionsSeeder
 
 # Lint + Build + Dev
-npm run lint && npm run build && npm run dev
+pnpm lint && pnpm build && pnpm dev
 ```
 
 **Checklist:**

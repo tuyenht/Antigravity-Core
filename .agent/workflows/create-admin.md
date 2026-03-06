@@ -126,7 +126,7 @@ Theo thứ tự:
 
 ```bash
 # Lint + Build + Dev
-npm run lint && npm run build && npm run dev  # or framework equivalent
+pnpm lint && pnpm build && pnpm dev  # or framework equivalent
 ```
 
 **Checklist (from blueprint §14):**
