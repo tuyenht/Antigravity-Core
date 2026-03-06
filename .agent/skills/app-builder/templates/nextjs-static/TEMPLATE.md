@@ -80,7 +80,7 @@ const nextConfig = {
 ## Setup Steps
 
 1. `npx create-next-app {{name}} --typescript --tailwind --app`
-2. Install: `npm install framer-motion lucide-react next-seo`
+2. Install: `pnpm add framer-motion lucide-react next-seo`
 3. Configure static export
 4. Create sections
 5. `pnpm dev`

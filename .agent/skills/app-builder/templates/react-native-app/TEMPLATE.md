@@ -79,7 +79,7 @@ project-name/
 
 1. `npx create-expo-app {{name}} -t expo-template-blank-typescript`
 2. `npx expo install expo-router react-native-safe-area-context`
-3. Install state: `npm install zustand @tanstack/react-query`
+3. Install state: `pnpm add zustand @tanstack/react-query`
 4. `npx expo start`
 
 ---

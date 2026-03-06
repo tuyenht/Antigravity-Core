@@ -77,8 +77,8 @@ project-name/
 
 1. `npx nuxi@latest init {{name}}`
 2. `cd {{name}}`
-3. `npm install @pinia/nuxt @prisma/client prisma zod`
-4. `npm install -D @nuxtjs/tailwindcss`
+3. `pnpm add @pinia/nuxt @prisma/client prisma zod`
+4. `pnpm add -D @nuxtjs/tailwindcss`
 5. Add modules to `nuxt.config.ts`:
    ```ts
    modules: ['@pinia/nuxt', '@nuxtjs/tailwindcss']

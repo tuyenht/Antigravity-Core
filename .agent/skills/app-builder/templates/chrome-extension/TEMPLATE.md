@@ -64,8 +64,8 @@ project-name/
 
 ## Setup Steps
 
-1. `npm create vite {{name}} -- --template react-ts`
-2. Add Chrome types: `npm install -D @types/chrome`
+1. `pnpm create vite {{name}} -- --template react-ts`
+2. Add Chrome types: `pnpm add -D @types/chrome`
 3. Configure Vite for multi-entry
 4. Create manifest.json
 5. `pnpm dev` (watch mode)
