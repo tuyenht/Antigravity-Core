@@ -51,6 +51,11 @@ User Request
 - No over-commenting, no over-engineering
 - Self-documenting code preferred
 
+### 📦 Package Management (Global Mandate)
+- **ALWAYS use `pnpm`** (instead of `npm` or `yarn`) for ANY JavaScript/TypeScript project.
+- **Why:** Required by Antigravity standards. Node.js, Bun, and Deno environments support it.
+- **Targets:** React, Vue, Angular, Next.js, Nuxt, Express, NestJS, React Native, Vite, Webpack, etc. (Any project with `package.json`).
+
 ### 📁 File Dependency Awareness
 Before modifying ANY file:
 1. Check `ARCHITECTURE.md` → File Dependencies
