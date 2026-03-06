@@ -1,6 +1,6 @@
 # 🤖 Agent Registry
 
-> **Version:** 5.0.0 | **Updated:** 2026-02-27  
+> **Version:** 5.0.0 | **Updated:** 2026-03-01  
 > **Purpose:** Machine-readable capability registry for all 27 agents  
 > **Priority:** P0 — Required by Orchestration Engine
 
@@ -49,7 +49,7 @@ backend-specialist:
     keywords: [api, endpoint, controller, middleware, auth, server, backend, route]
     file_patterns: ["src/server/**", "src/api/**", "routes/**", "controllers/**", "app/Http/**"]
     contexts: [api_error, server_crash, new_endpoint]
-  skills: [nodejs-best-practices, nestjs-expert, laravel-performance, api-patterns]
+  skills: [clean-code, laravel-performance, inertia-performance, database-design, architecture-mastery, vulnerability-scanner, testing-mastery, mcp-builder, vector-databases, cloudflare]
   rules: [backend-frameworks/*, agentic-ai/api-design-agent.md]
   exclusions: ["*.tsx", "*.vue", "*.css", "*.html", "tests/**"]
   works_with: [database-architect, test-engineer, frontend-specialist]
@@ -65,7 +65,7 @@ frontend-specialist:
     keywords: [ui, component, page, layout, style, responsive, css, react, vue, frontend]
     file_patterns: ["src/components/**", "src/pages/**", "resources/js/**", "*.tsx", "*.vue", "*.css"]
     contexts: [ui_bug, new_page, design_review, layout_issue]
-  skills: [react-patterns, react-performance, vue-expert, tailwind-patterns, frontend-design, ui-ux-pro-max]
+  skills: [clean-code, react-patterns, react-performance, nextjs-best-practices, tailwind-patterns, frontend-design, state-management]
   rules: [frontend-frameworks/*, typescript/*, web-development/core/*]
   exclusions: ["*.php", "*.py", "migrations/**", "database/**"]
   works_with: [backend-specialist, test-engineer, seo-specialist]
@@ -81,7 +81,7 @@ laravel-specialist:
     keywords: [laravel, eloquent, artisan, blade, migration, model, livewire, inertia]
     file_patterns: ["app/**/*.php", "routes/*.php", "database/**", "config/*.php", "composer.json"]
     contexts: [laravel_project, php_error, artisan_command]
-  skills: [laravel-performance, inertia-performance]
+  skills: [clean-code, laravel-performance, inertia-performance, architecture-mastery, database-design, testing-mastery, performance-profiling]
   rules: [backend-frameworks/laravel.md]
   exclusions: ["*.tsx", "*.vue", "node_modules/**"]
   works_with: [database-architect, frontend-specialist, test-engineer]
@@ -97,7 +97,7 @@ mobile-developer:
     keywords: [mobile, ios, android, react native, flutter, expo, app store, play store]
     file_patterns: ["*.swift", "*.kt", "*.dart", "ios/**", "android/**", "App.tsx"]
     contexts: [mobile_project, app_crash, native_module]
-  skills: [mobile-design, game-development]
+  skills: [clean-code, mobile-design, react-patterns, performance-profiling, i18n-localization]
   rules: [mobile/*]
   exclusions: ["*.php", "server/**", "api/**"]
   works_with: [test-engineer, devops-engineer]
@@ -117,7 +117,7 @@ test-engineer:
     keywords: [test, spec, coverage, jest, vitest, playwright, cypress, tdd]
     file_patterns: ["**/*.test.*", "**/*.spec.*", "tests/**", "__tests__/**"]
     contexts: [test_failure, new_feature_needs_tests, coverage_drop]
-  skills: [testing-mastery, testing-patterns, tdd-workflow, webapp-testing]
+  skills: [clean-code, testing-mastery, code-review-checklist]
   rules: [agentic-ai/test-writing-agent.md]
   exclusions: []
   works_with: [backend-specialist, frontend-specialist]
@@ -133,7 +133,7 @@ test-generator:
     keywords: [generate test, create test, write test, auto test, mock]
     file_patterns: []
     contexts: [missing_tests, untested_code]
-  skills: [testing-patterns, tdd-workflow]
+  skills: [testing-mastery, clean-code, laravel-performance, react-patterns]
   rules: [agentic-ai/test-writing-agent.md]
   exclusions: []
   works_with: [test-engineer]
@@ -149,7 +149,7 @@ ai-code-reviewer:
     keywords: [review, PR, code quality, review code, best practice, code review]
     file_patterns: []
     contexts: [pull_request, code_submission]
-  skills: [code-review-checklist, clean-code]
+  skills: [clean-code, laravel-performance, react-performance, inertia-performance, testing-mastery, architecture-mastery, vulnerability-scanner]
   rules: [agentic-ai/code-review-agent.md]
   exclusions: []
   works_with: [security-auditor, test-engineer]
@@ -165,7 +165,7 @@ debugger:
     keywords: [debug, fix, error, bug, crash, stack trace, exception, broken]
     file_patterns: []
     contexts: [runtime_error, build_failure, test_failure]
-  skills: [systematic-debugging]
+  skills: [clean-code, systematic-debugging, performance-profiling, testing-mastery]
   rules: [agentic-ai/debugging-agent.md]
   exclusions: []
   works_with: [backend-specialist, frontend-specialist]
@@ -185,7 +185,7 @@ security-auditor:
     keywords: [security, audit, vulnerability, owasp, cve, xss, sql injection, penetration]
     file_patterns: ["auth/**", "middleware/auth*"]
     contexts: [security_review, pre_deployment, incident]
-  skills: [vulnerability-scanner]
+  skills: [clean-code, vulnerability-scanner, red-team-tactics, architecture-mastery, performance-profiling, testing-mastery]
   rules: [agentic-ai/security-audit-agent.md, web-development/security/owasp-web-security.md]
   exclusions: ["*.css", "*.html"]
   works_with: [penetration-tester, backend-specialist]
@@ -201,7 +201,7 @@ penetration-tester:
     keywords: [pentest, penetration test, exploit, attack, red team]
     file_patterns: []
     contexts: [security_audit, pre_release]
-  skills: [red-team-tactics, vulnerability-scanner]
+  skills: [clean-code, vulnerability-scanner, red-team-tactics, architecture-mastery, database-design, performance-profiling]
   rules: [agentic-ai/security-audit-agent.md]
   exclusions: []
   works_with: [security-auditor]
@@ -221,7 +221,7 @@ database-architect:
     keywords: [database, schema, migration, query, index, prisma, eloquent, sql, table]
     file_patterns: ["*.sql", "prisma/**", "database/**", "migrations/**"]
     contexts: [slow_query, schema_change, new_database]
-  skills: [database-design, prisma-expert]
+  skills: [clean-code, database-design, prisma-expert, architecture-mastery, performance-profiling, nosql-patterns, vector-databases]
   rules: [database/*, agentic-ai/database-design-agent.md]
   exclusions: ["*.tsx", "*.vue", "*.css"]
   works_with: [backend-specialist, performance-optimizer]
@@ -237,7 +237,7 @@ orchestrator:
     keywords: [orchestrate, coordinate, complex, multi-step, full stack]
     file_patterns: []
     contexts: [multi_domain_task, large_feature, system_design]
-  skills: [parallel-agents, brainstorming, plan-writing]
+  skills: [clean-code, parallel-agents, behavioral-modes, plan-writing, brainstorming, architecture-mastery, powershell-windows, bash-linux]
   rules: []
   exclusions: []
   works_with: ["*"]  # Can coordinate any agent
@@ -253,7 +253,7 @@ project-planner:
     keywords: [plan, design, architecture, requirements, scope, roadmap]
     file_patterns: ["docs/PLAN.md", "docs/ADR/**"]
     contexts: [new_project, major_feature, architecture_decision]
-  skills: [plan-writing, architecture-mastery, brainstorming]
+  skills: [clean-code, app-builder, plan-writing, brainstorming]
   rules: [agentic-ai/strong-reasoner-planner.md]
   exclusions: []
   works_with: [orchestrator, backend-specialist, frontend-specialist]
@@ -273,7 +273,7 @@ devops-engineer:
     keywords: [deploy, ci, cd, pipeline, docker, kubernetes, nginx, pm2, github actions]
     file_patterns: [".github/**", "Dockerfile", "docker-compose*", "*.yml", "nginx*"]
     contexts: [deployment, infrastructure_change, monitoring_setup]
-  skills: [docker-expert, kubernetes-patterns, terraform-iac, deployment-procedures, server-management]
+  skills: [clean-code, deployment-procedures, server-management, powershell-windows, bash-linux, kubernetes-patterns, monitoring-observability, terraform-iac, cloudflare]
   rules: [agentic-ai/devops-cicd-agent.md]
   exclusions: ["src/**", "app/**"]
   works_with: [backend-specialist, security-auditor]
@@ -289,7 +289,7 @@ performance-optimizer:
     keywords: [optimize, performance, slow, latency, bundle, cache, memory, cpu]
     file_patterns: []
     contexts: [slow_page, high_latency, memory_leak, large_bundle]
-  skills: [performance-profiling, react-performance, laravel-performance, inertia-performance]
+  skills: [clean-code, performance-profiling, database-design, architecture-mastery, react-patterns, monitoring-observability]
   rules: [agentic-ai/performance-optimization-agent.md, web-development/performance/core-web-vitals.md]
   exclusions: []
   works_with: [backend-specialist, frontend-specialist, database-architect]
@@ -325,7 +325,7 @@ seo-specialist:
     keywords: [seo, meta, sitemap, robots, analytics, lighthouse, schema.org]
     file_patterns: ["robots.txt", "sitemap.xml", "next-sitemap.config*"]
     contexts: [seo_audit, page_creation]
-  skills: [seo-fundamentals, geo-fundamentals]
+  skills: [clean-code, seo-fundamentals, geo-fundamentals, performance-profiling, frontend-design]
   rules: []
   exclusions: ["*.php", "server/**"]
   works_with: [frontend-specialist]
@@ -341,7 +341,7 @@ game-designer:
     keywords: [game, game design, mechanics, level, balance]
     file_patterns: []
     contexts: [game_project]
-  skills: [game-development]
+  skills: [clean-code, game-development, plan-writing, brainstorming, architecture-mastery]
   rules: []
   exclusions: []
   works_with: [mobile-game-developer, pc-game-developer]
@@ -357,7 +357,7 @@ mobile-game-developer:
     keywords: [mobile game, unity mobile, cocos2d]
     file_patterns: []
     contexts: [mobile_game_project]
-  skills: [game-development, mobile-design]
+  skills: [clean-code, mobile-design, game-development, performance-profiling]
   rules: [mobile/*]
   exclusions: []
   works_with: [game-designer, mobile-developer]
@@ -373,7 +373,7 @@ pc-game-developer:
     keywords: [pc game, unity, unreal, godot, game engine]
     file_patterns: ["*.cs", "*.gd", "*.gdscript"]
     contexts: [pc_game_project]
-  skills: [game-development]
+  skills: [clean-code, game-development, testing-mastery, performance-profiling]
   rules: []
   exclusions: []
   works_with: [game-designer]
@@ -393,7 +393,7 @@ self-correction-agent:
     keywords: [auto fix, lint, type error, self correct, auto heal]
     file_patterns: []
     contexts: [lint_failure, type_error, import_error]
-  skills: [clean-code]
+  skills: [clean-code, testing-mastery, systematic-debugging]
   rules: []
   exclusions: []
   works_with: [debugger]
@@ -409,7 +409,7 @@ triage-agent:
     keywords: [triage, classify, prioritize, route, categorize]
     file_patterns: []
     contexts: [unclear_request, multi_domain_issue]
-  skills: [brainstorming]
+  skills: [clean-code, behavioral-modes, systematic-debugging]
   rules: []
   exclusions: []
   works_with: [orchestrator]
@@ -425,7 +425,7 @@ refactor-agent:
     keywords: [refactor, cleanup, code smell, dry, solid, extract, rename]
     file_patterns: []
     contexts: [code_smell_detected, tech_debt, large_function]
-  skills: [clean-code]
+  skills: [clean-code, code-review-checklist, performance-profiling]
   rules: [agentic-ai/refactoring-agent.md]
   exclusions: []
   works_with: [test-engineer, ai-code-reviewer]
@@ -441,7 +441,7 @@ code-generator-agent:
     keywords: [generate, scaffold, boilerplate, template, create file]
     file_patterns: []
     contexts: [new_module, new_component, scaffolding]
-  skills: [app-builder]
+  skills: [clean-code, laravel-performance, react-patterns, testing-mastery, documentation-templates]
   rules: []
   exclusions: []
   works_with: [backend-specialist, frontend-specialist]
@@ -457,7 +457,7 @@ explorer-agent:
     keywords: [explore, search, find, list files, dependency, analyze]
     file_patterns: []
     contexts: [unknown_codebase, dependency_analysis, file_discovery]
-  skills: []
+  skills: [clean-code, architecture-mastery, plan-writing, brainstorming, systematic-debugging]
   rules: []
   exclusions: []
   works_with: [orchestrator, triage-agent]
@@ -477,7 +477,7 @@ documentation-agent:
     keywords: [document, sync docs, update docs, changelog, auto document]
     file_patterns: ["docs/**", "*.md", "README*"]
     contexts: [post_implementation, doc_outdated]
-  skills: [documentation-templates]
+  skills: [clean-code, documentation-templates, i18n-localization]
   rules: []
   exclusions: []
   works_with: [backend-specialist, frontend-specialist]
@@ -493,7 +493,7 @@ documentation-writer:
     keywords: [write docs, readme, api docs, guide, tutorial, onboarding]
     file_patterns: ["README*", "docs/**"]
     contexts: [user_requested_docs]
-  skills: [documentation-templates]
+  skills: [clean-code, documentation-templates, architecture-mastery, plan-writing]
   rules: []
   exclusions: []
   works_with: [documentation-agent]
@@ -561,6 +561,14 @@ FUNCTION selectAgents(request, projectContext, discoveredRules):
 
 ---
 
+## Adding a New Agent
+
+> See [CONTRIBUTING.md → Adding a New Agent](../docs/processes/CONTRIBUTING.md#adding-a-new-agent) for the full 11-step checklist.
+
+---
+
 **Version:** 5.0.0  
 **System:** Antigravity-Core v5.0.0  
-**Updated:** 2026-02-27
+**Updated:** 2026-03-01
+
+> **See also:** [Capability Matrix](../agents/CAPABILITY-MATRIX.md) | [Orchestration Engine](orchestration-engine.md) | [Agent Catalog](../docs/agents/AGENT-CATALOG.md) | [CONTRIBUTING](../docs/processes/CONTRIBUTING.md)

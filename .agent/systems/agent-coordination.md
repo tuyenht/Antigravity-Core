@@ -2,11 +2,27 @@
 
 **Version:** 5.0.0  
 **Purpose:** Resolve agent overlaps and conflicts  
-**Last Updated:** 2026-02-27
+**Last Updated:** 2026-03-01
 
 > [!NOTE]
 > For quick agent lookup by task/extension, see `agents/CAPABILITY-MATRIX.md`.
 > This file covers **coordination protocols** and **execution patterns**.
+
+## Table of Contents
+
+1. [Problem Statement](#-problem-statement)
+2. [Orchestrator Pattern](#️-orchestrator-pattern-solution)
+3. [Coordination Workflow](#-coordination-workflow)
+4. [Agent Responsibility Matrix](#-agent-responsibility-matrix)
+5. [Execution Patterns](#-execution-patterns)
+6. [Conflict Resolution Rules](#-conflict-resolution-rules)
+7. [File Write Coordination](#-file-write-coordination)
+8. [Common Scenarios](#-common-scenarios)
+9. [Orchestrator Decision Logic](#-orchestrator-decision-logic)
+10. [Orchestrator Responsibilities](#-orchestrator-agent-responsibilities)
+11. [Best Practices](#-best-practices)
+12. [Troubleshooting](#-troubleshooting)
+13. [Coordination Metrics](#-coordination-metrics-future)
 
 ---
 
@@ -111,15 +127,19 @@ aoc_validation:
 
 ## 📊 AGENT RESPONSIBILITY MATRIX
 
-| Request Type | Lead Agent | Supporting Agents | Workflow |
-|--------------|-----------|-------------------|----------|
-| **API Performance** | performance-optimizer | backend-specialist, database-architect | Sequential |
-| **New Feature** | backend-specialist | frontend-specialist, test-engineer | Parallel |
-| **Security Audit** | security-auditor | penetration-tester, backend-specialist | Sequential |
-| **Bug Fix** | debugger | original-specialist (backend/frontend) | Sequential |
+| Request Type | Lead Agent | Supporting Agents | Pattern |
+|--------------|-----------|-------------------|---------|
+| **New Feature** | project-planner | database-architect, backend-specialist, frontend-specialist, test-engineer | Sequential |
+| **Security Audit** | ai-code-reviewer | security-auditor, penetration-tester | Sequential |
+| **Bug Fix** | debugger | test-engineer | Sequential |
+| **Refactoring** | ai-code-reviewer | refactor-agent, test-engineer | Sequential |
+| **Code Review** | ai-code-reviewer | security-auditor, performance-optimizer | Parallel |
+| **Database Change** | database-architect | backend-specialist, test-engineer | Sequential |
+| **Deploy** | test-engineer | security-auditor, devops-engineer, manager-agent | Sequential |
+| **API Performance** | performance-optimizer | backend-specialist, database-architect | Conditional |
 | **UI Design** | frontend-specialist | mobile-developer (if mobile) | Sequential |
-| **Database Change** | database-architect | backend-specialist (update ORM) | Sequential |
-| **Deploy** | devops-engineer | backend-specialist (build), test-engineer (verify) | Sequential |
+
+> **Source of truth:** Pipeline definitions are maintained in [orchestration-engine.md](orchestration-engine.md) templates. This matrix is a simplified coordination reference.
 
 ---
 
@@ -340,12 +360,12 @@ orchestrator_analysis:
   
 execution_plan:
   step_1:
-    agent: "debugger"
-    task: "Understand existing code, document behavior"
+    agent: "ai-code-reviewer"
+    task: "Review existing code, identify issues and plan refactoring"
   
   step_2:
     agent: "backend-specialist"  # or frontend-specialist
-    task: "Refactor code (STANDARDS.md compliant)"
+    task: "Refactor code (project quality standards compliant)"
   
   step_3:
     agent: "test-engineer"
@@ -407,7 +427,7 @@ function selectAgents(analysis) {
 
 ❌ Implements code itself  
 ❌ Makes technical decisions (delegates to experts)  
-❌ Overrides STANDARDS.md  
+❌ Overrides project quality standards  
 
 ---
 
@@ -465,16 +485,16 @@ Track coordination efficiency:
 
 ## 🔗 RELATED DOCUMENTATION
 
-- `orchestrator.md` - Orchestrator agent definition
-- `agent-registry.md` - Machine-readable registry of all 27 agents
-- `orchestration-engine.md` - Automated agent selection and pipeline execution
-- `auto-rule-discovery.md` - Intelligent rule loading engine
-- `rba-validator.md` - Reasoning-Before-Action protocol
-- `STANDARDS.md` - Quality standards all must follow
+- [orchestrator.md](../agents/orchestrator.md) — Orchestrator agent definition
+- [agent-registry.md](agent-registry.md) — Machine-readable registry of all 27 agents
+- [orchestration-engine.md](orchestration-engine.md) — Automated agent selection and pipeline execution
+- [auto-rule-discovery.md](auto-rule-discovery.md) — Intelligent rule loading engine
+- [rba-validator.md](rba-validator.md) — Reasoning-Before-Action protocol
+- [CAPABILITY-MATRIX.md](../agents/CAPABILITY-MATRIX.md) — Quick agent lookup by task/extension
 
 ---
 
 **Created:** 2026-01-17  
-**Updated:** 2026-02-27  
+**Updated:** 2026-03-01  
 **Version:** 5.0.0  
 **Purpose:** Define how 27 agents coordinate without conflicts

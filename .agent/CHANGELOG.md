@@ -66,7 +66,7 @@ AFTER:  User → GEMINI.md (6KB) → Intent Router → 6 Pipelines → Auto-chai
 
 ### 🚀 SDLC Process Upgrade & Team Pipeline v2.0
 
-**27 agents, 59 skills, 37 workflows, 129 rules, 20 scripts, 11 process docs.**
+**27 agents, 59 skills, 37 workflows, 129 rules, 37 scripts, 11 process docs.**
 
 ---
 
@@ -484,7 +484,7 @@ We follow [Semantic Versioning](https://semver.org/):
 
 ## Upcoming (Planned)
 
-### v4.2.0 (Estimated: Q2 2026)
+### v5.1.0 (Estimated: Q2 2026)
 - [ ] Plugin architecture
 - [ ] Skill marketplace
 - [ ] Analytics dashboard
@@ -496,7 +496,7 @@ We follow [Semantic Versioning](https://semver.org/):
 
 ## Support
 
-- **Documentation:** See `.agent/INTEGRATION-GUIDE.md`
+- **Documentation:** See `.agent/docs/INDEX.md`
 - **Issues:** Report via [GitHub Issues](https://github.com/tuyenht/Antigravity-Core/issues)
 
 ---

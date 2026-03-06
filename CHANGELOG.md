@@ -6,6 +6,20 @@ This project adheres to [Semantic Versioning](https://semver.org/).
 
 ---
 
+## [5.0.0] - 2026-02-26
+
+### Added
+- **Intent Router** — Universal request classification into 6 intents (BUILD, ENHANCE, FIX, IMPROVE, SHIP, REVIEW)
+- **6 Pipeline Chains** — Auto-sequenced end-to-end workflows for each intent
+- **Reference Catalog** — Lazy-loaded lookup tables for agents, rules, scripts
+
+### Changed
+- **GEMINI.md** — Restructured from 485 lines (22KB) to 186 lines (6.4KB)
+- **ARCHITECTURE.md** — New 3-layer diagram (GEMINI Slim → Intent Router → Pipeline Chains → Engine)
+- 27 agents, 59 skills, 110 rules, 34 workflows preserved
+
+---
+
 ## [4.1.1] - 2026-02-26
 
 ### Fixed

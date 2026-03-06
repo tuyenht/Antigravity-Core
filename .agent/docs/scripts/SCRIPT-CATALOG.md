@@ -12,7 +12,12 @@
 - [Script Classification](#script-classification)
 - [Core Script Registry](#core-script-registry)
 - [Skill Script Registry](#skill-script-registry)
+- [Invocation Methods](#invocation-methods)
+- [Script ↔ Pipeline & Workflow Dependencies](#script--pipeline--workflow-dependencies)
+- [CLI Quick Reference](#cli-quick-reference)
 - [Common Usage Patterns](#common-usage-patterns)
+- [Adding a New Script](#adding-a-new-script)
+- [Troubleshooting](#troubleshooting)
 
 ---
 
@@ -137,6 +142,98 @@ Scripts nằm trong `.agent/skills/*/scripts/`, được gọi bởi agents và 
 
 ---
 
+## Invocation Methods
+
+Scripts có thể được gọi qua **4 phương thức** khác nhau:
+
+| Method | Scope | Ví dụ | Khi nào dùng |
+|--------|-------|-------|-------------|
+| **Pipeline trigger** | Tự động bởi Pipeline Chain | SHIP Phase 1 → `security_scan.py` | Deploy, review, build |
+| **CLI** (`agent.ps1`) | User gọi trực tiếp | `.\agent.ps1 health` | Daily check, maintenance |
+| **Workflow** (slash cmd) | Gián tiếp qua agent | `/security-audit` → agent → `security_scan.py` | Feature-specific tasks |
+| **Direct** invocation | PowerShell/Python trực tiếp | `pwsh -File .agent/scripts/auto-heal.ps1` | Advanced use, debugging |
+
+### Script Availability by Method
+
+| Script | Pipeline | CLI | Workflow | Direct |
+|--------|:--------:|:---:|:--------:|:------:|
+| `health-check.ps1` | — | ✅ `health` | `/check` | ✅ |
+| `validate-compliance.ps1` | — | ✅ `validate` | `/check` | ✅ |
+| `secret-scan.ps1` | SHIP | ✅ `scan` | `/secret-scanning` | ✅ |
+| `auto-heal.ps1` | BUILD, ENHANCE | ✅ `heal` | `/auto-healing` | ✅ |
+| `performance-check.ps1` | — | ✅ `perf` | `/performance-budget-enforcement` | ✅ |
+| `dx-analytics.ps1` | — | ✅ `dx` | — | ✅ |
+| `security_scan.py` | SHIP, REVIEW | — | `/security-audit` | ✅ |
+| `lint_runner.py` | SHIP, REVIEW | — | `/auto-healing` | ✅ |
+| `test_runner.py` | SHIP, REVIEW | — | `/test` | ✅ |
+| `lighthouse_audit.py` | REVIEW | — | `/optimize` | ✅ |
+| `ux_audit.py` | REVIEW (conditional) | — | `/ui-ux-pro-max` | ✅ |
+| `api_validator.py` | REVIEW (conditional) | — | `/api-design` | ✅ |
+| `seo_checker.py` | REVIEW (conditional) | — | `/check` | ✅ |
+| `i18n_checker.py` | REVIEW (conditional) | — | `/i18n-check` | ✅ |
+| Install/Update scripts (6) | — | — | — | ✅ only |
+
+---
+
+## Script ↔ Pipeline & Workflow Dependencies
+
+> ⚠️ **CRITICAL:** Pipeline files **hardcode** script names. Nếu rename/xóa script → pipeline sẽ BREAK.
+
+### Pipeline → Script References
+
+| Pipeline | Phase | Script | Agent |
+|----------|-------|--------|-------|
+| **SHIP** | Phase 1: Pre-flight | `security_scan.py` | security-auditor |
+| **SHIP** | Phase 1: Pre-flight | `lint_runner.py` | ai-code-reviewer |
+| **SHIP** | Phase 1: Pre-flight | `test_runner.py` | test-engineer |
+| **REVIEW** | Phase 1: Scan (parallel) | `security_scan.py` | security-auditor |
+| **REVIEW** | Phase 1: Scan (parallel) | `lint_runner.py` | ai-code-reviewer |
+| **REVIEW** | Phase 1: Scan (parallel) | `lighthouse_audit.py` | performance-optimizer |
+| **REVIEW** | Phase 1: Scan (parallel) | `test_runner.py` | test-engineer |
+| **REVIEW** | Phase 1: Conditional | `ux_audit.py` | frontend-specialist |
+| **REVIEW** | Phase 1: Conditional | `api_validator.py` | backend-specialist |
+| **REVIEW** | Phase 1: Conditional | `seo_checker.py` | seo-specialist |
+| **REVIEW** | Phase 1: Conditional | `i18n_checker.py` | — |
+| **BUILD** | Phase 4: Quality | `/auto-healing` → `auto-heal.ps1` | self-correction-agent |
+| **ENHANCE** | Phase 4: Verify | `/auto-healing` → `auto-heal.ps1` | self-correction-agent |
+
+> ⚠️ **Dependency Rule:** Trước khi rename/xóa bất kỳ script nào, **grep** tên script trong `pipelines/*.md` và `workflows/*.md`.
+
+---
+
+## CLI Quick Reference
+
+### `agent.ps1` Command → Script Mapping
+
+| Command | Script | Flags |
+|---------|--------|-------|
+| `.\agent.ps1 health` | `health-check.ps1` | — |
+| `.\agent.ps1 validate` | `validate-compliance.ps1` | — |
+| `.\agent.ps1 scan` | `secret-scan.ps1` | `-All` |
+| `.\agent.ps1 perf` | `performance-check.ps1` | `-All` |
+| `.\agent.ps1 heal` | `auto-heal.ps1` | `-All` |
+| `.\agent.ps1 heal -DryRun` | `auto-heal.ps1` | `-All -DryRun` |
+| `.\agent.ps1 dx` | `dx-analytics.ps1` | `-Dashboard` |
+| `.\agent.ps1 dx roi` | `dx-analytics.ps1` | `-ROI` |
+| `.\agent.ps1 dx quality` | `dx-analytics.ps1` | `-Quality` |
+| `.\agent.ps1 dx bottlenecks` | `dx-analytics.ps1` | `-Bottlenecks` |
+| `.\agent.ps1 init` | `detect-project.ps1` | (internal) |
+
+### Scripts NOT in CLI (Direct invocation only)
+
+| Script | Cách gọi |
+|--------|----------|
+| `install-antigravity.ps1` | `irm <url> \| iex` hoặc `agi` |
+| `install-global.ps1` | `& "C:\Tools\Antigravity-Core\.agent\scripts\install-global.ps1"` |
+| `update-antigravity.ps1` | `pwsh -File .agent/scripts/update-antigravity.ps1` hoặc `agu` |
+| `update-global.ps1` | `agug` |
+| `update-ui-ux-pro-max.ps1` | `/update-ui-ux-pro-max` workflow |
+| `bump-version.ps1` | `pwsh -File .agent/scripts/bump-version.ps1` |
+| `discover-rules.ps1` | Internal (called by auto-rule-discovery system) |
+| `log-metrics.ps1` | Internal (called by other scripts) |
+
+---
+
 ## Common Usage Patterns
 
 ### Daily Check
@@ -173,4 +270,49 @@ pwsh -File .agent/scripts/update-antigravity.ps1
 
 ---
 
-> **See also:** [Agent Catalog](../agents/AGENT-CATALOG.md) | [Workflow Catalog](../workflows/WORKFLOW-CATALOG.md) | [Skill Catalog](../skills/SKILL-CATALOG.md)
+## Adding a New Script
+
+### Core Script (PowerShell/Bash)
+
+1. Tạo file `.agent/scripts/<script-name>.ps1`
+2. Xác định category (CLI, Security, Quality, Install, Cross-platform)
+3. Nếu cần CLI shortcut → thêm entry vào `agent.ps1` switch block
+4. Nếu cross-platform → tạo `.sh` equivalent
+5. Update checklist:
+
+| File | Cần update gì |
+|------|---------------|
+| `ARCHITECTURE.md` L31, L54 | Script count |
+| `project.json` → `stats.scripts` | Count + 1 |
+| `reference-catalog.md` § 5 | Thêm entry vào Core Scripts table |
+| `SCRIPT-CATALOG.md` (this file) | Thêm entry vào Core Script Registry |
+| `docs/INDEX.md` | Count reference nếu có |
+
+### Skill Script (Python)
+
+1. Tạo file `.agent/skills/<skill-name>/scripts/<script-name>.py`
+2. Nếu script tham gia Quality Gate → thêm vào priority order
+3. Nếu pipeline cần gọi → thêm vào `pipelines/*.md` tương ứng
+4. Update checklist:
+
+| File | Cần update gì |
+|------|---------------|
+| `reference-catalog.md` § 5 | Thêm entry vào Skill Scripts table |
+| `SCRIPT-CATALOG.md` (this file) | Thêm entry vào Skill Script Registry |
+| `pipelines/*.md` | Thêm script reference nếu pipeline cần |
+
+---
+
+## Troubleshooting
+
+| Vấn đề | Nguyên nhân | Cách fix |
+|--------|-------------|----------|
+| `Script not found: .agent/scripts/X` | Path sai hoặc chưa clone đúng repo | Verify file exists: `Test-Path .agent/scripts/X.ps1` |
+| `cannot be loaded because running scripts is disabled` | PowerShell Execution Policy | `Set-ExecutionPolicy -ExecutionPolicy RemoteSigned -Scope CurrentUser` |
+| Python script fails `ModuleNotFoundError` | Thiếu Python dependencies | `pip install -r .agent/skills/<skill>/requirements.txt` (nếu có) |
+| `agent.ps1` shows wrong script count | `agent.ps1` L92 chỉ count `*.ps1`, bỏ sót `.sh` + `pre-commit` | Known issue (P2) — count logic cần update |
+| Script runs but produces no output | Script cần parameters | Check `-Help` flag: `pwsh -File script.ps1 -Help` |
+
+---
+
+> **See also:** [Agent Catalog](../agents/AGENT-CATALOG.md) | [Workflow Catalog](../workflows/WORKFLOW-CATALOG.md) | [Skill Catalog](../skills/SKILL-CATALOG.md) | [Reference Catalog](../../reference-catalog.md)

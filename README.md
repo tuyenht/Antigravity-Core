@@ -6,7 +6,7 @@
 [![Version](https://img.shields.io/badge/version-5.0.0-blue.svg)](.agent/CHANGELOG.md)
 [![Agents](https://img.shields.io/badge/agents-27-brightgreen.svg)](.agent/docs/agents/AGENT-CATALOG.md)
 [![Skills](https://img.shields.io/badge/skills-59-orange.svg)](.agent/docs/skills/SKILL-CATALOG.md)
-[![Rules](https://img.shields.io/badge/rules-108-purple.svg)](.agent/docs/rules/RULES-CATALOG.md)
+[![Rules](https://img.shields.io/badge/rules-110-purple.svg)](.agent/systems/auto-rule-discovery.md)
 [![AI Autonomy](https://img.shields.io/badge/AI%20Autonomy-95%25-green.svg)]()
 [![Quality](https://img.shields.io/badge/Quality-Platinum%20Standard-gold.svg)]()
 [![License](https://img.shields.io/badge/license-Proprietary-red.svg)]()
@@ -24,8 +24,8 @@ graph TB
         direction TB
         A["27 Specialized Agents"]
         B["59 Knowledge Skills"]
-        C["129 Expert Rules"]
-        D["38 Automated Workflows"]
+        C["110 Expert Rules"]
+        D["34 Automated Workflows"]
         E["6 Core Protocols"]
     end
 
@@ -41,7 +41,7 @@ graph TB
 |----------------------|------------------|
 | 🔴 Passive code generator | 🟢 **27 chuyên gia AI** phối hợp |
 | 🔴 Context-lost every session | 🟢 **Persistent memory system** |
-| 🔴 Generic responses | 🟢 **129 expert rules** tự động load |
+| 🔴 Generic responses | 🟢 **110 expert rules** tự động load |
 | 🔴 No quality gates | 🟢 **Platinum Standard** enforcement |
 
 | 🔴 Trial and error | 🟢 **59 proven skill modules** |
@@ -136,7 +136,7 @@ rm -rf temp-ag
 | `Add-Content $PROFILE: path not found` | Thư mục PowerShell Profile chưa tồn tại | Script v1.1+ tự tạo. Hoặc chạy: `New-Item -ItemType Directory -Path (Split-Path $PROFILE) -Force` |
 | `install.ps1 cannot be loaded` | ExecutionPolicy bị Restricted | `Set-ExecutionPolicy RemoteSigned -Scope CurrentUser` |
 
-Chi tiết: Xem [ONE-COMMAND-SETUP.md](.agent/ONE-COMMAND-SETUP.md)
+Chi tiết: Xem [README → Quick Start](#-quick-start)
 
 ---
 
@@ -160,7 +160,7 @@ Antigravity-Core/
 │   │   ├── ui-ux-pro-max/             vulnerability-scanner/
 │   │   └── ... 53 more skills
 │   │
-│   ├── 📏 rules/ (129)                ← Expert coding rules
+│   ├── 📏 rules/ (110)                ← Expert coding rules
 │   │   ├── backend-frameworks/ (12)   database/ (10)
 │   │   ├── frontend-frameworks/ (7)   mobile/ (10)
 │   │   ├── nextjs/ (13)               python/ (14)
@@ -169,7 +169,7 @@ Antigravity-Core/
 │   │   └── shared/ (1)
 │   │
 │   ├── 🔄 workflows/ (34)             ← Slash command workflows
-│   ├── ⚙️ scripts/ (20)               ← PowerShell + Bash automation
+│   ├── ⚙️ scripts/ (20 core)            ← PowerShell + Bash automation (+ 17 skill scripts)
 │   ├── 🧬 systems/ (5)                ← Core protocols (RBA, AOC...)
 │   ├── 🧠 memory/                     ← AI memory system
 │   ├── 📖 docs/                       ← System documentation
@@ -222,7 +222,7 @@ User request →
 
 ---
 
-## 🔄 WORKFLOWS (37 Slash Commands)
+## 🔄 WORKFLOWS (34 Slash Commands)
 
 | Category | Commands |
 |----------|----------|
@@ -330,7 +330,7 @@ Hệ thống nhớ giúp AI **giữ ngữ cảnh** xuyên suốt các phiên là
 | **Monitoring** | OpenTelemetry, Grafana, Prometheus, Sentry |
 | **CI/CD** | GitHub Actions, GitLab CI |
 
-### 129 Expert Rules — Auto-Activation
+### 110 Expert Rules — Auto-Activation
 
 Rules tự động load dựa trên context:
 
@@ -340,7 +340,7 @@ Rules tự động load dựa trên context:
 | **Project Config** | `package.json + next` → Next.js rules, `composer.json` → Laravel rules |
 | **Request Keywords** | "security" → Security audit rules, "deploy" → DevOps rules |
 
-**Chi tiết:** Xem [RULES-CATALOG.md](.agent/docs/rules/RULES-CATALOG.md)
+**Chi tiết:** Xem [Auto-Rule Discovery](.agent/systems/auto-rule-discovery.md)
 
 ---
 
@@ -354,7 +354,7 @@ Rules tự động load dựa trên context:
 | Security Audit | OWASP Top 10 | `security-auditor` pre-deploy |
 | Performance Budget | Defined per project | `performance-check.ps1` |
 
-### Automation Scripts (20)
+### Automation Scripts (37 total: 20 core + 17 skill)
 
 ```powershell
 .\.agent\agent.ps1 health       # System health check
@@ -490,7 +490,7 @@ Time:     30 phút - 2 giờ
 | [AGENT-CATALOG.md](.agent/docs/agents/AGENT-CATALOG.md) | 27 agents chi tiết |
 | [SKILL-CATALOG.md](.agent/docs/skills/SKILL-CATALOG.md) | 59 skills chi tiết |
 | [WORKFLOW-CATALOG.md](.agent/docs/workflows/WORKFLOW-CATALOG.md) | 34 Workflows chi tiết |
-| [RULES-CATALOG.md](.agent/docs/rules/RULES-CATALOG.md) | 110 rules chi tiết |
+| [Auto-Rule Discovery](.agent/systems/auto-rule-discovery.md) | 110 rules chi tiết |
 | [SYSTEMS-CATALOG.md](.agent/docs/systems/SYSTEMS-CATALOG.md) | 6 protocols (5 files + AOC) |
 
 ### Architecture & Config
@@ -537,7 +537,7 @@ Time:     30 phút - 2 giờ
 
 - ✅ Auto-Rule Discovery Engine (3-layer detection)
 - ✅ Agent Registry (27 specialized agents)
-- ✅ 108 expert rules, 59 skills, 34 workflows
+- ✅ 110 expert rules, 59 skills, 34 workflows
 - ✅ Full documentation suite
 
 ### v5.1.0 (Planned — Q2 2026)
@@ -571,7 +571,7 @@ Proprietary — All rights reserved.
 ```
 ┌──────────────────────────────────────────────┐
 │                                              │
-│  27 Agents. 59 Skills. 129 Rules. 6 Pipelines.│
+│  27 Agents. 59 Skills. 110 Rules. 6 Pipelines.│
 │  Copy. Prompt. Build. Deploy.                │
 │  95% AI. 5% You.                             │
 │                                              │

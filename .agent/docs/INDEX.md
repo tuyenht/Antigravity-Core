@@ -1,7 +1,7 @@
 # Antigravity-Core Documentation Index
 
-**Version:** 4.1.0  
-**Last Updated:** 2026-02-25  
+**Version:** 5.0.0  
+**Last Updated:** 2026-02-28  
 **System:** Antigravity-Core — AI-Native Development OS
 
 ---
@@ -39,7 +39,7 @@ Comprehensive documentation cho 27 specialized AI agents.
 
 | Document | Description |
 |----------|-------------|
-| [SKILL-CATALOG.md](skills/SKILL-CATALOG.md) | Bảng tổng hợp 59 skills: classification, agent mapping, loading protocol |
+| [SKILL-CATALOG.md](skills/SKILL-CATALOG.md) | Bảng tổng hợp 59 skills: ecosystem map, classification, agent mapping, statistics, loading protocol, contributing guide, troubleshooting |
 | [SKILL-DISCOVERY.md](SKILL-DISCOVERY.md) | Cách AI tự động discover và load skills |
 
 ---
@@ -71,7 +71,7 @@ Comprehensive documentation cho 27 specialized AI agents.
 
 | Document | Description |
 |----------|-------------|
-| [SCRIPT-CATALOG.md](scripts/SCRIPT-CATALOG.md) | Bảng tổng hợp 37 scripts (20 core + 17 skill): classification, usage patterns |
+| [SCRIPT-CATALOG.md](scripts/SCRIPT-CATALOG.md) | Bảng tổng hợp 37 scripts (20 core + 17 skill): registry, invocation methods, pipeline dependencies, CLI reference, usage patterns, contributing guide |
 
 ---
 

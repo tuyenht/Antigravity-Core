@@ -1,0 +1,35 @@
+# Auto-detect text files and ensure LF line endings for cross-platform consistency
+* text=auto eol=lf
+
+# Explicitly declare text files
+*.md text
+*.txt text
+*.json text
+*.yml text
+*.yaml text
+*.js text
+*.ts text
+*.tsx text
+*.jsx text
+*.css text
+*.html text
+*.php text
+*.py text
+*.sh text eol=lf
+*.ps1 text eol=crlf
+*.bat text eol=crlf
+
+# Binary files
+*.png binary
+*.jpg binary
+*.jpeg binary
+*.gif binary
+*.ico binary
+*.zip binary
+*.gz binary
+*.tar binary
+*.pdf binary
+*.woff binary
+*.woff2 binary
+*.ttf binary
+*.eot binary

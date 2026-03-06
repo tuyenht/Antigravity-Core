@@ -1,8 +1,19 @@
 # 🔍 Auto-Rule Discovery Engine
 
-> **Version:** 5.0.0 | **Updated:** 2026-02-27  
+> **Version:** 5.0.0 | **Updated:** 2026-03-01  
 > **Purpose:** Intelligent, automated rule loading based on project context  
 > **Priority:** P0 — Core system, loaded at session start
+
+## Table of Contents
+
+1. [Overview](#overview)
+2. [Protocol: 3-Layer Detection](#protocol-3-layer-detection)
+3. [Merge & Rank Algorithm](#merge--rank-algorithm)
+4. [Dependency Resolution](#dependency-resolution)
+5. [Load Limits](#load-limits)
+6. [Session Caching Protocol](#session-caching-protocol)
+7. [Integration Points](#integration-points)
+8. [Example: Discovery in Action](#example-discovery-in-action)
 
 ---
 
@@ -174,7 +185,7 @@ project_config_rules:
     score: 9
 
   "Cargo.toml":
-    rules: [web-development/webassembly.md]
+    rules: [web-development/core/webassembly.md]
     score: 8
 
   "requirements.txt | pyproject.toml":
@@ -533,4 +544,6 @@ loaded:
 
 **Version:** 5.0.0  
 **System:** Antigravity-Core v5.0.0  
-**Updated:** 2026-02-27
+**Updated:** 2026-03-01
+
+> **See also:** [Agent Registry](agent-registry.md) | [Orchestration Engine](orchestration-engine.md) | [Reference Catalog](../reference-catalog.md) | [Systems Catalog](../docs/systems/SYSTEMS-CATALOG.md)

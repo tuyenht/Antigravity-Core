@@ -1,6 +1,6 @@
 # 🧭 Universal Intent Router
 
-> **Version:** 5.0.0 | **Updated:** 2026-02-27
+> **Version:** 5.0.0 | **Updated:** 2026-03-01
 > **Purpose:** Single entry point — classify ANY user request into 1 of 6 intents, then activate the correct Pipeline Chain.
 > **Priority:** P0 — Core system, loaded at every session via GEMINI.md
 
@@ -43,7 +43,7 @@ User mô tả bất kỳ gì (tự nhiên, không cần lệnh)
 | 🇬🇧 English | "create", "build", "new project", "setup", "start from scratch", "initialize" |
 
 **Pipeline:** `pipelines/BUILD.md`
-**Agents chính:** `project-planner` → `backend-specialist` / `frontend-specialist` → `test-engineer`
+**Agents chính:** `project-planner` → `database-architect` → `backend-specialist` / `frontend-specialist` → `test-engineer`
 
 ---
 
@@ -99,7 +99,7 @@ User mô tả bất kỳ gì (tự nhiên, không cần lệnh)
 | 🇬🇧 English | "deploy", "ship", "release", "publish", "production", "staging", "go live" |
 
 **Pipeline:** `pipelines/SHIP.md`
-**Agents chính:** `security-auditor` → `devops-engineer` → `manager-agent`
+**Agents chính:** `test-engineer` → `security-auditor` → `devops-engineer` → `manager-agent`
 
 ---
 
@@ -163,6 +163,7 @@ Khi user dùng slash command trực tiếp, BYPASS Intent Router và chạy work
 /refactor        → IMPROVE pipeline
 /optimize        → IMPROVE pipeline
 /deploy          → SHIP pipeline
+/mobile-deploy   → SHIP pipeline (mobile)
 /check           → REVIEW pipeline
 /security-audit  → REVIEW pipeline (security focus)
 /full-pipeline   → BUILD pipeline (full team mode)
@@ -204,4 +205,6 @@ replaces:
 
 **Version:** 5.0.0
 **System:** Antigravity-Core v5.0.0
-**Updated:** 2026-02-27
+**Updated:** 2026-03-01
+
+> **See also:** [Orchestration Engine](orchestration-engine.md) | [Auto-Rule Discovery](auto-rule-discovery.md) | [Agent Coordination](agent-coordination.md) | [Reference Catalog](../reference-catalog.md)

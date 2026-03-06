@@ -1,6 +1,6 @@
 # 🎯 Agent Orchestration Engine
 
-> **Version:** 5.0.0 | **Updated:** 2026-02-27  
+> **Version:** 5.0.0 | **Updated:** 2026-03-01  
 > **Purpose:** Automated agent selection, pipeline execution, and conflict resolution  
 > **Priority:** P0 — Core system, read by orchestrator agent  
 > **Dependencies:** `auto-rule-discovery.md`, `agent-registry.md`
@@ -203,13 +203,14 @@ conditional:
 templates:
   new_feature:
     description: "Build a new feature end-to-end"
-    agents: [project-planner, backend-specialist, frontend-specialist, test-engineer]
+    agents: [project-planner, database-architect, backend-specialist, frontend-specialist, test-engineer]
     pattern: sequential
     steps:
       1: { agent: project-planner, task: "Create implementation plan" }
-      2: { agent: backend-specialist, task: "Implement API layer" }
-      3: { agent: frontend-specialist, task: "Implement UI layer" }
-      4: { agent: test-engineer, task: "Write unit + integration tests" }
+      2: { agent: database-architect, task: "Design schema + create migration" }
+      3: { agent: backend-specialist, task: "Implement API layer" }
+      4: { agent: frontend-specialist, task: "Implement UI layer" }
+      5: { agent: test-engineer, task: "Write unit + integration tests" }
 
   bug_fix:
     description: "Investigate and fix a bug"
@@ -230,11 +231,12 @@ templates:
 
   security_audit:
     description: "Comprehensive security review"
-    agents: [security-auditor, penetration-tester]
+    agents: [ai-code-reviewer, security-auditor, penetration-tester]
     pattern: sequential
     steps:
-      1: { agent: security-auditor, task: "Defensive review + vulnerability scan" }
-      2: { agent: penetration-tester, task: "Offensive testing + exploit verification" }
+      1: { agent: ai-code-reviewer, task: "Code-level security review" }
+      2: { agent: security-auditor, task: "Defensive review + vulnerability scan" }
+      3: { agent: penetration-tester, task: "Offensive testing + exploit verification" }
 
   code_review:
     description: "Thorough code review"
@@ -258,12 +260,13 @@ templates:
 
   deployment:
     description: "Deploy to production"
-    agents: [devops-engineer, security-auditor, manager-agent]
+    agents: [test-engineer, security-auditor, devops-engineer, manager-agent]
     pattern: sequential
     steps:
-      1: { agent: security-auditor, task: "Pre-deployment security check" }
-      2: { agent: devops-engineer, task: "Execute deployment" }
-      3: { agent: manager-agent, task: "Post-deployment verification" }
+      1: { agent: test-engineer, task: "Pre-deployment test suite" }
+      2: { agent: security-auditor, task: "Pre-deployment security check" }
+      3: { agent: devops-engineer, task: "Execute deployment" }
+      4: { agent: manager-agent, task: "Post-deployment verification" }
 ```
 
 ---
@@ -327,7 +330,7 @@ User Request
 ```yaml
 backwards_compatibility:
   # All existing flows continue to work
-  manual_routing: "orchestrator.md routing tables remain valid as fallback"
+  manual_routing: "CAPABILITY-MATRIX.md Quick Selection remains valid as simplified fallback"
   agent_coordination: "agent-coordination.md patterns still apply"
   rba_protocol: "rba-validator.md still required before execution"
 
@@ -345,4 +348,6 @@ backwards_compatibility:
 
 **Version:** 5.0.0  
 **System:** Antigravity-Core v5.0.0  
-**Updated:** 2026-02-27
+**Updated:** 2026-03-01
+
+> **See also:** [Agent Registry](agent-registry.md) | [Auto-Rule Discovery](auto-rule-discovery.md) | [Capability Matrix](../agents/CAPABILITY-MATRIX.md) | [Agent Coordination](agent-coordination.md)

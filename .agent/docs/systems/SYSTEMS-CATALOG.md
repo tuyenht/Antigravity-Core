@@ -1,8 +1,8 @@
 # Systems & Protocols Catalog — Antigravity-Core
 
 **Version:** 5.0.0  
-**Last Updated:** 2026-02-27  
-**Total Systems:** 6 (5 files + AOC in manager-agent)
+**Last Updated:** 2026-03-01  
+**Total Systems:** 7 (6 files + AOC in manager-agent)
 
 ---
 
@@ -17,7 +17,8 @@ Systems là các **core protocols** định nghĩa cách hệ thống hoạt đ�
 ```mermaid
 graph TD
     A["User Request"] --> B["GEMINI.md<br/>(Entry Point)"]
-    B --> C["Auto-Rule Discovery<br/>(3-layer detection)"]
+    B --> IR["Intent Router<br/>(6 intents)"]
+    IR --> C["Auto-Rule Discovery<br/>(3-layer detection)"]
     C --> D["Agent Registry<br/>(capability matching)"]
     D --> E["Orchestration Engine<br/>(pipeline execution)"]
     E --> F["RBA Validator<br/>(reasoning check)"]
@@ -31,6 +32,23 @@ graph TD
 ---
 
 ## Protocol Registry
+
+### 0. Intent Router — Universal Request Classification
+
+| Field | Value |
+|-------|-------|
+| **File** | `systems/intent-router.md` |
+| **Mục đích** | Phân loại mọi request vào 1 trong 6 intents, kích hoạt pipeline tương ứng |
+| **Khi nào** | TRƯỚC mọi pipeline activation (session start) |
+| **6 Intents** | BUILD, ENHANCE, FIX, IMPROVE, SHIP, REVIEW |
+
+**Key Concepts:**
+- Bilingual keyword matching (Vietnamese + English)
+- 3-step classification: keyword → context → ask (max 2 questions)
+- Slash command override (bypass classification)
+- Pipeline Selection Matrix (intent × project state)
+
+---
 
 ### 1. RBA — Reasoning-Before-Action
 
@@ -106,13 +124,13 @@ Step 3: APPLY RULES (max 3-7)
 | **Templates** | 7 pipeline templates cho common scenarios |
 
 **Pipeline Templates:**
-1. Full-stack feature development
-2. Security audit
-3. Performance optimization
-4. Code review
-5. Database migration
-6. Mobile development
-7. Game development
+1. Full-stack feature development (`new_feature`)
+2. Bug fix (`bug_fix`)
+3. Refactoring (`refactor`)
+4. Security audit (`security_audit`)
+5. Code review (`code_review`)
+6. Database change (`database_change`)
+7. Deployment (`deployment`)
 
 ---
 
