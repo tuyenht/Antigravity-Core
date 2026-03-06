@@ -123,14 +123,21 @@ Root: `add.png`, `bg-home.jpg`, `bg-pattern.png`, `img-01.jpg` → `img-06.jpg`,
 
 Galaxy-specific decorative images
 
-### Image Placeholder Strategy
+### Image Asset Strategy
 
-After deletion, use these approaches to replace images:
-- **Avatars**: Use `https://api.dicebear.com/7.x/avataaars/svg?seed={name}` or `https://ui-avatars.com/api/?name={initials}`
-- **Products**: Use `https://picsum.photos/200/200?random={n}` or generate with AI
-- **Logos**: Generate SVG logos or use placeholder.com
+> [!CAUTION]
+> **MANDATORY: Use bundled assets FIRST.** Only generate or fetch externally when no bundled file matches.
+
+**Priority order:**
+1. ✅ **Copy from `.agent/skills/velzon-admin/assets/images/`** — logos, favicon, error pages, etc.
+2. ✅ **CDN/API placeholders** — for dynamic content (avatars, products)
+3. ⚠️ **`generate_image` — LAST RESORT** only for images not in bundle AND not available via CDN
+
+**Per-category fallbacks (only if bundled asset unavailable):**
+- **Avatars**: `https://api.dicebear.com/7.x/avataaars/svg?seed={name}` or `https://ui-avatars.com/api/?name={initials}`
+- **Products**: `https://picsum.photos/200/200?random={n}`
 - **Flags**: Install `flag-icons` npm package
-- **Icons**: All icon fonts are available via npm (see Section 3)
+- **Icons**: All icon fonts available via npm (see Section 3)
 
 ---
 

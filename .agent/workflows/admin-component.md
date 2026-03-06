@@ -21,6 +21,10 @@ Generate individual Velzon-style admin components for any supported stack.
 - For shared patterns (toast, avatar, datepicker, etc.): read `reference/api-and-helpers.md`
 - Identify the component type needed
 
+## 🚨 Asset Rule
+
+> **NEVER use `generate_image` for logos or favicons.** Use bundled assets from `.agent/skills/velzon-admin/assets/images/`. See SKILL.md `§ Bundled Assets`.
+
 ## Component Types
 
 ### Data Table

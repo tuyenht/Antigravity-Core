@@ -21,6 +21,12 @@ Tạo trang cấu hình (Settings) cho admin panel: app config, email, integrati
 
 ---
 
+## 🚨 Asset Rule
+
+> **NEVER use `generate_image` for logos or favicons.** Use bundled assets from `.agent/skills/velzon-admin/assets/images/`. See SKILL.md `§ Bundled Assets`. General Settings logo/favicon preview should reference the bundled files.
+
+---
+
 ## Step 1: Detect Framework & Existing Admin
 
 ```

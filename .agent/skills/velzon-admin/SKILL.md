@@ -19,6 +19,56 @@ Auto-activate when the request involves:
 - Keywords: "admin", "dashboard", "admin panel", "login", "authentication", "bảng điều khiển", "quản lý", "management", "đăng nhập"
 - Data tables, stat widgets, chart dashboards
 
+## 🚨 Bundled Assets — MANDATORY
+
+> [!CAUTION]
+> **This skill ships with pre-built image assets.** You MUST use them instead of generating new images.
+> **NEVER use `generate_image` for logos, favicons, or error pages when bundled files exist.**
+
+### Asset Location
+
+All bundled assets are at: `.agent/skills/velzon-admin/assets/images/`
+
+### Available Assets (USE THESE)
+
+| File | Purpose | When to Use |
+|------|---------|-------------|
+| `logo-dark.png` | Dark logo (dark text, for light backgrounds) | Sidebar header, print headers |
+| `logo-light.png` | Light logo (white text, for dark/gradient backgrounds) | Auth pages, dark sidebar |
+| `logo-sm.png` | Small square icon logo | Collapsed sidebar, favicon fallback |
+| `favicon.ico` | Browser tab icon | `<link rel="icon">` in HTML head |
+| `404-error.png` | 404 Not Found illustration | Error 404 page |
+| `error500.png` | 500 Server Error illustration | Error 500 page |
+| `error.svg` | Generic error SVG | Fallback error pages |
+| `cover-pattern.png` | Profile cover pattern | User profile page |
+| `modal-bg.png` | Modal background | Modals with branded backgrounds |
+| `chat-bg-pattern.png` | Chat background pattern | Chat/messaging pages |
+| `horizontal.png` | Horizontal layout preview | Layout customizer/RightSidebar |
+| `vertical.png` | Vertical layout preview | Layout customizer/RightSidebar |
+| `user-dummy-img.jpg` | Default user avatar | Users without uploaded avatar |
+| `multi-user.jpg` | Multi-user group avatar | Team/group displays |
+| `new.png` | New item icon | New document/item actions |
+
+### Copy Pattern
+
+When building a project, copy bundled assets to the project's asset directory:
+```bash
+# PowerShell
+Copy-Item -Recurse ".agent/skills/velzon-admin/assets/images/*" -Destination "src/assets/images/" -Force
+
+# Bash
+cp -r .agent/skills/velzon-admin/assets/images/* src/assets/images/
+```
+
+### Rules
+1. **ALWAYS check** `assets/images/` for existing files BEFORE considering image generation
+2. **COPY** bundled assets into the target project's public/assets directory
+3. **ONLY use `generate_image`** for images NOT available in the bundle (e.g., custom product photos, user-specific content)
+4. **Auth pages**: Use `logo-light.png` (visible on gradient backgrounds)
+5. **Sidebar**: Use `logo-dark.png` (full) + `logo-sm.png` (collapsed)
+
+---
+
 ## Technology Stack
 
 | Technology | Version | Purpose |

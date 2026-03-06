@@ -42,9 +42,27 @@ Components/Common/ (reuse, KHÔNG tạo mới)
 2. **CHƯA CÓ** → Tạo mới theo `reference/component-patterns.md`
 3. Trang mới **wrap trong `<Layout>`** → tự động có Header, Sidebar, Footer, RightSidebar
 
+## 🚨 Asset Rule
+
+> [!CAUTION]
+> **NEVER use `generate_image` for logos or favicons.** Bundled assets exist at `.agent/skills/velzon-admin/assets/images/` — copy them into the project's asset directory first. See SKILL.md `§ Bundled Assets` for the full list.
+
 ## Steps
 
-### 0. Detect Variant
+### 0. Copy Bundled Assets
+
+// turbo
+
+Copy logo and favicon files from the skill bundle into the project:
+```bash
+# Adjust destination path based on detected variant
+cp .agent/skills/velzon-admin/assets/images/logo-dark.png   {assets}/images/
+cp .agent/skills/velzon-admin/assets/images/logo-light.png  {assets}/images/
+cp .agent/skills/velzon-admin/assets/images/logo-sm.png     {assets}/images/
+cp .agent/skills/velzon-admin/assets/images/favicon.ico     {public}/
+```
+
+### 1. Detect Variant
 Determine which Velzon variant to use based on the project:
 - `composer.json` + `inertiajs` → **React+Inertia** → read `reference/inertia-bridge.md`
 - `next.config.js` → **Next-TS** → read `reference/nextjs-patterns.md`
@@ -56,7 +74,7 @@ Determine which Velzon variant to use based on the project:
 - Default → **React-TS** (use core skill patterns)
 - For asset recreation: always read `reference/asset-catalog.md`
 
-### 1. Identify Page Type
+### 2. Identify Page Type
 Determine what kind of admin page is needed:
 - **Dashboard** → Stats widgets + charts + tables
 - **CRUD List** → Data table with search, sort, pagination, actions
@@ -64,7 +82,7 @@ Determine what kind of admin page is needed:
 - **CRUD Form** → Create/Edit form with validation
 - **Kanban** → Drag-and-drop board
 
-### 2. Reference Closest Template
+### 3. Reference Closest Template
 Map the request to the closest Velzon template page:
 - Dashboard overview → `DashboardEcommerce` or `DashboardAnalytics`
 - CRUD list with table → `CrmContacts` or `EcommerceOrders`
@@ -74,7 +92,7 @@ Map the request to the closest Velzon template page:
 
 Read the skill reference files for detailed patterns.
 
-### 3. Create Page + Sub-Components
+### 4. Create Page + Sub-Components
 
 // turbo
 
@@ -97,7 +115,7 @@ For dashboard pages, create sub-components per section:
 - Tables (TableContainer) → `component-patterns.md` §2
 - Activity sidebar → `dashboard-patterns.md` § Activity Sidebar
 
-### 4. Wire State Management
+### 5. Wire State Management
 
 // turbo
 
@@ -113,7 +131,7 @@ Follow the state management pattern for the detected variant:
 | **Laravel Blade** | Blade `@props` / Controller → View | `html-php-patterns.md` |
 | **ASP.NET Core** | ViewModel → View | `aspnet-mvc-patterns.md` |
 
-### 5. Register Route + Menu
+### 6. Register Route + Menu
 
 // turbo
 
@@ -130,7 +148,7 @@ Add route and sidebar menu item following the detected variant's conventions:
 | **Laravel Blade** | `routes/web.php` | Blade partial |
 | **ASP.NET Core** | `Program.cs` / Controller routing | `_Layout.cshtml` nav |
 
-### 6. Verify
+### 7. Verify
 - Check page renders correctly at the registered route
 - Verify breadcrumb shows correct title/category
 - Confirm sidebar menu item appears and highlights
