@@ -2,6 +2,10 @@
 
 ## Layout Architecture
 
+> [!IMPORTANT]
+> **🚨 FIDELITY MANDATE (EXACT MATCH) 🚨**
+> The layout structures, sidebar behaviors (hover, collapse, active states), and menu nesting logic described below MUST be replicated **pixel-perfectly** compared to the original Velzon Admin template. Do not invent new CSS classes or structural patterns. Use the exact DOM structure defined by the Velzon HTML.
+
 ```
 #layout-wrapper
 ├── Header (topbar)
