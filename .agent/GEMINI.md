@@ -56,6 +56,12 @@ User Request
 - **Why:** Required by Antigravity standards. Node.js, Bun, and Deno environments support it.
 - **Targets:** React, Vue, Angular, Next.js, Nuxt, Express, NestJS, React Native, Vite, Webpack, etc. (Any project with `package.json`).
 
+### ⚛️ Next.js Version (Global Mandate)
+- **ALWAYS use Next.js 16** (latest stable, currently 16.1.x) for ANY new Next.js project.
+- **Ecosystem:** React 19.2, TypeScript 5.8+, Turbopack (default bundler), `use cache` API, `proxy.ts`, PPR stable.
+- **Init command:** `pnpm dlx create-next-app@latest ./ --ts --tailwind --eslint --app --turbopack --use-pnpm`
+- **Why:** Next.js 16 is LTS (October 2025), Turbopack is 5-10x faster, React Compiler stable.
+
 ### 📁 File Dependency Awareness
 Before modifying ANY file:
 1. Check `ARCHITECTURE.md` → File Dependencies

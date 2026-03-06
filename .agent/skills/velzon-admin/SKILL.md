@@ -365,7 +365,7 @@ Also available: BoxIcons (`bx bx-*`), Material Design, Feather, Line Awesome, Cr
 | Variant | Path | Install | Dev Server | Build |
 |---------|------|---------|------------|-------|
 | **React-TS** | `React-TS/Master/` | `npm install` | `npm start` (CRA) | `npm run build` |
-| **Next.js** | `Nextjs/Master/` | `npm install` | `npm run dev` (Next 15) | `npm run build` |
+| **Next.js** | `Nextjs/Master/` | `pnpm install` | `pnpm dev` (Next 16) | `pnpm build` |
 | **HTML** | `HTML/Master/` | `npm install` | `npx gulp` (BrowserSync) | `npx gulp build` |
 | **Laravel** | `Laravel/` | `composer install && npm install` | `php artisan serve` + `npm run dev` | `npm run build` |
 | **PHP** | `PHP/` | N/A (static includes) | Local PHP server | N/A |
