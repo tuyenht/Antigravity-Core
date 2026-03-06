@@ -93,8 +93,85 @@ CommonJS (require)
 | Runtime | Best For |
 |---------|----------|
 | **Node.js** | General purpose, largest ecosystem |
-| **Bun** | Performance, built-in bundler |
+| **Bun** | Performance (2-3x faster), all-in-one tooling, built-in DB clients |
 | **Deno** | Security-first, built-in TypeScript |
+
+### Bun Runtime Patterns (v1.3+ — 2026)
+
+> Acquired by Anthropic (Dec 2025). 95%+ Node API compatibility.
+> All-in-one: runtime + package manager + bundler + test runner.
+
+#### When to Choose Bun
+
+| Use Case | Bun Advantage |
+|----------|---------------|
+| APIs / Microservices | 2-3.5x more req/s than Node.js |
+| Serverless / Edge | Near-zero cold start |
+| CLI tools & scripts | Fast startup, native TS |
+| Dev tooling | Built-in bundler, no Webpack/Vite needed |
+| Frontend dev | `bun index.html` — zero-config HMR |
+
+#### HTTP Server (`Bun.serve`)
+```typescript
+Bun.serve({
+  port: 3000,
+  fetch(req) {
+    const url = new URL(req.url);
+    if (url.pathname === '/api/health') {
+      return Response.json({ status: 'ok' });
+    }
+    return new Response('Not Found', { status: 404 });
+  },
+});
+```
+
+#### Built-in Database Clients
+```typescript
+// PostgreSQL / MySQL / SQLite — unified API
+import { SQL } from 'bun';
+const db = new SQL({ url: 'postgres://user:pass@localhost/mydb' });
+const users = await db.query`SELECT * FROM users WHERE active = ${true}`;
+
+// Built-in Redis
+const redis = new Bun.RedisClient('redis://localhost:6379');
+await redis.set('key', 'value');
+
+// Built-in S3
+const file = Bun.s3.file('my-bucket/data.json');
+await file.write(JSON.stringify(data));
+```
+
+#### Testing (`bun:test`)
+```typescript
+import { test, expect } from 'bun:test';
+
+test('user creation', async () => {
+  const user = await createUser({ name: 'Test' });
+  expect(user.id).toBeDefined();
+});
+```
+
+#### Bundler (replaces Webpack/Vite)
+```typescript
+await Bun.build({
+  entrypoints: ['./src/index.tsx'],
+  outdir: './dist',
+  minify: true,
+  splitting: true,
+  target: 'browser',
+});
+```
+
+#### Migration from Node.js
+```bash
+bun install          # 20-30x faster than npm
+bun src/index.ts     # Native TypeScript, no build step
+```
+
+#### ⚠️ When NOT to Use Bun
+- Native Node.js addons (C++ bindings)
+- Mission-critical enterprise requiring Node.js LTS stability
+- Projects heavily dependent on Node.js-specific stream APIs
 
 ---
 

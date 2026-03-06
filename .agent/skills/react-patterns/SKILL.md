@@ -64,33 +64,6 @@ allowed-tools: Read, Write, Edit, Glob, Grep
 | Scope | Where |
 |-------|-------|
 | Single component | useState |
-| Parent-child | Lift state up |
-| Subtree | Context |
-| App-wide | Global store |
-
----
-
-## 4. React 19 Patterns
-
-### New Hooks
-
-| Hook | Purpose |
-|------|---------|
-| **useActionState** | Form submission state |
-| **useOptimistic** | Optimistic UI updates |
-| **use** | Read resources in render |
-
-### Compiler Benefits
-
-- Automatic memoization
-- Less manual useMemo/useCallback
-- Focus on pure components
-
----
-
-## 5. Composition Patterns
-
-### Compound Components
 
 - Parent provides context
 - Children consume context
