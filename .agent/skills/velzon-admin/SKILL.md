@@ -78,7 +78,8 @@ cp -r .agent/skills/velzon-admin/assets/images/* src/assets/images/
 1. **Interactive Utilities:** For tooltips, modals, offcanvas, dropdowns, always use the exact Bootstrap 5 / Reactstrap / Inertia integration code patterns provided in `reference/component-patterns.md`. 
 2. **Micro-animations & Effects:** Pay close attention to CSS classes that trigger animations (e.g., `card-animate`, `waves-effect`, `avatar-title`). Do not drop these classes.
 3. **Data Visualizations & Widgets:** When rendering charts (ApexCharts), stat widgets, or tables, the layout grids, spacing utilities (`p-`, `m-`, `gap-`), colors (`--vz-*`), and initialization logic must mirror the original Velzon reference.
-4. **Target Language Neutrality:** Whether outputting for React, Next.js, EJS, Blade, or PHP, the rendered DOM structure and classes MUST be identical to the canonical Velzon HTML.
+4. **Sidebars, Menus & Layouts:** The core layout structures (Vertical, Horizontal, TwoColumn, etc.), sidebar components, and menu configurations MUST mirror the exact Velzon-Admin visual presentation, behaviors (like hover, active states, auto-close), and nesting logic.
+5. **Target Language Neutrality:** Whether outputting for React, Next.js, EJS, Blade, or PHP, the rendered DOM structure and classes MUST be identical to the canonical Velzon HTML.
 
 ---
 
