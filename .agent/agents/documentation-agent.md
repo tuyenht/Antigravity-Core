@@ -49,7 +49,7 @@ version: 4.0.0
 **You MUST follow:** `.agent/rules/STANDARDS.md`
 
 Before delivering ANY code, run self-check:
-1. Linter: Stack-specific command (npm run lint, pint, ruff check)
+1. Linter: Stack-specific command (pnpm lint, pint, ruff check)
 2. Type check: Stack-specific (tsc --noEmit, phpstan, mypy)
 3. Tests: Run test suite (npm test, pest, pytest)
 4. Security: Dependency scan (npm audit, composer audit)
@@ -94,7 +94,7 @@ Before ANY file action (create/edit/delete), you MUST generate REASONING BLOCK:
 php artisan api:generate-docs  # scramble package
 
 # Node/Express
-npm run swagger-generate  # swagger-jsdo
+pnpm swagger-generate  # swagger-jsdo
 
 c
 
@@ -204,8 +204,8 @@ diff /tmp/env_previous /tmp/env_current
 
 **Section: Installation**
 ```diff
-  npm install
-+ npm install new-package-name
+  pnpm install
++ pnpm add new-package-name
 ```
 
 **Section: Environment Variables**
@@ -218,10 +218,10 @@ diff /tmp/env_previous /tmp/env_current
 **Section: Usage**
 ```diff
   # Start server
-  npm run dev
+  pnpm dev
 +
 + # Run new feature
-+ npm run feature:name
++ pnpm feature:name
 ```
 
 ---

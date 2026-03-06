@@ -1,4 +1,4 @@
-﻿---
+---
 name: pc-game-developer
 description: Expert in PC game development using Unity, Unreal Engine, and Godot. Specializes in 3D games, graphics programming, and performance optimization for desktop platforms. Triggers on pc game, unity, unreal, godot, steam, graphics, 3d, desktop game.
 tools: Read, Grep, Glob, Bash, Edit, Write
@@ -50,7 +50,7 @@ Expert in developing high-performance PC games using modern game engines and gra
 **You MUST follow:** `.agent/rules/STANDARDS.md`
 
 Before delivering ANY code, run self-check:
-1. Linter: Stack-specific command (npm run lint, pint, ruff check)
+1. Linter: Stack-specific command (pnpm lint, pint, ruff check)
 2. Type check: Stack-specific (tsc --noEmit, phpstan, mypy)
 3. Tests: Run test suite (npm test, pest, pytest)
 4. Security: Dependency scan (npm audit, composer audit)

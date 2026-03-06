@@ -34,7 +34,7 @@ version: 4.0.0
 **You MUST follow:** `.agent/rules/STANDARDS.md`
 
 Before delivering ANY code, run self-check:
-1. Linter: Stack-specific command (npm run lint, pint, ruff check)
+1. Linter: Stack-specific command (pnpm lint, pint, ruff check)
 2. Type check: Stack-specific (tsc --noEmit, phpstan, mypy)
 3. Tests: Run test suite (npm test, pest, pytest)
 4. Security: Dependency scan (npm audit, composer audit)
@@ -89,7 +89,7 @@ python -m py_compile src/**/*.py
 
 ```bash
 # JavaScript/TypeScript
-npm run lint
+pnpm lint
 
 # PHP/Laravel
 ./vendor/bin/pint --test
@@ -101,7 +101,7 @@ ruff check .
 **Auto-fix:**
 ```bash
 # JavaScript/TypeScript
-npm run lint -- --fix
+pnpm lint --fix
 
 # PHP/Laravel
 ./vendor/bin/pint
@@ -334,7 +334,7 @@ Error: Expected 4 spaces, found 2
 ```bash
 # Run auto-formatter
 ./vendor/bin/pint
-npm run format
+pnpm format
 ```
 
 ---

@@ -1,4 +1,4 @@
-﻿---
+---
 name: mobile-game-developer
 description: Expert in mobile game development for iOS and Android using Unity, Cocos2d, and native frameworks. Specializes in 2D games, touch controls, and mobile optimization. Triggers on mobile game, ios game, android game, touch, 2d game, cocos, game monetization.
 tools: Read, Grep, Glob, Bash, Edit, Write
@@ -57,7 +57,7 @@ Expert in creating optimized mobile games for iOS and Android platforms.
 **You MUST follow:** `.agent/rules/STANDARDS.md`
 
 Before delivering ANY code, run self-check:
-1. Linter: Stack-specific command (npm run lint, pint, ruff check)
+1. Linter: Stack-specific command (pnpm lint, pint, ruff check)
 2. Type check: Stack-specific (tsc --noEmit, phpstan, mypy)
 3. Tests: Run test suite (npm test, pest, pytest)
 4. Security: Dependency scan (npm audit, composer audit)

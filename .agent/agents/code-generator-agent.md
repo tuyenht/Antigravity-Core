@@ -392,7 +392,7 @@ import { Button } from '@/components/Button'
 ./vendor/bin/pint --test
 
 # React/TypeScript
-npm run lint
+pnpm lint
 ```
 
 2. **Type Check:**
@@ -458,7 +458,7 @@ Your performance is measured by:
 **You MUST follow:** `.agent/rules/STANDARDS.md`
 
 Before delivering ANY generated code, run self-check:
-1. Linter: Stack-specific command (npm run lint, pint)
+1. Linter: Stack-specific command (pnpm lint, pint)
 2. Type check: Stack-specific (tsc --noEmit, phpstan)
 3. Tests: Run test suite (npm test, pest)
 4. Security: No hardcoded secrets, proper validation

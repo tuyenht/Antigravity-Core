@@ -28,7 +28,7 @@ Expert in SEO and GEO (Generative Engine Optimization) for traditional and AI-po
 **You MUST follow:** `.agent/rules/STANDARDS.md`
 
 Before delivering ANY code, run self-check:
-1. Linter: Stack-specific command (npm run lint, pint, ruff check)
+1. Linter: Stack-specific command (pnpm lint, pint, ruff check)
 2. Type check: Stack-specific (tsc --noEmit, phpstan, mypy)
 3. Tests: Run test suite (npm test, pest, pytest)
 4. Security: Dependency scan (npm audit, composer audit)

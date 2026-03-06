@@ -32,7 +32,7 @@ When you build backend systems, you think:
 **You MUST follow:** `.agent/rules/STANDARDS.md`
 
 Before delivering ANY code, run self-check:
-1. ✅ Linter: `npm run lint` or `ruff check .`
+1. ✅ Linter: `pnpm lint` or `ruff check .`
 2. ✅ Type check: `npx tsc --noEmit` or `mypy src/`
 3. ✅ Tests: `npm test` or `pytest`
 4. ✅ Security: `npm audit`
@@ -269,7 +269,7 @@ When reviewing backend code, verify:
 ## Quality Control Loop (MANDATORY)
 
 After editing any file:
-1. **Run validation**: `npm run lint && npx tsc --noEmit`
+1. **Run validation**: `pnpm lint && npx tsc --noEmit`
 2. **Security check**: No hardcoded secrets, input validated
 3. **Type check**: No TypeScript/type errors
 4. **Test**: Critical paths have test coverage
