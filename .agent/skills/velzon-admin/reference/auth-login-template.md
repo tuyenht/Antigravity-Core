@@ -857,62 +857,69 @@ export const DEFAULT_LOCALE: SupportedLocale = 'en';
 export const SUPPORTED_LOCALES: SupportedLocale[] = ['en', 'vi', 'ja', 'zh'];
 
 // --- LocaleContext.tsx ---
-import { createContext, useContext, useState, useCallback, useEffect, ReactNode } from 'react';
-import defaultMessages from '@/locales/en.json';
+'use client';
+
+import React, { createContext, useContext, useState, useCallback, useEffect, useTransition, type ReactNode } from 'react';
+import { useRouter } from 'next/navigation';
 
 interface LocaleContextValue {
     locale: SupportedLocale;
     setLocale: (locale: SupportedLocale) => void;
     t: (key: string) => string;
+    isPending: boolean;  // 🚨 REQUIRED — shows loading state during router.refresh()
 }
 
 interface LocaleProviderProps {
     children: ReactNode;
-    initialLocale?: SupportedLocale;
-    initialMessages?: Record<string, string>;
+    initialLocale: SupportedLocale;           // 🚨 NOT optional — server MUST pass this
+    initialMessages: Record<string, string>;  // 🚨 NOT optional — server MUST pass this
 }
 
-const LocaleContext = createContext<LocaleContextValue | undefined>(undefined);
+const LocaleContext = createContext<LocaleContextValue | null>(null);
 
 export function LocaleProvider({ children, initialLocale, initialMessages }: LocaleProviderProps) {
+    const router = useRouter();
+    const [isPending, startTransition] = useTransition();
     // Server already resolved locale — use it directly (no hydration mismatch)
-    const [locale, setLocaleState] = useState<SupportedLocale>(initialLocale ?? DEFAULT_LOCALE);
-    const [messages, setMessages] = useState<Record<string, string>>(initialMessages ?? defaultMessages);
+    const [locale, setLocaleState] = useState<SupportedLocale>(initialLocale);
+    const [messages, setMessages] = useState<Record<string, string>>(initialMessages);
 
-    // Load translations dynamically
-    const loadMessages = useCallback(async (loc: SupportedLocale) => {
-        const msgs = await import(`@/locales/${loc}.json`);
-        setMessages(msgs.default);
-    }, []);
+    const setLocale = useCallback(async (newLocale: SupportedLocale) => {
+        // 1. Set cookie with SameSite=Lax — ensures browser sends it on same-site navigation
+        document.cookie = `locale=${newLocale};path=/;max-age=${365 * 24 * 60 * 60};SameSite=Lax`;
 
-    // Client-side fallback: if server didn't pass initialLocale, read cookie
-    useEffect(() => {
-        if (initialLocale) return; // Server already resolved — skip
-        const cookie = document.cookie.match(/locale=(\w+)/);
-        if (cookie && SUPPORTED_LOCALES.includes(cookie[1] as SupportedLocale)) {
-            const cookieLocale = cookie[1] as SupportedLocale;
-            setLocaleState(cookieLocale);
-            loadMessages(cookieLocale);
-        }
-    }, [initialLocale, loadMessages]);
-
-    const setLocale = useCallback((newLocale: SupportedLocale) => {
-        setLocaleState(newLocale);
-        loadMessages(newLocale);
-
-        // Set cookie immediately (no page reload)
-        document.cookie = `locale=${newLocale};path=/;max-age=31536000;SameSite=Lax`;
-
-        // Update HTML lang attribute
+        // 2. Update <html lang>
         document.documentElement.lang = newLocale === 'zh' ? 'zh-CN' : newLocale;
-    }, [loadMessages]);
+
+        // 3. Load new messages and update client state
+        try {
+            const mod = await import(`@/locales/${newLocale}.json`);
+            setMessages(mod.default);
+        } catch {
+            const mod = await import('@/locales/en.json');
+            setMessages(mod.default);
+        }
+        setLocaleState(newLocale);
+
+        // 4. 🚨 KEY FIX: Invalidate Next.js Client-Side Router Cache
+        //    Without this, F5/refresh serves stale server-rendered HTML with old locale
+        //    because Next.js caches the RSC payload from the previous request.
+        //    router.refresh() re-runs ALL server components → getServerLocale() re-reads cookie
+        startTransition(() => {
+            router.refresh();
+        });
+    }, [router, startTransition]);
+
+    useEffect(() => {
+        document.documentElement.lang = locale === 'zh' ? 'zh-CN' : locale;
+    }, [locale]);
 
     const t = useCallback((key: string): string => {
         return messages[key] ?? key;
     }, [messages]);
 
     return (
-        <LocaleContext.Provider value={{ locale, setLocale, t }}>
+        <LocaleContext.Provider value={{ locale, setLocale, t, isPending }}>
             {children}
         </LocaleContext.Provider>
     );
