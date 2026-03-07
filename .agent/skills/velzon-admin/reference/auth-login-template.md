@@ -842,6 +842,52 @@ const SocialButton: React.FC<SocialButtonProps> = ({ provider, icon, disabled, o
 };
 ```
 
+### 6b. LanguageSwitcher Component
+
+> [!IMPORTANT]
+> LanguageSwitcher MUST use `isPending` from `useLocale()` to show loading state during `router.refresh()`.
+> Without this, the user sees no feedback while server re-renders with new locale.
+
+```tsx
+// components/login/LanguageSwitcher.tsx
+'use client';
+
+import React from 'react';
+import { useLocale, type SupportedLocale } from '@/features/auth/hooks/LocaleContext';
+
+const locales: SupportedLocale[] = ['en', 'vi', 'ja', 'zh'];
+
+export default function LanguageSwitcher() {
+    const { locale, setLocale, isPending } = useLocale();
+
+    return (
+        <div className="relative w-full flex justify-center mb-4 md:mb-6 z-50
+                        md:absolute md:top-6 md:right-6 md:w-auto">
+            <div className="flex gap-1 bg-slate-900/30 backdrop-blur-xl p-1 md:p-1.5
+                            rounded-full border border-white/10 shadow-2xl">
+                {locales.map((l) => (
+                    <button
+                        key={l}
+                        onClick={() => setLocale(l)}
+                        disabled={isPending}
+                        className={`w-7 h-7 md:w-9 md:h-9 flex items-center justify-center
+                          text-[10px] md:text-xs font-bold rounded-full
+                          transition-all duration-300 cursor-pointer
+                          ${isPending ? 'opacity-60' : ''}
+                          ${locale === l
+                              ? 'bg-white text-blue-700 shadow-lg scale-105'
+                              : 'text-white/60 hover:text-white hover:bg-white/10'
+                          }`}
+                    >
+                        {l.toUpperCase()}
+                    </button>
+                ))}
+            </div>
+        </div>
+    );
+}
+```
+
 ### 7. useLocale Hook
 
 > [!CAUTION]

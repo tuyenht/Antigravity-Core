@@ -290,6 +290,9 @@ export const metadata: Metadata = {
     title: 'Forgot Password — Admin Panel',
 };
 
+// 🚨 MUST: prevents Next.js from caching with stale locale cookie
+export const dynamic = 'force-dynamic';
+
 export default async function ForgotPasswordPage() {
     const { locale, messages } = await getServerLocale();
     return <ForgotPasswordClient initialLocale={locale} initialMessages={messages} />;
@@ -345,7 +348,28 @@ src/components/login/
 
 src/features/auth/
 ├── hooks/
-│   └── LocaleContext.tsx    ← useLocale() provider + t() function
+│   └── LocaleContext.tsx    ← useLocale() provider + t() + router.refresh() + isPending
 └── types.ts                 ← SupportedLocale type
 ```
+
+---
+
+## Locale Persistence (i18n)
+
+> [!CAUTION]
+> **ALL auth server pages MUST export `dynamic = 'force-dynamic'`.**
+> Without this, Next.js Full Route Cache serves stale locale on F5.
+> **LocaleContext MUST call `router.refresh()` after setting locale cookie.**
+> Without this, the Client-Side Router Cache serves stale RSC payload.
+
+### 4-Layer Defense
+
+| Layer | Mechanism | File |
+|-------|-----------|------|
+| 1. Cookie | `locale={vi};path=/;max-age=31536000;SameSite=Lax` | `LocaleContext.tsx` |
+| 2. Server read | `cookies().get('locale')` via `await cookies()` | `locale-server.ts` |
+| 3. Server cache bypass | `export const dynamic = 'force-dynamic'` | Each `page.tsx` |
+| 4. Client cache invalidation | `router.refresh()` inside `useTransition` | `LocaleContext.tsx` |
+
+Full implementation: see [auth-login-template.md](reference/auth-login-template.md) §7 useLocale Hook.
 
