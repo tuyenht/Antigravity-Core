@@ -83,7 +83,7 @@ Components/Common/ (REQUIRED — reuse, không tạo mới)
 
 ### Step 3: Load References (parallel)
 
-Đọc **4 files cùng lúc** từ `.agent/skills/velzon-admin/reference/`:
+Đọc **5 files cùng lúc** từ `.agent/skills/velzon-admin/reference/`:
 
 1. **`saas-admin-starter.md`** — Master blueprint (single source of truth)
 2. **Framework pattern file** — Auth section tương ứng:
@@ -98,6 +98,7 @@ Components/Common/ (REQUIRED — reuse, không tạo mới)
 
 3. **`auth-login-template.md`** — Design tokens, CSS, glassmorphism auth components
 4. **`admin-shell-template.md`** — Dashboard shell: Header (8 dropdowns), Sidebar (multi-level), Theme Customizer
+5. **`env-template.md`** — `.env.example` defaults (BCRYPT_ROUNDS, ADMIN_PREFIX, session/cache/mail)
 
 ---
 
@@ -154,6 +155,7 @@ Theo thứ tự:
 11. **Error Pages** — 403, 404, 500
 12. **i18n** — Translation keys for auth + admin
 13. **Config** — Admin prefix, app settings
+14. **`.env.example`** — Environment config from `env-template.md` (BCRYPT_ROUNDS=12, ADMIN_PREFIX, DB, session, mail)
 
 ---
 
