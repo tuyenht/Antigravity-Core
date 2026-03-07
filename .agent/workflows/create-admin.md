@@ -83,7 +83,7 @@ Components/Common/ (REQUIRED — reuse, không tạo mới)
 
 ### Step 3: Load References (parallel)
 
-Đọc **3 files cùng lúc** từ `.agent/skills/velzon-admin/reference/`:
+Đọc **4 files cùng lúc** từ `.agent/skills/velzon-admin/reference/`:
 
 1. **`saas-admin-starter.md`** — Master blueprint (single source of truth)
 2. **Framework pattern file** — Auth section tương ứng:
@@ -96,7 +96,8 @@ Components/Common/ (REQUIRED — reuse, không tạo mới)
    | Express + EJS | `nodejs-patterns.md` |
    | ASP.NET Core | `aspnet-mvc-patterns.md` |
 
-3. **`auth-login-template.md`** — Design tokens, CSS, glassmorphism components
+3. **`auth-login-template.md`** — Design tokens, CSS, glassmorphism auth components
+4. **`admin-shell-template.md`** — Dashboard shell: Header (8 dropdowns), Sidebar (multi-level), Theme Customizer
 
 ---
 
@@ -113,7 +114,7 @@ Theo thứ tự:
       - Copy `source/react-ts/layouts/` → adapt import paths, routing
       - Copy `source/react-ts/header-components/` → Topbar dropdowns
       - Copy `source/react-ts/theme-customizer/` → RightSidebar
-      - Copy `source/react-ts/slices/layouts/` → Redux layout state
+      - Copy `source/react-ts/slices/layouts/` → Redux layout state (or convert to React Context for Next.js)
       - Copy `source/react-ts/common/` → withRouter, BreadCrumb
     - **IF Vue / Laravel / PHP / Node / ASP.NET / ANY other framework:**
       - Read `source/html-canonical/*` as DOM reference
@@ -121,6 +122,16 @@ Theo thứ tự:
       - **MUST preserve:** CSS classes, DOM nesting, `--vz-*` variables
     - **Invariance rules:** sidebar dark (#405189), topbar dropdown order, menu category structure
     - Nội dung bên trong → tạo mới theo `reference/component-patterns.md`
+
+> [!CAUTION]
+> **BẮT BUỘC tạo TẤT CẢ các component sau (theo `admin-shell-template.md`):**
+> - Header.tsx với ĐẦY ĐỦ: Hamburger toggle, SearchOption, LanguageDropdown, LightDark, FullScreenDropdown, NotificationDropdown, ProfileDropdown
+> - Sidebar.tsx với multi-level menu, smooth accordion, active glow, badges, permission filtering
+> - RightSidebar.tsx (Theme Customizer) với floating gear icon + drawer panel
+> - Layout state management (Context cho Next.js, Redux cho CRA/Vite)
+>
+> ❌ **CẤM** tạo monolith AdminLayout.tsx đơn giản. Mỗi component PHẢI là file riêng.
+> ❌ **CẤM** bỏ qua bất kỳ dropdown nào trong Header.
 2. **Root page.tsx** — Overwrite `src/app/page.tsx` (mặc định của `create-next-app`) bằng redirect tới admin dashboard:
     ```tsx
     // src/app/page.tsx — OVERWRITE default Next.js page
@@ -153,13 +164,19 @@ Theo thứ tự:
 pnpm lint && pnpm build && pnpm dev  # or framework equivalent
 ```
 
-**Checklist (from blueprint §14):**
-- [ ] All 5 auth screens render with glassmorphism
+**Checklist (from blueprint §14 + admin-shell-template.md):**
+- [ ] All 5 auth screens render with glassmorphism (from `auth-login-template.md`)
 - [ ] Seed runs (correct roles by mode + permissions + admin user)
 - [ ] Login works with `admin@example.com` / `password`
 - [ ] Sidebar filtered by permissions AND mode
 - [ ] Users CRUD + Invite functional
 - [ ] Permission matrix saves correctly
+- [ ] **Header has ALL 7 dropdowns**: Search, Language, LightDark, Fullscreen, Notifications, Profile, Hamburger toggle
+- [ ] **Sidebar toggle** collapses/expands sidebar
+- [ ] **Multi-level menu** works with smooth accordion animation
+- [ ] **Theme Customizer** gear icon visible, drawer opens with layout/color options
+- [ ] **Dark/Light mode** toggle works correctly
+- [ ] Profile dropdown shows user name + role + logout option
 
 **Agent:** `debugger`
 
