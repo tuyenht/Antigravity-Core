@@ -61,7 +61,7 @@ Regardless of the target language/framework (React, Next.js, Vue, Laravel Blade,
 │  │              └─────────────────┘                        │  │
 │  │                                                            │  │
 │  │     ┌──────────── Glass Card ────────────────┐             │  │
-│  │     │  System Login (h2, solid slate-900)       │             │  │
+│  │     │  System Login (h2, gradient blue→slate)     │             │  │
 │  │     │                                         │             │  │
 │  │     │  Account    [👤 email@...          @]   │             │  │
 │  │     │  Password   [🔒 ••••••••          👁]   │             │  │
@@ -98,7 +98,7 @@ Regardless of the target language/framework (React, Next.js, Vue, Laravel Blade,
 | **Glass padding** | `p-[35px]` | Tailwind utility on element — NOT in .glass CSS |
 | **Glass border-radius** | `rounded-3xl` (~24px) | Tailwind utility on element — NOT in .glass CSS |
 | **Content max-width** | `max-w-[392px]` | 🚨 **px-absolute** — NOT rem-based `max-w-md` |
-| **Title font** | `text-2xl` (~24px), `font-weight: 800`, `text-slate-900 dark:text-white` | 🚨 Solid color — NO gradient text |
+| **Title font** | `text-[26px]`, `font-weight: 800`, gradient `from-blue-700 to-slate-700` | 🚨 Gradient text via `bg-clip-text text-transparent` |
 | **Label font** | `text-sm` (14px), `font-weight: 600`, `text-slate-700` | 🚨 NOT `text-base` (16px) |
 | **Input bg** | `bg-slate-50`, border `border-slate-200`, rounded `rounded-xl` | |
 | **Input focus** | `bg-white`, `border-blue-600`, `ring-4 ring-blue-600/10` | |
@@ -228,7 +228,7 @@ export default function AuthLayout({ children, title }: AuthLayoutProps) {
                     {children}
 
                     {/* Footer - MUST match: © {year} BaoSon Ads. All rights reserved. */}
-                    <footer className="mt-4 md:mt-8 text-center text-white/40 text-xs font-medium tracking-wide">
+                    <footer className="mt-4 md:mt-8 text-center text-white/40 text-xs font-medium tracking-wide font-inter">
                         <p>
                             &copy; {new Date().getFullYear()}{' '}
                             <a href={COMPANY_URL} target="_blank" rel="noopener noreferrer"
@@ -245,9 +245,21 @@ export default function AuthLayout({ children, title }: AuthLayoutProps) {
 }
 ```
 
-### 2. Glass CSS
+### 2. Glass CSS + Font System
+
+> [!CAUTION]
+> **Auth pages use `Inter` font** (not body `Poppins`). The `.font-inter` class + wildcard selector
+> overrides the inherited `Poppins` from body. This MUST be inside `@layer components`.
+> **All auth server pages MUST export `dynamic = 'force-dynamic'`** to ensure the locale cookie
+> is re-read on every F5/refresh (Next.js Full Route Cache otherwise serves stale locale).
 
 ```css
+@import "tailwindcss";
+
+@theme {
+    --font-inter: "Inter", sans-serif;
+}
+
 @keyframes gradient {
     0% { background-position: 0% 50%; }
     50% { background-position: 100% 50%; }
@@ -271,6 +283,13 @@ export default function AuthLayout({ children, title }: AuthLayoutProps) {
          *    p-[35px] rounded-3xl
          * Putting them here with !important BREAKS Tailwind v4 layer system */
     }
+
+    /* 🚨 Auth pages use Inter font (body uses Poppins for admin dashboard).
+     * Wildcard selector ensures ALL children inherit Inter, overriding body Poppins. */
+    .font-inter,
+    .font-inter * {
+        font-family: "Inter", sans-serif;
+    }
 }
 
 /* ⛔ REMOVED: All !important form overrides (input, h2, label)
@@ -278,16 +297,16 @@ export default function AuthLayout({ children, title }: AuthLayoutProps) {
  *   - label: text-sm (14px) — NOT text-base (16px)
  *   - input: py-2.5 (10px) — NOT py-3 (12px)
  *   - input icon: pl-10/pr-10 — NOT pl-11/pr-11
- *   - h2: text-2xl font-extrabold text-slate-900 dark:text-white
+ *   - h2: text-[26px] font-extrabold bg-gradient-to-r from-blue-700 to-slate-700 bg-clip-text text-transparent
  * Using !important overrides in unlayered CSS defeats Tailwind's cascade. */
 ```
 
 ### 3. Login Card
 
 ```tsx
-<div className="glass w-full max-w-[392px] mx-auto rounded-3xl p-[35px] shadow-2xl relative">
-    {/* Title */}
-    <h2 className="text-2xl font-extrabold text-slate-900 dark:text-white tracking-tight mb-6">
+<div className="glass w-full max-w-[392px] mx-auto rounded-3xl p-[35px] shadow-2xl relative font-inter">
+    {/* Title — gradient text, 26px to match Velzon reference */}
+    <h2 className="text-[26px] font-extrabold bg-gradient-to-r from-blue-700 to-slate-700 bg-clip-text text-transparent tracking-tight mb-6">
         {t('auth.welcome')}  {/* "System Login" */}
     </h2>
 
@@ -913,6 +932,9 @@ import type { Metadata } from 'next';
 import { getServerLocale } from '@/lib/locale-server';
 import LoginClient from './LoginClient';
 
+// 🚨 MUST export force-dynamic — without this, Next.js caches the server-rendered page
+// and the locale cookie is NOT re-read on F5/refresh → language resets to 'en'
+export const dynamic = 'force-dynamic';
 export const metadata: Metadata = { title: 'Login — Admin Panel' };
 
 export default async function LoginPage() {
@@ -993,8 +1015,8 @@ export default function ForgotPasswordForm() {
     }
 
     return (
-        <div className="glass w-full rounded-3xl p-6 md:p-10 shadow-2xl">
-            <h2 className="text-2xl font-extrabold text-slate-900 dark:text-white tracking-tight mb-2">
+        <div className="glass w-full rounded-3xl p-6 md:p-10 shadow-2xl font-inter">
+            <h2 className="text-[26px] font-extrabold bg-gradient-to-r from-blue-700 to-slate-700 bg-clip-text text-transparent tracking-tight mb-2">
                 {t('auth.forgot_password_title')}
             </h2>
             <p className="text-sm text-slate-500 mb-6">{t('auth.forgot_password_subtitle')}</p>
@@ -1070,8 +1092,8 @@ export default function ResetPasswordForm({ token }: ResetPasswordFormProps) {
     };
 
     return (
-        <div className="glass w-full rounded-3xl p-6 md:p-10 shadow-2xl">
-            <h2 className="text-2xl font-extrabold text-slate-900 dark:text-white tracking-tight mb-2">
+        <div className="glass w-full rounded-3xl p-6 md:p-10 shadow-2xl font-inter">
+            <h2 className="text-[26px] font-extrabold bg-gradient-to-r from-blue-700 to-slate-700 bg-clip-text text-transparent tracking-tight mb-2">
                 {t('auth.reset_password_title')}
             </h2>
             <p className="text-sm text-slate-500 mb-6">{t('auth.reset_password_subtitle')}</p>
@@ -1146,8 +1168,8 @@ export default function TwoFactorForm() {
     };
 
     return (
-        <div className="glass w-full rounded-3xl p-6 md:p-10 shadow-2xl">
-            <h2 className="text-2xl font-extrabold text-slate-900 dark:text-white tracking-tight mb-2">
+        <div className="glass w-full rounded-3xl p-6 md:p-10 shadow-2xl font-inter">
+            <h2 className="text-[26px] font-extrabold bg-gradient-to-r from-blue-700 to-slate-700 bg-clip-text text-transparent tracking-tight mb-2">
                 {t('auth.two_factor_title')}
             </h2>
             <p className="text-sm text-slate-500 mb-6">{t('auth.two_factor_subtitle')}</p>
@@ -1257,6 +1279,8 @@ import type { Metadata } from 'next';
 import { getServerLocale } from '@/lib/locale-server';
 import LoginClient from './LoginClient';
 
+// 🚨 force-dynamic: re-read locale cookie on every request (prevents F5 language reset)
+export const dynamic = 'force-dynamic';
 export const metadata: Metadata = {
     title: 'Login — Admin Panel',
     description: 'Sign in to the admin dashboard',
