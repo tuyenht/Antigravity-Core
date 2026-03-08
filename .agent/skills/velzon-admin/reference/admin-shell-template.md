@@ -334,3 +334,176 @@ Key files:
 > The AI MUST copy the actual source files from `source/react-ts/` and adapt import paths/routing.
 > It MUST NOT generate a simplified monolith that omits features.
 > Each component file MUST be preserved as a separate file for maintainability.
+
+---
+
+## Z-Index Hierarchy (MANDATORY)
+
+> [!CAUTION]
+> These exact z-index values MUST be preserved. Changing them breaks header/sidebar/overlay stacking.
+
+| Element | z-index | CSS Selector |
+|---------|---------|--------------|
+| `.main-content` | 1 | Content area (lowest) |
+| `.navbar-menu` (sidebar) | 1001 | Left sidebar |
+| `#page-topbar` (header) | 1002 | Top header bar |
+| `.vertical-overlay` | 1003 | Mobile sidebar overlay |
+| `#back-to-top` | 1009 | Back-to-top button |
+| `.customizer-setting` | 1009 | Theme customizer trigger |
+| `.offcanvas-backdrop` | 1040 | Bootstrap backdrop (default) |
+| `.offcanvas` (RightSidebar) | 1050 | Bootstrap offcanvas (default) |
+
+---
+
+## FOUC Prevention (Flash of Unstyled Content)
+
+> [!WARNING]
+> Without FOUC prevention, the page "flashes" white before dark mode / layout preferences apply.
+
+In Velzon HTML, `layout.js` runs **in `<head>` BEFORE CSS** to set `data-*` attributes.
+
+### Next.js Pattern
+
+```tsx
+// app/layout.tsx — inline script in <head>
+<head>
+  <script dangerouslySetInnerHTML={{ __html: `
+    (function() {
+      var ss = sessionStorage;
+      var attrs = ['data-layout','data-sidebar-size','data-bs-theme',
+        'data-layout-mode','data-topbar','data-sidebar','data-sidebar-image',
+        'data-layout-width','data-layout-position','data-layout-style',
+        'data-layout-direction','data-preloader','data-body-image',
+        'data-theme','data-theme-colors'];
+      var html = document.documentElement;
+      attrs.forEach(function(a) {
+        var v = ss.getItem(a);
+        if (v) html.setAttribute(a, v);
+      });
+    })();
+  ` }} />
+</head>
+```
+
+**Alternative:** `<Script strategy="beforeInteractive" src="/js/layout-init.js" />`
+
+---
+
+## Header Button Class Mandate
+
+**ALL buttons** in the header MUST use this exact class combination:
+
+```
+btn btn-icon btn-topbar material-shadow-none btn-ghost-secondary rounded-circle
+```
+
+Missing ANY class will break visual consistency. `material-shadow-none` removes Bootstrap's default box-shadow.
+
+---
+
+## Scroll Shadow Behavior
+
+```tsx
+// Header.tsx — add "topbar-shadow" class when user scrolls down
+useEffect(() => {
+  const onScroll = () => {
+    const el = document.getElementById('page-topbar');
+    if (el) {
+      el.classList.toggle('topbar-shadow', window.scrollY > 50);
+    }
+  };
+  window.addEventListener('scroll', onScroll);
+  return () => window.removeEventListener('scroll', onScroll);
+}, []);
+```
+
+---
+
+## LTR CSS Overrides (Required in globals.css)
+
+Velzon ships RTL by default. These overrides MUST be in `globals.css`:
+
+```css
+/* === RTL to LTR Fix === */
+.navbar-menu { left: 0 !important; right: auto !important; }
+.main-content { margin-left: var(--vz-vertical-menu-width) !important; margin-right: 0 !important; }
+#page-topbar, .footer { left: var(--vz-vertical-menu-width) !important; right: 0 !important; }
+
+/* Collapsed sidebar */
+[data-sidebar-size="sm"] .main-content { margin-left: var(--vz-vertical-menu-width-sm) !important; }
+[data-sidebar-size="sm"] #page-topbar,
+[data-sidebar-size="sm"] .footer { left: var(--vz-vertical-menu-width-sm) !important; }
+
+/* SM flyout sub-menus */
+[data-sidebar-size="sm"] .navbar-menu .navbar-nav .nav-item .menu-dropdown {
+  left: var(--vz-vertical-menu-width-sm) !important;
+  right: auto !important;
+}
+
+/* Horizontal layout */
+[data-layout="horizontal"] .main-content { margin-left: 0 !important; }
+[data-layout="horizontal"] #page-topbar,
+[data-layout="horizontal"] .footer { left: 0 !important; }
+```
+
+---
+
+## Query String Layout Support
+
+Layout settings can be passed via URL query params (mirrors Velzon `layout.js` behavior):
+
+```
+?layout=horizontal&mode=dark&topbar=dark&sidebar=light&sidebar-size=sm
+```
+
+### Implementation in LayoutContext
+
+```tsx
+// Read query params on mount, override sessionStorage
+useEffect(() => {
+  const params = new URLSearchParams(window.location.search);
+  const map: Record<string, string> = {
+    layout: 'data-layout', mode: 'data-layout-mode',
+    topbar: 'data-topbar', sidebar: 'data-sidebar',
+    'sidebar-size': 'data-sidebar-size',
+  };
+  Object.entries(map).forEach(([param, attr]) => {
+    const val = params.get(param);
+    if (val) {
+      document.documentElement.setAttribute(attr, val);
+      sessionStorage.setItem(attr, val);
+    }
+  });
+}, []);
+```
+
+---
+
+## JS Dependencies (React Equivalents)
+
+| Velzon HTML dependency | Next.js / React equivalent |
+|-----------------------|---------------------------|
+| `bootstrap.bundle.min.js` | `reactstrap` (npm package) |
+| `simplebar.min.js` | `simplebar-react` (npm package) |
+| `waves.min.js` (node-waves) | CSS `waves-effect waves-light` classes on notification tabs |
+| `lord-icon-2.1.0.js` | Dynamic import from CDN (notification modals, empty states) |
+| `layout.js` | `LayoutContext.tsx` + FOUC prevention script |
+| `app.js` | Layout component hooks (sidebar toggle, scroll shadow) |
+
+---
+
+## DOM Ordering Outside #layout-wrapper (MANDATORY)
+
+Elements **outside** `#layout-wrapper` MUST appear in this exact order:
+
+```tsx
+<div id="layout-wrapper">
+  {/* Header + Sidebar + MainContent(children + Footer) */}
+</div>
+{/* ↓ These 4 elements MUST be in this order, OUTSIDE layout-wrapper ↓ */}
+<BackToTop />              {/* 1. btn btn-danger btn-icon, id="back-to-top" */}
+<Preloader />              {/* 2. id="preloader", conditional on data-preloader */}
+<CustomizerTrigger />      {/* 3. .customizer-setting.d-none.d-md-block */}
+<RightSidebar />           {/* 4. Offcanvas, id="theme-settings-offcanvas" */}
+```
+
