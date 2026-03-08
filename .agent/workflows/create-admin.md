@@ -65,12 +65,19 @@ Components/Common/ (REQUIRED — reuse, không tạo mới)
 ├── FullScreenDropdown.tsx   ← Fullscreen button
 ├── NotificationDropdown.tsx ← Notifications bell
 ├── ProfileDropdown.tsx      ← User profile menu
+├── BackToTop.tsx            ← Back-to-top button (#back-to-top)
+├── Preloader.tsx            ← Page preloader (#preloader)
+├── LiveClock.tsx            ← Footer live clock (i18n-synced)
 ├── TableContainer.tsx       ← TanStack React Table wrapper
 ├── DeleteModal.tsx          ← Delete confirmation modal
 ├── Pagination.tsx           ← Table pagination
 ├── ExportCSVModal.tsx       ← CSV export modal
 ├── Loader.tsx               ← Loading spinner
 └── Spinner.tsx              ← Button spinner
+
+Context/ (REQUIRED for Next.js — thay Redux)
+├── LayoutContext.tsx        ← Theme state (13 dimensions, sessionStorage persist)
+└── LocaleContext.tsx        ← i18n locale state
 ```
 
 **Quy tắc:**
@@ -110,19 +117,65 @@ Theo thứ tự:
 
 0. **Assets** — Copy `.agent/skills/velzon-admin/assets/images/` → project images dir (logos, favicon, flags, avatars, error images)
 1. **COPY BỘ KHUNG VELZON** — Copy layout shell from `velzon-admin/source/`:
+
+    > [!CAUTION]
+    > **🚫 COPY, NOT REGENERATE — NGUYÊN TẮC TỐI THƯỢNG**
+    > - ❌ **CẤM** viết component từ đầu khi source template đã có sẵn
+    > - ❌ **CẤM** dùng inline `style={{}}` cho layout components — PHẢI dùng Velzon CSS classes
+    > - ❌ **CẤM** tự phát minh CSS class mới khi Velzon CSS đã có
+    > - ❌ **CẤM** bỏ bất kỳ CSS class nào từ source template (vd: `material-shadow-none`, `btn-ghost-secondary`)
+    > - ❌ **CẤM** thay đổi DOM structure (vd: bỏ `.navbar-header`, thay `d-flex` bằng inline flex)
+    > - ✅ **BẮT BUỘC** đọc source template → copy → adapt MINIMAL changes (xem Adaptation Rules bên dưới)
+
     - **ALWAYS copy:** `source/scss/` → project SCSS dir (design tokens, colors, dark mode)
     - **IF React / Next.js / Inertia+React:**
-      - Copy `source/react-ts/layouts/` → adapt import paths, routing
-      - Copy `source/react-ts/header-components/` → Topbar dropdowns
-      - Copy `source/react-ts/theme-customizer/` → RightSidebar
-      - Copy `source/react-ts/slices/layouts/` → Redux layout state (or convert to React Context for Next.js)
-      - Copy `source/react-ts/common/` → withRouter, BreadCrumb
+      - Copy `source/react-ts/layouts/` → Header, Sidebar, Footer, index (Layout wrapper)
+      - Copy `source/react-ts/header-components/` → 8 Topbar dropdowns
+      - Copy `source/react-ts/theme-customizer/` → RightSidebar (125KB, 13 options)
+      - Copy `source/react-ts/common/` → BreadCrumb, BackToTop, Preloader
+      - Copy `source/react-ts/slices/layouts/` → Redux layout state (CRA/Vite) hoặc convert to Context (Next.js)
+
+    **🔄 NEXT.JS ADAPTATION RULES (chỉ thay đổi ĐÚNG những gì cần thiết):**
+
+    | Thay đổi | CRA/Vite (giữ nguyên) | Next.js (adapt) |
+    |----------|-----------------------|-----------------|
+    | Imports | `react-router-dom` | `next/navigation`, `next/link`, `next/image` |
+    | State | Redux Toolkit | React Context + `sessionStorage` |
+    | Routing | `<Link to="/">` | `<Link href="/">` |
+    | Images | `import img from "./path"` | `<Image src="/images/..." />` or `<img src="/images/..." />` |
+    | Directive | không cần | Thêm `'use client';` đầu file |
+    | **CSS classes** | **GIỮ NGUYÊN 100%** | **GIỮ NGUYÊN 100%** |
+    | **DOM structure** | **GIỮ NGUYÊN 100%** | **GIỮ NGUYÊN 100%** |
+    | **Icon classes** | **GIỮ NGUYÊN 100%** | **GIỮ NGUYÊN 100%** |
+    | **data-* attributes** | **GIỮ NGUYÊN 100%** | **GIỮ NGUYÊN 100%** |
+    | **Reactstrap imports** | **GIỮ NGUYÊN** | **GIỮ NGUYÊN** (install reactstrap) |
+
     - **IF Vue / Laravel / PHP / Node / ASP.NET / ANY other framework:**
       - Read `source/html-canonical/*` as DOM reference
       - Convert to framework syntax (Blade/EJS/Razor/Vue `<template>`)
       - **MUST preserve:** CSS classes, DOM nesting, `--vz-*` variables
     - **Invariance rules:** sidebar dark (#405189), topbar dropdown order, menu category structure
     - Nội dung bên trong → tạo mới theo `reference/component-patterns.md`
+
+    > [!WARNING]
+    > **CSS FOUNDATION (BẮT BUỘC — THIẾU = GIAO DIỆN VỠ):**
+    > - Copy compiled CSS: `bootstrap.min.css`, `app.min.css`, `custom.min.css`, `icons.min.css`
+    >   - FROM: `.agent/skills/velzon-admin/assets/css/`
+    >   - TO: `public/assets/css/`
+    > - Root layout PHẢI import CSS theo thứ tự: bootstrap → icons → app → custom
+    > - PHẢI import icon fonts: BoxIcons, Remix Icons, MDI, Line Awesome
+    >   (Đã nằm trong `icons.min.css` của Velzon)
+
+    > [!CAUTION]
+    > **PERSISTENCE: sessionStorage KHÔNG PHẢI localStorage**
+    > - Velzon HTML gốc dùng `sessionStorage` (confirm: `layout.js` source)
+    > - LayoutContext/Redux PHẢI dùng `sessionStorage` cho 14 data-* attributes
+    > - Xem chi tiết: `docs/Velzon-Shell-Audit-Prompt.txt` §4.4
+
+    > [!IMPORTANT]
+    > **SHELL AUDIT PROMPT — VERIFICATION REFERENCE:**
+    > After shell generation, use `docs/Velzon-Shell-Audit-Prompt.txt` (v3.2+)
+    > as the comprehensive 83-item checklist for pixel-perfect verification.
 
 > [!CAUTION]
 > **BẮT BUỘC tạo TẤT CẢ các component sau (theo `admin-shell-template.md`):**
@@ -179,6 +232,17 @@ pnpm lint && pnpm build && pnpm dev  # or framework equivalent
 - [ ] **Theme Customizer** gear icon visible, drawer opens with layout/color options
 - [ ] **Dark/Light mode** toggle works correctly
 - [ ] Profile dropdown shows user name + role + logout option
+- [ ] **CSS FILES** imported: bootstrap.min.css + app.min.css + custom.min.css + icons.min.css
+- [ ] **ICON FONTS** rendering correctly (no □ placeholders) — bx, ri, mdi, la
+- [ ] **LTR OVERRIDES** in globals.css (sidebar left:0, main-content margin-left)
+- [ ] **sessionStorage** used for layout persistence (NOT localStorage)
+- [ ] **BackToTop** button present (#back-to-top, btn btn-danger btn-icon)
+- [ ] **Preloader** present (conditional, #preloader)
+- [ ] **BreadCrumb** present in page-content
+- [ ] **LiveClock** in footer synced with current locale
+- [ ] **Footer branding** configurable (companyName/companyUrl from config)
+- [ ] **Header buttons** all have: btn-icon btn-topbar material-shadow-none btn-ghost-secondary rounded-circle
+- [ ] **Shell Audit**: verify against `docs/Velzon-Shell-Audit-Prompt.txt` §9 checklist (≥80 items)
 
 **Agent:** `debugger`
 

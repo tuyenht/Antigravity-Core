@@ -261,7 +261,7 @@ The root `Layout` component wires everything together:
 
 ### Layout State Management
 
-For **Next.js** (no Redux), use React Context + localStorage:
+For **Next.js** (no Redux), use React Context + sessionStorage:
 
 ```tsx
 interface LayoutState {
@@ -275,7 +275,7 @@ interface LayoutState {
 }
 ```
 
-- **Persist to localStorage** so user preferences survive page refresh
+- **Persist to sessionStorage** (NOT localStorage — see SKILL.md)
 - **Apply via `data-*` attributes** on `<html>` element (Velzon CSS reads these)
 
 ---
@@ -324,7 +324,7 @@ Key files:
 
 1. **No Redux** — Use React Context (`LayoutContext`) + `useReducer` instead of Redux slices
 2. **No react-router-dom** — Use `next/link` for `<Link>` and `next/navigation` for `usePathname()`
-3. **No reactstrap** — Use headless UI or custom dropdown components (or keep reactstrap as dependency)
+3. **Reactstrap** — **KEEP** as dependency (install `reactstrap`) for Velzon fidelity (Offcanvas, Dropdown, etc.)
 4. **Images** — Use `next/image` or static imports instead of require paths
 5. **Layout** — Component lives in `app/admin/(dashboard)/layout.tsx`, wrapping all dashboard pages
 6. **SimpleBar** — `simplebar-react` works in Next.js (client component)

@@ -35,7 +35,7 @@
 
 ## §2 — Canonical Component Table (Family A — React)
 
-> Source: `C:\Projects\Velzon Admin\React-TS\Master\src\`
+> Source: `.agent/skills/velzon-admin/source/react-ts/` (bundled Velzon React-TS components)
 
 ### Layout Components (Create once via `/create-admin`)
 
@@ -105,7 +105,7 @@
 
 ## §3 — Canonical Partial Table (Family B — Server-Rendered)
 
-> Source: Deep audit of all 7 server-rendered variants at `C:\Projects\Velzon Admin`
+> Source: Deep audit of all 7 server-rendered variants (extracted to `.agent/skills/velzon-admin/source/html-canonical/`)
 
 ### Layout Partials — Cross-Variant Map
 

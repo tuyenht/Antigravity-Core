@@ -69,6 +69,47 @@ cp -r .agent/skills/velzon-admin/assets/images/* src/assets/images/
 
 ---
 
+## 🚨 CSS Foundation — MANDATORY
+
+> [!WARNING]
+> **Without Velzon's compiled CSS, ALL layout will break.** Import these in EVERY project.
+
+### Required CSS Files (import order matters)
+
+| # | File | Source | Purpose |
+|---|------|--------|---------|
+| 1 | `bootstrap.min.css` | `.agent/skills/velzon-admin/assets/css/` | Core Bootstrap 5 |
+| 2 | `icons.min.css` | Same directory | Icon fonts (BoxIcons, Remix, MDI, Line Awesome) |
+| 3 | `app.min.css` | Same directory | Velzon layout engine (sidebar, header, footer) |
+| 4 | `custom.min.css` | Same directory | Velzon custom component overrides |
+
+### Copy Pattern
+```bash
+# Copy CSS from Antigravity-Core skill assets to project
+mkdir -p public/assets/css
+cp .agent/skills/velzon-admin/assets/css/bootstrap.min.css public/assets/css/
+cp .agent/skills/velzon-admin/assets/css/icons.min.css public/assets/css/
+cp .agent/skills/velzon-admin/assets/css/app.min.css public/assets/css/
+cp .agent/skills/velzon-admin/assets/css/custom.min.css public/assets/css/
+```
+
+### Import in Root Layout (Next.js)
+```tsx
+// app/layout.tsx — import CSS BEFORE globals.css
+import '/public/assets/css/bootstrap.min.css';
+import '/public/assets/css/icons.min.css';
+import '/public/assets/css/app.min.css';
+import '/public/assets/css/custom.min.css';
+import './globals.css'; // LTR overrides + Tailwind conflicts
+```
+
+### Rules
+1. **NEVER skip** CSS imports — inline styles are NOT acceptable for layout components
+2. **globals.css** is ONLY for LTR overrides and Tailwind conflict resolution
+3. **Icons** (`bx`, `ri`, `mdi`, `la`) come from `icons.min.css` — if icons show □, this file is missing
+
+---
+
 ## 🚨 Fidelity Mandate — EXACT MATCH
 
 > [!IMPORTANT]
@@ -132,6 +173,18 @@ Three layout types, managed via Redux:
 - **TwoColumn**: Icon sidebar + expanded menu + main content
 
 Layout wrapper: `#layout-wrapper` > Header + Sidebar + `.main-content` > `.page-content`
+
+### Layout Persistence (★ sessionStorage)
+
+> [!CAUTION]
+> Velzon HTML gốc dùng **sessionStorage** (CONFIRM: `layout.js` source code).
+> - **14 data-\* attributes** được persist: data-layout, data-sidebar-size, data-bs-theme,
+>   data-layout-width, data-sidebar, data-sidebar-image, data-layout-direction,
+>   data-layout-position, data-layout-style, data-topbar, data-preloader,
+>   data-body-image, data-theme, data-theme-colors
+> - Trong Next.js: dùng `sessionStorage` trong LayoutContext
+> - **KHÔNG dùng localStorage** cho layout state (chỉ dùng cho i18n `I18N_LANGUAGE`)
+> - Xem chi tiết: `docs/Velzon-Shell-Audit-Prompt.txt` §4.4
 
 ### CSS Variable System
 
@@ -242,6 +295,10 @@ source/
 > 3. **Sidebar dark theme**: Default color `#405189` (indigo)
 > 4. **Menu structure**: Categories (`.menu-title`) → Items (`.nav-item`) → Submenus (`.collapse > .nav-sm`)
 > 5. **Topbar dropdowns**: Language → WebApps → Cart → Fullscreen → DarkMode → Notifications → Profile
+> 6. **Shell components OUTSIDE #layout-wrapper** (in order): BackToTop → Preloader → CustomizerTrigger → RightSidebar
+> 7. **Footer**: Configurable branding (companyName/companyUrl) + LiveClock (i18n-synced, updates every second)
+> 8. **Header buttons**: ALL use `btn-icon btn-topbar material-shadow-none btn-ghost-secondary rounded-circle`
+> 9. **Full verification**: Use `docs/Velzon-Shell-Audit-Prompt.txt` (v3.2+) §9 checklist (~83 items)
 
 ---
 
