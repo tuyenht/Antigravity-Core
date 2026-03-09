@@ -1,0 +1,18 @@
+{
+    "auth.welcome": "Đăng nhập Hệ thống",
+    "auth.email_label": "Tài khoản",
+    "auth.password_label": "Mật khẩu",
+    "auth.email_placeholder": "ten-ban@gmail.com",
+    "auth.password_placeholder": "••••••••",
+    "auth.forgot_password": "Quên mật khẩu?",
+    "auth.sign_in": "Đăng nhập",
+    "auth.processing": "Đang xử lý...",
+    "auth.or_continue": "Đăng nhập nhanh",
+    "auth.terms": "Điều khoản",
+    "auth.privacy": "Bảo mật",
+    "auth.login_with_google": "Đăng nhập với Google",
+    "auth.login_with_facebook": "Đăng nhập với Facebook",
+    "auth.google_login_not_enabled": "Google login chưa được bật trong ENV",
+    "auth.facebook_login_not_enabled": "Facebook login chưa được bật trong ENV",
+    "auth.socialite_not_installed": "Social login đang bật bằng ENV nhưng server chưa cài plugin social login."
+}

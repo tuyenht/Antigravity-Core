@@ -1,0 +1,18 @@
+{
+    "auth.welcome": "System Login",
+    "auth.email_label": "Account",
+    "auth.password_label": "Password",
+    "auth.email_placeholder": "your-name@gmail.com",
+    "auth.password_placeholder": "••••••••",
+    "auth.forgot_password": "Forgot password?",
+    "auth.sign_in": "Sign In",
+    "auth.processing": "Processing...",
+    "auth.or_continue": "Quick Login",
+    "auth.terms": "Terms",
+    "auth.privacy": "Privacy",
+    "auth.login_with_google": "Login with Google",
+    "auth.login_with_facebook": "Login with Facebook",
+    "auth.google_login_not_enabled": "Google login is not enabled in ENV",
+    "auth.facebook_login_not_enabled": "Facebook login is not enabled in ENV",
+    "auth.socialite_not_installed": "Social login is enabled via ENV but server has not installed the social plugin."
+}

@@ -106,6 +106,9 @@ Context/ (REQUIRED for Next.js — thay Redux)
 3. **`auth-login-template.md`** — Design tokens, CSS, glassmorphism auth components
 4. **`admin-shell-template.md`** — Dashboard shell: Header (8 dropdowns), Sidebar (multi-level), Theme Customizer
 5. **`env-template.md`** — `.env.example` defaults (BCRYPT_ROUNDS, ADMIN_PREFIX, session/cache/mail)
+6. **`source/auth-css/auth.css`** — Self-contained CSS for auth login (glassmorphism, gradient, glass card)
+7. **`source/html-canonical/auth-login.html`** — Canonical DOM reference for auth login (used by non-React frameworks)
+8. **`source/react-ts/auth/*`** — React/Next.js auth components (IF framework is React-based)
 
 ---
 
@@ -186,6 +189,49 @@ Theo thứ tự:
 >
 > ❌ **CẤM** tạo monolith AdminLayout.tsx đơn giản. Mỗi component PHẢI là file riêng.
 > ❌ **CẤM** bỏ qua bất kỳ dropdown nào trong Header.
+
+1.5. **COPY AUTH LOGIN** — Copy auth login from `velzon-admin/source/`:
+
+    > [!CAUTION]
+    > **🚫 AUTH LOGIN: COPY, NOT REGENERATE**
+    > - ❌ **CẤM** viết auth form từ đầu khi source template đã có sẵn
+    > - ❌ **CẤM** dùng Bootstrap/Velzon classes (`.form-control`, `.btn-success`) cho login page
+    > - ❌ **CẤM** bỏ language switcher, social buttons, glassmorphism, hoặc bất kỳ element nào
+    > - ❌ **CẤM** thay đổi CSS classes từ source files
+    > - ❌ **CẤM** tạo "Welcome Back!" style login (đó là Velzon default — KHÔNG PHẢI design chuẩn)
+    > - ✅ **BẮT BUỘC** copy source files → adapt MINIMAL changes (import paths, admin prefix)
+    > - ✅ **BẮT BUỘC** import `auth.css` cho styling (self-contained, không cần Tailwind/Bootstrap)
+
+    **Design Origin:** Form login là thiết kế riêng của BaoSon — KHÔNG phải Velzon default.
+    **Golden Standard:** `baoson-platform-core` (`http://localhost:8000/bsadm/login`).
+
+    - **ALWAYS copy:** `source/auth-css/auth.css` → project CSS dir (styling foundation)
+    - **IF React / Next.js / Inertia+React:**
+      - Copy `source/react-ts/auth/*` → project auth components dir
+      - Adapt: import paths, `ADMIN_PREFIX`, routing (`next/link` vs `react-router`)
+      - Files: `AuthLayout.tsx`, `LoginForm.tsx`, `Input.tsx`, `LanguageSwitcher.tsx`, `SocialButton.tsx`, `LocaleContext.tsx`
+    - **IF Vue / Nuxt:**
+      - Read `source/html-canonical/auth-login.html` → convert DOM to `<template>` syntax
+      - **MUST preserve:** ALL CSS classes, DOM nesting, SVG icons
+    - **IF Laravel / Blade:**
+      - Read `source/html-canonical/auth-login.html` → convert to `@extends`/`@section`
+      - **MUST preserve:** ALL CSS classes, DOM nesting, SVG icons
+    - **IF Express / EJS / Node.js:**
+      - Read `source/html-canonical/auth-login.html` → convert to `<%- include() %>` partials
+      - **MUST preserve:** ALL CSS classes, DOM nesting, SVG icons
+    - **IF ASP.NET / Razor:**
+      - Read `source/html-canonical/auth-login.html` → convert to `@RenderSection`/Partial
+      - **MUST preserve:** ALL CSS classes, DOM nesting, SVG icons
+    - **IF HTML / PHP (static):**
+      - Direct copy `source/html-canonical/auth-login.html` → adapt `<?php ?>` variables
+
+    **INVARIANCE RULES (áp dụng mọi framework):**
+    - CSS file (`auth.css`): copy **NGUYÊN VẸN**, KHÔNG sửa
+    - CSS classes trên HTML elements: **KHÔNG thay đổi**
+    - SVG icons (User, Lock, Eye, Arrow, Google, Facebook): **KHÔNG thay đổi**
+    - DOM nesting structure: **KHÔNG thay đổi**
+    - Chỉ thay đổi: syntax (`class`→`className`, `href`→`:href`, `{var}`→`{{ $var }}`)
+
 2. **Root page.tsx** — Overwrite `src/app/page.tsx` (mặc định của `create-next-app`) bằng redirect tới admin dashboard:
     ```tsx
     // src/app/page.tsx — OVERWRITE default Next.js page

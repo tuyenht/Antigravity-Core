@@ -1,0 +1,18 @@
+{
+    "auth.welcome": "系统登录",
+    "auth.email_label": "账号",
+    "auth.password_label": "密码",
+    "auth.email_placeholder": "your-name@gmail.com",
+    "auth.password_placeholder": "••••••••",
+    "auth.forgot_password": "忘记密码？",
+    "auth.sign_in": "登录",
+    "auth.processing": "处理中...",
+    "auth.or_continue": "快捷登录",
+    "auth.terms": "条款",
+    "auth.privacy": "隐私",
+    "auth.login_with_google": "使用Google登录",
+    "auth.login_with_facebook": "使用Facebook登录",
+    "auth.google_login_not_enabled": "Google登录未在ENV中启用",
+    "auth.facebook_login_not_enabled": "Facebook登录未在ENV中启用",
+    "auth.socialite_not_installed": "Social登录已通过ENV启用，但服务器未安装social login插件。"
+}

@@ -7,6 +7,15 @@
 > **Font Import:** `next/font/google` (Next.js) or `@import url('...Inter...')` (CSS fallback)  
 > **Default Logo:** `https://baoson.net/wp-content/uploads/2021/06/logo-bao-son.png`
 
+> [!IMPORTANT]
+> **Ready-to-copy source files (Golden Standard):**
+> - CSS: `source/auth-css/auth.css` — Self-contained, không cần Tailwind/Bootstrap
+> - DOM: `source/html-canonical/auth-login.html` — Canonical DOM cho non-React frameworks
+> - React: `source/react-ts/auth/*.tsx` — 6 component files cho React/Next.js
+>
+> **LUÔN COPY từ source files. File này chỉ là SPEC tham khảo, KHÔNG phải source code.**
+> **Design Origin:** Form login là thiết kế riêng của BaoSon — KHÔNG phải Velzon Admin default.
+
 ---
 
 ## 🚨 Pixel-Perfect Mandate
@@ -16,15 +25,17 @@
 Regardless of the target language/framework (React, Next.js, Vue, Laravel Blade, HTML, etc.), the generated login page MUST be **visually identical** to the BaoSon reference design:
 
 1. **Same gradient background** — `from-sky-700 via-blue-600 to-slate-800`, animated
-2. **Same glass card** — `rgba(255,255,255,0.98)`, `blur(40px)`, `max-w-[392px]`, `p-[35px]`, `rounded-3xl`
-3. **Same input style** — SVG icons, `@` symbol, eye toggle, exact focus ring
+2. **Same glass card** — `rgba(255,255,255,0.98)`, `blur(40px)`, `p-6 md:p-10` (CSS override: **35px padding, 21px border-radius**)
+3. **Same input style** — SVG icons, `@` symbol, eye toggle, **`pl-11 pr-11`**, CSS override: **10.5px padding vertical**
 4. **Same button** — `bg-blue-600`, arrow icon, hover lift effect
-5. **Same social buttons** — Google (4-color logo) + Facebook (blue logo), 2-column grid
-6. **Same language switcher** — glass pill, EN/VI/JA/ZH, top-right on desktop
-7. **Same logo** — centered above card, `h-[58px] w-auto`, `drop-shadow-2xl`
+5. **Same social buttons** — Google (4-color logo) + Facebook (blue logo), 2-column grid, `hover:bg-slate-50`
+6. **Same language switcher** — glass pill, EN/VI/JA/ZH, top-right on desktop, **custom tooltips with arrow**
+7. **Same logo** — centered above card, **`h-16 md:h-20`** (responsive), `drop-shadow-2xl`, `brightness-110`
 8. **Same footer** — `© {year} BaoSon Ads. All rights reserved.` in `text-white/40`
 9. **Same decorative orbs** — `cyan-400/20` top-left + `blue-500/10` bottom-right
 10. **Same i18n** — all 15 keys × 4 locales, instant locale switch (no page reload)
+11. **Same title** — `text-3xl font-extrabold` (CSS override: **22px font-size, 26px line-height**)
+12. **Same labels** — `text-base font-semibold` (CSS override: **14px**)
 
 > **If the output does not look identical to the reference screenshot, the implementation is WRONG.**
 
