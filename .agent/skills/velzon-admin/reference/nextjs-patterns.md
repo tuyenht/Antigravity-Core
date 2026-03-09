@@ -7,6 +7,16 @@ Use for BSWeb SaaS or any Next.js admin project.
 
 ## App Router Structure
 
+> [!WARNING]
+> **Post-Init: Verify root `app/` does NOT exist.**
+> `create-next-app --src-dir` may still generate a root `app/` directory alongside `src/app/`.
+> Next.js prioritizes root `app/` over `src/app/` → **all routes in `src/app/` return 404**.
+> After project init, always run:
+> ```powershell
+> Remove-Item ./app -Recurse -Force -ErrorAction SilentlyContinue
+> Remove-Item ./.next -Recurse -Force -ErrorAction SilentlyContinue
+> ```
+
 ```
 src/
 ├── app/

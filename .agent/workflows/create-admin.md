@@ -116,6 +116,21 @@ Context/ (REQUIRED for Next.js — thay Redux)
 
 **Agent:** Framework specialist (`frontend-specialist` / `backend-specialist`)
 
+> [!CAUTION]
+> **NEXT.JS: XÓA ROOT `app/` DIRECTORY — BẮT BUỘC**
+> `create-next-app` tạo thư mục `app/` ở **root dự án** (chứa page.tsx mặc định).
+> Workflow này tạo files trong `src/app/`. Nếu cả hai tồn tại, Next.js dùng root `app/` (ưu tiên cao hơn) → **mọi route trong `src/app/` bị bỏ qua** → 404.
+>
+> **PHẢI thực hiện SAU `create-next-app` init và TRƯỚC khi tạo files:**
+> ```powershell
+> # Xóa root app/ directory (default create-next-app)
+> Remove-Item ./app -Recurse -Force -ErrorAction SilentlyContinue
+> # Xóa cache Turbopack (nếu đã chạy dev trước đó)
+> Remove-Item ./.next -Recurse -Force -ErrorAction SilentlyContinue
+> ```
+>
+> **Không làm bước này = toàn bộ route admin 404, trang chủ hiện "To get started, edit the page.tsx file".**
+
 Theo thứ tự:
 
 0. **Assets** — Copy `.agent/skills/velzon-admin/assets/images/` → project images dir (logos, favicon, flags, avatars, error images)
@@ -323,12 +338,14 @@ pnpm lint && pnpm build && pnpm dev  # or framework equivalent
 | Vấn đề | Giải pháp |
 |---------|-----------|  
 | Framework không detect được | Kiểm tra config files (package.json, composer.json), specify thủ công |
-| Trang `/` hiện template mặc định Next.js | Overwrite `src/app/page.tsx` bằng redirect tới `/{ADMIN_PREFIX}/dashboard` (xem Step 4 item 1) |
+| Trang `/` hiện template mặc định Next.js | **Xóa thư mục root `app/`** (tạo bởi `create-next-app`), nó override `src/app/`. Chạy: `Remove-Item ./app -Recurse -Force; Remove-Item ./.next -Recurse -Force` rồi restart dev server |
+| Mọi route `/bsads/*` trả về 404 | Cùng nguyên nhân trên — root `app/` tồn tại song song với `src/app/`. Xóa root `app/` + clear `.next` cache |
+| Port conflict (3001, 3002 thay vì 3000) | Có multiple node processes. Chạy: `taskkill /IM node.exe /F` rồi `pnpm dev` |
 | DB migration fails | Kiểm tra DB connection trong .env, đảm bảo DB service đang chạy |
 | Auth login không hoạt động | Kiểm tra seed data (admin@example.com/password), verify middleware config |
 | Sidebar menu không hiện | Kiểm tra LayoutMenuData.tsx, verify permission seeding |
 | RBAC permission denied sai | Kiểm tra pivot table roles_permissions, reset cache: `php artisan cache:clear` |
-| Glassmorphism auth không hiển thị | Kiểm tra CSS imports, verify GuestLayout wraps auth pages |
+| Glassmorphism auth không hiển thị | Kiểm tra CSS imports, verify GuestLayout wraps auth pages. Nếu Tailwind v4: kiểm tra `@theme` color tokens trong globals.css |
 | SaaS vs Standalone confusion | Kiểm tra `MODE` trong .env, re-run seeder cho đúng mode |
 
 
