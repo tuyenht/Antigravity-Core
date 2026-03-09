@@ -1,0 +1,85 @@
+/* ============================================================================
+   AUTH THEME — Tailwind v4 Color Tokens (Golden Standard)
+   ============================================================================
+   
+   Tailwind v4 uses CSS-first @theme — colors MUST be declared explicitly.
+   This file contains ALL color tokens used by auth source components.
+   
+   HOW TO USE:
+     Merge these tokens into your project's globals.css @theme block.
+     If @theme doesn't exist yet, create it after @import "tailwindcss";
+   
+   WHY NEEDED:
+     Tailwind v4 doesn't ship with predefined color utilities like v3.
+     Without these declarations, classes like `from-sky-700` or `bg-slate-900/30`
+     produce NO CSS output → visual bugs (lighter gradient, missing glass, etc.)
+   
+   PERFORMANCE NOTE:
+     Tailwind v4 is 5-10x faster than v3 at build time. These @theme declarations
+     have ZERO runtime cost — they only affect CSS generation at build.
+   ============================================================================ */
+
+/* 
+  Copy this ENTIRE @theme block into your globals.css.
+  If you already have @theme, merge the --color-* lines into it.
+*/
+@theme {
+    /* ==================================
+     GRADIENT BACKGROUND
+     Used by: AuthLayout.tsx
+     Classes: from-sky-700, via-blue-600, to-slate-800
+     ================================== */
+    --color-sky-700: #0369a1;
+    --color-blue-600: #2563eb;
+    --color-slate-800: #1e293b;
+
+    /* ==================================
+     TITLE GRADIENT TEXT
+     Used by: LoginForm.tsx
+     Classes: from-blue-700, to-slate-700
+     ================================== */
+    --color-blue-700: #1d4ed8;
+    --color-slate-700: #334155;
+
+    /* ==================================
+     DECORATIVE ORBS
+     Used by: AuthLayout.tsx
+     Classes: bg-cyan-400/20, bg-blue-500/10
+     ================================== */
+    --color-cyan-400: #22d3ee;
+    --color-blue-500: #3b82f6;
+
+    /* ==================================
+     INPUT FIELDS
+     Used by: Input.tsx
+     Classes: bg-slate-50, border-slate-200, text-slate-900,
+              text-slate-400, text-slate-700, bg-blue-50,
+              ring-blue-600/10, focus:border-blue-600
+     ================================== */
+    --color-slate-50: #f8fafc;
+    --color-slate-100: #f1f5f9;
+    --color-slate-200: #e2e8f0;
+    --color-slate-400: #94a3b8;
+    --color-slate-600: #475569;
+    --color-slate-900: #0f172a;
+    --color-blue-50: #eff6ff;
+
+    /* ==================================
+     SOCIAL BUTTONS
+     Used by: SocialButton.tsx
+     Classes: border-slate-200, hover:bg-slate-50,
+              hover:border-slate-300, text-slate-600,
+              hover:text-slate-900
+     ================================== */
+    --color-slate-300: #cbd5e1;
+
+    /* ==================================
+     ALERTS
+     Used by: LoginForm.tsx
+     Classes: bg-red-50, text-red-800, bg-green-50, text-green-800
+     ================================== */
+    --color-red-50: #fef2f2;
+    --color-red-800: #991b1b;
+    --color-green-50: #f0fdf4;
+    --color-green-800: #166534;
+}

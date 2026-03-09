@@ -232,6 +232,17 @@ Theo thứ tự:
     - DOM nesting structure: **KHÔNG thay đổi**
     - Chỉ thay đổi: syntax (`class`→`className`, `href`→`:href`, `{var}`→`{{ $var }}`)
 
+    > [!IMPORTANT]
+    > **TAILWIND v4 — BẮT BUỘC MERGE @theme COLOR TOKENS:**
+    > - Nếu dự án dùng Tailwind v4 (nhận biết: `@import "tailwindcss"` trong globals.css,
+    >   KHÔNG có file `tailwind.config.js/ts`):
+    > - **PHẢI** đọc `source/auth-css/auth-theme.css` → merge `@theme` block vào `globals.css`
+    > - Thiếu bước này → `from-sky-700`, `bg-slate-900/30`, `text-blue-700` sẽ **KHÔNG generate CSS**
+    >   → gradient background nhạt, language switcher mất glass effect, title mất gradient text
+    > - File `auth-theme.css` chứa **18 color tokens** (sky, blue, slate, cyan, red, green)
+    >   đã được map 1:1 với mọi Tailwind class trong auth components
+    > - **ZERO runtime cost** — chỉ ảnh hưởng CSS build time
+
 2. **Root page.tsx** — Overwrite `src/app/page.tsx` (mặc định của `create-next-app`) bằng redirect tới admin dashboard:
     ```tsx
     // src/app/page.tsx — OVERWRITE default Next.js page
