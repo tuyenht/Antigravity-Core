@@ -95,11 +95,11 @@ export default function LoginForm({
             {/* Login Card — Match Golden Standard EXACTLY */}
             <div
                 key={`login-${locale}`}
-                className="glass w-full rounded-3xl p-6 md:p-10 shadow-2xl relative transition-all duration-500"
+                className="glass w-full rounded-3xl p-6 md:p-[35px] shadow-2xl relative transition-all duration-500 font-inter"
             >
                 {/* Header */}
                 <div className="mb-6">
-                    <h2 className="text-3xl font-extrabold text-transparent bg-clip-text bg-gradient-to-r from-blue-700 to-slate-700 tracking-tight">
+                    <h2 className="text-[26px] font-extrabold italic text-transparent bg-clip-text bg-gradient-to-r from-blue-700 to-slate-700 tracking-tight">
                         {t('auth.welcome')}
                     </h2>
                 </div>

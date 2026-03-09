@@ -70,7 +70,7 @@ export default function AuthLayout({
                 {/* Language Switcher — Responsive: Mobile centered, Desktop top-right */}
                 <LanguageSwitcher />
 
-                <main className="relative w-full max-w-sm md:max-w-md flex flex-col items-center z-10 transition-all duration-500">
+                <main className="relative w-full max-w-[392px] flex flex-col items-center z-10">
                     {/* Logo — Responsive sizing: Mobile h-16, Desktop h-20 */}
                     <div className="mb-4 md:mb-8 transition-transform duration-500 hover:scale-105">
                         <a
@@ -81,7 +81,7 @@ export default function AuthLayout({
                             <img
                                 src={logoUrl}
                                 alt="Bao Son Logo"
-                                className="h-16 md:h-20 w-auto drop-shadow-2xl filter brightness-110"
+                                className="h-[58px] w-auto drop-shadow-2xl"
                             />
                         </a>
                     </div>

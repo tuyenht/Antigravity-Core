@@ -33,7 +33,7 @@ const Input: React.FC<InputProps> = ({ label, icon, isPassword, showAtSymbol, di
 
     return (
         <div className="space-y-1.5">
-            <label className={`block text-base font-semibold text-slate-700 ml-1 ${disabled ? 'opacity-50' : ''}`}>
+            <label className={`block text-sm font-semibold text-slate-700 ml-1 ${disabled ? 'opacity-50' : ''}`}>
                 {label}
             </label>
             <div className="relative group">
@@ -51,7 +51,7 @@ const Input: React.FC<InputProps> = ({ label, icon, isPassword, showAtSymbol, di
                     disabled={disabled}
                     type={isPassword ? (showPass ? 'text' : 'password') : props.type}
                     className={`
-                        w-full ${hasLeftIcon ? 'pl-11' : 'pl-3'} ${hasRightAction ? 'pr-11' : 'pr-3'} py-3
+                        w-full ${hasLeftIcon ? 'pl-10' : 'pl-3'} ${hasRightAction ? 'pr-10' : 'pr-3'} py-2.5
                         bg-slate-50 border border-slate-200 rounded-xl
                         text-slate-900 text-[15px] font-medium placeholder:text-slate-400
                         outline-none
