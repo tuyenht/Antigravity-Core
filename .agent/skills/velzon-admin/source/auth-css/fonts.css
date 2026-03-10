@@ -139,8 +139,22 @@ body {
 }
 
 :root {
+    /* ---- Antigravity typography tokens ---- */
     --ui-weight: 400;
     --ui-heading-weight: 700;
+
+    /* ---- Velzon-compatible body defaults ----
+       Velzon theme CSS (themes.scss) references these variables.
+       Define defaults here so components work even without full theme loaded.
+       When themes.scss loads, it overrides these with theme-specific values. */
+    --vz-body-font-family: "Inter", "Segoe UI", Roboto, "Helvetica Neue", Arial, "Noto Sans", sans-serif;
+    --vz-body-font-size: 0.875rem;
+    /* 14px at 16px root */
+    --vz-body-font-weight: 400;
+    --vz-body-line-height: 1.5;
+    --vz-body-color: #212529;
+    --vz-body-text-align: start;
+    --vz-body-bg: #f3f3f9;
 }
 
 /* Chinese headings need stronger weight for visual balance */

@@ -20,8 +20,6 @@
   margin: 0;
   padding: 0;
   box-sizing: border-box;
-  font-family: inherit;
-  /* Inherits from html,body set in fonts.css */
   font-size: 14px;
   line-height: 1.5;
   /* font-smoothing + text-rendering now in fonts.css (global) */
