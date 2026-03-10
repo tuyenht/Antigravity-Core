@@ -53,9 +53,9 @@ graph LR
 
 | # | Tài liệu | Mô tả | Cách tạo |
 |---|----------|--------|----------|
-| 7 | **architecture.md** | System overview, components, data flow diagram | Workflow `/plan` hoặc `/schema-first` |
-| 8 | **tech-decisions.md** | Architecture Decision Records (ADR) — lý do chọn từng công nghệ | SA role tự động sinh |
-| 9 | **schema.sql** | Database schema chuẩn hóa (indexes, FK, comments) | Workflow `/schema-first` |
+| 8 | **architecture.md** | System overview, components, data flow diagram | Workflow `/plan` hoặc `/schema-first` |
+| 9 | **tech-decisions.md** | Architecture Decision Records (ADR) — lý do chọn từng công nghệ | SA role tự động sinh |
+| 10 | **schema.sql** | Database schema chuẩn hóa (indexes, FK, comments) | Workflow `/schema-first` |
 
 ---
 
@@ -63,8 +63,8 @@ graph LR
 
 | # | Tài liệu | Mô tả | Cách tạo |
 |---|----------|--------|----------|
-| 10 | **backlog.md** | Product backlog ưu tiên theo Sprint | Workflow `/plan` |
-| 11 | **Sprint Plan** | Kế hoạch chi tiết từng sprint | PM role quản lý |
+| 11 | **backlog.md** | Product backlog ưu tiên theo Sprint | Workflow `/plan` |
+| 12 | **Sprint Plan** | Kế hoạch chi tiết từng sprint | PM role quản lý |
 
 ---
 
@@ -72,9 +72,9 @@ graph LR
 
 | # | Tài liệu / Artifact | Mô tả | Tiêu chuẩn |
 |---|---------------------|--------|-----------|
-| 12 | **Source Code** (`src/`) | Toàn bộ Acceptance Criteria đã implement, không hardcoded secrets | ES2024+, strict typing |
-| 13 | **Test Suites** (`tests/`) | Unit + Integration tests | Coverage ≥ 80% |
-| 14 | **api-docs.md** | Tài liệu API với request/response examples | Mọi endpoint phải có docs |
+| 13 | **Source Code** (`src/`) | Toàn bộ Acceptance Criteria đã implement, không hardcoded secrets | ES2024+, strict typing |
+| 14 | **Test Suites** (`tests/`) | Unit + Integration tests | Coverage ≥ 80% |
+| 15 | **api-docs.md** | Tài liệu API với request/response examples | Mọi endpoint phải có docs |
 
 ---
 
@@ -82,9 +82,9 @@ graph LR
 
 | # | Tài liệu | Mô tả | Cách tạo |
 |---|----------|--------|----------|
-| 15 | **CI/CD Pipelines** (`.github/workflows/`) | GitHub Actions hoặc tương đương | DevOps role |
-| 16 | **deploy.sh** | Script triển khai tự động | DevOps role |
-| 17 | **deployment-runbook.md** | Hướng dẫn vận hành chi tiết | DevOps role |
+| 16 | **CI/CD Pipelines** (`.github/workflows/`) | GitHub Actions hoặc tương đương | DevOps role |
+| 17 | **deploy.sh** | Script triển khai tự động | DevOps role |
+| 18 | **deployment-runbook.md** | Hướng dẫn vận hành chi tiết | DevOps role |
 
 ---
 
@@ -92,9 +92,9 @@ graph LR
 
 | # | Tài liệu / Cơ chế | Mô tả | Cách tạo |
 |---|-------------------|--------|----------|
-| 18 | **Quality Gates** | Lint sync (TSC, PHPStan), Test validation, Doc sync tự động | Tự động enforce qua CI pipeline |
-| 19 | **CHANGELOG.md** | Ghi nhận mọi thay đổi theo Semantic Versioning | Mỗi lần release |
-| 20 | **Shell Audit Report** | Đánh giá UI/UX fidelity (nếu có frontend) | Shell Audit Protocol v3.2+ |
+| 19 | **Quality Gates** | Lint sync (TSC, PHPStan), Test validation, Doc sync tự động | Tự động enforce qua CI pipeline |
+| 20 | **CHANGELOG.md** | Ghi nhận mọi thay đổi theo Semantic Versioning | Mỗi lần release |
+| 21 | **Shell Audit Report** | Đánh giá UI/UX fidelity (nếu có frontend) | Shell Audit Protocol v3.2+ |
 
 ---
 
