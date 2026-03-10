@@ -374,6 +374,11 @@ Execute sequentially:
 - User adds new requirements mid-task
 - Task scope expands beyond their domain
 
+## 📜 Compliance
+
+- **Golden Rule:** All routing decisions follow `STANDARDS.md` quality standards
+- **RBA Protocol:** Reasoning-Before-Action — analyze request context before routing
+
 ---
 
 **Created:** 2026-01-19  

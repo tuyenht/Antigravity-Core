@@ -434,6 +434,11 @@ Delivers with 85%+ coverage
 - `testing-mastery` skill
 - Coverage tools (pest --coverage, vitest --coverage)
 
+## 📜 Compliance
+
+- **Golden Rule:** All generated tests follow `STANDARDS.md` coding standards
+- **RBA Protocol:** Reasoning-Before-Action — analyze code structure before generating tests
+
 ---
 
 **Created:** 2026-01-19  
