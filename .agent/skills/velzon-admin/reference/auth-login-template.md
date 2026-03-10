@@ -4,7 +4,7 @@
 > **Route:** `/{adminPrefix}/login` (default `adminPrefix` = `"admin"`)  
 > **Stack:** Tailwind CSS + Glassmorphism  
 > **Font:** Inter (Latin/Vietnamese) + Noto Sans JP (日本語) + Noto Sans SC (中文)  
-> **Font Import:** `next/font/google` (Next.js) or `@import url('...Inter...')` (CSS fallback)  
+> **Font Import:** Local `@font-face` (woff2) — NO CDN. See `source/auth-css/auth.css`  
 > **Default Logo:** `https://baoson.net/wp-content/uploads/2021/06/logo-bao-son.png`
 
 > [!IMPORTANT]
@@ -268,7 +268,7 @@ export default function AuthLayout({ children, title }: AuthLayoutProps) {
 @import "tailwindcss";
 
 @theme {
-    --font-inter: "Inter", sans-serif;
+    --font-inter: "Inter", "Segoe UI", Roboto, "Helvetica Neue", Arial, "Noto Sans", sans-serif;
 }
 
 @keyframes gradient {
@@ -299,7 +299,7 @@ export default function AuthLayout({ children, title }: AuthLayoutProps) {
      * Wildcard selector ensures ALL children inherit Inter, overriding body Poppins. */
     .font-inter,
     .font-inter * {
-        font-family: "Inter", sans-serif;
+        font-family: "Inter", "Segoe UI", Roboto, "Helvetica Neue", Arial, "Noto Sans", sans-serif;
     }
 }
 
@@ -494,7 +494,14 @@ export default function LanguageSwitcher() {
 
 ## Font System
 
-The login uses a **logical font family** `"UI"` with CJK-aware weight overrides:
+The login uses a **logical font family** `"UI"` with CJK-aware weight overrides.
+
+> [!IMPORTANT]
+> **Font Strategy: LOCAL FIRST (không dùng CDN)**
+> - Font-stack: `"Inter", "Segoe UI", Roboto, "Helvetica Neue", Arial, "Noto Sans", sans-serif`
+> - Source: `source/auth-css/fonts/Inter-roman.woff2` + `Inter-italic.woff2`
+> - Benefits: Loại bỏ 2 external connections, +5-10 Lighthouse points, GDPR compliant
+> - Fallback chain: neo-grotesque fonts tương đồng Inter theo từng OS (Windows → macOS → Linux)
 
 ```css
 /* Logical Font Family: Inter (Latin/VI) + Noto Sans JP/SC (CJK) */
@@ -527,7 +534,7 @@ The login uses a **logical font family** `"UI"` with CJK-aware weight overrides:
 }
 
 :root {
-  --font-ui: "UI", system-ui, -apple-system, "Segoe UI", Roboto, sans-serif;
+  --font-ui: "UI", "Segoe UI", Roboto, "Helvetica Neue", Arial, "Noto Sans", sans-serif;
   --ui-weight: 400;
   --ui-heading-weight: 700;
 }

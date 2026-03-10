@@ -89,6 +89,9 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
     return (
         <html lang="en" suppressHydrationWarning>
             <head>
+                {/* Poppins = Velzon admin dashboard body font (NOT for auth pages).
+                    Auth pages use local Inter font via auth.css @font-face.
+                    For zero-CDN: replace with next/font/local or self-hosted woff2. */}
                 <link rel="stylesheet"
                     href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" />
             </head>

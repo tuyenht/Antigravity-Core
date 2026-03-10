@@ -1,0 +1,152 @@
+/* =========================================================================
+   GLOBAL FONT SYSTEM — Antigravity-Core
+   =========================================================================
+   Dùng cho TOÀN BỘ hệ thống: Admin Dashboard + Auth Pages + Public Frontend.
+   Import file này ĐẦU TIÊN trong bất kỳ CSS nào:
+
+   @import './fonts.css';                           (CSS)
+   <link rel="stylesheet" href="/css/fonts.css">    (HTML/Blade/EJS)
+   import '/public/css/fonts.css';                  (React/Next.js)
+
+   Strategy: LOCAL FIRST — zero CDN, zero external connections.
+   All fonts served from fonts/ directory via relative paths.
+
+   🚀 PERFORMANCE: Add preload in HTML <head> for fastest font loading:
+   <link rel="preload" href="/assets/css/fonts/Inter-roman.woff2" as="font" type="font/woff2" crossorigin>
+
+   Font files (5 total):
+   ├── Inter-roman.woff2  (344 KB) — Latin + Vietnamese + Cyrillic, normal
+   ├── Inter-italic.woff2 (379 KB) — Latin + Vietnamese + Cyrillic, italic
+   ├── NotoSansJP.woff2   (4.0 MB) — Japanese (on-demand via unicode-range)
+   ├── NotoSansKR.woff2   (3.8 MB) — Korean (on-demand via unicode-range)
+   └── NotoSansSC.woff2   (7.6 MB) — Chinese Simplified (on-demand via unicode-range)
+
+   Coverage: 15 locales
+   ├── Inter:       en, de, es, fr, id, it, pt, tr, vi, ru (12 locales)
+   ├── NotoSansJP:  ja
+   ├── NotoSansKR:  ko
+   ├── NotoSansSC:  zh
+   └── System:      ar (Arabic), hi (Hindi) — OS fonts
+   ========================================================================= */
+
+/* ---------- Latin + Vietnamese + Cyrillic NORMAL (Inter) ---------- */
+@font-face {
+    font-family: "Inter";
+    src: local("Inter"), url("fonts/Inter-roman.woff2") format("woff2");
+    font-style: normal;
+    font-weight: 100 900;
+    font-display: swap;
+    unicode-range:
+        U+0000-00FF,
+        U+0100-024F,
+        U+0300-036F,
+        U+1E00-1EFF,
+        U+20AB,
+        U+0400-04FF,
+        U+0500-052F;
+    /* Latin + Latin Extended + Vietnamese + Cyrillic (ru) */
+    ascent-override: 90%;
+    descent-override: 22%;
+    line-gap-override: 0%;
+    size-adjust: 105%;
+}
+
+/* ---------- Latin + Vietnamese + Cyrillic ITALIC (Inter) ---------- */
+@font-face {
+    font-family: "Inter";
+    src: local("Inter"), url("fonts/Inter-italic.woff2") format("woff2");
+    font-style: italic;
+    font-weight: 100 900;
+    font-display: swap;
+    unicode-range:
+        U+0000-00FF,
+        U+0100-024F,
+        U+0300-036F,
+        U+1E00-1EFF,
+        U+20AB,
+        U+0400-04FF,
+        U+0500-052F;
+    /* Latin + Latin Extended + Vietnamese + Cyrillic (ru) */
+    ascent-override: 90%;
+    descent-override: 22%;
+    line-gap-override: 0%;
+    size-adjust: 105%;
+}
+
+/* ---------- Japanese (Noto Sans JP — upright only) ---------- */
+@font-face {
+    font-family: "Inter";
+    src: local("Noto Sans JP"), url("fonts/NotoSansJP.woff2") format("woff2");
+    font-style: normal;
+    font-weight: 200 900;
+    font-display: optional;
+    /* optional: no layout shift — CJK text uses fallback if font not loaded in time */
+    unicode-range:
+        U+3000-303F,
+        U+3040-309F,
+        U+30A0-30FF,
+        U+31F0-31FF,
+        U+4E00-9FFF,
+        U+FF00-FFEF;
+}
+
+/* ---------- Korean (Noto Sans KR — upright only) ---------- */
+@font-face {
+    font-family: "Inter";
+    src: local("Noto Sans KR"), url("fonts/NotoSansKR.woff2") format("woff2");
+    font-style: normal;
+    font-weight: 200 900;
+    font-display: optional;
+    /* optional: no layout shift — CJK text uses fallback if font not loaded in time */
+    unicode-range:
+        U+1100-11FF,
+        U+3000-303F,
+        U+3130-318F,
+        U+AC00-D7AF,
+        U+D7B0-D7FF,
+        U+FF00-FFEF;
+    /* Hangul Jamo + Hangul Compat Jamo + Hangul Syllables + Halfwidth */
+}
+
+/* ---------- Chinese Simplified (Noto Sans SC — upright only) ---------- */
+@font-face {
+    font-family: "Inter";
+    src: local("Noto Sans SC"), url("fonts/NotoSansSC.woff2") format("woff2");
+    font-style: normal;
+    font-weight: 200 900;
+    font-display: optional;
+    /* optional: no layout shift — CJK text uses fallback if font not loaded in time */
+    unicode-range:
+        U+3000-303F,
+        U+2E80-2FDF,
+        U+3400-4DBF,
+        U+4E00-9FFF,
+        U+FF00-FFEF;
+}
+
+/* =========================================================================
+   GLOBAL TYPOGRAPHY TOKENS
+   ========================================================================= */
+
+html,
+body {
+    font-family: "Inter", "Segoe UI", Roboto, "Helvetica Neue", Arial, "Noto Sans", sans-serif;
+    font-synthesis: none;
+    /* Never fake bold/italic */
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    text-rendering: optimizeLegibility;
+}
+
+:root {
+    --ui-weight: 400;
+    --ui-heading-weight: 700;
+}
+
+/* Chinese headings need stronger weight for visual balance */
+:lang(zh),
+:lang(zh-CN),
+:lang(zh-Hans),
+html[lang|="zh"] {
+    --ui-heading-weight: 800;
+}

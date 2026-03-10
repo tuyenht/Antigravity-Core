@@ -12,19 +12,19 @@
      @import url('/css/auth.css');                            (Vue/Nuxt)
    ============================================================================ */
 
-/* ---- Font: Inter (Latin + Vietnamese) ---- */
-@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap');
+/* Import Global Font System — MUST be first */
+@import './fonts.css';
 
 /* ---- Base reset for auth pages ---- */
 .auth-page {
   margin: 0;
   padding: 0;
   box-sizing: border-box;
-  font-family: "Inter", system-ui, -apple-system, "Segoe UI", Roboto, sans-serif;
+  font-family: inherit;
+  /* Inherits from html,body set in fonts.css */
   font-size: 14px;
   line-height: 1.5;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
+  /* font-smoothing + text-rendering now in fonts.css (global) */
 }
 
 .auth-page *,
@@ -143,8 +143,8 @@
 
 @media (min-width: 768px) {
   .auth-main {
-    max-width: 448px;
-    /* max-w-md */
+    max-width: 392px;
+    /* Golden Standard: 392px (NOT 448px) */
   }
 }
 
@@ -162,7 +162,8 @@
 
 @media (min-width: 768px) {
   .auth-logo-wrap {
-    margin-bottom: 32px;
+    margin-bottom: 28px;
+    /* Golden Standard: 28px (NOT 32px) */
   }
 }
 
@@ -171,17 +172,11 @@
 }
 
 .auth-logo {
-  height: 64px;
-  /* h-16 */
+  max-height: 58px;
+  /* Never exceed 58px — scale DOWN only, never UP beyond intrinsic size */
   width: auto;
+  height: auto;
   filter: drop-shadow(0 25px 25px rgba(0, 0, 0, 0.15));
-}
-
-@media (min-width: 768px) {
-  .auth-logo {
-    height: 80px;
-    /* md:h-20 */
-  }
 }
 
 /* ============================================================================
@@ -227,7 +222,8 @@
   color: transparent;
   letter-spacing: -0.025em;
   /* tracking-tight */
-  margin-bottom: 24px;
+  margin-bottom: 21px;
+  /* Golden Standard: 21px (NOT 24px) */
 }
 
 /* ============================================================================
@@ -236,16 +232,16 @@
 .auth-form {
   display: flex;
   flex-direction: column;
-  gap: 16px;
-  /* space-y-4 */
+  gap: 14px;
+  /* Golden Standard: 14px (NOT 16px) */
 }
 
 /* ---- Input Group ---- */
 .auth-input-group {
   display: flex;
   flex-direction: column;
-  gap: 6px;
-  /* space-y-1.5 */
+  gap: 5.25px;
+  /* Golden Standard: 5.25px (NOT 6px) */
 }
 
 .auth-label {
@@ -290,14 +286,14 @@
 /* Input field */
 .auth-input {
   width: 100%;
-  padding: 10.5px 44px;
-  /* Golden Standard: 10.5px TB, pl-11/pr-11 = 44px */
+  padding: 10.5px 38.5px;
+  /* Golden Standard: 10.5px TB, 38.5px LR (NOT 44px) */
   background: #f8fafc;
   /* slate-50 */
   border: 1px solid #e2e8f0;
   /* slate-200 */
-  border-radius: 12px;
-  /* rounded-xl */
+  border-radius: 10.5px;
+  /* Golden Standard: 10.5px (NOT 12px) */
   color: #0f172a;
   /* slate-900 */
   font-size: 15px;
@@ -390,11 +386,13 @@
 .auth-forgot-link {
   display: flex;
   justify-content: flex-end;
-  margin-top: 8px;
+  margin-top: 7px;
+  /* Golden Standard: 7px (NOT 8px) */
 }
 
 .auth-forgot-link a {
-  font-size: 14px;
+  font-size: 12.25px;
+  /* Golden Standard: 12.25px (NOT 14px) */
   font-weight: 500;
   color: #2563eb;
   text-decoration: none;
@@ -443,7 +441,8 @@
   justify-content: center;
   gap: 8px;
   transition: all 200ms;
-  margin-top: 4px;
+  margin-top: 0;
+  /* Golden Standard: 0 (gap manages spacing) */
   background: #2563eb;
   color: #ffffff;
   box-shadow: 0 10px 15px -3px rgba(59, 130, 246, 0.2);
@@ -451,9 +450,10 @@
 
 @media (min-width: 768px) {
   .auth-submit {
-    padding: 14px 16px;
-    /* md:py-3.5 */
-    margin-top: 8px;
+    padding: 12.25px 16px;
+    /* Golden Standard: 12.25px (NOT 14px) */
+    margin-top: 0;
+    /* Golden Standard: 0 (gap manages spacing) */
   }
 }
 
@@ -497,8 +497,8 @@
    ============================================================================ */
 .auth-divider {
   position: relative;
-  margin: 24px 0;
-  /* my-6 */
+  margin: 21px 0;
+  /* Golden Standard: 21px (NOT 24px) */
 }
 
 .auth-divider-line {
@@ -536,7 +536,8 @@
 .auth-social-grid {
   display: grid;
   grid-template-columns: 1fr 1fr;
-  gap: 12px;
+  gap: 10.5px;
+  /* Golden Standard: 10.5px (NOT 12px) */
 }
 
 .auth-social-btn {
@@ -544,7 +545,8 @@
   align-items: center;
   justify-content: center;
   gap: 10px;
-  padding: 10px 16px;
+  padding: 7px 14px;
+  /* Golden Standard: 7px 14px (NOT 10px 16px) */
   background: #ffffff;
   border: 1px solid #e2e8f0;
   border-radius: 12px;
@@ -568,13 +570,15 @@
 }
 
 .auth-social-btn svg {
-  width: 20px;
-  height: 20px;
+  width: 18px;
+  height: 18px;
+  /* Golden Standard: 18px (NOT 20px) */
   flex-shrink: 0;
 }
 
 .auth-social-btn span {
-  font-size: 14px;
+  font-size: 12.25px;
+  /* Golden Standard: 12.25px (NOT 14px) */
   font-weight: 500;
   color: #475569;
   /* slate-600 */
@@ -649,8 +653,9 @@
 
 @media (min-width: 768px) {
   .auth-lang-btn {
-    width: 36px;
-    height: 36px;
+    width: 32px;
+    height: 32px;
+    /* Golden Standard: 32px (NOT 36px) */
     font-size: 12px;
   }
 }

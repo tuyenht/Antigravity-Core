@@ -15,7 +15,7 @@
  * - Added: Configurable constants (ADMIN_PREFIX, COMPANY_NAME, etc.)
  */
 
-import { type ReactNode } from 'react';
+import { type ReactNode, useEffect } from 'react';
 import LanguageSwitcher from './LanguageSwitcher';
 
 interface AuthLayoutProps {
@@ -56,6 +56,16 @@ export default function AuthLayout({
     logoUrl = DEFAULTS.logoUrl,
     appName = DEFAULTS.appName,
 }: AuthLayoutProps) {
+    // Auth pages use 14px root font-size (Velzon convention).
+    // Without this, rem-based values in auth.css compute against browser default 16px.
+    useEffect(() => {
+        const prevFontSize = document.documentElement.style.fontSize;
+        document.documentElement.style.fontSize = '14px';
+        return () => {
+            document.documentElement.style.fontSize = prevFontSize;
+        };
+    }, []);
+
     return (
         <>
             {/* Head: set page title — framework-specific, adapt as needed */}

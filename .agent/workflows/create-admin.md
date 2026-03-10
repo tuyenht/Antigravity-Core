@@ -221,6 +221,20 @@ Theo thứ tự:
     **Golden Standard:** `baoson-platform-core` (`http://localhost:8000/bsadm/login`).
 
     - **ALWAYS copy:** `source/auth-css/auth.css` → project CSS dir (styling foundation)
+
+    > [!IMPORTANT]
+    > Khi copy auth.css vào `public/assets/css/`, **PHẢI copy cả `fonts.css` và thư mục `fonts/`** đi kèm:
+    > ```
+    > public/assets/css/fonts.css                        ← Global Font System
+    > public/assets/css/auth.css                         ← Auth UI (imports fonts.css)
+    > public/assets/css/fonts/Inter-roman.woff2   (344 KB)
+    > public/assets/css/fonts/Inter-italic.woff2  (379 KB)
+    > public/assets/css/fonts/NotoSansJP.woff2    (4.0 MB) ← CJK Japanese
+    > public/assets/css/fonts/NotoSansKR.woff2    (3.8 MB) ← CJK Korean
+    > public/assets/css/fonts/NotoSansSC.woff2    (7.6 MB) ← CJK Chinese
+    > ```
+    > fonts.css + auth.css dùng `url("fonts/...")` — relative path. Thiếu fonts = text fallback.
+    > CJK fonts chỉ download khi trang có ký tự JP/KO/ZH (via unicode-range).
     - **IF React / Next.js / Inertia+React:**
       - Copy `source/react-ts/auth/*` → project auth components dir
       - Adapt: import paths, `ADMIN_PREFIX`, routing (`next/link` vs `react-router`)

@@ -98,7 +98,7 @@ export default function LoginForm({
                 className="glass w-full rounded-3xl p-6 md:p-[35px] shadow-2xl relative transition-all duration-500 font-inter"
             >
                 {/* Header */}
-                <div className="mb-6">
+                <div style={{ marginBottom: '21px' }}>
                     <h2 className="text-[26px] font-extrabold italic text-transparent bg-clip-text bg-gradient-to-r from-blue-700 to-slate-700 tracking-tight">
                         {t('auth.welcome')}
                     </h2>
@@ -164,7 +164,7 @@ export default function LoginForm({
                         className={`
                             w-full py-3 md:py-3.5 rounded-xl font-semibold text-[15px]
                             shadow-lg shadow-blue-500/20
-                            flex items-center justify-center gap-2 transition-all duration-200 mt-1 md:mt-2 cursor-pointer
+                            flex items-center justify-center gap-2 transition-all duration-200 cursor-pointer
                             ${processing
                                 ? 'bg-blue-700 text-white/90 cursor-wait scale-[0.98] shadow-inner'
                                 : 'bg-blue-600 text-white hover:bg-blue-700 hover:-translate-y-0.5'}
