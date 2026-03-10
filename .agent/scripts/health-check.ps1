@@ -46,11 +46,15 @@ Write-Host ""
 Write-Host "1. Checking core files..." -ForegroundColor Cyan
 
 $coreFiles = @(
-    ".agent\rules\STANDARDS.md",
-    ".agent\templates\agent-template-v4.md",
+    ".agent\rules\standards",
+    ".agent\templates\agent-template-v5.md",
     ".agent\systems\rba-validator.md",
     ".agent\examples\rba-examples.md",
-    ".agent\project.json"
+    ".agent\project.json",
+    ".agent\GEMINI.md",
+    ".agent\ARCHITECTURE.md",
+    ".agent\reference-catalog.md",
+    ".agent\VERSION"
 )
 
 foreach ($file in $coreFiles) {
@@ -78,6 +82,9 @@ else {
     $totalAgents = $agents.Count
     
     foreach ($agent in $agents) {
+        # Skip non-agent files (reference docs)
+        if ($agent.Name -eq "CAPABILITY-MATRIX.md") { continue }
+        
         $content = Get-Content $agent.FullName -Raw -ErrorAction SilentlyContinue
         
         $hasStandards = $content -match "Golden Rule|STANDARDS\.md"
@@ -94,6 +101,7 @@ else {
         }
     }
     
+    $totalAgents = ($agents | Where-Object { $_.Name -ne "CAPABILITY-MATRIX.md" }).Count
     $compliancePercent = [math]::Round(($compliantAgents / $totalAgents) * 100, 0)
     
     if ($compliancePercent -eq 100) {
@@ -148,8 +156,7 @@ else {
 Write-Host "`n4. Checking scripts..." -ForegroundColor Cyan
 
 $scripts = @(
-    ".agent\scripts\validate-compliance.ps1",
-    ".agent\scripts\bulk-update-agents.ps1"
+    ".agent\scripts\validate-compliance.ps1"
 )
 
 foreach ($script in $scripts) {
@@ -158,6 +165,42 @@ foreach ($script in $scripts) {
     }
     else {
         Write-Check "Missing: $([System.IO.Path]::GetFileName($script))" "WARN"
+    }
+}
+
+# ============================================
+# CHECK 4b: Component Counts (v5.0)
+# ============================================
+
+Write-Host "`n4b. Verifying component counts..." -ForegroundColor Cyan
+
+if (Test-Path ".agent\project.json") {
+    $cfg = Get-Content ".agent\project.json" -Raw | ConvertFrom-Json
+    $expected = $cfg.stats
+
+    $actualAgents = ((Get-ChildItem ".agent\agents\*.md" -File) | Where-Object { $_.Name -ne "CAPABILITY-MATRIX.md" }).Count
+    $actualSkills = (Get-ChildItem ".agent\skills" -Directory).Count
+    $actualWorkflows = (Get-ChildItem ".agent\workflows\*.md" -File).Count
+    $actualPipelines = (Get-ChildItem ".agent\pipelines\*.md" -File).Count
+    $actualRules = (Get-ChildItem ".agent\rules\*.md" -File -Recurse).Count
+    $actualSystems = (Get-ChildItem ".agent\systems\*.md" -File).Count
+
+    $counts = @(
+        @{ Name = "Agents"; Expected = $expected.agents; Actual = $actualAgents },
+        @{ Name = "Skills"; Expected = $expected.skills; Actual = $actualSkills },
+        @{ Name = "Workflows"; Expected = $expected.workflows; Actual = $actualWorkflows },
+        @{ Name = "Pipelines"; Expected = $expected.pipelines; Actual = $actualPipelines },
+        @{ Name = "Rules"; Expected = $expected.rules; Actual = $actualRules },
+        @{ Name = "Systems"; Expected = 6; Actual = $actualSystems }
+    )
+
+    foreach ($c in $counts) {
+        if ($c.Actual -eq $c.Expected) {
+            Write-Check "$($c.Name): $($c.Actual)/$($c.Expected)" "PASS"
+        }
+        else {
+            Write-Check "$($c.Name): $($c.Actual)/$($c.Expected) (mismatch)" "FAIL"
+        }
     }
 }
 
