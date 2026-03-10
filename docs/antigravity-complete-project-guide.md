@@ -128,20 +128,26 @@ Với vai trò là DevOps Engineer, chạy health check cho Antigravity-Core eng
 NHIỆM VỤ: Kiểm tra toàn bộ hệ thống .agent/ theo tiêu chuẩn Platinum.
 
 Chạy script: .\.agent\scripts\health-check.ps1
+(Alias: ag-hc — nếu đã cài global bằng install-global.ps1)
 
 Nếu script không tồn tại hoặc có lỗi, kiểm tra thủ công:
-- Đọc .agent/VERSION → xác nhận version
+- Đọc .agent/VERSION → xác nhận version (expected: 5.0.0)
 - Đọc .agent/project.json → lấy expected component counts
-- Đếm thực tế: Agents, Skills, Workflows, Rules → so sánh với expected counts
-- Xác nhận GEMINI.md, ARCHITECTURE.md, project.json tồn tại
+- Đếm thực tế và so sánh:
+  Agents: 27 | Skills: 62 | Workflows: 35 | Pipelines: 6 | Rules: 110 | Systems: 6
+- Xác nhận core files tồn tại: GEMINI.md, ARCHITECTURE.md, project.json, VERSION, reference-catalog.md
 - Kiểm tra 6 Pipeline Chains trong .agent/pipelines/ (BUILD, ENHANCE, FIX, IMPROVE, SHIP, REVIEW)
-- Kiểm tra Core Systems trong .agent/systems/
+- Kiểm tra 6 Core Systems trong .agent/systems/
 
 Nếu counts không khớp hoặc file thiếu → liệt kê cụ thể file/folder nào thiếu.
 
-OUTPUT: Bảng tổng kết component counts + Pass/Fail status.
+OUTPUT: Bảng tổng kết component counts (Expected vs Actual) + Pass/Fail status.
 
-✅ DONE KHI: Bảng counts hiển thị, tất cả Pass, version xác nhận.
+✅ DONE KHI:
+- [ ] Version xác nhận (5.0.0)
+- [ ] Component counts khớp (6 categories)
+- [ ] Core files tồn tại (5 files)
+- [ ] 6 Pipelines + 6 Systems present
 
 ---
 
