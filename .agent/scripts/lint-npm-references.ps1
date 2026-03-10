@@ -1,4 +1,4 @@
-# lint-npm-references.ps1
+﻿# lint-npm-references.ps1
 # Scans .agent/ directory for actionable npm commands that should be pnpm
 # Run periodically or in CI to prevent npm drift
 

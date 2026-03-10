@@ -1,4 +1,4 @@
-# Antigravity-Core Version Bump Script
+﻿# Antigravity-Core Version Bump Script
 # Usage: pwsh .agent/scripts/bump-version.ps1 -Version "4.1.0"
 # Automatically updates ALL version references across the system.
 
