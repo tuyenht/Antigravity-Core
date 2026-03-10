@@ -27,11 +27,12 @@ ONBOARDING →   CONTEXT   →    DESIGN     →    IMPLEMENT   →    VERIFY
 
 **Template:** `templates/project-bootstrap.md`
 
-### 3-Tier Check
+### 4-Tier Check
 ```
-1. docs/PLAN.md không tồn tại          → CREATE (scan + tạo mới)
+1. docs/PLAN.md không tồn tại          → CREATE (chain → /init-docs nếu docs/ có nhiều files)
 2. docs/PLAN.md có nhưng thiếu stamp   → UPGRADE (bổ sung + stamp + Docs Ingestion)
-3. docs/PLAN.md có stamp v1.0          → SKIP (qua Phase 1 ngay)
+3. docs/PLAN.md có stamp + docs mới    → REFRESH (đọc files mới/thay đổi, update PLAN.md)
+4. docs/PLAN.md có stamp + không đổi   → SKIP (qua Phase 1 ngay)
 ```
 
 ### Auto-Actions (CREATE/UPGRADE mode)

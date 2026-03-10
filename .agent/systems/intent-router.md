@@ -157,6 +157,7 @@ Khi user dùng slash command trực tiếp, BYPASS Intent Router và chạy work
 /create          → BUILD pipeline
 /plan            → BUILD pipeline (Phase 2 only)
 /scaffold        → BUILD pipeline (Phase 3 only)
+/init-docs       → BUILD pipeline (Phase 0 only — docs standardization)
 /enhance         → ENHANCE pipeline
 /debug           → FIX pipeline
 /quickfix        → FIX pipeline (simplified)
@@ -170,7 +171,7 @@ Khi user dùng slash command trực tiếp, BYPASS Intent Router và chạy work
 /orchestrate     → Orchestrator agent (manual multi-agent)
 ```
 
-All 34 workflows remain accessible via their original slash commands.
+All 35 workflows remain accessible via their original slash commands.
 
 ---
 

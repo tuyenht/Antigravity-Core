@@ -35,7 +35,15 @@ Feature details:
 
 ### Step 1: Understand Requirements
 
-**Ask user:**
+**AUTO-CONTEXT (trước khi hỏi user):**
+1. Đọc `docs/PROJECT-BRIEF.md` nếu tồn tại → lấy data model, entities, fields, relationships
+2. Đọc `docs/CONVENTIONS.md` nếu tồn tại → áp dụng naming/patterns
+3. Đọc `docs/PRD.md` nếu tồn tại → lấy acceptance criteria cho entity
+
+**Nếu entity đã defined trong PROJECT-BRIEF.md:**
+→ Auto-fill fields + relationships, chỉ HỎI user xác nhận — KHÔNG hỏi lại thông tin đã có.
+
+**Nếu entity CHƯA có trong BRIEF — Ask user:**
 ```
 What feature are you building?
 - Feature name: _______________

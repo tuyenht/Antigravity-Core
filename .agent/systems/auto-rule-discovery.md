@@ -7,7 +7,7 @@
 ## Table of Contents
 
 1. [Overview](#overview)
-2. [Protocol: 3-Layer Detection](#protocol-3-layer-detection)
+2. [Protocol: 4-Layer Detection](#protocol-4-layer-detection)
 3. [Merge & Rank Algorithm](#merge--rank-algorithm)
 4. [Dependency Resolution](#dependency-resolution)
 5. [Load Limits](#load-limits)
@@ -56,7 +56,33 @@ The Auto-Rule Discovery Engine **eliminates manual rule selection** by automatic
 
 ---
 
-## Protocol: 3-Layer Detection
+## Protocol: 4-Layer Detection
+
+### Layer 0: Project Docs Scan (Priority Score: 9) ⭐ NEW
+
+Scan project documentation BEFORE code analysis. Extract conventions and context.
+
+```yaml
+# Layer 0 — Chạy TRƯỚC Layer 1
+project_docs_scan:
+  priority_score: 9
+  scan_targets:
+    - "docs/PROJECT-BRIEF.md"    # SSoT — tech stack, data model, roles
+    - "docs/CONVENTIONS.md"      # Coding standards riêng project
+    - "docs/PLAN.md"             # Architecture + tech decisions
+    - "README.md"                # Quick context
+  behavior: "Read → Extract key facts → Feed as context to subsequent layers"
+  cache: true  # Cache kết quả, invalidate khi file thay đổi
+  output:
+    - "Project-specific naming conventions"
+    - "Tech stack decisions (override auto-detect)"
+    - "Coding patterns to follow"
+    - "Architecture constraints"
+```
+
+> **Impact:** AI nhận biết conventions, architecture decisions, coding standards riêng của project **trước khi** bắt đầu bất kỳ task nào.
+
+---
 
 ### Layer 1: File Extension Scan (Priority Score: 10)
 

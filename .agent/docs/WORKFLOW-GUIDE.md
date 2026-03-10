@@ -1,6 +1,6 @@
 # 📖 Hướng Dẫn Sử Dụng Workflows
 
-**Tổng số:** 38 Workflows  
+**Tổng số:** 39 Workflows  
 **Cập nhật:** 2026-02-25
 
 ---
@@ -126,6 +126,7 @@
 | `/migrate` | Nâng cấp framework tự động | Tech migrations |
 | `/create-admin` | Tạo SaaS Admin Starter Kit | New admin project |
 | `/sync-admin` | Đồng bộ admin với blueprint | Sau khi update core |
+| `/init-docs` | Chuẩn hóa toàn bộ docs dự án | Lần đầu vào project |
 
 ---
 

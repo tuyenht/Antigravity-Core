@@ -15,7 +15,7 @@
 | **Rules** | 110 | `systems/auto-rule-discovery.md` | § 2 below |
 | **Skills** | 59 | Agent frontmatter `skills:` field | § 3 below |
 | **Pipelines** | 6 | `pipelines/*.md` | GEMINI.md § 1 |
-| **Workflows** | 34 | `workflows/*.md` | GEMINI.md § 9 |
+| **Workflows** | 35 | `workflows/*.md` | GEMINI.md § 9 |
 | **Scripts** | 37 | `scripts/` + `skills/*/scripts/` | § 5 below |
 | **Systems** | 6 | `systems/*.md` | ARCHITECTURE.md |
 
@@ -48,7 +48,7 @@
 
 ## 2. Expert Rules (110 Rules)
 
-> **Full mappings + scoring:** `systems/auto-rule-discovery.md` (3-layer detection, dependency resolution, caching)
+> **Full mappings + scoring:** `systems/auto-rule-discovery.md` (4-layer detection, dependency resolution, caching)
 
 | Category | Count | Path | Key Triggers |
 |----------|:-----:|------|-------------|

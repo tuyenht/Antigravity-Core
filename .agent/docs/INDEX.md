@@ -50,7 +50,7 @@ Comprehensive documentation cho 27 specialized AI agents.
 
 | Document | Description |
 |----------|-------------|
-| [WORKFLOW-CATALOG.md](workflows/WORKFLOW-CATALOG.md) | Bảng tổng hợp 34 workflows: categories, usage guides, flow diagrams |
+| [WORKFLOW-CATALOG.md](workflows/WORKFLOW-CATALOG.md) | Bảng tổng hợp 35 workflows: categories, usage guides, flow diagrams |
 | [WORKFLOW-GUIDE.md](WORKFLOW-GUIDE.md) | Hướng dẫn sử dụng workflows |
 
 ---
@@ -147,5 +147,5 @@ Existing documentation (pre-audit).
 ---
 
 > **Antigravity-Core v5.0.0** — AI-Native Development OS  
-> 27 agents • 59 skills • 34 workflows • 110 rules • 37 scripts • 6 protocols  
+> 27 agents • 59 skills • 35 workflows • 110 rules • 37 scripts • 6 protocols  
 > [GitHub](https://github.com/tuyenht/Antigravity-Core)

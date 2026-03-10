@@ -78,7 +78,8 @@ Options: RESEARCH mode | BEST EFFORT mode | DELEGATE mode
 ### 🧠 Session Start Protocol
 1. Read `ARCHITECTURE.md` for system map
 2. IF `.agent/memory/user-profile.yaml` has real data → Read it
-3. Classify first request via Intent Router (§ 1)
+3. Quick-scan `docs/` folder → read `PROJECT-BRIEF.md` + `CONVENTIONS.md` (nếu tồn tại)
+4. Classify first request via Intent Router (§ 1)
 
 ### 📋 Project Bootstrap (MANDATORY)
 Every pipeline starts with **PHASE 0** — auto-generate project docs if they don't exist yet.
@@ -106,7 +107,7 @@ Agent activated → Check frontmatter "skills:" field
 P0 (GEMINI.md) > P1 (Agent .md) > P2 (SKILL.md)
 
 ### Rule Auto-Loading
-Rules loaded automatically based on context. See `systems/auto-rule-discovery.md` for the 3-layer detection protocol.
+Rules loaded automatically based on context. See `systems/auto-rule-discovery.md` for the 4-layer detection protocol.
 
 ---
 
@@ -194,9 +195,10 @@ When user uses a slash command directly, BYPASS Intent Router:
 /check, /security-audit             → REVIEW pipeline
 /orchestrate                     → Orchestrator agent (manual)
 /full-pipeline                   → BUILD pipeline (full) → SHIP pipeline
+/init-docs                       → Phase 0 full docs standardization (1 lần/project)
 ```
 
-All 34 workflows remain accessible via their original slash commands.
+All 35 workflows remain accessible via their original slash commands.
 
 ---
 

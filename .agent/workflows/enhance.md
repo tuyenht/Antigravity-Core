@@ -33,16 +33,20 @@ Auto-detect từ project files:
 
 ## Bước 1.5: Tạo/Cập nhật Project Analysis Docs
 
+### Tier 0: Đọc docs hiện có (LUÔN LUÔN)
+
+**Nếu `docs/PROJECT-BRIEF.md` đã có:** Đọc TRƯỚC → dùng làm context cho tất cả bước sau.
+**Nếu `docs/CONVENTIONS.md` đã có:** Đọc → áp dụng coding standards cho code mới.
+**Quét `docs/` folder:** Tìm thêm `SCHEMA.md`, `SECURITY.md`, `PRD.md`... → đọc files liên quan.
+
 ### Tier 1: Bắt buộc (mọi dự án)
 
-**Nếu chưa có** `docs/PROJECT-BRIEF.md` hoặc `docs/PROJECT-CONVENTIONS.md`:
+**Nếu chưa có** `docs/PROJECT-BRIEF.md` hoặc `docs/CONVENTIONS.md`:
 1. Phân tích toàn bộ codebase
 2. Tạo theo template:
    - `.agent/templates/PROJECT-BRIEF-TEMPLATE.md` → `docs/PROJECT-BRIEF.md`
-   - `.agent/templates/PROJECT-CONVENTIONS-TEMPLATE.md` → `docs/PROJECT-CONVENTIONS.md`
+   - `.agent/templates/PROJECT-CONVENTIONS-TEMPLATE.md` → `docs/CONVENTIONS.md`
 3. Fill ALL sections bằng dữ liệu thực tế từ codebase
-
-**Nếu đã có**: Đọc và sử dụng làm context cho các bước tiếp theo.
 
 ### Tier 2: Có điều kiện
 

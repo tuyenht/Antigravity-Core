@@ -84,6 +84,7 @@ Kiểm tra:
 
 Sử dụng slash commands:
 ```
+/init-docs            → Chuẩn hóa docs dự án (chạy 1 lần đầu)
 /requirements-first   → Thu thập yêu cầu (PRD)
 /plan                 → Lập kế hoạch
 /schema-first         → Design database

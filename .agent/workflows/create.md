@@ -49,7 +49,7 @@ If ANY indicator found:
 
 ### Tier 1: Bắt buộc (mọi dự án mới)
 1. `.agent/templates/PROJECT-BRIEF-TEMPLATE.md` → `docs/PROJECT-BRIEF.md`
-2. `.agent/templates/PROJECT-CONVENTIONS-TEMPLATE.md` → `docs/PROJECT-CONVENTIONS.md`
+2. `.agent/templates/PROJECT-CONVENTIONS-TEMPLATE.md` → `docs/CONVENTIONS.md`
 
 Fill ALL sections bằng thông tin từ planning phase.
 
@@ -99,7 +99,7 @@ Nếu yêu cầu chưa rõ ràng, hỏi:
 - [ ] Socratic Gate completed (3+ questions)
 - [ ] Tech stack confirmed with user
 - [ ] PROJECT-BRIEF.md created
-- [ ] PROJECT-CONVENTIONS.md created
+- [ ] CONVENTIONS.md created
 - [ ] Project builds without errors
 - [ ] Dev server accessible
 - [ ] Git initialized with .gitignore

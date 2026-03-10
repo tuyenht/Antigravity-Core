@@ -18,7 +18,7 @@ Systems là các **core protocols** định nghĩa cách hệ thống hoạt đ�
 graph TD
     A["User Request"] --> B["GEMINI.md<br/>(Entry Point)"]
     B --> IR["Intent Router<br/>(6 intents)"]
-    IR --> C["Auto-Rule Discovery<br/>(3-layer detection)"]
+    IR --> C["Auto-Rule Discovery<br/>(4-layer detection)"]
     C --> D["Agent Registry<br/>(capability matching)"]
     D --> E["Orchestration Engine<br/>(pipeline execution)"]
     E --> F["RBA Validator<br/>(reasoning check)"]

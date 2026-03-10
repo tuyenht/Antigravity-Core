@@ -27,7 +27,7 @@ Antigravity-Core is an **AI-Native Development Operating System** — a structur
 │  LAYER 3: PIPELINE CHAINS (pipelines/)                           │
 │  → Auto-sequence workflows + agents for end-to-end execution     │
 ├──────────────────────────────────────────────────────────────────┤
-│  ENGINE: 27 Agents │ 62 Skills │ 110 Rules │ 34 Workflows         │
+│  ENGINE: 27 Agents │ 62 Skills │ 110 Rules │ 35 Workflows         │
 │          37 Scripts │ Memory │ Standards │ Templates              │
 │  → Reference: reference-catalog.md (lazy-loaded)                 │
 └──────────────────────────────────────────────────────────────────┘
@@ -48,7 +48,7 @@ Antigravity-Core is an **AI-Native Development Operating System** — a structur
 │
 ├── pipelines/   (6)       ← Pipeline Chains (BUILD, ENHANCE, FIX, IMPROVE, SHIP, REVIEW)
 ├── agents/      (27)      ← Agent role definitions
-├── workflows/   (34)      ← Automated process definitions (used by pipelines)
+├── workflows/   (35)      ← Automated process definitions (used by pipelines)
 ├── skills/      (62)      ← Specialized knowledge modules
 ├── rules/       (110)     ← Expert coding standards
 ├── scripts/     (20 core) ← PowerShell + Bash automation (+ 17 skill scripts in skills/*/scripts/)
@@ -101,7 +101,7 @@ Auto-sequenced end-to-end workflows triggered by the Intent Router.
 | `SHIP.md` | 🚀 Triển khai | Pre-flight → Build → Deploy → Post-deploy | security-auditor, devops-engineer |
 | `REVIEW.md` | 📋 Đánh giá | Scan (parallel) → Report → Action | ai-code-reviewer, security-auditor |
 
-### 3. Workflows (34 processes)
+### 3. Workflows (35 processes)
 
 Slash-command triggered automation pipelines. Also used internally by Pipeline Chains.
 
@@ -115,7 +115,7 @@ Slash-command triggered automation pipelines. Also used internally by Pipeline C
 | **Deployment** | `/deploy`, `/mobile-deploy`, `/mobile-test` |
 | **Maintenance** | `/maintain`, `/debug`, `/quickfix`, `/auto-healing`, `/refactor`, `/backup`, `/i18n-check` |
 | **Design** | `/ui-ux-pro-max`, `/update-ui-ux-pro-max`, `/admin-component`, `/admin-dashboard`, `/admin-settings` |
-| **System** | `/full-pipeline`, `/sync-admin` |
+| **System** | `/full-pipeline`, `/sync-admin`, `/init-docs` |
 
 ### 4. Skills (62 modules)
 

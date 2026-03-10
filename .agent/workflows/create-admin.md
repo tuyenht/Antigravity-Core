@@ -17,6 +17,14 @@ Hỗ trợ 2 chế độ: **SaaS** (multi-tenant, 7 roles) và **Standalone** (s
 
 ### Step 1: Detect Framework & Mode
 
+**AUTO-CONTEXT (trước khi detect):**
+Đọc `docs/PROJECT-BRIEF.md` nếu tồn tại → lấy:
+- Admin prefix route (default: admin)
+- Roles & permissions model
+- i18n requirements (ngôn ngữ hỗ trợ)
+- Design system preference
+- Tech stack (skip auto-detect nếu đã biết)
+
 ```
 Framework (auto-detect):
 ├── package.json + "next"                        → Next.js

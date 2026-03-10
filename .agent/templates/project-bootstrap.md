@@ -13,9 +13,10 @@ description: "Template tài liệu dự án bắt buộc — auto-generated bở
 
 | Kịch bản | Điều kiện | Hành động |
 |-----------|-----------|-----------|
-| **CREATE** | `docs/PLAN.md` không tồn tại | Tạo toàn bộ docs mới |
+| **CREATE** | `docs/PLAN.md` không tồn tại | Nếu docs/ có >5 files → chain `/init-docs`; nếu ≤5 → tạo tối thiểu nội bộ |
 | **UPGRADE** | `docs/PLAN.md` tồn tại nhưng **thiếu** compliance stamp | Đề xuất chuẩn hóa → hỏi user 1 lần → cập nhật + gắn stamp |
-| **SKIP** | `docs/PLAN.md` có compliance stamp `<!-- antigravity: v1.0 -->` | Bỏ qua — qua thẳng Phase 1 |
+| **REFRESH** | `docs/PLAN.md` có stamp + docs mới/thay đổi | Đọc files mới/thay đổi → update PLAN.md + PROJECT-BRIEF.md |
+| **SKIP** | `docs/PLAN.md` có compliance stamp + không đổi | Bỏ qua — qua thẳng Phase 1 |
 
 ---
 

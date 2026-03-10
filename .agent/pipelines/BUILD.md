@@ -28,11 +28,12 @@ BOOTSTRAP →    DISCOVERY  →   PLANNING    →    SCAFFOLDING  →   QUALITY 
 **Template:** `templates/project-bootstrap.md`
 **Bắt buộc:** CÓ — mọi dự án mới PHẢI có docs trước khi code.
 
-### 3-Tier Check
+### 4-Tier Check
 ```
-1. docs/PLAN.md không tồn tại          → CREATE (tạo mới toàn bộ)
+1. docs/PLAN.md không tồn tại          → CREATE (chain → /init-docs nếu docs/ có nhiều files)
 2. docs/PLAN.md có nhưng thiếu stamp   → UPGRADE (bổ sung + stamp + Docs Ingestion)
-3. docs/PLAN.md có stamp v1.0          → SKIP (qua Phase 1 ngay)
+3. docs/PLAN.md có stamp + docs mới    → REFRESH (đọc files mới/thay đổi, update PLAN.md)
+4. docs/PLAN.md có stamp + không đổi   → SKIP (qua Phase 1 ngay)
 ```
 
 > **Docs Ingestion (UPGRADE mode):** Nếu `docs/` đã có files (.md) → đọc, phân tích,

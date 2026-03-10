@@ -2,7 +2,7 @@
 
 **Version:** 5.0.0  
 **Last Updated:** 2026-02-27  
-**Total Workflows:** 38
+**Total Workflows:** 39
 
 ---
 
@@ -29,7 +29,7 @@ Workflows là các quy trình được định nghĩa sẵn, kích hoạt bằng
 
 | Category | Workflows | Mô tả |
 |----------|-----------|--------|
-| **🏗️ Khởi tạo & Setup** | `/create`, `/install-antigravity`, `/mobile-init`, `/scaffold`, `/schema-first`, `/requirements-first` | Tạo mới dự án, module, database |
+| **🏗️ Khởi tạo & Setup** | `/create`, `/install-antigravity`, `/mobile-init`, `/scaffold`, `/schema-first`, `/requirements-first`, `/init-docs` | Tạo mới dự án, module, database, chuẩn hóa docs |
 | **💻 Development** | `/enhance`, `/quickfix`, `/refactor`, `/brainstorm`, `/plan` | Phát triển tính năng, sửa lỗi, planning |
 | **🎨 Design** | `/ui-ux-pro-max`, `/update-ui-ux-pro-max`, `/admin-component`, `/admin-dashboard` | Thiết kế UI/UX, admin components |
 | **✅ Quality** | `/test`, `/check`, `/auto-healing`, `/auto-optimization-cycle`, `/performance-budget-enforcement` | Testing, review, auto-fix |
@@ -118,6 +118,7 @@ Workflows là các quy trình được định nghĩa sẵn, kích hoạt bằng
 | 36 | `/install-antigravity` | Cài đặt/cập nhật Antigravity-Core | Thêm .agent vào project |
 | 37 | `/sync-admin` | Đồng bộ dự án admin với blueprint mới nhất | Sau khi update core |
 | 38 | `/full-pipeline` | Chạy full team workflow: BA → SA → PM → DEV → QA → DO | Bắt đầu dự án mới hoặc sprint mới |
+| 39 | `/init-docs` | Chuẩn hóa toàn bộ docs dự án (chạy 1 lần) | Lần đầu vào project mới hoặc cũ |
 
 ---
 
