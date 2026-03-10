@@ -44,7 +44,7 @@
         U+20AB,
         U+0400-04FF,
         U+0500-052F;
-    /* Latin + Latin Extended + Vietnamese + Cyrillic (ru) */
+    /* Latin + Latin Extended + Vietnamese + Cyrillic */
     ascent-override: 90%;
     descent-override: 22%;
     line-gap-override: 0%;
@@ -66,7 +66,7 @@
         U+20AB,
         U+0400-04FF,
         U+0500-052F;
-    /* Latin + Latin Extended + Vietnamese + Cyrillic (ru) */
+    /* Latin + Latin Extended + Vietnamese + Cyrillic */
     ascent-override: 90%;
     descent-override: 22%;
     line-gap-override: 0%;
@@ -80,7 +80,7 @@
     font-style: normal;
     font-weight: 200 900;
     font-display: optional;
-    /* optional: no layout shift — CJK text uses fallback if font not loaded in time */
+    /* No layout shift — CJK uses fallback if not loaded in time */
     unicode-range:
         U+3000-303F,
         U+3040-309F,
@@ -97,7 +97,7 @@
     font-style: normal;
     font-weight: 200 900;
     font-display: optional;
-    /* optional: no layout shift — CJK text uses fallback if font not loaded in time */
+    /* No layout shift — CJK uses fallback if not loaded in time */
     unicode-range:
         U+1100-11FF,
         U+3000-303F,
@@ -105,7 +105,7 @@
         U+AC00-D7AF,
         U+D7B0-D7FF,
         U+FF00-FFEF;
-    /* Hangul Jamo + Hangul Compat Jamo + Hangul Syllables + Halfwidth */
+    /* Hangul Jamo + Compat Jamo + Syllables + Halfwidth */
 }
 
 /* ---------- Chinese Simplified (Noto Sans SC — upright only) ---------- */
@@ -115,7 +115,7 @@
     font-style: normal;
     font-weight: 200 900;
     font-display: optional;
-    /* optional: no layout shift — CJK text uses fallback if font not loaded in time */
+    /* No layout shift — CJK uses fallback if not loaded in time */
     unicode-range:
         U+3000-303F,
         U+2E80-2FDF,
@@ -126,43 +126,38 @@
 
 /* =========================================================================
    GLOBAL TYPOGRAPHY TOKENS
+   =========================================================================
+   Single Source of Truth: --font-stack defined ONCE → all vars reference it.
+   To change the font system-wide, edit ONLY --font-stack.
    ========================================================================= */
 
-html,
-body {
-    font-family: "Inter", "Segoe UI", Roboto, "Helvetica Neue", Arial, "Noto Sans", sans-serif;
-    font-synthesis: none;
-    /* Never fake bold/italic */
-    -webkit-font-smoothing: antialiased;
-    -moz-osx-font-smoothing: grayscale;
-    text-rendering: optimizeLegibility;
-}
-
 :root {
-    /* ---- Antigravity typography tokens ---- */
+    /* ---- Single Source of Truth ---- */
+    --font-stack: "Inter", "Segoe UI", Roboto, "Helvetica Neue", Arial, "Noto Sans", sans-serif;
+
+    /* ---- Antigravity tokens ---- */
     --ui-weight: 400;
     --ui-heading-weight: 700;
 
     /* ---- Velzon-compatible defaults ----
-       Velzon theme CSS (themes.scss) references these variables.
-       Define defaults here so components work even without full theme loaded.
-       When themes.scss loads, it overrides these with theme-specific values. */
+     themes.scss overrides these with skin-specific values. */
 
     /* Body */
-    --vz-body-font-family: "Inter", "Segoe UI", Roboto, "Helvetica Neue", Arial, "Noto Sans", sans-serif;
+    --vz-body-font-family: var(--font-stack);
     --vz-body-font-size: 0.875rem;
+    /* 14px */
     --vz-body-font-weight: 400;
     --vz-body-line-height: 1.5;
     --vz-body-color: #212529;
     --vz-body-text-align: start;
     --vz-body-bg: #f3f3f9;
 
-    /* Font families */
-    --vz-font-family-primary: "Inter", "Segoe UI", Roboto, "Helvetica Neue", Arial, "Noto Sans", sans-serif;
-    --vz-font-family-secondary: "Inter", "Segoe UI", Roboto, "Helvetica Neue", Arial, "Noto Sans", sans-serif;
-    --vz-headings-font-family: "Inter", "Segoe UI", Roboto, "Helvetica Neue", Arial, "Noto Sans", sans-serif;
+    /* Font families — all reference --font-stack */
+    --vz-font-family-primary: var(--font-stack);
+    --vz-font-family-secondary: var(--font-stack);
+    --vz-headings-font-family: var(--font-stack);
 
-    /* Font weights — Velzon utility classes: fw-light, fw-medium, fw-semibold, etc. */
+    /* Font weights */
     --vz-font-weight-light: 300;
     --vz-font-weight-normal: 400;
     --vz-font-weight-medium: 500;
@@ -171,22 +166,39 @@ body {
 
     /* Font sizes — Velzon utility classes: fs-10 through fs-48 */
     --vz-font-10: 0.625rem;
+    /* 10px */
     --vz-font-11: 0.6875rem;
+    /* 11px */
     --vz-font-12: 0.75rem;
+    /* 12px */
     --vz-font-13: 0.8125rem;
+    /* 13px */
     --vz-font-14: 0.875rem;
+    /* 14px */
     --vz-font-15: 0.9375rem;
+    /* 15px */
     --vz-font-16: 1rem;
+    /* 16px */
     --vz-font-17: 1.0625rem;
+    /* 17px */
     --vz-font-18: 1.125rem;
+    /* 18px */
     --vz-font-19: 1.1875rem;
+    /* 19px */
     --vz-font-20: 1.25rem;
+    /* 20px */
     --vz-font-21: 1.3125rem;
+    /* 21px */
     --vz-font-22: 1.375rem;
+    /* 22px */
     --vz-font-23: 1.4375rem;
+    /* 23px */
     --vz-font-24: 1.5rem;
+    /* 24px */
     --vz-font-36: 2.25rem;
+    /* 36px */
     --vz-font-48: 3rem;
+    /* 48px */
 
     /* Headings */
     --vz-headings-color: #495057;
@@ -194,7 +206,27 @@ body {
     --vz-headings-line-height: 1.2;
 }
 
-/* Chinese headings need stronger weight for visual balance */
+html,
+body {
+    font-family: var(--font-stack);
+    font-synthesis: none;
+    /* Never fake bold/italic */
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    text-rendering: optimizeLegibility;
+}
+
+/* ---- CJK heading weight overrides ---- */
+:lang(ja),
+html[lang|="ja"] {
+    --ui-heading-weight: 750;
+}
+
+:lang(ko),
+html[lang|="ko"] {
+    --ui-heading-weight: 750;
+}
+
 :lang(zh),
 :lang(zh-CN),
 :lang(zh-Hans),
