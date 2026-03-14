@@ -1,7 +1,7 @@
 # Next.js App Router Best Practices
 
-> **Version:** 2.0.0 | **Updated:** 2026-01-31  
-> **Next.js:** 14.x / 15.x  
+> **Version:** 3.0.0 | **Updated:** 2026-03-11  
+> **Next.js:** 16.x (LTS)  
 > **Priority:** P0 - Load for all Next.js App Router projects
 
 ---

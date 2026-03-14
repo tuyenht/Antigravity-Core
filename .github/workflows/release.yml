@@ -1,0 +1,105 @@
+# Antigravity-Core Release
+# Auto-create GitHub Release when VERSION file changes on main
+
+name: Release
+
+on:
+  push:
+    branches: [main]
+    paths:
+      - '.agent/VERSION'
+
+permissions:
+  contents: write
+
+jobs:
+  release:
+    name: Create Release
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@b4ffde65f46336ab88eb53be808477a3936bae11  # v4
+        with:
+          fetch-depth: 0  # Full history for changelog
+
+      - name: Read version
+        id: version
+        run: |
+          VERSION=$(cat .agent/VERSION | tr -d '[:space:]')
+          echo "version=$VERSION" >> $GITHUB_OUTPUT
+          echo "tag=v$VERSION" >> $GITHUB_OUTPUT
+          echo "📦 Version: $VERSION"
+
+      - name: Check if tag already exists
+        id: check_tag
+        run: |
+          if git rev-parse "v${{ steps.version.outputs.version }}" >/dev/null 2>&1; then
+            echo "exists=true" >> $GITHUB_OUTPUT
+            echo "⚠️ Tag v${{ steps.version.outputs.version }} already exists, skipping release."
+          else
+            echo "exists=false" >> $GITHUB_OUTPUT
+            echo "✅ New version detected: v${{ steps.version.outputs.version }}"
+          fi
+
+      - name: Generate release notes
+        if: steps.check_tag.outputs.exists == 'false'
+        id: notes
+        run: |
+          VERSION="${{ steps.version.outputs.version }}"
+
+          # Extract component counts
+          AGENTS=$(find .agent/agents -name '*.md' -type f | wc -l | tr -d ' ')
+          SKILLS=$(find .agent/skills -maxdepth 1 -type d | tail -n +2 | wc -l | tr -d ' ')
+          WORKFLOWS=$(find .agent/workflows -name '*.md' -type f | wc -l | tr -d ' ')
+          SCRIPTS=$(find .agent/scripts -type f | wc -l | tr -d ' ')
+
+          # Extract recent changelog section
+          CHANGELOG=""
+          if [ -f ".agent/CHANGELOG.md" ]; then
+            # Get content between first two ## headers
+            CHANGELOG=$(awk '/^## /{if(found) exit; found=1; next} found{print}' .agent/CHANGELOG.md | head -30)
+          fi
+
+          # Build release notes
+          cat > /tmp/release_notes.md << EOF
+          ## Antigravity-Core v${VERSION}
+
+          **AI-Native Development Operating System**
+
+          ### 📊 System Census
+          | Component | Count |
+          |-----------|-------|
+          | Agents | ${AGENTS} |
+          | Skills | ${SKILLS} |
+          | Workflows | ${WORKFLOWS} |
+          | Scripts | ${SCRIPTS} |
+
+          ### 📝 Changes
+          ${CHANGELOG}
+
+          ### 🚀 Quick Install
+          \`\`\`bash
+          # Bash/macOS/Linux
+          curl -sL https://github.com/tuyenht/Antigravity-Core/archive/main.zip -o ag.zip && unzip -q ag.zip && cp -r Antigravity-Core-main/.agent .agent && rm -rf ag.zip Antigravity-Core-main
+
+          # PowerShell/Windows
+          irm https://raw.githubusercontent.com/tuyenht/Antigravity-Core/main/.agent/scripts/install-antigravity.ps1 | iex
+          \`\`\`
+
+          ---
+          *Released automatically by GitHub Actions*
+          EOF
+
+          echo "Generated release notes for v${VERSION}"
+
+      - name: Create GitHub Release
+        if: steps.check_tag.outputs.exists == 'false'
+        uses: softprops/action-gh-release@c062e08bd532815e2082a7c09e6ce3bc2fe94387  # v2
+        with:
+          tag_name: ${{ steps.version.outputs.tag }}
+          name: "Antigravity-Core ${{ steps.version.outputs.tag }}"
+          body_path: /tmp/release_notes.md
+          draft: false
+          prerelease: false
+          generate_release_notes: true
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}

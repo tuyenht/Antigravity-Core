@@ -3,17 +3,23 @@ name: Antigravity-Core Validation
 on:
   push:
     branches: [main]
-    paths: ['.agent/**']
+    paths:
+      - '.agent/**'
+      - 'README.md'
+      - 'CHANGELOG.md'
   pull_request:
     branches: [main]
-    paths: ['.agent/**']
+    paths:
+      - '.agent/**'
+      - 'README.md'
+      - 'CHANGELOG.md'
 
 jobs:
   validate-integrity:
     name: System Integrity Check
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v4
+      - uses: actions/checkout@b4ffde65f46336ab88eb53be808477a3936bae11  # v4
 
       # ============================================
       # 1. Critical Files
@@ -27,11 +33,11 @@ jobs:
             ".agent/CHANGELOG.md"
             ".agent/VERSION"
             ".agent/project.json"
-            ".agent/roles/AGENT_ROLES.md"
-            ".agent/rules/STANDARDS.md"
-            ".agent/rules/RULES-INDEX.md"
-            ".agent/agents/CAPABILITY-MATRIX.md"
-            ".agent/skills/DEPENDENCY-GRAPH.md"
+            ".agent/reference-catalog.md"
+            ".agent/systems/intent-router.md"
+            ".agent/systems/agent-registry.md"
+            ".agent/systems/rba-validator.md"
+            ".agent/docs/agents/CAPABILITY-MATRIX.md"
           )
           missing=0
           for f in "${files[@]}"; do
@@ -102,10 +108,46 @@ jobs:
       # ============================================
       # 3. Agent Count Match
       # ============================================
+      - name: Component count sync validation
+        run: |
+          echo "🔍 Checking component counts match project.json..."
+          ERRORS=0
+
+          SKILLS=$(find .agent/skills -maxdepth 1 -type d | tail -n +2 | wc -l | tr -d ' ')
+          WORKFLOWS=$(find .agent/workflows -name '*.md' -type f | wc -l | tr -d ' ')
+          AGENTS=$(find .agent/agents -name '*.md' -type f | wc -l | tr -d ' ')
+          PIPELINES=$(find .agent/pipelines -name '*.md' -type f | wc -l | tr -d ' ')
+
+          JSON_SKILLS=$(python3 -c "import json; print(json.load(open('.agent/project.json'))['stats']['skills'])")
+          JSON_WORKFLOWS=$(python3 -c "import json; print(json.load(open('.agent/project.json'))['stats']['workflows'])")
+          JSON_AGENTS=$(python3 -c "import json; print(json.load(open('.agent/project.json'))['stats']['agents'])")
+          JSON_PIPELINES=$(python3 -c "import json; print(json.load(open('.agent/project.json'))['stats']['pipelines'])")
+
+          check() {
+            local name=$1 fs=$2 json=$3
+            if [ "$fs" != "$json" ]; then
+              echo "  ❌ $name: filesystem=$fs, project.json=$json"
+              ERRORS=$((ERRORS + 1))
+            else
+              echo "  ✅ $name: $fs"
+            fi
+          }
+
+          check "Skills" "$SKILLS" "$JSON_SKILLS"
+          check "Workflows" "$WORKFLOWS" "$JSON_WORKFLOWS"
+          check "Agents" "$AGENTS" "$JSON_AGENTS"
+          check "Pipelines" "$PIPELINES" "$JSON_PIPELINES"
+
+          if [ $ERRORS -gt 0 ]; then
+            echo "::error::$ERRORS count mismatch(es)! Update project.json stats to match filesystem."
+            exit 1
+          fi
+          echo "✅ All component counts verified."
+
       - name: Agent count validation
         run: |
           echo "🔍 Checking agent count..."
-          ACTUAL=$(find .agent/agents -name "*.md" ! -name "CAPABILITY-MATRIX.md" | wc -l | tr -d ' ')
+          ACTUAL=$(find .agent/agents -name '*.md' -type f | wc -l | tr -d ' ')
           JSON_COUNT=$(python3 -c "import json; print(json.load(open('.agent/project.json'))['agents']['total'])")
           JSON_LIST=$(python3 -c "import json; print(len(json.load(open('.agent/project.json'))['agents']['list']))")
 
@@ -131,7 +173,6 @@ jobs:
           echo "🔍 Checking for dead skill references in agents..."
           errors=0
           for agent in .agent/agents/*.md; do
-            [[ "$(basename $agent)" == "CAPABILITY-MATRIX.md" ]] && continue
             while IFS= read -r ref; do
               skill=$(echo "$ref" | sed 's/.*@\[skills\///' | sed 's/\].*//')
               if [ -n "$skill" ] && [ ! -d ".agent/skills/$skill" ]; then
@@ -241,7 +282,7 @@ jobs:
           echo ""
           echo "Version:    $(cat .agent/VERSION)"
           echo ""
-          echo "Agents:     $(find .agent/agents -name '*.md' ! -name 'CAPABILITY-MATRIX.md' | wc -l | tr -d ' ')"
+          echo "Agents:     $(find .agent/agents -name '*.md' -type f | wc -l | tr -d ' ')"
           echo "Skills:     $(find .agent/skills -maxdepth 1 -type d | tail -n +2 | wc -l | tr -d ' ')"
           echo "Workflows:  $(find .agent/workflows -name '*.md' | wc -l | tr -d ' ')"
           echo "Rules:      $(find .agent/rules -name '*.md' -type f ! -name 'RULES-INDEX.md' ! -name 'STANDARDS.md' ! -name 'universal-code-standards.md' ! -name 'velzon-admin.md' ! -name 'README.md' ! -name '_index.md' | wc -l | tr -d ' ')"
@@ -250,3 +291,64 @@ jobs:
           echo ""
           echo "Total size: $(du -sh .agent | cut -f1)"
           echo "========================================"
+
+  # ============================================
+  # Bash Script Lint (P5)
+  # ============================================
+  bash-lint:
+    name: Bash Script Validation
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Validate bash script syntax
+        run: |
+          echo "🧪 Checking all .sh scripts..."
+          FAIL=0
+          for script in .agent/scripts/*.sh; do
+            name=$(basename "$script")
+            if bash -n "$script" 2>/dev/null; then
+              echo "  ✅ $name"
+            else
+              echo "  ❌ $name: SYNTAX ERROR"
+              bash -n "$script" 2>&1 | head -3
+              FAIL=$((FAIL + 1))
+            fi
+          done
+          if [ "$FAIL" -gt 0 ]; then
+            echo "::error::$FAIL script(s) have syntax errors!"
+            exit 1
+          fi
+          TOTAL=$(find .agent/scripts -name '*.sh' | wc -l | tr -d ' ')
+          echo "✅ All $TOTAL bash scripts passed syntax check"
+
+      - name: Validate script shebangs
+        run: |
+          FAIL=0
+          for script in .agent/scripts/*.sh; do
+            if ! head -1 "$script" | grep -q "^#!/usr/bin/env bash"; then
+              echo "  ❌ $(basename $script): wrong shebang"
+              FAIL=$((FAIL + 1))
+            fi
+          done
+          [ "$FAIL" -gt 0 ] && exit 1
+          echo "✅ All shebangs correct"
+
+      - name: Check cross-platform parity
+        run: |
+          echo "🔍 Checking PS1 → SH parity..."
+          MISSING=0
+          for ps1 in .agent/scripts/*.ps1; do
+            base=$(basename "$ps1" .ps1)
+            if [ ! -f ".agent/scripts/$base.sh" ]; then
+              echo "  ❌ Missing: $base.sh"
+              MISSING=$((MISSING + 1))
+            fi
+          done
+          PS1=$(find .agent/scripts -name '*.ps1' | wc -l | tr -d ' ')
+          SH=$(find .agent/scripts -name '*.sh' | wc -l | tr -d ' ')
+          if [ "$MISSING" -gt 0 ]; then
+            echo "::error::$MISSING PS1 scripts missing Bash equivalents!"
+            exit 1
+          fi
+          echo "✅ 100% parity: $SH SH / $PS1 PS1"

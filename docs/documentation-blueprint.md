@@ -30,7 +30,7 @@ graph LR
 | # | Tài liệu | Mô tả | Cách tạo |
 |---|----------|--------|----------|
 | 1 | **Antigravity-Core Engine** | Toàn bộ `.agent/` directory (roles, workflows, skills, memory) | Lệnh `agi` (alias) hoặc script `install-antigravity.ps1` hoặc copy từ [GitHub](https://github.com/tuyenht/Antigravity-Core) |
-| 2 | **Health Check** | Xác minh engine hoạt động đúng (35 workflows, 62 skills, 27 agents) | `.\.agent\scripts\health-check.ps1` |
+| 2 | **Health Check** | Xác minh engine hoạt động đúng (36 workflows, 63 skills, 27 agents) | `.\.agent\scripts\health-check.ps1` |
 
 > [!TIP]
 > **Cài đặt nhanh 2 bước**: ① `install-global.ps1` (1 lần duy nhất) → ② Gõ `agi` trong bất kỳ thư mục dự án nào.

@@ -1,34 +1,39 @@
-# Next.js Middleware & Edge Functions Expert
+# Next.js Proxy & Edge Functions Expert
 
-> **Version:** 2.0.0 | **Updated:** 2026-01-31  
-> **Next.js:** 14.x / 15.x  
-> **Priority:** P0 - Load for all middleware tasks
+> **Version:** 3.0.0 | **Updated:** 2026-03-11  
+> **Next.js:** 16.x (LTS)  
+> **Priority:** P0 - Load for all proxy/edge tasks
 
 ---
 
-You are an expert in Next.js Middleware and Edge Functions.
+You are an expert in Next.js 16 Proxy and Edge Functions.
 
-## Core Middleware Principles
+> [!IMPORTANT]
+> **Next.js 16:** `proxy.ts` replaces deprecated `middleware.ts`. The API is identical —  
+> only the filename (`proxy.ts`) and export name (`export async function proxy`) changed.
+> All patterns in this file use `proxy.ts` convention.
 
-- Use middleware for request/response manipulation
+## Core Proxy Principles
+
+- Use proxy for request/response manipulation
 - Run logic before request completes
-- Use Edge Runtime for global performance
-- Keep middleware lightweight
+- Full Node.js runtime access (unlike old Edge-only middleware)
+- Keep proxy logic lightweight
 
 ---
 
-## 1) Middleware Basics
+## 1) Proxy Basics
 
-### Complete Middleware Setup
+### Complete Proxy Setup
 ```typescript
 // ==========================================
-// middleware.ts (root directory)
+// proxy.ts (root directory — replaces middleware.ts)
 // ==========================================
 
 import { NextResponse } from 'next/server';
 import type { NextRequest } from 'next/server';
 
-export function middleware(request: NextRequest) {
+export async function proxy(request: NextRequest) {
   const { pathname } = request.nextUrl;
   
   // Get response to modify
@@ -49,7 +54,7 @@ export function middleware(request: NextRequest) {
   return response;
 }
 
-// Configure which routes use middleware
+// Configure which routes use proxy
 export const config = {
   matcher: [
     /*
@@ -68,7 +73,7 @@ export const config = {
 ### Matcher Patterns
 ```typescript
 // ==========================================
-// MATCHER CONFIGURATION OPTIONS
+// MATCHER CONFIGURATION OPTIONS (in proxy.ts)
 // ==========================================
 
 // Single path
@@ -105,8 +110,8 @@ export const config = {
   ],
 };
 
-// Conditional matching in middleware
-export function middleware(request: NextRequest) {
+// Conditional matching in proxy
+export async function proxy(request: NextRequest) {
   const pathname = request.nextUrl.pathname;
   
   // Skip static files manually
@@ -124,12 +129,12 @@ export function middleware(request: NextRequest) {
 
 ---
 
-## 2) Authentication Middleware
+## 2) Authentication Proxy
 
-### Complete Auth Middleware
+### Complete Auth Proxy
 ```typescript
 // ==========================================
-// middleware.ts - Authentication
+// proxy.ts - Authentication
 // ==========================================
 
 import { NextResponse } from 'next/server';
@@ -148,7 +153,7 @@ const roleRoutes: Record<string, string[]> = {
   moderator: ['/admin/posts', '/admin/comments'],
 };
 
-export async function middleware(request: NextRequest) {
+export async function proxy(request: NextRequest) {
   const { pathname } = request.nextUrl;
   
   // Get session token
@@ -222,7 +227,7 @@ export const config = {
 // API KEY AUTHENTICATION
 // ==========================================
 
-export async function middleware(request: NextRequest) {
+export async function proxy(request: NextRequest) {
   const pathname = request.nextUrl.pathname;
   
   // Only check API routes
@@ -273,7 +278,7 @@ export async function middleware(request: NextRequest) {
 import { NextResponse } from 'next/server';
 import type { NextRequest } from 'next/server';
 
-export function middleware(request: NextRequest) {
+export async function proxy(request: NextRequest) {
   const { pathname } = request.nextUrl;
   
   // Permanent redirect (301)
@@ -314,7 +319,7 @@ export function middleware(request: NextRequest) {
 // REWRITES (URL stays the same)
 // ==========================================
 
-export function middleware(request: NextRequest) {
+export async function proxy(request: NextRequest) {
   const { pathname, searchParams } = request.nextUrl;
   
   // Rewrite to different page (URL stays same)
@@ -354,7 +359,7 @@ const legacyRedirects: Record<string, string> = {
   '/careers': '/about/careers',
 };
 
-export function middleware(request: NextRequest) {
+export async function proxy(request: NextRequest) {
   const { pathname } = request.nextUrl;
   
   // Check legacy redirects
@@ -392,7 +397,7 @@ export function middleware(request: NextRequest) {
 import { NextResponse } from 'next/server';
 import type { NextRequest } from 'next/server';
 
-export function middleware(request: NextRequest) {
+export async function proxy(request: NextRequest) {
   // Get geolocation (available on Vercel)
   const country = request.geo?.country || 'US';
   const city = request.geo?.city || 'Unknown';
@@ -420,7 +425,7 @@ const countryRedirects: Record<string, string> = {
   JP: '/ja',  // Japan -> Japanese site
 };
 
-export function middleware(request: NextRequest) {
+export async function proxy(request: NextRequest) {
   const { pathname } = request.nextUrl;
   const country = request.geo?.country || 'US';
   
@@ -460,7 +465,7 @@ const euCountries = [
   'PL', 'PT', 'RO', 'SK', 'SI', 'ES', 'SE',
 ];
 
-export function middleware(request: NextRequest) {
+export async function proxy(request: NextRequest) {
   const country = request.geo?.country || 'US';
   const isEU = euCountries.includes(country);
   
@@ -482,10 +487,10 @@ export function middleware(request: NextRequest) {
 
 ## 5) A/B Testing
 
-### Experiment Middleware
+### Experiment Proxy
 ```typescript
 // ==========================================
-// A/B TESTING MIDDLEWARE
+// A/B TESTING PROXY
 // ==========================================
 
 import { NextResponse } from 'next/server';
@@ -538,7 +543,7 @@ function hashString(str: string): number {
   return Math.abs(hash);
 }
 
-export function middleware(request: NextRequest) {
+export async function proxy(request: NextRequest) {
   const { pathname } = request.nextUrl;
   
   // Get or create user ID
@@ -633,7 +638,7 @@ const rateLimiters = {
   }),
 };
 
-export async function middleware(request: NextRequest) {
+export async function proxy(request: NextRequest) {
   const { pathname } = request.nextUrl;
   
   // Get client identifier
@@ -690,13 +695,13 @@ export const config = {
 ### Comprehensive Security
 ```typescript
 // ==========================================
-// SECURITY MIDDLEWARE
+// SECURITY PROXY
 // ==========================================
 
 import { NextResponse } from 'next/server';
 import type { NextRequest } from 'next/server';
 
-export function middleware(request: NextRequest) {
+export async function proxy(request: NextRequest) {
   const response = NextResponse.next();
   const { pathname } = request.nextUrl;
   
@@ -923,12 +928,12 @@ export async function GET(request: NextRequest) {
 
 ---
 
-## 9) Complete Middleware Example
+## 9) Complete Proxy Example
 
-### Production-Ready Middleware
+### Production-Ready Proxy
 ```typescript
 // ==========================================
-// middleware.ts - COMPLETE EXAMPLE
+// proxy.ts - COMPLETE EXAMPLE
 // ==========================================
 
 import { NextResponse } from 'next/server';
@@ -940,7 +945,7 @@ const protectedRoutes = ['/dashboard', '/settings', '/admin'];
 const authRoutes = ['/login', '/signup'];
 const apiRateLimit = 100;  // requests per minute
 
-export async function middleware(request: NextRequest) {
+export async function proxy(request: NextRequest) {
   const { pathname } = request.nextUrl;
   const response = NextResponse.next();
   
@@ -1038,14 +1043,14 @@ export const config = {
 ## Best Practices Checklist
 
 ### Setup
-- [ ] Middleware in root directory
+- [ ] `proxy.ts` in root directory (replaces `middleware.ts`)
 - [ ] Matcher configured
 - [ ] Type-safe with TypeScript
 
 ### Performance
 - [ ] Execution under 50ms
 - [ ] No heavy computations
-- [ ] Edge-compatible libraries
+- [ ] Lazy session loading (only call `auth()` when needed)
 
 ### Security
 - [ ] Security headers set
@@ -1054,7 +1059,7 @@ export const config = {
 - [ ] Bot protection
 
 ### Features
-- [ ] Auth middleware working
+- [ ] Auth proxy working
 - [ ] Redirects/rewrites configured
 - [ ] Geo-based routing if needed
 - [ ] A/B testing if needed
@@ -1062,7 +1067,7 @@ export const config = {
 ---
 
 **References:**
-- [Next.js Middleware](https://nextjs.org/docs/app/building-your-application/routing/middleware)
+- [Next.js Proxy](https://nextjs.org/docs/app/building-your-application/routing/middleware)
 - [Edge Runtime](https://nextjs.org/docs/app/building-your-application/rendering/edge-and-nodejs-runtimes)
 - [Upstash Rate Limiting](https://upstash.com/docs/ratelimit)
 - [Vercel Edge Config](https://vercel.com/docs/storage/edge-config)

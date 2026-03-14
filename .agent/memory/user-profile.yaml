@@ -1,6 +1,6 @@
 ---
 # User Profile & Preferences
-# Last Updated: 2026-01-16
+# Last Updated: 2026-03-14
 
 user:
   name: "Development Team"
@@ -17,6 +17,7 @@ tech_stack:
     frontend:
       - React 19
       - Vue 3
+      - Next.js 16
       - Inertia.js
     mobile:
       - React Native
@@ -101,15 +102,23 @@ workflows:
     - Ad-hoc changes without planning
 
 recent_focus:
-  - "Security hardening (achieved 95/100)"
-  - "Performance optimization (achieved 92/100)"
-  - "Complete documentation (achieved 97/100)"
-  - "Accessibility standards (WCAG 2.1 AA)"
+  - "Antigravity-Core v5.0 Zero-Confusion Architecture"
+  - "BSWeb/BSAds Velzon admin panels (Next.js 16 Standalone)"
+  - "P0-P7 system integrity audit (March 2026)"
+  - "Cross-platform script parity (PS1 ↔ SH 100%)"
   
 current_projects:
-  - name: "Antigravity Optimization"
-    stack: ["All frameworks", "Security", "Performance"]
-    status: "Active - Near completion (97/100)"
+  - name: "Antigravity-Core AI OS"
+    stack: ["Meta-system", "PowerShell", "Bash", "YAML/MD"]
+    status: "v5.0.0 Stable Platinum — maintenance mode"
+    priority: "Medium"
+  - name: "BSWeb SaaS Platform"
+    stack: ["Next.js 16", "Payload CMS v3", "PostgreSQL", "Velzon"]
+    status: "Active development"
+    priority: "High"
+  - name: "BSAds Admin Platform"
+    stack: ["Next.js 16", "Prisma", "Auth.js v5", "Velzon"]
+    status: "Active development"
     priority: "High"
 
 learning_goals:

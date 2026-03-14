@@ -1,7 +1,7 @@
 # Next.js API Routes & Route Handlers Expert
 
-> **Version:** 2.0.0 | **Updated:** 2026-01-31  
-> **Next.js:** 14.x / 15.x  
+> **Version:** 3.0.0 | **Updated:** 2026-03-11  
+> **Next.js:** 16.x (LTS)  
 > **Priority:** P0 - Load for all API development
 
 ---
@@ -718,10 +718,10 @@ export async function POST(request: NextRequest) {
 
 
 // ==========================================
-// RATE LIMIT AS MIDDLEWARE
+// RATE LIMIT AS PROXY
 // ==========================================
 
-// middleware.ts
+// proxy.ts (replaces middleware.ts)
 import { NextResponse } from 'next/server';
 import type { NextRequest } from 'next/server';
 import { Ratelimit } from '@upstash/ratelimit';
@@ -732,7 +732,7 @@ const ratelimit = new Ratelimit({
   limiter: Ratelimit.slidingWindow(100, '1 m'),
 });
 
-export async function middleware(request: NextRequest) {
+export async function proxy(request: NextRequest) {
   // Only rate limit API routes
   if (request.nextUrl.pathname.startsWith('/api')) {
     const ip = request.ip ?? '127.0.0.1';

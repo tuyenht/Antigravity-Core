@@ -16,7 +16,7 @@ This project adheres to [Semantic Versioning](https://semver.org/).
 ### Changed
 - **GEMINI.md** — Restructured from 485 lines (22KB) to 186 lines (6.4KB)
 - **ARCHITECTURE.md** — New 3-layer diagram (GEMINI Slim → Intent Router → Pipeline Chains → Engine)
-- 27 agents, 59 skills, 110 rules, 34 workflows preserved
+- 27 agents, 63 skills, 110 rules, 36 workflows preserved
 
 ---
 

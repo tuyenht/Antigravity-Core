@@ -219,41 +219,63 @@ const DashboardClient = ({ initialData }: Props) => {
 
 ---
 
-## Middleware
+## Proxy (Auth Guard)
+
+> [!IMPORTANT]
+> **Next.js 16:** `proxy.ts` replaces deprecated `middleware.ts`. Runs on Node.js runtime (full API access).
 
 ```tsx
-// middleware.ts
+// proxy.ts (Next.js 16+ — replaces middleware.ts)
+import { auth } from '@/auth';
 import { NextResponse } from 'next/server';
 import type { NextRequest } from 'next/server';
 
 const ADMIN_PREFIX = process.env.NEXT_PUBLIC_ADMIN_PREFIX ?? 'admin';
-const PUBLIC_PATHS = [
+
+// Pre-computed Set for O(1) lookup instead of Array.some() O(n)
+const PUBLIC_PATHS = new Set([
     `/${ADMIN_PREFIX}/login`,
     `/${ADMIN_PREFIX}/forgot-password`,
     `/${ADMIN_PREFIX}/reset-password`,
     `/${ADMIN_PREFIX}/two-factor`,
-];
+]);
 
-export function middleware(request: NextRequest) {
+export async function proxy(request: NextRequest) {
     const { pathname } = request.nextUrl;
 
-    // Only protect admin routes
+    // 1. Only protect admin routes — early return for non-admin
     if (!pathname.startsWith(`/${ADMIN_PREFIX}`)) return NextResponse.next();
 
-    // Allow public auth pages
-    if (PUBLIC_PATHS.some(p => pathname.startsWith(p))) return NextResponse.next();
+    // 2. Check public paths with O(1) Set lookup
+    const isPublic = PUBLIC_PATHS.has(pathname);
 
-    // Check auth (cookie/token based)
-    const token = request.cookies.get('auth-token');
-    if (!token) {
-        return NextResponse.redirect(new URL(`/${ADMIN_PREFIX}/login`, request.url));
+    // 3. Lazy session loading — only call auth() for admin routes
+    const session = await auth();
+
+    if (isPublic) {
+        // Logged-in users on auth pages → redirect to dashboard
+        if (session) {
+            return NextResponse.redirect(
+                new URL(`/${ADMIN_PREFIX}/dashboard`, request.url)
+            );
+        }
+        return NextResponse.next();
+    }
+
+    // 4. Require auth for all other admin pages
+    if (!session) {
+        return NextResponse.redirect(
+            new URL(`/${ADMIN_PREFIX}/login`, request.url)
+        );
     }
 
     return NextResponse.next();
 }
 
 export const config = {
-    matcher: ['/((?!api|_next/static|_next/image|favicon.ico|fonts|images).*)'],
+    matcher: [
+        '/((?!api|_next/static|_next/image|assets|images|favicon.ico).*)',
+    ],
 };
 ```
 
@@ -303,8 +325,7 @@ export const metadata: Metadata = {
     title: 'Forgot Password — Admin Panel',
 };
 
-// 🚨 MUST: prevents Next.js from caching with stale locale cookie
-export const dynamic = 'force-dynamic';
+// ✅ No `force-dynamic` needed — cacheComponents + router.refresh() handles locale freshness
 
 export default async function ForgotPasswordPage() {
     const { locale, messages } = await getServerLocale();
@@ -370,10 +391,9 @@ src/features/auth/
 ## Locale Persistence (i18n)
 
 > [!CAUTION]
-> **ALL auth server pages MUST export `dynamic = 'force-dynamic'`.**
-> Without this, Next.js Full Route Cache serves stale locale on F5.
 > **LocaleContext MUST call `router.refresh()` after setting locale cookie.**
 > Without this, the Client-Side Router Cache serves stale RSC payload.
+> **With `cacheComponents: true` in next.config.ts, do NOT use `force-dynamic`.**
 
 ### 4-Layer Defense
 
@@ -381,7 +401,7 @@ src/features/auth/
 |-------|-----------|------|
 | 1. Cookie | `locale={vi};path=/;max-age=31536000;SameSite=Lax` | `LocaleContext.tsx` |
 | 2. Server read | `cookies().get('locale')` via `await cookies()` | `locale-server.ts` |
-| 3. Server cache bypass | `export const dynamic = 'force-dynamic'` | Each `page.tsx` |
+| 3. Component caching | `cacheComponents: true` in `next.config.ts` | `next.config.ts` |
 | 4. Client cache invalidation | `router.refresh()` inside `useTransition` | `LocaleContext.tsx` |
 
 Full implementation: see [auth-login-template.md](reference/auth-login-template.md) §7 useLocale Hook.

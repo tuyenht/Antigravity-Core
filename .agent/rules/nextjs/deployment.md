@@ -1,7 +1,7 @@
 # Next.js Deployment & DevOps Expert
 
-> **Version:** 2.0.0 | **Updated:** 2026-01-31  
-> **Next.js:** 14.x / 15.x  
+> **Version:** 3.0.0 | **Updated:** 2026-03-11  
+> **Next.js:** 16.x (LTS)  
 > **Priority:** P0 - Load for all deployment tasks
 
 ---
@@ -123,10 +123,10 @@ You are an expert in Next.js deployment and DevOps practices.
 }
 ```
 
-### Edge Config & Middleware
+### Edge Config & Proxy
 ```typescript
 // ==========================================
-// middleware.ts (Vercel Edge)
+// proxy.ts (Vercel Edge)
 // ==========================================
 
 import { NextResponse } from 'next/server';
@@ -139,7 +139,7 @@ export const config = {
   ],
 };
 
-export async function middleware(request: NextRequest) {
+export async function proxy(request: NextRequest) {
   // Feature flags from Edge Config
   const featureFlags = await get<Record<string, boolean>>('featureFlags');
   
@@ -1020,16 +1020,16 @@ export async function GET() {
 
 ## 7) Security Configuration
 
-### Security Headers Middleware
+### Security Headers Proxy
 ```typescript
 // ==========================================
-// middleware.ts - Security Headers
+// proxy.ts - Security Headers
 // ==========================================
 
 import { NextResponse } from 'next/server';
 import type { NextRequest } from 'next/server';
 
-export function middleware(request: NextRequest) {
+export async function proxy(request: NextRequest) {
   const response = NextResponse.next();
   
   // Security headers

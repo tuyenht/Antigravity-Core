@@ -12,7 +12,7 @@ You are an expert in Next.js authentication and authorization.
 
 - Use Auth.js (NextAuth.js v5) for authentication
 - Implement server-side session validation
-- Protect routes with middleware
+- Protect routes with proxy (replaces middleware)
 - Follow OAuth 2.0 and OIDC standards
 
 ---
@@ -252,11 +252,11 @@ export const { GET, POST } = handlers;
 
 ---
 
-## 2) Middleware Protection
+## 2) Proxy Protection
 
-### Complete Middleware
+### Complete Proxy Guard
 ```typescript
-// middleware.ts
+// proxy.ts (replaces middleware.ts)
 import { auth } from '@/auth';
 import { NextResponse } from 'next/server';
 

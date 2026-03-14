@@ -261,8 +261,8 @@ export default function AuthLayout({ children, title }: AuthLayoutProps) {
 > [!CAUTION]
 > **Auth pages use `Inter` font** (not body `Poppins`). The `.font-inter` class + wildcard selector
 > overrides the inherited `Poppins` from body. This MUST be inside `@layer components`.
-> **All auth server pages MUST export `dynamic = 'force-dynamic'`** to ensure the locale cookie
-> is re-read on every F5/refresh (Next.js Full Route Cache otherwise serves stale locale).
+> **With `cacheComponents: true`, do NOT use `force-dynamic`** on auth pages.
+> Use `router.refresh()` for locale cookie freshness instead.
 
 ```css
 @import "tailwindcss";
@@ -1003,9 +1003,7 @@ import type { Metadata } from 'next';
 import { getServerLocale } from '@/lib/locale-server';
 import LoginClient from './LoginClient';
 
-// 🚨 MUST export force-dynamic — without this, Next.js caches the server-rendered page
-// and the locale cookie is NOT re-read on F5/refresh → language resets to 'en'
-export const dynamic = 'force-dynamic';
+// ✅ No `force-dynamic` needed — cacheComponents + router.refresh() handles locale freshness
 export const metadata: Metadata = { title: 'Login — Admin Panel' };
 
 export default async function LoginPage() {
@@ -1350,8 +1348,7 @@ import type { Metadata } from 'next';
 import { getServerLocale } from '@/lib/locale-server';
 import LoginClient from './LoginClient';
 
-// 🚨 force-dynamic: re-read locale cookie on every request (prevents F5 language reset)
-export const dynamic = 'force-dynamic';
+// ✅ No `force-dynamic` needed — cacheComponents + router.refresh() handles locale freshness
 export const metadata: Metadata = {
     title: 'Login — Admin Panel',
     description: 'Sign in to the admin dashboard',
@@ -1418,41 +1415,61 @@ src/app/
 > Admin auth pages live at `/admin/login`, NOT at `/login`.
 > Route groups remove the URL segment — `(auth)/login` → `/login` which violates the admin prefix rule.
 
-### Middleware (Auth Guard)
+### Proxy (Auth Guard)
+
+> **Next.js 16:** `proxy.ts` replaces deprecated `middleware.ts`.
 
 ```tsx
-// middleware.ts
+// proxy.ts (Next.js 16+ — replaces middleware.ts)
+import { auth } from '@/auth';
 import { NextResponse } from 'next/server';
 import type { NextRequest } from 'next/server';
 
 const ADMIN_PREFIX = process.env.NEXT_PUBLIC_ADMIN_PREFIX ?? 'admin';
-const PUBLIC_PATHS = [
+
+// Pre-computed Set for O(1) lookup instead of Array.some() O(n)
+const PUBLIC_PATHS = new Set([
     `/${ADMIN_PREFIX}/login`,
     `/${ADMIN_PREFIX}/forgot-password`,
     `/${ADMIN_PREFIX}/reset-password`,
     `/${ADMIN_PREFIX}/two-factor`,
-];
+]);
 
-export function middleware(request: NextRequest) {
+export async function proxy(request: NextRequest) {
     const { pathname } = request.nextUrl;
 
-    // Only protect admin routes
+    // 1. Only protect admin routes
     if (!pathname.startsWith(`/${ADMIN_PREFIX}`)) return NextResponse.next();
 
-    // Allow public auth pages
-    if (PUBLIC_PATHS.some(p => pathname.startsWith(p))) return NextResponse.next();
+    // 2. Check public paths with O(1) Set lookup
+    const isPublic = PUBLIC_PATHS.has(pathname);
 
-    // Check auth (cookie/token based)
-    const token = request.cookies.get('auth-token');
-    if (!token) {
-        return NextResponse.redirect(new URL(`/${ADMIN_PREFIX}/login`, request.url));
+    // 3. Lazy session loading
+    const session = await auth();
+
+    if (isPublic) {
+        if (session) {
+            return NextResponse.redirect(
+                new URL(`/${ADMIN_PREFIX}/dashboard`, request.url)
+            );
+        }
+        return NextResponse.next();
+    }
+
+    // 4. Require auth
+    if (!session) {
+        return NextResponse.redirect(
+            new URL(`/${ADMIN_PREFIX}/login`, request.url)
+        );
     }
 
     return NextResponse.next();
 }
 
 export const config = {
-    matcher: ['/((?!api|_next/static|_next/image|favicon.ico|fonts|images).*)'],
+    matcher: [
+        '/((?!api|_next/static|_next/image|assets|images|favicon.ico).*)',
+    ],
 };
 ```
 

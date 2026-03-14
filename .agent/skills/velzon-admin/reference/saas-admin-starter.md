@@ -1036,13 +1036,13 @@ src/
 │   ├── users/                   ← UserTable, UserForm, InviteForm
 │   └── audit/                   ← AuditTimeline, useAuditLog
 ├── lib/auth.ts, rbac.ts, prisma.ts, audit.ts
-├── middleware.ts                ← Auth + RBAC + (SaaS: tenant resolution)
+├── proxy.ts                    ← Auth + RBAC + (SaaS: tenant resolution)
 └── prisma/schema.prisma + seed.ts
 ```
 
 | Auth Provider | RBAC | ORM | UI |
 |---------------|------|-----|----|
-| Auth.js v5 (NextAuth) | Custom middleware + Prisma | Prisma | Reactstrap + Bootstrap 5 |
+| Auth.js v5 (NextAuth) | Custom proxy + Prisma | Prisma | Reactstrap + Bootstrap 5 |
 
 #### Laravel + Inertia.js + React
 

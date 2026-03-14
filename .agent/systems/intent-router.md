@@ -171,7 +171,7 @@ Khi user dùng slash command trực tiếp, BYPASS Intent Router và chạy work
 /orchestrate     → Orchestrator agent (manual multi-agent)
 ```
 
-All 35 workflows remain accessible via their original slash commands.
+All 36 workflows remain accessible via their original slash commands.
 
 ---
 

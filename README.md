@@ -3,9 +3,11 @@
 > **AI-Native Development Operating System**  
 > Hệ Điều Hành Phát Triển Phần Mềm Thuần AI
 
-[![Version](https://img.shields.io/badge/version-5.0.0-blue.svg)](.agent/CHANGELOG.md)
+[![CI](https://github.com/tuyenht/Antigravity-Core/actions/workflows/validate.yml/badge.svg)](https://github.com/tuyenht/Antigravity-Core/actions/workflows/validate.yml)
+[![Release](https://github.com/tuyenht/Antigravity-Core/actions/workflows/release.yml/badge.svg)](https://github.com/tuyenht/Antigravity-Core/actions/workflows/release.yml)
+[![Version](https://img.shields.io/badge/version-5.0.1-blue.svg)](.agent/CHANGELOG.md)
 [![Agents](https://img.shields.io/badge/agents-27-brightgreen.svg)](.agent/docs/agents/AGENT-CATALOG.md)
-[![Skills](https://img.shields.io/badge/skills-62-orange.svg)](.agent/docs/skills/SKILL-CATALOG.md)
+[![Skills](https://img.shields.io/badge/skills-63-orange.svg)](.agent/docs/skills/SKILL-CATALOG.md)
 [![Rules](https://img.shields.io/badge/rules-110-purple.svg)](.agent/systems/auto-rule-discovery.md)
 [![AI Autonomy](https://img.shields.io/badge/AI%20Autonomy-95%25-green.svg)]()
 [![Quality](https://img.shields.io/badge/Quality-Platinum%20Standard-gold.svg)]()
@@ -23,9 +25,9 @@ graph TB
     subgraph OS["ANTIGRAVITY-CORE (AI OS v5.0.0)"]
         direction TB
         A["27 Specialized Agents"]
-        B["62 Knowledge Skills"]
+        B["63 Knowledge Skills"]
         C["110 Expert Rules"]
-        D["34 Automated Workflows"]
+        D["36 Automated Workflows"]
         E["6 Core Protocols"]
     end
 
@@ -44,7 +46,7 @@ graph TB
 | 🔴 Generic responses | 🟢 **110 expert rules** tự động load |
 | 🔴 No quality gates | 🟢 **Platinum Standard** enforcement |
 
-| 🔴 Trial and error | 🟢 **62 proven skill modules** |
+| 🔴 Trial and error | 🟢 **63 proven skill modules** |
 | 🔴 One-size-fits-all | 🟢 **Auto-detection** tech stack |
 
 ---
@@ -154,23 +156,23 @@ Antigravity-Core/
 │   │   ├── security-auditor.md        (OWASP, pentest)
 │   │   └── ... 23 more agents
 │   │
-│   ├── 🎯 skills/ (62)                ← Knowledge modules
+│   ├── 🎯 skills/ (63)                ← Knowledge modules
 │   │   ├── react-patterns/            prisma-expert/
 │   │   ├── laravel-performance/       docker-expert/
 │   │   ├── ui-ux-pro-max/             vulnerability-scanner/
-│   │   └── ... 56 more skills
+│   │   └── ... 57 more skills
 │   │
 │   ├── 📏 rules/ (110)                ← Expert coding rules
 │   │   ├── backend-frameworks/ (12)   database/ (10)
 │   │   ├── frontend-frameworks/ (7)   mobile/ (10)
 │   │   ├── nextjs/ (13)               python/ (14)
 │   │   ├── typescript/ (13)           web-development/ (12)
-│   │   ├── agentic-ai/ (12)           standards/ (25)
+│   │   ├── agentic-ai/ (12)           standards/ (4)
 │   │   └── shared/ (1)
 │   │
-│   ├── 🔄 workflows/ (34)             ← Slash command workflows
-│   ├── ⚙️ scripts/ (20 core)            ← PowerShell + Bash automation (+ 17 skill scripts)
-│   ├── 🧬 systems/ (5)                ← Core protocols (RBA, AOC...)
+│   ├── 🔄 workflows/ (36)             ← Slash command workflows
+│   ├── ⚙️ scripts/ (37 core)            ← PowerShell + Bash automation (+ 17 skill scripts)
+│   ├── 🧬 systems/ (6)                ← Core protocols (RBA, AOC, Intent Router...)
 │   ├── 🧠 memory/                     ← AI memory system
 │   ├── 📖 docs/                       ← System documentation
 │   │
@@ -222,7 +224,7 @@ User request →
 
 ---
 
-## 🔄 WORKFLOWS (34 Slash Commands)
+## 🔄 WORKFLOWS (36 Slash Commands)
 
 | Category | Commands |
 |----------|----------|
@@ -354,7 +356,7 @@ Rules tự động load dựa trên context:
 | Security Audit | OWASP Top 10 | `security-auditor` pre-deploy |
 | Performance Budget | Defined per project | `performance-check.ps1` |
 
-### Automation Scripts (37 total: 20 core + 17 skill)
+### Automation Scripts (50 total: 37 core + 13 skill)
 
 ```powershell
 .\.agent\agent.ps1 health       # System health check
@@ -488,8 +490,8 @@ Time:     30 phút - 2 giờ
 |----------|-------|
 | [📖 **docs/INDEX.md**](.agent/docs/INDEX.md) | **Master index — Bắt đầu từ đây** |
 | [AGENT-CATALOG.md](.agent/docs/agents/AGENT-CATALOG.md) | 27 agents chi tiết |
-| [SKILL-CATALOG.md](.agent/docs/skills/SKILL-CATALOG.md) | 62 skills chi tiết |
-| [WORKFLOW-CATALOG.md](.agent/docs/workflows/WORKFLOW-CATALOG.md) | 34 Workflows chi tiết |
+| [SKILL-CATALOG.md](.agent/docs/skills/SKILL-CATALOG.md) | 63 skills chi tiết |
+| [WORKFLOW-CATALOG.md](.agent/docs/workflows/WORKFLOW-CATALOG.md) | 36 Workflows chi tiết |
 | [Auto-Rule Discovery](.agent/systems/auto-rule-discovery.md) | 110 rules chi tiết |
 | [SYSTEMS-CATALOG.md](.agent/docs/systems/SYSTEMS-CATALOG.md) | 6 protocols (5 files + AOC) |
 
@@ -537,15 +539,14 @@ Time:     30 phút - 2 giờ
 
 - ✅ Auto-Rule Discovery Engine (3-layer detection)
 - ✅ Agent Registry (27 specialized agents)
-- ✅ 110 expert rules, 62 skills, 34 workflows
+- ✅ 110 expert rules, 63 skills, 36 workflows
 - ✅ Full documentation suite
 
 ### v5.1.0 (Planned — Q2 2026)
 
-- [ ] True parallel agent execution (pending IDE support)
-- [ ] Skill marketplace
+- [ ] Plugin architecture (extensible skill system)
 - [ ] Analytics dashboard (DX metrics visualization)
-- [ ] Multi-language CLI (bash + pwsh feature parity)
+- [ ] ML/AI deployment standards
 
 ---
 
@@ -571,7 +572,7 @@ Proprietary — All rights reserved.
 ```
 ┌──────────────────────────────────────────────┐
 │                                              │
-│  27 Agents. 62 Skills. 110 Rules. 6 Pipelines.│
+│  27 Agents. 63 Skills. 110 Rules. 6 Pipelines.│
 │  Copy. Prompt. Build. Deploy.                │
 │  95% AI. 5% You.                             │
 │                                              │

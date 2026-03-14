@@ -11,10 +11,10 @@
 | Section | Files | Description |
 |---------|-------|-------------|
 | [Agents](#agents) | 1 catalog + 8 guides | 27 specialized AI agents |
-| [Skills](#skills) | 1 catalog + 1 guide | 59 knowledge modules |
-| [Workflows](#workflows) | 1 catalog + 1 guide | 34 slash commands |
+| [Skills](#skills) | 1 catalog + 1 guide | 63 knowledge modules |
+| [Workflows](#workflows) | 1 catalog + 1 guide | 36 slash commands |
 | [Rules](#rules) | 1 catalog | 110 expert rules (11 categories) |
-| [Scripts](#scripts) | 1 catalog | 37 automation scripts |
+| [Scripts](#scripts) | 1 catalog | 54 automation scripts |
 | [Systems](#systems) | 1 catalog | 6 core protocols (5 files + AOC) |
 | [Processes](#processes) | 11 guides | Development workflows |
 | [Reference](#reference) | 8 docs | Policies, ADRs, migration |
@@ -35,22 +35,22 @@ Comprehensive documentation cho 27 specialized AI agents.
 
 ## Skills
 
-59 knowledge modules loaded bởi agents.
+63 knowledge modules loaded bởi agents.
 
 | Document | Description |
 |----------|-------------|
-| [SKILL-CATALOG.md](skills/SKILL-CATALOG.md) | Bảng tổng hợp 59 skills: ecosystem map, classification, agent mapping, statistics, loading protocol, contributing guide, troubleshooting |
+| [SKILL-CATALOG.md](skills/SKILL-CATALOG.md) | Bảng tổng hợp 63 skills: ecosystem map, classification, agent mapping, statistics, loading protocol, contributing guide, troubleshooting |
 | [SKILL-DISCOVERY.md](SKILL-DISCOVERY.md) | Cách AI tự động discover và load skills |
 
 ---
 
 ## Workflows
 
-34 slash command workflows.
+36 slash command workflows.
 
 | Document | Description |
 |----------|-------------|
-| [WORKFLOW-CATALOG.md](workflows/WORKFLOW-CATALOG.md) | Bảng tổng hợp 35 workflows: categories, usage guides, flow diagrams |
+| [WORKFLOW-CATALOG.md](workflows/WORKFLOW-CATALOG.md) | Bảng tổng hợp 36 workflows: categories, usage guides, flow diagrams |
 | [WORKFLOW-GUIDE.md](WORKFLOW-GUIDE.md) | Hướng dẫn sử dụng workflows |
 
 ---
@@ -67,11 +67,11 @@ Comprehensive documentation cho 27 specialized AI agents.
 
 ## Scripts
 
-37 automation scripts (20 core + 17 skill scripts).
+54 automation scripts (37 core + 17 skill scripts).
 
 | Document | Description |
 |----------|-------------|
-| [SCRIPT-CATALOG.md](scripts/SCRIPT-CATALOG.md) | Bảng tổng hợp 37 scripts (20 core + 17 skill): registry, invocation methods, pipeline dependencies, CLI reference, usage patterns, contributing guide |
+| [SCRIPT-CATALOG.md](scripts/SCRIPT-CATALOG.md) | Bảng tổng hợp 54 Scripts (37 core + 17 skill): registry, invocation methods, pipeline dependencies, CLI reference, usage patterns, contributing guide |
 
 ---
 
@@ -127,10 +127,10 @@ Existing documentation (pre-audit).
 ├── ARCHITECTURE.md          ← System architecture overview
 ├── CHANGELOG.md             ← Version history
 ├── agents/ (27)             ← Specialized AI agent definitions
-├── skills/ (59)             ← Knowledge modules
-├── workflows/ (34)          ← Slash command workflows
+├── skills/ (63)             ← Knowledge modules
+├── workflows/ (36)          ← Slash command workflows
 ├── rules/ (110)             ← Expert rules (11 categories)
-├── scripts/ (37)            ← Automation scripts (20 core + 17 skill)
+├── scripts/ (54)            ← Automation scripts (37 core + 17 skill)
 ├── systems/ (6)             ← Core protocols
 ├── docs/                    ← Documentation (this directory)
 │   ├── INDEX.md             ← You are here
@@ -147,5 +147,5 @@ Existing documentation (pre-audit).
 ---
 
 > **Antigravity-Core v5.0.0** — AI-Native Development OS  
-> 27 agents • 59 skills • 35 workflows • 110 rules • 37 scripts • 6 protocols  
+> 27 agents • 63 skills • 36 workflows • 110 rules • 54 Scripts • 6 protocols  
 > [GitHub](https://github.com/tuyenht/Antigravity-Core)

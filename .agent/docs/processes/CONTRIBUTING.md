@@ -28,7 +28,7 @@ cd Antigravity-Core
 ├── rules/        ← 110 expert rules (11 categories)
 ├── pipelines/    ← 6 pipeline chains (BUILD, ENHANCE, FIX, IMPROVE, SHIP, REVIEW)
 ├── systems/      ← 5 core protocols (+ Intent Router)
-├── scripts/      ← 37 automation scripts (20 core: 15 PS1 + 4 Bash + 1 Git hook | 17 skill: Python)
+├── scripts/      ← 54 automation scripts (37 core: 17 PS1 + 4 Bash + 1 Git hook | 17 skill: Python)
 ├── docs/         ← Documentation
 └── GEMINI.md     ← Master config (entry point)
 ```

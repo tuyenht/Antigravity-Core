@@ -1,19 +1,24 @@
 # Next.js Performance Optimization
 
-> **Version:** 2.0.0 | **Updated:** 2026-01-31  
-> **Next.js:** 14.x / 15.x  
+> **Version:** 3.0.0 | **Updated:** 2026-03-11  
+> **Next.js:** 16.x (LTS)  
 > **Priority:** P0 - Load for all Next.js performance tasks
 
 ---
 
-You are an expert in Next.js performance optimization.
+You are an expert in Next.js 16 performance optimization.
 
 ## Core Performance Principles
 
-- Optimize images and fonts
-- Minimize client-side JavaScript
-- Use proper caching strategies
-- Implement streaming for faster TTFB
+- Server Components by default — minimize client JavaScript
+- `cacheComponents: true` — cached Server Components (replaces PPR)
+- `staleTimes` — client-side Router Cache for instant navigation
+- `optimizePackageImports` — tree-shake barrel exports
+- `reactCompiler: true` — automatic memoization
+- `proxy.ts` — replaces middleware.ts (deprecated)
+- `next/font/local` preferred over CDN fonts
+- Strategic `<Suspense>` boundaries for streaming
+- No `export const dynamic = 'force-dynamic'` (incompatible with cacheComponents)
 
 ---
 
@@ -351,8 +356,8 @@ export async function POST(request: Request) {
 // Force static generation
 export const dynamic = 'force-static';
 
-// Force dynamic rendering
-export const dynamic = 'force-dynamic';
+// ❌ AVOID with cacheComponents: true — use router.refresh() instead
+// export const dynamic = 'force-dynamic';
 
 // Set revalidation time
 export const revalidate = 3600;  // 1 hour
@@ -759,16 +764,28 @@ const nextConfig = {
   // ==========================================
   
   experimental: {
-    // Partial Prerendering (Next.js 16 — stable)
-    ppr: true,
+    // Client Router Cache: instant navigation
+    staleTimes: {
+      dynamic: 30,   // Cache dynamic pages 30s on client
+      static: 180,   // Cache static pages 3min on client
+    },
     
-    // Optimized package imports
+    // Optimized package imports (tree-shaking)
     optimizePackageImports: [
+      'reactstrap',
+      'next-auth',
+      'bcryptjs',
       '@radix-ui/react-icons',
       'lucide-react',
       '@headlessui/react',
     ],
   },
+  
+  // Component Caching (replaces PPR)
+  cacheComponents: true,
+  
+  // React Compiler (auto-memoization)
+  reactCompiler: true,
   
   // ==========================================
   // HEADERS

@@ -1,10 +1,10 @@
 ---
 # Agent & System Feedback
-# Last Updated: 2026-01-16
+# Last Updated: 2026-03-13
 
 agent_effectiveness:
-  overall_rating: 9.5  # 0-10 scale
-  last_updated: "2026-01-16"
+  overall_rating: 9.2  # 0-10 scale (adjusted: data-drift found)
+  last_updated: "2026-03-13"
   
   ratings_by_category:
     planning:
@@ -36,6 +36,11 @@ agent_effectiveness:
       score: 8.5
       feedback: "Thorough but sometimes verbose. Could be more concise for simple tasks."
       improvement: "Add 'quick mode' option for simple requests"
+
+    data_integrity:
+      score: 7
+      feedback: "P0 audit found 30 stale count refs across 14 files. File dependency co-update protocol not consistently followed."
+      improvement: "Automate count-sync validation in CI"
 
 skill_usefulness:
   highly_valuable:  # 9-10/10
@@ -85,6 +90,17 @@ skill_usefulness:
       rating: 5
       reason: "Not our domain, could be removed"
       improvement: "Consider retiring this skill"
+
+  newly_valuable:  # Added since last review
+    - name: "velzon-admin"
+      rating: 9.5
+      reason: "Critical for BSWeb/BSAds admin panel development"
+      frequency: "Weekly"
+
+    - name: "context-hub-bridge"
+      rating: 8
+      reason: "External API documentation fetching via chub CLI"
+      frequency: "Monthly"
 
 workflow_effectiveness:
   most_used:
@@ -173,6 +189,20 @@ pain_points:
     current_solution: "Manual code review"
     desired_solution: "Coverage visualization"
 
+  data_integrity_drift:
+    description: "Component counts in docs drift from filesystem when adding skills/workflows"
+    severity: "High"
+    frequency: "Every addition"
+    current_solution: "Manual P0 audit found 30 stale refs (2026-03-13)"
+    desired_solution: "CI validation script that compares filesystem counts to project.json"
+
+  phase_final_not_executing:
+    description: "PHASE FINAL learning loop defined in all 6 pipelines but pipeline_sessions is empty"
+    severity: "High"
+    frequency: "Every session"
+    current_solution: "Manual memory updates"
+    desired_solution: "Make PHASE FINAL a mandatory checklist instead of passive instruction"
+
 success_stories:
   security_transformation:
     date: "2026-01-16"
@@ -180,7 +210,7 @@ success_stories:
     solution: "Comprehensive security audit + implementation"
     result: "Achieved 95/100 in 3 hours"
     satisfaction: 10
-   impact: "Production-ready security, industry top 5%"
+    impact: "Production-ready security, industry top 5%"
   
   performance_optimization:
     date: "2026-01-16"

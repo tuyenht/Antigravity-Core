@@ -1,8 +1,8 @@
 # Script Catalog — Antigravity-Core
 
 **Version:** 5.0.0  
-**Last Updated:** 2026-02-28  
-**Total Scripts:** 37 (20 core + 17 skill)
+**Last Updated:** 2026-03-13  
+**Total Scripts:** 54 (37 core + 17 skill)
 
 ---
 
@@ -25,7 +25,7 @@
 
 Scripts là các **automation tools** trong Antigravity-Core, chia thành 2 nhóm:
 
-1. **Core Scripts** (20) — `.agent/scripts/`. PowerShell (.ps1), Bash (.sh), Git hooks.
+1. **Core Scripts** (37) — `.agent/scripts/`. PowerShell (.ps1), Bash (.sh), Git hooks.
 2. **Skill Scripts** (17) — `.agent/skills/*/scripts/`. Python-based quality & audit tools.
 
 **Nguyên tắc:**
@@ -41,12 +41,13 @@ Scripts là các **automation tools** trong Antigravity-Core, chia thành 2 nhó
 |----------|:----:|:-----:|:-----:|-------|
 | 🔧 CLI & Detection | 4 | — | 4 | Health check, compliance, project detection |
 | 🔒 Security | 1 | 1 | 2 | Secret scan, vulnerability scan |
-| ⚡ Quality & Performance | 4 | 5 | 9 | Lint, test, performance, metrics |
-| 📦 Installation & Update | 6 | — | 6 | Install, update, version bump |
-| 🐧 Cross-Platform (Bash) | 5 | — | 5 | Linux/Mac equivalents + Git hook |
+| ⚡ Quality & Performance | 5 | 5 | 10 | Lint, test, performance, metrics, npm lint |
+| 📦 Installation & Update | 7 | — | 7 | Install, update, version bump, profile |
+| 🧪 Testing | 2 | — | 2 | Script syntax + system integrity validation |
+| 🐧 Cross-Platform (Bash) | 17+1 | — | 18 | 17 SH parity + 1 Git hook (pre-commit) |
 | 🎨 Design & UX Audit | — | 5 | 5 | UX, accessibility, mobile, design system |
 | 🔍 SEO & Validation | — | 6 | 6 | SEO, GEO, i18n, API, schema |
-| **Total** | **20** | **17** | **37** | |
+| **Total** | **37** | **17** | **54** | |
 
 ---
 
@@ -54,48 +55,72 @@ Scripts là các **automation tools** trong Antigravity-Core, chia thành 2 nhó
 
 ### 🔧 CLI & Detection Scripts
 
-| # | Script | Mục đích | Usage |
-|---|--------|----------|-------|
-| 1 | `health-check.ps1` | Kiểm tra sức khỏe hệ thống .agent | `.\agent.ps1 health` |
-| 2 | `validate-compliance.ps1` | Full compliance check trước deploy | `.\agent.ps1 validate` |
-| 3 | `detect-project.ps1` | Phát hiện tech stack của project | `.\agent.ps1 init` (internal) |
-| 4 | `discover-rules.ps1` | Scan project và suggest rules phù hợp | Internal use |
+| # | Script | Mục đích | Usage | SH Parity |
+|---|--------|----------|-------|:---------:|
+| 1 | `health-check.ps1` | Kiểm tra sức khỏe hệ thống .agent | `.\agent.ps1 health` | ✅ |
+| 2 | `validate-compliance.ps1` | Full compliance check trước deploy | `.\agent.ps1 validate` | ✅ |
+| 3 | `detect-project.ps1` | Phát hiện tech stack của project | `.\agent.ps1 init` (internal) | ✅ |
+| 4 | `discover-rules.ps1` | 3-layer rule engine + agent recommendation | Internal use | ✅ |
 
 ### 🔒 Security Scripts
 
-| # | Script | Mục đích | Usage |
-|---|--------|----------|-------|
-| 5 | `secret-scan.ps1` | Quét code tìm secrets/credentials | `.\agent.ps1 scan` |
+| # | Script | Mục đích | Usage | SH Parity |
+|---|--------|----------|-------|:---------:|
+| 5 | `secret-scan.ps1` | Quét code tìm secrets/credentials | `.\agent.ps1 scan` | ✅ |
 
 ### ⚡ Quality & Performance Scripts
 
-| # | Script | Mục đích | Usage |
-|---|--------|----------|-------|
-| 6 | `auto-heal.ps1` | Tự động fix lint, syntax, imports | `.\agent.ps1 heal` |
-| 7 | `performance-check.ps1` | Enforce performance budgets | `.\agent.ps1 perf` |
-| 8 | `dx-analytics.ps1` | Thu thập và hiển thị DX metrics | `.\agent.ps1 dx` |
-| 9 | `log-metrics.ps1` | Ghi metrics vào tracking file | Internal use |
+| # | Script | Mục đích | Usage | SH Parity |
+|---|--------|----------|-------|:---------:|
+| 6 | `auto-heal.ps1` | Tự động fix lint/type/imports + verify step | `.\agent.ps1 heal` | ✅ |
+| 7 | `performance-check.ps1` | Enforce performance budgets (Frontend/Backend) | `.\agent.ps1 perf` | ✅ |
+| 8 | `dx-analytics.ps1` | DX metrics dashboard (velocity, ROI, quality) | `.\agent.ps1 dx` | ✅ |
+| 9 | `log-metrics.ps1` | Ghi metrics JSONL vào tracking file | Internal use | ✅ |
+| 10 | `lint-npm-references.ps1` | Detect actionable npm → should be pnpm | CI / Direct | ✅ |
 
 ### 📦 Installation & Update Scripts
 
+| # | Script | Mục đích | Usage | SH Parity |
+|---|--------|----------|-------|:---------:|
+| 11 | `install-antigravity.ps1` | Cài đặt .agent vào project hiện có | `irm <url> \| iex` | ✅ |
+| 12 | `install-global.ps1` | Cài đặt global `agi` command | One-time setup | ✅ |
+| 13 | `update-antigravity.ps1` | Smart update (backup memory/config) | `agu` alias | ✅ |
+| 14 | `update-global.ps1` | Cập nhật global installation | `agug` alias | ✅ |
+| 15 | `update-ui-ux-pro-max.ps1` | Cập nhật UI-UX-Pro-Max từ upstream | `/update-ui-ux-pro-max` | ✅ |
+| 16 | `bump-version.ps1` | Tăng version và sync across files | After releases | ✅ |
+| 17 | `profile-functions.ps1` | PowerShell profile (agi/agu/agug aliases) | Dot-sourced | ✅ |
+
+### 🧪 Testing Scripts
+
 | # | Script | Mục đích | Usage |
 |---|--------|----------|-------|
-| 10 | `install-antigravity.ps1` | Cài đặt .agent vào project hiện có | `irm <url> \| iex` |
-| 11 | `install-global.ps1` | Cài đặt global `agi` command | One-time setup |
-| 12 | `update-antigravity.ps1` | Cập nhật .agent lên version mới | `pwsh -File .agent/scripts/update-antigravity.ps1` |
-| 13 | `update-global.ps1` | Cập nhật global installation | `agi update` |
-| 14 | `update-ui-ux-pro-max.ps1` | Cập nhật UI-UX-Pro-Max skill | `/update-ui-ux-pro-max` |
-| 15 | `bump-version.ps1` | Tăng version và sync across files | After releases |
+| 18 | `test-scripts.sh` | Validate .sh syntax, shebang, CRLF | `bash .agent/scripts/test-scripts.sh` |
+| 19 | `test-integrity.sh` | Count sync, version, parity, stale refs | `bash .agent/scripts/test-integrity.sh` |
 
-### 🐧 Cross-Platform Scripts
+### 🐧 Cross-Platform Scripts (100% Parity)
 
-| # | Script | PS1 Equivalent | Platform |
-|---|--------|----------------|----------|
-| 16 | `health-check.sh` | `health-check.ps1` | Linux/Mac |
-| 17 | `install-global.sh` | `install-global.ps1` | Linux/Mac |
-| 18 | `validate-compliance.sh` | `validate-compliance.ps1` | Linux/Mac |
-| 19 | `bump-version.sh` | `bump-version.ps1` | Linux/Mac |
-| 20 | `pre-commit` | — (Git hook) | All platforms |
+> All 17 PS1 scripts have verified Bash equivalents. 2 SH-only test scripts. 1 universal Git hook.
+
+| # | SH Script | PS1 Equivalent | Added |
+|---|-----------|----------------|-------|
+| 20 | `health-check.sh` | `health-check.ps1` | v4.x |
+| 21 | `install-global.sh` | `install-global.ps1` | v4.x |
+| 22 | `validate-compliance.sh` | `validate-compliance.ps1` | v4.x |
+| 23 | `bump-version.sh` | `bump-version.ps1` | v4.x |
+| 24 | `install-antigravity.sh` | `install-antigravity.ps1` | P2 |
+| 25 | `update-antigravity.sh` | `update-antigravity.ps1` | P2 |
+| 26 | `update-global.sh` | `update-global.ps1` | P2 |
+| 27 | `detect-project.sh` | `detect-project.ps1` | P2 |
+| 28 | `secret-scan.sh` | `secret-scan.ps1` | P2 |
+| 29 | `discover-rules.sh` | `discover-rules.ps1` | P4 |
+| 30 | `auto-heal.sh` | `auto-heal.ps1` | P4 |
+| 31 | `performance-check.sh` | `performance-check.ps1` | P4 |
+| 32 | `log-metrics.sh` | `log-metrics.ps1` | P4 |
+| 33 | `dx-analytics.sh` | `dx-analytics.ps1` | P4 |
+| 34 | `lint-npm-references.sh` | `lint-npm-references.ps1` | P4 |
+| 35 | `profile-functions.sh` | `profile-functions.ps1` | P4 |
+| 36 | `update-ui-ux-pro-max.sh` | `update-ui-ux-pro-max.ps1` | P4 |
+| 37 | `pre-commit` | — (Git hook) | All |
 
 ---
 
@@ -171,7 +196,10 @@ Scripts có thể được gọi qua **4 phương thức** khác nhau:
 | `api_validator.py` | REVIEW (conditional) | — | `/api-design` | ✅ |
 | `seo_checker.py` | REVIEW (conditional) | — | `/check` | ✅ |
 | `i18n_checker.py` | REVIEW (conditional) | — | `/i18n-check` | ✅ |
-| Install/Update scripts (6) | — | — | — | ✅ only |
+| Install/Update scripts (7) | — | — | — | ✅ only |
+| `lint-npm-references.ps1` | — | — | — | ✅ |
+| `test-scripts.sh` | — | — | — | ✅ |
+| `test-integrity.sh` | — | — | — | ✅ |
 
 ---
 
@@ -231,6 +259,10 @@ Scripts có thể được gọi qua **4 phương thức** khác nhau:
 | `bump-version.ps1` | `pwsh -File .agent/scripts/bump-version.ps1` |
 | `discover-rules.ps1` | Internal (called by auto-rule-discovery system) |
 | `log-metrics.ps1` | Internal (called by other scripts) |
+| `lint-npm-references.ps1` | CI lint or `pwsh -File .agent/scripts/lint-npm-references.ps1` |
+| `profile-functions.ps1` | Dot-sourced by `setup-profile.ps1` |
+| `test-scripts.sh` | `bash .agent/scripts/test-scripts.sh` |
+| `test-integrity.sh` | `bash .agent/scripts/test-integrity.sh` |
 
 ---
 

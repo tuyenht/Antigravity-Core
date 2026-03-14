@@ -1,6 +1,6 @@
 ---
 # Capability Boundaries & Domain Confidence
-# Last Updated: 2026-01-16
+# Last Updated: 2026-03-14
 # Scale: 0-100 (0=No knowledge, 50=Working knowledge, 80=Expert, 95+=Master)
 
 domains:
@@ -8,17 +8,17 @@ domains:
     laravel: 95
     django: 90
     fastapi: 90
-    nestjs: 75
+    nestjs: 80
     express: 85
-    overall: 90
+    overall: 91
 
   frontend_development:
     react: 90
     vue: 88
     svelte: 80
-    next_js: 85
+    next_js: 90
     inertia: 92
-    overall: 88
+    overall: 90
 
   mobile_development:
     react_native: 85
@@ -38,12 +38,12 @@ domains:
 
   devops:
     docker: 90
-    kubernetes: 78
+    kubernetes: 80
     ci_cd: 88
     terraform: 70
     aws: 75
     cloudflare: 85
-    overall: 80
+    overall: 82
 
   security:
     owasp_top_10: 95
@@ -93,9 +93,10 @@ expertise_areas:
     - "React + Inertia.js SPAs"
     - "Security hardening & OWASP"
     - "PostgreSQL optimization"
-    - "API design & documentation"
-    - "Technical documentation"
+    - "Next.js 16 LTS full-stack (BSWeb, BSAds)"
+    - "Velzon admin panel design fidelity"
     - "Code quality & standards"
+    - "AI-native development OS architecture"
   
   # Strong competence (70-84)
   strong:
@@ -137,12 +138,12 @@ confidence_by_task:
 learning_priorities:
   immediate:  # Next 1-3 months
     - name: "React 19 Compiler"
-      current: 70
-      target: 90
-      reason: "Latest React features for performance"
+      current: 85
+      target: 95
+      reason: "Stable in Next.js 16, auto-memoization production use"
     
     - name: "Advanced Kubernetes"
-      current: 78
+      current: 80
       target: 88
       reason: "Production deployment requirements"
     

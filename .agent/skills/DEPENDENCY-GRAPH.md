@@ -1,6 +1,6 @@
 # Skill Dependency & Consolidation Graph
 
-> **Version:** 5.0.0 | **Skills:** 59 | **Last Updated:** 2026-02-26
+> **Version:** 5.1.0 | **Skills:** 60 | **Last Updated:** 2026-03-12
 > **Purpose:** Visual map of skill relationships, consolidations, and dependency chains.
 
 ---
@@ -130,6 +130,10 @@ graph LR
         powershell-windows
     end
 
+    subgraph "🌐 External Knowledge"
+        context-hub-bridge
+    end
+
     subgraph "🌍 Growth"
         seo-fundamentals
         geo-fundamentals
@@ -161,6 +165,7 @@ When a skill is loaded, these related skills should also be considered:
 | `architecture-mastery` | `api-patterns`, `database-design` | `app-builder` |
 | `testing-mastery` | `testing-patterns`, `tdd-workflow` | `webapp-testing` |
 | `app-builder` | `brainstorming`, `plan-writing`, `architecture-mastery` | — |
+| `context-hub-bridge` | `mcp-builder` | All backend/frontend skills |
 
 ---
 
@@ -186,6 +191,9 @@ When a skill is loaded, these related skills should also be considered:
 4. MASTERY (loaded instead of originals)
    ├── architecture-mastery ← replaces architecture
    └── testing-mastery ← replaces testing-patterns + tdd + contract
+
+5. EXTERNAL-KNOWLEDGE-TRIGGERED
+   └── context-hub-bridge ← agent needs third-party API docs
 ```
 
 ---
@@ -198,7 +206,7 @@ When a skill is loaded, these related skills should also be considered:
 | `testing-patterns` | ⚠️ Deprecated | `testing-mastery` |
 | `tdd-workflow` | ⚠️ Deprecated | `testing-mastery` |
 | `contract-testing` | ⚠️ Deprecated | `testing-mastery` |
-| All other 55 skills | ✅ Active | — |
+| All other 56 skills | ✅ Active | — |
 
 ---
 

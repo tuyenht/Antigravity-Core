@@ -1,6 +1,6 @@
 # Antigravity-Core Architecture
 
-> **Version:** 5.0.0 | **Last Updated:** 2026-03-06
+> **Version:** 5.0.1 | **Last Updated:** 2026-03-14
 
 ---
 
@@ -27,8 +27,8 @@ Antigravity-Core is an **AI-Native Development Operating System** — a structur
 │  LAYER 3: PIPELINE CHAINS (pipelines/)                           │
 │  → Auto-sequence workflows + agents for end-to-end execution     │
 ├──────────────────────────────────────────────────────────────────┤
-│  ENGINE: 27 Agents │ 62 Skills │ 110 Rules │ 35 Workflows         │
-│          37 Scripts │ Memory │ Standards │ Templates              │
+│  ENGINE: 27 Agents │ 63 Skills │ 110 Rules │ 36 Workflows         │
+│          50 Scripts │ Memory │ Standards │ Templates              │
 │  → Reference: reference-catalog.md (lazy-loaded)                 │
 └──────────────────────────────────────────────────────────────────┘
 ```
@@ -48,10 +48,10 @@ Antigravity-Core is an **AI-Native Development Operating System** — a structur
 │
 ├── pipelines/   (6)       ← Pipeline Chains (BUILD, ENHANCE, FIX, IMPROVE, SHIP, REVIEW)
 ├── agents/      (27)      ← Agent role definitions
-├── workflows/   (35)      ← Automated process definitions (used by pipelines)
-├── skills/      (62)      ← Specialized knowledge modules
+├── workflows/   (36)      ← Automated process definitions (used by pipelines)
+├── skills/      (63)      ← Specialized knowledge modules
 ├── rules/       (110)     ← Expert coding standards
-├── scripts/     (20 core) ← PowerShell + Bash automation (+ 17 skill scripts in skills/*/scripts/)
+├── scripts/     (37 core) ← PowerShell + Bash automation (+ 13 skill scripts in skills/*/scripts/)
 ├── systems/               ← Core protocols (Intent Router, RBA, orchestration, auto-discovery)
 ├── memory/                ← Persistent context & learning
 ├── templates/             ← Agent & project templates
@@ -101,7 +101,7 @@ Auto-sequenced end-to-end workflows triggered by the Intent Router.
 | `SHIP.md` | 🚀 Triển khai | Pre-flight → Build → Deploy → Post-deploy | security-auditor, devops-engineer |
 | `REVIEW.md` | 📋 Đánh giá | Scan (parallel) → Report → Action | ai-code-reviewer, security-auditor |
 
-### 3. Workflows (35 processes)
+### 3. Workflows (36 processes)
 
 Slash-command triggered automation pipelines. Also used internally by Pipeline Chains.
 
@@ -117,7 +117,7 @@ Slash-command triggered automation pipelines. Also used internally by Pipeline C
 | **Design** | `/ui-ux-pro-max`, `/update-ui-ux-pro-max`, `/admin-component`, `/admin-dashboard`, `/admin-settings` |
 | **System** | `/full-pipeline`, `/sync-admin`, `/init-docs` |
 
-### 4. Skills (62 modules)
+### 4. Skills (63 modules)
 
 Self-contained knowledge domains with SKILL.md instruction files.
 
@@ -132,6 +132,7 @@ Self-contained knowledge domains with SKILL.md instruction files.
 | **AI/ML** | ai-sdk-expert, ai-ml-pipeline, vector-databases, mcp-builder |
 | **Systems** | rust-patterns, go-patterns |
 | **Design** | ui-ux-pro-max, frontend-design |
+| **Context** | context-hub-bridge |
 | **Meta** | clean-code, architecture-mastery, brainstorming, plan-writing, behavioral-modes |
 
 ### 5. Rules (110 files, 11 categories)
@@ -145,9 +146,9 @@ Expert-level coding standards auto-loaded by context detection.
 | backend-frameworks/ | 12 | `.php`, `.py`, framework configs |
 | frontend-frameworks/ | 7 | `.vue`, `.svelte`, `.astro` |
 | typescript/ | 13 | `.ts`, `.tsx` |
-| nextjs/ | 13 | `next.config.*` |
+| nextjs/ | 15 | `next.config.*` |
 | python/ | 14 | `.py`, requirements |
-| web-development/ | 14 | `.html`, `.css`, `.js` |
+| web-development/ | 12 | `.html`, `.css`, `.js` |
 | agentic-ai/ | 12 | Debug, test, review keywords |
 | standards/ | 4 | Always active (1 general + 3 framework conventions) |
 | shared/ | 1 | Common utilities |

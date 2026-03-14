@@ -11,7 +11,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ### 🧭 Zero-Confusion Architecture — Intent Router + Pipeline Chains
 
-**Major architectural reorganization. All 27 agents, 59 skills, 110 rules, 34 workflows preserved.**
+**Major architectural reorganization. All 27 agents, 63 skills, 110 rules, 36 workflows preserved.**
 
 ---
 
@@ -36,7 +36,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 ### Architecture
 
 ```
-BEFORE: User → GEMINI.md (22KB) → 35 workflows (confusion)
+BEFORE: User → GEMINI.md (22KB) → 36 workflows (confusion)
 AFTER:  User → GEMINI.md (6KB) → Intent Router → 6 Pipelines → Auto-chain workflows
 ```
 
@@ -66,7 +66,7 @@ AFTER:  User → GEMINI.md (6KB) → Intent Router → 6 Pipelines → Auto-chai
 
 ### 🚀 SDLC Process Upgrade & Team Pipeline v2.0
 
-**27 agents, 59 skills, 37 workflows, 129 rules, 37 scripts, 11 process docs.**
+**27 agents, 63 skills, 36 workflows, 110 rules, 54 Scripts, 11 process docs.**
 
 ---
 
@@ -94,7 +94,7 @@ AFTER:  User → GEMINI.md (6KB) → Intent Router → 6 Pipelines → Auto-chai
 
 ### 🔧 Full System Audit & Expert Panel Fixes
 
-**4-round deep audit verifying all 27 agents, 59 skills, 37 workflows, 129 rules.**
+**4-round deep audit verifying all 27 agents, 63 skills, 36 workflows, 110 rules.**
 
 ---
 
@@ -482,15 +482,51 @@ We follow [Semantic Versioning](https://semver.org/):
 
 ---
 
+## [5.0.1] - 2026-03-14
+
+### 🔧 7-Dimension Audit + P0-P4 Integrity Sync
+
+**Full system forensic audit across 7 dimensions. 13 findings resolved.**
+
+---
+
+### Fixed
+
+- **reference-catalog.md** — Skills 59→63, Workflows 35→36, Scripts 37→37+13 skill (stale from pre-P0)
+- **README.md** — `standards/ (25)→(4)`, `systems/ (5)→(6)`, automation scripts 54→50
+- **project.json** — Skill scripts 17→13 (actual filesystem count), total scripts 54→50
+- **ARCHITECTURE.md** — `nextjs/ (13)→(15)`, `web-development/ (14)→(12)`, scripts 54→50
+- **learning-patterns.yaml** — Broken line L201 (`"high-perf\n\norming"` → `"high-performing"`)
+- **feedback.yaml** — YAML indent error L213 (3 spaces → 4 spaces)
+
+### Changed
+
+- **capability-boundaries.yaml** — Q1 2026 refresh: NestJS 75→80, Next.js 85→90, K8s 78→80
+- **tech-radar.yaml** — React 19 Compiler trial→ADOPT, OpenTelemetry trial→ADOPT, updated trial dates
+- **user-profile.yaml** — Added BSWeb/BSAds projects, updated recent_focus, added Next.js 16 to stack
+- **project.json metrics** — health 95→92, consistency 98→93, integration 90→85 (evidence-based)
+- **README.md roadmap** — v5.1.0 scope: 3 focused items (Plugin + Analytics + ML/AI)
+
+### Security
+
+- **validate.yml** — Pinned `actions/checkout` to SHA (`b4ffde65...`)
+- **release.yml** — Pinned `actions/checkout` + `softprops/action-gh-release` to SHA
+
+### Verified
+
+- All component counts: filesystem = project.json ✅
+- All 5 modified YAML files: valid ✅
+- project.json: valid JSON ✅
+- PHASE FINAL: learning entry logged (#2)
+
+---
+
 ## Upcoming (Planned)
 
 ### v5.1.0 (Estimated: Q2 2026)
-- [ ] Plugin architecture
-- [ ] Skill marketplace
-- [ ] Analytics dashboard
+- [ ] Plugin architecture (extensible skill system)
+- [ ] Analytics dashboard (DX metrics visualization)
 - [ ] ML/AI deployment standards
-- [ ] SwiftUI conventions (native iOS)
-- [ ] Jetpack Compose conventions (native Android)
 
 ---
 
@@ -518,6 +554,7 @@ We follow [Semantic Versioning](https://semver.org/):
 
 ---
 
+[5.0.1]: https://github.com/tuyenht/Antigravity-Core/releases/tag/v5.0.1
 [5.0.0]: https://github.com/tuyenht/Antigravity-Core/releases/tag/v5.0.0
 [4.1.1]: https://github.com/tuyenht/Antigravity-Core/releases/tag/v4.1.1
 [4.1.0]: https://github.com/tuyenht/Antigravity-Core/releases/tag/v4.1.0

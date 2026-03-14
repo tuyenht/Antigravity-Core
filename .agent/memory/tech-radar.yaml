@@ -1,6 +1,6 @@
 ---
 # Tech Radar - Technology Adoption Strategy
-# Last Updated: 2026-01-16
+# Last Updated: 2026-03-14
 # Inspired by ThoughtWorks Tech Radar
 
 adopt:
@@ -62,38 +62,36 @@ adopt:
   - name: "Next.js 16"
     category: "Frontend Frameworks"
     reason: "LTS release (Oct 2025): Cache Components, Turbopack default, React Compiler stable, proxy.ts, DevTools MCP"
-    confidence: 85
+    confidence: 90
     adoption_date: "2025-10"
+
+  - name: "React 19 Compiler"
+    category: "Frontend"
+    reason: "Automatic memoization, stable in React 19.2 + Next.js 16. Production-proven in BSWeb/BSAds."
+    confidence: 88
+    adoption_date: "2026-03"
+
+  - name: "OpenTelemetry"
+    category: "Observability"
+    reason: "CNCF graduated project. Vendor-neutral tracing standard. Industry adoption critical mass reached."
+    confidence: 82
+    adoption_date: "2026-03"
 
 trial:
   # Technologies to experiment with in production
-  - name: "React 19 Compiler"
-    category: "Frontend"
-    reason: "Automatic memoization, performance gains"
-    trial_started: "2026-01"
-    expected_decision: "2026-03"
-    risks: "New, may have edge cases"
-  
   - name: "Terraform"
     category: "Infrastructure as Code"
     reason: "Multi-cloud support, declarative"
     trial_started: "2025-12"
-    expected_decision: "2026-02"
-    risks: "Learning curve, state management"
+    expected_decision: "2026-06"
+    risks: "Learning curve, state management. No pilot project yet."
   
   - name: "Vector Databases (Pinecone/Weaviate)"
     category: "Databases"
     reason: "AI/ML feature requirements"
     trial_started: "2026-01"
-    expected_decision: "2026-04"
+    expected_decision: "2026-06"
     risks: "Pricing, new technology"
-  
-  - name: "OpenTelemetry"
-    category: "Observability"
-    reason: "Vendor-neutral tracing standard"
-    trial_started: "2025-11"
-    expected_decision: "2026-02"
-    risks: "Complexity, overhead"
   
   - name: "Bun Runtime"
     category: "JavaScript Runtime"
@@ -236,7 +234,7 @@ decision_criteria:
     - "Technical debt accumulating"
 
 review_schedule:
-  next_review: "2026-04-16"  # Quarterly
+  next_review: "2026-06-14"  # Quarterly
   review_process:
     - "Assess trial projects"
     - "Review hold decisions"

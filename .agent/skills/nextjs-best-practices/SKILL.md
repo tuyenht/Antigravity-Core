@@ -67,6 +67,7 @@ Does it need...?
 | `loading.tsx` | Loading state |
 | `error.tsx` | Error boundary |
 | `not-found.tsx` | 404 page |
+| `proxy.ts` | Network proxy (auth guard, redirects) — replaces `middleware.ts` |
 
 ### Route Organization
 
@@ -112,6 +113,16 @@ Does it need...?
 - Dynamic imports for heavy components
 - Route-based code splitting (automatic)
 - Analyze with bundle analyzer
+
+### Performance Config (next.config.ts)
+
+| Config | Layer | Purpose |
+|--------|-------|---------|
+| `reactCompiler: true` | Build | Auto-memoization (no manual `useMemo`) |
+| `cacheComponents: true` | Runtime | Cached Server Components |
+| `staleTimes: { dynamic: 30, static: 180 }` | Client | Router Cache for instant navigation |
+| `optimizePackageImports: [...]` | Build | Tree-shake barrel exports |
+| `output: 'standalone'` | Build | Docker-ready minimal output |
 
 ---
 
@@ -180,6 +191,9 @@ Does it need...?
 | Ignore error boundaries | Use error.tsx |
 | Large client bundles | Dynamic imports |
 | Read locale cookie in `useState` | Read on server via `cookies()`, pass as props |
+| Use `middleware.ts` | Use `proxy.ts` (Next.js 16) |
+| Use `force-dynamic` with `cacheComponents` | Use `router.refresh()` for cache busting |
+| Google Fonts via CDN `<link>` | `next/font/local` or `next/font/google` |
 
 ---
 

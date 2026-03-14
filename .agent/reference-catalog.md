@@ -1,6 +1,6 @@
 # 📚 Antigravity-Core — Reference Catalog
 
-> **Version:** 5.0.0 | **Updated:** 2026-02-27
+> **Version:** 5.0.1 | **Updated:** 2026-03-14
 > **Role:** Quick-reference index for AI lazy-loading — NOT a runtime system.
 > **Loaded by:** GEMINI.md § 6 (on-demand only)
 > **Runtime systems:** `systems/agent-registry.md`, `systems/auto-rule-discovery.md`, `systems/orchestration-engine.md`
@@ -13,10 +13,10 @@
 |-----------|:-----:|-----------------|:---:|
 | **Agents** | 27 | `systems/agent-registry.md` | § 1 below |
 | **Rules** | 110 | `systems/auto-rule-discovery.md` | § 2 below |
-| **Skills** | 59 | Agent frontmatter `skills:` field | § 3 below |
+| **Skills** | 63 | Agent frontmatter `skills:` field | § 3 below |
 | **Pipelines** | 6 | `pipelines/*.md` | GEMINI.md § 1 |
-| **Workflows** | 35 | `workflows/*.md` | GEMINI.md § 9 |
-| **Scripts** | 37 | `scripts/` + `skills/*/scripts/` | § 5 below |
+| **Workflows** | 36 | `workflows/*.md` | GEMINI.md § 9 |
+| **Scripts** | 37 + 13 skill | `scripts/` + `skills/*/scripts/` | § 5 below |
 | **Systems** | 6 | `systems/*.md` | ARCHITECTURE.md |
 
 ---
@@ -66,7 +66,7 @@
 
 ---
 
-## 3. Skills Inventory (59 Skills)
+## 3. Skills Inventory (63 Skills)
 
 | Domain | Count | Key Skills |
 |--------|:-----:|-----------|

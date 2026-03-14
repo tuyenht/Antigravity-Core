@@ -1,6 +1,6 @@
 ---
 # Learning Patterns & Lessons
-# Last Updated: 2026-01-16
+# Last Updated: 2026-03-13
 
 successful_approaches:
   security_optimization:
@@ -86,6 +86,59 @@ failed_patterns:
     correction: "Document common patterns, link to official docs for edge cases"
     avoid: "Trying to replace official documentation"
 
+  v5_zero_confusion_architecture:
+    date: "2026-02-26"
+    context: "Migrating from v4.x task-based to v5.0 Intent Router + Pipeline Chains"
+    approach:
+      - "Slimmed GEMINI.md from 22KB to 6KB"
+      - "Created Intent Router as single entry point"
+      - "Built 6 Pipeline Chains for end-to-end automation"
+      - "Extracted lookup tables to reference-catalog.md (lazy-loaded)"
+    results:
+      - "71% reduction in context footprint"
+      - "Zero-confusion request routing"
+    lessons:
+      - "Slim entry points with lazy loading outperform monolithic configs"
+      - "Intent classification reduces 35-workflow confusion to 6 clear paths"
+    reusable:
+      - "3-layer architecture pattern (Slim Config → Router → Pipeline Chains)"
+      - "Lazy loading for reference data"
+
+  velzon_admin_fidelity:
+    date: "2026-03-06"
+    context: "Building high-fidelity Velzon admin panels for BSWeb and BSAds"
+    approach:
+      - "COPY-NOT-REGENERATE mandate for original Velzon HTML"
+      - "3-layer auth source architecture for cross-framework consistency"
+      - "Platinum Shell Audit Protocol with 15-attribute checklist"
+    results:
+      - "100% visual parity with original Velzon design"
+      - "Reusable Next.js standalone template"
+    lessons:
+      - "Pixel-perfect adaptation requires original HTML as source of truth"
+      - "Font stacks need DRY architecture with CJK coverage from design phase"
+    reusable:
+      - "Shell Audit Protocol"
+      - "Global Font System (Inter + CJK)"
+
+  data_integrity_p0:
+    date: "2026-03-13"
+    context: "P0 Data Integrity Sync — found 30 stale count refs across 14 files"
+    approach:
+      - "Filesystem count audit with PowerShell"
+      - "Multi-pass grep sweep for old counts"
+      - "User-requested re-check caught 14 additional stale refs"
+    results:
+      - "30 stale refs fixed across 14 files"
+      - "Final sweep: 0 remaining mismatches"
+    lessons:
+      - "First pass always misses embedded refs in README badges, mermaid, ASCII art"
+      - "File dependency co-update protocol needs CI enforcement, not just docs"
+      - "Always do 2 passes minimum for count corrections"
+    reusable:
+      - "PowerShell count audit script pattern"
+      - "Multi-pattern grep sweep for stale refs"
+
 new_discoveries:
   react_19_compiler:
     date: "2026-01-16"
@@ -145,9 +198,7 @@ experimentation_results:
 
 best_practices_learned:
   documentation:
-    - "Start with existing high-perf
-
-orming content"
+    - "Start with existing high-performing content"
     - "Use examples liberally"
     - "Link to official docs for depth"
     - "Keep patterns DRY (Don't Repeat Yourself)"
@@ -218,13 +269,22 @@ continuous_improvement:
 # Each entry records what worked / what failed for evolution.
 # =================================================================
 pipeline_sessions:
-  # Example entry (pipelines append here):
-  # - date: "2026-02-26"
-  #   pipeline: "BUILD"
-  #   project: "my-app"
-  #   tech_stack: "Next.js"
-  #   what_worked: "Scaffold was fast, tests generated cleanly"
-  #   what_failed: "ESLint config conflicts with Prettier"
-  #   user_friction: "None"
-  #   time_taken: "25 min"
-  #   improvement_idea: "Auto-detect Prettier and adjust ESLint config"
+  - date: "2026-03-13"
+    pipeline: "REVIEW"
+    project: "antigravity-core"
+    tech_stack: "AI OS (meta-system)"
+    what_worked: "PowerShell count audit scripts, multi-pass grep sweep"
+    what_failed: "First pass missed 14 stale refs in README badges/mermaid/ASCII, caught by user-requested re-check"
+    user_friction: "None — user trusted the process"
+    time_taken: "~30 min (P0 Data Integrity + P1 planning)"
+    improvement_idea: "Create CI validation script to auto-detect count drift"
+
+  - date: "2026-03-14"
+    pipeline: "REVIEW"
+    project: "antigravity-core"
+    tech_stack: "AI OS (meta-system)"
+    what_worked: "7-dimension systematic audit, parallel filesystem counting, pre-loaded prompt pattern"
+    what_failed: "reference-catalog.md drift missed in P0 session (2026-03-13)"
+    user_friction: "None"
+    time_taken: "~85 min (P0-P4)"
+    improvement_idea: "Add reference-catalog.md to CI count-sync validation"

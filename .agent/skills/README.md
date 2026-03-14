@@ -150,6 +150,16 @@ skills: clean-code, security-audit, performance-profiling
 
 ---
 
+### External Knowledge Skills
+
+**context-hub-bridge** - Context Hub integration for external API docs
+- When to use: Agent needs third-party API/SDK documentation (Stripe, OpenAI, etc.)
+- Key concepts: `chub search/get`, incremental fetch, annotations, quality feedback
+- Agents: All agents that write code using external APIs
+- Dependency: Requires `npm install -g @aisuite/chub`
+
+---
+
 ### Design Skills
 
 **frontend-design** - UI/UX principles

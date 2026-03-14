@@ -38,11 +38,9 @@ priority: P1 - Load when Next.js 16+ detected
 **Fine-grained caching control with instant navigation.**
 
 ```typescript
-// next.config.js
-module.exports = {
-  experimental: {
-    cacheComponents: true,
-  },
+// next.config.ts
+const nextConfig = {
+  cacheComponents: true,
 };
 
 // app/dashboard/page.tsx
@@ -118,38 +116,64 @@ export const config = {
 
 ---
 
-## 🔄 Partial Prerendering (PPR) — Stable in Next.js 16
+## ⚡ Performance Configuration (Next.js 16)
+
+**Standard `next.config.ts` for maximum performance:**
 
 ```typescript
-// next.config.js
-module.exports = {
+import type { NextConfig } from "next";
+
+const nextConfig: NextConfig = {
+  // ── Core ─────────────────────────────────────────────────
+  reactCompiler: true,            // Auto-memoization (React 19.2)
+  output: 'standalone',           // Docker-ready minimal build
+
+  // ── Component Caching (replaces PPR) ──────────────────
+  cacheComponents: true,          // Cached Server Components
+
+  // ── Images ───────────────────────────────────────────────
+  images: {
+    formats: ['image/avif', 'image/webp'],
+  },
+
+  // ── Experimental Performance ───────────────────────────
   experimental: {
-    ppr: true,
+    // Client Router Cache: reduce refetches on navigation
+    staleTimes: {
+      dynamic: 30,   // Cache dynamic pages 30s on client
+      static: 180,   // Cache static pages 3min on client
+    },
+    // Tree-shake large packages for smaller bundles
+    optimizePackageImports: [
+      'reactstrap',
+      'next-auth',
+      'bcryptjs',
+    ],
+  },
+
+  // ── Build Analysis ───────────────────────────────────────
+  logging: {
+    fetches: {
+      fullUrl: true,
+      hmrRefreshes: true,
+    },
   },
 };
 
-// ✅ PPR: Static shell + dynamic content
-import { Suspense } from 'react';
-
-export default function Page() {
-  return (
-    <div>
-      {/* Static content - prerendered */}
-      <h1>Dashboard</h1>
-      <nav>...</nav>
-
-      {/* Dynamic content - streamed */}
-      <Suspense fallback={<Skeleton />}>
-        <DynamicUserData />
-      </Suspense>
-
-      <Suspense fallback={<Loading />}>
-        <RecentActivity />
-      </Suspense>
-    </div>
-  );
-}
+export default nextConfig;
 ```
+
+> [!WARNING]
+> **`cacheComponents: true` is incompatible with `export const dynamic = 'force-dynamic'`.**
+> Remove all `force-dynamic` route segment configs. Use `router.refresh()` for cache busting instead.
+
+| Config | Purpose | Layer |
+|--------|---------|-------|
+| `reactCompiler` | Auto-memoization, eliminates manual `useMemo`/`useCallback` | Build |
+| `cacheComponents` | Cached Server Components with granular invalidation | Runtime |
+| `staleTimes` | Client-side Router Cache for instant back/forward navigation | Client |
+| `optimizePackageImports` | Tree-shake barrel exports for smaller bundles | Build |
+| `logging.fetches` | Full URL + HMR logs for debugging data flow | Dev |
 
 ---
 
@@ -476,12 +500,15 @@ async function Page() {
 
 **Next.js 16 Specific:**
 - [ ] Use `proxy.ts` instead of `middleware.ts`
-- [ ] Enable Cache Components for instant navigation
-- [ ] Enable PPR for mixed static/dynamic pages
+- [ ] Enable `cacheComponents: true` for cached Server Components
+- [ ] Configure `staleTimes` for instant client navigation
+- [ ] Enable `optimizePackageImports` for smaller bundles
 - [ ] Use `updateTag()` for efficient cache invalidation
 - [ ] Enable Turbopack filesystem caching
 - [ ] Leverage React 19.2 View Transitions for smooth UX
 - [ ] Enable DevTools MCP for AI-assisted debugging
+- [ ] Remove all `export const dynamic = 'force-dynamic'` (incompatible with `cacheComponents`)
+- [ ] Use `next/font/local` or `next/font/google` instead of CDN `<link>` tags
 
 **General (see `rules/nextjs/` for details):**
 - [ ] Server Components by default

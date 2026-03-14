@@ -1,6 +1,6 @@
 # GEMINI.md - Maestro Configuration
 
-> **Version 5.0.0** - Maestro AI Development Orchestrator
+> **Version 5.0.1** - Maestro AI Development Orchestrator
 > This file defines how the AI behaves in this workspace.
 
 ---
@@ -126,11 +126,31 @@ Rules loaded automatically based on context. See `systems/auto-rule-discovery.md
 
 Scripts: See `reference-catalog.md` § 6 for full script list.
 
-### 🧬 Post-Pipeline Learning (MANDATORY)
-After EVERY pipeline completes, you MUST execute the **PHASE FINAL** defined at the bottom of each pipeline file:
-1. **Record** what worked / what failed → append to `memory/learning-patterns.yaml` under `pipeline_sessions:`
-2. **Increment** `project.json → usage_tracking.pipelines_used.{PIPELINE} += 1`
-3. This phase is **SILENT** — no output to user, just background logging.
+### 🧬 Post-Pipeline Learning — ENFORCED QUALITY GATE
+
+> ⛔ **STOP GATE:** You are FORBIDDEN from closing any pipeline without completing this checklist.
+> Failure to execute PHASE FINAL is a **Quality Gate violation**.
+
+**Trigger:** After EVERY pipeline completes (BUILD/ENHANCE/FIX/IMPROVE/SHIP/REVIEW).
+
+**Mandatory Actions (3 steps, ~30 seconds):**
+
+```yaml
+phase_final_checklist:
+  step_1_record:
+    action: "Append entry to memory/learning-patterns.yaml → pipeline_sessions:"
+    fields: [date, pipeline, project, tech_stack, what_worked, what_failed, time_taken, improvement_idea]
+    
+  step_2_increment:
+    action: "Increment project.json → usage_tracking.pipelines_used.{PIPELINE} += 1"
+    
+  step_3_confirm:
+    action: "Output confirmation block to user"
+    format: "🧬 PHASE FINAL: Logged to learning-patterns.yaml | Pipeline: {NAME} | #{count}"
+```
+
+**Why visible output:** This gate was previously marked "SILENT" and was never executed.
+The confirmation line ensures no pipeline silently skips the learning loop.
 
 ---
 
@@ -198,7 +218,7 @@ When user uses a slash command directly, BYPASS Intent Router:
 /init-docs                       → Phase 0 full docs standardization (1 lần/project)
 ```
 
-All 35 workflows remain accessible via their original slash commands.
+All 36 workflows remain accessible via their original slash commands.
 
 ---
 
