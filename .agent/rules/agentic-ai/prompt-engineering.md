@@ -56,6 +56,29 @@ You are a [ROLE] with expertise in [DOMAIN].
 
 ---
 
+## Context-First Protocol
+
+*Principle: "Read before you write." — All relevant context (skills, rules, KIs, project configs) MUST be read and verified before generating output.*
+
+### Pattern
+```markdown
+"Before responding, read these files in order:
+  1. [project_config] — current system state
+  2. [relevant_skill.md] — domain expertise
+  3. [reference_example] — quality calibration
+Then proceed with the task."
+```
+
+### Anti-Patterns
+- ❌ **Inline Context Dump**: Explaining expertise inside every prompt instead of packaging it into reusable `.md` files
+- ❌ **Assumption-Driven Generation**: Generating output without verifying current state
+- ❌ **Context Amnesia**: Ignoring available KIs and skills that already contain needed information
+
+### Connection
+Enforced by **Singularity Protocol §2 (Ecosystem Awareness)**: *"Before generating any solution, you MUST actively interrogate the context."*
+
+---
+
 ## Model-Specific Patterns
 
 ### Claude (Anthropic)

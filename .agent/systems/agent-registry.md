@@ -1,6 +1,6 @@
-# 🤖 Agent Registry
+﻿# 🤖 Agent Registry
 
-> **Version:** 5.0.0 | **Updated:** 2026-03-01  
+> **Version:** 5.0.1 | **Updated:** 2026-03-01  
 > **Purpose:** Machine-readable capability registry for all 27 agents  
 > **Priority:** P0 — Required by Orchestration Engine
 
@@ -567,8 +567,8 @@ FUNCTION selectAgents(request, projectContext, discoveredRules):
 
 ---
 
-**Version:** 5.0.0  
-**System:** Antigravity-Core v5.0.0  
+**Version:** 5.0.1  
+**System:** Antigravity-Core v5.0.1  
 **Updated:** 2026-03-01
 
 > **See also:** [Capability Matrix](../agents/CAPABILITY-MATRIX.md) | [Orchestration Engine](orchestration-engine.md) | [Agent Catalog](../docs/agents/AGENT-CATALOG.md) | [CONTRIBUTING](../docs/processes/CONTRIBUTING.md)

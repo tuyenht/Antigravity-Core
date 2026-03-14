@@ -28,7 +28,7 @@ Antigravity-Core is an **AI-Native Development Operating System** — a structur
 │  → Auto-sequence workflows + agents for end-to-end execution     │
 ├──────────────────────────────────────────────────────────────────┤
 │  ENGINE: 27 Agents │ 63 Skills │ 110 Rules │ 36 Workflows         │
-│          50 Scripts │ Memory │ Standards │ Templates              │
+│          54 Scripts │ Memory │ Standards │ Templates              │
 │  → Reference: reference-catalog.md (lazy-loaded)                 │
 └──────────────────────────────────────────────────────────────────┘
 ```
@@ -51,7 +51,7 @@ Antigravity-Core is an **AI-Native Development Operating System** — a structur
 ├── workflows/   (36)      ← Automated process definitions (used by pipelines)
 ├── skills/      (63)      ← Specialized knowledge modules
 ├── rules/       (110)     ← Expert coding standards
-├── scripts/     (37 core) ← PowerShell + Bash automation (+ 13 skill scripts in skills/*/scripts/)
+├── scripts/     (37 core) ← PowerShell + Bash automation (+ 17 skill scripts in skills/*/scripts/)
 ├── systems/               ← Core protocols (Intent Router, RBA, orchestration, auto-discovery)
 ├── memory/                ← Persistent context & learning
 ├── templates/             ← Agent & project templates

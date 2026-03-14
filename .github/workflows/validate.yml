@@ -90,11 +90,11 @@ jobs:
             errors=$((errors + 1))
           fi
 
-          # RULES-INDEX.md
-          if grep -q "$VERSION" .agent/rules/RULES-INDEX.md; then
-            echo "  ✅ RULES-INDEX.md"
+          # reference-catalog.md
+          if grep -q "$VERSION" .agent/reference-catalog.md; then
+            echo "  ✅ reference-catalog.md"
           else
-            echo "  ❌ RULES-INDEX.md: version mismatch"
+            echo "  ❌ reference-catalog.md: version mismatch"
             errors=$((errors + 1))
           fi
 
@@ -245,7 +245,7 @@ jobs:
 
       - name: Validate YAML files
         run: |
-          pip install pyyaml -q 2>/dev/null
+          pip install pyyaml==6.0.2 -q 2>/dev/null
           echo "🔍 Validating YAML files..."
           python3 -c "
           import yaml, sys, os
@@ -273,7 +273,7 @@ jobs:
     name: System Census
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v4
+      - uses: actions/checkout@b4ffde65f46336ab88eb53be808477a3936bae11  # v4
 
       - name: Component census
         run: |
@@ -352,3 +352,23 @@ jobs:
             exit 1
           fi
           echo "✅ 100% parity: $SH SH / $PS1 PS1"
+
+      - name: Validate skill Python script syntax
+        run: |
+          echo "🧪 Checking skill Python scripts..."
+          FAIL=0
+          for script in $(find .agent/skills -name '*.py' -type f); do
+            name=$(basename "$script")
+            if python3 -m py_compile "$script" 2>/dev/null; then
+              echo "  ✅ $name"
+            else
+              echo "  ❌ $name: SYNTAX ERROR"
+              FAIL=$((FAIL + 1))
+            fi
+          done
+          if [ "$FAIL" -gt 0 ]; then
+            echo "::error::$FAIL Python script(s) have syntax errors!"
+            exit 1
+          fi
+          TOTAL=$(find .agent/skills -name '*.py' -type f | wc -l | tr -d ' ')
+          echo "✅ All $TOTAL skill Python scripts passed syntax check"

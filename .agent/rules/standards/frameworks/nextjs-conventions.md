@@ -1,4 +1,4 @@
----
+﻿---
 technology: Next.js
 version: 5.0.0
 last_updated: 2026-02-27
@@ -8,7 +8,7 @@ priority: P1 - Load when Next.js 16+ detected
 
 # Next.js 16 Feature Guide
 
-> **Version:** 5.0.0 | **Updated:** 2026-02-27
+> **Version:** 5.0.1 | **Updated:** 2026-02-27
 > **Next.js:** 16.x (LTS - Released October 2025)
 > **React:** 19.2+ | **Node.js:** 20.9+ | **Build:** Turbopack (default)
 

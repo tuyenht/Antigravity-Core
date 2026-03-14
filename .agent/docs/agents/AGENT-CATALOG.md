@@ -1,6 +1,6 @@
-# Agent Catalog — Antigravity-Core
+﻿# Agent Catalog — Antigravity-Core
 
-**Version:** 5.0.0  
+**Version:** 5.0.1  
 **Last Updated:** 2026-02-27  
 **Total Agents:** 27
 

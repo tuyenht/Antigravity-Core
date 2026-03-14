@@ -1,7 +1,7 @@
 # 📋 OUTPUT FILE STANDARDS
 
-**Version:** 5.0.0  
-**Antigravity-Core:** v5.0.0  
+**Version:** 5.0.1  
+**Antigravity-Core:** v5.0.1  
 **Updated:** 2026-02-27  
 **Purpose:** Chuẩn hóa tất cả files được sinh ra từ Antigravity-Core  
 **Usage:** Đảm bảo consistency và quality cho mọi output
@@ -426,7 +426,7 @@ Thêm vào Minimal:
 
 ---
 
-**Version:** 5.0.0  
+**Version:** 5.0.1  
 **Created:** 2026-01-31  
 **Updated:** 2026-02-27  
 **Status:** ✅ Production Ready

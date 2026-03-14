@@ -1,4 +1,4 @@
----
+﻿---
 technology: Django
 version: 5.0.0
 last_updated: 2026-02-27
@@ -8,7 +8,7 @@ priority: P1 - Load when Django detected
 
 # Django - Best Practices & Conventions
 
-> **Version:** 5.0.0 | **Updated:** 2026-02-27  
+> **Version:** 5.0.1 | **Updated:** 2026-02-27  
 > **Source:** Official Django docs + industry best practices
 
 ---

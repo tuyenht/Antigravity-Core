@@ -1,6 +1,6 @@
-# Contributing — Hướng dẫn đóng góp
+﻿# Contributing — Hướng dẫn đóng góp
 
-**Version:** 5.0.0  
+**Version:** 5.0.1  
 **Last Updated:** 2026-02-28
 
 ---

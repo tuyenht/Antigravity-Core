@@ -1,6 +1,6 @@
 # Antigravity-Core Documentation Index
 
-**Version:** 5.0.0  
+**Version:** 5.0.1  
 **Last Updated:** 2026-02-28  
 **System:** Antigravity-Core — AI-Native Development OS
 

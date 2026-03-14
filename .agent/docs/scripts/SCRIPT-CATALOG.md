@@ -1,6 +1,6 @@
-# Script Catalog — Antigravity-Core
+﻿# Script Catalog — Antigravity-Core
 
-**Version:** 5.0.0  
+**Version:** 5.0.1  
 **Last Updated:** 2026-03-13  
 **Total Scripts:** 54 (37 core + 17 skill)
 

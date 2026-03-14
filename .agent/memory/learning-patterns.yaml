@@ -164,6 +164,19 @@ new_discoveries:
       - "Default recommendation for RN"
       - "Document configuration"
       - "Benchmark real-world apps"
+
+  eight_layer_prompt_architecture:
+    date: "2026-03-14"
+    discovery: "8-Layer Claude Prompt Architecture (Task→Context Files→Reference→Brief→Rules→Conversation→Plan→Alignment) provides structured prompting framework"
+    impact: "Confirmed Antigravity Singularity Protocol v6.0 already covers and exceeds all 8 layers. Adopted 2 enhancements: ALIGN Mode for behavioral-modes, Context-First Protocol for prompt-engineering rules."
+    applications:
+      - "All AI agent interactions"
+      - "Prompt engineering standards"
+      - "Pre-execution alignment workflows"
+    next_steps:
+      - "ALIGN Mode added to behavioral-modes/SKILL.md"
+      - "Context-First Protocol added to prompt-engineering.md"
+      - "Monitor adoption effectiveness in pipeline sessions"
   
   accessibility_compliance:
     date: "2026-01-16"
@@ -288,3 +301,33 @@ pipeline_sessions:
     user_friction: "None"
     time_taken: "~85 min (P0-P4)"
     improvement_idea: "Add reference-catalog.md to CI count-sync validation"
+
+  - date: "2026-03-14"
+    pipeline: "REVIEW"
+    project: "antigravity-core"
+    tech_stack: "AI OS (meta-system)"
+    what_worked: "Repeat 7-dimension audit identified 10 specific fixes; batch P0-P4 execution pattern"
+    what_failed: "Script count drift (50→54) not caught by previous audit — i18n_checker.py added without updating docs"
+    user_friction: "None — Xacnhan trigger enabled immediate execution"
+    time_taken: "~45 min (Audit + P0-P4 fix)"
+    improvement_idea: "PHASE FINAL step 2 (increment counters) needs structural enforcement, not just text instruction"
+
+  - date: "2026-03-14"
+    pipeline: "REVIEW"
+    project: "antigravity-core"
+    tech_stack: "AI OS (meta-system)"
+    what_worked: "Deep forensic sweep found 34 files with stale v5.0.0 refs, 4 ghost workflows in README, and nextjs rule count drift"
+    what_failed: "Batch version bump script (bump-version.ps1) doesn't cover docs/, templates/, or standards/ — caused version drift"
+    user_friction: "None"
+    time_taken: "~30 min (Deep sweep + fixes)"
+    improvement_idea: "Extend bump-version.ps1 to auto-update ALL files containing version refs, not just core 5 files"
+
+  - date: "2026-03-14"
+    pipeline: "IMPROVE"
+    project: "antigravity-core"
+    tech_stack: "PowerShell + Bash"
+    what_worked: "Rewrote both bump-version scripts to v2.0 with 3-phase scan (core + broad + dates). Dry-run verified working."
+    what_failed: "Nothing — clean rewrite"
+    user_friction: "None"
+    time_taken: "~10 min"
+    improvement_idea: "Add CI step to validate no version drift after bump (run dry-run and fail if detected)"

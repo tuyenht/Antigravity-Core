@@ -1,6 +1,6 @@
-# Supply Chain Security Guidelines
+﻿# Supply Chain Security Guidelines
 
-> **Version:** 5.0.0 | **Updated:** 2026-02-27  
+> **Version:** 5.0.1 | **Updated:** 2026-02-27  
 > **Scope:** Software Supply Chain Security  
 > **Priority:** P1 - Load for dependency/security context
 

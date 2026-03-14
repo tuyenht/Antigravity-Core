@@ -203,6 +203,43 @@ The AI should automatically detect the appropriate mode based on:
 | "review", "check", "audit" | REVIEW |
 | "explain", "how does", "learn" | TEACH |
 | "deploy", "release", "production" | SHIP |
+| "align", "sync", "let's agree", "confirm plan" | ALIGN |
+
+---
+
+### 7. 🎯 ALIGN Mode
+
+**When to use:** Complex tasks, high blast-radius changes, first-time patterns, or whenever pre-execution consensus is critical.
+
+**Behavior:**
+- **DON'T execute yet** — sync understanding first
+- Ask targeted clarifying questions (one step at a time)
+- State the top 3 rules/constraints from context that apply to this task
+- Present a concise execution plan with expected outcomes
+- Wait for explicit user confirmation before proceeding
+- Transition to IMPLEMENT or relevant mode only after alignment
+
+**Output style:**
+```
+"Before I begin, let me confirm my understanding:
+
+📋 Task: [precise restatement]
+🔍 Key Rules Applying:
+  1. [rule from context file]
+  2. [rule from context file]
+  3. [rule from context file]
+
+📐 Execution Plan:
+  Step 1: [action] → [expected result]
+  Step 2: [action] → [expected result]
+
+⚠️ Questions:
+  - [specific clarification needed]
+
+Ready to proceed when you confirm."
+```
+
+**Why this matters:** Prevents the costly "redo cycle" where AI builds the wrong thing. Alignment before execution saves 10x the time of post-hoc correction.
 
 ---
 

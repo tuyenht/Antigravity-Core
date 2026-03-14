@@ -8,7 +8,7 @@ pattern_alerts:
     current_success_rate: 95.0
     threshold_drop: 10.0
     status: "healthy"
-    last_checked: "2026-01-16"
+    last_checked: "2026-03-14"
 
 # Performance Degradation Alerts  
 performance_alerts:
@@ -17,21 +17,37 @@ performance_alerts:
     current: 13500
     threshold_increase_percent: 15
     status: "healthy"
-    last_checked: "2026-01-16"
+    last_checked: "2026-03-14"
 
 # Coverage Gap Alerts
 coverage_gaps:
-  - technology: "GraphQL"
-    mentions: 2
-    tasks_without_skill: 0
+  - technology: "SwiftUI"
+    mentions: 3
+    tasks_without_skill: 1
     threshold: 3
-    recommended_action: "Create graphql-expert skill"
+    recommended_action: "Add rules/mobile/swiftui.md conventions"
     priority: "medium"
+  - technology: "Jetpack Compose"
+    mentions: 2
+    tasks_without_skill: 1
+    threshold: 3
+    recommended_action: "Add rules/mobile/jetpack-compose.md conventions"
+    priority: "low"
 
 # Proactive Suggestions
 suggestions:
-  []
-  # Auto-populated when thresholds met
+  - type: "documentation_drift"
+    title: "Script count drifted: project.json had 50 but filesystem has 54"
+    severity: "warning"
+    suggested_action: "Fixed in P1. Add CI validation to prevent recurrence."
+    created: "2026-03-14"
+    status: "resolved"
+  - type: "execution_failure"
+    title: "PHASE FINAL step 2 (increment counters) never executes"
+    severity: "critical"
+    suggested_action: "Running experiment exp_001 to test ENFORCED visible output mode"
+    created: "2026-03-14"
+    status: "active"
   # Example:
   # - type: "pattern_degradation"
   #   title: "React pattern success dropped to 82%"
@@ -58,7 +74,7 @@ trigger_rules:
     action: "Immediate RCA + alert user"
 
 # Statistics
-active_alerts: 0
-suggestions_made: 0
-suggestions_accepted: 0
-last_scan: "2026-01-16"
+active_alerts: 1
+suggestions_made: 2
+suggestions_accepted: 1
+last_scan: "2026-03-14"

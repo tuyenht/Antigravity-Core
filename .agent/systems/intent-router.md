@@ -1,6 +1,6 @@
-# 🧭 Universal Intent Router
+﻿# 🧭 Universal Intent Router
 
-> **Version:** 5.0.0 | **Updated:** 2026-03-01
+> **Version:** 5.0.1 | **Updated:** 2026-03-01
 > **Purpose:** Single entry point — classify ANY user request into 1 of 6 intents, then activate the correct Pipeline Chain.
 > **Priority:** P0 — Core system, loaded at every session via GEMINI.md
 
@@ -204,8 +204,8 @@ replaces:
 
 ---
 
-**Version:** 5.0.0
-**System:** Antigravity-Core v5.0.0
+**Version:** 5.0.1
+**System:** Antigravity-Core v5.0.1
 **Updated:** 2026-03-01
 
 > **See also:** [Orchestration Engine](orchestration-engine.md) | [Auto-Rule Discovery](auto-rule-discovery.md) | [Agent Coordination](agent-coordination.md) | [Reference Catalog](../reference-catalog.md)

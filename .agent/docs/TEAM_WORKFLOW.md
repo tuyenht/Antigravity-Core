@@ -1,7 +1,7 @@
 # 🔄 TEAM WORKFLOW PIPELINE
 
 **Version:** 2.0  
-**Antigravity-Core:** v5.0.0  
+**Antigravity-Core:** v5.0.1  
 **Purpose:** Quy trình phát triển chuẩn với Input→Output mapping rõ ràng  
 **Usage:** Mọi project sinh ra từ Antigravity-Core tuân theo workflow này  
 **Slash Command:** `/full-pipeline`

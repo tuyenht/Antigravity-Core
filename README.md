@@ -228,13 +228,14 @@ User request →
 
 | Category | Commands |
 |----------|----------|
-| **🏗️ Setup** | `/create`, `/install-antigravity`, `/scaffold`, `/schema-first`, `/requirements-first`, `/mobile-init` |
+| **🏗️ Setup** | `/create`, `/create-admin`, `/scaffold`, `/schema-first`, `/requirements-first` |
 | **💻 Dev** | `/enhance`, `/quickfix`, `/refactor`, `/brainstorm`, `/plan` |
-| **🎨 Design** | `/ui-ux-pro-max`, `/admin-component`, `/admin-dashboard` |
-| **✅ Quality** | `/test`, `/code-review-automation`, `/auto-healing`, `/auto-optimization-cycle`, `/performance-budget-enforcement` |
+| **🎨 Design** | `/ui-ux-pro-max`, `/admin-component`, `/admin-dashboard`, `/admin-settings` |
+| **✅ Quality** | `/test`, `/recheck`, `/auto-healing`, `/auto-optimization-cycle`, `/performance-budget-enforcement` |
 | **🔒 Security** | `/security-audit`, `/secret-scanning` |
-| **🚀 Deploy** | `/deploy`, `/mobile-deploy`, `/optimize`, `/check`, `/maintain`, `/migrate` |
-| **🎯 Multi-agent** | `/orchestrate`, `/debug` |
+| **🚀 Deploy** | `/deploy`, `/mobile-deploy`, `/optimize`, `/check`, `/maintain` |
+| **🎯 Multi-agent** | `/orchestrate`, `/debug`, `/full-pipeline` |
+| **📄 Export** | `/export-docx`, `/export-html` |
 
 ### Typical Flow (v5.0 — Pipeline Chains)
 

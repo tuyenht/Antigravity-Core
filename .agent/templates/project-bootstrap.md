@@ -4,7 +4,7 @@ description: "Template tài liệu dự án bắt buộc — auto-generated bở
 
 # Project Bootstrap — Bộ Tài Liệu Dự Án Chuẩn
 
-> **Version:** 1.0 | **Antigravity-Core:** v5.0.0
+> **Version:** 1.0 | **Antigravity-Core:** v5.0.1
 > **Trigger:** Tự động ở PHASE 0 của mọi Pipeline Chain.
 
 ---

@@ -1,6 +1,6 @@
-# 🎯 Agent Orchestration Engine
+﻿# 🎯 Agent Orchestration Engine
 
-> **Version:** 5.0.0 | **Updated:** 2026-03-01  
+> **Version:** 5.0.1 | **Updated:** 2026-03-01  
 > **Purpose:** Automated agent selection, pipeline execution, and conflict resolution  
 > **Priority:** P0 — Core system, read by orchestrator agent  
 > **Dependencies:** `auto-rule-discovery.md`, `agent-registry.md`
@@ -346,8 +346,8 @@ backwards_compatibility:
 
 ---
 
-**Version:** 5.0.0  
-**System:** Antigravity-Core v5.0.0  
+**Version:** 5.0.1  
+**System:** Antigravity-Core v5.0.1  
 **Updated:** 2026-03-01
 
 > **See also:** [Agent Registry](agent-registry.md) | [Auto-Rule Discovery](auto-rule-discovery.md) | [Capability Matrix](../agents/CAPABILITY-MATRIX.md) | [Agent Coordination](agent-coordination.md)

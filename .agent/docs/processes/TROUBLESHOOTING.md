@@ -1,6 +1,6 @@
-# Troubleshooting — Xử lý sự cố thường gặp
+﻿# Troubleshooting — Xử lý sự cố thường gặp
 
-**Version:** 5.0.0  
+**Version:** 5.0.1  
 **Last Updated:** 2026-02-27
 
 ---

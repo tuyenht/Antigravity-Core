@@ -1,6 +1,6 @@
-# 🔍 Auto-Rule Discovery Engine
+﻿# 🔍 Auto-Rule Discovery Engine
 
-> **Version:** 5.0.0 | **Updated:** 2026-03-01  
+> **Version:** 5.0.1 | **Updated:** 2026-03-01  
 > **Purpose:** Intelligent, automated rule loading based on project context  
 > **Priority:** P0 — Core system, loaded at session start
 
@@ -568,8 +568,8 @@ loaded:
 
 ---
 
-**Version:** 5.0.0  
-**System:** Antigravity-Core v5.0.0  
+**Version:** 5.0.1  
+**System:** Antigravity-Core v5.0.1  
 **Updated:** 2026-03-01
 
 > **See also:** [Agent Registry](agent-registry.md) | [Orchestration Engine](orchestration-engine.md) | [Reference Catalog](../reference-catalog.md) | [Systems Catalog](../docs/systems/SYSTEMS-CATALOG.md)

@@ -16,7 +16,7 @@
 | **Skills** | 63 | Agent frontmatter `skills:` field | § 3 below |
 | **Pipelines** | 6 | `pipelines/*.md` | GEMINI.md § 1 |
 | **Workflows** | 36 | `workflows/*.md` | GEMINI.md § 9 |
-| **Scripts** | 37 + 13 skill | `scripts/` + `skills/*/scripts/` | § 5 below |
+| **Scripts** | 37 + 17 skill | `scripts/` + `skills/*/scripts/` | § 5 below |
 | **Systems** | 6 | `systems/*.md` | ARCHITECTURE.md |
 
 ---
@@ -57,10 +57,10 @@
 | Database | 10 | `rules/database/` | postgresql, mysql, redis, mongodb, query, schema |
 | Frontend | 7 | `rules/frontend-frameworks/` | vue, angular, svelte, solid, astro, remix, tailwind |
 | Mobile | 10 | `rules/mobile/` | react-native, flutter, ios, android |
-| Next.js | 13 | `rules/nextjs/` | next.js, app router, server actions, i18n, seo |
+| Next.js | 15 | `rules/nextjs/` | next.js, app router, server actions, i18n, seo, realtime, saas |
 | Python | 14 | `rules/python/` | .py, fastapi, flask, ai, ml, data, automation |
 | TypeScript | 13 | `rules/typescript/` | .ts, .tsx, generics, monorepo |
-| Web Dev | 14 | `rules/web-development/` | html, css, js, accessibility, pwa, webassembly |
+| Web Dev | 12 | `rules/web-development/` | html, css, js, accessibility, pwa, webassembly |
 | Standards | 4 | `rules/standards/` | supply-chain, nextjs/inertia/django conventions |
 | Shared | 1 | `rules/shared/` | common utilities |
 

@@ -1,6 +1,6 @@
-# Metrics Review — Quy Trình Đo Lường & Đánh Giá
+﻿# Metrics Review — Quy Trình Đo Lường & Đánh Giá
 
-**Version:** 5.0.0  
+**Version:** 5.0.1  
 **Last Updated:** 2026-02-27
 
 ---

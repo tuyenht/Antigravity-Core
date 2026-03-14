@@ -1,6 +1,6 @@
 # {PROJECT_NAME} — UI Screen Blueprint
 
-> **Generated**: {DATE} | **Antigravity-Core**: v5.0.0
+> **Generated**: {DATE} | **Antigravity-Core**: v5.0.1
 > **Condition**: Chỉ tạo khi project có UI (web app / admin panel / mobile)
 
 ---

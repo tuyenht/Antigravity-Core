@@ -1,4 +1,4 @@
----
+﻿---
 technology: Inertia.js + React
 version: 5.0.0
 last_updated: 2026-02-27
@@ -8,7 +8,7 @@ priority: P1 - Load when Inertia + React detected
 
 # Inertia.js + React + TypeScript - Best Practices
 
-> **Version:** 5.0.0 | **Updated:** 2026-02-27  
+> **Version:** 5.0.1 | **Updated:** 2026-02-27  
 > **Stack:** Inertia.js 2.x + React 19 + TypeScript
 
 ---

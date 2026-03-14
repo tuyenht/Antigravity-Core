@@ -1,6 +1,6 @@
-# 🤝 Agent Coordination Protocol
+﻿# 🤝 Agent Coordination Protocol
 
-**Version:** 5.0.0  
+**Version:** 5.0.1  
 **Purpose:** Resolve agent overlaps and conflicts  
 **Last Updated:** 2026-03-01
 
@@ -496,5 +496,5 @@ Track coordination efficiency:
 
 **Created:** 2026-01-17  
 **Updated:** 2026-03-01  
-**Version:** 5.0.0  
+**Version:** 5.0.1  
 **Purpose:** Define how 27 agents coordinate without conflicts

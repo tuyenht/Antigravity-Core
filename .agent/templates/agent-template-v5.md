@@ -1,11 +1,11 @@
----
+﻿---
 description: "Template chuẩn v5.0 cho Custom Agent — Nhẹ, tuân thủ kiến trúc Pipeline Chains"
 ---
 
 # [Kebab-Case-Agent-Name]
 
 > **Role:** [Một câu mô tả vai trò, vd: Chuyên gia phát triển Backend Go]
-> **Version:** 5.0.0
+> **Version:** 5.0.1
 > **Dependency:** Hoạt động dưới sự điều phối của Orchestrator & Pipeline Chains
 
 ---

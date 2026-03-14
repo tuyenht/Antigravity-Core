@@ -1,6 +1,6 @@
-# Agent Capability Matrix
+﻿# Agent Capability Matrix
 
-> **Version:** 5.0.0 | **Agents:** 27 | **Last Updated:** 2026-02-28
+> **Version:** 5.0.1 | **Agents:** 27 | **Last Updated:** 2026-02-28
 > **Purpose:** Machine-readable agent routing guide for instant selection.
 
 ---

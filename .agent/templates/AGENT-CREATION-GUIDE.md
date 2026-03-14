@@ -1,6 +1,6 @@
-# Custom Agent Creation Guide — Antigravity v5.0
+﻿# Custom Agent Creation Guide — Antigravity v5.0
 
-> **Version:** 5.0.0 (Platinum Standard)  
+> **Version:** 5.0.1 (Platinum Standard)  
 > **Architecture:** Pipeline-Chained Agent Ecosystem
 
 Tài liệu này hướng dẫn cách tạo và đăng ký một Custom Agent mới vào hệ thống Antigravity-Core v5.0.

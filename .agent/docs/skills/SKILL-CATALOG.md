@@ -1,6 +1,6 @@
-# Skill Catalog — Antigravity-Core
+﻿# Skill Catalog — Antigravity-Core
 
-**Version:** 5.0.0  
+**Version:** 5.0.1  
 **Last Updated:** 2026-02-28  
 **Total Skills:** 59
 

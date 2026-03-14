@@ -1,62 +1,58 @@
 # A/B Testing Experiments - Scientific Improvement Validation
 
-# Active Experiments (currently running)
-active_experiments: []
-  # Example:
-  # - id: "exp_001"
-  #   name: "Confidence Threshold Optimization"
-  #   hypothesis: "Lowering medium threshold from 60% to 55% improves UX"
-  #   status: "running"
-  #   start_date: "2026-01-16"
-  #   target_sample_size: 100
-  #   
-  #   variant_a:  # Control
-  #     config:
-  #       confidence_threshold_medium: 60
-  #     sample_size: 50
-  #     metrics:
-  #       classification_accuracy: 92.0
-  #       user_satisfaction: 8.4
-  #       avg_tokens: 15200
-  #       
-  #   variant_b:  # Test
-  #     config:
-  #       confidence_threshold_medium: 55
-  #     sample_size: 50
-  #     metrics:
-  #       classification_accuracy: 94.0
-  #       user_satisfaction: 8.7
-  #       avg_tokens: 14900
-  #   
-  #   analysis:
-  #     statistical_significance: true
-  #     p_value: 0.02
-  #     winner: "variant_b"
-  #     improvement:
-  #       accuracy: "+2.0%"
-  #       satisfaction: "+3.6%"
-  #       tokens: "-2.0%"
-  #   
-  #   decision: "ADOPT"
-  #   deployed_date: null
+active_experiments:
+  - id: "exp_001"
+    name: "PHASE FINAL Execution Enforcement"
+    hypothesis: "Making PHASE FINAL output visible (not SILENT) will increase execution rate from 0% to >80%"
+    status: "running"
+    start_date: "2026-03-14"
+    target_sample_size: 20
+    
+    variant_a:  # Control (old: SILENT mode)
+      config:
+        phase_final_mode: "silent"
+      sample_size: 10
+      metrics:
+        execution_rate: 0
+        learning_entries_created: 0
+        usage_counters_updated: 0
+        
+    variant_b:  # Test (new: ENFORCED visible output)
+      config:
+        phase_final_mode: "enforced_visible"
+      sample_size: 2
+      metrics:
+        execution_rate: 50  # 1/2 sessions partially executed (learning but not counters)
+        learning_entries_created: 2
+        usage_counters_updated: 0
+    
+    analysis:
+      statistical_significance: false
+      p_value: null
+      winner: "pending"
+      notes: "Need more sample size. Step 1 (learn) executes, step 2 (increment) does not."
+    
+    decision: "PENDING"
+    deployed_date: "2026-03-14"
 
 # Completed Experiments
 completed_experiments: []
 
 # Experiment Queue (planned but not started)
-experiment_queue: []
-  # - name: "Checklist Intensity Detection"
-  #   priority: "high"
-  #   estimated_duration: "100 requests"
+experiment_queue:
+  - name: "Count-Drift CI Validation"
+    priority: "high"
+    estimated_duration: "50 commits"
+    hypothesis: "Adding automated count-sync to CI will reduce documentation drift to zero"
 
 # Statistics
 statistics:
-  total_experiments_run: 0
+  total_experiments_run: 1
   successful_improvements: 0
   inconclusive_results: 0
   rejected_changes: 0
   avg_improvement_percentage: 0.0
-  last_updated: "2026-01-16"
+  last_updated: "2026-03-14"
 
 # Experiment Guidelines
 guidelines:
