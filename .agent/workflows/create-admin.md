@@ -1,4 +1,4 @@
-﻿---
+---
 description: "Khởi tạo nhanh Admin Starter Kit (SaaS/Standalone) kèm Auth và phân quyền."
 ---
 
@@ -269,6 +269,25 @@ Theo thứ tự:
     - DOM nesting structure: **KHÔNG thay đổi**
     - Chỉ thay đổi: syntax (`class`→`className`, `href`→`:href`, `{var}`→`{{ $var }}`)
 
+    > [!CAUTION]
+    > **🚫 TAILWIND DETECTION — AUTH CSS GOLDEN STANDARD ENFORCEMENT**
+    >
+    > **KIỂM TRA TRƯỚC KHI SINH AUTH COMPONENTS:**
+    > ```
+    > Tailwind installed? (kiểm tra package.json + globals.css)
+    > ├── YES (có @import "tailwindcss" trong globals.css) → Tailwind classes OK
+    > └── NO  (Next.js standalone mặc định KHÔNG có)   → auth.css classes ONLY
+    > ```
+    >
+    > **Khi project KHÔNG có Tailwind** (trường hợp phổ biến nhất):
+    > - ❌ **CẤM** dùng BẤT KỲ Tailwind utility class nào (`flex`, `bg-gradient-to-br`, `rounded-xl`...)
+    > - ❌ **CẤM** dùng inline `style={{}}` để thay thế Tailwind
+    > - ✅ **BẮT BUỘC** dùng auth.css classes: `auth-bg`, `auth-glass`, `auth-title`, `auth-form`, v.v.
+    > - ✅ **BẮT BUỘC** verify `<link rel="stylesheet" href="/assets/css/auth.css" />` trong root `layout.tsx`
+    >
+    > Source files tại `source/react-ts/auth/*.tsx` đã dùng auth.css classes sẵn.
+    > **COPY NGUYÊN VẸN — KHÔNG REWRITE.**
+
     > [!IMPORTANT]
     > **TAILWIND v4 — BẮT BUỘC MERGE @theme COLOR TOKENS:**
     > - Nếu dự án dùng Tailwind v4 (nhận biết: `@import "tailwindcss"` trong globals.css,
@@ -327,6 +346,8 @@ pnpm lint && pnpm build && pnpm dev  # or framework equivalent
 - [ ] **Dark/Light mode** toggle works correctly
 - [ ] Profile dropdown shows user name + role + logout option
 - [ ] **CSS FILES** imported: bootstrap.min.css + app.min.css + custom.min.css + icons.min.css
+- [ ] **AUTH.CSS** imported: `<link rel="stylesheet" href="/assets/css/auth.css" />` in root layout + fonts.css + fonts/ directory
+- [ ] **AUTH COMPONENTS** use auth.css classes (NO Tailwind, NO inline styles): `auth-bg`, `auth-glass`, `auth-title`, `auth-form`, `auth-submit`, `auth-divider`
 - [ ] **ICON FONTS** rendering correctly (no □ placeholders) — bx, ri, mdi, la
 - [ ] **LTR OVERRIDES** in globals.css (sidebar left:0, main-content margin-left)
 - [ ] **sessionStorage** used for layout persistence (NOT localStorage)

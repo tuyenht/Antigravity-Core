@@ -4,15 +4,27 @@
  * Source: baoson-platform-core/layouts/AuthLayout.tsx
  * Adapted for: Standalone React / Next.js (no Inertia dependency)
  * 
- * Provides: animated gradient background, decorative orbs, logo, 
- *           language switcher, footer. Children = glass card content.
+ * STYLING: Uses auth.css classes exclusively (NOT Tailwind).
+ * This ensures deterministic output — every /create-admin run produces
+ * identical visual results regardless of Tailwind configuration.
+ * 
+ * auth.css classes used:
+ *   .auth-page      → Base reset (box-sizing, font-size 14px)
+ *   .auth-bg        → Animated gradient background (sky-700 → blue-600 → slate-800)
+ *   .auth-orb-1/2   → Decorative blur orbs (pulse + bounce animations)
+ *   .auth-main      → Content container (max-width 392px, centered)
+ *   .auth-logo-wrap → Logo wrapper (hover scale 1.05, responsive margin)
+ *   .auth-logo      → Logo image (max-height 58px, drop shadow)
+ *   .auth-footer    → Copyright footer (white/40, responsive margin)
  * 
  * ADAPTATION NOTES (from Inertia → standalone):
  * - Removed: @inertiajs/react (Head, Link, usePage)
  * - Removed: PageProps dependency
  * - Changed: Logo from external URL to local /images/logo-light.png
  * - Changed: Dashboard link from route() to /${ADMIN_PREFIX}/dashboard
+ * - Changed: Tailwind classes → auth.css classes for determinism
  * - Added: Configurable constants (ADMIN_PREFIX, COMPANY_NAME, etc.)
+ * - Added: useEffect for 14px root font-size (Velzon convention)
  */
 
 import { type ReactNode, useEffect } from 'react';
@@ -67,22 +79,24 @@ export default function AuthLayout({
     }, []);
 
     return (
-        <>
+        <div className="auth-page">
             {/* Head: set page title — framework-specific, adapt as needed */}
             {/* Next.js: use metadata export in page.tsx instead */}
             {/* Inertia: <Head title={title} /> */}
 
-            <div className="min-h-[100dvh] w-full flex flex-col items-center justify-center px-8 py-6 md:p-4 animate-gradient bg-gradient-to-br from-sky-700 via-blue-600 to-slate-800 relative overflow-hidden">
-                {/* Decorative Blur Orbs */}
-                <div className="absolute top-20 left-20 w-64 h-64 bg-cyan-400/20 rounded-full blur-3xl animate-pulse pointer-events-none"></div>
-                <div className="absolute bottom-20 right-20 w-96 h-96 bg-blue-500/10 rounded-full blur-3xl animate-bounce duration-[12s] pointer-events-none"></div>
+            {/* auth.css: auth-bg (animated gradient, responsive padding) */}
+            <div className="auth-bg">
+                {/* Decorative Blur Orbs — auth.css: auth-orb-1/2 */}
+                <div className="auth-orb-1"></div>
+                <div className="auth-orb-2"></div>
 
-                {/* Language Switcher — Responsive: Mobile centered, Desktop top-right */}
+                {/* Language Switcher — auth.css: auth-lang (responsive positioning) */}
                 <LanguageSwitcher />
 
-                <main className="relative w-full max-w-[392px] flex flex-col items-center z-10">
-                    {/* Logo — Responsive sizing: Mobile h-16, Desktop h-20 */}
-                    <div className="mb-4 md:mb-8 transition-transform duration-500 hover:scale-105">
+                {/* auth.css: auth-main (max-width 392px, centered) */}
+                <main className="auth-main">
+                    {/* Logo — auth.css: auth-logo-wrap + auth-logo */}
+                    <div className="auth-logo-wrap">
                         <a
                             href={`/${adminPrefix}/dashboard`}
                             aria-label={appName}
@@ -91,12 +105,12 @@ export default function AuthLayout({
                             <img
                                 src={logoUrl}
                                 alt="Bao Son Logo"
-                                className="h-[58px] w-auto drop-shadow-2xl"
+                                className="auth-logo"
                             />
                         </a>
                     </div>
 
-                    {/* Optional heading/subtitle — sr-only for SEO  */}
+                    {/* Optional heading/subtitle — sr-only for SEO */}
                     {(subtitle || title) ? (
                         <div className="sr-only">
                             <h1>{title}</h1>
@@ -106,15 +120,14 @@ export default function AuthLayout({
 
                     {children}
 
-                    {/* Footer */}
-                    <footer className="mt-4 md:mt-8 text-center text-white/40 text-xs font-medium tracking-wide">
+                    {/* Footer — auth.css: auth-footer */}
+                    <footer className="auth-footer">
                         <p>
                             &copy; {new Date().getFullYear()}{' '}
                             <a
                                 href={companyUrl}
                                 target="_blank"
                                 rel="noopener noreferrer"
-                                className="hover:text-white transition-colors"
                             >
                                 {companyName}
                             </a>
@@ -123,6 +136,6 @@ export default function AuthLayout({
                     </footer>
                 </main>
             </div>
-        </>
+        </div>
     );
 }

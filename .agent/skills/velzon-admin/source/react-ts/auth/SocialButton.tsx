@@ -2,14 +2,17 @@
  * SocialButton — BaoSon Custom Social Login Button (Golden Standard)
  * 
  * Source: Extracted from baoson-platform-core/Pages/Auth/Login.tsx
- * The Golden Standard uses inline <a> tags — this component wraps that pattern.
  * 
- * Features:
- * - White background, slate-200 border, rounded-xl, shadow-sm
- * - Hover: slate-50 bg, slate-300 border, elevated shadow, translateY -2px
- * - Provider icon (SVG) + label text
- * - Tooltip via title attribute
- * - Disabled state support
+ * STYLING: Uses auth.css classes exclusively (NOT Tailwind).
+ * This ensures deterministic output — every /create-admin run produces
+ * identical visual results regardless of Tailwind configuration.
+ * 
+ * auth.css classes used:
+ *   .auth-social-btn      → Button (white bg, slate-200 border, rounded-xl, shadow-sm)
+ *   .auth-social-btn:hover → Hover state (slate-50 bg, elevated shadow, -2px translateY)
+ *   .auth-social-btn svg   → Icon sizing (18×18px)
+ *   .auth-social-btn span  → Label text (12.25px, slate-600)
+ *   .auth-social-btn.disabled → Disabled state (opacity 0.5, pointer-events none)
  */
 
 interface SocialButtonProps {
@@ -38,21 +41,12 @@ export default function SocialButton({
     tooltip,
     disabled = false,
 }: SocialButtonProps) {
-    const className = `
-        flex items-center justify-center gap-2.5 px-4 py-2.5
-        bg-white border border-slate-200 rounded-xl
-        hover:bg-slate-50 hover:border-slate-300
-        transition-all duration-200 shadow-sm
-        group cursor-pointer
-        ${disabled ? 'pointer-events-none opacity-50' : ''}
-    `;
+    const className = `auth-social-btn${disabled ? ' disabled' : ''}`;
 
     const content = (
         <>
-            <span className="w-5 h-5 flex-shrink-0">{icon}</span>
-            <span className="text-sm font-medium text-slate-600 group-hover:text-slate-900 transition-colors capitalize">
-                {label}
-            </span>
+            {icon}
+            <span>{label}</span>
         </>
     );
 

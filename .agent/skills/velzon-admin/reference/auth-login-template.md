@@ -55,6 +55,58 @@ Regardless of the target language/framework (React, Next.js, Vue, Laravel Blade,
 
 ---
 
+> [!CAUTION]
+> **🚫 AUTH CSS GOLDEN STANDARD ENFORCEMENT**
+>
+> This spec describes design tokens using Tailwind CSS syntax (e.g., `from-sky-700`, `rounded-xl`, `blur-3xl`)
+> for **documentation clarity only**. When implementing:
+>
+> - **ALWAYS** use CSS classes from `source/auth-css/auth.css` (self-contained, 834 lines)
+> - **NEVER** copy Tailwind utility classes into component code
+> - `auth.css` works WITHOUT Tailwind or Bootstrap — it is framework-agnostic
+> - Next.js standalone projects do NOT have Tailwind installed by default
+>
+> **Source React components** in `source/react-ts/auth/*.tsx` use `auth.css` classes exclusively.
+> **Copy them as-is, do NOT rewrite with Tailwind or inline styles.**
+
+### Tailwind → auth.css Class Mapping
+
+| Tailwind Description | auth.css Class | Purpose |
+|---|---|---|
+| `min-h-[100dvh] flex bg-gradient-to-br from-sky-700 via-blue-600 to-slate-800` | `auth-bg` | Animated gradient background |
+| `absolute top-20 left-20 w-64 h-64 bg-cyan-400/20 blur-3xl animate-pulse` | `auth-orb-1` | Decorative blur orb (top-left) |
+| `absolute bottom-20 right-20 w-96 h-96 bg-blue-500/10 blur-3xl animate-bounce` | `auth-orb-2` | Decorative blur orb (bottom-right) |
+| `relative w-full max-w-[392px] flex flex-col items-center z-10` | `auth-main` | Content container |
+| `mb-4 md:mb-8 hover:scale-105 transition-transform` | `auth-logo-wrap` | Logo wrapper |
+| `h-[58px] w-auto drop-shadow-2xl` | `auth-logo` | Logo image |
+| `glass w-full rounded-3xl p-[35px] shadow-2xl` | `auth-glass` | Glass card (21px radius) |
+| `text-[26px] font-extrabold bg-clip-text text-transparent bg-gradient-to-r from-blue-700 to-slate-700` | `auth-title` | Title (22px, weight 750) |
+| `space-y-4` | `auth-form` | Form layout (gap: 14px) |
+| `space-y-1.5` | `auth-input-group` | Input wrapper (gap: 5.25px) |
+| `block text-sm font-semibold text-slate-700 ml-1` | `auth-label` | Input label |
+| `relative group` | `auth-input-wrap` | Input relative container |
+| `absolute left-3.5 top-1/2 -translate-y-1/2 text-slate-400` | `auth-input-icon` | Left icon |
+| `w-full pl-10 pr-10 py-2.5 bg-slate-50 border-slate-200 rounded-xl` | `auth-input` | Input field (10.5px radius) |
+| `w-full py-3 rounded-xl bg-blue-600 text-white font-semibold` | `auth-submit` | Submit button |
+| `relative my-6` | `auth-divider` | Divider container (margin: 21px) |
+| `absolute inset-0 flex items-center` + `border-t` | `auth-divider-line` | Divider line |
+| `relative flex justify-center` + `span` | `auth-divider-text` | Divider text ("Quick Login") |
+| `grid grid-cols-2 gap-3` | `auth-social-grid` | Social buttons grid (gap: 10.5px) |
+| `flex items-center justify-center gap-2.5 bg-white border-slate-200 rounded-xl` | `auth-social-btn` | Social button |
+| `flex justify-end mt-2` + `a text-sm text-blue-600` | `auth-forgot-link` | Forgot password link (12.25px) |
+| `bg-slate-900/30 backdrop-blur-xl rounded-full` | `auth-lang-pill` | Language pill |
+| `w-9 h-9 flex items-center justify-center rounded-full` | `auth-lang-btn` | Language button |
+| `bg-white text-blue-700 shadow-lg scale-105` | `auth-lang-btn--active` | Active language |
+| `mt-4 md:mt-8 text-center text-white/40 text-xs` | `auth-footer` | Footer |
+| Base reset (box-sizing, font-size 14px) | `auth-page` | Root wrapper |
+| `rounded-xl bg-red-50 text-red-800` | `auth-alert auth-alert--error` | Error alert |
+| `rounded-xl bg-green-50 text-green-800` | `auth-alert auth-alert--success` | Success alert |
+| `animate-spin h-5 w-5` | `auth-spinner` | Loading spinner |
+| `absolute right-3 top-1/2 -translate-y-1/2 text-slate-400` | `auth-eye-btn` | Password toggle |
+| `absolute right-3 top-1/2 -translate-y-1/2 text-slate-400 text-sm` | `auth-at-symbol` | @ symbol |
+
+---
+
 ## Design Spec
 
 ### Layout Structure
@@ -196,7 +248,13 @@ const ADMIN_PREFIX = process.env.ADMIN_PREFIX ?? 'admin';
 
 ---
 
-## Reference Code: React + Tailwind (Primary)
+## Reference Code: React + auth.css (Primary)
+
+> [!CAUTION]
+> **The code examples below use Tailwind syntax for DOCUMENTATION PURPOSES ONLY.**
+> The actual source files in `source/react-ts/auth/*.tsx` use **auth.css classes**.
+> When implementing, **ALWAYS copy from source files** — do NOT copy code from this section.
+> See "Tailwind → auth.css Class Mapping" table above for translation.
 
 ### 1. AuthLayout
 
