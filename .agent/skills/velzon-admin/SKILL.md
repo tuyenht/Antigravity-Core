@@ -265,13 +265,41 @@ source/
 │   ├── layouts/                 ← Layout entry, Header, Sidebar, Footer, LayoutMenuData (48KB)
 │   ├── header-components/       ← 8 topbar dropdowns (Search, Language, Notifications, Profile, etc.)
 │   ├── theme-customizer/        ← RightSidebar.tsx (125KB: all theme options)
+│   ├── dashboard/               ← DashboardPage, StatCard, WelcomeBanner, RecentActivity
 │   ├── slices/layouts/          ← Redux slice (state + actions for layout/theme)
 │   └── common/                  ← withRouter, BreadCrumb
+│
+├── auth-css/                    ← Auth page styling (self-contained, framework-agnostic)
+│   ├── auth.css                 ← 834 lines: glass card, gradient bg, form styling (@import fonts.css)
+│   └── auth-theme.css           ← Tailwind v4 @theme color tokens (18 colors for auth pages)
 │
 └── scss/                        ← Framework-agnostic design tokens
     ├── _variables.scss           ← 71KB: Color palette (#405189, #0ab39c), fonts (Poppins), sizes
     ├── _variables-custom.scss    ← Velzon custom vars (sidebar width, header height, gradients)
     └── _variables-dark.scss      ← Dark mode overrides (#1a1d21 body, #212529 sidebar)
+
+assets/                          ← Static resources (copy nguyên block vào project public/)
+├── css/
+│   ├── app.min.css              ← 442KB: Velzon core styles
+│   ├── bootstrap.min.css        ← 283KB: Bootstrap 5
+│   ├── custom.min.css           ← Project-specific overrides
+│   ├── icons.min.css            ← 607KB: 5 icon families (ri-*, mdi-*, bx-*, la-*) @font-face → ../fonts/
+│   └── fonts.css                ← Global font system: Inter + NotoSans CJK + Velzon typography tokens
+├── fonts/                       ← 11 woff2-only files (modern browsers 97%+)
+│   ├── Inter-roman.woff2        ← 344KB: Latin + Vietnamese + Cyrillic (text)
+│   ├── Inter-italic.woff2       ← 379KB (text)
+│   ├── NotoSansJP.woff2         ← 4.0MB: Japanese CJK (on-demand via unicode-range)
+│   ├── NotoSansKR.woff2         ← 3.8MB: Korean CJK (on-demand)
+│   ├── NotoSansSC.woff2         ← 7.6MB: Chinese Simplified CJK (on-demand)
+│   ├── remixicon.woff2          ← 162KB: ri-* icons (dashboard, widgets)
+│   ├── materialdesignicons-webfont.woff2 ← 387KB: mdi-* icons
+│   ├── boxicons.woff2           ← 113KB: bx-* icons (sidebar, menu)
+│   ├── la-brands-400.woff2      ← 83KB: la-* brand icons (social)
+│   ├── la-regular-400.woff2     ← 13KB: la-* UI icons
+│   └── la-solid-900.woff2       ← 94KB: la-* solid icons
+└── images/
+    ├── flags/                   ← Country flag icons
+    └── sidebar/                 ← Sidebar decoration
 ```
 
 ### Framework Routing Rules

@@ -557,7 +557,7 @@ The login uses a **logical font family** `"UI"` with CJK-aware weight overrides.
 > [!IMPORTANT]
 > **Font Strategy: LOCAL FIRST (không dùng CDN)**
 > - Font-stack: `"Inter", "Segoe UI", Roboto, "Helvetica Neue", Arial, "Noto Sans", sans-serif`
-> - Source: `source/auth-css/fonts/Inter-roman.woff2` + `Inter-italic.woff2`
+> - Source: `assets/fonts/Inter-roman.woff2` + `Inter-italic.woff2`
 > - Benefits: Loại bỏ 2 external connections, +5-10 Lighthouse points, GDPR compliant
 > - Fallback chain: neo-grotesque fonts tương đồng Inter theo từng OS (Windows → macOS → Linux)
 

@@ -12,7 +12,10 @@
      @import url('/css/auth.css');                            (Vue/Nuxt)
    ============================================================================ */
 
-/* Import Global Font System — MUST be first */
+/* Import Global Font System — NOW at assets/css/fonts.css
+   When deployed: both auth.css and fonts.css go to same public/assets/css/ dir
+   so the import becomes: @import './fonts.css';
+   THIS IMPORT IS A PLACEHOLDER — actual path depends on deployment structure */
 @import './fonts.css';
 
 /* ---- Base reset for auth pages ---- */

@@ -141,7 +141,7 @@ Context/ (REQUIRED for Next.js — thay Redux)
 
 Theo thứ tự:
 
-0. **Assets** — Copy `.agent/skills/velzon-admin/assets/images/` → project images dir (logos, favicon, flags, avatars, error images)
+0. **Assets** — Copy `.agent/skills/velzon-admin/assets/` → project public dir. Gồm 3 thư mục: `css/` (app, bootstrap, icons, fonts.css), `fonts/` (11 woff2 files: Inter, NotoSans CJK, RemixIcon, MDI, Boxicons, Line Awesome), `images/` (logos, favicon, flags, avatars).
 1. **COPY BỘ KHUNG VELZON** — Copy layout shell from `velzon-admin/source/`:
 
     > [!CAUTION]
@@ -160,6 +160,7 @@ Theo thứ tự:
       - Copy `source/react-ts/theme-customizer/` → RightSidebar (125KB, 13 options)
       - Copy `source/react-ts/common/` → BreadCrumb, BackToTop, Preloader
       - Copy `source/react-ts/slices/layouts/` → Redux layout state (CRA/Vite) hoặc convert to Context (Next.js)
+      - Copy `source/react-ts/dashboard/` → DashboardPage, StatCard, WelcomeBanner, RecentActivity
 
     **🔄 NEXT.JS ADAPTATION RULES (chỉ thay đổi ĐÚNG những gì cần thiết):**
 
@@ -231,17 +232,13 @@ Theo thứ tự:
     - **ALWAYS copy:** `source/auth-css/auth.css` → project CSS dir (styling foundation)
 
     > [!IMPORTANT]
-    > Khi copy auth.css vào `public/assets/css/`, **PHẢI copy cả `fonts.css` và thư mục `fonts/`** đi kèm:
+    > `auth.css` imports `fonts.css` via `@import './fonts.css'`. Khi deploy, cả 2 file nằm cùng thư mục css:
     > ```
-    > public/assets/css/fonts.css                        ← Global Font System
-    > public/assets/css/auth.css                         ← Auth UI (imports fonts.css)
-    > public/assets/css/fonts/Inter-roman.woff2   (344 KB)
-    > public/assets/css/fonts/Inter-italic.woff2  (379 KB)
-    > public/assets/css/fonts/NotoSansJP.woff2    (4.0 MB) ← CJK Japanese
-    > public/assets/css/fonts/NotoSansKR.woff2    (3.8 MB) ← CJK Korean
-    > public/assets/css/fonts/NotoSansSC.woff2    (7.6 MB) ← CJK Chinese
+    > public/assets/css/fonts.css   ← Global Font System (from assets/css/)
+    > public/assets/css/auth.css    ← Auth UI (from source/auth-css/)
+    > public/assets/fonts/          ← ALL font files (from assets/fonts/) — 11 woff2 files
     > ```
-    > fonts.css + auth.css dùng `url("fonts/...")` — relative path. Thiếu fonts = text fallback.
+    > `fonts.css` dùng `url("../fonts/...")` — relative path trỏ lên thư mục `fonts/` cùng cấp.
     > CJK fonts chỉ download khi trang có ký tự JP/KO/ZH (via unicode-range).
     - **IF React / Next.js / Inertia+React:**
       - Copy `source/react-ts/auth/*` → project auth components dir
