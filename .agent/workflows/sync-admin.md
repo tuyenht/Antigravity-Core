@@ -1,4 +1,4 @@
-﻿---
+---
 description: "Đồng bộ hóa dự án admin hiện tại với blueprint mới nhất từ Antigravity."
 ---
 
@@ -41,7 +41,7 @@ Scan targets:
 │   └── Seeders → roles, permissions, admin user
 ├── Auth
 │   ├── Auth screens (Login, Forgot, Reset, 2FA, Logout)
-│   └── Middleware (auth guard, RBAC guard)
+│   └── Proxy (auth guard, RBAC guard) — proxy.ts
 ├── Admin
 │   ├── Layouts/ → Header, Sidebar, Footer, RightSidebar
 │   ├── Components/Common/ → BreadCrumb, TableContainer, etc.

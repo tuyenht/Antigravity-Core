@@ -310,7 +310,7 @@ Theo thứ tự:
 3. **Models** — User (extended), Role, Permission
 4. **Seed** — Roles + permissions (mode-aware) + top-level admin user
 5. **Auth** — 5 screens (Login, Forgot, Reset, 2FA, Logout)
-6. **Middleware** — Auth guard + RBAC permission guard
+6. **Proxy** — Auth guard + RBAC permission guard (Next.js 16: `proxy.ts`)
 7. **Admin Layout** — Sidebar (permission-filtered), Header, Footer
 8. **Dashboard** — Stat widgets + welcome card + activity log
 9. **User Management** — List, Create, Edit, Invite, Delete
@@ -382,7 +382,7 @@ pnpm lint && pnpm build && pnpm dev  # or framework equivalent
 | Mọi route `/bsads/*` trả về 404 | Cùng nguyên nhân trên — root `app/` tồn tại song song với `src/app/`. Xóa root `app/` + clear `.next` cache |
 | Port conflict (3001, 3002 thay vì 3000) | Có multiple node processes. Chạy: `taskkill /IM node.exe /F` rồi `pnpm dev` |
 | DB migration fails | Kiểm tra DB connection trong .env, đảm bảo DB service đang chạy |
-| Auth login không hoạt động | Kiểm tra seed data (admin@example.com/password), verify middleware config |
+| Auth login không hoạt động | Kiểm tra seed data (admin@example.com/password), verify proxy config (`proxy.ts`) |
 | Sidebar menu không hiện | Kiểm tra LayoutMenuData.tsx, verify permission seeding |
 | RBAC permission denied sai | Kiểm tra pivot table roles_permissions, reset cache: `php artisan cache:clear` |
 | Glassmorphism auth không hiển thị | Kiểm tra CSS imports, verify GuestLayout wraps auth pages. Nếu Tailwind v4: kiểm tra `@theme` color tokens trong globals.css |
