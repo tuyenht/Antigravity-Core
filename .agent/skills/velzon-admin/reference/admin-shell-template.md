@@ -325,6 +325,34 @@ onUnmounted(() => clearInterval(tid));
 7. **Collapse behavior**: `data-sidebar-size="sm"` shows only icons with hover tooltip
 8. **SimpleBar scrolling**: Sidebar uses SimpleBar for custom scrollbar styling
 
+> [!CAUTION]
+> **Submenu Accordion — MANDATORY BEHAVIOR:**
+> Velzon uses `bootstrap.Collapse` with `.menu-dropdown` + `.show` class toggle (app.js L292-310).
+> React MUST implement equivalent state-driven accordion:
+> ```tsx
+> // In Sidebar.tsx — each menu item with subItems
+> const [openMenus, setOpenMenus] = useState<Record<string, boolean>>({});
+> 
+> const toggleMenu = (id: string) => {
+>   setOpenMenus(prev => ({ ...prev, [id]: !prev[id] }));
+> };
+> 
+> // Render submenu:
+> <li className="nav-item">
+>   <a className={`nav-link menu-link ${openMenus[item.id] ? '' : 'collapsed'}`}
+>      onClick={() => toggleMenu(item.id)}>
+>     <i className={item.icon}></i> <span>{item.label}</span>
+>   </a>
+>   <div className={`menu-dropdown collapse ${openMenus[item.id] ? 'show' : ''}`}>
+>     <ul className="nav nav-sm flex-column">
+>       {item.subItems.map(sub => <li key={sub.id}>...)}
+>     </ul>
+>   </div>
+> </li>
+> ```
+> **Without `.show` class toggle, submenus will NEVER display** (CSS: `.menu-dropdown{display:none}`).
+> **DO NOT use inline `style={{display: 'block'}}` — MUST use `.show` class for CSS compatibility.**
+
 ### Menu Data Format
 
 ```tsx

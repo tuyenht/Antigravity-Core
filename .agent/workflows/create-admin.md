@@ -380,6 +380,11 @@ pnpm lint && pnpm build && pnpm dev  # or framework equivalent
   #back-to-top { z-index: 1000 !important; bottom: 100px !important; }
   .customizer-setting { z-index: 999 !important; bottom: 40px !important; }
 
+  /* CRITICAL: app.min.css has #back-to-top{display:none} as default.
+     Velzon app.js sets display:block via JS. React uses conditional render.
+     Must override CSS default so React-rendered button is visible. */
+  #back-to-top { display: block !important; }
+
   /* Ensure BackToTop clears above customizer gear */
   @media (max-height: 600px) {
     #back-to-top { bottom: 80px !important; }
@@ -387,7 +392,14 @@ pnpm lint && pnpm build && pnpm dev  # or framework equivalent
   }
   ```
 - [ ] **sessionStorage** used for layout persistence (NOT localStorage)
-- [ ] **BackToTop** button present (#back-to-top, btn btn-danger btn-icon)
+- [ ] **BackToTop** button present AND VISIBLE when scrolled (#back-to-top, btn btn-danger btn-icon)
+  - `globals.css`: `#back-to-top { display: block !important; }` (overrides app.min.css `display:none`)
+  - React: conditional render (`if (!visible) return null`) handles show/hide
+- [ ] **Sidebar submenu** — `.menu-dropdown` elements toggle `.show` class on click (accordion behavior)
+  - Velzon original uses `bootstrap.Collapse` — React must implement equivalent state-driven toggle
+  - CSS: `.menu-dropdown{display:none}` + `.menu-dropdown.show{display:block}` — React toggles `.show`
+- [ ] **Horizontal layout submenu** — dropdown menus appear on hover/click
+  - CSS: parent:hover > `.menu-dropdown { display:block }` OR React onMouseEnter/onMouseLeave toggle
 - [ ] **Preloader** present (conditional, #preloader)
 - [ ] **BreadCrumb** present in page-content
 - [ ] **LiveClock** in footer showing real-time `dd/MM/yyyy HH:mm:ss` (setInterval 1000ms)
