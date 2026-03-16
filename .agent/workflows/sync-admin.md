@@ -35,7 +35,9 @@ Scan dự án hiện tại để lập inventory:
 ```
 Scan targets:
 ├── Assets
-│   └── Images → logos, favicon, flags, avatars (from .agent/skills/velzon-admin/assets/images/)
+│   ├── Images → logos, favicon, flags, avatars (from .agent/skills/velzon-admin/assets/images/)
+│   │   └── Flags → verify ALL 11 SVGs: us, vn, jp, cn, es, fr, in, ru, ae, bd, br
+│   └── CSS → 5 CSS files + fonts.css + auth.css
 ├── Database
 │   ├── Migrations/Schema → tables, columns, indexes
 │   └── Seeders → roles, permissions, admin user
@@ -44,7 +46,9 @@ Scan targets:
 │   └── Proxy (auth guard, RBAC guard) — proxy.ts
 ├── Admin
 │   ├── Layouts/ → Header, Sidebar, Footer, RightSidebar
-│   ├── Components/Common/ → BreadCrumb, TableContainer, etc.
+│   │   ├── Header → hamburger toggleMenuBtn() handler present?
+│   │   └── Footer → COMPANY_NAME + LiveClock component present?
+│   ├── Components/Common/ → BreadCrumb, TableContainer, LiveClock, etc.
 │   ├── Pages → Dashboard, Users, Roles, Settings, Profile
 │   └── LayoutMenuData → menu items
 ├── Config
@@ -160,6 +164,10 @@ pnpm lint && pnpm build && pnpm dev
 - [ ] New components render correctly
 - [ ] Updated components still work
 - [ ] Custom pages unaffected
+- [ ] **Flag SVGs** — ALL 11 exist (us, vn, **jp**, cn, es, fr, in, ru, ae, bd, br)
+- [ ] **Hamburger toggle** — `toggleMenuBtn()` handler dispatches to LayoutContext
+- [ ] **Footer** — `© {year} COMPANY_NAME` + LiveClock (`dd/MM/yyyy HH:mm:ss`)
+- [ ] **Images path** — `public/assets/images/` (NOT `public/images/`)
 
 ---
 

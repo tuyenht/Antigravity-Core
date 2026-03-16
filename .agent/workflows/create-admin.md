@@ -147,6 +147,12 @@ Theo thứ tự:
     > **Images MUST go to `public/assets/images/`** (NOT `public/images/`).
     > `admin-shell.html` references `assets/images/logo-sm.png` — wrong path = **broken logos**.
     > Same applies to flags: `public/assets/images/flags/` for language switcher.
+    >
+    > **FLAG SVGs — MANDATORY VERIFICATION:**
+    > After copy, verify ALL 11 flag SVGs exist in `public/assets/images/flags/`:
+    > `us.svg`, `vn.svg`, `jp.svg`, `cn.svg`, `es.svg`, `fr.svg`, `in.svg`, `ru.svg`, `ae.svg`, `bd.svg`, `br.svg`
+    > Missing flag = 404 error + broken `<img>` in LanguageDropdown.
+    > See flag manifest in `admin-shell-template.md` § LanguageDropdown.
 1. **COPY BỘ KHUNG VELZON** — Copy layout shell from `velzon-admin/source/`:
 
     > [!CAUTION]
@@ -166,7 +172,7 @@ Theo thứ tự:
       - Copy `source/react-ts/common/` → BreadCrumb, BackToTop, Preloader
       - Copy `source/react-ts/slices/layouts/` → Redux layout state (CRA/Vite) hoặc convert to Context (Next.js)
       - Copy `source/react-ts/dashboard/` → DashboardPage, StatCard, WelcomeBanner, RecentActivity
-      - **Create** `LiveClock.tsx` → Footer real-time clock (`dd/MM/yyyy HH:mm:ss`, `setInterval(1000)`)
+      - **Create** `LiveClock.tsx` → Footer real-time clock. **Use template from `admin-shell-template.md` § Footer Spec → LiveClock** (React/Next.js version). Format: `dd/MM/yyyy HH:mm:ss`, `setInterval(1000)`, native Date (NO i18n dependency).
 
     **🔄 NEXT.JS ADAPTATION RULES (chỉ thay đổi ĐÚNG những gì cần thiết):**
 
@@ -215,7 +221,9 @@ Theo thứ tự:
 > [!CAUTION]
 > **BẮT BUỘC tạo TẤT CẢ các component sau (theo `admin-shell-template.md`):**
 > - Header.tsx với ĐẦY ĐỦ: Hamburger toggle, SearchOption, LanguageDropdown, LightDark, FullScreenDropdown, NotificationDropdown, ProfileDropdown
+> - **Hamburger toggle PHẢI có `toggleMenuBtn()` handler** — see `admin-shell-template.md` § Sidebar Toggle (Hamburger) → Next.js Context Implementation. Without handler = button renders but does NOTHING.
 > - Sidebar.tsx với multi-level menu, smooth accordion, active glow, badges, permission filtering
+> - Footer.tsx với `© {year} COMPANY_NAME + LiveClock` — see `admin-shell-template.md` § Footer Spec
 > - RightSidebar.tsx (Theme Customizer) với floating gear icon + drawer panel
 > - Layout state management (Context cho Next.js, Redux cho CRA/Vite)
 >
@@ -349,7 +357,8 @@ pnpm lint && pnpm build && pnpm dev  # or framework equivalent
 - [ ] Users CRUD + Invite functional
 - [ ] Permission matrix saves correctly
 - [ ] **Header has ALL 6 dropdowns**: Search, Language, FullScreen, LightDark, Notifications, Profile (~~WebApps~~, ~~Cart~~ REMOVED)
-- [ ] **Sidebar toggle** collapses/expands sidebar
+- [ ] **Sidebar toggle** collapses/expands sidebar — hamburger `toggleMenuBtn()` handler dispatches to LayoutContext (see `admin-shell-template.md`)
+- [ ] **Flag SVGs** — ALL 11 exist in `public/assets/images/flags/` (us, vn, **jp**, cn, es, fr, in, ru, ae, bd, br) — no 404 in console
 - [ ] **Multi-level menu** works with smooth accordion animation
 - [ ] **Theme Customizer** gear icon visible, drawer opens with layout/color options
 - [ ] **Dark/Light mode** toggle works correctly
