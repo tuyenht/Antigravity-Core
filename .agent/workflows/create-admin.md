@@ -231,7 +231,7 @@ Theo thứ tự:
 > ❌ **CẤM** bỏ qua bất kỳ dropdown nào trong Header.
 > ✅ **BẮT BUỘC** đọc `source/html-canonical/admin-shell.html` làm PRIMARY SOURCE trước khi tạo.
 > ✅ **3 LOCKED values**: `data-theme="default"`, `data-layout-width="fluid"`, `data-layout-style="default"`
-> ✅ **PRUNE RightSidebar.tsx**: Remove Theme selector, Boxed width, Compact sidebar, Sidebar View sections.
+> ✅ **PRUNE RightSidebar.tsx**: Remove Theme selector, Boxed width, Compact sidebar, Sidebar View, Sidebar Visibility, Layout Width sections.
 >    Customizer footer = Reset + Close (i18n `data-key="t-reset"`, `data-key="t-close"`). Buy Now REMOVED.
 
 1.5. **COPY AUTH LOGIN** — Copy auth login from `velzon-admin/source/`:
