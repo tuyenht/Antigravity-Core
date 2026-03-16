@@ -375,28 +375,41 @@ Floating gear icon button, fixed position on right edge of screen:
 
 ### Customizer Drawer Options
 
-| Section | Options | Data Attribute |
-|---------|---------|---------------|
-| **LAYOUT** | Vertical, Horizontal, Two Column, Semi Box | `data-layout` |
-| **COLOR SCHEME** | Light, Dark | `data-bs-theme` |
-| **SIDEBAR VISIBILITY** | Show, Hidden | `data-sidebar-visibility` |
-| **LAYOUT WIDTH** | Fluid only (~~Boxed~~ REMOVED) | `data-layout-width` — **LOCKED: fluid** |
-| **LAYOUT POSITION** | Fixed, Scrollable | `data-layout-position` |
-| **TOPBAR COLOR** | Light, Dark | `data-topbar` |
-| **SIDEBAR SIZE** | Default, ~~Compact~~ REMOVED, Small (Icon), Small Hover | `data-sidebar-size` |
-| ~~SIDEBAR VIEW~~ | ~~Default, Detached~~ **REMOVED** | `data-layout-style` — **LOCKED: default** |
-| **SIDEBAR COLOR** | Light, Dark, Gradient (4 options) | `data-sidebar` |
-| **SIDEBAR IMAGE** | None, Image 1-4 | `data-sidebar-image` |
-| **PRIMARY COLOR** | Default, Green, Purple, Blue | `data-theme-colors` |
-| **PRELOADER** | Enable, Disable | `data-preloader` |
+| Section | Options | Data Attribute | Status |
+|---------|---------|---------------|--------|
+| **LAYOUT** | Vertical, Horizontal, Two Column | `data-layout` | ~~Semi Box~~ REMOVED |
+| **COLOR SCHEME** | Light, Dark | `data-bs-theme` | ✅ Keep |
+| ~~THEME~~ | ~~Default, Minimal, SaaS, Corporate...~~ | `data-theme` | **REMOVED — LOCKED: default** |
+| ~~SIDEBAR USER PROFILE AVATAR~~ | ~~Toggle~~ | — | **REMOVED** |
+| **LAYOUT WIDTH** | Fluid only | `data-layout-width` | ~~Boxed~~ REMOVED |
+| **LAYOUT POSITION** | Fixed, Scrollable | `data-layout-position` | ✅ Keep |
+| **TOPBAR COLOR** | Light, Dark | `data-topbar` | ✅ Keep |
+| **SIDEBAR SIZE** | Default (lg), Small (sm), Small Hover (sm-hover) | `data-sidebar-size` | ~~Compact (md)~~ REMOVED |
+| ~~SIDEBAR VIEW~~ | ~~Default, Detached~~ | `data-layout-style` | **REMOVED — LOCKED: default** |
+| **SIDEBAR COLOR** | Light, Dark, Gradient (4 options) | `data-sidebar` | ✅ Keep |
+| **SIDEBAR IMAGE** | None, Image 1-4 | `data-sidebar-image` | ✅ Keep |
+| **PRIMARY COLOR** | Default, Green, Purple, Blue | `data-theme-colors` | ✅ Keep |
+| **PRELOADER** | Enable, Disable | `data-preloader` | ✅ Keep |
 
 > [!CAUTION]
-> **3 LOCKED values** (hardcoded, not changeable via customizer):
-> - `data-theme="default"` — Theme selector REMOVED
-> - `data-layout-width="fluid"` — Boxed REMOVED
-> - `data-layout-style="default"` — Sidebar View REMOVED
+> **HTML Elements to REMOVE from Theme Customizer (app.js stays UNTOUCHED):**
 >
-> **Footer:** Reset + Close (i18n: `data-key="t-reset"`, `data-key="t-close"`). Buy Now REMOVED.
+> | Phần cần xóa | HTML Element ID / Selector | Ghi chú |
+> |--------------|---------------------------|---------|
+> | Semi Box layout | `#customizer-layout04` (input radio + label) | Xóa cả khối `.form-check` chứa nó |
+> | Sidebar User Profile | Toggle switch `Sidebar User Profile Avatar` | Ẩn/xóa toggle trong customizer |
+> | Theme chooser | Toàn bộ div `#theme` hoặc section chứa các radio `data-theme` | Hardcode `data-theme="default"` |
+> | Boxed layout width | Input radio `value="boxed"` trong `#layout-width` | Chỉ giữ Fluid |
+> | Compact sidebar | Input radio `value="md"` trong `#sidebar-size` | Chỉ giữ lg, sm, sm-hover |
+> | Sidebar View | Toàn bộ div `#sidebar-view` | Hardcode `data-layout-style="default"` |
+>
+> **4 LOCKED values** (hardcoded trên `<html>`, không hiện trong customizer):
+> - `data-theme="default"`
+> - `data-layout-width="fluid"`
+> - `data-layout-style="default"`
+> - `data-sidebar-size="lg"` (mặc định khi load)
+>
+> **Footer customizer:** Reset + Close (i18n: `data-key="t-reset"`, `data-key="t-close"`). ~~Buy Now~~ REMOVED.
 
 ### Implementation Pattern
 
