@@ -357,7 +357,7 @@ pnpm lint && pnpm build && pnpm dev  # or framework equivalent
 - [ ] Users CRUD + Invite functional
 - [ ] Permission matrix saves correctly
 - [ ] **Header has ALL 6 dropdowns**: Search, Language, FullScreen, LightDark, Notifications, Profile (~~WebApps~~, ~~Cart~~ REMOVED)
-- [ ] **Sidebar toggle** uses `sm-hover` (NOT `sm`) — hamburger toggles `data-sidebar-size` between `lg` ↔ `sm-hover`, hover over collapsed sidebar shows full menu labels
+- [ ] **Sidebar toggle** — hamburger uses `sm` (icon-only, no hover). Sidebar `●hover` button uses `sm-hover` (icon-only + CSS hover expand). See `admin-shell-template.md` § Sidebar Toggle for dual-mode handler code.
 - [ ] **Flag SVGs** — ALL 11+ exist in `public/assets/images/flags/` (copy ALL 272 from assets) — no 404 in console
 - [ ] **Multi-level menu** works with smooth accordion animation
 - [ ] **Theme Customizer** gear icon visible, drawer opens with layout/color options
@@ -377,13 +377,13 @@ pnpm lint && pnpm build && pnpm dev  # or framework equivalent
 
   /* Z-INDEX FIX: BackToTop + Customizer must NOT overlap footer */
   .footer { position: relative; z-index: 10; }
-  #back-to-top { z-index: 1000; bottom: 100px; }
-  .customizer-setting { z-index: 999; bottom: 40px; }
+  #back-to-top { z-index: 1000 !important; bottom: 100px !important; }
+  .customizer-setting { z-index: 999 !important; bottom: 40px !important; }
 
   /* Ensure BackToTop clears above customizer gear */
   @media (max-height: 600px) {
-    #back-to-top { bottom: 80px; }
-    .customizer-setting { bottom: 20px; }
+    #back-to-top { bottom: 80px !important; }
+    .customizer-setting { bottom: 20px !important; }
   }
   ```
 - [ ] **sessionStorage** used for layout persistence (NOT localStorage)

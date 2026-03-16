@@ -87,22 +87,45 @@ src/components/admin/
 > The hamburger button MUST dispatch to LayoutContext. Do NOT rely on `app.js` DOM manipulation.
 > ```tsx
 > // In Header.tsx — using LayoutContext (NOT Redux)
-> const { sidebarSize, setSidebarSize, sidebarVisibility, setSidebarVisibility } = useLayout();
+> const { sidebarSize, setSidebarSize, setSidebarVisibility } = useLayout();
 > 
 > const toggleMenuBtn = () => {
 >   const width = document.documentElement.clientWidth;
 >   if (width > 1025) {
->     // ⚠️ MUST use 'sm-hover' (NOT 'sm') — enables menu expand on hover
->     setSidebarSize(sidebarSize === 'lg' ? 'sm-hover' : 'lg');
->   } else if (width > 767) {
->     setSidebarSize(sidebarSize === 'sm-hover' ? '' : 'sm-hover');
+>     // Hamburger: lg ↔ sm (icon-only, NO hover expand — matches Velzon app.js L774-778)
+>     setSidebarSize(sidebarSize === 'lg' ? 'sm' : 'lg');
+>   } else if (width <= 1025 && width > 767) {
+>     setSidebarSize(sidebarSize === 'sm' ? '' : 'sm');
+>   } else {
+>     document.body.classList.toggle('vertical-sidebar-enable');
+>     setSidebarSize('lg');
 >   }
->   setSidebarVisibility('show');
 >   document.querySelector('.hamburger-icon')?.classList.toggle('open');
 > };
 > ```
 > **Without this handler, the hamburger button renders but does NOTHING on click.**
-> **If 'sm' used instead of 'sm-hover', sidebar collapses but does NOT expand on hover.**
+>
+> **❗ Two sidebar collapse modes (do NOT confuse):**
+> | Mode | `data-sidebar-size` | Behavior | Triggered By |
+> |------|---------------------|----------|-------------|
+> | **Icon-only** | `sm` | Icons only, NO hover expand | Hamburger toggle button |
+> | **Hover expand** | `sm-hover` | Icons only, menu EXPANDS on hover via CSS | Sidebar `● hover` toggle icon OR Customizer "Sidebar Size" |
+>
+> The `sm-hover` mode is activated by the **vertical-hover** button in the sidebar header:
+> ```tsx
+> // In Sidebar.tsx — small round button in sidebar header (btn-vertical-sm-hover)
+> const toggleSmHover = () => {
+>   if (sidebarSize === 'sm-hover') {
+>     setSidebarSize('sm-hover-active'); // pin expanded
+>   } else if (sidebarSize === 'sm-hover-active') {
+>     setSidebarSize('sm-hover'); // back to hover
+>   } else {
+>     setSidebarSize('sm-hover'); // enter hover mode
+>   }
+> };
+> ```
+> **CSS (already in app.min.css) handles the hover expand automatically:**
+> `[data-sidebar-size=sm-hover] .navbar-menu:hover { width: var(--vz-vertical-menu-width) !important }`
 
 ### 2. SearchOption
 
