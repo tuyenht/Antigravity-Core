@@ -92,15 +92,17 @@ src/components/admin/
 > const toggleMenuBtn = () => {
 >   const width = document.documentElement.clientWidth;
 >   if (width > 1025) {
->     setSidebarSize(sidebarSize === 'lg' ? 'sm' : 'lg');
+>     // ⚠️ MUST use 'sm-hover' (NOT 'sm') — enables menu expand on hover
+>     setSidebarSize(sidebarSize === 'lg' ? 'sm-hover' : 'lg');
 >   } else if (width > 767) {
->     setSidebarSize(sidebarSize === 'sm' ? '' : 'sm');
+>     setSidebarSize(sidebarSize === 'sm-hover' ? '' : 'sm-hover');
 >   }
 >   setSidebarVisibility('show');
 >   document.querySelector('.hamburger-icon')?.classList.toggle('open');
 > };
 > ```
 > **Without this handler, the hamburger button renders but does NOTHING on click.**
+> **If 'sm' used instead of 'sm-hover', sidebar collapses but does NOT expand on hover.**
 
 ### 2. SearchOption
 

@@ -357,8 +357,8 @@ pnpm lint && pnpm build && pnpm dev  # or framework equivalent
 - [ ] Users CRUD + Invite functional
 - [ ] Permission matrix saves correctly
 - [ ] **Header has ALL 6 dropdowns**: Search, Language, FullScreen, LightDark, Notifications, Profile (~~WebApps~~, ~~Cart~~ REMOVED)
-- [ ] **Sidebar toggle** collapses/expands sidebar — hamburger `toggleMenuBtn()` handler dispatches to LayoutContext (see `admin-shell-template.md`)
-- [ ] **Flag SVGs** — ALL 11 exist in `public/assets/images/flags/` (us, vn, **jp**, cn, es, fr, in, ru, ae, bd, br) — no 404 in console
+- [ ] **Sidebar toggle** uses `sm-hover` (NOT `sm`) — hamburger toggles `data-sidebar-size` between `lg` ↔ `sm-hover`, hover over collapsed sidebar shows full menu labels
+- [ ] **Flag SVGs** — ALL 11+ exist in `public/assets/images/flags/` (copy ALL 272 from assets) — no 404 in console
 - [ ] **Multi-level menu** works with smooth accordion animation
 - [ ] **Theme Customizer** gear icon visible, drawer opens with layout/color options
 - [ ] **Dark/Light mode** toggle works correctly
@@ -370,9 +370,21 @@ pnpm lint && pnpm build && pnpm dev  # or framework equivalent
 - [ ] **ICON FONTS** rendering correctly (no □ placeholders) — bx, ri, mdi, la
 - [ ] **LTR OVERRIDES** in globals.css:
   ```css
+  /* Sidebar positioning */
   [dir=ltr] .app-menu { left: 0; }
   [dir=ltr] .main-content { margin-left: var(--vz-vertical-menu-width, 250px); }
   [dir=ltr] .vertical-menu-btn { margin-right: -2px; }
+
+  /* Z-INDEX FIX: BackToTop + Customizer must NOT overlap footer */
+  .footer { position: relative; z-index: 10; }
+  #back-to-top { z-index: 1000; bottom: 100px; }
+  .customizer-setting { z-index: 999; bottom: 40px; }
+
+  /* Ensure BackToTop clears above customizer gear */
+  @media (max-height: 600px) {
+    #back-to-top { bottom: 80px; }
+    .customizer-setting { bottom: 20px; }
+  }
   ```
 - [ ] **sessionStorage** used for layout persistence (NOT localStorage)
 - [ ] **BackToTop** button present (#back-to-top, btn btn-danger btn-icon)
@@ -383,6 +395,7 @@ pnpm lint && pnpm build && pnpm dev  # or framework equivalent
 - [ ] **Header buttons** all have: btn-icon btn-topbar material-shadow-none btn-ghost-secondary rounded-circle
 - [ ] **3 LOCKED values**: `data-theme="default"`, `data-layout-width="fluid"`, `data-layout-style="default"`
 - [ ] **Customizer PRUNED**: No Theme selector, No Boxed, No Compact sidebar, No Sidebar View. Footer = Reset + Close (i18n)
+- [ ] **Z-INDEX stacking**: BackToTop (z:1000, bottom:100px) above Customizer (z:999, bottom:40px), neither overlaps footer
 - [ ] **Visual Parity**: 15-point checklist from implementation plan PASSED
 
 **Agent:** `debugger`
