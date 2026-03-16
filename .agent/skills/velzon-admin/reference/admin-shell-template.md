@@ -82,6 +82,26 @@ src/components/admin/
 - Tablet (768–1025px): Toggles `data-sidebar-size` between `'sm'` and `''`
 - Mobile (<767px): Adds/removes `vertical-sidebar-enable` class on `body`
 
+> [!CAUTION]
+> **Next.js Context Implementation (MANDATORY):**
+> The hamburger button MUST dispatch to LayoutContext. Do NOT rely on `app.js` DOM manipulation.
+> ```tsx
+> // In Header.tsx — using LayoutContext (NOT Redux)
+> const { sidebarSize, setSidebarSize, sidebarVisibility, setSidebarVisibility } = useLayout();
+> 
+> const toggleMenuBtn = () => {
+>   const width = document.documentElement.clientWidth;
+>   if (width > 1025) {
+>     setSidebarSize(sidebarSize === 'lg' ? 'sm' : 'lg');
+>   } else if (width > 767) {
+>     setSidebarSize(sidebarSize === 'sm' ? '' : 'sm');
+>   }
+>   setSidebarVisibility('show');
+>   document.querySelector('.hamburger-icon')?.classList.toggle('open');
+> };
+> ```
+> **Without this handler, the hamburger button renders but does NOTHING on click.**
+
 ### 2. SearchOption
 
 **Source:** `source/react-ts/header-components/SearchOption.tsx` (205 lines)
@@ -94,6 +114,27 @@ src/components/admin/
 ### 3. LanguageDropdown
 
 **Source:** `source/react-ts/header-components/LanguageDropdown.tsx` (67 lines)
+
+**Required flag SVGs** (11 files in `assets/images/flags/`):
+
+| File | Language | Used By |
+|------|----------|---------|
+| `us.svg` | English | Default (en) |
+| `vn.svg` | Tiếng Việt | vi |
+| `jp.svg` | 日本語 | ja |
+| `cn.svg` | 中文 | zh |
+| `es.svg` | Español | es |
+| `fr.svg` | Français | fr |
+| `in.svg` | Hindi | hi |
+| `ru.svg` | Русский | ru |
+| `ae.svg` | Arabic | ar |
+| `bd.svg` | Bengali | bn |
+| `br.svg` | Português | pt |
+
+> [!CAUTION]
+> **Missing flag SVG = broken `<img>` tag → 404 in console + no flag icon displayed.**
+> Every language in the project's `languages` config MUST have a matching SVG in `public/assets/images/flags/`.
+> Copy ALL SVGs from `.agent/skills/velzon-admin/assets/images/flags/`.
 
 - Shows current language flag icon (🇺🇸 for EN)
 - Dropdown with flag + language name for each supported locale
@@ -137,6 +178,87 @@ src/components/admin/
 - Avatar (32×32 rounded) + user name + role subtitle (e.g., "Founder")
 - Dropdown menu items: Profile, Messages, Taskboard, Help, Settings, Lock screen, Logout
 - Name from session, role from user permissions
+
+---
+
+## Footer Spec
+
+### Structure
+
+```
+┌───────────────────────────────────────────────────────┐
+│  © 2026 COMPANY_NAME. All rights reserved.   16/03/2026 14:57:23  │
+│  ↑                                            ↑                   │
+│  Left: configurable branding                  Right: LiveClock    │
+└───────────────────────────────────────────────────────┘
+```
+
+### Footer Left — Company Branding
+
+- `COMPANY_NAME` and `COMPANY_URL` from `config/admin.ts` (or `.env`)
+- Template: `© {year} <a href={COMPANY_URL} target="_blank">{COMPANY_NAME}</a>. All rights reserved.`
+
+### Footer Right — LiveClock
+
+Real-time clock displaying `dd/MM/yyyy HH:mm:ss`, updated every 1000ms.
+
+> [!IMPORTANT]
+> **LiveClock MUST work with ALL supported languages and ALL frameworks.**
+> This is a separate component (`LiveClock.tsx` / `LiveClock.vue` / `liveclock.blade.php`).
+> It MUST NOT depend on i18n libraries for basic date formatting — use native `Intl.DateTimeFormat`.
+
+**React / Next.js:**
+```tsx
+'use client';
+import { useState, useEffect } from 'react';
+
+export default function LiveClock() {
+  const [time, setTime] = useState('');
+
+  useEffect(() => {
+    const fmt = () => {
+      const now = new Date();
+      const pad = (n: number) => String(n).padStart(2, '0');
+      return `${pad(now.getDate())}/${pad(now.getMonth() + 1)}/${now.getFullYear()} ${pad(now.getHours())}:${pad(now.getMinutes())}:${pad(now.getSeconds())}`;
+    };
+    setTime(fmt());
+    const id = setInterval(() => setTime(fmt()), 1000);
+    return () => clearInterval(id);
+  }, []);
+
+  return <span id="live-clock">{time}</span>;
+}
+```
+
+**Laravel Blade (Alpine.js):**
+```blade
+<span id="live-clock" x-data="{ time: '' }" x-init="
+  const fmt = () => {
+    const n = new Date();
+    const p = (v) => String(v).padStart(2, '0');
+    return p(n.getDate())+'/'+p(n.getMonth()+1)+'/'+n.getFullYear()+' '+p(n.getHours())+':'+p(n.getMinutes())+':'+p(n.getSeconds());
+  };
+  time = fmt();
+  setInterval(() => time = fmt(), 1000);
+" x-text="time"></span>
+```
+
+**Vue 3:**
+```vue
+<script setup lang="ts">
+import { ref, onMounted, onUnmounted } from 'vue';
+const time = ref('');
+let tid: ReturnType<typeof setInterval>;
+const fmt = () => {
+  const n = new Date();
+  const p = (v: number) => String(v).padStart(2, '0');
+  return `${p(n.getDate())}/${p(n.getMonth()+1)}/${n.getFullYear()} ${p(n.getHours())}:${p(n.getMinutes())}:${p(n.getSeconds())}`;
+};
+onMounted(() => { time.value = fmt(); tid = setInterval(() => time.value = fmt(), 1000); });
+onUnmounted(() => clearInterval(tid));
+</script>
+<template><span id="live-clock">{{ time }}</span></template>
+```
 
 ---
 
