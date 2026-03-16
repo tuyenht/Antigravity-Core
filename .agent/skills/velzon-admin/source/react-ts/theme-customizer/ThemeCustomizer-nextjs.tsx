@@ -12,9 +12,11 @@ import { useLayout } from '@/contexts/LayoutContext';
  * PRUNED per spec:
  * - Semi Box layout: REMOVED
  * - Theme chooser: LOCKED to Default (hidden)
- * - Boxed layout width: REMOVED (locked to Fluid)
+ * - Layout Width: REMOVED (locked to Fluid — default)
+ * - Boxed layout width: REMOVED
  * - Compact sidebar size: REMOVED
  * - Sidebar View: REMOVED (locked to Default)
+ * - Sidebar Visibility: REMOVED (locked to Show — default)
  * - Sidebar User Profile: REMOVED
  */
 
@@ -199,37 +201,6 @@ const SidebarSmallThumb = () => (
   </span>
 );
 
-/* === Sidebar visibility show thumbnail === */
-const SidebarShowThumb = () => (
-  <span className="d-flex gap-1 h-100">
-    <span className="flex-shrink-0 p-1">
-      <span className="bg-light d-flex h-100 flex-column gap-1 p-1">
-        <span className="d-block p-1 px-2 bg-primary-subtle rounded mb-2"></span>
-        <span className="d-block p-1 px-2 pb-0 bg-primary-subtle"></span>
-        <span className="d-block p-1 px-2 pb-0 bg-primary-subtle"></span>
-        <span className="d-block p-1 px-2 pb-0 bg-primary-subtle"></span>
-      </span>
-    </span>
-    <span className="flex-grow-1">
-      <span className="d-flex h-100 flex-column pt-1 pe-2">
-        <span className="bg-light d-block p-1"></span>
-        <span className="bg-light d-block p-1 mt-auto"></span>
-      </span>
-    </span>
-  </span>
-);
-
-/* === Sidebar visibility hidden thumbnail === */
-const SidebarHiddenThumb = () => (
-  <span className="d-flex gap-1 h-100">
-    <span className="flex-grow-1">
-      <span className="d-flex h-100 flex-column pt-1 px-2">
-        <span className="bg-light d-block p-1"></span>
-        <span className="bg-light d-block p-1 mt-auto"></span>
-      </span>
-    </span>
-  </span>
-);
 
 export default function ThemeCustomizer() {
   const [isOpen, setIsOpen] = useState(false);
@@ -240,8 +211,8 @@ export default function ThemeCustomizer() {
 
   const readAttrs = useCallback(() => {
     const el = document.documentElement;
-    const keys = ['layout','bs-theme','topbar','sidebar-size','sidebar','sidebar-visibility',
-      'layout-width','layout-position','theme-colors','sidebar-image','preloader','body-image'];
+    const keys = ['layout','bs-theme','topbar','sidebar-size','sidebar',
+      'layout-position','theme-colors','sidebar-image','preloader','body-image'];
     const obj: Record<string, string> = {};
     keys.forEach(k => { obj[k] = el.getAttribute(`data-${k}`) || ''; });
     setA(obj);
@@ -256,7 +227,7 @@ export default function ThemeCustomizer() {
     document.documentElement.setAttribute(`data-${attr}`, value);
     sessionStorage.setItem(`data-${attr}`, value);
     setA(p => ({ ...p, [attr]: value }));
-    if (attr === 'layout') changeLayout('layout', value);
+    if (attr === 'layout') changeLayout('layoutType', value);
     if (attr === 'sidebar-size') changeLayout('sidebarSize', value);
   }, [changeLayout]);
 
@@ -266,14 +237,13 @@ export default function ThemeCustomizer() {
       'bs-theme':'light','layout-width':'fluid','layout-position':'fixed',
       'layout-style':'default','theme':'default','theme-colors':'default',
       'preloader':'disable','body-image':'none','sidebar-image':'none',
-      'sidebar-visibility':'show',
     };
     Object.entries(d).forEach(([k, v]) => {
       document.documentElement.setAttribute(`data-${k}`, v);
       sessionStorage.setItem(`data-${k}`, v);
     });
     setA(d);
-    changeLayout('layout', 'vertical');
+    changeLayout('layoutType', 'vertical');
     changeLayout('sidebarSize', 'lg');
   }, [changeLayout]);
 
@@ -348,42 +318,8 @@ export default function ThemeCustomizer() {
                 </div>
               </div>
 
-              {/* === Sidebar Visibility === */}
-              <div id="sidebar-visibility">
-                <h6 className="mt-4 mb-0 fw-semibold text-uppercase">Sidebar Visibility</h6>
-                <p className="text-muted">Choose show or Hidden sidebar.</p>
-                <div className="row">
-                  <div className="col-4">
-                    <div className="form-check card-radio">
-                      <input className="form-check-input" type="radio" name="data-sidebar-visibility" id="sidebar-visibility-show" value="show" checked={a['sidebar-visibility'] === 'show'} onChange={() => set('sidebar-visibility', 'show')} />
-                      <label className="form-check-label p-0 avatar-md w-100 material-shadow" htmlFor="sidebar-visibility-show"><SidebarShowThumb /></label>
-                    </div>
-                    <h5 className="fs-13 text-center mt-2">Show</h5>
-                  </div>
-                  <div className="col-4">
-                    <div className="form-check card-radio">
-                      <input className="form-check-input" type="radio" name="data-sidebar-visibility" id="sidebar-visibility-hidden" value="hidden" checked={a['sidebar-visibility'] === 'hidden'} onChange={() => set('sidebar-visibility', 'hidden')} />
-                      <label className="form-check-label p-0 avatar-md w-100 px-2 material-shadow" htmlFor="sidebar-visibility-hidden"><SidebarHiddenThumb /></label>
-                    </div>
-                    <h5 className="fs-13 text-center mt-2">Hidden</h5>
-                  </div>
-                </div>
-              </div>
-
-              {/* === Layout Width (Fluid only) === */}
-              <div id="layout-width">
-                <h6 className="mt-4 mb-0 fw-semibold text-uppercase">Layout Width</h6>
-                <p className="text-muted">Choose Fluid layout.</p>
-                <div className="row">
-                  <div className="col-4">
-                    <div className="form-check card-radio">
-                      <input className="form-check-input" type="radio" name="data-layout-width" id="layout-width-fluid" value="fluid" checked={true} readOnly />
-                      <label className="form-check-label p-0 avatar-md w-100 material-shadow" htmlFor="layout-width-fluid"><VerticalThumb /></label>
-                    </div>
-                    <h5 className="fs-13 text-center mt-2">Fluid</h5>
-                  </div>
-                </div>
-              </div>
+              {/* Sidebar Visibility: REMOVED — locked to Show (default) */}
+              {/* Layout Width: REMOVED — locked to Fluid (default) */}
 
               {/* === Layout Position === */}
               <div id="layout-position">
