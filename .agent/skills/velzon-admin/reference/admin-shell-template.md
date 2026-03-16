@@ -86,32 +86,72 @@ src/components/admin/
 > **Next.js Context Implementation (MANDATORY):**
 > The hamburger button MUST dispatch to LayoutContext. Do NOT rely on `app.js` DOM manipulation.
 > ```tsx
-> // In Header.tsx — using LayoutContext (NOT Redux)
-> const { sidebarSize, setSidebarSize, setSidebarVisibility } = useLayout();
+> // ===== EXACT COPY from Velzon Next-TS Header.tsx L40-71 =====
+> // Uses Redux dispatch (changeSidebarVisibility) — adapt to Context if needed
+> const toogleMenuBtn = () => {
+>   var windowSize = document.documentElement.clientWidth;
+>   const humberIcon = document.querySelector(".hamburger-icon") as HTMLElement;
+>   dispatch(changeSidebarVisibility("show"));
 > 
-> const toggleMenuBtn = () => {
->   const width = document.documentElement.clientWidth;
->   if (width > 1025) {
->     // Desktop: lg ↔ sm-hover (icon-only WITH hover expand per user expectation)
->     setSidebarSize(sidebarSize === 'lg' ? 'sm-hover' : 'lg');
->   } else if (width <= 1025 && width > 767) {
->     setSidebarSize(sidebarSize === 'sm-hover' ? '' : 'sm-hover');
->   } else {
->     // Mobile: slide sidebar
->     document.body.classList.toggle('vertical-sidebar-enable');
->     setSidebarSize('lg');
+>   if (windowSize > 767)
+>     humberIcon.classList.toggle('open');
+> 
+>   //For collapse horizontal menu
+>   if (document.documentElement.getAttribute('data-layout') === "horizontal") {
+>     document.body.classList.contains("menu")
+>       ? document.body.classList.remove("menu")
+>       : document.body.classList.add("menu");
 >   }
->   document.querySelector('.hamburger-icon')?.classList.toggle('open');
+> 
+>   //For collapse vertical and semibox menu
+>   if (sidebarVisibilitytype === "show" &&
+>     (document.documentElement.getAttribute('data-layout') === "vertical" ||
+>      document.documentElement.getAttribute('data-layout') === "semibox")) {
+>     if (windowSize < 1025 && windowSize > 767) {
+>       document.body.classList.remove('vertical-sidebar-enable');
+>       (document.documentElement.getAttribute('data-sidebar-size') === 'sm')
+>         ? document.documentElement.setAttribute('data-sidebar-size', '')
+>         : document.documentElement.setAttribute('data-sidebar-size', 'sm');
+>     } else if (windowSize > 1025) {
+>       document.body.classList.remove('vertical-sidebar-enable');
+>       (document.documentElement.getAttribute('data-sidebar-size') === 'lg')
+>         ? document.documentElement.setAttribute('data-sidebar-size', 'sm')
+>         : document.documentElement.setAttribute('data-sidebar-size', 'lg');
+>     } else if (windowSize <= 767) {
+>       document.body.classList.add('vertical-sidebar-enable');
+>       document.documentElement.setAttribute('data-sidebar-size', 'lg');
+>     }
+>   }
+> 
+>   //Two column menu
+>   if (document.documentElement.getAttribute('data-layout') === "twocolumn") {
+>     document.body.classList.contains('twocolumn-panel')
+>       ? document.body.classList.remove('twocolumn-panel')
+>       : document.body.classList.add('twocolumn-panel');
+>   }
 > };
 > ```
-> **Without this handler, the hamburger button renders but does NOTHING on click.**
 >
-> **❗ Two sidebar collapse values explained:**
-> | Value | Behavior | When to use |
-> |-------|----------|------------|
-> | `sm` | Icon-only, NO hover expand | Only via Customizer "Small" option |
-> | `sm-hover` | Icon-only, **menu EXPANDS on hover** via CSS | Hamburger toggle (recommended default) |
-> | `sm-hover-active` | Pinned expanded (no collapse back) | Via sidebar `● hover` toggle icon |
+> **Sidebar sm-hover toggle** (Sidebar.tsx L27-36 — the `●` icon in sidebar header):
+> ```tsx
+> // EXACT COPY from Velzon Sidebar.tsx — addEventListenerOnSmHoverMenu
+> const addEventListenerOnSmHoverMenu = () => {
+>   if (document.documentElement.getAttribute('data-sidebar-size') === 'sm-hover') {
+>     document.documentElement.setAttribute('data-sidebar-size', 'sm-hover-active');
+>   } else if (document.documentElement.getAttribute('data-sidebar-size') === 'sm-hover-active') {
+>     document.documentElement.setAttribute('data-sidebar-size', 'sm-hover');
+>   } else {
+>     document.documentElement.setAttribute('data-sidebar-size', 'sm-hover');
+>   }
+> };
+> ```
+> 
+> **❗ Sidebar collapse mode summary (from Velzon original):**
+> | Value | Behavior | Triggered By |
+> |-------|----------|-------------|
+> | `sm` | Icon-only, NO hover expand | Hamburger toggle (desktop) |
+> | `sm-hover` | Icon-only + hover expand via CSS | Sidebar `●` button OR Customizer |
+> | `sm-hover-active` | Pinned expanded | Sidebar `●` button toggle |
 >
 > The `sm-hover` mode is activated by the **vertical-hover** button in the sidebar header:
 > ```tsx
