@@ -221,7 +221,7 @@ Theo thứ tự:
 > [!CAUTION]
 > **BẮT BUỘC tạo TẤT CẢ các component sau (theo `admin-shell-template.md`):**
 > - Header.tsx với ĐẦY ĐỦ: Hamburger toggle, SearchOption, LanguageDropdown, LightDark, FullScreenDropdown, NotificationDropdown, ProfileDropdown
-> - **Hamburger toggle PHẢI có `toggleMenuBtn()` handler** — see `admin-shell-template.md` § Sidebar Toggle (Hamburger) → Next.js Context Implementation. Without handler = button renders but does NOTHING.
+> - **Hamburger toggle, menu accordion, BackToTop, sidebar hover — ALL handled by Velzon `app.js`**. Do NOT write custom React handlers. Include `app.js` via `next/script` + render correct DOM structure (see `admin-shell-template.md` § Velzon Original Scripts).
 > - Sidebar.tsx với multi-level menu, smooth accordion, active glow, badges, permission filtering
 > - Footer.tsx với `© {year} COMPANY_NAME + LiveClock` — see `admin-shell-template.md` § Footer Spec
 > - RightSidebar.tsx (Theme Customizer) với floating gear icon + drawer panel
@@ -357,8 +357,9 @@ pnpm lint && pnpm build && pnpm dev  # or framework equivalent
 - [ ] Users CRUD + Invite functional
 - [ ] Permission matrix saves correctly
 - [ ] **Header has ALL 6 dropdowns**: Search, Language, FullScreen, LightDark, Notifications, Profile (~~WebApps~~, ~~Cart~~ REMOVED)
-- [ ] **Sidebar toggle** — hamburger uses `sm-hover` (hover expand). Click → sidebar collapses to icons, hover → menu labels appear
-- [ ] **LayoutContext** sets `document.documentElement.setAttribute('data-sidebar-size', 'sm-hover')` when state changes
+- [ ] **Sidebar toggle** — hamburger uses `sm` (Velzon app.js). Click → sidebar collapses to icons, hover → menu popup appears (CSS built-in)
+- [ ] **Velzon scripts** included via `next/script`: `bootstrap.bundle.min.js`, `simplebar.min.js`, `plugins.js`, `app.js`
+- [ ] **DO NOT** write custom React handlers for hamburger/accordion/BackToTop — `app.js` handles all
 - [ ] **Flag SVGs** — ALL 11+ exist in `public/assets/images/flags/` (copy ALL 272 from assets) — no 404 in console
 - [ ] **Multi-level menu** works with smooth accordion animation
 - [ ] **Theme Customizer** gear icon visible, drawer opens with layout/color options

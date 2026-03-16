@@ -65,7 +65,6 @@ src/components/admin/
 
 ```tsx
 <button
-    onClick={toggleMenuBtn}
     type="button"
     className="btn btn-sm px-3 fs-16 header-item vertical-menu-btn topnav-hamburger"
     id="topnav-hamburger-icon">
@@ -77,97 +76,40 @@ src/components/admin/
 </button>
 ```
 
-**Behavior:**
-- Desktop (>1025px): Toggles `data-sidebar-size` between `'lg'` and `'sm'` (icon-only)
-- Tablet (768–1025px): Toggles `data-sidebar-size` between `'sm'` and `''`
-- Mobile (<767px): Adds/removes `vertical-sidebar-enable` class on `body`
-
 > [!CAUTION]
-> **Next.js Context Implementation (MANDATORY):**
-> The hamburger button MUST dispatch to LayoutContext. Do NOT rely on `app.js` DOM manipulation.
-> ```tsx
-> // ===== EXACT COPY from Velzon Next-TS Header.tsx L40-71 =====
-> // Uses Redux dispatch (changeSidebarVisibility) — adapt to Context if needed
-> const toogleMenuBtn = () => {
->   var windowSize = document.documentElement.clientWidth;
->   const humberIcon = document.querySelector(".hamburger-icon") as HTMLElement;
->   dispatch(changeSidebarVisibility("show"));
-> 
->   if (windowSize > 767)
->     humberIcon.classList.toggle('open');
-> 
->   //For collapse horizontal menu
->   if (document.documentElement.getAttribute('data-layout') === "horizontal") {
->     document.body.classList.contains("menu")
->       ? document.body.classList.remove("menu")
->       : document.body.classList.add("menu");
->   }
-> 
->   //For collapse vertical and semibox menu
->   if (sidebarVisibilitytype === "show" &&
->     (document.documentElement.getAttribute('data-layout') === "vertical" ||
->      document.documentElement.getAttribute('data-layout') === "semibox")) {
->     if (windowSize < 1025 && windowSize > 767) {
->       document.body.classList.remove('vertical-sidebar-enable');
->       (document.documentElement.getAttribute('data-sidebar-size') === 'sm')
->         ? document.documentElement.setAttribute('data-sidebar-size', '')
->         : document.documentElement.setAttribute('data-sidebar-size', 'sm');
->     } else if (windowSize > 1025) {
->       document.body.classList.remove('vertical-sidebar-enable');
->       (document.documentElement.getAttribute('data-sidebar-size') === 'lg')
->         ? document.documentElement.setAttribute('data-sidebar-size', 'sm')
->         : document.documentElement.setAttribute('data-sidebar-size', 'lg');
->     } else if (windowSize <= 767) {
->       document.body.classList.add('vertical-sidebar-enable');
->       document.documentElement.setAttribute('data-sidebar-size', 'lg');
->     }
->   }
-> 
->   //Two column menu
->   if (document.documentElement.getAttribute('data-layout') === "twocolumn") {
->     document.body.classList.contains('twocolumn-panel')
->       ? document.body.classList.remove('twocolumn-panel')
->       : document.body.classList.add('twocolumn-panel');
->   }
-> };
-> ```
->
-> **Sidebar sm-hover toggle** (Sidebar.tsx L27-36 — the `●` icon in sidebar header):
-> ```tsx
-> // EXACT COPY from Velzon Sidebar.tsx — addEventListenerOnSmHoverMenu
-> const addEventListenerOnSmHoverMenu = () => {
->   if (document.documentElement.getAttribute('data-sidebar-size') === 'sm-hover') {
->     document.documentElement.setAttribute('data-sidebar-size', 'sm-hover-active');
->   } else if (document.documentElement.getAttribute('data-sidebar-size') === 'sm-hover-active') {
->     document.documentElement.setAttribute('data-sidebar-size', 'sm-hover');
->   } else {
->     document.documentElement.setAttribute('data-sidebar-size', 'sm-hover');
->   }
-> };
-> ```
-> 
-> **❗ Sidebar collapse mode summary (from Velzon original):**
-> | Value | Behavior | Triggered By |
-> |-------|----------|-------------|
-> | `sm` | Icon-only, NO hover expand | Hamburger toggle (desktop) |
-> | `sm-hover` | Icon-only + hover expand via CSS | Sidebar `●` button OR Customizer |
-> | `sm-hover-active` | Pinned expanded | Sidebar `●` button toggle |
->
-> The `sm-hover` mode is activated by the **vertical-hover** button in the sidebar header:
-> ```tsx
-> // In Sidebar.tsx — small round button in sidebar header (btn-vertical-sm-hover)
-> const toggleSmHover = () => {
->   if (sidebarSize === 'sm-hover') {
->     setSidebarSize('sm-hover-active'); // pin expanded
->   } else if (sidebarSize === 'sm-hover-active') {
->     setSidebarSize('sm-hover'); // back to hover
->   } else {
->     setSidebarSize('sm-hover'); // enter hover mode
->   }
-> };
-> ```
-> **CSS (already in app.min.css) handles the hover expand automatically:**
-> `[data-sidebar-size=sm-hover] .navbar-menu:hover { width: var(--vz-vertical-menu-width) !important }`
+> **🚫 KHÔNG TỰ VIẾT HANDLER CHO HAMBURGER, MENU ACCORDION, HAY BACKTOTOP.**
+> Velzon `app.js` đã xử lý TẤT CẢ. Chỉ cần include script gốc + render đúng DOM.
+
+---
+
+## ⚡ Velzon Original Scripts (MANDATORY — không tùy chỉnh)
+
+Velzon HTML Master sử dụng các script sau. Phải include **NGUYÊN BẢN** vào Next.js project:
+
+```tsx
+// In layout.tsx or _app.tsx — using next/script
+import Script from 'next/script';
+
+// Core scripts — load order matters!
+<Script src="/assets/libs/bootstrap/js/bootstrap.bundle.min.js" strategy="afterInteractive" />
+<Script src="/assets/libs/simplebar/simplebar.min.js" strategy="afterInteractive" />
+<Script src="/assets/libs/feather-icons/feather.min.js" strategy="afterInteractive" />
+<Script src="/assets/js/plugins.js" strategy="afterInteractive" />
+<Script src="/assets/js/app.js" strategy="lazyOnload" />
+```
+
+**`app.js` xử lý:**
+- ✅ Hamburger toggle (`data-sidebar-size` lg ↔ sm)
+- ✅ Sidebar sm hover popup (CSS + JS collapseMenu)
+- ✅ Horizontal menu collapse
+- ✅ Menu accordion (bootstrap.Collapse)
+- ✅ BackToTop show/hide (scroll > 100px → display:block)
+- ✅ Theme Customizer bindings
+- ✅ Responsive resize sidebar
+- ✅ Preloader hide
+
+**Chỉ XÓA** các phần không cần (WebApps dropdown, Cart dropdown từ HTML).
+**KHÔNG SỬA** logic của `app.js`.
 
 ### 2. SearchOption
 
