@@ -169,11 +169,11 @@ const MyPage = () => {
 
 ### Layout System
 
-Three layout types, managed via Redux:
+Three layout types, managed via `data-layout` attribute:
 - **Vertical** (default): Left sidebar + main content
 - **Horizontal**: Top navigation bar + main content
 - **TwoColumn**: Icon sidebar + expanded menu + main content
-- **Semi Box**: Auto-hide sidebar with hover behavior
+- ~~Semi Box~~: **REMOVED** from customizer per spec
 
 Layout wrapper: `#layout-wrapper` > Header + Sidebar + `.main-content` > `.page-content`
 
@@ -185,9 +185,10 @@ Layout wrapper: `#layout-wrapper` > Header + Sidebar + `.main-content` > `.page-
 >   data-layout-width, data-sidebar, data-sidebar-image, data-layout-direction,
 >   data-layout-position, data-layout-style, data-topbar, data-preloader,
 >   data-body-image, data-theme, data-theme-colors
-> - Trong Next.js: dùng `sessionStorage` trong LayoutContext
+> - Trong Next.js/React: dùng Redux store + `changeHTMLAttribute()` (xem `source/react-ts/slices/layouts/`)
+> - Trong Non-React (HTML/PHP/Laravel): `app.js` tự xử lý sessionStorage
 > - **KHÔNG dùng localStorage** cho layout state (chỉ dùng cho i18n `I18N_LANGUAGE`)
-> - Xem chi tiết: `admin-shell-template.md` § Theme Customizer (LOCKED values + Pruning spec)
+> - Xem chi tiết: `admin-shell-template.md` § Dual Strategy + § Theme Customizer (LOCKED values + Pruning spec)
 
 ### CSS Variable System
 
