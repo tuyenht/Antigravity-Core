@@ -666,7 +666,7 @@ Without these fonts, `ri-*` and `mdi-*` icon classes will render as invisible/bl
 ★ = SaaS mode only
 ```
 
-### Header — 7 Components (left → right)
+### Header — 6 Dropdowns + Hamburger Toggle (left → right)
 
 | # | Component | Icon Class | Details |
 |---|-----------|------------|--------|
@@ -697,7 +697,7 @@ const LANGUAGES = [
 ];
 ```
 
-Flag files stored in: `.agent/skills/velzon-admin/assets/images/flags/` → copy to `public/images/flags/`
+Flag files stored in: `.agent/skills/velzon-admin/assets/images/flags/` → copy to `public/assets/images/flags/`
 
 ### Footer
 

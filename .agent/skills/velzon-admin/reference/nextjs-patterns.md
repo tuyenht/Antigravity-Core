@@ -17,6 +17,8 @@ Use for BSWeb SaaS or any Next.js admin project.
 > Remove-Item ./.next -Recurse -Force -ErrorAction SilentlyContinue
 > ```
 
+### Velzon Original (Reference Only)
+
 ```
 src/
 ├── app/
@@ -25,30 +27,55 @@ src/
 │   ├── page.tsx                        # Root page (MUST redirect to /{ADMIN_PREFIX}/dashboard)
 │   ├── (auth)/                         # Auth route group (no admin layout)
 │   │   ├── layout.tsx                  # Guest layout wrapper
-│   │   ├── auth-signin-basic/page.tsx
-│   │   ├── auth-signin-cover/page.tsx
-│   │   ├── auth-signup-basic/page.tsx
-│   │   ├── auth-pass-reset-basic/page.tsx
-│   │   └── ...
+│   │   └── auth-signin-basic/page.tsx
 │   ├── (with-layout)/                  # Admin pages (with sidebar/header)
 │   │   ├── layout.tsx                  # Layout wrapper → <Layout>{children}</Layout>
 │   │   ├── dashboard/page.tsx
-│   │   ├── dashboard-analytics/page.tsx
-│   │   ├── apps-ecommerce-products/page.tsx
 │   │   └── ...
-│   └── (with-nonlayout)/              # Pages without layout (landing, etc.)
-│       ├── layout.tsx
-│       ├── landing/page.tsx
-│       └── ...
+│   └── (with-nonlayout)/              # Pages without layout
+│       └── landing/page.tsx
 ├── components/                         # Same structure as React-TS Components/
 ├── layouts/                            # Same layout system
-├── slices/                             # Redux Toolkit (same as React-TS)
+├── slices/                             # Redux Toolkit (Velzon original)
 ├── helpers/                            # API helpers
 ├── hooks/                              # Custom hooks
 ├── providers/                          # ClientProviders wrapper
 ├── config/                             # App config
 ├── types/                              # TypeScript types
 └── assets/scss/                        # Same SCSS as React-TS
+```
+
+### Admin Shell Adaptation (Use This for `/create-admin`)
+
+> [!IMPORTANT]
+> **Next.js admin projects MUST use Context (NOT Redux) for layout state.**
+> Replace `slices/` with `contexts/` containing `LayoutContext.tsx` + `LocaleContext.tsx`.
+> Use `sessionStorage` for persistence (NOT localStorage).
+
+```
+src/
+├── app/
+│   ├── layout.tsx                      # Root layout (<link> CSS + FOUC script + providers)
+│   ├── globals.css                     # LTR overrides + RTL fixes
+│   ├── page.tsx                        # redirect(`/${ADMIN_PREFIX}/dashboard`)
+│   ├── {ADMIN_PREFIX}/
+│   │   ├── login/page.tsx              # Auth: glassmorphism login (GuestLayout)
+│   │   ├── forgot-password/page.tsx
+│   │   └── (dashboard)/               # Route group with admin layout
+│   │       ├── layout.tsx              # <Layout>{children}</Layout>
+│   │       ├── dashboard/page.tsx
+│   │       ├── users/page.tsx
+│   │       ├── roles/page.tsx
+│   │       ├── settings/page.tsx
+│   │       └── profile/page.tsx
+├── components/Common/                  # 6 header dropdowns + common components
+├── layouts/                            # Header, Sidebar, Footer, Layout index
+├── contexts/                           # ⚠️ NOT slices/ — Context replaces Redux
+│   ├── LayoutContext.tsx               # 14 data-* attributes + sessionStorage
+│   └── LocaleContext.tsx               # i18n locale state
+├── config/admin.ts                     # ADMIN_PREFIX, COMPANY_NAME, COMPANY_URL
+├── lib/                                # auth.ts, rbac.ts, prisma.ts
+└── locales/                            # en.json, vi.json, ja.json, zh.json
 ```
 
 ---
@@ -65,37 +92,102 @@ src/
 public/
 ├── assets/
 │   ├── css/
-│   │   ├── bootstrap.min.css      # Copy from html-canonical/assets/css/
+│   │   ├── bootstrap.min.css      # Copy from skills/velzon-admin/assets/css/
 │   │   ├── icons.min.css
 │   │   ├── app.min.css
 │   │   ├── custom.min.css
-│   │   └── fonts.css
-│   ├── fonts/                     # Copy ALL .woff2 files
-│   └── images/                    # logos, flags, sidebar backgrounds
+│   │   ├── fonts.css
+│   │   └── auth.css               # Copy from source/auth-css/
+│   ├── fonts/                     # Copy ALL .woff2 files (11 files)
+│   └── images/                    # ⚠️ MUST be public/assets/images/ (NOT public/images/)
+│       ├── logo-sm.png
+│       ├── logo-dark.png
+│       ├── logo-light.png
+│       ├── favicon.ico
+│       └── flags/                 # Language switcher flags
 ```
 
-### Root Layout CSS Import
+> [!CAUTION]
+> **Images path: `public/assets/images/`** (NOT `public/images/`).
+> `admin-shell.html` references `assets/images/logo-sm.png` — if images are in
+> `public/images/` instead of `public/assets/images/`, logos and sidebar backgrounds will **BREAK**.
+
+### Root Layout CSS Import (PRIMARY — `<link>` in `<head>`)
+
+> [!IMPORTANT]
+> Use `<link>` tags as the PRIMARY method. CSS `import` from `@/public/` may NOT resolve
+> correctly in all Next.js/Turbopack setups since `public/` files are static assets.
 
 ```tsx
-// app/layout.tsx — import Velzon CSS bundle (order matters!)
-import '@/public/assets/css/bootstrap.min.css';
-import '@/public/assets/css/icons.min.css';
-import '@/public/assets/css/app.min.css';
-import '@/public/assets/css/custom.min.css';
-import '@/public/assets/css/fonts.css';
+// src/app/layout.tsx
+export default function RootLayout({ children }: { children: React.ReactNode }) {
+  return (
+    <html lang="en" suppressHydrationWarning>
+      <head>
+        {/* FOUC Prevention — MUST load BEFORE CSS */}
+        <Script src="/assets/js/layout.js" strategy="beforeInteractive" />
+        {/* CSS Import Order — DO NOT CHANGE */}
+        <link rel="stylesheet" href="/assets/css/bootstrap.min.css" />
+        <link rel="stylesheet" href="/assets/css/icons.min.css" />
+        <link rel="stylesheet" href="/assets/css/app.min.css" />
+        <link rel="stylesheet" href="/assets/css/custom.min.css" />
+        <link rel="stylesheet" href="/assets/css/fonts.css" />
+      </head>
+      <body suppressHydrationWarning>
+        {children}
+      </body>
+    </html>
+  );
+}
 ```
 
-### Alternative: `<link>` in `<head>` (SSR-safe)
+### Alternative: CSS `import` (requires files in `src/`)
 
 ```tsx
-<head>
-  <link rel="stylesheet" href="/assets/css/bootstrap.min.css" />
-  <link rel="stylesheet" href="/assets/css/icons.min.css" />
-  <link rel="stylesheet" href="/assets/css/app.min.css" />
-  <link rel="stylesheet" href="/assets/css/custom.min.css" />
-  <link rel="stylesheet" href="/assets/css/fonts.css" />
-</head>
+// Only works if CSS files are copied to src/assets/css/ (NOT public/)
+import '@/assets/css/bootstrap.min.css';
+import '@/assets/css/icons.min.css';
+import '@/assets/css/app.min.css';
+import '@/assets/css/custom.min.css';
+import '@/assets/css/fonts.css';
 ```
+
+### layout.js — FOUC Prevention in Next.js (GAP-3 Fix)
+
+> [!CAUTION]
+> `admin-shell.html` loads `<script src="assets/js/layout.js">` synchronously in `<head>`.
+> In Next.js RSC environment, plain `<script>` tags won't work. Use ONE of these:
+
+**Option A — `next/script` (Recommended):**
+```tsx
+import Script from 'next/script';
+// In root layout.tsx <head>:
+<Script src="/assets/js/layout.js" strategy="beforeInteractive" />
+```
+
+**Option B — Inline in root layout (if layout.js is small):**
+```tsx
+// Read sessionStorage + set data-* attributes on <html> before paint
+<script dangerouslySetInnerHTML={{ __html: `
+  (function() {
+    var d = document.documentElement;
+    var s = sessionStorage;
+    ['layout','topbar','sidebar','sidebar-size','sidebar-image',
+     'bs-theme','layout-width','layout-position','layout-style',
+     'theme','theme-colors','preloader','body-image','sidebar-visibility'
+    ].forEach(function(k) {
+      var v = s.getItem('data-' + k);
+      if (v) d.setAttribute('data-' + k, v);
+    });
+  })()
+`}} />
+```
+
+**Option C — Copy `layout.js` to `public/assets/js/` (simplest):**
+```bash
+cp .agent/skills/velzon-admin/assets/js/layout.js public/assets/js/
+```
+Then use Option A `<Script>` tag to load it.
 
 ---
 

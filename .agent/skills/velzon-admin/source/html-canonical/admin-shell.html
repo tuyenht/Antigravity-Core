@@ -159,15 +159,19 @@
             <!-- End Page-content -->
 
             <!-- ========== FOOTER ========== -->
+            <!-- Footer: Left = Copyright © COMPANY_NAME, Right = LiveClock -->
+            <!-- MUST customize per project: COMPANY_NAME, COMPANY_URL from config/admin.ts -->
             <footer class="footer">
                 <div class="container-fluid">
                     <div class="row">
                         <div class="col-sm-6">
-                            <script>document.write(new Date().getFullYear())</script> © Velzon.
+                            <!-- [SLOT:COMPANY_NAME] — Read from config -->
+                            <script>document.write(new Date().getFullYear())</script> © <a href="[SLOT:COMPANY_URL]" target="_blank">[SLOT:COMPANY_NAME]</a>. All rights reserved.
                         </div>
                         <div class="col-sm-6">
                             <div class="text-sm-end d-none d-sm-block">
-                                Design & Develop by Themesbrand
+                                <!-- [SLOT:LIVE_CLOCK] — dd/MM/yyyy HH:mm:ss, updated every 1000ms -->
+                                <span id="live-clock"></span>
                             </div>
                         </div>
                     </div>

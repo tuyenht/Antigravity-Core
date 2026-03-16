@@ -75,7 +75,7 @@ Components/Common/ (REQUIRED — reuse, không tạo mới)
 ├── ProfileDropdown.tsx      ← User profile menu
 ├── BackToTop.tsx            ← Back-to-top button (#back-to-top)
 ├── Preloader.tsx            ← Page preloader (#preloader)
-├── LiveClock.tsx            ← Footer live clock (i18n-synced)
+├── LiveClock.tsx            ← Footer live clock (dd/MM/yyyy HH:mm:ss, setInterval 1000ms)
 ├── TableContainer.tsx       ← TanStack React Table wrapper
 ├── DeleteModal.tsx          ← Delete confirmation modal
 ├── Pagination.tsx           ← Table pagination
@@ -142,6 +142,11 @@ Context/ (REQUIRED for Next.js — thay Redux)
 Theo thứ tự:
 
 0. **Assets** — Copy `.agent/skills/velzon-admin/assets/` → project public dir. Gồm 3 thư mục: `css/` (app, bootstrap, icons, fonts.css), `fonts/` (11 woff2 files: Inter, NotoSans CJK, RemixIcon, MDI, Boxicons, Line Awesome), `images/` (logos, favicon, flags, avatars).
+
+    > [!CAUTION]
+    > **Images MUST go to `public/assets/images/`** (NOT `public/images/`).
+    > `admin-shell.html` references `assets/images/logo-sm.png` — wrong path = **broken logos**.
+    > Same applies to flags: `public/assets/images/flags/` for language switcher.
 1. **COPY BỘ KHUNG VELZON** — Copy layout shell from `velzon-admin/source/`:
 
     > [!CAUTION]
@@ -161,6 +166,7 @@ Theo thứ tự:
       - Copy `source/react-ts/common/` → BreadCrumb, BackToTop, Preloader
       - Copy `source/react-ts/slices/layouts/` → Redux layout state (CRA/Vite) hoặc convert to Context (Next.js)
       - Copy `source/react-ts/dashboard/` → DashboardPage, StatCard, WelcomeBanner, RecentActivity
+      - **Create** `LiveClock.tsx` → Footer real-time clock (`dd/MM/yyyy HH:mm:ss`, `setInterval(1000)`)
 
     **🔄 NEXT.JS ADAPTATION RULES (chỉ thay đổi ĐÚNG những gì cần thiết):**
 
@@ -217,6 +223,8 @@ Theo thứ tự:
 > ❌ **CẤM** bỏ qua bất kỳ dropdown nào trong Header.
 > ✅ **BẮT BUỘC** đọc `source/html-canonical/admin-shell.html` làm PRIMARY SOURCE trước khi tạo.
 > ✅ **3 LOCKED values**: `data-theme="default"`, `data-layout-width="fluid"`, `data-layout-style="default"`
+> ✅ **PRUNE RightSidebar.tsx**: Remove Theme selector, Boxed width, Compact sidebar, Sidebar View sections.
+>    Customizer footer = Reset + Close (i18n `data-key="t-reset"`, `data-key="t-close"`). Buy Now REMOVED.
 
 1.5. **COPY AUTH LOGIN** — Copy auth login from `velzon-admin/source/`:
 
@@ -351,13 +359,18 @@ pnpm lint && pnpm build && pnpm dev  # or framework equivalent
 - [ ] **AUTH.CSS** imported: `<link rel="stylesheet" href="/assets/css/auth.css" />` in root layout + fonts.css + fonts/ directory
 - [ ] **AUTH COMPONENTS** use auth.css classes (NO Tailwind, NO inline styles): `auth-bg`, `auth-glass`, `auth-title`, `auth-form`, `auth-submit`, `auth-divider`
 - [ ] **ICON FONTS** rendering correctly (no □ placeholders) — bx, ri, mdi, la
-- [ ] **LTR OVERRIDES** in globals.css (sidebar left:0, main-content margin-left)
+- [ ] **LTR OVERRIDES** in globals.css:
+  ```css
+  [dir=ltr] .app-menu { left: 0; }
+  [dir=ltr] .main-content { margin-left: var(--vz-vertical-menu-width, 250px); }
+  [dir=ltr] .vertical-menu-btn { margin-right: -2px; }
+  ```
 - [ ] **sessionStorage** used for layout persistence (NOT localStorage)
 - [ ] **BackToTop** button present (#back-to-top, btn btn-danger btn-icon)
 - [ ] **Preloader** present (conditional, #preloader)
 - [ ] **BreadCrumb** present in page-content
-- [ ] **LiveClock** in footer synced with current locale
-- [ ] **Footer branding** configurable (companyName/companyUrl from config)
+- [ ] **LiveClock** in footer showing real-time `dd/MM/yyyy HH:mm:ss` (setInterval 1000ms)
+- [ ] **Footer branding** = `© {year} COMPANY_NAME. All rights reserved.` + LiveClock (from config/admin.ts)
 - [ ] **Header buttons** all have: btn-icon btn-topbar material-shadow-none btn-ghost-secondary rounded-circle
 - [ ] **3 LOCKED values**: `data-theme="default"`, `data-layout-width="fluid"`, `data-layout-style="default"`
 - [ ] **Customizer PRUNED**: No Theme selector, No Boxed, No Compact sidebar, No Sidebar View. Footer = Reset + Close (i18n)
