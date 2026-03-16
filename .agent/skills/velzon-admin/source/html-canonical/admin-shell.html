@@ -84,10 +84,7 @@
                 </button>
             </div>
 
-            <!-- Sidebar User Profile (toggled by sidebarUserProfile checkbox in Customizer) -->
-            <div class="dropdown sidebar-user m-1 rounded">
-                <!-- [SLOT:SIDEBAR_USER_PROFILE] — Dynamic user avatar & name -->
-            </div>
+            <!-- Sidebar User Profile REMOVED per spec -->
 
             <div id="scrollbar">
                 <div class="container-fluid">
@@ -186,11 +183,25 @@
 
     <!-- ========== CUSTOMIZER (PRUNED) ========== -->
     <!-- [PARTIAL:customizer.html — PRUNED per spec] -->
-    <!-- Removed: Theme selector, Boxed width, Compact sidebar, Sidebar View -->
+    <!-- Removed: Semi Box, Theme selector, Boxed width, Compact sidebar, Sidebar View, Sidebar User Profile -->
     <!-- Footer: Reset + Close (i18n: data-key="t-reset", data-key="t-close") -->
     <!-- Locked: data-theme="default", data-layout-width="fluid", data-layout-style="default" -->
     <!-- [SLOT:CUSTOMIZER] — Include pruned customizer.html content here -->
 
+    <!-- ========== BACK TO TOP ========== -->
+    <button onclick="topFunction()" class="btn btn-danger btn-icon" id="back-to-top">
+        <i class="ri-arrow-up-line"></i>
+    </button>
+
+    <!-- ========== PRELOADER ========== -->
+    <!-- Controlled by data-preloader attribute on <html> -->
+    <div id="preloader">
+        <div id="status">
+            <div class="spinner-border text-primary avatar-sm" role="status">
+                <span class="visually-hidden">Loading...</span>
+            </div>
+        </div>
+    </div>
     <!-- ========== VENDOR SCRIPTS ========== -->
     <!-- JAVASCRIPT -->
     <script src="assets/libs/bootstrap/js/bootstrap.bundle.min.js"></script>
