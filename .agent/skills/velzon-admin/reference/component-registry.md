@@ -44,7 +44,7 @@
 | L1 | **Layout (index)** | `Layouts/index.tsx` | 5.6KB | Main shell: Header + Sidebar + {children} + Footer + RightSidebar | Always |
 | L2 | **Header** | `Layouts/Header.tsx` | 8.3KB | Top bar: hamburger, search, lang, fullscreen, dark mode, notifications, profile (**6 dropdowns** — ~~apps/cart~~ removed) | Always |
 | L3 | **Sidebar** | `Layouts/Sidebar.tsx` | 6.4KB | Left navigation menu (permission-filtered) | Always |
-| L4 | **Footer** | `Layouts/Footer.tsx` | 0.8KB | `© {year} Velzon. Design & Develop by Themesbrand` | Always |
+| L4 | **Footer** | `Layouts/Footer.tsx` | 0.8KB | `© {year} COMPANY_NAME. All rights reserved.` + LiveClock (`dd/MM/yyyy HH:mm:ss`) | Always |
 | L5 | **LayoutMenuData** | `Layouts/LayoutMenuData.tsx` | 48.5KB | Complete menu tree (all pages, icons, permissions) | Update per module |
 | L6 | **NonAuthLayout** | `Layouts/NonAuthLayout.tsx` | 1.2KB | Wrapper for auth pages (no sidebar/header) | Always |
 | L7 | **VerticalLayouts** | `Layouts/VerticalLayouts/` | dir | Default vertical sidebar layout | Always |
