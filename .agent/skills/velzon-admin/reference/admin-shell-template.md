@@ -92,11 +92,12 @@ src/components/admin/
 > const toggleMenuBtn = () => {
 >   const width = document.documentElement.clientWidth;
 >   if (width > 1025) {
->     // Hamburger: lg ↔ sm (icon-only, NO hover expand — matches Velzon app.js L774-778)
->     setSidebarSize(sidebarSize === 'lg' ? 'sm' : 'lg');
+>     // Desktop: lg ↔ sm-hover (icon-only WITH hover expand per user expectation)
+>     setSidebarSize(sidebarSize === 'lg' ? 'sm-hover' : 'lg');
 >   } else if (width <= 1025 && width > 767) {
->     setSidebarSize(sidebarSize === 'sm' ? '' : 'sm');
+>     setSidebarSize(sidebarSize === 'sm-hover' ? '' : 'sm-hover');
 >   } else {
+>     // Mobile: slide sidebar
 >     document.body.classList.toggle('vertical-sidebar-enable');
 >     setSidebarSize('lg');
 >   }
@@ -105,11 +106,12 @@ src/components/admin/
 > ```
 > **Without this handler, the hamburger button renders but does NOTHING on click.**
 >
-> **❗ Two sidebar collapse modes (do NOT confuse):**
-> | Mode | `data-sidebar-size` | Behavior | Triggered By |
-> |------|---------------------|----------|-------------|
-> | **Icon-only** | `sm` | Icons only, NO hover expand | Hamburger toggle button |
-> | **Hover expand** | `sm-hover` | Icons only, menu EXPANDS on hover via CSS | Sidebar `● hover` toggle icon OR Customizer "Sidebar Size" |
+> **❗ Two sidebar collapse values explained:**
+> | Value | Behavior | When to use |
+> |-------|----------|------------|
+> | `sm` | Icon-only, NO hover expand | Only via Customizer "Small" option |
+> | `sm-hover` | Icon-only, **menu EXPANDS on hover** via CSS | Hamburger toggle (recommended default) |
+> | `sm-hover-active` | Pinned expanded (no collapse back) | Via sidebar `● hover` toggle icon |
 >
 > The `sm-hover` mode is activated by the **vertical-hover** button in the sidebar header:
 > ```tsx

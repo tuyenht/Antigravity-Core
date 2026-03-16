@@ -357,7 +357,8 @@ pnpm lint && pnpm build && pnpm dev  # or framework equivalent
 - [ ] Users CRUD + Invite functional
 - [ ] Permission matrix saves correctly
 - [ ] **Header has ALL 6 dropdowns**: Search, Language, FullScreen, LightDark, Notifications, Profile (~~WebApps~~, ~~Cart~~ REMOVED)
-- [ ] **Sidebar toggle** — hamburger uses `sm` (icon-only, no hover). Sidebar `●hover` button uses `sm-hover` (icon-only + CSS hover expand). See `admin-shell-template.md` § Sidebar Toggle for dual-mode handler code.
+- [ ] **Sidebar toggle** — hamburger uses `sm-hover` (hover expand). Click → sidebar collapses to icons, hover → menu labels appear
+- [ ] **LayoutContext** sets `document.documentElement.setAttribute('data-sidebar-size', 'sm-hover')` when state changes
 - [ ] **Flag SVGs** — ALL 11+ exist in `public/assets/images/flags/` (copy ALL 272 from assets) — no 404 in console
 - [ ] **Multi-level menu** works with smooth accordion animation
 - [ ] **Theme Customizer** gear icon visible, drawer opens with layout/color options
@@ -400,6 +401,9 @@ pnpm lint && pnpm build && pnpm dev  # or framework equivalent
   - CSS: `.menu-dropdown{display:none}` + `.menu-dropdown.show{display:block}` — React toggles `.show`
 - [ ] **Horizontal layout submenu** — dropdown menus appear on hover/click
   - CSS: parent:hover > `.menu-dropdown { display:block }` OR React onMouseEnter/onMouseLeave toggle
+  - **DOM STRUCTURE MANDATORY**: `.menu-dropdown` must be DIRECT CHILD of `.nav-item` for CSS hover to work
+  - If React wraps with extra `<div>`, CSS selector `.nav-item:hover > .menu-dropdown` **BREAKS**
+  - Fallback: add to globals.css: `[data-layout="horizontal"] .navbar-nav .nav-item:hover .menu-dropdown { display: block !important; }`
 - [ ] **Preloader** present (conditional, #preloader)
 - [ ] **BreadCrumb** present in page-content
 - [ ] **LiveClock** in footer showing real-time `dd/MM/yyyy HH:mm:ss` (setInterval 1000ms)
