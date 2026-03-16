@@ -10,8 +10,7 @@ import logoLight from "../assets/images/logo-light.png";
 //import Components
 import SearchOption from '../Components/Common/SearchOption';
 import LanguageDropdown from '../Components/Common/LanguageDropdown';
-import WebAppsDropdown from '../Components/Common/WebAppsDropdown';
-import MyCartDropdown from '../Components/Common/MyCartDropdown';
+// REMOVED: WebAppsDropdown, MyCartDropdown — pruned from admin shell (Platinum spec)
 import FullScreenDropdown from '../Components/Common/FullScreenDropdown';
 import NotificationDropdown from '../Components/Common/NotificationDropdown';
 import ProfileDropdown from '../Components/Common/ProfileDropdown';
@@ -138,11 +137,8 @@ const Header = ({ onChangeLayoutMode, layoutModeType, headerClass } : any) => {
                             {/* LanguageDropdown */}
                             <LanguageDropdown />
 
-                            {/* WebAppsDropdown */}
-                            <WebAppsDropdown />
-
-                            {/* MyCartDropdwon */}
-                            <MyCartDropdown />
+                            {/* WebAppsDropdown — REMOVED (Platinum spec) */}
+                            {/* MyCartDropdown — REMOVED (Platinum spec) */}
 
                             {/* FullScreenDropdown */}
                             <FullScreenDropdown />

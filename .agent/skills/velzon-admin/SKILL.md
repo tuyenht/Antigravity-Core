@@ -78,10 +78,12 @@ cp -r .agent/skills/velzon-admin/assets/images/* src/assets/images/
 
 | # | File | Source | Purpose |
 |---|------|--------|---------|
+| 0 | `layout.js` (⚠️) | `.agent/skills/velzon-admin/assets/js/` | **FOUC prevention — MUST load BEFORE CSS** |
 | 1 | `bootstrap.min.css` | `.agent/skills/velzon-admin/assets/css/` | Core Bootstrap 5 |
 | 2 | `icons.min.css` | Same directory | Icon fonts (BoxIcons, Remix, MDI, Line Awesome) |
-| 3 | `app.min.css` | Same directory | Velzon layout engine (sidebar, header, footer) |
+| 3 | `app.min.css` | Same directory | Velzon layout engine (sidebar, header, footer) — **OVERRIDE Bootstrap** |
 | 4 | `custom.min.css` | Same directory | Velzon custom component overrides |
+| 5 | `fonts.css` | Same directory | @font-face for Inter + CJK web fonts |
 
 ### Copy Pattern
 ```bash
@@ -171,6 +173,7 @@ Three layout types, managed via Redux:
 - **Vertical** (default): Left sidebar + main content
 - **Horizontal**: Top navigation bar + main content
 - **TwoColumn**: Icon sidebar + expanded menu + main content
+- **Semi Box**: Auto-hide sidebar with hover behavior
 
 Layout wrapper: `#layout-wrapper` > Header + Sidebar + `.main-content` > `.page-content`
 
@@ -184,7 +187,7 @@ Layout wrapper: `#layout-wrapper` > Header + Sidebar + `.main-content` > `.page-
 >   data-body-image, data-theme, data-theme-colors
 > - Trong Next.js: dùng `sessionStorage` trong LayoutContext
 > - **KHÔNG dùng localStorage** cho layout state (chỉ dùng cho i18n `I18N_LANGUAGE`)
-> - Xem chi tiết: `docs/Velzon-Shell-Audit-Prompt.txt` §4.4
+> - Xem chi tiết: `admin-shell-template.md` § Theme Customizer (LOCKED values + Pruning spec)
 
 ### CSS Variable System
 
@@ -251,8 +254,9 @@ Velzon supports 11 variants. Choose based on your project:
 source/
 ├── html-canonical/              ← Layer 1: Canonical DOM (for ALL non-React frameworks)
 │   ├── sidebar.html             ← 78KB: Full sidebar DOM (logo switching, menu nesting, categories, badges)
-│   ├── topbar.html              ← 51KB: Header bar (search, language, apps, cart, fullscreen, dark mode, notifications, profile)
-│   ├── customizer.html          ← 66KB: Theme customizer panel (layout/color/sidebar options)
+│   ├── topbar.html              ← Topbar (6 dropdowns: Search, Language, FullScreen, DarkMode, Notifications, Profile)
+│   ├── customizer.html          ← Theme customizer panel (PRUNED: no Theme/Boxed/Compact/SidebarView)
+│   ├── admin-shell.html         ← ⭐ COMPILED TEMPLATE — single source of truth for all frameworks
 │   ├── footer.html              ← Footer bar
 │   ├── main.html                ← Main content wrapper
 │   ├── page-title.html          ← BreadCrumb
@@ -263,7 +267,7 @@ source/
 │
 ├── react-ts/                    ← Layer 2: React/Next.js implementation
 │   ├── layouts/                 ← Layout entry, Header, Sidebar, Footer, LayoutMenuData (48KB)
-│   ├── header-components/       ← 8 topbar dropdowns (Search, Language, Notifications, Profile, etc.)
+│   ├── header-components/       ← 6 topbar dropdowns (Search, Language, FullScreen, DarkMode, Notifications, Profile)
 │   ├── theme-customizer/        ← RightSidebar.tsx (125KB: all theme options)
 │   ├── dashboard/               ← DashboardPage, StatCard, WelcomeBanner, RecentActivity
 │   ├── slices/layouts/          ← Redux slice (state + actions for layout/theme)
@@ -306,13 +310,15 @@ assets/                          ← Static resources (copy nguyên block vào p
 
 | Target Framework | Read From | Action |
 |---|---|---|
-| **React / Next.js / Inertia+React** | `source/react-ts/*` | Copy components, adapt import paths & routing |
+| **ALL frameworks** | `source/html-canonical/admin-shell.html` | ⭐ **PRIMARY SOURCE** — Read this first, then convert |
+| **React / Next.js / Inertia+React** | + `source/react-ts/*` | Supplement with React component patterns, adapt imports |
 | **Vue / Nuxt** | `source/html-canonical/*` | Convert DOM to `<template>` syntax, keep CSS classes |
 | **Laravel / Blade** | `source/html-canonical/*` | Convert to `@extends`/`@section` directives |
 | **PHP** | `source/html-canonical/*` | Convert to `<?php include ?>` partials |
 | **Node.js / EJS** | `source/html-canonical/*` | Convert to `<%- include() %>` partials |
 | **ASP.NET / Razor** | `source/html-canonical/*` | Convert to `@RenderSection`/Partial views |
 | **All frameworks** | `source/scss/*` | Use as single source of truth for colors, fonts, sizes |
+| **All frameworks** | `assets/css/*` + `assets/fonts/*` | **MANDATORY**: Copy full CSS + fonts bundle |
 
 ### Invariance Rules
 
@@ -322,11 +328,13 @@ assets/                          ← Static resources (copy nguyên block vào p
 > 2. **CSS classes**: All Bootstrap 5 + Velzon custom classes (`--vz-*` prefix)
 > 3. **Sidebar dark theme**: Default color `#405189` (indigo)
 > 4. **Menu structure**: Categories (`.menu-title`) → Items (`.nav-item`) → Submenus (`.collapse > .nav-sm`)
-> 5. **Topbar dropdowns**: Language → WebApps → Cart → Fullscreen → DarkMode → Notifications → Profile
+> 5. **Topbar dropdowns** (left→right): Search → Language → FullScreen → DarkMode → Notifications → Profile (6 items — ~~WebApps~~ ~~Cart~~ REMOVED)
 > 6. **Shell components OUTSIDE #layout-wrapper** (in order): BackToTop → Preloader → CustomizerTrigger → RightSidebar
 > 7. **Footer**: Configurable branding (companyName/companyUrl) + LiveClock (i18n-synced, updates every second)
 > 8. **Header buttons**: ALL use `btn-icon btn-topbar material-shadow-none btn-ghost-secondary rounded-circle`
-> 9. **Full verification**: Use `docs/Velzon-Shell-Audit-Prompt.txt` (v3.2+) §9 checklist (~83 items)
+> 9. **3 LOCKED values**: `data-theme="default"`, `data-layout-width="fluid"`, `data-layout-style="default"` — NOT changeable via customizer
+> 10. **Customizer pruned**: No Theme selector, No Boxed, No Compact sidebar, No Sidebar View. Footer = Reset + Close (i18n)
+> 11. **Full verification**: Use 15-point checklist from implementation plan
 
 ---
 

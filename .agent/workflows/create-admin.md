@@ -112,7 +112,7 @@ Context/ (REQUIRED for Next.js — thay Redux)
    | ASP.NET Core | `aspnet-mvc-patterns.md` |
 
 3. **`auth-login-template.md`** — Design tokens, CSS, glassmorphism auth components
-4. **`admin-shell-template.md`** — Dashboard shell: Header (8 dropdowns), Sidebar (multi-level), Theme Customizer
+4. **`admin-shell-template.md`** — Dashboard shell: Header (6 dropdowns), Sidebar (multi-level), Theme Customizer (PRUNED)
 5. **`env-template.md`** — `.env.example` defaults (BCRYPT_ROUNDS, ADMIN_PREFIX, session/cache/mail)
 6. **`source/auth-css/auth.css`** — Self-contained CSS for auth login (glassmorphism, gradient, glass card)
 7. **`source/html-canonical/auth-login.html`** — Canonical DOM reference for auth login (used by non-React frameworks)
@@ -156,7 +156,7 @@ Theo thứ tự:
     - **ALWAYS copy:** `source/scss/` → project SCSS dir (design tokens, colors, dark mode)
     - **IF React / Next.js / Inertia+React:**
       - Copy `source/react-ts/layouts/` → Header, Sidebar, Footer, index (Layout wrapper)
-      - Copy `source/react-ts/header-components/` → 8 Topbar dropdowns
+      - Copy `source/react-ts/header-components/` → 6 Topbar dropdowns (Search, Language, FullScreen, DarkMode, Notifications, Profile)
       - Copy `source/react-ts/theme-customizer/` → RightSidebar (125KB, 13 options)
       - Copy `source/react-ts/common/` → BreadCrumb, BackToTop, Preloader
       - Copy `source/react-ts/slices/layouts/` → Redux layout state (CRA/Vite) hoặc convert to Context (Next.js)
@@ -181,7 +181,7 @@ Theo thứ tự:
       - Read `source/html-canonical/*` as DOM reference
       - Convert to framework syntax (Blade/EJS/Razor/Vue `<template>`)
       - **MUST preserve:** CSS classes, DOM nesting, `--vz-*` variables
-    - **Invariance rules:** sidebar dark (#405189), topbar dropdown order, menu category structure
+    - **Invariance rules:** sidebar dark (#405189), topbar dropdown order (Search→Language→FullScreen→DarkMode→Notifications→Profile), menu category structure, 3 LOCKED values (`data-theme="default"`, `data-layout-width="fluid"`, `data-layout-style="default"`)
     - Nội dung bên trong → tạo mới theo `reference/component-patterns.md`
 
     > [!WARNING]
@@ -189,20 +189,22 @@ Theo thứ tự:
     > - Copy compiled CSS: `bootstrap.min.css`, `app.min.css`, `custom.min.css`, `icons.min.css`
     >   - FROM: `.agent/skills/velzon-admin/assets/css/`
     >   - TO: `public/assets/css/`
-    > - Root layout PHẢI import CSS theo thứ tự: bootstrap → icons → app → custom
+    > - Root layout PHẢI import CSS theo thứ tự: bootstrap → icons → app → custom → fonts
+    > - PHẢI import `fonts.css` cho @font-face (Inter + CJK web fonts)
     > - PHẢI import icon fonts: BoxIcons, Remix Icons, MDI, Line Awesome
     >   (Đã nằm trong `icons.min.css` của Velzon)
+    > - **`layout.js` PHẢI load trong `<head>` TRƯỚC CSS** (FOUC prevention)
 
     > [!CAUTION]
     > **PERSISTENCE: sessionStorage KHÔNG PHẢI localStorage**
     > - Velzon HTML gốc dùng `sessionStorage` (confirm: `layout.js` source)
     > - LayoutContext/Redux PHẢI dùng `sessionStorage` cho 14 data-* attributes
-    > - Xem chi tiết: `docs/Velzon-Shell-Audit-Prompt.txt` §4.4
+    > - Xem chi tiết: `admin-shell-template.md` § Theme Customizer (LOCKED values + Pruning spec)
 
     > [!IMPORTANT]
-    > **SHELL AUDIT PROMPT — VERIFICATION REFERENCE:**
-    > After shell generation, use `docs/Velzon-Shell-Audit-Prompt.txt` (v3.2+)
-    > as the comprehensive 83-item checklist for pixel-perfect verification.
+    > **15-POINT VISUAL PARITY CHECK — VERIFICATION REFERENCE:**
+    > After shell generation, use 15-point checklist from `implementation_plan.md`
+    > for pixel-perfect verification. Includes locked values + customizer pruning checks.
 
 > [!CAUTION]
 > **BẮT BUỘC tạo TẤT CẢ các component sau (theo `admin-shell-template.md`):**
@@ -213,6 +215,8 @@ Theo thứ tự:
 >
 > ❌ **CẤM** tạo monolith AdminLayout.tsx đơn giản. Mỗi component PHẢI là file riêng.
 > ❌ **CẤM** bỏ qua bất kỳ dropdown nào trong Header.
+> ✅ **BẮT BUỘC** đọc `source/html-canonical/admin-shell.html` làm PRIMARY SOURCE trước khi tạo.
+> ✅ **3 LOCKED values**: `data-theme="default"`, `data-layout-width="fluid"`, `data-layout-style="default"`
 
 1.5. **COPY AUTH LOGIN** — Copy auth login from `velzon-admin/source/`:
 
@@ -336,13 +340,14 @@ pnpm lint && pnpm build && pnpm dev  # or framework equivalent
 - [ ] Sidebar filtered by permissions AND mode
 - [ ] Users CRUD + Invite functional
 - [ ] Permission matrix saves correctly
-- [ ] **Header has ALL 7 dropdowns**: Search, Language, LightDark, Fullscreen, Notifications, Profile, Hamburger toggle
+- [ ] **Header has ALL 6 dropdowns**: Search, Language, FullScreen, LightDark, Notifications, Profile (~~WebApps~~, ~~Cart~~ REMOVED)
 - [ ] **Sidebar toggle** collapses/expands sidebar
 - [ ] **Multi-level menu** works with smooth accordion animation
 - [ ] **Theme Customizer** gear icon visible, drawer opens with layout/color options
 - [ ] **Dark/Light mode** toggle works correctly
 - [ ] Profile dropdown shows user name + role + logout option
-- [ ] **CSS FILES** imported: bootstrap.min.css + app.min.css + custom.min.css + icons.min.css
+- [ ] **CSS FILES** imported: bootstrap.min.css + icons.min.css + app.min.css + custom.min.css + fonts.css (ORDER MATTERS)
+- [ ] **layout.js** loaded in `<head>` BEFORE CSS (FOUC prevention)
 - [ ] **AUTH.CSS** imported: `<link rel="stylesheet" href="/assets/css/auth.css" />` in root layout + fonts.css + fonts/ directory
 - [ ] **AUTH COMPONENTS** use auth.css classes (NO Tailwind, NO inline styles): `auth-bg`, `auth-glass`, `auth-title`, `auth-form`, `auth-submit`, `auth-divider`
 - [ ] **ICON FONTS** rendering correctly (no □ placeholders) — bx, ri, mdi, la
@@ -354,7 +359,9 @@ pnpm lint && pnpm build && pnpm dev  # or framework equivalent
 - [ ] **LiveClock** in footer synced with current locale
 - [ ] **Footer branding** configurable (companyName/companyUrl from config)
 - [ ] **Header buttons** all have: btn-icon btn-topbar material-shadow-none btn-ghost-secondary rounded-circle
-- [ ] **Shell Audit**: verify against `docs/Velzon-Shell-Audit-Prompt.txt` §9 checklist (≥80 items)
+- [ ] **3 LOCKED values**: `data-theme="default"`, `data-layout-width="fluid"`, `data-layout-style="default"`
+- [ ] **Customizer PRUNED**: No Theme selector, No Boxed, No Compact sidebar, No Sidebar View. Footer = Reset + Close (i18n)
+- [ ] **Visual Parity**: 15-point checklist from implementation plan PASSED
 
 **Agent:** `debugger`
 

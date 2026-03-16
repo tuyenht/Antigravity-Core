@@ -53,6 +53,52 @@ src/
 
 ---
 
+## Asset Import Strategy (HTML-First Bundle)
+
+> [!IMPORTANT]
+> When using the `html-canonical/admin-shell.html` as source, the compiled CSS bundle
+> MUST be copied to `public/` and imported. Do NOT regenerate from SCSS.
+
+### File Placement
+
+```
+public/
+├── assets/
+│   ├── css/
+│   │   ├── bootstrap.min.css      # Copy from html-canonical/assets/css/
+│   │   ├── icons.min.css
+│   │   ├── app.min.css
+│   │   ├── custom.min.css
+│   │   └── fonts.css
+│   ├── fonts/                     # Copy ALL .woff2 files
+│   └── images/                    # logos, flags, sidebar backgrounds
+```
+
+### Root Layout CSS Import
+
+```tsx
+// app/layout.tsx — import Velzon CSS bundle (order matters!)
+import '@/public/assets/css/bootstrap.min.css';
+import '@/public/assets/css/icons.min.css';
+import '@/public/assets/css/app.min.css';
+import '@/public/assets/css/custom.min.css';
+import '@/public/assets/css/fonts.css';
+```
+
+### Alternative: `<link>` in `<head>` (SSR-safe)
+
+```tsx
+<head>
+  <link rel="stylesheet" href="/assets/css/bootstrap.min.css" />
+  <link rel="stylesheet" href="/assets/css/icons.min.css" />
+  <link rel="stylesheet" href="/assets/css/app.min.css" />
+  <link rel="stylesheet" href="/assets/css/custom.min.css" />
+  <link rel="stylesheet" href="/assets/css/fonts.css" />
+</head>
+```
+
+---
+
 ## Root Page (Redirect)
 
 > [!CAUTION]

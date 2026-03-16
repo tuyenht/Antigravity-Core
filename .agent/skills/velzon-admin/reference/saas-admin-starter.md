@@ -719,14 +719,15 @@ Generate it with these toggles (10 sections):
 | 2 | Color Scheme | Light, Dark | `data-layout-mode` |
 | 3 | Layout Position | Fixed, Scrollable | `data-layout-position` |
 | 4 | Topbar Color | Light, Dark | `data-topbar` |
-| 5 | Sidebar Size | Default (lg), Small Icon (sm) | `data-sidebar-size` |
-| 6 | Sidebar View | Default, Detached | `data-sidebar-view` |
+| 5 | Sidebar Size | Default (lg), ~~Compact~~ REMOVED, Small Icon (sm), Small Hover (sm-hover) | `data-sidebar-size` |
+| ~~6~~ | ~~Sidebar View~~ | ~~Default, Detached~~ **REMOVED** | `data-layout-style` — **LOCKED: default** |
 | 7 | Sidebar Color | Light, Dark, Gradient | `data-sidebar` |
 | 8 | Sidebar Images | None, img-1..4 | `data-sidebar-image` |
 | 9 | Primary Color | Blue, Teal, Purple, Green | `data-theme-colors` |
 | 10 | Preloader | Enable, Disable | — |
 
-> **⛔ EXCLUDED:** Do NOT generate "Layout Width" (Fluid/Boxed) or "Sidebar User Profile Avatar" sections.
+> **⛔ EXCLUDED:** Do NOT generate "Layout Width" (~~Boxed~~ REMOVED — LOCKED: fluid), "Sidebar User Profile Avatar", or "Theme" (LOCKED: default) sections.
+> **Footer:** Reset + Close (i18n). Buy Now REMOVED.
 
 > **Reference:** Full patterns in [layout-system.md](layout-system.md) § RightSidebar (Theme Customizer)
 

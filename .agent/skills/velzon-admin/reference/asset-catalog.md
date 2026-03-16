@@ -516,11 +516,11 @@ All variants use HTML `data-*` attributes on `<html>` tag:
 | `data-sidebar-size` | `lg`, `sm`, `md`, `sm-hover` | `lg` |
 | `data-sidebar-image` | `none`, `img-1`, `img-2`, `img-3`, `img-4` | `none` |
 | `data-preloader` | `enable`, `disable` | `disable` |
-| `data-theme` | `default`, `minimal`, `saas`, `modern`, `creative`, `interactive`, `corporate`, `galaxy`, `classic`, `vintage`, `material` | `default` |
+| `data-theme` | `default` | `default` | ⚠️ **LOCKED** — theme selector REMOVED |
 | `data-theme-colors` | `default`, `minimal`, `saas`, `modern`, `creative`, `interactive`, `corporate`, `galaxy`, `classic`, `vintage` | `default` |
-| `data-layout-width` | `fluid`, `boxed` | `fluid` |
+| `data-layout-width` | `fluid` | `fluid` | ⚠️ **LOCKED** — boxed REMOVED |
 | `data-layout-position` | `fixed`, `scrollable` | `fixed` |
-| `data-layout-style` | `default`, `detached` | `default` |
+| `data-layout-style` | `default` | `default` | ⚠️ **LOCKED** — detached REMOVED |
 | `data-bs-theme` | `light`, `dark` | `light` |
 
 ---

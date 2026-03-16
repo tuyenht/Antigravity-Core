@@ -1,4 +1,4 @@
-﻿---
+---
 description: "Thiết kế và xây dựng trang chủ Admin Dashboard (áp dụng chuẩn Velzon)."
 ---
 
@@ -50,18 +50,31 @@ Components/Common/ (reuse, KHÔNG tạo mới)
 
 ## Steps
 
-### 0. Copy Bundled Assets
+### 0. Copy Full Asset Bundle
 
 // turbo
 
-Copy logo and favicon files from the skill bundle into the project:
+Copy the **complete** Velzon asset bundle (CSS, fonts, images) from the skill into the project:
 ```bash
 # Adjust destination path based on detected variant
+# CSS (5 files — ORDER MATTERS)
+cp .agent/skills/velzon-admin/assets/css/bootstrap.min.css  {public}/assets/css/
+cp .agent/skills/velzon-admin/assets/css/icons.min.css      {public}/assets/css/
+cp .agent/skills/velzon-admin/assets/css/app.min.css        {public}/assets/css/
+cp .agent/skills/velzon-admin/assets/css/custom.min.css     {public}/assets/css/
+cp .agent/skills/velzon-admin/assets/css/fonts.css          {public}/assets/css/
+# Fonts (ALL woff2 files)
+cp -r .agent/skills/velzon-admin/assets/fonts/*             {public}/assets/fonts/
+# Images (logos, favicon, flags, sidebar BGs)
 cp .agent/skills/velzon-admin/assets/images/logo-dark.png   {assets}/images/
 cp .agent/skills/velzon-admin/assets/images/logo-light.png  {assets}/images/
 cp .agent/skills/velzon-admin/assets/images/logo-sm.png     {assets}/images/
 cp .agent/skills/velzon-admin/assets/images/favicon.ico     {public}/
 ```
+
+> [!IMPORTANT]
+> **PRIMARY SOURCE**: Read `source/html-canonical/admin-shell.html` as the canonical template.
+> **3 LOCKED values**: `data-theme="default"`, `data-layout-width="fluid"`, `data-layout-style="default"`
 
 ### 1. Detect Variant
 Determine which Velzon variant to use based on the project:

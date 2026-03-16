@@ -42,7 +42,7 @@
 | # | Component | File | Size | Purpose | Reuse After |
 |---|-----------|------|------|---------|-------------|
 | L1 | **Layout (index)** | `Layouts/index.tsx` | 5.6KB | Main shell: Header + Sidebar + {children} + Footer + RightSidebar | Always |
-| L2 | **Header** | `Layouts/Header.tsx` | 8.3KB | Top bar: hamburger, search, lang, fullscreen, dark mode, notifications, cart, apps, profile | Always |
+| L2 | **Header** | `Layouts/Header.tsx` | 8.3KB | Top bar: hamburger, search, lang, fullscreen, dark mode, notifications, profile (**6 dropdowns** — ~~apps/cart~~ removed) | Always |
 | L3 | **Sidebar** | `Layouts/Sidebar.tsx` | 6.4KB | Left navigation menu (permission-filtered) | Always |
 | L4 | **Footer** | `Layouts/Footer.tsx` | 0.8KB | `© {year} Velzon. Design & Develop by Themesbrand` | Always |
 | L5 | **LayoutMenuData** | `Layouts/LayoutMenuData.tsx` | 48.5KB | Complete menu tree (all pages, icons, permissions) | Update per module |
@@ -68,8 +68,8 @@
 | C11 | **FullScreenDropdown** | `FullScreenDropdown.tsx` | 2.4KB | Fullscreen toggle button | Layout (L2) |
 | C12 | **NotificationDropdown** | `NotificationDropdown.tsx` | 21.7KB | Bell icon + notification list + tabs | Layout (L2) |
 | C13 | **ProfileDropdown** | `ProfileDropdown.tsx` | 6.1KB | User avatar + dropdown (profile, settings, logout) | Layout (L2) |
-| C14 | **MyCartDropdown** | `MyCartDropdown.tsx` | 7.2KB | Shopping cart dropdown (ecommerce) | Layout (L2), optional |
-| C15 | **WebAppsDropdown** | `WebAppsDropdown.tsx` | 4.2KB | Grid of web app shortcuts | Layout (L2), optional |
+| C14 | ~~**MyCartDropdown**~~ | `MyCartDropdown.tsx` | 7.2KB | ~~Shopping cart dropdown~~ **REMOVED FROM SHELL** | ❌ Not used |
+| C15 | ~~**WebAppsDropdown**~~ | `WebAppsDropdown.tsx` | 4.2KB | ~~Grid of web app shortcuts~~ **REMOVED FROM SHELL** | ❌ Not used |
 | C16 | **RightSidebar** | `RightSidebar.tsx` | 125.6KB | Theme customizer panel (layouts, colors, skins) | Layout (L1) |
 | C17 | **Loader** | `Loader.tsx` | 0.6KB | Full-page loading spinner | Layout (L1) |
 | C18 | **Spinner** | `Spinner.tsx` | 0.5KB | Inline loading spinner | Layout (L1) |
@@ -210,8 +210,8 @@
 | `FullScreenDropdown.tsx` | Inline in topbar | Fullscreen button inside header |
 | `NotificationDropdown.tsx` | Inline in topbar | Notification bell inside header |
 | `ProfileDropdown.tsx` | Inline in topbar | User profile dropdown inside header |
-| `MyCartDropdown.tsx` | Inline in topbar | Cart dropdown inside header |
-| `WebAppsDropdown.tsx` | Inline in topbar | App grid inside header |
+| ~~`MyCartDropdown.tsx`~~ | ~~Inline in topbar~~ | ❌ **REMOVED FROM SHELL** |
+| ~~`WebAppsDropdown.tsx`~~ | ~~Inline in topbar~~ | ❌ **REMOVED FROM SHELL** |
 | `TableContainer.tsx` | `list.js` / `DataTables` inline JS | Table with search/sort/pagination |
 | `DeleteModal.tsx` | Bootstrap Modal HTML + SweetAlert2 | Delete confirmation |
 | `Loader.tsx` | CSS preloader div | Full-page loading spinner |
@@ -292,8 +292,8 @@
 | C9 LanguageDropdown | Multi-language support |
 | C11 FullScreenDropdown | Fullscreen mode |
 | C12 NotificationDropdown | Real-time notifications |
-| C14 MyCartDropdown | E-commerce projects |
-| C15 WebAppsDropdown | Multi-app projects |
+| ~~C14 MyCartDropdown~~ | ❌ **REMOVED FROM SHELL** |
+| ~~C15 WebAppsDropdown~~ | ❌ **REMOVED FROM SHELL** |
 | C16 RightSidebar | Theme customization |
 
 ---

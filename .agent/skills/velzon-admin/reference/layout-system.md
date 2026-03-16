@@ -13,7 +13,6 @@
 │   ├── Hamburger toggle
 │   ├── SearchOption
 │   ├── LanguageDropdown
-│   ├── MyCartDropdown
 │   ├── FullScreenDropdown
 │   ├── LightDark toggle
 │   ├── NotificationDropdown
@@ -35,7 +34,7 @@
 
 ### 1. Vertical (Default)
 - Left sidebar with collapsible navigation
-- Configurable sidebar sizes: `default`, `compact`, `sm-hover`, `lg`, `sm`
+- Configurable sidebar sizes: `lg` (default), `sm-hover`, `sm` (~~`compact`~~ REMOVED)
 - Sidebar themes: `dark`, `light`, `gradient`
 
 ### 2. Horizontal
@@ -66,14 +65,14 @@ All layout properties managed via Redux (`slices/layouts/`):
 interface LayoutState {
   layoutType: 'vertical' | 'horizontal' | 'twocolumn' | 'semibox';
   layoutModeType: 'light' | 'dark';
-  layoutThemeType: 'default' | 'saas' | 'material' | 'creative' | 'minimal' | 'modern' | 'interactive' | 'galaxy' | 'corporate';
-  layoutThemeColorType: 'default' | 'blue' | 'green' | 'purple' | 'custom';
+  layoutThemeType: 'default';  // ⚠️ LOCKED — theme selector removed
+  layoutThemeColorType: 'default' | 'blue' | 'green' | 'purple';
   leftSidebarType: 'dark' | 'light' | 'gradient' | 'gradient-2' | 'gradient-3' | 'gradient-4';
-  layoutWidthType: 'fluid' | 'boxed';
+  layoutWidthType: 'fluid';  // ⚠️ LOCKED — boxed removed
   layoutPositionType: 'fixed' | 'scrollable';
   topbarThemeType: 'light' | 'dark';
-  leftsidbarSizeType: 'default' | 'compact' | 'sm-hover' | 'lg' | 'sm';
-  leftSidebarViewType: 'default' | 'detached';
+  leftsidbarSizeType: 'lg' | 'sm-hover' | 'sm';  // ⚠️ compact removed
+  leftSidebarViewType: 'default';  // ⚠️ LOCKED — sidebar view removed
   leftSidebarImageType: 'none' | 'img-1' | 'img-2' | 'img-3' | 'img-4';
   sidebarVisibilitytype: 'show' | 'hidden';
 }
@@ -235,8 +234,12 @@ A settings panel (offcanvas) allowing runtime theme customization:
 - Color scheme (light/dark)
 - Sidebar color/size
 - Topbar color
-- Layout width (fluid/boxed)
+- Layout width (fluid only — ~~boxed~~ REMOVED)
 - Position (fixed/scrollable)
+
+> [!IMPORTANT]
+> **3 LOCKED values:** `data-theme="default"`, `data-layout-width="fluid"`, `data-layout-style="default"`
+> **Customizer footer:** Reset + Close (i18n). Buy Now REMOVED.
 
 Located in `Components/Common/RightSidebar.tsx` (125KB - extensive configuration UI).
 
@@ -254,7 +257,7 @@ Located in `Components/Common/RightSidebar.tsx` (125KB - extensive configuration
 
 ### Sidebar Size Behaviors
 - `lg` (default): Full sidebar with text and icons (250px)
-- `md` (compact): Icons + short labels (180px)
+- ~~`md` (compact)~~: **REMOVED** — not available in customizer
 - `sm`: Icons only, labels on hover (70px)
 - `sm-hover`: Same as `sm` but expands to full on mouse hover
 
@@ -262,4 +265,4 @@ Located in `Components/Common/RightSidebar.tsx` (125KB - extensive configuration
 - **Vertical/Semibox**: Sidebar becomes offcanvas below `lg` breakpoint
 - **Horizontal**: Top nav collapses to hamburger below `lg` breakpoint
 - **TwoColumn**: Icon sidebar persists, menu panel becomes offcanvas below `lg`
-- **Boxed width**: `.container-xxl` max-width `1440px` applied to content area
+- **Boxed width**: ~~`.container-xxl` max-width `1440px`~~ **REMOVED** — always fluid
