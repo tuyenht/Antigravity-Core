@@ -669,16 +669,50 @@ useEffect(() => {
 
 ---
 
-## JS Dependencies (React Equivalents)
+## JS Dependencies — Dual Strategy (from Velzon original)
 
-| Velzon HTML dependency | Next.js / React equivalent |
-|-----------------------|---------------------------|
-| `bootstrap.bundle.min.js` | `reactstrap` (npm package) |
-| `simplebar.min.js` | `simplebar-react` (npm package) |
-| `waves.min.js` (node-waves) | CSS `waves-effect waves-light` classes on notification tabs |
-| `lord-icon-2.1.0.js` | Dynamic import from CDN (notification modals, empty states) |
-| `layout.js` | `LayoutContext.tsx` + FOUC prevention script |
-| `app.js` | Layout component hooks (sidebar toggle, scroll shadow) |
+> [!IMPORTANT]
+> **Velzon uses 2 DIFFERENT approaches** based on framework type.
+> Both are from Velzon original — neither is custom code.
+
+### Strategy A: Non-React (HTML/PHP/Laravel/ASP/Node)
+
+Include Velzon scripts directly — they handle ALL interactivity:
+
+```html
+<script src="/assets/libs/bootstrap/js/bootstrap.bundle.min.js"></script>
+<script src="/assets/libs/simplebar/simplebar.min.js"></script>
+<script src="/assets/libs/feather-icons/feather.min.js"></script>
+<script src="/assets/js/plugins.js"></script>
+<script src="/assets/js/app.js"></script>
+```
+
+**Source files**: `velzon-admin/assets/js/` + `velzon-admin/assets/libs/`
+
+### Strategy B: React/Next.js (from Velzon React + Next-TS)
+
+**KHÔNG dùng app.js** — dùng React components (Velzon vendor's approach):
+
+| Velzon HTML | React/Next.js equivalent | Source file |
+|-------------|------------------------|------------|
+| `app.js` toggleMenu | `Header.tsx` → dispatch → `changeHTMLAttribute()` | `source/react-ts/layouts/Header.tsx` |
+| `app.js` collapseMenu | `VerticalLayout.tsx` + `reactstrap <Collapse>` | `source/react-ts/layouts/VerticalLayout.tsx` |
+| `app.js` sidebarHover | `Sidebar.tsx` + `addEventListenerOnSmHoverMenu` | `source/react-ts/layouts/Sidebar.tsx` |
+| `bootstrap.bundle.js` | `reactstrap` (npm) | — |
+| `simplebar.min.js` | `simplebar-react` (npm) | — |
+| `layout.js` sessionStorage | Redux `reducer.ts` + `thunk.ts` | `source/react-ts/slices/layouts/` |
+| All setAttribute | `changeHTMLAttribute(attr, val)` | `source/react-ts/slices/layouts/utils.ts` |
+| Menu state management | `LayoutMenuData.tsx` (per-item useState) | `source/react-ts/layouts/LayoutMenuData.tsx` |
+
+**Key utility** (8 dòng — cốt lõi của React approach):
+```ts
+// source/react-ts/slices/layouts/utils.ts
+const changeHTMLAttribute = (attribute: string, value: string) => {
+    if (document.documentElement)
+        document.documentElement.setAttribute(attribute, value);
+    return true;
+}
+```
 
 ---
 
